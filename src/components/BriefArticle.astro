@@ -1,0 +1,33 @@
+---
+import NewsItem from './NewsItem.astro';
+import AiNotice from './AiNotice.astro';
+import { SECTION_LABELS } from '../../shared/sections.mjs';
+import { longDate } from '../lib/date.js';
+
+const { brief, headingLevel = 'h1' } = Astro.props;
+const Titre = headingLevel;
+---
+
+<article class="brief">
+  <header>
+    {/* La date est mise en avant : le lecteur doit savoir de quel jour il lit le
+        brief, y compris quand celui du jour n'est pas encore paru. */}
+    <p class="date"><time datetime={brief.date}>{longDate(brief.date)}</time></p>
+    <Titre>{brief.title}</Titre>
+    <p class="chapeau">{brief.standfirst}</p>
+  </header>
+
+  {brief.sections.map((section) => (
+    <section class="rubrique-bloc" aria-labelledby={`s-${brief.id}-${section.key}`}>
+      <h2 id={`s-${brief.id}-${section.key}`}>{SECTION_LABELS[section.key]}</h2>
+
+      {section.items.length === 0 ? (
+        <p class="vide">Rien à signaler dans cette rubrique aujourd'hui.</p>
+      ) : (
+        section.items.map((item) => <NewsItem item={item} />)
+      )}
+    </section>
+  ))}
+
+  <AiNotice />
+</article>

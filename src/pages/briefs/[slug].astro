@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BriefArticle from '../../components/BriefArticle.astro';
+import { allBriefs } from '../../lib/content.js';
+import { longDate } from '../../lib/date.js';
+
+export async function getStaticPaths() {
+  const briefs = await allBriefs();
+
+  return briefs.map((brief, index) => ({
+    params: { slug: brief.slug },
+    props: {
+      brief,
+      // Voisins chronologiques : l'archive se lit de proche en proche, pas
+      // seulement par la liste.
+      plusRecent: index > 0 ? briefs[index - 1] : null,
+      plusAncien: index < briefs.length - 1 ? briefs[index + 1] : null,
+    },
+  }));
+}
+
+const { brief, plusRecent, plusAncien } = Astro.props;
+---
+
+<BaseLayout title={brief.title} description={brief.standfirst}>
+  <BriefArticle brief={brief} />
+
+  <nav class="voisins" aria-label="Autres briefs">
+    {plusAncien && (
+      <a href={`/briefs/${plusAncien.slug}/`}>← {longDate(plusAncien.date)}</a>
+    )}
+    {plusRecent && (
+      <a href={`/briefs/${plusRecent.slug}/`}>{longDate(plusRecent.date)} →</a>
+    )}
+  </nav>
+</BaseLayout>

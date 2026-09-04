@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsItem from '../../components/NewsItem.astro';
+import AiNotice from '../../components/AiNotice.astro';
+import { recentBriefs } from '../../lib/content.js';
+import { SECTIONS, SECTION_LABELS } from '../../../shared/sections.mjs';
+import { longDate } from '../../lib/date.js';
+
+export async function getStaticPaths() {
+  // Trente jours : au-delà, une rubrique se lit par l'archive, brief par brief.
+  const briefs = await recentBriefs(30);
+
+  return SECTIONS.map((section) => ({
+    params: { section },
+    props: {
+      section,
+      jours: briefs
+        .map((brief) => ({
+          brief,
+          items: brief.sections.find((s) => s.key === section)?.items ?? [],
+        }))
+        .filter((jour) => jour.items.length > 0),
+    },
+  }));
+}
+
+const { section, jours } = Astro.props;
+const total = jours.reduce((n, jour) => n + jour.items.length, 0);
+---
+
+<BaseLayout
+  title={SECTION_LABELS[section]}
+  description={`${SECTION_LABELS[section]} : ${total} items sur les trente derniers briefs.`}
+>
+  <h1>{SECTION_LABELS[section]}</h1>
+  <p class="chapeau">Les {total} derniers items de cette rubrique.</p>
+
+  {jours.length === 0 ? (
+    <p class="vide">
+      Cette rubrique n'a rien reçu ces trente derniers jours. Ce n'est pas une panne :
+      certaines journées sont creuses, et le brief le dit plutôt que de meubler.
+    </p>
+  ) : (
+    jours.map(({ brief, items }) => (
+      <section class="jour-bloc">
+        <h2>
+          <a href={`/briefs/${brief.slug}/`}>
+            <time datetime={brief.date}>{longDate(brief.date)}</time>
+          </a>
+        </h2>
+        {items.map((item) => <NewsItem item={item} />)}
+      </section>
+    ))
+  )}
+
+  <AiNotice />
+</BaseLayout>

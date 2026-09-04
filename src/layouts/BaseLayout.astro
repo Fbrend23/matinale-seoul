@@ -1,0 +1,54 @@
+---
+import '../styles/style.css';
+import { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
+
+const { title, description, canonical } = Astro.props;
+const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
+const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titreComplet}</title>
+    <meta name="description" content={description ?? 'Brief quotidien : tourisme en Corée, actualités coréennes, tech et IA.'} />
+    <link rel="canonical" href={url} />
+    <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul" href="/rss.xml" />
+    <meta property="og:title" content={titreComplet} />
+    <meta property="og:description" content={description ?? ''} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+  </head>
+
+  <body>
+    <a class="saut" href="#contenu">Aller au contenu</a>
+
+    <header class="entete">
+      <p class="marque"><a href="/">La Matinale de Séoul</a></p>
+      <nav aria-label="Navigation principale">
+        <a href="/">Aujourd'hui</a>
+        {SECTIONS.map((s) => <a href={`/sections/${s}/`}>{SECTION_LABELS[s]}</a>)}
+        <a href="/briefs/">Archive</a>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="pied">
+      <p>
+        <strong>La Matinale de Séoul</strong> — brief quotidien, du lundi au vendredi.
+        <a href="/rss.xml">Flux RSS</a>
+      </p>
+      <p class="mention">
+        Contenu produit automatiquement. Les résumés sont rédigés par une IA à partir
+        des articles cités : ils peuvent se tromper, et rien n'est relu par un humain
+        avant publication. Chaque item porte le lien de sa source — la vérification
+        vous revient.
+      </p>
+    </footer>
+  </body>
+</html>

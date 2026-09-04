@@ -1,0 +1,47 @@
+# Copié tel quel dans dist/ par astro build, puis déployé par lftp.
+# Transposé du site de la compagnie : mêmes règles, mêmes raisons.
+# Rôles : HTTPS, DirectoryIndex, cache long sur les assets hashés, page 404,
+# et aucun fichier caché servi (sauf .well-known, nécessaire à Let's Encrypt).
+
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RedirectMatch 404 "/\.(?!well-known)"
+
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(avif|webp|js|mjs|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Signal de fin de publication : envoyé seul et en dernier par le workflow.
+  # no-store, sinon il répondrait l'ancienne date pendant des minutes.
+  <Files "build.json">
+    Header set Cache-Control "no-store"
+    Header set Access-Control-Allow-Origin "*"
+  </Files>
+
+  # Ce que l'agent lit avant de composer le brief du matin. Origine ouverte :
+  # il est produit pour être récupéré depuis ailleurs, et ne contient que des
+  # titres déjà publics. Cache court : un brief publié à 6 h doit être connu du
+  # run du lendemain.
+  <Files "recent.json">
+    Header set Cache-Control "public, max-age=300"
+    Header set Access-Control-Allow-Origin "*"
+  </Files>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Cinq minutes sur le HTML : le brief du jour paraît le matin, et une page
+  # d'accueil figée une heure ferait douter de la parution.
+  ExpiresByType text/html "access plus 5 minutes"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>

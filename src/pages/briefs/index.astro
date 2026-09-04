@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { listBriefs } from '../../lib/content.js';
+import { longDate } from '../../lib/date.js';
+
+const briefs = await listBriefs();
+
+// Groupés par mois : une liste plate de plusieurs centaines de jours ne se
+// parcourt pas.
+const parMois = new Map();
+for (const brief of briefs) {
+  const clé = brief.date.slice(0, 7);
+  if (!parMois.has(clé)) parMois.set(clé, []);
+  parMois.get(clé).push(brief);
+}
+
+const moisLisible = (clé) =>
+  new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC', month: 'long', year: 'numeric' })
+    .format(new Date(`${clé}-15T12:00:00Z`));
+---
+
+<BaseLayout
+  title="Archive"
+  description={`${briefs.length} briefs publiés depuis le ${briefs.at(-1).date}.`}
+>
+  <h1>Archive</h1>
+  <p class="chapeau">
+    {briefs.length} brief{briefs.length > 1 ? 's' : ''} publié{briefs.length > 1 ? 's' : ''},
+    du {longDate(briefs.at(-1).date)} au {longDate(briefs[0].date)}.
+  </p>
+
+  {[...parMois].map(([clé, dumois]) => (
+    <section class="mois">
+      <h2>{moisLisible(clé)}</h2>
+      <ul>
+        {dumois.map((brief) => (
+          <li>
+            <a href={`/briefs/${brief.slug}/`}>
+              <span class="jour"><time datetime={brief.date}>{brief.date.slice(8)}</time></span>
+              <span class="titre">{brief.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import { sourceTime } from '../lib/date.js';
+
+const { item, showSection = false, sectionLabel = null } = Astro.props;
+const quand = sourceTime(item.published_at);
+const tags = Array.isArray(item.tags) ? item.tags : [];
+---
+
+<article class="item">
+  <h3>{item.headline}</h3>
+
+  {showSection && sectionLabel && <p class="rubrique">{sectionLabel}</p>}
+
+  <p class="resume">{item.summary}</p>
+
+  {item.analysis && (
+    <p class="analyse"><span>Ce qu'il faut y voir</span> {item.analysis}</p>
+  )}
+
+  <p class="source">
+    {/* rel="nofollow ugc" : ces liens sont choisis par une machine, on ne
+        transmet pas de recommandation avec eux. */}
+    <a href={item.source_url} rel="nofollow ugc noopener" target="_blank">
+      {item.source_name}
+    </a>
+    {item.source_lang && <span class="langue"> · {item.source_lang}</span>}
+    {quand && <span class="quand"> · {quand}</span>}
+  </p>
+
+  {tags.length > 0 && (
+    <ul class="etiquettes">
+      {tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  )}
+</article>

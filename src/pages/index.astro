@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BriefArticle from '../components/BriefArticle.astro';
+import { recentBriefs } from '../lib/content.js';
+import { seoulToday, longDate, shortDate, daysBetween } from '../lib/date.js';
+
+const briefs = await recentBriefs(8);
+const [dernier, ...precedents] = briefs;
+
+// Le brief du jour peut ne pas être encore paru : il sort le matin, heure de
+// Séoul. On affiche alors le dernier publié, en disant clairement de quand il
+// date. Jamais de page vide, jamais de « brief indisponible » : le lecteur
+// aurait perdu son temps, alors que le brief d'hier a encore tout son intérêt.
+const aujourdhui = seoulToday();
+const retard = daysBetween(dernier.date, aujourdhui);
+---
+
+<BaseLayout
+  title={dernier.title}
+  description={dernier.standfirst}
+  canonical={new URL('/', Astro.site).toString()}
+>
+  {retard > 0 && (
+    <p class="avis">
+      Le brief du {longDate(aujourdhui)} n'est pas encore paru.
+      Voici le dernier publié, celui du {longDate(dernier.date)}.
+    </p>
+  )}
+
+  <BriefArticle brief={dernier} />
+
+  {precedents.length > 0 && (
+    <section class="precedents">
+      <h2>Les jours précédents</h2>
+      <ul>
+        {precedents.map((brief) => (
+          <li>
+            <a href={`/briefs/${brief.slug}/`}>
+              <span class="jour">{shortDate(brief.date)}</span>
+              <span class="titre">{brief.title}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p><a href="/briefs/">Toute l'archive</a></p>
+    </section>
+  )}
+</BaseLayout>
