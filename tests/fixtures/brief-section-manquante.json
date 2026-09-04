@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-04",
+  "title": "Deux sections seulement",
+  "standfirst": "La section « tech » a disparu du rendu de l'agent. Le site afficherait un trou sans le dire.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une histoire quelconque",
+          "summary": "Un résumé court et honnête.",
+          "importance": 1,
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260903000100320"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une autre histoire",
+          "summary": "Un autre résumé.",
+          "importance": 1,
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/view.php?ud=20260903000456"
+        }
+      ]
+    }
+  ]
+}

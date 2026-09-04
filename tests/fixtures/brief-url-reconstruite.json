@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-04",
+  "title": "Une URL qui a l'air d'une URL",
+  "standfirst": "Le lien n'est pas en HTTPS et ressemble à une adresse devinée : c'est le mode de défaillance que le schéma peut encore attraper avant le réseau.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une histoire dont le lien a été reconstruit de tête",
+          "summary": "Le résumé, lui, est parfaitement présentable. C'est bien le problème.",
+          "importance": 1,
+          "source_name": "Yonhap",
+          "source_url": "http://yna.co.kr/article-du-jour"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": "Rien de saillant côté national aujourd'hui.",
+      "items": []
+    },
+    {
+      "key": "tech",
+      "empty_note": "Journée creuse : aucune annonce vérifiable.",
+      "items": []
+    }
+  ]
+}

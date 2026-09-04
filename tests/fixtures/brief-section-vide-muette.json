@@ -1,0 +1,38 @@
+{
+  "date": "2026-09-04",
+  "title": "Une section vide qui ne dit pas pourquoi",
+  "standfirst": "La section « tech » est vide et n'explique rien : le lecteur ne peut pas distinguer une journée calme d'une panne de la chaîne.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une histoire quelconque",
+          "summary": "Un résumé court et honnête.",
+          "importance": 1,
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260903000100320"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une autre histoire",
+          "summary": "Un autre résumé.",
+          "importance": 1,
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/view.php?ud=20260903000456"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": []
+    }
+  ]
+}
