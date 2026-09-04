@@ -1,0 +1,25 @@
+# Environnement — jamais commité. Les valeurs vivent dans les secrets GitHub,
+# et le .env local n'est là que pour le développement.
+.env
+.env.local
+.env.production
+!.env.example
+
+# Build
+dist/
+.astro/
+
+# Dépendances
+node_modules/
+
+# Médias rapatriés du CMS : reconstruits à chaque build
+public/cms/
+.cache/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# NE PAS ignorer inbox/ ni archive/ : le brief du matin arrive par commit, et
+# c'est ce commit qui déclenche le workflow. Les ignorer couperait la chaîne à
+# sa source, sans que rien ne le signale.
