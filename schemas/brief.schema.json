@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Fbrend23/matinale-seoul/schemas/brief.schema.json",
+  "title": "Brief de La Matinale de Séoul",
+  "description": "Contrat de sortie de la tâche Claude planifiée. Ce que ce fichier ne peut pas dire (40 mots au plus par résumé, une seule analyse par section, la date du jour à Séoul) est vérifié par la garde de cohérence : un schéma ne compte pas les mots.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["date", "title", "standfirst", "sections"],
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Jour couvert, heure de Séoul."
+    },
+    "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "standfirst": { "type": "string", "minLength": 1, "maxLength": 600 },
+    "sections": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/section" },
+      "allOf": [
+        { "contains": { "properties": { "key": { "const": "tourisme" } }, "required": ["key"] } },
+        { "contains": { "properties": { "key": { "const": "coree" } }, "required": ["key"] } },
+        { "contains": { "properties": { "key": { "const": "tech" } }, "required": ["key"] } }
+      ],
+      "description": "Les trois sections sont toujours présentes, même vides."
+    }
+  },
+  "$defs": {
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "items"],
+      "properties": {
+        "key": { "enum": ["tourisme", "coree", "tech"] },
+        "empty_note": {
+          "type": ["string", "null"],
+          "maxLength": 300,
+          "description": "Une phrase disant pourquoi la section est vide. Obligatoire quand elle l'est."
+        },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/item" } }
+      },
+      "allOf": [
+        {
+          "description": "Section vide sans explication : la page afficherait un trou sans le dire.",
+          "if": { "properties": { "items": { "maxItems": 0 } }, "required": ["items"] },
+          "then": {
+            "properties": { "empty_note": { "type": "string", "minLength": 1 } },
+            "required": ["empty_note"]
+          }
+        }
+      ]
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["headline", "summary", "importance", "source_name", "source_url"],
+      "properties": {
+        "headline": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 600 },
+        "analysis": { "type": ["string", "null"], "maxLength": 1200 },
+        "importance": { "type": "integer", "minimum": 1, "maximum": 99 },
+        "tags": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        },
+        "source_name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "En clair et complète. Jamais reconstruite de tête : la garde des liens vivants la vérifie."
+        },
+        "source_lang": { "type": "string", "pattern": "^[a-z]{2}(-[A-Za-z]{2,4})?$" },
+        "published_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "Omis quand la source ne l'horodate pas de façon fiable."
+        }
+      }
+    }
+  }
+}
