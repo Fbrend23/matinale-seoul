@@ -1,0 +1,24 @@
+{
+  "name": "matinale-seoul",
+  "private": true,
+  "type": "module",
+  "description": "La Matinale de Séoul — brief d'actualité quotidien, site statique",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "ingest": "node --env-file-if-exists=.env scripts/ingest.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "astro": "^5.1.1"
+  }
+}
