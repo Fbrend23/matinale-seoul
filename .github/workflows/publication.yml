@@ -1,0 +1,265 @@
+# Publication de La Matinale de Séoul.
+#
+# Un seul job, du fichier déposé par l'agent jusqu'au site en ligne : ingestion,
+# build, déploiement, archivage. Aucune pièce intermédiaire, donc aucun endroit
+# où la chaîne puisse s'arrêter sans que personne ne l'apprenne.
+#
+# Trois déclencheurs :
+#   push (inbox/**)     → l'agent a déposé le brief du jour, c'est le cas normal
+#   workflow_dispatch   → relance manuelle, et bouton « Mettre le site en ligne »
+#                         du CMS, posé sur mat_publication
+#   schedule (00 h 10 à Séoul) → les dates passent. Sans lui, l'accueil
+#                         continuerait d'afficher le brief d'hier sans dire que
+#                         celui du jour n'est pas encore paru : le bandeau est
+#                         calculé au build, pas dans le navigateur.
+#
+# Ce n'est PAS un cron d'ingestion : rien n'est sondé, rien n'attend un fichier.
+# Le brief arrive par push, et par push seulement.
+#
+# Garde-fou de déploiement, repris du site de la compagnie : un fichier vide
+# « .deploy-cible » doit exister à la racine du compte FTP, déposé une fois à la
+# main. Si les secrets pointent ailleurs, le marqueur n'y est pas et tout
+# s'arrête AVANT la moindre écriture. C'est le seul rempart contre un
+# « mirror --delete » sur le mauvais compte, et le FTP n'a pas de corbeille.
+#
+# PREMIER DÉPLOIEMENT : lancer à la main avec dry_run activé, puis lire la liste.
+
+name: Publication
+
+on:
+  push:
+    branches: [main]
+    # Le déclenchement est restreint au canal d'arrivée : un commit de code ne
+    # relance pas l'ingestion, et le jeton de l'agent ne peut de toute façon
+    # écrire que là.
+    paths: ['inbox/**']
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'mirror en --dry-run (aucune écriture côté serveur)'
+        type: boolean
+        default: false
+  schedule:
+    - cron: '10 15 * * *'
+
+concurrency:
+  group: publication
+  cancel-in-progress: false
+
+permissions:
+  contents: write # déplacer inbox/ vers archive/ après publication
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    env:
+      # Le runner tourne en UTC. Les dates du brief sont ancrées sur Asia/Seoul
+      # dans le code, jamais sur l'horloge de la machine, mais autant que le
+      # journal du job se lise dans le même fuseau que le contenu.
+      TZ: Asia/Seoul
+      FTP_HOST: ${{ secrets.FTP_HOST }}
+      FTP_USER: ${{ secrets.FTP_USER }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      # --prefer-offline : le cache de setup-node vient d'être restauré.
+      # --no-audit --no-fund : deux appels réseau qui n'apprennent rien à un job
+      # de publication.
+      - run: npm ci --prefer-offline --no-audit --no-fund
+
+      # Les gardes sont ce qui remplace la relecture humaine : si elles sont
+      # cassées, rien ne doit partir. Deux passes de fuseau, parce qu'un brief
+      # daté à Séoul et un runner en UTC sont à quinze heures l'un de l'autre.
+      - name: Tests (fuseau de Séoul)
+        run: npm test
+      - name: Tests (runner en UTC)
+        run: npm test
+        env:
+          TZ: UTC
+
+      # 0 · Un build privé de ses sources RÉUSSIRAIT s'il avait de quoi retomber.
+      #     Ce site n'a rien : pas de contenu local, pas de repli. On ferme
+      #     quand même la porte ici, pour que le message dise ce qui manque
+      #     plutôt que de laisser une erreur d'Astro le faire à sa place.
+      - name: Refuser un build sans ses sources
+        run: |
+          manquantes=""
+          for v in DIRECTUS_URL DIRECTUS_BUILD_TOKEN DIRECTUS_INGEST_TOKEN SITE_URL; do
+            if [ -z "${!v:-}" ]; then
+              manquantes="$manquantes $v"
+            fi
+          done
+          if [ -n "$manquantes" ]; then
+            echo "::error::Sources absentes :$manquantes"
+            echo "DIRECTUS_URL, DIRECTUS_BUILD_TOKEN et DIRECTUS_INGEST_TOKEN sont des"
+            echo "secrets du dépôt ; SITE_URL est une variable (Settings > Variables)."
+            exit 1
+          fi
+          echo "Les quatre sources sont fournies."
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_BUILD_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
+          DIRECTUS_INGEST_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      # 1 · Le nom du fichier dit de quel jour on parle, et il est écrit par un
+      #     agent. Un nom hors format est refusé avant même d'être ouvert : sans
+      #     cela, un fichier mal nommé serait ingéré sous une date devinée.
+      - name: Vérifier ce que contient l'inbox
+        id: inbox
+        run: |
+          shopt -s nullglob
+          fichiers=(inbox/*)
+          hors_format=()
+          for f in "${fichiers[@]}"; do
+            nom=$(basename "$f")
+            [ "$nom" = ".gitkeep" ] && continue
+            if ! echo "$nom" | grep -qE '^brief-[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$'; then
+              hors_format+=("$nom")
+            fi
+          done
+
+          if [ ${#hors_format[@]} -gt 0 ]; then
+            echo "::error::Fichiers hors format dans inbox/ : ${hors_format[*]}"
+            echo "Attendu : brief-AAAA-MM-JJ.json"
+            exit 1
+          fi
+
+          briefs=$(ls inbox/brief-*.json 2>/dev/null | wc -l)
+          echo "briefs=$briefs" >> "$GITHUB_OUTPUT"
+          echo "$briefs brief(s) à ingérer."
+
+      # 2 · Les cinq gardes, puis l'écriture dans le CMS. Le jeton est celui de
+      #     la policy « mat — écriture » : ni l'admin, ni celui du build.
+      #     Un brief recalé fait échouer le job — c'est le mail d'alerte — et son
+      #     fichier reste dans inbox/ pour être rejoué.
+      - name: Ingérer les briefs déposés
+        if: steps.inbox.outputs.briefs != '0'
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
+        run: node scripts/ingest.mjs
+
+      # 3 · Build. Séquentiel : pas de publication si le build échoue, donc le
+      #     site en ligne reste celui d'hier quand le CMS est injoignable. Le
+      #     jeton change de main ici : lecture seule du contenu publié.
+      - name: Construire le site
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
+        run: npm run build
+
+      - name: Installer lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      # 4 · Garde-fou avant toute écriture : la cible doit porter son marqueur.
+      - name: Vérifier la cible de déploiement
+        run: |
+          # Deux causes d'échec sans rapport l'une avec l'autre, qu'il faut
+          # séparer : la connexion, puis la cible.
+          if ! racine=$(lftp -u "$FTP_USER,$FTP_PASSWORD" \
+            -e "set ftp:ssl-force yes; set cmd:fail-exit yes; cls -l; quit" \
+            "$FTP_HOST" 2>&1); then
+            echo "::error::Connexion FTP impossible. Le marqueur n'est pas en cause."
+            echo "$racine" | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
+            echo "FTP_HOST doit être le serveur FTP de l'hébergeur, pas le domaine du site."
+            exit 1
+          fi
+
+          echo "Connexion établie. Racine vue par ce compte FTP :"
+          echo "$racine" | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
+
+          if ! echo "$racine" | grep -q "[.]deploy-cible"; then
+            echo "::error::Marqueur .deploy-cible absent de cette racine, abandon."
+            echo "Vérifier D'ABORD que le listage ci-dessus est bien le site : c'est là"
+            echo "que le mirror --delete écrira. Puis y déposer un fichier vide nommé"
+            echo ".deploy-cible."
+            exit 1
+          fi
+
+          echo "Marqueur présent, la cible est la bonne."
+
+      # 5 · Publication. build.json part SEUL et EN DERNIER : c'est lui qui
+      #     atteste que tout le reste est déjà arrivé. Dans le mirror il aurait
+      #     suivi --parallel=4 et aurait pu être déposé en premier.
+      - name: Déployer
+        env:
+          DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          set -o pipefail
+
+          # lftp imprime des URL contenant le mot de passe, encodé en URL. La
+          # chaîne encodée ne correspondant plus au secret, GitHub ne la masque
+          # pas : on rédige nous-mêmes avant que ça n'atteigne les logs.
+          publier() {
+            lftp -u "$FTP_USER,$FTP_PASSWORD" \
+              -e "set ftp:ssl-force yes; set cmd:fail-exit yes; $1; quit" \
+              "$FTP_HOST" 2>&1 | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
+          }
+
+          publier "mirror -R --delete --parallel=4 --verbose $DRY_RUN --exclude-glob .deploy-cible --exclude-glob .user.ini --exclude-glob .infomaniak-maintenance.html --exclude-glob build.json dist/ ./"
+
+          if [ -n "$DRY_RUN" ]; then
+            echo "dry-run : build.json n'est pas envoyé."
+          else
+            publier "put dist/build.json -o build.json"
+          fi
+
+      # 6 · Le brief est en ligne : son fichier quitte l'inbox. Rangé par année,
+      #     sinon le dossier compte trois cents fichiers au bout d'un an.
+      #     APRÈS le déploiement, jamais avant : un fichier archivé alors que la
+      #     publication a échoué serait un brief perdu, sans trace de son passage.
+      - name: Archiver les briefs publiés
+        if: ${{ success() && !inputs.dry_run && steps.inbox.outputs.briefs != '0' }}
+        run: |
+          shopt -s nullglob
+          déplacés=0
+          for f in inbox/brief-*.json; do
+            année=$(basename "$f" | sed -E 's/^brief-([0-9]{4}).*/\1/')
+            mkdir -p "archive/$année"
+            git mv "$f" "archive/$année/"
+            déplacés=$((déplacés + 1))
+          done
+
+          if [ "$déplacés" -eq 0 ]; then
+            echo "Rien à archiver."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # [skip ci] : ce commit touche inbox/, donc il rentrerait dans le
+          # filtre « paths » du déclencheur et relancerait le job en boucle.
+          git commit -m "chore(Archive) Ranger $déplacés brief(s) publié(s) [skip ci]"
+          git push
+
+      # 7 · Dater la publication dans le CMS, une fois le site vraiment en ligne.
+      #     Un échec ici ne casse pas le run : le site EST publié, et laisser la
+      #     date en retard est moins faux que de déclarer le contraire.
+      - name: Dater la publication dans le CMS
+        if: ${{ success() && !inputs.dry_run }}
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
+        run: |
+          maintenant=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          code=$(curl -s -o reponse.json -w '%{http_code}' -X PATCH \
+            -H "Authorization: Bearer $DIRECTUS_TOKEN" \
+            -H 'Content-Type: application/json' \
+            -d "{\"last_published\":\"$maintenant\"}" \
+            "$DIRECTUS_URL/items/mat_publication")
+
+          if [ "$code" = "200" ]; then
+            echo "CMS daté : $maintenant"
+          else
+            echo "::warning::Le CMS n'a pas accepté la date (HTTP $code). Le site est en ligne."
+            sed -E 's/[A-Za-z0-9_-]{20,}/***/g' reponse.json | head -c 300
+          fi
+          rm -f reponse.json
