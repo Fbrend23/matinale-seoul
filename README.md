@@ -26,10 +26,15 @@ GitHub ──push (paths: inbox/**)──▶ Actions
                                      └─ commit : inbox/ → archive/AAAA/
 ```
 
-**Pas de cron d'ingestion.** Le push déclenche tout. Rejouer un run raté est un
-bouton dans l'onglet Actions, avec ses journaux. Un `schedule` nocturne existe,
-mais il ne sonde rien : il reconstruit le site à minuit, heure de Séoul, pour que
-l'accueil sache dire « le brief du jour n'est pas encore paru ».
+**Aucun cron.** Le push déclenche tout, et le site ne se reconstruit que
+lorsqu'il a quelque chose de neuf à dire. Rejouer un run raté est un bouton dans
+l'onglet Actions, avec ses journaux.
+
+L'avis « le brief du jour n'est pas encore paru » est la seule chose qui ne peut
+pas être décidée au build : « aujourd'hui » y serait figé. Il est calculé chez le
+lecteur, en quelques lignes qui réutilisent les fonctions de date du site. Sans
+JavaScript, l'avis n'apparaît pas et la date du brief reste affichée en tête
+d'article : elle suffit à ne tromper personne.
 
 **Pas de webhook de build.** L'ingestion et le build sont deux étapes du même
 job : il n'y a aucune pièce intermédiaire où la chaîne puisse s'arrêter en

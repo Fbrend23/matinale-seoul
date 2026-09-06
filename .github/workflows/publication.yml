@@ -4,17 +4,16 @@
 # build, déploiement, archivage. Aucune pièce intermédiaire, donc aucun endroit
 # où la chaîne puisse s'arrêter sans que personne ne l'apprenne.
 #
-# Trois déclencheurs :
+# Deux déclencheurs, et aucun cron :
 #   push (inbox/**)     → l'agent a déposé le brief du jour, c'est le cas normal
 #   workflow_dispatch   → relance manuelle, et bouton « Mettre le site en ligne »
 #                         du CMS, posé sur mat_publication
-#   schedule (00 h 10 à Séoul) → les dates passent. Sans lui, l'accueil
-#                         continuerait d'afficher le brief d'hier sans dire que
-#                         celui du jour n'est pas encore paru : le bandeau est
-#                         calculé au build, pas dans le navigateur.
 #
-# Ce n'est PAS un cron d'ingestion : rien n'est sondé, rien n'attend un fichier.
-# Le brief arrive par push, et par push seulement.
+# Un rebuild nocturne a existé ici, pour tenir à jour l'avis « le brief du jour
+# n'est pas encore paru » que l'accueil calculait au build. Une reconstruction
+# complète chaque nuit — et les minutes d'un dépôt privé — pour une seule phrase :
+# l'avis est désormais décidé chez le lecteur, et le site ne se reconstruit plus
+# que lorsqu'il a réellement quelque chose de neuf à dire.
 #
 # Garde-fou de déploiement, repris du site de la compagnie : un fichier vide
 # « .deploy-cible » doit exister à la racine du compte FTP, déposé une fois à la
@@ -39,8 +38,6 @@ on:
         description: 'mirror en --dry-run (aucune écriture côté serveur)'
         type: boolean
         default: false
-  schedule:
-    - cron: '10 15 * * *'
 
 concurrency:
   group: publication

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BriefArticle from '../components/BriefArticle.astro';
 import { recentBriefs } from '../lib/content.js';
-import { seoulToday, longDate, shortDate, daysBetween } from '../lib/date.js';
+import { longDate, shortDate } from '../lib/date.js';
 
 const briefs = await recentBriefs(8);
 const [dernier, ...precedents] = briefs;
@@ -11,8 +11,11 @@ const [dernier, ...precedents] = briefs;
 // Séoul. On affiche alors le dernier publié, en disant clairement de quand il
 // date. Jamais de page vide, jamais de « brief indisponible » : le lecteur
 // aurait perdu son temps, alors que le brief d'hier a encore tout son intérêt.
-const aujourdhui = seoulToday();
-const retard = daysBetween(dernier.date, aujourdhui);
+//
+// L'avis de parution, lui, ne peut pas être décidé ici : « aujourd'hui » y
+// serait figé à l'heure du build, et le site paraîtrait à jour toute la nuit
+// suivante. Il est donc décidé chez le lecteur, quelques lignes plus bas — ce
+// qui évite de reconstruire le site chaque nuit pour une seule phrase.
 ---
 
 <BaseLayout
@@ -20,12 +23,28 @@ const retard = daysBetween(dernier.date, aujourdhui);
   description={dernier.standfirst}
   canonical={new URL('/', Astro.site).toString()}
 >
-  {retard > 0 && (
-    <p class="avis">
-      Le brief du {longDate(aujourdhui)} n'est pas encore paru.
-      Voici le dernier publié, celui du {longDate(dernier.date)}.
-    </p>
-  )}
+  {/* Masqué par défaut : sans JavaScript, le lecteur voit la date du brief en
+      tête d'article, qui reste vraie. L'avis n'ajoute qu'un confort. */}
+  <p class="avis" id="avis-parution" data-brief={dernier.date} hidden>
+    Le brief du <span id="avis-jour"></span> n'est pas encore paru.
+    Voici le dernier publié, celui du {longDate(dernier.date)}.
+  </p>
+
+  <script>
+    // Les mêmes fonctions qu'au build, exécutées chez le lecteur : le fuseau de
+    // Séoul n'est ainsi défini qu'à un seul endroit.
+    import { seoulToday, longDate } from '../lib/date.js';
+
+    const avis = document.getElementById('avis-parution');
+    const paru = avis?.dataset.brief;
+    const aujourdhui = seoulToday();
+
+    // Comparaison de deux AAAA-MM-JJ : l'ordre des chaînes est celui des jours.
+    if (avis && paru && paru < aujourdhui) {
+      document.getElementById('avis-jour').textContent = longDate(aujourdhui);
+      avis.hidden = false;
+    }
+  </script>
 
   <BriefArticle brief={dernier} />
 
