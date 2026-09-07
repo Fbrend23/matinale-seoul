@@ -1,9 +1,13 @@
 # Instructions de la tâche planifiée
 
-Le texte de la section « Prompt » se colle tel quel dans la tâche Claude
-planifiée. Il est versionné ici parce qu'il forme un couple avec
-`schemas/brief.schema.json` : si l'un change, l'autre doit suivre, sans quoi
-l'agent produira consciencieusement des briefs que les gardes recaleront.
+**La routine ne recopie pas ce texte : elle lit ce fichier.** Sa consigne tient
+en trois lignes et le désigne, si bien que corriger le brief de demain se fait
+ici, par un commit, et non dans les réglages d'une routine — où plus personne
+n'irait relire ce qu'on lui a demandé.
+
+Il forme un couple avec `schemas/brief.schema.json` : si l'un change, l'autre
+doit suivre, sans quoi l'agent produira consciencieusement des briefs que les
+gardes recaleront. Des tests tiennent les deux ensemble.
 
 **Réglages :** routine Claude Code planifiée, dans le cloud, tous les jours
 ouvrés à **8 h heure de Séoul** (`0 23 * * 0-4` en UTC : 8 h à Séoul, c'est 23 h
@@ -57,9 +61,10 @@ inbox/brief-AAAA-MM-JJ.json
 La date du nom de fichier est **le jour courant à Séoul**, et elle doit être
 identique au champ `date`. Message de commit : `feat(Brief) Brief du AAAA-MM-JJ`.
 
-N'écris nulle part ailleurs. Ne modifie aucun autre fichier, ne touche pas au
-dossier `.github/`. Ton jeton ne t'y autorise pas, et une tentative ferait
-échouer le dépôt entier.
+N'écris nulle part ailleurs, et **ne touche jamais au dossier `.github/`** : il
+contient la chaîne qui vérifie ton travail. Techniquement tu en as les moyens —
+raison de plus pour que la règle soit nette. Modifier ce qui te contrôle n'est
+pas une correction, c'est un contournement.
 
 Forme exacte du fichier :
 
@@ -117,7 +122,29 @@ Noter les deux pièges que cet exemple montre en creux : une section vide porte 
 `empty_note` **non vide** — `null` la ferait rejeter — et un brief a besoin d'au
 moins **deux** sections pourvues.
 
-### 3. Les règles qui font recaler un brief
+### 3. Avant de committer : relis-toi
+
+Le dépôt est cloné chez toi, donc tu peux vérifier ton brief au lieu de laisser
+la CI le faire :
+
+```bash
+npm ci
+npm run preflight -- inbox/brief-AAAA-MM-JJ.json
+```
+
+Le contrôle applique quatre des cinq gardes : schéma, liens vivants, allowlist,
+cohérence. Il n'y a que les doublons qu'il ne peut pas juger, faute d'accès au
+CMS.
+
+**Tant qu'il recale, corrige et recommence.** Un lien mort ? Retire l'item ou
+trouve la vraie adresse — ne la devine pas. Un résumé trop long ? Coupe. Un
+brief qui part recalé, c'est un run rouge, un mail d'alerte, et une matinée sans
+brief.
+
+S'il ne passe toujours pas après correction, **ne pousse pas** : rapporte ce qui
+bloque. Un brief absent se rattrape, un brief faux se lit.
+
+### 4. Les règles qui font recaler un brief
 
 Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 
@@ -137,7 +164,7 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
 - Aucun autre champ que ceux listés. Un champ inventé fait rejeter le brief.
 
-### 4. Les sources
+### 5. Les sources
 
 - **Ne reconstruis jamais une URL.** Chaque `source_url` doit être une adresse
   que tu as réellement vue, complète, en `https://`. Un contrôle automatique
@@ -153,7 +180,7 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   court, écrit par toi, et le lien. C'est la différence entre une revue de presse
   et une contrefaçon.
 
-### 5. Le ton
+### 6. Le ton
 
 Français sobre, phrases courtes, pas de superlatif. Tu écris pour quelqu'un qui
 lit son brief en dix minutes le matin. Les noms de champs restent en anglais, la
@@ -169,7 +196,7 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
 - Le contrat ci-dessus doit rester d'accord avec `schemas/brief.schema.json`,
   qui fait foi. En cas de divergence, c'est le schéma qui gagne et l'agent qui
   se fait recaler — donc modifier les deux ensemble.
-- La liste des sources citée au § 4 est un extrait de `config/sources.json`, pour
+- La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
 - `recent.json` n'existe qu'une fois le site déployé une première fois. Le prompt
