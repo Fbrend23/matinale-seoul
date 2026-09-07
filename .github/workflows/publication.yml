@@ -115,59 +115,13 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
 
-      # 1 · Le nom du fichier dit de quel jour on parle, et il est écrit par un
-      #     agent. Un nom hors format est refusé avant même d'être ouvert : sans
-      #     cela, un fichier mal nommé serait ingéré sous une date devinée.
-      - name: Vérifier ce que contient l'inbox
-        id: inbox
-        run: |
-          shopt -s nullglob
-          fichiers=(inbox/*)
-          hors_format=()
-          for f in "${fichiers[@]}"; do
-            nom=$(basename "$f")
-            [ "$nom" = ".gitkeep" ] && continue
-            if ! echo "$nom" | grep -qE '^brief-[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$'; then
-              hors_format+=("$nom")
-            fi
-          done
-
-          if [ ${#hors_format[@]} -gt 0 ]; then
-            echo "::error::Fichiers hors format dans inbox/ : ${hors_format[*]}"
-            echo "Attendu : brief-AAAA-MM-JJ.json"
-            exit 1
-          fi
-
-          briefs=$(ls inbox/brief-*.json 2>/dev/null | wc -l)
-          echo "briefs=$briefs" >> "$GITHUB_OUTPUT"
-          echo "$briefs brief(s) à ingérer."
-
-      # 2 · Les cinq gardes, puis l'écriture dans le CMS. Le jeton est celui de
-      #     la policy « mat — écriture » : ni l'admin, ni celui du build.
-      #     Un brief recalé fait échouer le job — c'est le mail d'alerte — et son
-      #     fichier reste dans inbox/ pour être rejoué.
-      - name: Ingérer les briefs déposés
-        if: steps.inbox.outputs.briefs != '0'
-        env:
-          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
-          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
-        run: node scripts/ingest.mjs
-
-      # 3 · Build. Séquentiel : pas de publication si le build échoue, donc le
-      #     site en ligne reste celui d'hier quand le CMS est injoignable. Le
-      #     jeton change de main ici : lecture seule du contenu publié.
-      - name: Construire le site
-        env:
-          SITE_URL: ${{ vars.SITE_URL }}
-          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
-          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
-        run: npm run build
-
       - name: Installer lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      # 4 · Garde-fou avant toute écriture : la cible doit porter SON marqueur,
-      #     celui de ce site et d'aucun autre.
+      # 1 · Garde-fou AVANT TOUT : la cible doit porter SON marqueur, celui de ce
+      #     site et d'aucun autre. Un simple listage, aucune écriture : le placer
+      #     ici sépare « ta cible est fausse » de « ton contenu manque », deux
+      #     diagnostics qu'un même échec confondrait.
       - name: Vérifier la cible de déploiement
         env:
           DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
@@ -200,6 +154,54 @@ jobs:
           fi
 
           echo "Marqueur « $DEPLOY_MARKER » présent, la cible est la bonne."
+
+      # 2 · Le nom du fichier dit de quel jour on parle, et il est écrit par un
+      #     agent. Un nom hors format est refusé avant même d'être ouvert : sans
+      #     cela, un fichier mal nommé serait ingéré sous une date devinée.
+      - name: Vérifier ce que contient l'inbox
+        id: inbox
+        run: |
+          shopt -s nullglob
+          fichiers=(inbox/*)
+          hors_format=()
+          for f in "${fichiers[@]}"; do
+            nom=$(basename "$f")
+            [ "$nom" = ".gitkeep" ] && continue
+            if ! echo "$nom" | grep -qE '^brief-[0-9]{4}-[0-9]{2}-[0-9]{2}\.json$'; then
+              hors_format+=("$nom")
+            fi
+          done
+
+          if [ ${#hors_format[@]} -gt 0 ]; then
+            echo "::error::Fichiers hors format dans inbox/ : ${hors_format[*]}"
+            echo "Attendu : brief-AAAA-MM-JJ.json"
+            exit 1
+          fi
+
+          briefs=$(ls inbox/brief-*.json 2>/dev/null | wc -l)
+          echo "briefs=$briefs" >> "$GITHUB_OUTPUT"
+          echo "$briefs brief(s) à ingérer."
+
+      # 3 · Les cinq gardes, puis l'écriture dans le CMS. Le jeton est celui de
+      #     la policy « mat — écriture » : ni l'admin, ni celui du build.
+      #     Un brief recalé fait échouer le job — c'est le mail d'alerte — et son
+      #     fichier reste dans inbox/ pour être rejoué.
+      - name: Ingérer les briefs déposés
+        if: steps.inbox.outputs.briefs != '0'
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
+        run: node scripts/ingest.mjs
+
+      # 4 · Build. Séquentiel : pas de publication si le build échoue, donc le
+      #     site en ligne reste celui d'hier quand le CMS est injoignable. Le
+      #     jeton change de main ici : lecture seule du contenu publié.
+      - name: Construire le site
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
+        run: npm run build
 
       # 5 · Publication. build.json part SEUL et EN DERNIER : c'est lui qui
       #     atteste que tout le reste est déjà arrivé. Dans le mirror il aurait
