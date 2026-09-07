@@ -23,3 +23,6 @@ Thumbs.db
 # NE PAS ignorer inbox/ ni archive/ : le brief du matin arrive par commit, et
 # c'est ce commit qui déclenche le workflow. Les ignorer couperait la chaîne à
 # sa source, sans que rien ne le signale.
+
+# Journaux de parution : un fichier par mois, propre au serveur qui les produit.
+logs/

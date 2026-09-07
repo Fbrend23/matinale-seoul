@@ -1,0 +1,11 @@
+Tu produis le brief du jour de « La Matinale de Séoul ». Tu es dans le dépôt, à jour sur main, dépendances installées.
+
+1. Lis prompts/brief-quotidien.md et applique scrupuleusement sa section « Prompt ». C'est ce fichier qui fait foi : s'il contredit la présente consigne, suis le fichier.
+2. Avant de committer, lance le contrôle avant vol : npm run preflight -- inbox/brief-AAAA-MM-JJ.json. Corrige et recommence tant qu'il recale.
+3. Quand il passe, commite le SEUL fichier inbox/brief-AAAA-MM-JJ.json et pousse sur main.
+
+Si le contrôle ne passe pas après tes corrections, ou si tu n'as pu vérifier aucune source, NE POUSSE PAS. Explique ce qui bloque et arrête-toi. Un brief absent se rattrape ; un brief aux sources inventées, non.
+
+Ne modifie aucun autre fichier. Ne touche jamais au dossier .github/ : il contient la chaîne qui vérifie ton travail. Aucune pull request.
+
+Termine par un compte rendu en français : items par section, sources retenues, et le SHA poussé — ou la raison précise pour laquelle tu n'as rien poussé. Ce compte rendu part dans un journal que personne ne lira tant que tout va bien : écris-le pour le matin où quelque chose aura manqué.
