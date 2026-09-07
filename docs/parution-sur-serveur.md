@@ -36,8 +36,15 @@ cd matinale-seoul
 npm ci
 chmod +x bin/brief-du-jour.sh
 
-# Un essai à blanc, en regardant : la session tourne, le journal se remplit.
+# Un essai, en regardant. Lancé depuis un terminal, le script affiche ce qu'il
+# fait ET le journalise ; depuis le cron, il ne fait que journaliser.
 bin/brief-du-jour.sh ; echo "code de sortie : $?"
+```
+
+Si rien ne s'affiche, c'est que la sortie n'a pas été reconnue comme un
+terminal — tout est alors dans le journal :
+
+```bash
 cat logs/brief-$(date -u +%Y-%m).log
 ```
 

@@ -19,7 +19,16 @@ cd "$DEPOT"
 
 mkdir -p logs
 JOURNAL="logs/brief-$(date -u +%Y-%m).log"
-exec >> "$JOURNAL" 2>&1
+
+# Depuis un terminal, on veut voir CE QUI SE PASSE autant que le journaliser :
+# un script qui n'affiche rien à l'essai laisse croire qu'il n'a rien fait.
+# Depuis le cron, personne ne regarde : tout va au journal, et lui seul.
+if [ -t 1 ]; then
+  echo "(journal : $DEPOT/$JOURNAL)"
+  exec > >(tee -a "$JOURNAL") 2>&1
+else
+  exec >> "$JOURNAL" 2>&1
+fi
 
 # Le jour tel qu'il est à Séoul, jamais celui du serveur : c'est de là que le
 # brief parle, et c'est ce que la garde de cohérence vérifiera.
