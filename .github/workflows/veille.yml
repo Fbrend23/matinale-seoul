@@ -16,14 +16,14 @@
 # surveillance acceptable alors qu'on a retiré le rebuild nocturne pour la
 # raison inverse.
 #
-# 10 h à Séoul : le brief paraît à 6 h, l'ingestion et le build prennent trois
-# minutes. Quatre heures de marge laissent la place à un retard ou à un rejeu.
+# 11 h à Séoul : le brief paraît à 8 h, l'ingestion et le build prennent trois
+# minutes. Trois heures de marge laissent la place à un retard ou à un rejeu.
 
 name: Veille
 
 on:
   schedule:
-    - cron: '0 1 * * 1-5' # 10 h 00 à Séoul, du lundi au vendredi
+    - cron: '0 2 * * 1-5' # 11 h 00 à Séoul, du lundi au vendredi
   workflow_dispatch:
 
 jobs:
@@ -62,7 +62,7 @@ jobs:
           # Pas de jq garanti sur le runner, et la question est binaire : le
           # tableau « data » est-il vide ?
           if grep -q '"data":\[\]' reponse.json; then
-            echo "::error::Aucun brief publié pour le $jour à 10 h, heure de Séoul."
+            echo "::error::Aucun brief publié pour le $jour à 11 h, heure de Séoul."
             echo ""
             echo "Trois causes possibles, dans l'ordre de probabilité :"
             echo "  1. la tâche planifiée n'a pas tourné, ou n'a pas pu committer"

@@ -5,9 +5,18 @@ planifiée. Il est versionné ici parce qu'il forme un couple avec
 `schemas/brief.schema.json` : si l'un change, l'autre doit suivre, sans quoi
 l'agent produira consciencieusement des briefs que les gardes recaleront.
 
-**Réglages de la tâche :** tous les jours ouvrés, 6 h, fuseau `Asia/Seoul`.
-Connecteur GitHub attaché, portée `Fbrend23/matinale-seoul`, écriture limitée au
-dossier `inbox/`.
+**Réglages :** routine Claude Code planifiée, dans le cloud, tous les jours
+ouvrés à **8 h heure de Séoul** (`0 23 * * 0-4` en UTC : 8 h à Séoul, c'est 23 h
+la veille à Greenwich, d'où le décalage des jours).
+
+Une routine, et non une tâche à connecteurs : le connecteur GitHub n'existe pas
+pour ce compte, et une tâche sans lui ne peut rien déposer — c'est ce qui a été
+constaté le 7 septembre 2026, brief rédigé et commit prêt, mais push refusé. La
+routine, elle, dispose de git : elle clone, écrit, commite et pousse.
+
+Elle en tire un avantage que la tâche n'avait pas : le dépôt est là, donc **elle
+peut valider son brief avant de le pousser** — `npm test` et le schéma sont sous
+sa main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
 
 ---
 
