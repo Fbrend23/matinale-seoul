@@ -1,0 +1,74 @@
+# Chien de garde : le brief du jour est-il en ligne ?
+#
+# POURQUOI. Toute la chaîne signale ses échecs — un brief recalé fait échouer le
+# workflow de publication, et GitHub envoie le mail. Mais elle ne sait rien dire
+# de ce qui n'arrive PAS. Si l'agent ne tourne pas, ou ne parvient pas à
+# committer, rien n'entre dans inbox/, aucun workflow ne se déclenche, et le
+# silence est total. C'est arrivé le 7 septembre 2026 : la tâche avait rédigé le
+# brief, le commit local était prêt, et le connecteur GitHub manquait. Seule
+# l'alerte que l'agent s'est envoyée à lui-même a prévenu.
+#
+# Ce job constate l'absence plutôt que l'échec. Il interroge le CMS et demande
+# une seule chose : y a-t-il un brief PUBLIÉ daté d'aujourd'hui ?
+#
+# COMBIEN ÇA COÛTE. Une vingtaine de secondes par jour ouvré, et ce dépôt est
+# public : les minutes Actions y sont gratuites. C'est ce qui rend cette
+# surveillance acceptable alors qu'on a retiré le rebuild nocturne pour la
+# raison inverse.
+#
+# 10 h à Séoul : le brief paraît à 6 h, l'ingestion et le build prennent trois
+# minutes. Quatre heures de marge laissent la place à un retard ou à un rejeu.
+
+name: Veille
+
+on:
+  schedule:
+    - cron: '0 1 * * 1-5' # 10 h 00 à Séoul, du lundi au vendredi
+  workflow_dispatch:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Le brief du jour est-il publié ?
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          # Jeton de LECTURE : il ne voit que le contenu publié, ce qui est
+          # exactement la question posée. Un brief resté en brouillon — recalé,
+          # ou retenu parce qu'une source est inconnue — doit compter comme
+          # absent, puisque le lecteur ne le voit pas non plus.
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
+        run: |
+          jour=$(TZ=Asia/Seoul date +%F)
+          echo "Jour courant à Séoul : $jour"
+
+          code=$(curl -s -o reponse.json -w '%{http_code}' \
+            -H "Authorization: Bearer $DIRECTUS_TOKEN" \
+            "$DIRECTUS_URL/items/mat_briefs?filter[date][_eq]=$jour&fields=id,title&limit=1")
+
+          if [ "$code" != "200" ]; then
+            echo "::error::Le CMS n'a pas répondu (HTTP $code). Impossible de savoir si le brief est paru."
+            echo "Vérifier que l'instance Directus est en marche avant de soupçonner l'agent."
+            exit 1
+          fi
+
+          # Pas de jq garanti sur le runner, et la question est binaire : le
+          # tableau « data » est-il vide ?
+          if grep -q '"data":\[\]' reponse.json; then
+            echo "::error::Aucun brief publié pour le $jour à 10 h, heure de Séoul."
+            echo ""
+            echo "Trois causes possibles, dans l'ordre de probabilité :"
+            echo "  1. la tâche planifiée n'a pas tourné, ou n'a pas pu committer"
+            echo "     (connecteur GitHub détaché : rien n'arrive dans inbox/, et"
+            echo "      aucun workflow ne se déclenche) ;"
+            echo "  2. le brief a été recalé par les gardes — dans ce cas le"
+            echo "     workflow Publication a déjà échoué, son journal dit pourquoi ;"
+            echo "  3. le brief est resté en brouillon parce qu'une source sort de"
+            echo "     config/sources.json : il est dans le CMS, à relire."
+            echo ""
+            echo "Le site, lui, affiche toujours le dernier brief publié, daté."
+            exit 1
+          fi
+
+          echo "Brief du $jour publié :"
+          sed -E 's/[A-Za-z0-9_-]{20,}/***/g' reponse.json | head -c 300
