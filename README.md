@@ -104,9 +104,16 @@ là où le déploiement échoue, et cesserait de prouver quoi que ce soit.
 2. Déposer les secrets du dépôt : `DIRECTUS_URL`, `DIRECTUS_INGEST_TOKEN`,
    `DIRECTUS_BUILD_TOKEN`, `FTP_HOST`, `FTP_USER`, `FTP_PASSWORD`, et la
    variable `SITE_URL`.
-3. Déposer un fichier vide `.deploy-cible` à la racine du compte FTP. Sans lui,
-   le workflow s'arrête avant la moindre écriture — c'est le seul rempart contre
-   un `mirror --delete` sur le mauvais compte, et le FTP n'a pas de corbeille.
+3. Déposer à la racine du compte FTP un fichier vide **nommé d'après ce site**
+   (`.deploy-cible-matinale`), et mettre ce nom dans la variable `DEPLOY_MARKER`.
+   Sans lui, le workflow s'arrête avant la moindre écriture — c'est le seul
+   rempart contre un `mirror --delete` sur le mauvais compte, et le FTP n'a pas
+   de corbeille.
+
+   > Le nom compte. Un marqueur générique, identique sur tous les sites, ne
+   > vérifie plus que l'existence d'un serveur FTP quelque part : il laisse
+   > passer le cas le plus probable, celui où l'on recopie les secrets FTP d'un
+   > site voisin sans les changer.
 4. Lancer le workflow à la main avec `dry_run`, puis lire la liste.
 
 Le premier build ne peut réussir qu'après la première ingestion : sans brief

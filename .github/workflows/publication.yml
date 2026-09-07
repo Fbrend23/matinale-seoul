@@ -15,11 +15,18 @@
 # l'avis est désormais décidé chez le lecteur, et le site ne se reconstruit plus
 # que lorsqu'il a réellement quelque chose de neuf à dire.
 #
-# Garde-fou de déploiement, repris du site de la compagnie : un fichier vide
-# « .deploy-cible » doit exister à la racine du compte FTP, déposé une fois à la
-# main. Si les secrets pointent ailleurs, le marqueur n'y est pas et tout
-# s'arrête AVANT la moindre écriture. C'est le seul rempart contre un
-# « mirror --delete » sur le mauvais compte, et le FTP n'a pas de corbeille.
+# Garde-fou de déploiement : un fichier vide, NOMMÉ D'APRÈS CE SITE, doit exister
+# à la racine du compte FTP, déposé une fois à la main. Son nom est la variable
+# DEPLOY_MARKER. Si les secrets pointent ailleurs, le marqueur n'y est pas et tout
+# s'arrête AVANT la moindre écriture : le FTP n'a pas de corbeille.
+#
+# POURQUOI IL EST NOMMÉ. Le site de la compagnie utilisait « .deploy-cible » tout
+# court. À un seul site, cela suffisait. À plusieurs, le marqueur cesse de
+# discriminer précisément là où le risque est le plus grand : recopier les
+# secrets FTP d'un site voisin sans les changer. Les deux comptes portent alors
+# le même fichier, la garde dit oui, et le mirror --delete écrase l'autre site.
+# Un marqueur qui nomme sa cible attrape ce cas ; un marqueur générique ne
+# vérifie plus que l'existence d'un serveur FTP quelque part.
 #
 # PREMIER DÉPLOIEMENT : lancer à la main avec dry_run activé, puis lire la liste.
 
@@ -87,7 +94,7 @@ jobs:
       - name: Refuser un build sans ses sources
         run: |
           manquantes=""
-          for v in DIRECTUS_URL DIRECTUS_BUILD_TOKEN DIRECTUS_INGEST_TOKEN SITE_URL; do
+          for v in DIRECTUS_URL DIRECTUS_BUILD_TOKEN DIRECTUS_INGEST_TOKEN SITE_URL DEPLOY_MARKER; do
             if [ -z "${!v:-}" ]; then
               manquantes="$manquantes $v"
             fi
@@ -95,15 +102,18 @@ jobs:
           if [ -n "$manquantes" ]; then
             echo "::error::Sources absentes :$manquantes"
             echo "DIRECTUS_URL, DIRECTUS_BUILD_TOKEN et DIRECTUS_INGEST_TOKEN sont des"
-            echo "secrets du dépôt ; SITE_URL est une variable (Settings > Variables)."
+            echo "secrets du dépôt ; SITE_URL et DEPLOY_MARKER sont des variables"
+            echo "(Settings > Variables). DEPLOY_MARKER nomme le fichier témoin"
+            echo "déposé à la racine du compte FTP de CE site, et de lui seul."
             exit 1
           fi
-          echo "Les quatre sources sont fournies."
+          echo "Les cinq sources sont fournies."
         env:
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           DIRECTUS_BUILD_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
           DIRECTUS_INGEST_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
           SITE_URL: ${{ vars.SITE_URL }}
+          DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
 
       # 1 · Le nom du fichier dit de quel jour on parle, et il est écrit par un
       #     agent. Un nom hors format est refusé avant même d'être ouvert : sans
@@ -156,8 +166,11 @@ jobs:
       - name: Installer lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      # 4 · Garde-fou avant toute écriture : la cible doit porter son marqueur.
+      # 4 · Garde-fou avant toute écriture : la cible doit porter SON marqueur,
+      #     celui de ce site et d'aucun autre.
       - name: Vérifier la cible de déploiement
+        env:
+          DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
         run: |
           # Deux causes d'échec sans rapport l'une avec l'autre, qu'il faut
           # séparer : la connexion, puis la cible.
@@ -173,15 +186,20 @@ jobs:
           echo "Connexion établie. Racine vue par ce compte FTP :"
           echo "$racine" | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
 
-          if ! echo "$racine" | grep -q "[.]deploy-cible"; then
-            echo "::error::Marqueur .deploy-cible absent de cette racine, abandon."
-            echo "Vérifier D'ABORD que le listage ci-dessus est bien le site : c'est là"
-            echo "que le mirror --delete écrira. Puis y déposer un fichier vide nommé"
-            echo ".deploy-cible."
+          # -F : le nom vient d'une variable, il est comparé littéralement.
+          # Le « $ » de fin de mot évite qu'un marqueur voisin plus long passe
+          # pour celui-ci.
+          if ! echo "$racine" | grep -qF " $DEPLOY_MARKER"; then
+            echo "::error::Marqueur « $DEPLOY_MARKER » absent de cette racine, abandon."
+            echo "Vérifier D'ABORD que le listage ci-dessus est bien CE site : c'est là"
+            echo "que le mirror --delete écrira. Un autre de vos sites porte peut-être"
+            echo "son propre marqueur, ce qui ne l'autorise pas pour autant à recevoir"
+            echo "celui-ci — c'est exactement ce que cette garde vérifie."
+            echo "Puis y déposer un fichier vide nommé « $DEPLOY_MARKER »."
             exit 1
           fi
 
-          echo "Marqueur présent, la cible est la bonne."
+          echo "Marqueur « $DEPLOY_MARKER » présent, la cible est la bonne."
 
       # 5 · Publication. build.json part SEUL et EN DERNIER : c'est lui qui
       #     atteste que tout le reste est déjà arrivé. Dans le mirror il aurait
@@ -189,6 +207,7 @@ jobs:
       - name: Déployer
         env:
           DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+          DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
         run: |
           set -o pipefail
 
@@ -201,7 +220,10 @@ jobs:
               "$FTP_HOST" 2>&1 | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
           }
 
-          publier "mirror -R --delete --parallel=4 --verbose $DRY_RUN --exclude-glob .deploy-cible --exclude-glob .user.ini --exclude-glob .infomaniak-maintenance.html --exclude-glob build.json dist/ ./"
+          # Le marqueur est exclu du --delete : il ne vient pas de dist/, donc le
+          # mirror l'effacerait, et le déploiement SUIVANT échouerait faute de le
+          # trouver. Une panne à retardement, deux jours après le changement.
+          publier "mirror -R --delete --parallel=4 --verbose $DRY_RUN --exclude-glob $DEPLOY_MARKER --exclude-glob .user.ini --exclude-glob .infomaniak-maintenance.html --exclude-glob build.json dist/ ./"
 
           if [ -n "$DRY_RUN" ]; then
             echo "dry-run : build.json n'est pas envoyé."
