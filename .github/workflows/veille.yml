@@ -42,12 +42,19 @@ jobs:
           jour=$(TZ=Asia/Seoul date +%F)
           echo "Jour courant à Séoul : $jour"
 
-          code=$(curl -s -o reponse.json -w '%{http_code}' \
+          # -g : sans lui, curl lit les crochets de « filter[date][_eq] » comme
+          # une plage à développer, refuse l'URL et sort en code 3. Le job
+          # échouait alors AVANT d'avoir posé sa question, et le mail d'alerte
+          # ne disait rien d'autre qu'un numéro.
+          # Le « || true » garde la main sur le diagnostic : sans lui, l'échec de
+          # curl arrête le script sous -e, avec le même silence.
+          code=$(curl -sg -o reponse.json -w '%{http_code}' \
             -H "Authorization: Bearer $DIRECTUS_TOKEN" \
-            "$DIRECTUS_URL/items/mat_briefs?filter[date][_eq]=$jour&fields=id,title&limit=1")
+            "$DIRECTUS_URL/items/mat_briefs?filter[date][_eq]=$jour&fields=id,title&limit=1" \
+            || true)
 
           if [ "$code" != "200" ]; then
-            echo "::error::Le CMS n'a pas répondu (HTTP $code). Impossible de savoir si le brief est paru."
+            echo "::error::Le CMS n'a pas répondu (HTTP ${code:-aucun}). Impossible de savoir si le brief est paru."
             echo "Vérifier que l'instance Directus est en marche avant de soupçonner l'agent."
             exit 1
           fi
