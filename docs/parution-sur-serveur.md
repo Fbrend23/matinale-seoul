@@ -22,11 +22,31 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
 - **Node ≥ 22** et **git**
 - **Claude Code**, authentifié pour le compte qui paiera les sessions
-- Un accès en écriture au dépôt, sous une des deux formes :
-  - `gh auth login` avec un compte ayant le droit de pousser ;
-  - ou un **PAT fine-grained**, `Contents: write` sur ce seul dépôt, **sans la
-    permission `Workflows`** — l'agent dépose du contenu, il n'a rien à faire
-    dans `.github/`.
+- **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
+  la session rédige, valide, commite — puis échoue sur
+  `could not read Username for 'https://github.com'`, parce qu'il n'y a personne
+  pour taper un mot de passe. Le travail est fait, il ne part pas.
+
+  Deux formes possibles, à vérifier **avant** le premier passage :
+
+  ```bash
+  gh auth login        # compte ayant le droit de pousser
+  gh auth setup-git    # sans cette ligne, git ignore l'authentification de gh
+  git push --dry-run origin main   # doit répondre « Everything up-to-date »
+  ```
+
+  Ou, si l'on préfère ne pas mettre de compte sur le serveur, une **clé de
+  déploiement SSH** avec accès en écriture, propre à ce dépôt et révocable
+  seule :
+
+  ```bash
+  ssh-keygen -t ed25519 -C "matinale-seoul, serveur" -f ~/.ssh/matinale
+  # déposer la clé publique dans Settings > Deploy keys, « Allow write access »
+  git remote set-url origin git@github.com:Fbrend23/matinale-seoul.git
+  ```
+
+  Dans les deux cas, ne jamais accorder la permission `Workflows` : l'agent
+  dépose du contenu, il n'a rien à faire dans `.github/`.
 
 ## Installation
 
