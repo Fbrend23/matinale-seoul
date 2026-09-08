@@ -1,0 +1,148 @@
+{
+  "date": "2026-09-08",
+  "title": "Fuite de données médicales, règles syndicales resserrées, et la saison des festivals s'ouvre à Séoul",
+  "standfirst": "Une plateforme de chirurgie esthétique a perdu les données de près de 220 000 clients, dont des motifs de consultation. Le ministère du Travail publie ses directives sur la loi syndicale et fragilise un projet de semi-conducteurs. Côté visiteurs, Séoul ouvre sa saison de fêtes de rue et étend ses promenades nocturnes.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Dix quartiers de Séoul ouvrent leurs ruelles pour l'automne",
+          "summary": "La ville organise des fêtes de rue dans dix quartiers, de Noryangjin à Seongbuk-dong : terrasses, marchés de nuit, art local. Konkuk le 12 septembre, Sharosu-gil le 14, Magok le 19, trois autres dates en octobre.",
+          "importance": 1,
+          "tags": ["seoul", "festivals", "vie-nocturne"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/people-events/20260908/seouls-hidden-alleyways-take-center-stage-with-autumn-street-festivals",
+          "source_lang": "en",
+          "published_at": "2026-09-08T12:42:00+09:00"
+        },
+        {
+          "headline": "Séoul étend ses promenades nocturnes guidées à dix parcours",
+          "summary": "Un nouveau tracé longe le mur de forteresse de Namsan sur deux kilomètres, du Sky Forest Path au pavillon Palgakjeong via la N Seoul Tower. La saison passe de six à neuf mois, jusqu'à mi-novembre.",
+          "importance": 2,
+          "tags": ["seoul", "namsan", "visites-guidees"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/people-events/20260907/seoul-expands-guided-night-walks-through-historic-districts",
+          "source_lang": "en",
+          "published_at": "2026-09-07T16:13:00+09:00"
+        },
+        {
+          "headline": "Gyeongju : l'expo du patrimoine mondial mêle IA et réalité étendue",
+          "summary": "Dixième édition, 133 entreprises et institutions présentes. Restauration numérique, archives, installations interactives. Ouvert tous les jours de 10 h à 17 h, entrée gratuite sur inscription ou sur place.",
+          "importance": 3,
+          "tags": ["gyeongju", "patrimoine", "expositions"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/people-events/20260907/ai-meets-history-at-gyeongjus-landmark-world-heritage-industry-expo",
+          "source_lang": "en",
+          "published_at": "2026-09-07T13:58:00+09:00"
+        },
+        {
+          "headline": "Korean Air sanctionnée après un aiguillage de passagers à Gimpo",
+          "summary": "Dix millions de wons d'amende du ministère des Transports. Le 7 juin, 52 passagers du vol KE2106 venu de Tokyo ont été menés au terminal domestique de Gimpo ; quatre sont sortis sans passer l'immigration.",
+          "analysis": "Gimpo accueille vols intérieurs et internationaux sur un même site. À l'arrivée d'un vol court-courrier depuis le Japon, suivre le flux des autres passagers ne suffit donc pas : le passage par l'immigration reste à vérifier soi-même.",
+          "importance": 4,
+          "tags": ["gimpo", "aeroports", "korean-air", "immigration"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10866137",
+          "source_lang": "en",
+          "published_at": "2026-09-08T11:03:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Fuite de données chez Gangnam Unni, plateforme de chirurgie esthétique",
+          "summary": "Environ 219 665 comptes touchés, dont 160 000 en Corée et 48 000 au Japon. Noms, téléphones, mais aussi motifs de consultation, cliniques, médecins et photos. Healing Paper ouvre un outil de vérification.",
+          "analysis": "Des données médicales exposées ne se changent pas comme un mot de passe. Toute personne ayant pris rendez-vous par l'application, y compris depuis le Japon ou Taïwan, a intérêt à passer par l'outil de vérification tant qu'il reste ouvert, soit trente jours.",
+          "importance": 1,
+          "tags": ["fuite-de-donnees", "sante", "vie-privee"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10866388",
+          "source_lang": "en",
+          "published_at": "2026-09-08T13:17:00+09:00"
+        },
+        {
+          "headline": "La loi « enveloppe jaune » précisée, le projet de semi-conducteurs en suspens",
+          "summary": "Le ministère du Travail exclut de la négociation obligatoire les décisions de gestion : usines, investissements étrangers, adoption de l'IA. Le patronat redoute l'insécurité juridique, les syndicats une restriction de leurs droits.",
+          "importance": 2,
+          "tags": ["travail", "syndicats", "semi-conducteurs"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20260908/new-labor-rules-cloud-koreas-chip-project-draw-fire-from-both-sides",
+          "source_lang": "en",
+          "published_at": "2026-09-08T07:00:00+09:00"
+        },
+        {
+          "headline": "Le ministre du Travail juge la grève de Samsung illégale au regard des nouvelles règles",
+          "summary": "Kim Young-hoon estime que le débrayage aurait été illégal si les directives publiées jeudi avaient existé. Réclamer un pourcentage fixe du bénéfice d'exploitation en prime ne relève pas de la négociation obligatoire.",
+          "importance": 3,
+          "tags": ["samsung", "travail", "greve"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10866504",
+          "source_lang": "en",
+          "published_at": "2026-09-08T14:35:00+09:00"
+        },
+        {
+          "headline": "Séoul saisit l'AIEA sur ses futurs sous-marins à propulsion nucléaire",
+          "summary": "La Corée du Sud a notifié son intention de consulter l'agence sur un arrangement de garanties. L'article 14 de son accord global couvre l'usage militaire non explosif de matières nucléaires, dont la propulsion navale.",
+          "importance": 4,
+          "tags": ["aiea", "defense", "nucleaire"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/foreignaffairs/20260908/iaea-says-korea-notifies-intent-to-consult-on-safeguards-arrangement-for-nuclear-powered-subs",
+          "source_lang": "en",
+          "published_at": "2026-09-08T10:41:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Apple tient sa keynote le 9 septembre, un iPhone pliant attendu",
+          "summary": "TechCrunch attend un iPhone Ultra pliable, écran de 5,5 pouces déplié à 7,8, au-dessus de 2 000 dollars, avec Touch ID. Aussi annoncés comme probables : iPhone 18 Pro, HomePod revu, AirPods à caméras.",
+          "importance": 1,
+          "tags": ["apple", "iphone", "materiel"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/07/what-we-expect-from-the-upcoming-apple-launch/",
+          "source_lang": "en",
+          "published_at": "2026-09-07T08:58:00-07:00"
+        },
+        {
+          "headline": "Règlement Anthropic : auteurs, éditeurs et agents se disputent les parts",
+          "summary": "L'accord d'un milliard et demi de dollars prévoit 3 000 dollars par ouvrage piraté, partagés avec l'éditeur quand le livre est encore publié. Des auteurs contestent les réclamations d'éditeurs et d'agents.",
+          "analysis": "Le tribunal avait séparé deux questions : entraîner un modèle sur des œuvres protégées relève du fair use, se les procurer par piratage non. C'est la seconde qui a produit ce règlement, pas l'entraînement lui-même.",
+          "importance": 2,
+          "tags": ["anthropic", "droit-d-auteur", "ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/",
+          "source_lang": "en",
+          "published_at": "2026-09-06T13:47:00-07:00"
+        },
+        {
+          "headline": "Martin Sorrell : les entreprises expérimentent l'IA plus qu'elles ne se transforment",
+          "summary": "Le fondateur de S4 Capital juge l'adoption en retard sur le discours, faute de menace assez pressante. Selon lui, l'IA pèsera davantage sur l'achat d'espace publicitaire que sur la création.",
+          "importance": 3,
+          "tags": ["ia", "publicite", "entreprises"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/business/companies/20260908/martin-sorrell-says-ai-adoption-lags-behind-hype-as-companies-experiment-not-transform",
+          "source_lang": "en",
+          "published_at": "2026-09-08T14:20:00+09:00"
+        },
+        {
+          "headline": "NavigateAI lève 25 millions de dollars pour assister les ouvriers du bâtiment",
+          "summary": "La société d'Eric Wu, fondateur d'Opendoor, propose un copilote vocal sur smartphone et lunettes Meta : vérification de pose, conformité aux normes, accès aux plans. Valorisation de 225 millions après tour de table.",
+          "importance": 4,
+          "tags": ["ia", "construction", "levee-de-fonds"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/07/eric-wus-newest-company-out-of-stealth-since-may-is-going-after-constructions-labor-crunch/",
+          "source_lang": "en",
+          "published_at": "2026-09-07T19:16:00-07:00"
+        }
+      ]
+    }
+  ]
+}
