@@ -247,15 +247,15 @@ jobs:
         if: ${{ success() && !inputs.dry_run && steps.inbox.outputs.briefs != '0' }}
         run: |
           shopt -s nullglob
-          déplacés=0
+          deplaces=0
           for f in inbox/brief-*.json; do
-            année=$(basename "$f" | sed -E 's/^brief-([0-9]{4}).*/\1/')
-            mkdir -p "archive/$année"
-            git mv "$f" "archive/$année/"
-            déplacés=$((déplacés + 1))
+            annee=$(basename "$f" | sed -E 's/^brief-([0-9]{4}).*/\1/')
+            mkdir -p "archive/$annee"
+            git mv "$f" "archive/$annee/"
+            deplaces=$((deplaces + 1))
           done
 
-          if [ "$déplacés" -eq 0 ]; then
+          if [ "$deplaces" -eq 0 ]; then
             echo "Rien à archiver."
             exit 0
           fi
@@ -264,7 +264,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # [skip ci] : ce commit touche inbox/, donc il rentrerait dans le
           # filtre « paths » du déclencheur et relancerait le job en boucle.
-          git commit -m "chore(Archive) Ranger $déplacés brief(s) publié(s) [skip ci]"
+          git commit -m "chore(Archive) Ranger $deplaces brief(s) publié(s) [skip ci]"
           git push
 
       # 7 · Dater la publication dans le CMS, une fois le site vraiment en ligne.
