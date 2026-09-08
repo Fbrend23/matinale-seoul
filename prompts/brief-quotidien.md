@@ -1,26 +1,26 @@
-# Instructions de la tâche planifiée
+# Instructions de la parution quotidienne
 
-**La routine ne recopie pas ce texte : elle lit ce fichier.** Sa consigne tient
-en trois lignes et le désigne, si bien que corriger le brief de demain se fait
-ici, par un commit, et non dans les réglages d'une routine — où plus personne
-n'irait relire ce qu'on lui a demandé.
+**La session ne recopie pas ce texte : elle lit ce fichier.** Sa consigne tient
+en trois lignes et le désigne (`prompts/consigne-serveur.txt`), si bien que
+corriger le brief de demain se fait ici, par un commit relu, et non dans une
+ligne de cron que plus personne n'ira rouvrir.
 
 Il forme un couple avec `schemas/brief.schema.json` : si l'un change, l'autre
 doit suivre, sans quoi l'agent produira consciencieusement des briefs que les
 gardes recaleront. Des tests tiennent les deux ensemble.
 
-**Réglages :** routine Claude Code planifiée, dans le cloud, tous les jours
-ouvrés à **8 h heure de Séoul** (`0 23 * * 0-4` en UTC : 8 h à Séoul, c'est 23 h
-la veille à Greenwich, d'où le décalage des jours).
+**Réglages :** cron d'un serveur allumé en permanence, tous les jours ouvrés à
+**7 h heure de Berne**, pour que le site soit en ligne vers 8 h — l'heure à
+laquelle son lecteur l'ouvre. À Séoul il est alors 15 h, donc le brief reste daté
+du jour courant et la garde de cohérence est satisfaite.
 
-Une routine, et non une tâche à connecteurs : le connecteur GitHub n'existe pas
-pour ce compte, et une tâche sans lui ne peut rien déposer — c'est ce qui a été
-constaté le 7 septembre 2026, brief rédigé et commit prêt, mais push refusé. La
-routine, elle, dispose de git : elle clone, écrit, commite et pousse.
+Ni tâche à connecteurs ni routine cloud : la première lit le web mais ne peut
+rien pousser, faute de connecteur GitHub ; la seconde pousse mais n'a aucun accès
+sortant. Le travail demande les deux. Voir docs/parution-sur-serveur.md.
 
-Elle en tire un avantage que la tâche n'avait pas : le dépôt est là, donc **elle
-peut valider son brief avant de le pousser** — `npm test` et le schéma sont sous
-sa main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
+Le dépôt est cloné sur place, d'où un avantage décisif : **la session valide son
+brief avant de le pousser** — le schéma, les gardes et les tests sont sous sa
+main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
 
 ---
 

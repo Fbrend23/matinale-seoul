@@ -109,20 +109,25 @@ travail automatique, pas un endroit où l'on garde des modifications.
 
 ## Programmer la parution
 
-8 h à Séoul, c'est 23 h UTC la veille — d'où le décalage des jours dans le cron
-(dimanche à jeudi couvre lundi à vendredi, heure de Séoul).
+**L'heure qui compte est celle du lecteur, pas celle du sujet.** Le brief parle
+de Séoul, mais il est lu à Berne au petit-déjeuner : la parution vise donc 8 h
+heure de Berne, et le cron part à 7 h — la rédaction prend une dizaine de
+minutes, la chaîne GitHub trois de plus.
+
+Le serveur étant à l'heure de Berne, la ligne se lit telle quelle, sans
+conversion ni `CRON_TZ` :
 
 ```cron
-0 23 * * 0-4  cd /chemin/vers/matinale-seoul && bin/brief-du-jour.sh
+0 7 * * 1-5  cd /chemin/vers/matinale-seoul && bin/brief-du-jour.sh
 ```
 
-Si le cron de la machine tourne à l'heure locale plutôt qu'en UTC, préférer une
-ligne explicite plutôt qu'un calcul de tête :
+À 7 h à Berne il est 15 h à Séoul : le brief reste daté du jour courant là-bas,
+et la garde de cohérence est satisfaite. **Rien dans le code ne dépend de
+l'horloge du serveur** — le jour est toujours calculé sur `Asia/Seoul`.
 
-```cron
-CRON_TZ=Asia/Seoul
-0 8 * * 1-5  cd /chemin/vers/matinale-seoul && bin/brief-du-jour.sh
-```
+> Le jour où le lecteur sera à Séoul, seule cette ligne change : `0 7 * * 1-5`
+> devient `CRON_TZ=Asia/Seoul` puis `0 7 * * 1-5`. Le fuseau suit la personne,
+> pas le serveur.
 
 Sous Windows, la tâche planifiée appelle le script via Git Bash :
 

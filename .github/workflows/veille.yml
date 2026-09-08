@@ -16,14 +16,17 @@
 # surveillance acceptable alors qu'on a retiré le rebuild nocturne pour la
 # raison inverse.
 #
-# 11 h à Séoul : le brief paraît à 8 h, l'ingestion et le build prennent trois
-# minutes. Trois heures de marge laissent la place à un retard ou à un rejeu.
+# La parution vise le matin de son LECTEUR, à Berne : le cron du serveur part à
+# 7 h, le site est en ligne vers 8 h. Cette veille passe deux à trois heures
+# plus tard, ce qui laisse la place à un retard ou à un rejeu. Réglée à l'heure
+# de Séoul, elle serait passée à 4 h du matin — avant la parution qu'elle
+# surveille, et aurait crié tous les jours.
 
 name: Veille
 
 on:
   schedule:
-    - cron: '0 2 * * 1-5' # 11 h 00 à Séoul, du lundi au vendredi
+    - cron: '0 8 * * 1-5' # 10 h à Berne en été, 9 h en hiver
   workflow_dispatch:
 
 jobs:
@@ -62,12 +65,13 @@ jobs:
           # Pas de jq garanti sur le runner, et la question est binaire : le
           # tableau « data » est-il vide ?
           if grep -q '"data":\[\]' reponse.json; then
-            echo "::error::Aucun brief publié pour le $jour à 11 h, heure de Séoul."
+            echo "::error::Aucun brief publié pour le $jour."
             echo ""
             echo "Trois causes possibles, dans l'ordre de probabilité :"
-            echo "  1. la tâche planifiée n'a pas tourné, ou n'a pas pu committer"
-            echo "     (connecteur GitHub détaché : rien n'arrive dans inbox/, et"
-            echo "      aucun workflow ne se déclenche) ;"
+            echo "  1. le cron du serveur n'a pas tourné, ou la session a échoué :"
+            echo "     rien n'arrive dans inbox/, donc aucun workflow ne se déclenche"
+            echo "     et rien d'autre ne le signalerait. Le journal du serveur dit"
+            echo "     quoi : logs/brief-AAAA-MM.log ;"
             echo "  2. le brief a été recalé par les gardes — dans ce cas le"
             echo "     workflow Publication a déjà échoué, son journal dit pourquoi ;"
             echo "  3. le brief est resté en brouillon parce qu'une source sort de"
