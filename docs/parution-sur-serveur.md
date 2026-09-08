@@ -52,6 +52,22 @@ Le script part de `origin/main` par un `reset --hard` : ce qui traîne dans la
 copie locale est écrasé. C'est voulu — le dépôt du serveur est un poste de
 travail automatique, pas un endroit où l'on garde des modifications.
 
+> **Ne jamais faire `git pull` sur ce clone.** Une session interrompue peut y
+> laisser un commit non poussé ; `git pull` s'arrête alors sur des « divergent
+> branches » et réclame un arbitrage, ce que le cron ne sait pas rendre. Le
+> script n'a pas ce problème puisqu'il se réaligne de force à chaque passage :
+> il n'y a rien à mettre à jour avant de le lancer.
+>
+> Pour reprendre la main après une divergence, regarder d'abord ce que le
+> serveur a en trop — ce peut être un brief rédigé mais jamais parti :
+>
+> ```bash
+> git fetch origin && git log --oneline origin/main..HEAD
+> ```
+>
+> puis `git push origin main` s'il vaut d'être publié, ou
+> `git reset --hard origin/main` sinon.
+
 ## Programmer la parution
 
 8 h à Séoul, c'est 23 h UTC la veille — d'où le décalage des jours dans le cron
