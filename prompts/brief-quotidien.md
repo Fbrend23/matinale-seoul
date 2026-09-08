@@ -9,10 +9,9 @@ Il forme un couple avec `schemas/brief.schema.json` : si l'un change, l'autre
 doit suivre, sans quoi l'agent produira consciencieusement des briefs que les
 gardes recaleront. Des tests tiennent les deux ensemble.
 
-**Réglages :** cron d'un serveur allumé en permanence, tous les jours ouvrés à
-**7 h heure de Berne**, pour que le site soit en ligne vers 8 h — l'heure à
-laquelle son lecteur l'ouvre. À Séoul il est alors 15 h, donc le brief reste daté
-du jour courant et la garde de cohérence est satisfaite.
+**Réglages :** cron d un serveur allumé en permanence, tous les jours ouvrés à
+**7 h heure de Séoul** (CRON_TZ=Asia/Seoul), pour que le brief soit en ligne à
+8 h — le fuseau dont il parle, et celui où son lecteur le lira.
 
 Ni tâche à connecteurs ni routine cloud : la première lit le web mais ne peut
 rien pousser, faute de connecteur GitHub ; la seconde pousse mais n'a aucun accès

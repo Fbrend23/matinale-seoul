@@ -16,17 +16,16 @@
 # surveillance acceptable alors qu'on a retiré le rebuild nocturne pour la
 # raison inverse.
 #
-# La parution vise le matin de son LECTEUR, à Berne : le cron du serveur part à
-# 7 h, le site est en ligne vers 8 h. Cette veille passe deux à trois heures
-# plus tard, ce qui laisse la place à un retard ou à un rejeu. Réglée à l'heure
-# de Séoul, elle serait passée à 4 h du matin — avant la parution qu'elle
-# surveille, et aurait crié tous les jours.
+# La parution vise 8 h heure de SÉOUL, le matin de son lecteur quand il y sera,
+# et de toute façon le fuseau dont le brief parle. Le cron du serveur part donc à
+# 7 h heure de Séoul. Cette veille passe trois heures plus tard, ce qui laisse la
+# place à un retard ou à un rejeu.
 
 name: Veille
 
 on:
   schedule:
-    - cron: '0 8 * * 1-5' # 10 h à Berne en été, 9 h en hiver
+    - cron: '0 1 * * 1-5' # 10 h 00 à Séoul, du lundi au vendredi
   workflow_dispatch:
 
 jobs:

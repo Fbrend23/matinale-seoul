@@ -1,8 +1,8 @@
 # Installer la parution sur un serveur
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
-installation : chaque jour ouvré à 8 h heure de Séoul, un brief est rédigé,
-vérifié et poussé dans `inbox/` — la suite appartient à GitHub Actions.
+installation : chaque jour ouvré, le brief est rédigé, vérifié et poussé dans
+`inbox/` pour être en ligne à 8 h, heure de Séoul — la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
 
@@ -109,18 +109,22 @@ travail automatique, pas un endroit où l'on garde des modifications.
 
 ## Programmer la parution
 
-**L'heure qui compte est celle du lecteur, pas celle du sujet.** Le brief parle
-de Séoul, mais il est lu à Berne au petit-déjeuner : la parution vise donc 8 h
-heure de Berne, et le cron part à 7 h — la rédaction prend une dizaine de
-minutes, la chaîne GitHub trois de plus.
+**Le brief paraît à 8 h, heure de Séoul.** C'est le fuseau dont il parle, et
+celui où son lecteur le lira. Le cron part donc à 7 h là-bas : la rédaction prend
+une dizaine de minutes, la chaîne GitHub trois de plus.
 
-Le serveur étant à l'heure de Berne, la ligne se lit telle quelle, sans
-conversion ni `CRON_TZ`. Elle s'ajoute par `crontab -e`, ou d'un seul geste :
+Le serveur vit à l'heure de Berne, mais **on ne convertit pas de tête** :
+`CRON_TZ` le fait, et surtout il survit aux changements d'heure — une heure de
+Berne figée dériverait d'une heure deux fois l'an, précisément dans le fuseau où
+l'on ne veut pas dériver.
 
 ```bash
-(crontab -l 2>/dev/null; echo "PATH=$PATH"; \
+(crontab -l 2>/dev/null; echo "PATH=$PATH"; echo 'CRON_TZ=Asia/Seoul'; \
  echo '0 7 * * 1-5 cd "/chemin/vers/matinale-seoul" && bin/brief-du-jour.sh') | crontab -
 ```
+
+> `CRON_TZ`, comme `PATH`, ne vaut que pour les lignes qui le suivent : les
+> tâches déjà présentes au-dessus gardent leur fuseau et leur environnement.
 
 > **`PATH=$PATH` n'est pas décoratif.** Cron démarre avec un chemin minimal, où
 > `claude` ne figure pas s'il vit dans `~/.local/bin` ou sous nvm. Sans cette
@@ -131,13 +135,10 @@ conversion ni `CRON_TZ`. Elle s'ajoute par `crontab -e`, ou d'un seul geste :
 > **Guillemets autour du chemin**, jamais `\ ` pour l'espace de « Seoul News » :
 > dans une crontab, l'échappement par backslash n'a pas le même sens.
 
-À 7 h à Berne il est 15 h à Séoul : le brief reste daté du jour courant là-bas,
-et la garde de cohérence est satisfaite. **Rien dans le code ne dépend de
-l'horloge du serveur** — le jour est toujours calculé sur `Asia/Seoul`.
-
-> Le jour où le lecteur sera à Séoul, seule cette ligne change : `0 7 * * 1-5`
-> devient `CRON_TZ=Asia/Seoul` puis `0 7 * * 1-5`. Le fuseau suit la personne,
-> pas le serveur.
+**Rien dans le code ne dépend de l'horloge du serveur** : le jour du brief est
+toujours calculé sur `Asia/Seoul`, aussi bien par les gardes que par le site. Le
+`CRON_TZ` ne règle que l'heure du déclenchement ; déplacer le serveur d'un fuseau
+à l'autre ne changerait pas d'un jour la date d'un seul brief.
 
 Sous Windows, la tâche planifiée appelle le script via Git Bash :
 
@@ -160,9 +161,13 @@ Deux issues sans panne, à ne pas confondre avec un incident :
 Dans les deux cas le journal le dit, et le site continue d'afficher le dernier
 brief publié, daté.
 
-Côté GitHub, `Veille` reprend le relais : elle constate à 11 h heure de Séoul
-qu'aucun brief du jour n'est publié et le signale par courriel. Elle est en
-pause tant que la parution n'est pas en service — la rallumer :
+Côté GitHub, `Veille` reprend le relais : à 10 h heure de Séoul, soit trois
+heures après la parution, elle constate qu'aucun brief du jour n'est publié et le
+signale par courriel. C'est le seul garde-fou qui parle de ce qui **n'a pas eu
+lieu** ; tous les autres ne signalent que des échecs.
+
+Si on la met un jour en pause, la rallumer depuis un poste de travail — pas
+depuis le serveur, qui n'a pas à administrer le dépôt :
 
 ```bash
 gh workflow enable veille.yml --repo Fbrend23/matinale-seoul
