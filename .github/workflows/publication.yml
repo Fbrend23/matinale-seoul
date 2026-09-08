@@ -56,6 +56,12 @@ permissions:
 jobs:
   publier:
     runs-on: ubuntu-latest
+    # Sans plafond, un job bloqué court jusqu'à la limite de six heures de
+    # GitHub sans rien dire. Vingt-cinq minutes couvrent largement le cas normal
+    # — trois à quatre minutes — et transforment un blocage en échec signalé,
+    # ce qui est tout ce qu'on lui demande. Vu le 8 septembre 2026 : lftp est
+    # resté neuf minutes sur une connexion qui ne venait pas.
+    timeout-minutes: 25
     env:
       # Le runner tourne en UTC. Les dates du brief sont ancrées sur Asia/Seoul
       # dans le code, jamais sur l'horloge de la machine, mais autant que le
@@ -129,7 +135,7 @@ jobs:
           # Deux causes d'échec sans rapport l'une avec l'autre, qu'il faut
           # séparer : la connexion, puis la cible.
           if ! racine=$(lftp -u "$FTP_USER,$FTP_PASSWORD" \
-            -e "set ftp:ssl-force yes; set cmd:fail-exit yes; cls -l; quit" \
+            -e "set net:timeout 20; set net:max-retries 2; set net:reconnect-interval-base 5; set dns:fatal-timeout 20; set ftp:ssl-force yes; set cmd:fail-exit yes; cls -l; quit" \
             "$FTP_HOST" 2>&1); then
             echo "::error::Connexion FTP impossible. Le marqueur n'est pas en cause."
             echo "$racine" | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
@@ -218,7 +224,7 @@ jobs:
           # pas : on rédige nous-mêmes avant que ça n'atteigne les logs.
           publier() {
             lftp -u "$FTP_USER,$FTP_PASSWORD" \
-              -e "set ftp:ssl-force yes; set cmd:fail-exit yes; $1; quit" \
+              -e "set net:timeout 20; set net:max-retries 2; set net:reconnect-interval-base 5; set dns:fatal-timeout 20; set ftp:ssl-force yes; set cmd:fail-exit yes; $1; quit" \
               "$FTP_HOST" 2>&1 | sed -E 's#(ftps?|sftp)://[^[:space:]]*@#\1://***@#g'
           }
 
