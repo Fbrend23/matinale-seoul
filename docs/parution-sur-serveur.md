@@ -27,25 +27,44 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   `could not read Username for 'https://github.com'`, parce qu'il n'y a personne
   pour taper un mot de passe. Le travail est fait, il ne part pas.
 
-  Deux formes possibles, à vérifier **avant** le premier passage :
+  **Une clé de déploiement SSH**, c'est la forme retenue : elle est propre à ce
+  dépôt, se révoque seule, et ne met aucun compte GitHub sur le serveur.
 
   ```bash
-  gh auth login        # compte ayant le droit de pousser
-  gh auth setup-git    # sans cette ligne, git ignore l'authentification de gh
-  git push --dry-run origin main   # doit répondre « Everything up-to-date »
+  # Sans passphrase : le cron n'a personne pour la taper.
+  ssh-keygen -t ed25519 -C "matinale-seoul serveur" -f ~/.ssh/matinale -N ""
+
+  # Sans cette ligne, ssh demanderait de confirmer l'empreinte de github.com au
+  # premier passage, et attendrait une réponse que le cron ne donnera jamais.
+  ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+  # Cette clé pour ce dépôt seulement. CHEMIN ABSOLU : git ne développe pas
+  # toujours le tilde, et ssh prendrait alors le reste pour un nom d'hôte.
+  git config core.sshCommand 'ssh -i /home/UTILISATEUR/.ssh/matinale -o IdentitiesOnly=yes'
+  git remote set-url origin 'git@github.com:Fbrend23/matinale-seoul.git'
+
+  cat ~/.ssh/matinale.pub   # à déposer dans Settings > Deploy keys, « Allow write access »
   ```
 
-  Ou, si l'on préfère ne pas mettre de compte sur le serveur, une **clé de
-  déploiement SSH** avec accès en écriture, propre à ce dépôt et révocable
-  seule :
+  À vérifier **avant** le premier passage :
 
   ```bash
-  ssh-keygen -t ed25519 -C "matinale-seoul, serveur" -f ~/.ssh/matinale
-  # déposer la clé publique dans Settings > Deploy keys, « Allow write access »
-  git remote set-url origin git@github.com:Fbrend23/matinale-seoul.git
+  ssh -i ~/.ssh/matinale -T git@github.com
+  # « Hi Fbrend23/matinale-seoul! You've successfully authenticated,
+  #   but GitHub does not provide shell access. » — c'est la bonne réponse.
+  git push --dry-run origin main
   ```
 
-  Dans les deux cas, ne jamais accorder la permission `Workflows` : l'agent
+  > Une espace de trop dans `core.sshCommand` (`- o` au lieu de `-o`) donne
+  > `hostname contains invalid characters` : ssh prend alors l'option orpheline
+  > pour un nom d'hôte. Relire la valeur avec
+  > `git config --get core.sshCommand | cat -A` avant de chercher ailleurs.
+
+  **`gh` n'a rien à faire sur ce serveur.** Il sert à administrer le dépôt —
+  activer un workflow, poser un secret — ce qui se fait depuis un poste de
+  travail. Le serveur, lui, ne fait que pousser un fichier.
+
+  Ne jamais accorder la permission `Workflows` à quoi que ce soit ici : l'agent
   dépose du contenu, il n'a rien à faire dans `.github/`.
 
 ## Installation
