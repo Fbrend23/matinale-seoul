@@ -115,11 +115,21 @@ heure de Berne, et le cron part à 7 h — la rédaction prend une dizaine de
 minutes, la chaîne GitHub trois de plus.
 
 Le serveur étant à l'heure de Berne, la ligne se lit telle quelle, sans
-conversion ni `CRON_TZ` :
+conversion ni `CRON_TZ`. Elle s'ajoute par `crontab -e`, ou d'un seul geste :
 
-```cron
-0 7 * * 1-5  cd /chemin/vers/matinale-seoul && bin/brief-du-jour.sh
+```bash
+(crontab -l 2>/dev/null; echo "PATH=$PATH"; \
+ echo '0 7 * * 1-5 cd "/chemin/vers/matinale-seoul" && bin/brief-du-jour.sh') | crontab -
 ```
+
+> **`PATH=$PATH` n'est pas décoratif.** Cron démarre avec un chemin minimal, où
+> `claude` ne figure pas s'il vit dans `~/.local/bin` ou sous nvm. Sans cette
+> ligne, le script échoue en 127 chaque matin, alors qu'il marche parfaitement
+> lancé à la main — le genre de panne qu'on cherche du mauvais côté pendant une
+> heure.
+>
+> **Guillemets autour du chemin**, jamais `\ ` pour l'espace de « Seoul News » :
+> dans une crontab, l'échappement par backslash n'a pas le même sens.
 
 À 7 h à Berne il est 15 h à Séoul : le brief reste daté du jour courant là-bas,
 et la garde de cohérence est satisfaite. **Rien dans le code ne dépend de
