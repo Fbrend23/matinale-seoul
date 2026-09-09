@@ -160,8 +160,13 @@ test('un brief daté d hier est recalé', () => {
 
 test('une seule section non vide ne fait pas un brief', () => {
   const brief = structuredClone(valide);
-  brief.sections[1].items = [];
-  brief.sections[2].items = [];
+  // On vide tout sauf la première. Nommer les index conduirait ce test à passer
+  // pour de mauvaises raisons le jour où une rubrique s'ajoute : la règle porte
+  // sur le NOMBRE de sections pourvues, jamais sur lesquelles.
+  for (const section of brief.sections.slice(1)) {
+    section.items = [];
+    section.empty_note = 'Rien à signaler.';
+  }
   const fautes = checkCoherence(brief, { today: '2026-09-04' });
   assert.ok(fautes.some((f) => f.includes('au moins deux')));
 });

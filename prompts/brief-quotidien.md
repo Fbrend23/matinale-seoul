@@ -38,12 +38,16 @@ déjà**, sauf élément vraiment nouveau — et dans ce cas, dis en quoi il est
 nouveau. Si le fichier est introuvable (premier jour, site en panne), continue
 sans lui.
 
-Cherche ensuite l'actualité des dernières 24 heures pour trois sections :
+Cherche ensuite l'actualité des dernières 24 heures pour quatre sections :
 
 - `tourisme` — voyager en Corée, y entrer, y séjourner : visas, K-ETA,
   transports, aéroports, hébergement, événements ouverts au public.
 - `coree` — la Corée du Sud en général : politique, économie, société, climat.
 - `tech` — technologie et IA dans le monde, pas seulement en Corée.
+- `gaming` — le jeu vidéo dans le monde : sorties, studios, industrie,
+  e-sport, plateformes. Sans angle coréen particulier : ce qui compte pour le
+  secteur, d'où que ça vienne. Ne pas y ranger ce qui relève de `tech` — une
+  puce graphique est de la tech, un moteur de jeu est du jeu vidéo.
 
 Trois à six items par section. Vise l'utile pour quelqu'un qui vit à Séoul ou
 s'y rend, pas l'exhaustivité.
@@ -112,6 +116,21 @@ Recopier sa forme est sans risque.
       "key": "tech",
       "empty_note": "Rien de saillant côté technologie : aucune annonce vérifiable ce matin.",
       "items": []
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un studio reporte son jeu phare au printemps",
+          "summary": "Le report tient à un moteur refondu en cours de route, dit le studio, et non à un manque de contenu.",
+          "importance": 1,
+          "tags": ["report", "studios"],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/exemple-de-report",
+          "source_lang": "en"
+        }
+      ]
     }
   ]
 }
@@ -147,7 +166,7 @@ bloque. Un brief absent se rattrape, un brief faux se lit.
 
 Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 
-- **Les trois sections sont toujours présentes**, dans cet ordre. Une section
+- **Les quatre sections sont toujours présentes**, dans cet ordre. Une section
   sans actualité garde `"items": []` **et** reçoit un `empty_note` d'une phrase
   qui dit pourquoi. Ne remplis jamais une section pour la remplir.
 - **`summary` : 40 mots maximum.** C'est la contrainte la plus facile à
@@ -171,7 +190,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   adresse inventée qui répondrait par hasard publierait une information fausse.
 - Une seule source par item, celle qui porte l'information.
 - Préfère les sources déjà connues du site — Yonhap, Korea Herald, Korea Times,
-  Hankyoreh, Chosun, KBS, Reuters, AP, Ars Technica, The Verge, TechCrunch. Une
+  Hankyoreh, Chosun, KBS, Reuters, AP, Ars Technica, The Verge, TechCrunch,
+  Eurogamer, GamesIndustry.biz, Polygon, PC Gamer, Inven. Une
   source hors de cette liste ne disqualifie pas l'item, mais **retient le brief
   entier en brouillon** jusqu'à ce qu'un humain regarde. N'en utilise donc que si
   elle apporte quelque chose qu'aucune source connue ne donne.

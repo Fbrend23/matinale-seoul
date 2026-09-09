@@ -25,6 +25,11 @@
       "key": "tech",
       "empty_note": "Journée creuse : aucune annonce vérifiable.",
       "items": []
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Journée creuse côté jeu vidéo.",
+      "items": []
     }
   ]
 }

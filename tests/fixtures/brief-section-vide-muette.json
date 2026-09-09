@@ -33,6 +33,11 @@
       "key": "tech",
       "empty_note": null,
       "items": []
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Rien de saillant côté jeu vidéo.",
+      "items": []
     }
   ]
 }
