@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-09",
+  "title": "Sommet à Paris, réforme de la police, nouveaux modèles d'IA",
+  "standfirst": "Lee Jae-myung conclut sa visite d'État en France par un sommet avec Macron, la police coréenne se dote d'une cellule de réforme avant la refonte de la procédure pénale, et la recherche des ouvriers coréens disparus au Népal continue sans percée. Côté tech, OpenAI, Mistral et Meta ont chacun sorti un produit ou bouclé un tour de table ces derniers jours.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée mise sur la randonnée pour attirer les touristes",
+          "summary": "La Corée lance le « K-Trekking Challenge » : onze randonneurs français ont testé un itinéraire de onze jours reliant Bukhansan, Andong, Gyeongju, Busan et le Jirisan, avec bâtons et chaussures prêtés gratuitement.",
+          "importance": 1,
+          "tags": ["trekking", "parcs-nationaux"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10856498",
+          "source_lang": "en"
+        },
+        {
+          "headline": "1 400 salariés d'Herbalife en voyage de récompense à Séoul",
+          "summary": "Un groupe incitatif de 1400 employés d'Herbalife, venus d'Inde, visite Séoul en trois vagues jusqu'au 11 septembre : c'est le deuxième plus grand voyage de ce type organisé par une entreprise indienne dans la capitale.",
+          "importance": 2,
+          "tags": ["mice", "tourisme-affaires", "inde"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10844202",
+          "source_lang": "en",
+          "published_at": "2026-08-18T14:50:00+09:00"
+        },
+        {
+          "headline": "Séoul dévoile son calendrier de festivals d'automne",
+          "summary": "Séoul publie son calendrier d'automne : Festival du patrimoine culturel immatériel les 12 et 13 septembre, Festival mondial du pansori les 25 et 26 septembre, tous deux au village Namsangol Hanok, parmi plus de 50 événements.",
+          "importance": 3,
+          "tags": ["festival", "automne", "namsangol"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10858912",
+          "source_lang": "en",
+          "published_at": "2026-09-01T14:43:58+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Jae-myung et Macron tiennent leur sommet à Paris",
+          "summary": "En visite d'État à Paris, le président Lee Jae-myung et Emmanuel Macron ont tenu un sommet consacré à la sécurité, l'économie et la coopération dans le nucléaire civil, pour le 140e anniversaire des relations bilatérales.",
+          "analysis": "Cette visite d'État clôture le cycle de visites croisées entamé par Macron en avril à Séoul, et confirme la relation stratégique franco-coréenne sur le nucléaire, la défense et l'intelligence artificielle, dans un contexte de tensions autour du détroit d'Ormuz.",
+          "importance": 1,
+          "tags": ["diplomatie", "france", "sommet"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10866836",
+          "source_lang": "en",
+          "published_at": "2026-09-08T20:05:00+09:00"
+        },
+        {
+          "headline": "La police nationale lance une cellule de réforme",
+          "summary": "La police nationale a créé une cellule de réforme de 15 membres avant l'entrée en vigueur, le 2 octobre, d'une loi transférant l'enquête pénale des procureurs à la police, après plusieurs scandales de mauvaise gestion.",
+          "importance": 2,
+          "tags": ["police", "reforme"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/law-crime/20260909/police-launch-task-force-to-pursue-sweeping-organizational-reforms",
+          "source_lang": "en",
+          "published_at": "2026-09-09T12:40:00+09:00"
+        },
+        {
+          "headline": "Népal : la recherche des neuf Coréens disparus continue",
+          "summary": "La recherche des neuf Coréens disparus depuis les inondations du 26 août au Népal se poursuit avec drones, hélicoptères et chiens : deux équipes supplémentaires ont été envoyées, sans résultat concret pour l'instant.",
+          "importance": 3,
+          "tags": ["nepal", "catastrophe-naturelle", "disparus"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10864067",
+          "source_lang": "en",
+          "published_at": "2026-09-06T19:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI lance Astra, son modèle le plus avancé",
+          "summary": "OpenAI a lancé Astra, présenté comme son modèle le plus performant, en avant-première aux clients de son programme de cybersécurité Daybreak, avant un déploiement progressif sur les offres payantes et l'API dans la semaine.",
+          "analysis": "OpenAI reconnaît que la technique de « récurrence opaque » d'Astra rend son raisonnement plus difficile à auditer, un compromis assumé à mesure que les capacités du modèle augmentent — signe que la surveillance des IA de pointe devient elle-même un champ de bataille.",
+          "importance": 1,
+          "tags": ["openai", "intelligence-artificielle", "gpt-6"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/03/openai-launches-astra-its-powerful-and-controversial-new-model/",
+          "source_lang": "en",
+          "published_at": "2026-09-03T11:01:00-07:00"
+        },
+        {
+          "headline": "Mistral AI lève 3 milliards d'euros",
+          "summary": "La start-up française Mistral AI a levé 3 milliards d'euros, menés par Samsung, portant sa valorisation au-delà de 21 milliards : la plus grosse levée jamais réalisée par une entreprise technologique européenne.",
+          "importance": 2,
+          "tags": ["mistral", "financement", "ia-europeenne"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/08/mistral-raises-e3b-as-sovereign-ai-becomes-big-business/",
+          "source_lang": "en",
+          "published_at": "2026-09-08T07:17:00-07:00"
+        },
+        {
+          "headline": "Meta lance son agent IA personnel Muse",
+          "summary": "Meta lance Muse, un agent IA capable de réserver des voyages, gérer des factures ou remplir des formulaires via l'accès aux e-mails et paiements des utilisateurs, ravivant les inquiétudes sur la confidentialité des données.",
+          "importance": 3,
+          "tags": ["meta", "agent-ia", "confidentialite"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/08/meta-debuts-its-muse-ai-agent-will-consumers-trust-it/",
+          "source_lang": "en",
+          "published_at": "2026-09-08T12:00:00-07:00"
+        }
+      ]
+    }
+  ]
+}
