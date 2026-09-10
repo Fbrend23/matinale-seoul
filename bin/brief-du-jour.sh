@@ -50,7 +50,24 @@ echec() {
 git fetch --quiet origin main || echec "git fetch impossible"
 git checkout --quiet main
 git reset --hard --quiet origin/main
-npm ci --silent || echec "npm ci"
+# npm ci SEULEMENT si les dépendances ont bougé. Le temps gagné est négligeable
+# et il faut le dire : npm ci prend 4 secondes ici, sur un run de douze minutes.
+# CE QUI EST GAGNÉ EST AILLEURS — une réinstallation quotidienne met le registre
+# npm sur le chemin critique de la parution. Son incident devient alors un matin
+# sans brief, alors que node_modules était déjà bon. On retire une dépendance
+# réseau dont on n'avait pas besoin, pas quatre secondes.
+#
+# L'empreinte vit DANS node_modules : effacer l'un efface l'autre, et le doute
+# ne peut pas survivre à ce qu'il décrit.
+EMPREINTE="node_modules/.empreinte-lock"
+ATTENDUE=$(sha256sum package-lock.json | cut -d" " -f1)
+if [ "$(cat "$EMPREINTE" 2>/dev/null)" = "$ATTENDUE" ]; then
+  echo "dépendances inchangées, npm ci sauté"
+else
+  echo "package-lock.json a bougé (ou node_modules est absent) : npm ci"
+  npm ci --silent || echec "npm ci"
+  echo "$ATTENDUE" > "$EMPREINTE"
+fi
 
 # La consigne est versionnée à côté : la modifier est un commit, relu, et non un
 # réglage de cron que personne ne relit jamais.

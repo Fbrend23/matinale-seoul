@@ -15,7 +15,7 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ## La chaîne, du fichier au site
 
 ```
-Tâche Claude planifiée (6 h, Asia/Seoul)
+Tâche Claude planifiée (timer systemd, 7 h 30 Asia/Seoul)
         │  commit  inbox/brief-AAAA-MM-JJ.json
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
