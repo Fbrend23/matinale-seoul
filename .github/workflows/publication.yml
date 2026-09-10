@@ -121,8 +121,19 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
 
+      # apt-get update rafraîchit TOUS les index de paquets — dix à vingt-cinq
+      # secondes — pour installer un seul binaire. On tente d'abord sans, et on
+      # ne rafraîchit que si l'index du runner est trop vieux pour connaître
+      # lftp. Le repli garde l'étape sûre : elle échoue toujours si le paquet
+      # est réellement introuvable, elle ne fait que cesser de payer d'avance.
+      #
+      # Ce que ça gagne ne va pas dans la facture — le dépôt est public, donc
+      # les minutes sont gratuites — mais dans la marge avant 8 h, heure de
+      # Séoul, qui ne fait que quatorze minutes depuis le passage à 7 h 30.
       - name: Installer lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+        run: |
+          sudo apt-get install -y -qq lftp \
+            || { sudo apt-get update -qq && sudo apt-get install -y -qq lftp; }
 
       # 1 · Garde-fou AVANT TOUT : la cible doit porter SON marqueur, celui de ce
       #     site et d'aucun autre. Un simple listage, aucune écriture : le placer
