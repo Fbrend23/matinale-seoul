@@ -1,0 +1,131 @@
+{
+  "date": "2026-09-10",
+  "title": "Séoul dépasse les 500 000 étudiants étrangers, l'IA sud-coréenne testée comme service public, et Onimusha cartonne",
+  "standfirst": "Une matinée sans grand rebondissement diplomatique : la Corée avance sur ses propres dossiers, du record d'étudiants étrangers à l'expérimentation d'une IA publique et gratuite. Ailleurs, OpenAI se retrouve à la fois sur la sellette scientifique et renforcé côté sécurité, pendant que le jeu vidéo enchaîne les sorties fortes.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul lance trois festivals de marchés traditionnels à l'automne",
+          "summary": "Le quartier de Jung, à Séoul, organise trois festivals de rue du 17 au 19 septembre dans les marchés d'Inhyeon, Sinjungang et Yaksu, avec gastronomie locale et animations, pour dynamiser ces quartiers commerçants traditionnels.",
+          "importance": 1,
+          "tags": ["festival", "seoul", "marches-traditionnels"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/travel-food/20260909/seouls-jung-district-to-host-fall-festivals-across-3-traditional-markets",
+          "source_lang": "en",
+          "published_at": "2026-09-09T11:59:00+09:00"
+        },
+        {
+          "headline": "Les plaintes de touristes étrangers en Corée au plus haut en sept mois",
+          "summary": "En sept mois, les réclamations de visiteurs étrangers ont atteint 1753 cas, dépassant déjà le total de 2025. Taxis dangereux, hébergements défaillants et surfacturations commerciales dominent les griefs recensés par les autorités touristiques.",
+          "importance": 2,
+          "tags": ["tourisme", "plaintes", "secteur-touristique"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10863875",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée du Sud franchit les 500 000 étudiants étrangers",
+          "summary": "Le nombre d'étudiants étrangers en Corée a dépassé 500 000 pour la première fois en 2025, un bond de plus de six fois en quatre ans, porté par l'attrait mondial de la culture coréenne.",
+          "analysis": "Cette hausse traduit un pari démographique et diplomatique : attirer les jeunes via la K-pop et les dramas pour compenser, à terme, le vieillissement de la population active coréenne.",
+          "importance": 1,
+          "tags": ["education", "immigration", "k-culture"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10868521",
+          "source_lang": "en",
+          "published_at": "2026-09-10T08:46:12+09:00"
+        },
+        {
+          "headline": "Divorce record en Corée : 2 550 milliards de wons pour l'ex-femme du fondateur de Smilegate",
+          "summary": "Un tribunal de Séoul a ordonné à Kwon Hyuk-bin, fondateur de Smilegate, de verser à son ex-épouse 35% de ses actions et 65 milliards de wons en espèces, plus gros divorce jamais tranché dans le pays.",
+          "importance": 2,
+          "tags": ["smilegate", "divorce", "justice"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10867937",
+          "source_lang": "en",
+          "published_at": "2026-09-09T15:29:00+09:00"
+        },
+        {
+          "headline": "Kim Keon Hee dit avoir « tout perdu » depuis la présidence de son mari",
+          "summary": "En appel, l'ex-première dame, condamnée à sept ans de prison, nie avoir monnayé son influence, tout en affirmant avoir perdu fortune et honneur depuis l'accession de Yoon Suk Yeol à la présidence.",
+          "importance": 3,
+          "tags": ["politique", "justice", "kim-keon-hee"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10868490",
+          "source_lang": "en",
+          "published_at": "2026-09-10T08:27:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI place un chercheur de la sécurité IA à son conseil d'administration",
+          "summary": "Paul Christiano, spécialiste de l'alignement des systèmes d'IA et inquiet d'une perte de contrôle catastrophique, rejoint le conseil de la Fondation OpenAI et son comité sécurité, avec droit de regard sur les décisions de déploiement de modèles.",
+          "importance": 1,
+          "tags": ["openai", "ia", "gouvernance"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/",
+          "source_lang": "en",
+          "published_at": "2026-09-09T15:25:00-07:00"
+        },
+        {
+          "headline": "La Corée du Sud teste l'intelligence artificielle comme service public gratuit",
+          "summary": "L'initiative « IA pour tous » offre un accès gratuit et illimité à des modèles d'IA, avec des ressources GPU fournies par l'État et un quota de 50% de modèles coréens. L'expérience est suivie à l'étranger.",
+          "analysis": "Si l'expérience tient, la Corée deviendrait un cas d'école mondial pour traiter l'IA comme une infrastructure publique plutôt qu'un service commercial, un modèle que d'autres gouvernements observent avec attention.",
+          "importance": 2,
+          "tags": ["ia", "politique-publique", "coree-du-sud"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/world/20260910/can-ai-be-a-public-utility-world-watches-koreas-bold-experiment",
+          "source_lang": "en",
+          "published_at": "2026-09-10T02:49:00+09:00"
+        },
+        {
+          "headline": "Un mathématicien accuse OpenAI de lui avoir soufflé une preuve sur Navier-Stokes",
+          "summary": "Le chercheur de NYU Tristan Buckmaster affirme qu'OpenAI a lancé ses propres calculs après avoir eu vent de ses travaux, dépensant 300 milliards de jetons et 22,5 millions de dollars pour publier une preuve complète en premier.",
+          "importance": 3,
+          "tags": ["openai", "recherche", "mathematiques"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/08/openai-fought-dirty-on-career-making-math-problem-says-nyu-mathematician/",
+          "source_lang": "en",
+          "published_at": "2026-09-08T10:32:00-07:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Onimusha: Way of the Sword dépasse le million de ventes dès son lancement",
+          "summary": "Le retour de la licence après vingt ans d'absence dépasse le million d'exemplaires dès sa sortie, portant la série à plus de dix millions de ventes. Capcom veut réactiver d'autres licences dormantes.",
+          "analysis": "La performance confirme qu'un nom oublié peut encore vendre s'il retrouve un public : de quoi inciter d'autres éditeurs à rouvrir leurs propres catalogues plutôt qu'à ne miser que sur des licences actives.",
+          "importance": 1,
+          "tags": ["onimusha", "capcom", "ventes"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/action/capcom-expresses-continued-interest-in-re-activating-ips-as-the-first-new-onimusha-game-in-20-years-surpasses-1-million-sales-on-launch-day/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Valheim atteint sa version 1.0 après cinq ans d'accès anticipé",
+          "summary": "Le jeu de survie viking quitte l'accès anticipé avec la mise à jour Deep North, un nouveau biome enneigé, et débarque aussi sur PlayStation 5 et Nintendo Switch 2 avec crossplay entre toutes les plateformes.",
+          "importance": 2,
+          "tags": ["valheim", "jeu-video", "sortie"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/survival-crafting/after-half-a-decade-valheim-1-0-finally-has-a-release-date/",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ]
+}
