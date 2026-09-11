@@ -8,19 +8,67 @@
 const BRIEFS = 'mat_briefs';
 const ITEMS = 'mat_news_items';
 
-export function createClient({ url, token }) {
+// Attentes entre deux tentatives quand la connexion n'aboutit pas du tout.
+// Douze secondes en tout : de quoi passer un redémarrage de l'instance ou un
+// hoquet de son proxy, sans entamer la marge avant 8 h, heure de Séoul.
+const ATTENTES_RÉSEAU = [1000, 3000, 8000];
+
+/**
+ * « fetch failed » ne nomme pas la panne — tout est dans la cause.
+ *
+ * Vu le 10 septembre 2026 : la publication du brief du 11 est morte sur un
+ * « erreur pendant l'ingestion : fetch failed », et il a fallu prouver par le
+ * journal du job — une connexion FTP réussie neuf secondes plus tôt — que le
+ * runner allait bien et que c'était le CMS qui ne répondait pas. Le code de la
+ * cause (ECONNREFUSED, ENOTFOUND, UND_ERR_CONNECT_TIMEOUT) l'aurait dit seul.
+ */
+function motifRéseau(e) {
+  const code = e?.cause?.code ?? e?.cause?.message;
+  return code ? `${e.message} (${code})` : e.message;
+}
+
+export function createClient({
+  url,
+  token,
+  fetcher = fetch,
+  // Injectable pour que les tests exercent les reprises sans les attendre.
+  dormir = (ms) => new Promise((r) => setTimeout(r, ms)),
+}) {
   if (!url || !token) {
     throw new Error('DIRECTUS_URL et DIRECTUS_TOKEN sont requis pour écrire dans le CMS.');
   }
 
   const base = url.replace(/\/$/, '');
 
-  async function api(method, path, body, attempt = 0) {
-    const res = await fetch(`${base}${path}`, {
-      method,
-      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
-      body: body ? JSON.stringify(body) : undefined,
-    });
+  async function api(method, path, body, attempt = 0, essaiRéseau = 0) {
+    let res;
+
+    try {
+      res = await fetcher(`${base}${path}`, {
+        method,
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined,
+      });
+    } catch (e) {
+      // Échec de TRANSPORT : pas de réponse du tout — instance à l'arrêt, DNS,
+      // TLS. Une LECTURE se rejoue sans risque, rien n'a pu être écrit.
+      //
+      // Une ÉCRITURE, non : la requête a pu être reçue alors que sa réponse
+      // s'est perdue, et un POST rejoué créerait un item en double. Les
+      // écritures ont leur filet ailleurs, à l'échelle du run — le fichier
+      // reste dans inbox/, saveBrief() est conçu pour être rejoué, et le
+      // workflow Rejeu relance la publication.
+      if (method === 'GET' && essaiRéseau < ATTENTES_RÉSEAU.length) {
+        const attente = ATTENTES_RÉSEAU[essaiRéseau];
+        console.warn(
+          `   (CMS injoignable : ${motifRéseau(e)} — nouvelle tentative dans ${attente / 1000} s)`
+        );
+        await dormir(attente);
+        return api(method, path, body, attempt, essaiRéseau + 1);
+      }
+
+      throw new Error(`${method} ${path} → ${motifRéseau(e)}`, { cause: e });
+    }
 
     if (res.status === 204) return null;
     const json = await res.json().catch(() => null);
@@ -31,8 +79,8 @@ export function createClient({ url, token }) {
     if (res.status === 429 && attempt < 6) {
       const entête = Number(res.headers.get('retry-after'));
       const délai = Number.isFinite(entête) && entête ? entête * 1000 + 50 : 500 * (attempt + 1);
-      await new Promise((r) => setTimeout(r, délai));
-      return api(method, path, body, attempt + 1);
+      await dormir(délai);
+      return api(method, path, body, attempt + 1, essaiRéseau);
     }
 
     if (!res.ok) {

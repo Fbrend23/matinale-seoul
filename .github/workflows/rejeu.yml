@@ -1,0 +1,106 @@
+# Rejeu : relancer la publication quand elle est morte d'un accident, pas d'un
+# désaccord.
+#
+# POURQUOI. Le 10 septembre 2026, le brief du 11 — valide, déjà passé par la
+# garde du schéma — n'est jamais paru : l'instance Directus n'a pas répondu au
+# premier appel. Une panne de quelques minutes chez l'hébergeur, et la matinée
+# était perdue jusqu'à une relance à la main. Le client CMS rejoue désormais ses
+# LECTURES pendant une douzaine de secondes ; au-delà, il n'y a plus rien à
+# attendre dans le même run, et c'est ici que ça se rattrape.
+#
+# CE QUI REND LE REJEU SÛR. Le fichier reste dans inbox/ tant qu'il n'est pas
+# publié — l'archivage n'a lieu qu'après le déploiement. Donc « inbox/ non vide »
+# est exactement l'invariant « quelque chose n'est pas passé », sans état à
+# tenir ailleurs. Et l'ingestion est conçue pour être rejouée : briefForDate()
+# rend la main si le brief du jour est déjà publié, et saveBrief() archive les
+# items du passage précédent au lieu d'en empiler de nouveaux.
+#
+# CE JOB NE CRIE JAMAIS. Il sort en succès même quand il décide de ne rien
+# faire : l'alarme est le rôle de la Veille, à 10 h, et deux alarmes pour un
+# seul incident en valent zéro. Ce qu'il fait ou ne fait pas se lit dans son
+# résumé de run.
+#
+# DEUX TENTATIVES, PAS UNE BOUCLE. L'agent dépose vers 7 h 30, heure de Séoul.
+# On repasse à 8 h 15 puis à 9 h 15, et on s'arrête là : la Veille de 10 h
+# prend le relais et nomme l'absence. Un rejeu toutes les heures, lui,
+# transformerait un brief durablement recalé — une garde qui dit non, ce qui
+# n'est pas un accident — en un mail d'échec par heure.
+
+name: Rejeu
+
+on:
+  schedule:
+    # Les crons de GitHub sont en UTC ; Séoul est à UTC+9. Le décalage de date
+    # est voulu : lundi 8 h 15 à Séoul, c'est dimanche 23 h 15 UTC.
+    - cron: '15 23 * * 0-4' # 8 h 15 à Séoul, du lundi au vendredi
+    - cron: '15 0 * * 1-5' # 9 h 15 à Séoul, du lundi au vendredi
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write # relancer Publication
+
+concurrency:
+  group: rejeu
+  cancel-in-progress: false
+
+jobs:
+  rejouer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reste-t-il un brief non publié ?
+        id: inbox
+        run: |
+          shopt -s nullglob
+          briefs=(inbox/brief-*.json)
+          echo "briefs=${#briefs[@]}" >> "$GITHUB_OUTPUT"
+
+          if [ ${#briefs[@]} -eq 0 ]; then
+            echo "inbox vide : tout est passé, rien à rejouer." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "En attente dans inbox/ : ${briefs[*]}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      # Relancer contre un CMS toujours à terre ne fait que rejouer l'échec, et
+      # avec lui son mail. On pose donc la même question que la Veille — avec le
+      # même jeton de lecture — avant de décider. Si le CMS ne répond pas, on ne
+      # tente rien : soit la tentative suivante le trouvera debout, soit la
+      # Veille de 10 h dira l'absence, ce qui est le bon message.
+      - name: Le CMS répond-il ?
+        id: cms
+        if: steps.inbox.outputs.briefs != '0'
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
+        run: |
+          # La MÊME requête que la Veille, à la date près : une collection que
+          # ce jeton lit déjà tous les jours. Un point de santé dédié
+          # (/server/ping) serait plus élégant, mais rien ici ne prouve qu'il
+          # est exposé par cette instance — et un 404 permanent ferait un filet
+          # qui ne se déclenche jamais, sans que personne ne s'en aperçoive.
+          # -g : curl lirait les crochets d'un filtre comme une plage à
+          # développer et refuserait l'URL, code 3, avant d'avoir rien demandé.
+          code=$(curl -sg -o /dev/null -w '%{http_code}' --max-time 20 \
+            -H "Authorization: Bearer $DIRECTUS_TOKEN" \
+            "$DIRECTUS_URL/items/mat_briefs?fields=id&limit=1" || true)
+
+          echo "debout=$([ "$code" = '200' ] && echo oui || echo non)" >> "$GITHUB_OUTPUT"
+
+          if [ "$code" = "200" ]; then
+            echo "CMS debout (HTTP 200), le rejeu a une chance d'aboutir." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::notice::CMS toujours injoignable (HTTP ${code:-aucun}) — aucun rejeu lancé."
+            echo "CMS injoignable (HTTP ${code:-aucun}) : rejeu inutile, on n'y touche pas." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Relancer la publication
+        if: steps.inbox.outputs.briefs != '0' && steps.cms.outputs.debout == 'oui'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run publication.yml --ref "$GITHUB_REF_NAME"
+          echo "::notice::Publication relancée pour ${{ steps.inbox.outputs.briefs }} brief(s) en attente."
+          echo "Publication relancée." >> "$GITHUB_STEP_SUMMARY"

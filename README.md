@@ -26,9 +26,11 @@ GitHub ──push (paths: inbox/**)──▶ Actions
                                      └─ commit : inbox/ → archive/AAAA/
 ```
 
-**Aucun cron.** Le push déclenche tout, et le site ne se reconstruit que
-lorsqu'il a quelque chose de neuf à dire. Rejouer un run raté est un bouton dans
-l'onglet Actions, avec ses journaux.
+**Aucun cron dans la chaîne.** Le push déclenche tout, et le site ne se
+reconstruit que lorsqu'il a quelque chose de neuf à dire. Rejouer un run raté
+est un bouton dans l'onglet Actions, avec ses journaux. Deux surveillances, elles,
+sont bien à l'heure — `Rejeu` à 8 h 15 et 9 h 15, `Veille` à 10 h, heure de Séoul —
+mais aucune des deux ne reconstruit quoi que ce soit de son propre chef.
 
 L'avis « le brief du jour n'est pas encore paru » est la seule chose qui ne peut
 pas être décidée au build : « aujourd'hui » y serait figé. Il est calculé chez le
@@ -39,6 +41,32 @@ d'article : elle suffit à ne tromper personne.
 **Pas de webhook de build.** L'ingestion et le build sont deux étapes du même
 job : il n'y a aucune pièce intermédiaire où la chaîne puisse s'arrêter en
 silence.
+
+## Quand le CMS ne répond pas
+
+Un brief valide ne doit pas être perdu parce que Directus a hoqueté. Trois
+filets, du plus court au plus long :
+
+| durée de la panne | ce qui rattrape | où |
+|---|---|---|
+| quelques secondes | le client CMS rejoue ses **lectures**, 3 reprises sur ~12 s | `scripts/lib/directus.mjs` |
+| quelques minutes à deux heures | le workflow **Rejeu** relance la publication à 8 h 15 puis 9 h 15 | `.github/workflows/rejeu.yml` |
+| au-delà | la **Veille** de 10 h nomme l'absence et envoie le mail | `.github/workflows/veille.yml` |
+
+Les **écritures** ne sont jamais rejouées à l'intérieur d'un run : une requête
+peut avoir été reçue alors que sa réponse s'est perdue, et un `POST` rejoué
+créerait un item en double. Elles se rattrapent à l'échelle du run, où c'est
+sûr — le fichier reste dans `inbox/`, `saveBrief()` archive les items du passage
+précédent au lieu d'en empiler.
+
+`inbox/` non vide **est** l'état « quelque chose n'est pas passé » : l'archivage
+n'a lieu qu'après le déploiement. Le Rejeu n'a donc aucun état à tenir ailleurs,
+et il ne relance que si le CMS répond — sinon il ne fait que rejouer l'échec, et
+son mail avec. Il sort en succès même quand il décide de ne rien faire : l'alarme
+est le rôle de la Veille, et deux alarmes pour un incident en valent zéro.
+
+Deux tentatives, pas une boucle. Un brief durablement recalé — une garde qui dit
+non, ce qui n'est pas un accident — enverrait sinon un mail d'échec par heure.
 
 ## Les cinq gardes
 
