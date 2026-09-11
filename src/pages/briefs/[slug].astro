@@ -20,9 +20,35 @@ export async function getStaticPaths() {
 }
 
 const { brief, plusRecent, plusAncien } = Astro.props;
+
+// Ce qu'un agrégateur lit quand il range ce brief.
+//
+// « isAccessibleForFree » et l'éditeur nommé ne sont pas décoratifs : le brief
+// est produit sans relecture humaine, et cette page le dit au lecteur par
+// AiNotice. Le dire aussi aux machines relève de la même honnêteté — la mention
+// est portée par le brief, jamais seulement par le pied de page.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: brief.title,
+  description: brief.standfirst,
+  datePublished: `${brief.date}T08:00:00+09:00`,
+  dateModified: brief.ingested_at ?? `${brief.date}T08:00:00+09:00`,
+  inLanguage: 'fr',
+  isAccessibleForFree: true,
+  mainEntityOfPage: new URL(`/briefs/${brief.slug}/`, Astro.site).toString(),
+  publisher: { '@type': 'Organization', name: 'La Matinale de Séoul' },
+  creator: { '@type': 'Organization', name: 'La Matinale de Séoul (production automatisée)' },
+};
 ---
 
-<BaseLayout title={brief.title} description={brief.standfirst}>
+<BaseLayout title={brief.title} description={brief.standfirst} type="article">
+  <script
+    slot="tete"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <BriefArticle brief={brief} />
 
   <nav class="voisins" aria-label="Autres briefs">

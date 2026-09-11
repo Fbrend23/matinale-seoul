@@ -2,9 +2,18 @@
 import '../styles/style.css';
 import { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, type = 'website' } = Astro.props;
 const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
 const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
+
+const RESUME = 'Brief quotidien : tourisme en Corée, actualités coréennes, tech et IA, jeu vidéo.';
+const résumé = description ?? RESUME;
+
+// Une seule image, statique, pour tout le site. Pas une par brief : cela
+// demanderait astro:assets et des polices embarquées dans un projet qui n'a
+// aujourd'hui pas une seule image, et le gain ne vaut pas ce coût. Elle porte
+// la mention de production automatique, comme tout ce qui sort d'ici.
+const image = new URL('/og.png', Astro.site).toString();
 ---
 
 <!doctype html>
@@ -13,13 +22,23 @@ const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titreComplet}</title>
-    <meta name="description" content={description ?? 'Brief quotidien : tourisme en Corée, actualités coréennes, tech et IA.'} />
+    <meta name="description" content={résumé} />
     <link rel="canonical" href={url} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul" href="/rss.xml" />
+
     <meta property="og:title" content={titreComplet} />
-    <meta property="og:description" content={description ?? ''} />
-    <meta property="og:type" content="website" />
+    <meta property="og:description" content={résumé} />
+    <meta property="og:site_name" content="La Matinale de Séoul" />
+    <meta property="og:locale" content="fr_FR" />
+    {/* « article » sur la page d'un brief, « website » ailleurs : un brief est
+        daté et se cite, l'accueil ne l'est pas. */}
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <slot name="tete" />
   </head>
 
   <body>
