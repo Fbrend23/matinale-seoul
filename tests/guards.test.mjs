@@ -143,6 +143,52 @@ test('la sonde se nomme, plutôt que de laisser Node s annoncer « undici »', a
   assert.match(entêtes['User-Agent'], /github\.com/, 'le robot doit dire où le joindre');
 });
 
+// Les sondes partent en parallèle, donc elles rentrent dans le désordre.
+// L'ingestion, elle, associe les résultats aux items par leur RANG : ces deux
+// tests gardent l'ordre et le plafond, qui ne se voient ni l'un ni l'autre à la
+// lecture du résultat.
+
+test('les résultats gardent l ordre des items, quel que soit celui des réponses', async () => {
+  // Le premier item répond en dernier : empiler dans l'ordre d'arrivée
+  // rendrait ici l'inverse de ce qu'on demande.
+  const délais = { '/lent': 30, '/moyen': 15, '/rapide': 0 };
+  const urls = ['/lent', '/moyen', '/rapide'].map((c) => `https://exemple.test${c}`);
+
+  const sondes = await checkLinks(urls.map(item), {
+    fetcher: (url) =>
+      new Promise((résoudre) =>
+        setTimeout(() => résoudre({ ok: true, status: 200 }), délais[new URL(url).pathname])
+      ),
+  });
+
+  assert.deepEqual(
+    sondes.map((s) => s.item.source_url),
+    urls
+  );
+});
+
+test('la concurrence a un plafond, et il est respecté', async () => {
+  let enVol = 0;
+  let record = 0;
+
+  await checkLinks(
+    Array.from({ length: 12 }, (_, i) => item(`https://exemple.test/${i}`)),
+    {
+      concurrence: 3,
+      fetcher: () =>
+        new Promise((résoudre) => {
+          record = Math.max(record, ++enVol);
+          setTimeout(() => {
+            enVol--;
+            résoudre({ ok: true, status: 200 });
+          }, 5);
+        }),
+    }
+  );
+
+  assert.equal(record, 3, `trois sondes de front au plus, observé ${record}`);
+});
+
 test('un serveur muet finit par lâcher l item', async () => {
   const sondes = await checkLinks([item('https://exemple.test/lent')], {
     timeoutMs: 20,

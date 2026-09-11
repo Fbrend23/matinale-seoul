@@ -72,6 +72,18 @@ const REFUS = new Set([401, 403, 406, 429]);
 // ressource : il faut redemander en GET avant de conclure quoi que ce soit.
 const REESSAYER_EN_GET = new Set([401, 403, 405, 406, 501]);
 
+// Combien d'adresses sont sondées de front.
+//
+// En séquence, un brief de treize items pouvait coûter plus de deux minutes —
+// dix secondes d'attente par lien muet, et le double quand HEAD échoue avant
+// GET. Sur une rédaction de douze minutes qui n'a que dix-huit minutes de marge
+// avant 8 h, et un contrôle avant vol que l'agent rejoue à chaque correction,
+// c'était le poste le plus cher de la chaîne.
+//
+// Six, et non trente : ces requêtes partent vers une poignée de rédactions, et
+// il n'y a aucune raison d'en marteler une seule pour gagner deux secondes.
+const CONCURRENCE = 6;
+
 /**
  * Vérifie que chaque source répond vraiment.
  *
@@ -96,56 +108,75 @@ const REESSAYER_EN_GET = new Set([401, 403, 405, 406, 501]);
  * C'est le raisonnement de la garde 3, qui ne jette rien non plus parce que
  * « jeter l'item ferait disparaître la source sans que personne ne l'apprenne ».
  */
-export async function checkLinks(items, { fetcher = fetch, timeoutMs = 10_000 } = {}) {
-  const results = [];
+export async function checkLinks(
+  items,
+  { fetcher = fetch, timeoutMs = 10_000, concurrence = CONCURRENCE } = {}
+) {
+  // Indexé, et non empilé : les sondes finissent dans le désordre, mais
+  // l'ingestion associe les résultats aux items par leur RANG.
+  const results = new Array(items.length);
+  let prochain = 0;
 
-  for (const item of items) {
-    let statut = null;
-    let raison = null;
-
-    for (const method of ['HEAD', 'GET']) {
-      const controller = new AbortController();
-      const minuteur = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        const res = await fetcher(item.source_url, {
-          method,
-          redirect: 'follow',
-          headers: ENTÊTES,
-          signal: controller.signal,
-        });
-        statut = res.status;
-        if (res.ok) break;
-        // Le serveur refuse la méthode, ou refuse un robot qui ne demande
-        // qu'un en-tête : on redemande la page entière avant de conclure.
-        if (method === 'HEAD' && REESSAYER_EN_GET.has(res.status)) continue;
-        raison = `HTTP ${res.status}`;
-        break;
-      } catch (e) {
-        raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
-        // Un échec réseau sur HEAD peut venir de la méthode : on tente GET.
-        if (method === 'HEAD') continue;
-      } finally {
-        clearTimeout(minuteur);
-      }
+  // Un pool, et non des vagues : une vague avance au rythme de son item le plus
+  // lent, et un seul serveur muet ferait attendre les cinq autres dix secondes.
+  async function travailleur() {
+    for (let i = prochain++; i < items.length; i = prochain++) {
+      results[i] = await sonder(items[i], { fetcher, timeoutMs });
     }
-
-    const vivant = statut !== null && statut >= 200 && statut < 300;
-    const refusé = !vivant && REFUS.has(statut);
-    const verdict = vivant ? 'vivant' : refusé ? 'refusé' : 'mort';
-
-    results.push({
-      item,
-      verdict,
-      // Le seul usage de ce champ est « garde-t-on l'item ? ». Un refus le
-      // garde : c'est toute la raison du troisième verdict.
-      ok: verdict !== 'mort',
-      reason: vivant ? null : (raison ?? 'injoignable'),
-      // Une date de vérification sur une page qu'on n'a pas vue serait fausse.
-      checkedAt: vivant ? new Date().toISOString() : null,
-    });
   }
 
+  await Promise.all(
+    Array.from({ length: Math.min(concurrence, items.length) }, travailleur)
+  );
+
   return results;
+}
+
+/** Une seule adresse, et le verdict qu'elle mérite. */
+async function sonder(item, { fetcher, timeoutMs }) {
+  let statut = null;
+  let raison = null;
+
+  for (const method of ['HEAD', 'GET']) {
+    const controller = new AbortController();
+    const minuteur = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetcher(item.source_url, {
+        method,
+        redirect: 'follow',
+        headers: ENTÊTES,
+        signal: controller.signal,
+      });
+      statut = res.status;
+      if (res.ok) break;
+      // Le serveur refuse la méthode, ou refuse un robot qui ne demande
+      // qu'un en-tête : on redemande la page entière avant de conclure.
+      if (method === 'HEAD' && REESSAYER_EN_GET.has(res.status)) continue;
+      raison = `HTTP ${res.status}`;
+      break;
+    } catch (e) {
+      raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
+      // Un échec réseau sur HEAD peut venir de la méthode : on tente GET.
+      if (method === 'HEAD') continue;
+    } finally {
+      clearTimeout(minuteur);
+    }
+  }
+
+  const vivant = statut !== null && statut >= 200 && statut < 300;
+  const refusé = !vivant && REFUS.has(statut);
+  const verdict = vivant ? 'vivant' : refusé ? 'refusé' : 'mort';
+
+  return {
+    item,
+    verdict,
+    // Le seul usage de ce champ est « garde-t-on l'item ? ». Un refus le
+    // garde : c'est toute la raison du troisième verdict.
+    ok: verdict !== 'mort',
+    reason: vivant ? null : (raison ?? 'injoignable'),
+    // Une date de vérification sur une page qu'on n'a pas vue serait fausse.
+    checkedAt: vivant ? new Date().toISOString() : null,
+  };
 }
 
 // --- Garde 3 : allowlist de domaines ----------------------------------------
