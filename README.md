@@ -1,14 +1,15 @@
 # La Matinale de Séoul
 
 Brief d'actualité quotidien en français : tourisme en Corée, actualités
-coréennes, tech et IA. Un brief par jour ouvré, 9 à 18 items.
+coréennes, tech et IA, jeu vidéo. Un brief par jour ouvré, quatre rubriques,
+12 à 24 items.
 
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 
 | | |
 |---|---|
-| Site | statique, Astro 5, déployé en FTPS sur mutualisé Infomaniak |
+| Site | statique, Astro 7, déployé en FTPS sur mutualisé Infomaniak |
 | CMS | Directus 12 mutualisé, collections `mat_*` ([platform-cms](../platform-cms)) |
 | Cahier des charges | [`cdc.md`](cdc.md) — il fait foi |
 

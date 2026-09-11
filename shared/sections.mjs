@@ -1,4 +1,4 @@
-// Les trois sections, partagées par l'ingestion et par le site.
+// Les quatre sections, partagées par l'ingestion et par le site.
 //
 // Un seul endroit : l'ingestion recale un brief dont une section manque, et le
 // site construit une page par section. Deux listes qui divergeraient donneraient
