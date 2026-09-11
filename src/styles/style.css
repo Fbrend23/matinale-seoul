@@ -100,6 +100,20 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 .chapeau { margin: 0; color: var(--doux); font-size: 1.1rem; }
 
+/* Le bulletin météo. Discret comme la date et la source : c'est du contexte,
+   pas une information de plus. Le séparateur est posé en ::after de chaque
+   span — jamais en ::before du lien, où il hériterait de son soulignement. */
+
+.meteo {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+  color: var(--doux);
+}
+.meteo > span::after { content: '·'; margin: 0 0.45em; color: var(--trait); }
+.meteo .lieu { font-variant-caps: small-caps; letter-spacing: 0.04em; }
+.meteo a { color: inherit; text-decoration-color: var(--trait); }
+.meteo a:hover { color: var(--accent); }
+
 .rubrique-bloc { margin: 2.5rem 0; border-top: 1px solid var(--trait); padding-top: 0.5rem; }
 
 .item { margin: 1.75rem 0; }

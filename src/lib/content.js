@@ -45,7 +45,7 @@ async function request(path) {
  */
 export async function listBriefs() {
   const briefs = await request(
-    `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at`
+    `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather`
   );
 
   if (!briefs?.length) {

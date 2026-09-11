@@ -135,7 +135,10 @@ export async function recentHeadlines(client, { today, days = 14 }) {
  * que « published », les archivés en sortent donc d'eux-mêmes, et ce qui a été
  * ingéré une première fois reste consultable dans le CMS.
  */
-export async function saveBrief(client, { brief, items, status, ingestStatus, failureReason }) {
+export async function saveBrief(
+  client,
+  { brief, items, status, ingestStatus, failureReason, weather }
+) {
   const charge = {
     status,
     date: brief.date,
@@ -147,11 +150,40 @@ export async function saveBrief(client, { brief, items, status, ingestStatus, fa
     ingested_at: new Date().toISOString(),
   };
 
+  // Un relevé absent — service météo muet, ou brief recalé qu'on écrit en
+  // simple trace — ne doit pas effacer celui d'un passage précédent. Même
+  // principe que l'archivage des items un peu plus bas : la chaîne n'a pas le
+  // droit d'effacer. On n'écrit donc la clé que lorsqu'on a de quoi la remplir.
+  if (weather) charge.weather = weather;
+
+  // Le champ « weather » est arrivé après les autres. Si l'instance ne l'a pas
+  // encore — provisionnement en retard, restauration d'une sauvegarde
+  // antérieure —, Directus refuse la charge ENTIÈRE : le brief du jour serait
+  // perdu pour un encadré d'agrément. On réessaie donc une fois sans lui.
+  //
+  // « La météo ne recale jamais un brief » vaut aussi à l'écriture, et c'est le
+  // seul endroit où cette promesse pouvait encore être trahie.
+  const écrire = async (méthode, chemin) => {
+    try {
+      return await client[méthode](chemin, charge);
+    } catch (e) {
+      // Une panne de TRANSPORT ne se rejoue pas, et la règle n'est pas à moi :
+      // la requête a pu être reçue alors que sa réponse s'est perdue, et un
+      // POST rejoué créerait un brief en double. Le client marque ce cas d'une
+      // `cause` ; un refus de Directus, lui, n'en a pas. Seul ce dernier peut
+      // venir d'un champ qu'il ne connaît pas.
+      if (e.cause || !charge.weather) throw e;
+      console.warn(`   (météo non écrite, brief conservé : ${e.message})`);
+      delete charge.weather;
+      return client[méthode](chemin, charge);
+    }
+  };
+
   const existant = await briefForDate(client, brief.date);
   let id;
 
   if (existant) {
-    await client.patch(`/items/${BRIEFS}/${existant.id}`, charge);
+    await écrire('patch', `/items/${BRIEFS}/${existant.id}`);
     id = existant.id;
 
     const anciens = await client.get(
@@ -161,7 +193,7 @@ export async function saveBrief(client, { brief, items, status, ingestStatus, fa
       await client.patch(`/items/${ITEMS}/${ancien.id}`, { status: 'archived' });
     }
   } else {
-    const créé = await client.post(`/items/${BRIEFS}`, charge);
+    const créé = await écrire('post', `/items/${BRIEFS}`);
     id = créé.id;
   }
 

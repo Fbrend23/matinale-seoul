@@ -27,6 +27,7 @@ import {
   seoulDate,
 } from './lib/guards.mjs';
 import { createClient, briefForDate, recentHeadlines, saveBrief } from './lib/directus.mjs';
+import { relevéMétéo } from './lib/meteo.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const INBOX = path.join(RACINE, 'inbox');
@@ -141,12 +142,32 @@ async function ingérer(fichier, client, aujourdhui) {
   }
   dire('   garde 5 · cohérence : rien à redire');
 
+  // --- Bulletin météo ---
+  // Ce n'est PAS une sixième garde, et la place le dit : la météo n'a rien à
+  // recaler. C'est un accessoire du brief, et un service tiers muet fait
+  // disparaître le bloc sans jamais retenir l'actualité. L'échec se lit au
+  // journal du run, jamais dans un brief manquant.
+  //
+  // Après les gardes, donc : un brief recalé sort plus haut, et n'a pas à
+  // payer un appel réseau pour un bloc qui ne paraîtra pas.
+  let météo = null;
+  try {
+    météo = await relevéMétéo({ date: brief.date });
+    dire(`   météo · ${météo.tmin} à ${météo.tmax} °C, code WMO ${météo.code}`);
+  } catch (e) {
+    dire(`   météo · indisponible, le brief part sans son bloc : ${e.message}`);
+    // Annotation dans le résumé du run : l'absence se voit sans que le job
+    // passe au rouge. Un encadré manquant n'est pas une panne de publication.
+    console.log(`::warning::Météo absente du brief ${brief.date} : ${e.message}`);
+  }
+
   // --- Écriture ---
   const statut = inconnus.length ? 'draft' : 'published';
   const id = await saveBrief(client, {
     brief,
     items: retenus,
     status: statut,
+    weather: météo,
     ingestStatus: 'ok',
     failureReason: inconnus.length
       ? `Domaines absents de config/sources.json : ${[...new Set(inconnus.map((i) => i.host))].join(', ')}. ` +

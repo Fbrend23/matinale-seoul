@@ -1,0 +1,29 @@
+---
+// Le bulletin du jour, en tête de brief.
+//
+// Le composant se garde lui-même plutôt que de faire porter la condition à
+// l'appelant : un brief sans relevé — service muet ce matin-là, ou brief
+// d'archive paru avant que ce module n'existe — doit simplement ne rien
+// afficher, et cela doit rester vrai partout où le composant est posé.
+//
+// Le libellé du ciel est DÉRIVÉ du code WMO stocké, jamais lu depuis le brief :
+// une formulation qu'on corrige vaut alors pour toute l'archive.
+import { libelléCiel } from '../../shared/meteo.mjs';
+
+const { weather } = Astro.props;
+
+// La probabilité manque quand le relevé sort de la fenêtre de prévision. Zéro
+// pour cent est une information, l'absence n'en est pas une : on distingue.
+const pluie = typeof weather?.precip_probability === 'number' ? weather.precip_probability : null;
+---
+
+{weather && (
+  <p class="meteo">
+    <span class="lieu">Séoul</span>
+    <span>{weather.tmin} à {weather.tmax}&#8239;°C</span>
+    <span>{libelléCiel(weather.code)}</span>
+    {pluie !== null && <span>{pluie}&#8239;% de pluie</span>}
+    {/* Les données Open-Meteo sont sous CC-BY 4.0 : l'attribution est due. */}
+    <a href="https://open-meteo.com/" rel="nofollow noopener" target="_blank">Open-Meteo</a>
+  </p>
+)}

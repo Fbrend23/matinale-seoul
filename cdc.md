@@ -102,6 +102,7 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 | `ingest_status` | enum | `ok` \| `failed` — traçabilité, distinct du champ système |
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
+| `weather` | json | nullable — bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
 
 Un brief recalé reste en `draft`, ce qui est déjà fonctionnellement l'échec puisque le build
 ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste dans la convention.
