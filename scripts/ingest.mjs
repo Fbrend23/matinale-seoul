@@ -97,15 +97,31 @@ async function ingérer(fichier, client, aujourdhui) {
   const items = flatten(brief);
 
   // --- Garde 2 : liens vivants ---
+  // Trois verdicts. Un refus d'accès (403, mur anti-robot, mur payant) ne prouve
+  // pas que l'URL est inventée : l'item reste, et le journal dit pourquoi sa
+  // date de vérification manque.
   const sondes = await checkLinks(items);
-  const morts = sondes.filter((s) => !s.ok);
+
+  const morts = sondes.filter((s) => s.verdict === 'mort');
   for (const mort of morts) {
     dire(`   garde 2 · lien mort, item retiré : ${mort.item.source_url} (${mort.reason})`);
   }
+
+  const refusés = sondes.filter((s) => s.verdict === 'refusé');
+  for (const refus of refusés) {
+    dire(
+      `   garde 2 · accès refusé, item CONSERVÉ : ${refus.item.source_url} (${refus.reason})`
+    );
+  }
+
   const vivants = sondes
     .filter((s) => s.ok)
     .map((s) => ({ ...s.item, link_checked_at: s.checkedAt }));
-  dire(`   garde 2 · liens : ${vivants.length} vivants, ${morts.length} morts`);
+  const joignables = sondes.length - morts.length - refusés.length;
+  dire(
+    `   garde 2 · liens : ${joignables} vivants, ${refusés.length} refusés (conservés), ` +
+      `${morts.length} morts`
+  );
 
   // --- Garde 3 : allowlist ---
   const { domains } = JSON.parse(

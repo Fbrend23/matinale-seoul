@@ -193,8 +193,11 @@ Elles remplacent la relecture humaine. Ordre d'exécution :
 
 1. **Schéma** — validation contre `brief.schema.json`. Échec ⇒ brief entier recalé.
 2. **Liens vivants** — HEAD sur chaque `source_url`, timeout 10 s, redirections suivies, repli GET
-   si 405. Non-2xx ⇒ l'item saute. *La garde la plus rentable : elle attrape les URL inventées,
-   mode de défaillance le plus probable.*
+   si le serveur conteste la méthode. *La garde la plus rentable : elle attrape les URL inventées,
+   mode de défaillance le plus probable.* Trois verdicts, parce que la question posée est « cette
+   adresse existe-t-elle ? » et non « ai-je pu la lire ? » : 2xx ⇒ l'item passe, daté ;
+   401/403/406/429 ⇒ **l'item passe sans date**, un refus d'accès ne prouvant pas une invention ;
+   404, 5xx ou silence ⇒ l'item saute.
 3. **Allowlist de domaines** — `config/sources.json`, éditable. Domaine inconnu ⇒ item conservé
    mais brief laissé en `draft` (pas jeté : c'est ainsi que la liste s'enrichit).
 4. **Doublons** — similarité du `headline` contre les 14 derniers jours, seuil 0,85.

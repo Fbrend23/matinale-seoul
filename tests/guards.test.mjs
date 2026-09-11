@@ -87,6 +87,62 @@ test('un 405 sur HEAD est réessayé en GET', async () => {
   assert.equal(sondes[0].ok, true, 'un serveur qui refuse HEAD ne rend pas le lien mort');
 });
 
+// La garde cherche les URL INVENTÉES. Un refus d'accès n'en est pas une : il dit
+// qu'on ne nous a pas montré la page, pas qu'elle n'existe pas. Ces quatre tests
+// tiennent cette distinction, qui retirait jusqu'ici des items valides en
+// silence.
+
+test('un 403 conserve l item : un refus ne prouve pas une URL inventée', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/mur-anti-robot')], {
+    fetcher: async () => ({ ok: false, status: 403 }),
+  });
+  assert.equal(sondes[0].verdict, 'refusé');
+  assert.equal(sondes[0].ok, true, "un accès refusé ne doit pas retirer l'item");
+});
+
+test('un item refusé ne porte pas de date de vérification', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/mur-payant')], {
+    fetcher: async () => ({ ok: false, status: 401 }),
+  });
+  assert.equal(
+    sondes[0].checkedAt,
+    null,
+    "dater la vérification d'une page qu'on n'a pas vue serait mentir"
+  );
+});
+
+test('un 404 reste mort, lui', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/inventé')], {
+    fetcher: async () => ({ ok: false, status: 404 }),
+  });
+  assert.equal(sondes[0].verdict, 'mort');
+  assert.equal(sondes[0].ok, false);
+});
+
+test('un 403 sur HEAD est réessayé en GET avant tout verdict', async () => {
+  const appels = [];
+  const sondes = await checkLinks([item('https://exemple.test/head-suspect')], {
+    fetcher: async (url, opts) => {
+      appels.push(opts.method);
+      return opts.method === 'HEAD' ? { ok: false, status: 403 } : { ok: true, status: 200 };
+    },
+  });
+  assert.deepEqual(appels, ['HEAD', 'GET']);
+  assert.equal(sondes[0].verdict, 'vivant', 'un serveur qui refuse HEAD sert parfois GET');
+});
+
+test('la sonde se nomme, plutôt que de laisser Node s annoncer « undici »', async () => {
+  let entêtes = null;
+  await checkLinks([item('https://exemple.test/a')], {
+    fetcher: async (url, opts) => {
+      entêtes = opts.headers;
+      return { ok: true, status: 200 };
+    },
+  });
+  assert.match(entêtes['User-Agent'], /MatinaleDeSeoul/);
+  assert.match(entêtes['User-Agent'], /github\.com/, 'le robot doit dire où le joindre');
+});
+
 test('un serveur muet finit par lâcher l item', async () => {
   const sondes = await checkLinks([item('https://exemple.test/lent')], {
     timeoutMs: 20,

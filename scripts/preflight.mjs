@@ -72,14 +72,27 @@ if (!fautes.length) {
   const items = flatten(brief);
 
   // --- Garde 2 : liens vivants ---
+  // Seul le verdict « mort » recale. Un accès refusé est signalé — il explique
+  // qu'un item paraîtra sans date de vérification — mais ne bloque pas le
+  // départ : l'ingestion ne le bloquera pas non plus.
   const sondes = await checkLinks(items);
-  const morts = sondes.filter((s) => !s.ok);
+
+  const morts = sondes.filter((s) => s.verdict === 'mort');
   for (const mort of morts) {
     problemes.push(`lien mort : ${mort.item.source_url} (${mort.reason})`);
   }
   console.log(
-    morts.length ? `✗ liens         ${morts.length} mort(s) sur ${items.length}` : `✓ liens         ${items.length} vivants`
+    morts.length
+      ? `✗ liens         ${morts.length} mort(s) sur ${items.length}`
+      : `✓ liens         ${items.length - morts.length} joignables`
   );
+
+  const refusés = sondes.filter((s) => s.verdict === 'refusé');
+  for (const refus of refusés) {
+    console.log(`! accès refusé  ${refus.item.source_url} (${refus.reason})`);
+    console.log("                l'item est conservé : un refus ne prouve pas que");
+    console.log("                la page est inventée, seulement qu'on ne l'a pas vue.");
+  }
 
   // --- Garde 3 : allowlist (avertissement, pas faute) ---
   const { domains } = JSON.parse(await readFile(path.join(RACINE, 'config', 'sources.json'), 'utf8'));
