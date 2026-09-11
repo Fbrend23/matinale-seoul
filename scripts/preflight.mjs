@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Contrôle avant vol : applique au brief tout ce qui peut l'être SANS le CMS.
+// Contrôle avant vol : applique au brief tout ce qui peut l'être hors de la CI.
 //
 //   node scripts/preflight.mjs inbox/brief-2026-09-07.json
 //
@@ -8,9 +8,16 @@
 // Un brief recalé en CI, c'est un run rouge, un mail, et une matinée sans brief.
 // Un brief recalé ici, c'est une correction avant même le commit.
 //
-// Quatre gardes sur cinq. La cinquième — les doublons — interroge Directus, donc
-// la CI reste seule juge sur ce point : ce script ne remplace pas l'ingestion, il
-// la devance.
+// LES CINQ GARDES, ET DANS LEUR ORDRE. Les doublons se jugeaient autrefois dans
+// la seule CI, faute d'accès au CMS — si bien que l'agent pouvait pousser un
+// brief dont des items seraient retirés en silence, sans jamais l'apprendre. Or
+// le site publie « /api/recent.json », qui porte les mêmes titres et que le
+// prompt lui fait déjà lire. Ce contrôle s'en sert.
+//
+// La CI reste juge. Ce fichier ne fait que devancer son verdict, et il le
+// devance d'un cheveu du bon côté : recent.json sert les quatorze derniers
+// BRIEFS quand le CMS compte quatorze JOURS, donc la fenêtre est un peu plus
+// large ici. Mieux vaut un avertissement de trop qu'un item perdu sans un mot.
 //
 // Code de sortie : 0 si le brief passerait, 1 sinon.
 
@@ -22,6 +29,7 @@ import {
   validateSchema,
   checkLinks,
   checkAllowlist,
+  findDuplicates,
   checkCoherence,
   flatten,
   unflatten,
@@ -29,11 +37,51 @@ import {
 } from './lib/guards.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
+
+// Le site qui sert recent.json. La variable permet de viser une préproduction ;
+// le défaut est l'adresse que le prompt donne déjà à l'agent.
+const SITE = (process.env.SITE_URL ?? 'https://matinale.brendanfleurdelys.ch').replace(/\/$/, '');
+
 const fichier = process.argv[2];
 
 if (!fichier) {
   console.error('Usage : node scripts/preflight.mjs <inbox/brief-AAAA-MM-JJ.json>');
   process.exit(1);
+}
+
+/**
+ * Les titres déjà couverts AVANT le jour du brief, tels que le site les publie.
+ *
+ * Le filtre sur la date n'est pas une précaution : c'est la même règle que côté
+ * CMS, où recentHeadlines() lit strictement « avant aujourd'hui ». Sans lui, un
+ * brief déjà publié — ou rejoué après un premier passage — se reconnaîtrait
+ * lui-même à 1.00 et verrait tous ses items marqués comme doublons. Vu au
+ * premier essai, sur un brief de l'archive.
+ *
+ * Rend `null` — et non un tableau vide — quand le fichier est hors d'atteinte :
+ * « je n'ai pas pu regarder » et « il n'y a rien » ne se disent pas de la même
+ * façon, et seul le premier mérite d'être signalé à l'agent.
+ */
+async function titresDéjàCouverts(avant, { timeoutMs = 10_000 } = {}) {
+  const controller = new AbortController();
+  const minuteur = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(`${SITE}/api/recent.json`, { signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const charge = await res.json();
+    return (charge?.briefs ?? [])
+      .filter((b) => b.date < avant)
+      .flatMap((b) => (b.headlines ?? []).map((h) => h.headline));
+  } catch (e) {
+    const raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
+    console.log(`! doublons      recent.json injoignable (${raison})`);
+    console.log('                cette garde est sautée ; la CI la jouera, elle.');
+    return null;
+  } finally {
+    clearTimeout(minuteur);
+  }
 }
 
 const nom = path.basename(fichier);
@@ -95,9 +143,11 @@ if (!fautes.length) {
     console.log("                la page est inventée, seulement qu'on ne l'a pas vue.");
   }
 
+  const vivants = sondes.filter((s) => s.ok).map((s) => s.item);
+
   // --- Garde 3 : allowlist (avertissement, pas faute) ---
   const { domains } = JSON.parse(await readFile(path.join(RACINE, 'config', 'sources.json'), 'utf8'));
-  const inconnus = checkAllowlist(items, domains);
+  const inconnus = checkAllowlist(vivants, domains);
   if (inconnus.length) {
     const hôtes = [...new Set(inconnus.map((i) => i.host))];
     console.log(`! allowlist     ${hôtes.join(', ')}`);
@@ -107,15 +157,32 @@ if (!fautes.length) {
     console.log('✓ allowlist');
   }
 
-  // --- Garde 5 : cohérence, sur les items vivants uniquement ---
+  // --- Garde 4 : doublons ---
+  // Retirer un item ne recale pas le brief : c'est un avertissement, comme
+  // l'allowlist. Mais l'agent doit le savoir avant de pousser, sans quoi son
+  // brief maigrira en silence entre son commit et la mise en ligne.
+  const anciens = await titresDéjàCouverts(brief.date);
+  const doublons = anciens ? findDuplicates(vivants, anciens) : [];
+
+  if (anciens) {
+    for (const doublon of doublons) {
+      console.log(`! déjà couvert  « ${doublon.item.headline.slice(0, 58)} »`);
+      console.log(`                ressemble à ${doublon.score.toFixed(2)} à « ${doublon.against.slice(0, 48)} »`);
+      console.log("                l'item serait RETIRÉ du brief à l'ingestion.");
+    }
+    if (!doublons.length) {
+      console.log(`✓ doublons      aucun, sur ${anciens.length} titres déjà publiés`);
+    }
+  }
+
+  // --- Garde 5 : cohérence, sur ce qui resterait vraiment ---
   //
-  // L'ingestion juge après avoir retiré les liens morts : juger ici sur le brief
-  // entier donnerait un verdict que la CI contredirait. D'où la MÊME
-  // reconstruction qu'elle, et non une qui lui ressemble — ce contrôle n'a de
-  // valeur que s'il prédit exactement le verdict de la CI.
-  const vivants = sondes.filter((s) => s.ok).map((s) => s.item);
-  const restant = unflatten(brief, vivants);
-  const incoherences = checkCoherence(restant, { today: seoulDate() });
+  // L'ingestion juge après avoir retiré les liens morts ET les doublons : juger
+  // ici sur le brief entier donnerait un verdict que la CI contredirait. D'où la
+  // MÊME reconstruction qu'elle, et non une qui lui ressemble — ce contrôle n'a
+  // de valeur que s'il prédit exactement son verdict.
+  const retenus = vivants.filter((i) => !doublons.some((d) => d.item === i));
+  const incoherences = checkCoherence(unflatten(brief, retenus), { today: seoulDate() });
   if (incoherences.length) {
     problemes.push(...incoherences.map((i) => `cohérence : ${i}`));
     console.log(`✗ cohérence     ${incoherences.length} problème(s)`);
@@ -132,5 +199,5 @@ if (problemes.length) {
   console.error('\nCorriger avant de committer.');
   process.exitCode = 1;
 } else {
-  console.log('Ce brief passerait les gardes. Reste les doublons, que seul le CMS connaît.');
+  console.log('Ce brief passerait les gardes.');
 }
