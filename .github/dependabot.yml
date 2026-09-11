@@ -26,6 +26,22 @@ updates:
         patterns:
           - 'astro'
           - '@astrojs/*'
+          # Le vérificateur de types et TypeScript forment un couple : les
+          # monter séparément est exactement ce qui vient d'échouer.
+          - 'typescript'
+
+    ignore:
+      # TypeScript ne peut pas franchir une majeure tant que @astrojs/check ne
+      # suit pas : sa dernière version, 0.9.10, exige encore « ^5 || ^6 » en
+      # dépendance de pair, et « npm ci » refuse la combinaison. Vu dès la
+      # première PR ouverte par cette configuration, le 11 septembre 2026 : elle
+      # échouait à l'installation, et Dependabot l'aurait rouverte indéfiniment.
+      #
+      # À LEVER dès que @astrojs/check élargit sa plage. Le signe à guetter est
+      # une PR du groupe « astro » qui le monte de version ; « typescript » la
+      # suivra alors sans rien casser.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
     directory: /
