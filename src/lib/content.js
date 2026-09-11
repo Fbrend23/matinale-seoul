@@ -78,6 +78,30 @@ async function request(path) {
   return json?.data ?? null;
 }
 
+// --- Une fois, et une seule, par build ---------------------------------------
+//
+// Six pages demandaient la même liste de briefs, cinq d'entre elles la même
+// liste d'items : onze requêtes pour deux réponses, vers une instance mutualisée
+// de 384 Mo dont le pool ne tient que trois connexions.
+//
+// Le build est un processus unique et le contenu est figé pour sa durée : la
+// mémoïsation est sûre ici, et nulle part ailleurs.
+//
+// ON MÉMOÏSE LA PROMESSE, PAS LE RÉSULTAT. Deux pages rendues en parallèle
+// doivent partager la requête EN VOL ; mémoïser la valeur les ferait partir
+// toutes les deux avant que la première ne revienne.
+//
+// CE N'EST PAS UN REPLI. Un rejet est gardé tel quel et relancé à l'identique :
+// quand le CMS ne répond pas, le build doit échouer, pas servir du figé. C'est
+// toute la doctrine du fichier, et un cache est précisément ce qui pourrait la
+// trahir sans bruit.
+const enCache = new Map();
+
+function uneFois(clé, produire) {
+  if (!enCache.has(clé)) enCache.set(clé, produire());
+  return enCache.get(clé);
+}
+
 /**
  * Tous les briefs publiés, du plus récent au plus ancien.
  *
@@ -87,19 +111,21 @@ async function request(path) {
  *
  * @returns {Promise<Brief[]>}
  */
-export async function listBriefs() {
-  const briefs = await request(
-    `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather`
-  );
-
-  if (!briefs?.length) {
-    throw new Error(
-      'Aucun brief publié dans le CMS. Le site ne sera pas reconstruit : ' +
-        "le déploiement précédent reste en ligne, ce qui vaut mieux qu'un site vide."
+export function listBriefs() {
+  return uneFois('briefs', async () => {
+    const briefs = await request(
+      `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather`
     );
-  }
 
-  return briefs;
+    if (!briefs?.length) {
+      throw new Error(
+        'Aucun brief publié dans le CMS. Le site ne sera pas reconstruit : ' +
+          "le déploiement précédent reste en ligne, ce qui vaut mieux qu'un site vide."
+      );
+    }
+
+    return briefs;
+  });
 }
 
 /**
@@ -111,18 +137,42 @@ export async function listBriefs() {
 export async function itemsFor(briefIds) {
   if (!briefIds.length) return new Map();
 
-  const items = await request(
-    `/items/${ITEMS}?limit=-1&sort=importance` +
-      `&filter[brief][_in]=${briefIds.join(',')}` +
-      `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
-      `source_name,source_url,source_lang,published_at`
-  );
+  const tous = await tousLesItems();
+  return new Map(briefIds.map((id) => [id, tous.get(id) ?? []]));
+}
 
-  const parBrief = new Map(briefIds.map((id) => [id, []]));
-  for (const item of items ?? []) {
-    parBrief.get(item.brief)?.push(item);
-  }
-  return parBrief;
+/**
+ * Tous les items publiés, rangés par brief. Une requête pour tout le build.
+ *
+ * SANS « filter[brief][_in] », et c'est le point. L'ancienne version listait
+ * les identifiants dans l'adresse : à deux cent cinquante briefs par an, cette
+ * URL finissait par dépasser les limites usuelles, et la panne serait arrivée
+ * un matin, sur le build, sans rapport apparent avec sa cause.
+ *
+ * Ne rien filtrer ne coûte rien de plus : la page d'un brief se construit pour
+ * CHAQUE brief publié, donc le build lit de toute façon l'archive entière. On
+ * la lit une fois plutôt que cinq.
+ *
+ * Le jour où l'archive deviendrait trop lourde pour une seule réponse, c'est la
+ * pagination par curseur qu'il faudra, pas le retour du filtre.
+ *
+ * @returns {Promise<Map<number, Item[]>>}
+ */
+function tousLesItems() {
+  return uneFois('items', async () => {
+    const items = await request(
+      `/items/${ITEMS}?limit=-1&sort=importance` +
+        `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
+        `source_name,source_url,source_lang,published_at`
+    );
+
+    const parBrief = new Map();
+    for (const item of items ?? []) {
+      if (!parBrief.has(item.brief)) parBrief.set(item.brief, []);
+      parBrief.get(item.brief).push(item);
+    }
+    return parBrief;
+  });
 }
 
 /**
