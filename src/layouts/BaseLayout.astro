@@ -1,12 +1,12 @@
 ---
 import '../styles/style.css';
-import { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
+import { SECTIONS, SECTION_LABELS, RUBRIQUES_EN_PROSE } from '../../shared/sections.mjs';
 
 const { title, description, canonical, type = 'website' } = Astro.props;
 const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
 const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
-const RESUME = 'Brief quotidien : tourisme en Corée, actualités coréennes, tech et IA, jeu vidéo.';
+const RESUME = `Brief quotidien — ${RUBRIQUES_EN_PROSE}.`;
 const résumé = description ?? RESUME;
 
 // Une seule image, statique, pour tout le site. Pas une par brief : cela

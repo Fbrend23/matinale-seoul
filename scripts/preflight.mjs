@@ -24,6 +24,7 @@ import {
   checkAllowlist,
   checkCoherence,
   flatten,
+  unflatten,
   seoulDate,
 } from './lib/guards.mjs';
 
@@ -107,16 +108,13 @@ if (!fautes.length) {
   }
 
   // --- Garde 5 : cohérence, sur les items vivants uniquement ---
+  //
   // L'ingestion juge après avoir retiré les liens morts : juger ici sur le brief
-  // entier donnerait un verdict que la CI contredirait.
-  const vivants = new Set(sondes.filter((s) => s.ok).map((s) => s.item));
-  const restant = {
-    ...brief,
-    sections: brief.sections.map((s) => ({
-      ...s,
-      items: s.items.filter((i) => vivants.has(items.find((x) => x.headline === i.headline && x.source_url === i.source_url))),
-    })),
-  };
+  // entier donnerait un verdict que la CI contredirait. D'où la MÊME
+  // reconstruction qu'elle, et non une qui lui ressemble — ce contrôle n'a de
+  // valeur que s'il prédit exactement le verdict de la CI.
+  const vivants = sondes.filter((s) => s.ok).map((s) => s.item);
+  const restant = unflatten(brief, vivants);
   const incoherences = checkCoherence(restant, { today: seoulDate() });
   if (incoherences.length) {
     problemes.push(...incoherences.map((i) => `cohérence : ${i}`));

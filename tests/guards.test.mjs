@@ -18,6 +18,7 @@ import {
   seoulDate,
   wordCount,
   flatten,
+  unflatten,
 } from '../scripts/lib/guards.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -377,4 +378,51 @@ test('une note vide de sens vaut une note absente', () => {
     sections: [sectionPleine('coree'), sectionVide('tech', '   ')],
   });
   assert.equal(notes.tech, VIDÉE_PAR_LES_GARDES);
+});
+
+// --- Aplatir, puis reconstruire ----------------------------------------------
+//
+// unflatten() dit sur QUOI la garde de cohérence se prononce : le brief une fois
+// les liens morts et les doublons retirés, jamais celui que l'agent a proposé.
+// L'ingestion et le contrôle avant vol le reconstruisaient chacun de son côté —
+// or le second est censé prédire le verdict du premier.
+
+test('aplatir puis tout reconstruire rend le brief de départ', () => {
+  const brief = {
+    date: '2026-09-11',
+    sections: [
+      { key: 'tourisme', empty_note: null, items: [{ headline: 'a' }, { headline: 'b' }] },
+      { key: 'tech', empty_note: 'Creux.', items: [] },
+      { key: 'gaming', empty_note: null, items: [{ headline: 'c' }] },
+    ],
+  };
+
+  const refait = unflatten(brief, flatten(brief));
+
+  assert.deepEqual(
+    refait.sections.map((s) => [s.key, s.items.map((i) => i.headline)]),
+    [
+      ['tourisme', ['a', 'b']],
+      ['tech', []],
+      ['gaming', ['c']],
+    ]
+  );
+  assert.equal(refait.date, '2026-09-11', 'les métadonnées du brief survivent');
+  assert.equal(refait.sections[1].empty_note, 'Creux.', 'la note de rubrique vide aussi');
+});
+
+test('une rubrique vidée de tous ses items reste présente, et vide', () => {
+  const brief = {
+    sections: [
+      { key: 'coree', empty_note: null, items: [{ headline: 'a' }] },
+      { key: 'gaming', empty_note: null, items: [{ headline: 'b' }] },
+    ],
+  };
+  const items = flatten(brief);
+
+  // Le cas du 11 septembre : la rubrique entière perd ses items en aval.
+  const restant = unflatten(brief, items.filter((i) => i.section !== 'gaming'));
+
+  assert.equal(restant.sections.length, 2, 'la rubrique ne disparaît pas du brief');
+  assert.deepEqual(restant.sections[1].items, []);
 });

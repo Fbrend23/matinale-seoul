@@ -379,6 +379,28 @@ export function flatten(brief) {
   );
 }
 
+/**
+ * L'inverse : le même brief, ne gardant que les items donnés.
+ *
+ * C'est sur CE brief que se juge la cohérence — la garde 5 se prononce sur ce
+ * qui reste une fois les liens morts et les doublons retirés, jamais sur ce que
+ * l'agent a proposé.
+ *
+ * Partagé parce que l'ingestion et le contrôle avant vol le reconstruisaient
+ * chacun de son côté, et que le second est censé PRÉDIRE le verdict du premier :
+ * deux reconstructions qui divergeraient feraient mentir le contrôle avant vol,
+ * qui dirait « ce brief passerait » d'un brief que la CI recalerait.
+ */
+export function unflatten(brief, items) {
+  return {
+    ...brief,
+    sections: brief.sections.map((section) => ({
+      ...section,
+      items: items.filter((item) => item.section === section.key),
+    })),
+  };
+}
+
 export function slugFor(date) {
   return `brief-${date}`;
 }

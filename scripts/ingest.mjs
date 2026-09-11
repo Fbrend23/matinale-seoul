@@ -25,6 +25,7 @@ import {
   checkCoherence,
   emptyNotes,
   flatten,
+  unflatten,
   seoulDate,
 } from './lib/guards.mjs';
 import { createClient, briefForDate, recentHeadlines, saveBrief } from './lib/directus.mjs';
@@ -146,13 +147,7 @@ async function ingérer(fichier, client, aujourdhui) {
   dire(`   garde 4 · ${retenus.length} items retenus sur ${items.length} proposés`);
 
   // --- Garde 5 : cohérence, sur ce qui reste ---
-  const restant = {
-    ...brief,
-    sections: brief.sections.map((s) => ({
-      ...s,
-      items: retenus.filter((i) => i.section === s.key),
-    })),
-  };
+  const restant = unflatten(brief, retenus);
   const incohérences = checkCoherence(restant, { today: aujourdhui });
   if (incohérences.length) {
     return { statut: 'recalé', brief, raison: `cohérence : ${incohérences.join(' ; ')}` };
