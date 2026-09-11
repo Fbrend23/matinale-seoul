@@ -14,6 +14,7 @@
 import { DIRECTUS_URL, DIRECTUS_TOKEN } from 'astro:env/server';
 import { SECTIONS } from '../../shared/sections.mjs';
 import { créerMémo } from './une-fois.js';
+import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
 
 // Les formes que le CMS rend. Écrites en JSDoc plutôt qu'en TypeScript : le
 // dépôt est en JavaScript, et une annotation qui demanderait une compilation
@@ -192,6 +193,20 @@ export async function recentBriefs(n = 14) {
   const briefs = (await listBriefs()).slice(0, n);
   const items = await itemsFor(briefs.map((b) => b.id));
   return briefs.map((b) => assemble(b, items.get(b.id) ?? []));
+}
+
+/**
+ * Les étiquettes qui portent une page, chacune avec ses jours.
+ *
+ * Mémoïsé comme le reste : NewsItem le demande pour chaque item rendu, afin de
+ * savoir s'il pose un lien, et les pages d'étiquette s'en servent pour savoir
+ * lesquelles construire. Une seule règle pour les deux — deux règles qui
+ * divergeraient sèmeraient des liens vers des pages inexistantes.
+ *
+ * @returns {Promise<Map<string, {brief: any, items: any[]}[]>>}
+ */
+export function tagPages() {
+  return uneFois('tags', async () => groupByTag(await recentBriefs(TAG_WINDOW_DAYS)));
 }
 
 /**

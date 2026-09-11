@@ -11,6 +11,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { créerMémo } from '../src/lib/une-fois.js';
+import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
 
 // --- Le cache du build -------------------------------------------------------
@@ -112,4 +113,65 @@ test('l écart entre deux jours se compte en jours, pas en heures', () => {
 test('le site et les gardes datent le même jour à Séoul', () => {
   const instant = new Date('2026-09-11T22:30:00Z'); // déjà le 12 là-bas
   assert.equal(seoulToday(instant), '2026-09-12');
+});
+
+// --- Quelles étiquettes méritent une page -----------------------------------
+//
+// Sur les premiers briefs, 80 étiquettes sur 97 ne portaient qu'un seul item.
+// Une page qui ne montre qu'un item ne regroupe rien : elle le recopie, et
+// ajoute une adresse à indexer.
+//
+// La même règle sert deux fois — elle décide des pages à construire, et elle
+// décide si NewsItem pose un lien. Ces tests gardent la règle elle-même ; c'est
+// sa duplication qui produirait des 404.
+
+const item = (tags, headline = 'h') => ({ headline, tags, section: 'tech' });
+const briefDu = (id, ...items) => ({
+  id,
+  slug: `brief-${id}`,
+  date: `2026-09-${String(id).padStart(2, '0')}`,
+  sections: [{ key: 'tech', items }],
+});
+
+test('une étiquette portée par un seul item n a pas de page', () => {
+  const parTag = groupByTag([briefDu(1, item(['solo', 'commun']), item(['commun']))]);
+
+  assert.ok(!parTag.has('solo'), "une étiquette seule ne justifie pas une page");
+  assert.ok(parTag.has('commun'));
+});
+
+test('le seuil compte les ITEMS, pas les jours', () => {
+  // Deux items du même jour suffisent : ils se regroupent sous une date, mais
+  // la page en montre bien deux.
+  const parTag = groupByTag([briefDu(1, item(['k-eta']), item(['k-eta']))]);
+
+  assert.equal(parTag.get('k-eta').length, 1, 'un seul jour');
+  assert.equal(parTag.get('k-eta')[0].items.length, 2, 'deux items dedans');
+});
+
+test('les items se regroupent par jour, dans l ordre des briefs', () => {
+  const parTag = groupByTag([
+    briefDu(3, item(['ia'], 'récent')),
+    briefDu(2, item(['ia'], 'moyen'), item(['ia'], 'moyen bis')),
+  ]);
+
+  assert.deepEqual(
+    parTag.get('ia').map((j) => [j.brief.id, j.items.length]),
+    [
+      [3, 1],
+      [2, 2],
+    ]
+  );
+});
+
+test('un item sans étiquette ne fait rien planter', () => {
+  const parTag = groupByTag([briefDu(1, { headline: 'h', section: 'tech' }, item(['a']), item(['a']))]);
+  assert.deepEqual([...parTag.keys()], ['a']);
+});
+
+test('le seuil est réglable, et sa valeur par défaut est celle du module', () => {
+  const briefs = [briefDu(1, item(['solo']))];
+  assert.equal(groupByTag(briefs).size, 0);
+  assert.equal(groupByTag(briefs, { minItems: 1 }).size, 1);
+  assert.equal(MIN_ITEMS_PAR_TAG, 2);
 });

@@ -1,42 +1,22 @@
 ---
-// Une page par étiquette.
+// Une page par étiquette — mais seulement pour celles qui regroupent vraiment.
 //
 // Les tags étaient produits par l'agent, contraints par le schéma, stockés dans
 // le CMS et rendus par NewsItem — mais sans lien. De la donnée structurée que
 // personne ne pouvait suivre. Le cahier des charges le prévoyait pourtant :
 // « les pages par tag s'agrègent au build depuis les tableaux JSON ».
 //
-// Calquée sur sections/[section].astro : même fenêtre de trente jours, même
-// regroupement par jour, même raison — au-delà, une liste se lit par l'archive.
+// Le tri — qui mérite une page, qui n'en mérite pas — vit dans src/lib/tags.js,
+// parce que NewsItem a besoin de la MÊME réponse pour décider s'il pose un lien.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsItem from '../../components/NewsItem.astro';
 import AiNotice from '../../components/AiNotice.astro';
-import { recentBriefs } from '../../lib/content.js';
+import { tagPages } from '../../lib/content.js';
 import { SECTION_LABELS } from '../../../shared/sections.mjs';
 import { longDate } from '../../lib/date.js';
 
 export async function getStaticPaths() {
-  const briefs = await recentBriefs(30);
-
-  /** @type {Map<string, {brief: any, items: any[]}[]>} */
-  const parTag = new Map();
-
-  for (const brief of briefs) {
-    for (const section of brief.sections) {
-      for (const item of section.items) {
-        for (const tag of item.tags ?? []) {
-          if (!parTag.has(tag)) parTag.set(tag, []);
-          const jours = parTag.get(tag);
-          // Les items d'un même jour se regroupent sous une seule date, comme
-          // sur les pages de rubrique.
-          const dernier = jours.at(-1);
-          if (dernier?.brief.id === brief.id) dernier.items.push(item);
-          else jours.push({ brief, items: [item] });
-        }
-      }
-    }
-  }
-
+  const parTag = await tagPages();
   return [...parTag].map(([tag, jours]) => ({ params: { tag }, props: { tag, jours } }));
 }
 
@@ -46,11 +26,11 @@ const total = jours.reduce((n, jour) => n + jour.items.length, 0);
 
 <BaseLayout
   title={`Étiquette « ${tag} »`}
-  description={`${total} item(s) étiquetés « ${tag} » sur les trente derniers briefs.`}
+  description={`${total} items étiquetés « ${tag} » sur les trente derniers briefs.`}
 >
   <h1>{tag}</h1>
   <p class="chapeau">
-    {total} item{total > 1 ? 's' : ''} portant cette étiquette, sur les trente derniers briefs.
+    {total} items portant cette étiquette, sur les trente derniers briefs.
   </p>
 
   {jours.map(({ brief, items }) => (

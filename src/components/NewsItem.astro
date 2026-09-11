@@ -1,9 +1,17 @@
 ---
 import { sourceTime } from '../lib/date.js';
+import { tagPages } from '../lib/content.js';
 
 const { item, showSection = false, sectionLabel = null } = Astro.props;
 const quand = sourceTime(item.published_at);
 const tags = Array.isArray(item.tags) ? item.tags : [];
+
+// Toutes les étiquettes n'ont pas de page : celles qui ne portent qu'un item
+// n'en méritent pas, et celles d'un brief plus vieux que la fenêtre n'en ont
+// plus. On demande donc la liste plutôt que de la supposer — lier sans vérifier
+// sèmerait un 404 par étiquette, sur un site statique où rien ne le dirait.
+// L'appel est mémoïsé : il ne coûte qu'une fois pour tout le build.
+const avecPage = await tagPages();
 ---
 
 <article class="item">
@@ -34,14 +42,19 @@ const tags = Array.isArray(item.tags) ? item.tags : [];
     {quand && <span class="quand"> · {quand}</span>}
   </p>
 
-  {/* Cliquables : le schéma les contraint, l'agent les pose, le CMS les garde.
-      Les afficher sans lien faisait de la donnée structurée que personne ne
-      pouvait suivre. */}
+  {/* Cliquables quand il y a quelque chose à aller voir : le schéma les
+      contraint, l'agent les pose, le CMS les garde. Celles qui n'ont pas de
+      page restent affichées — l'information ne se perd pas, seul le lien
+      manque. */}
   {tags.length > 0 && (
     <ul class="etiquettes">
-      {tags.map((tag) => (
-        <li><a href={`/tags/${tag}/`}>{tag}</a></li>
-      ))}
+      {tags.map((tag) =>
+        avecPage.has(tag) ? (
+          <li><a href={`/tags/${tag}/`}>{tag}</a></li>
+        ) : (
+          <li><span>{tag}</span></li>
+        )
+      )}
     </ul>
   )}
 </article>
