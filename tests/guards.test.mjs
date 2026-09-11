@@ -266,3 +266,27 @@ test('le jour se lit à Séoul, pas sur le runner', () => {
 test('les mots se comptent sans se laisser avoir par la ponctuation', () => {
   assert.equal(wordCount("L'exemption, prolongée : deux ans."), 5);
 });
+
+// Le jour de Séoul est désormais calculé dans shared/, parce que le site fait le
+// même calcul et qu'un désaccord entre les deux ferait recaler un brief que le
+// site daterait pourtant juste.
+//
+// Le second test garde le chemin PAR DÉFAUT de checkCoherence, le seul qui
+// appelle seoulDate() lui-même. Tous les appels du dépôt passent un « today »
+// explicite : l'extraction vers shared/ l'a cassé sans qu'aucun test ne rougisse.
+
+test('le jour de Séoul est le même pour les gardes et pour le site', async () => {
+  const { seoulToday } = await import('../shared/date.mjs');
+  const instant = new Date('2026-09-11T22:30:00Z'); // déjà le 12 à Séoul
+  assert.equal(seoulDate(instant), seoulToday(instant));
+  assert.equal(seoulDate(instant), '2026-09-12');
+});
+
+test('checkCoherence sait dater toute seule, sans « today »', () => {
+  const brief = { date: '1999-01-01', sections: [] };
+  const erreurs = checkCoherence(brief);
+  assert.ok(
+    erreurs.some((e) => e.includes('1999-01-01')),
+    'la garde doit pouvoir calculer le jour de Séoul elle-même'
+  );
+});

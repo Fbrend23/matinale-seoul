@@ -15,6 +15,10 @@
 import Ajv from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
+// Importé ET réexporté : checkCoherence() s'en sert comme valeur par défaut, et
+// une simple réexportation ne met pas le nom dans la portée du module.
+import { seoulToday } from '../../shared/date.mjs';
+
 export { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
 
 export const MAX_SUMMARY_WORDS = 40;
@@ -239,15 +243,10 @@ export function findDuplicates(items, recentHeadlines, seuil = DUPLICATE_THRESHO
 
 // --- Garde 5 : cohérence -----------------------------------------------------
 
-/** Le jour, tel qu'il est à Séoul : c'est de là que le brief parle. */
-export function seoulDate(now = new Date()) {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Seoul',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(now);
-}
+// Le jour, tel qu'il est à Séoul : c'est de là que le brief parle. Le calcul vit
+// dans shared/, parce que le site le fait aussi et qu'un désaccord entre les deux
+// ferait recaler un brief que le site daterait pourtant juste.
+export const seoulDate = seoulToday;
 
 export function wordCount(texte) {
   return normalize(texte).split(/\s+/).filter(Boolean).length;

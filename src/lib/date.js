@@ -5,17 +5,10 @@
 // daterait le brief de la veille une bonne partie de la journée. Le fuseau est
 // donc toujours nommé, jamais sous-entendu.
 
-export const SEOUL = 'Asia/Seoul';
-
-/** Le jour courant à Séoul, en AAAA-MM-JJ. */
-export function seoulToday(now = new Date()) {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: SEOUL,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(now);
-}
+// Le jour à Séoul vient de shared/ : l'ingestion le calcule aussi, et les deux
+// doivent rendre le même verdict. Réexporté ici pour que les pages continuent de
+// s'adresser à un seul module de dates.
+export { SEOUL, seoulToday } from '../../shared/date.mjs';
 
 /** « jeudi 4 septembre 2026 » — la date affichée en tête de brief. */
 export function longDate(isoDay) {
