@@ -8,7 +8,11 @@
 // Le jour à Séoul vient de shared/ : l'ingestion le calcule aussi, et les deux
 // doivent rendre le même verdict. Réexporté ici pour que les pages continuent de
 // s'adresser à un seul module de dates.
-export { SEOUL, seoulToday } from '../../shared/date.mjs';
+//
+// Importé ET réexporté : sourceTime() se sert de SEOUL plus bas, et une simple
+// réexportation ne met pas le nom dans la portée du module.
+import { SEOUL, seoulToday } from '../../shared/date.mjs';
+export { SEOUL, seoulToday };
 
 /** « jeudi 4 septembre 2026 » — la date affichée en tête de brief. */
 export function longDate(isoDay) {
