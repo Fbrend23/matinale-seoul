@@ -33,10 +33,25 @@ export const DUPLICATE_THRESHOLD = 0.85;
  * des emplacements qu'Ajv juge inhabituels, et refuser un schéma commenté
  * n'apporterait rien.
  */
+// Compiler un schéma Ajv coûte une vingtaine de millisecondes, et le schéma ne
+// change pas d'un brief à l'autre. Une WeakMap plutôt qu'une Map : elle ne
+// retient pas le schéma en vie, et deux schémas différents — les fixtures des
+// tests — gardent chacun le sien.
+const validateurs = new WeakMap();
+
+function validateurPour(schema) {
+  let valider = validateurs.get(schema);
+  if (!valider) {
+    const ajv = new Ajv({ allErrors: true, strict: false });
+    addFormats(ajv);
+    valider = ajv.compile(schema);
+    validateurs.set(schema, valider);
+  }
+  return valider;
+}
+
 export function validateSchema(brief, schema) {
-  const ajv = new Ajv({ allErrors: true, strict: false });
-  addFormats(ajv);
-  const validate = ajv.compile(schema);
+  const validate = validateurPour(schema);
 
   if (validate(brief)) return [];
 
@@ -226,6 +241,45 @@ export function normalize(texte) {
 }
 
 /**
+ * Un titre réduit à ses bigrammes, avec leur compte total.
+ *
+ * Séparé de `similarity` parce que c'est tout le coût de la garde : la comparer
+ * à N titres reconstruisait N fois les MÊMES bigrammes, des deux côtés. Vingt
+ * items contre quatorze jours d'archive, cela faisait plus de dix mille
+ * constructions pour trois cents titres distincts.
+ */
+function empreinte(texte) {
+  const t = normalize(texte).replace(/\s+/g, ' ');
+  const paires = new Map();
+  for (let i = 0; i < t.length - 1; i++) {
+    const paire = t.slice(i, i + 2);
+    paires.set(paire, (paires.get(paire) ?? 0) + 1);
+  }
+
+  let total = 0;
+  for (const n of paires.values()) total += n;
+
+  return { texte, paires, total };
+}
+
+/** Le coefficient de Dice entre deux empreintes déjà calculées. */
+function dice(a, b) {
+  const total = a.total + b.total;
+  // Deux titres trop courts pour porter un seul bigramme : il ne reste qu'à
+  // les comparer tels quels.
+  if (total === 0) return normalize(a.texte) === normalize(b.texte) ? 1 : 0;
+
+  // On parcourt la plus petite des deux tables : le résultat est le même, et le
+  // travail suit alors le titre le plus court.
+  const [petite, grande] = a.paires.size <= b.paires.size ? [a.paires, b.paires] : [b.paires, a.paires];
+
+  let communs = 0;
+  for (const [paire, n] of petite) communs += Math.min(n, grande.get(paire) ?? 0);
+
+  return (2 * communs) / total;
+}
+
+/**
  * Coefficient de Dice sur les bigrammes.
  *
  * Choisi plutôt qu'une distance d'édition parce qu'il ne se laisse pas
@@ -233,37 +287,24 @@ export function normalize(texte) {
  * histoire ne le font presque jamais dans le même ordre.
  */
 export function similarity(a, b) {
-  const bigrammes = (s) => {
-    const t = normalize(s).replace(/\s+/g, ' ');
-    const paires = new Map();
-    for (let i = 0; i < t.length - 1; i++) {
-      const paire = t.slice(i, i + 2);
-      paires.set(paire, (paires.get(paire) ?? 0) + 1);
-    }
-    return paires;
-  };
-
-  const ga = bigrammes(a);
-  const gb = bigrammes(b);
-  const total = [...ga.values()].reduce((n, v) => n + v, 0) + [...gb.values()].reduce((n, v) => n + v, 0);
-  if (total === 0) return normalize(a) === normalize(b) ? 1 : 0;
-
-  let communs = 0;
-  for (const [paire, n] of ga) communs += Math.min(n, gb.get(paire) ?? 0);
-
-  return (2 * communs) / total;
+  return dice(empreinte(a), empreinte(b));
 }
 
 /** Items dont le titre reprend une histoire déjà couverte les jours précédents. */
 export function findDuplicates(items, recentHeadlines, seuil = DUPLICATE_THRESHOLD) {
+  // Chaque titre n'est réduit qu'une fois, d'un côté comme de l'autre.
+  const anciens = recentHeadlines.map(empreinte);
   const doublons = [];
 
   for (const item of items) {
+    const courant = empreinte(item.headline);
     let meilleur = { score: 0, contre: null };
-    for (const ancien of recentHeadlines) {
-      const score = similarity(item.headline, ancien);
-      if (score > meilleur.score) meilleur = { score, contre: ancien };
+
+    for (const ancien of anciens) {
+      const score = dice(courant, ancien);
+      if (score > meilleur.score) meilleur = { score, contre: ancien.texte };
     }
+
     if (meilleur.score >= seuil) {
       doublons.push({ item, score: meilleur.score, against: meilleur.contre });
     }
