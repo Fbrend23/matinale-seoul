@@ -13,6 +13,7 @@
 
 import { DIRECTUS_URL, DIRECTUS_TOKEN } from 'astro:env/server';
 import { SECTIONS } from '../../shared/sections.mjs';
+import { créerMémo } from './une-fois.js';
 
 // Les formes que le CMS rend. Écrites en JSDoc plutôt qu'en TypeScript : le
 // dépôt est en JavaScript, et une annotation qui demanderait une compilation
@@ -81,29 +82,9 @@ async function request(path) {
   return json?.data ?? null;
 }
 
-// --- Une fois, et une seule, par build ---------------------------------------
-//
-// Six pages demandaient la même liste de briefs, cinq d'entre elles la même
-// liste d'items : onze requêtes pour deux réponses, vers une instance mutualisée
-// de 384 Mo dont le pool ne tient que trois connexions.
-//
-// Le build est un processus unique et le contenu est figé pour sa durée : la
-// mémoïsation est sûre ici, et nulle part ailleurs.
-//
-// ON MÉMOÏSE LA PROMESSE, PAS LE RÉSULTAT. Deux pages rendues en parallèle
-// doivent partager la requête EN VOL ; mémoïser la valeur les ferait partir
-// toutes les deux avant que la première ne revienne.
-//
-// CE N'EST PAS UN REPLI. Un rejet est gardé tel quel et relancé à l'identique :
-// quand le CMS ne répond pas, le build doit échouer, pas servir du figé. C'est
-// toute la doctrine du fichier, et un cache est précisément ce qui pourrait la
-// trahir sans bruit.
-const enCache = new Map();
-
-function uneFois(clé, produire) {
-  if (!enCache.has(clé)) enCache.set(clé, produire());
-  return enCache.get(clé);
-}
+// Une fois, et une seule, par build. Les raisons — et le piège du rejet gardé —
+// sont dans le module, avec ses tests.
+const uneFois = créerMémo();
 
 /**
  * Tous les briefs publiés, du plus récent au plus ancien.
