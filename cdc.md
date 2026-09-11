@@ -18,7 +18,7 @@ l'écart plutôt que de réécrire l'existant.
   réconcilie l'instance entière et supprimerait les collections des autres clients. Ne jamais
   l'exécuter. La source de vérité par client est la fiche JSON déclarative jouée par
   `provision-client.mjs` via l'API, idempotente.
-- Modèle frontend réutilisable : Maisallezfieu — Astro 5 statique, `@astrojs/sitemap`,
+- Modèle frontend réutilisable : Maisallezfieu — Astro statique, `@astrojs/sitemap`,
   `scripts/fetch-media.mjs`, tests joués deux fois (TZ local et UTC), déploiement FTPS par `lftp`
   avec ses trois gardes (marqueur `.deploy-cible`, refus de builder sans secrets, `build.json`
   envoyé seul et en dernier). Transposer, ne pas réinventer.
@@ -41,12 +41,13 @@ l'écart plutôt que de réécrire l'existant.
 ## 2. Objectif
 
 Publier automatiquement, chaque matin de semaine, un brief d'actualité en français : tourisme en
-Corée, actualités coréennes générales, tech et IA mondiales. Contenu produit par une tâche
-planifiée Claude qui cherche sur le web et rend un JSON structuré.
+Corée, actualités coréennes générales, tech et IA mondiales, jeu vidéo mondial. Contenu
+produit par une tâche planifiée Claude qui cherche sur le web et rend un JSON structuré.
 
 Aucune relecture humaine avant mise en ligne — la qualité repose sur les cinq gardes (section 6).
 
-Volume : un brief par jour ouvré, 9 à 18 items. Charge négligeable, ne surdimensionne rien.
+Volume : un brief par jour ouvré, quatre rubriques, 12 à 24 items. Charge négligeable, ne
+surdimensionne rien.
 
 ---
 
@@ -103,6 +104,7 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
 | `weather` | json | nullable — bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
+| `empty_notes` | json | nullable — pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
 
 Un brief recalé reste en `draft`, ce qui est déjà fonctionnellement l'échec puisque le build
 ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste dans la convention.
@@ -112,7 +114,7 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 |---|---|---|
 | `status` | système | idem |
 | `brief` | m2o → `mat_briefs` | **à implémenter dans `provision-client.mjs`** (voir ci-dessous) |
-| `section` | string + `meta.options` | `tourisme` \| `coree` \| `tech` |
+| `section` | string + `meta.options` | `tourisme` \| `coree` \| `tech` \| `gaming` |
 | `headline` | string | |
 | `summary` | text | 40 mots max |
 | `analysis` | text | nullable, un seul non-null par section |
@@ -176,7 +178,7 @@ Fichier `inbox/brief-YYYY-MM-DD.json`, contenant uniquement ce JSON :
 }
 ```
 
-Prose en français, noms de champs en anglais. Les trois `key` toujours présentes, même vides
+Prose en français, noms de champs en anglais. Les quatre `key` toujours présentes, même vides
 (`items: []` + `empty_note` en une phrase française). `analysis` non-null pour au plus un item par
 section. `published_at` omis si la source ne donne pas d'horodatage fiable.
 
@@ -192,8 +194,11 @@ Elles remplacent la relecture humaine. Ordre d'exécution :
 
 1. **Schéma** — validation contre `brief.schema.json`. Échec ⇒ brief entier recalé.
 2. **Liens vivants** — HEAD sur chaque `source_url`, timeout 10 s, redirections suivies, repli GET
-   si 405. Non-2xx ⇒ l'item saute. *La garde la plus rentable : elle attrape les URL inventées,
-   mode de défaillance le plus probable.*
+   si le serveur conteste la méthode. *La garde la plus rentable : elle attrape les URL inventées,
+   mode de défaillance le plus probable.* Trois verdicts, parce que la question posée est « cette
+   adresse existe-t-elle ? » et non « ai-je pu la lire ? » : 2xx ⇒ l'item passe, daté ;
+   401/403/406/429 ⇒ **l'item passe sans date**, un refus d'accès ne prouvant pas une invention ;
+   404, 5xx ou silence ⇒ l'item saute.
 3. **Allowlist de domaines** — `config/sources.json`, éditable. Domaine inconnu ⇒ item conservé
    mais brief laissé en `draft` (pas jeté : c'est ainsi que la liste s'enrichit).
 4. **Doublons** — similarité du `headline` contre les 14 derniers jours, seuil 0,85.

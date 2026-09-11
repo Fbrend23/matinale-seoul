@@ -7,7 +7,7 @@
 
 import rss from '@astrojs/rss';
 import { recentBriefs } from '../lib/content.js';
-import { SECTION_LABELS } from '../../shared/sections.mjs';
+import { SECTION_LABELS, RUBRIQUES_EN_PROSE } from '../../shared/sections.mjs';
 
 export async function GET(context) {
   const briefs = await recentBriefs(30);
@@ -15,7 +15,7 @@ export async function GET(context) {
   return rss({
     title: 'La Matinale de Séoul',
     description:
-      'Brief quotidien : tourisme en Corée, actualités coréennes, tech et IA. ' +
+      `Brief quotidien — ${RUBRIQUES_EN_PROSE}. ` +
       'Contenu généré automatiquement, résumés produits par IA, sources à vérifier.',
     site: context.site,
     customData: '<language>fr</language>',

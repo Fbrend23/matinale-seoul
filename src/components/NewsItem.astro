@@ -20,16 +20,28 @@ const tags = Array.isArray(item.tags) ? item.tags : [];
   <p class="source">
     {/* rel="nofollow ugc" : ces liens sont choisis par une machine, on ne
         transmet pas de recommandation avec eux. */}
-    <a href={item.source_url} rel="nofollow ugc noopener" target="_blank">
+    {/* Le libellé dit l'ouverture en nouvelle fenêtre : à la lecture d'écran,
+        un lien qui change de contexte sans le dire fait perdre sa place. */}
+    <a
+      href={item.source_url}
+      rel="nofollow ugc noopener"
+      target="_blank"
+      aria-label={`${item.source_name} — s'ouvre dans une nouvelle fenêtre`}
+    >
       {item.source_name}
     </a>
     {item.source_lang && <span class="langue"> · {item.source_lang}</span>}
     {quand && <span class="quand"> · {quand}</span>}
   </p>
 
+  {/* Cliquables : le schéma les contraint, l'agent les pose, le CMS les garde.
+      Les afficher sans lien faisait de la donnée structurée que personne ne
+      pouvait suivre. */}
   {tags.length > 0 && (
     <ul class="etiquettes">
-      {tags.map((tag) => <li>{tag}</li>)}
+      {tags.map((tag) => (
+        <li><a href={`/tags/${tag}/`}>{tag}</a></li>
+      ))}
     </ul>
   )}
 </article>

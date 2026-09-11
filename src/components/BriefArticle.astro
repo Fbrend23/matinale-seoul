@@ -26,8 +26,14 @@ const Titre = headingLevel;
     <section class="rubrique-bloc" aria-labelledby={`s-${brief.id}-${section.key}`}>
       <h2 id={`s-${brief.id}-${section.key}`}>{SECTION_LABELS[section.key]}</h2>
 
+      {/* La phrase écrite ce matin-là, et non une formule générale : l'agent
+          dit pourquoi il n'a rien retenu, et l'ingestion dit quand ce sont les
+          gardes qui ont vidé la rubrique. Le repli sert les briefs parus avant
+          que ce texte ne soit conservé. */}
       {section.items.length === 0 ? (
-        <p class="vide">Rien à signaler dans cette rubrique aujourd'hui.</p>
+        <p class="vide">
+          {section.empty_note ?? "Rien à signaler dans cette rubrique aujourd'hui."}
+        </p>
       ) : (
         section.items.map((item) => <NewsItem item={item} />)
       )}

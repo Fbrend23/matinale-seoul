@@ -31,6 +31,10 @@ on:
 jobs:
   verifier:
     runs-on: ubuntu-latest
+    # Une question posée à un CMS ne demande pas dix minutes. Sans plafond, un
+    # curl qui ne revient pas tiendrait le job jusqu'à la limite de six heures
+    # de GitHub sans rien dire — et cette veille existe précisément pour parler.
+    timeout-minutes: 5
     steps:
       - name: Le brief du jour est-il publié ?
         env:

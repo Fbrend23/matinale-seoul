@@ -1,14 +1,15 @@
 # La Matinale de Séoul
 
 Brief d'actualité quotidien en français : tourisme en Corée, actualités
-coréennes, tech et IA. Un brief par jour ouvré, 9 à 18 items.
+coréennes, tech et IA, jeu vidéo. Un brief par jour ouvré, quatre rubriques,
+12 à 24 items.
 
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 
 | | |
 |---|---|
-| Site | statique, Astro 5, déployé en FTPS sur mutualisé Infomaniak |
+| Site | statique, Astro 7, déployé en FTPS sur mutualisé Infomaniak |
 | CMS | Directus 12 mutualisé, collections `mat_*` ([platform-cms](../platform-cms)) |
 | Cahier des charges | [`cdc.md`](cdc.md) — il fait foi |
 
@@ -76,7 +77,7 @@ fois les liens morts et les doublons retirés.
 | | garde | ce qu'elle attrape | sanction |
 |---|---|---|---|
 | 1 | schéma | brief mal formé, champ inventé, URL non HTTPS | brief recalé |
-| 2 | liens vivants | **URL inventée** — le mode de défaillance le plus probable | item retiré |
+| 2 | liens vivants | **URL inventée** — le mode de défaillance le plus probable | item retiré si l'adresse n'existe pas ; conservé sans date si l'accès est refusé |
 | 3 | allowlist | source hors de `config/sources.json` | brief retenu en brouillon |
 | 4 | doublons | histoire déjà couverte ces 14 derniers jours | item retiré |
 | 5 | cohérence | date d'hier, résumé bavard, rangs en double | brief recalé |
@@ -84,6 +85,12 @@ fois les liens morts et les doublons retirés.
 Un **item** recalé est retiré, le brief part sans lui. Un **brief** recalé est
 écrit en brouillon avec `ingest_status = failed` et sa raison, le job échoue
 (GitHub envoie le mail) et le fichier reste dans `inbox/` pour rejeu.
+
+La garde 2 distingue « la page n'existe pas » de « on ne me l'a pas montrée ». Un
+404 retire l'item ; un 403 — mur anti-robot, mur payant — le conserve, sans
+`link_checked_at`, parce qu'un refus d'accès ne prouve pas une adresse inventée.
+Conclure l'un pour l'autre appauvrissait le brief en silence, et le journal
+imputait alors à la source ce qui venait de la garde.
 
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
@@ -98,6 +105,10 @@ personne ne l'apprenne, et la liste ne s'enrichirait jamais.
   bandeau dit que celui du jour n'est pas encore paru.
 - **La mention IA est portée par le brief**, pas par le pied de page : un brief
   lu depuis l'archive ou repris dans un flux RSS doit la porter aussi.
+- **Une rubrique vide dit pourquoi elle l'est.** La phrase que l'agent a écrite
+  ce matin-là, et non une formule générale — et quand ce sont les gardes qui ont
+  vidé la rubrique, elle le dit, parce qu'« il n'y avait rien » et « rien n'a pu
+  être vérifié » ne sont pas la même information.
 - **Jamais le texte intégral d'une source**, ni sa traduction. Résumés courts en
   propre et lien : c'est la différence entre une revue de presse et une
   contrefaçon.

@@ -122,19 +122,27 @@ const bulletin = { date: '2026-09-10', tmin: 15, tmax: 22, code: 3, source: 'ope
  * `refuseWeather` imite une instance où le champ n'est pas encore provisionné —
  * Directus y refuse la charge entière, pas seulement le champ inconnu.
  */
-function faux({ existant = null, refuseWeather = false } = {}) {
+function faux({ existant = null, refuseWeather = false, refuse = [] } = {}) {
   const patchs = [];
   const posts = [];
+
+  // Une instance qui ne connaît pas encore un champ refuse la charge ENTIÈRE,
+  // en le nommant. C'est ce nom qui permet de ne sacrifier que lui.
+  const inconnus = [...refuse, ...(refuseWeather ? ['weather'] : [])];
+  const refuser = (corps) => {
+    const fautif = inconnus.find((clé) => clé in corps);
+    if (fautif) throw new Error(`Invalid field "${fautif}" in payload`);
+  };
 
   const client = {
     get: async (chemin) => (chemin.includes('mat_briefs?filter') && existant ? [existant] : []),
     post: async (chemin, corps) => {
-      if (refuseWeather && corps.weather) throw new Error('Invalid field "weather"');
+      if (!Array.isArray(corps)) refuser(corps);
       posts.push({ chemin, corps: structuredClone(corps) });
       return { id: 7 };
     },
     patch: async (chemin, corps) => {
-      if (refuseWeather && corps.weather) throw new Error('Invalid field "weather"');
+      refuser(corps);
       patchs.push({ chemin, corps: structuredClone(corps) });
       return null;
     },
@@ -269,4 +277,125 @@ test('le brief de l’agent n’est jamais muté', async () => {
   });
 
   assert.ok(!('weather' in brief));
+});
+
+// --- L'écriture des items ----------------------------------------------------
+//
+// Jusqu'ici, tous les tests de saveBrief passaient « items: [] » : la seule
+// partie qui écrit réellement le contenu du brief n'était pas couverte.
+
+const unItem = (n) => ({
+  section: 'tech',
+  headline: `Titre ${n}`,
+  summary: 'Résumé.',
+  importance: n,
+  source_name: 'Source',
+  source_url: `https://exemple.test/${n}`,
+});
+
+test('les items partent en UN seul POST, pas un par item', async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1), unItem(2), unItem(3)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const écritures = faux1.posts.filter((p) => p.chemin.includes('mat_news_items'));
+  assert.equal(écritures.length, 1, 'une instance à 384 Mo ne mérite pas trois allers-retours');
+  assert.equal(écritures[0].corps.length, 3);
+});
+
+test('le rang des items est celui du brief, et il est conservé', async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1), unItem(2), unItem(3)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const envoyés = faux1.posts.find((p) => p.chemin.includes('mat_news_items')).corps;
+  assert.deepEqual(
+    envoyés.map((i) => i.sort),
+    [1, 2, 3]
+  );
+  assert.deepEqual(
+    envoyés.map((i) => i.headline),
+    ['Titre 1', 'Titre 2', 'Titre 3']
+  );
+});
+
+test('un item sans date de vérification part quand même, la clé à null', async () => {
+  // Le cas de l'accès refusé : la garde 2 conserve l'item sans pouvoir dater
+  // quoi que ce soit. Écrire une date inventée serait pire que ne rien écrire.
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const envoyés = faux1.posts.find((p) => p.chemin.includes('mat_news_items')).corps;
+  assert.equal(envoyés[0].link_checked_at, null);
+});
+
+test("aucun item n'écrit aucun POST d'items", async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, { brief, items: [], status: 'draft', ingestStatus: 'failed' });
+
+  assert.equal(faux1.posts.filter((p) => p.chemin.includes('mat_news_items')).length, 0);
+});
+
+// --- Les rubriques vides, et leur phrase -------------------------------------
+
+const notes = { tech: 'Journée creuse côté technologie.' };
+
+test('les notes de rubrique vide sont écrites avec le brief', async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [],
+    status: 'published',
+    ingestStatus: 'ok',
+    emptyNotes: notes,
+  });
+
+  assert.deepEqual(charge(faux1).empty_notes, notes);
+});
+
+test("des notes absentes n'effacent pas celles d'un passage précédent", async () => {
+  // Même raison que pour la météo : un brief recalé, écrit en simple trace, ne
+  // doit pas emporter ce que le passage du matin avait dit.
+  const faux1 = faux({ existant: { id: 7, status: 'published' } });
+  await saveBrief(faux1.client, {
+    brief,
+    items: [],
+    status: 'draft',
+    ingestStatus: 'failed',
+    emptyNotes: null,
+  });
+
+  assert.ok(!('empty_notes' in faux1.patchs[0].corps), 'la clé doit rester hors de la charge');
+});
+
+test('une instance sans le champ garde le brief, et le reste avec', async () => {
+  // Le piège : retirer les accessoires dans un ordre fixe sacrifierait le
+  // bulletin météo alors que l'instance ne bute que sur « empty_notes ».
+  const faux1 = faux({ refuse: ['empty_notes'] });
+  await saveBrief(faux1.client, {
+    brief,
+    items: [],
+    status: 'published',
+    ingestStatus: 'ok',
+    weather: bulletin,
+    emptyNotes: notes,
+  });
+
+  const écrite = charge(faux1);
+  assert.ok(!('empty_notes' in écrite), 'le champ refusé doit partir');
+  assert.deepEqual(écrite.weather, bulletin, 'le bulletin, lui, n avait rien à se reprocher');
+  assert.equal(écrite.title, brief.title, 'et le brief est bien écrit');
 });

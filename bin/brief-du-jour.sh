@@ -18,7 +18,12 @@ DEPOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$DEPOT"
 
 mkdir -p logs
-JOURNAL="logs/brief-$(date -u +%Y-%m).log"
+# Daté à SÉOUL, comme le brief lui-même et comme la commande que la
+# documentation donne pour le relire. En UTC, le journal du 1er de chaque mois
+# partait dans le fichier du mois PRÉCÉDENT — 7 h 30 à Séoul valant 22 h 30 UTC
+# la veille — et « tail logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log » ouvrait un
+# fichier vide. Le matin précis où l'on cherche pourquoi le brief manque.
+JOURNAL="logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log"
 
 # Depuis un terminal, on veut voir CE QUI SE PASSE autant que le journaliser :
 # un script qui n'affiche rien à l'essai laisse croire qu'il n'a rien fait.
@@ -77,8 +82,13 @@ CONSIGNE=$(cat prompts/consigne-serveur.txt)
 # la machine : le brief d'hier et celui de demain pourraient être écrits par deux
 # modèles différents sans que rien ne le dise, et une baisse de qualité
 # deviendrait impossible à rattacher à sa cause.
-#   MATINALE_MODELE=opus bin/brief-du-jour.sh   pour en essayer un autre
-MODELE="${MATINALE_MODELE:-sonnet}"
+#
+# D'où l'identifiant COMPLET, et non l'alias « sonnet ». L'alias suit la
+# génération courante : le jour où Sonnet 6 sortira, il changera de modèle tout
+# seul, sans commit, sans ligne de journal — exactement ce que le paragraphe
+# ci-dessus dit vouloir empêcher. Le relever se fait ici, par un commit.
+#   MATINALE_MODELE=claude-opus-5 bin/brief-du-jour.sh   pour en essayer un autre
+MODELE="${MATINALE_MODELE:-claude-sonnet-5}"
 echo "modèle : $MODELE"
 
 # --allowedTools plutôt que --dangerously-skip-permissions : la liste dit

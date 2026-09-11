@@ -20,8 +20,17 @@ const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
 const prompt = await lire('prompts/brief-quotidien.md');
 const schéma = JSON.parse(await lire('schemas/brief.schema.json'));
 
-/** Le premier bloc ```json du prompt : l'exemple que l'agent recopiera. */
-const exemple = JSON.parse(prompt.match(/```json\n([\s\S]*?)```/)[1]);
+// Le premier bloc ```json du prompt : l'exemple que l'agent recopiera.
+//
+// `\r?` n'est pas une précaution de style. Le dépôt normalise en LF
+// (.gitattributes, « * text=auto »), mais la copie de travail d'un poste
+// Windows porte des CRLF : sans lui, ce test échoue chez le mainteneur et
+// passe en CI. Une suite rouge sur la machine où l'on développe est une
+// suite qu'on cesse de lire — et celle-ci tient le prompt et le schéma
+// ensemble.
+const bloc = prompt.match(/```json\r?\n([\s\S]*?)```/);
+assert.ok(bloc, "aucun bloc ```json dans le prompt : l'exemple donné à l'agent a disparu");
+const exemple = JSON.parse(bloc[1]);
 
 test("l'exemple donné à l'agent passe le schéma", () => {
   assert.deepEqual(validateSchema(exemple, schéma), []);
@@ -33,7 +42,7 @@ test("l'exemple donné à l'agent passe la garde de cohérence", () => {
   assert.deepEqual(checkCoherence(exemple, { today: exemple.date }), []);
 });
 
-test('le prompt nomme les trois sections attendues', () => {
+test('le prompt nomme les quatre sections attendues', () => {
   for (const section of SECTIONS) {
     assert.ok(prompt.includes(`\`${section}\``), `section « ${section} » absente du prompt`);
   }
@@ -53,4 +62,33 @@ test('le prompt donne le chemin de dépôt attendu par le workflow', async () =>
   // un autre produirait des commits qui ne lancent rien, sans erreur nulle part.
   assert.ok(workflow.includes("paths: ['inbox/**']"), 'le déclencheur du workflow a changé');
   assert.ok(prompt.includes('inbox/brief-AAAA-MM-JJ.json'), 'le prompt ne donne pas le bon chemin');
+});
+
+// --- La documentation, tenue par le code -------------------------------------
+//
+// Le README désigne cdc.md comme le document qui FAIT FOI. Rien ne l'obligeait
+// à rester vrai : l'ajout de la rubrique « gaming » a laissé derrière lui un
+// README qui annonçait trois rubriques et un cahier des charges qui décrivait
+// un modèle de données à trois valeurs. Une référence fausse est pire qu'une
+// référence absente — on la croit.
+//
+// Ces deux tests coûtent trois lignes et attrapent exactement cette faute, la
+// prochaine fois qu'une rubrique sera ajoutée.
+
+/** Les nombres qu'on écrit en toutes lettres dans de la prose française. */
+const EN_TOUTES_LETTRES = ['zéro', 'une', 'deux', 'trois', 'quatre', 'cinq', 'six'];
+
+test('le cahier des charges nomme chaque clé de section', async () => {
+  const cdc = await lire('cdc.md');
+  for (const section of SECTIONS) {
+    assert.ok(cdc.includes(`\`${section}\``), `section « ${section} » absente de cdc.md`);
+  }
+});
+
+test('le README et le cahier des charges annoncent le bon nombre de rubriques', async () => {
+  const attendu = `${EN_TOUTES_LETTRES[SECTIONS.length]} rubriques`;
+  for (const fichier of ['README.md', 'cdc.md']) {
+    const texte = await lire(fichier);
+    assert.ok(texte.includes(attendu), `${fichier} devrait annoncer « ${attendu} »`);
+  }
 });

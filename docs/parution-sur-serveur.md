@@ -84,7 +84,7 @@ Si rien ne s'affiche, c'est que la sortie n'a pas été reconnue comme un
 terminal — tout est alors dans le journal :
 
 ```bash
-cat logs/brief-$(date -u +%Y-%m).log
+cat logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log
 ```
 
 Le script part de `origin/main` par un `reset --hard` : ce qui traîne dans la

@@ -1,2 +1,15 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Les scripts shell restent en LF JUSQUE DANS LA COPIE DE TRAVAIL.
+#
+# « text=auto » ci-dessus les stocke déjà en LF dans le dépôt, donc le clone du
+# serveur de parution reçoit bien des LF. Mais sur un poste Windows, la copie de
+# travail reçoit des CRLF — et un script shell en CRLF NE DÉMARRE PAS sous Linux :
+# le noyau lit « /usr/bin/env bash\r » et ne trouve pas d'interpréteur.
+#
+# Tant que personne ne copie ce fichier ailleurs qu'à travers git, cela reste
+# théorique. Ce qui ne l'est pas : shellcheck refuse le fichier ligne par ligne
+# (SC1017) sur le poste où on le développe, et l'outil devient inutilisable
+# précisément là où il servirait avant de pousser.
+*.sh text eol=lf

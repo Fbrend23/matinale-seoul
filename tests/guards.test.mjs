@@ -13,9 +13,12 @@ import {
   findDuplicates,
   checkCoherence,
   similarity,
+  emptyNotes,
+  VIDÉE_PAR_LES_GARDES,
   seoulDate,
   wordCount,
   flatten,
+  unflatten,
 } from '../scripts/lib/guards.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -85,6 +88,108 @@ test('un 405 sur HEAD est réessayé en GET', async () => {
   });
   assert.deepEqual(appels, ['HEAD', 'GET']);
   assert.equal(sondes[0].ok, true, 'un serveur qui refuse HEAD ne rend pas le lien mort');
+});
+
+// La garde cherche les URL INVENTÉES. Un refus d'accès n'en est pas une : il dit
+// qu'on ne nous a pas montré la page, pas qu'elle n'existe pas. Ces quatre tests
+// tiennent cette distinction, qui retirait jusqu'ici des items valides en
+// silence.
+
+test('un 403 conserve l item : un refus ne prouve pas une URL inventée', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/mur-anti-robot')], {
+    fetcher: async () => ({ ok: false, status: 403 }),
+  });
+  assert.equal(sondes[0].verdict, 'refusé');
+  assert.equal(sondes[0].ok, true, "un accès refusé ne doit pas retirer l'item");
+});
+
+test('un item refusé ne porte pas de date de vérification', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/mur-payant')], {
+    fetcher: async () => ({ ok: false, status: 401 }),
+  });
+  assert.equal(
+    sondes[0].checkedAt,
+    null,
+    "dater la vérification d'une page qu'on n'a pas vue serait mentir"
+  );
+});
+
+test('un 404 reste mort, lui', async () => {
+  const sondes = await checkLinks([item('https://exemple.test/inventé')], {
+    fetcher: async () => ({ ok: false, status: 404 }),
+  });
+  assert.equal(sondes[0].verdict, 'mort');
+  assert.equal(sondes[0].ok, false);
+});
+
+test('un 403 sur HEAD est réessayé en GET avant tout verdict', async () => {
+  const appels = [];
+  const sondes = await checkLinks([item('https://exemple.test/head-suspect')], {
+    fetcher: async (url, opts) => {
+      appels.push(opts.method);
+      return opts.method === 'HEAD' ? { ok: false, status: 403 } : { ok: true, status: 200 };
+    },
+  });
+  assert.deepEqual(appels, ['HEAD', 'GET']);
+  assert.equal(sondes[0].verdict, 'vivant', 'un serveur qui refuse HEAD sert parfois GET');
+});
+
+test('la sonde se nomme, plutôt que de laisser Node s annoncer « undici »', async () => {
+  let entêtes = null;
+  await checkLinks([item('https://exemple.test/a')], {
+    fetcher: async (url, opts) => {
+      entêtes = opts.headers;
+      return { ok: true, status: 200 };
+    },
+  });
+  assert.match(entêtes['User-Agent'], /MatinaleDeSeoul/);
+  assert.match(entêtes['User-Agent'], /github\.com/, 'le robot doit dire où le joindre');
+});
+
+// Les sondes partent en parallèle, donc elles rentrent dans le désordre.
+// L'ingestion, elle, associe les résultats aux items par leur RANG : ces deux
+// tests gardent l'ordre et le plafond, qui ne se voient ni l'un ni l'autre à la
+// lecture du résultat.
+
+test('les résultats gardent l ordre des items, quel que soit celui des réponses', async () => {
+  // Le premier item répond en dernier : empiler dans l'ordre d'arrivée
+  // rendrait ici l'inverse de ce qu'on demande.
+  const délais = { '/lent': 30, '/moyen': 15, '/rapide': 0 };
+  const urls = ['/lent', '/moyen', '/rapide'].map((c) => `https://exemple.test${c}`);
+
+  const sondes = await checkLinks(urls.map(item), {
+    fetcher: (url) =>
+      new Promise((résoudre) =>
+        setTimeout(() => résoudre({ ok: true, status: 200 }), délais[new URL(url).pathname])
+      ),
+  });
+
+  assert.deepEqual(
+    sondes.map((s) => s.item.source_url),
+    urls
+  );
+});
+
+test('la concurrence a un plafond, et il est respecté', async () => {
+  let enVol = 0;
+  let record = 0;
+
+  await checkLinks(
+    Array.from({ length: 12 }, (_, i) => item(`https://exemple.test/${i}`)),
+    {
+      concurrence: 3,
+      fetcher: () =>
+        new Promise((résoudre) => {
+          record = Math.max(record, ++enVol);
+          setTimeout(() => {
+            enVol--;
+            résoudre({ ok: true, status: 200 });
+          }, 5);
+        }),
+    }
+  );
+
+  assert.equal(record, 3, `trois sondes de front au plus, observé ${record}`);
 });
 
 test('un serveur muet finit par lâcher l item', async () => {
@@ -209,4 +314,115 @@ test('le jour se lit à Séoul, pas sur le runner', () => {
 
 test('les mots se comptent sans se laisser avoir par la ponctuation', () => {
   assert.equal(wordCount("L'exemption, prolongée : deux ans."), 5);
+});
+
+// Le jour de Séoul est désormais calculé dans shared/, parce que le site fait le
+// même calcul et qu'un désaccord entre les deux ferait recaler un brief que le
+// site daterait pourtant juste.
+//
+// Le second test garde le chemin PAR DÉFAUT de checkCoherence, le seul qui
+// appelle seoulDate() lui-même. Tous les appels du dépôt passent un « today »
+// explicite : l'extraction vers shared/ l'a cassé sans qu'aucun test ne rougisse.
+
+test('le jour de Séoul est le même pour les gardes et pour le site', async () => {
+  const { seoulToday } = await import('../shared/date.mjs');
+  const instant = new Date('2026-09-11T22:30:00Z'); // déjà le 12 à Séoul
+  assert.equal(seoulDate(instant), seoulToday(instant));
+  assert.equal(seoulDate(instant), '2026-09-12');
+});
+
+test('checkCoherence sait dater toute seule, sans « today »', () => {
+  const brief = { date: '1999-01-01', sections: [] };
+  const erreurs = checkCoherence(brief);
+  assert.ok(
+    erreurs.some((e) => e.includes('1999-01-01')),
+    'la garde doit pouvoir calculer le jour de Séoul elle-même'
+  );
+});
+
+// --- Pourquoi une rubrique est vide ------------------------------------------
+//
+// L'agent écrit une phrase sous chaque rubrique qu'il laisse vide, et le schéma
+// l'y oblige. Elle était validée puis jetée : ni écrite dans le CMS, ni lue au
+// build. Un texte produit, contraint, et perdu — dans un dépôt dont toute la
+// doctrine est de ne rien laisser disparaître en silence.
+
+const sectionVide = (key, note) => ({ key, empty_note: note, items: [] });
+const sectionPleine = (key) => ({ key, empty_note: null, items: [{ headline: 'h' }] });
+
+test("la phrase de l'agent est celle qui est retenue", () => {
+  const notes = emptyNotes({
+    sections: [sectionPleine('tourisme'), sectionVide('tech', 'Journée creuse côté technologie.')],
+  });
+  assert.equal(notes.tech, 'Journée creuse côté technologie.');
+});
+
+test('une rubrique pourvue ne reçoit aucune note', () => {
+  const notes = emptyNotes({ sections: [sectionPleine('coree'), sectionPleine('tech')] });
+  assert.equal(notes, null, 'aucune rubrique vide : la clé doit rester hors de la charge');
+});
+
+test('une rubrique vidée PAR LES GARDES reçoit sa propre phrase', () => {
+  // Le cas du 11 septembre : trois items de jeu vidéo, trois sources en 403.
+  // L'agent n'avait écrit aucune note — sa rubrique n'était pas vide. Dire
+  // « rien à signaler » serait faux : il y avait trois choses à signaler.
+  const notes = emptyNotes({
+    sections: [sectionPleine('coree'), { key: 'gaming', empty_note: null, items: [] }],
+  });
+  assert.equal(notes.gaming, VIDÉE_PAR_LES_GARDES);
+  assert.doesNotMatch(notes.gaming, /Rien à signaler/);
+});
+
+test('une note vide de sens vaut une note absente', () => {
+  const notes = emptyNotes({
+    sections: [sectionPleine('coree'), sectionVide('tech', '   ')],
+  });
+  assert.equal(notes.tech, VIDÉE_PAR_LES_GARDES);
+});
+
+// --- Aplatir, puis reconstruire ----------------------------------------------
+//
+// unflatten() dit sur QUOI la garde de cohérence se prononce : le brief une fois
+// les liens morts et les doublons retirés, jamais celui que l'agent a proposé.
+// L'ingestion et le contrôle avant vol le reconstruisaient chacun de son côté —
+// or le second est censé prédire le verdict du premier.
+
+test('aplatir puis tout reconstruire rend le brief de départ', () => {
+  const brief = {
+    date: '2026-09-11',
+    sections: [
+      { key: 'tourisme', empty_note: null, items: [{ headline: 'a' }, { headline: 'b' }] },
+      { key: 'tech', empty_note: 'Creux.', items: [] },
+      { key: 'gaming', empty_note: null, items: [{ headline: 'c' }] },
+    ],
+  };
+
+  const refait = unflatten(brief, flatten(brief));
+
+  assert.deepEqual(
+    refait.sections.map((s) => [s.key, s.items.map((i) => i.headline)]),
+    [
+      ['tourisme', ['a', 'b']],
+      ['tech', []],
+      ['gaming', ['c']],
+    ]
+  );
+  assert.equal(refait.date, '2026-09-11', 'les métadonnées du brief survivent');
+  assert.equal(refait.sections[1].empty_note, 'Creux.', 'la note de rubrique vide aussi');
+});
+
+test('une rubrique vidée de tous ses items reste présente, et vide', () => {
+  const brief = {
+    sections: [
+      { key: 'coree', empty_note: null, items: [{ headline: 'a' }] },
+      { key: 'gaming', empty_note: null, items: [{ headline: 'b' }] },
+    ],
+  };
+  const items = flatten(brief);
+
+  // Le cas du 11 septembre : la rubrique entière perd ses items en aval.
+  const restant = unflatten(brief, items.filter((i) => i.section !== 'gaming'));
+
+  assert.equal(restant.sections.length, 2, 'la rubrique ne disparaît pas du brief');
+  assert.deepEqual(restant.sections[1].items, []);
 });
