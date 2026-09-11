@@ -20,7 +20,7 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
 ## Prérequis
 
-- **Node ≥ 22** et **git**
+- **Node ≥ 22.12** (exigé par Astro 7) et **git**
 - **Claude Code**, authentifié pour le compte qui paiera les sessions
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
   la session rédige, valide, commite — puis échoue sur

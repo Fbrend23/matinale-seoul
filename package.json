@@ -4,7 +4,7 @@
   "type": "module",
   "description": "La Matinale de Séoul — brief d'actualité quotidien, site statique",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.12"
   },
   "scripts": {
     "dev": "astro dev",
@@ -16,10 +16,10 @@
     "preflight": "node scripts/preflight.mjs"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.4",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
-    "astro": "^5.1.1"
+    "astro": "^7.3.2"
   }
 }
