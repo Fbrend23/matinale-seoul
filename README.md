@@ -105,6 +105,10 @@ personne ne l'apprenne, et la liste ne s'enrichirait jamais.
   bandeau dit que celui du jour n'est pas encore paru.
 - **La mention IA est portée par le brief**, pas par le pied de page : un brief
   lu depuis l'archive ou repris dans un flux RSS doit la porter aussi.
+- **Une rubrique vide dit pourquoi elle l'est.** La phrase que l'agent a écrite
+  ce matin-là, et non une formule générale — et quand ce sont les gardes qui ont
+  vidé la rubrique, elle le dit, parce qu'« il n'y avait rien » et « rien n'a pu
+  être vérifié » ne sont pas la même information.
 - **Jamais le texte intégral d'une source**, ni sa traduction. Résumés courts en
   propre et lien : c'est la différence entre une revue de presse et une
   contrefaçon.

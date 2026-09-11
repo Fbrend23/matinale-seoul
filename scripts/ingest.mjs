@@ -23,6 +23,7 @@ import {
   checkAllowlist,
   findDuplicates,
   checkCoherence,
+  emptyNotes,
   flatten,
   seoulDate,
 } from './lib/guards.mjs';
@@ -178,12 +179,21 @@ async function ingérer(fichier, client, aujourdhui) {
   }
 
   // --- Écriture ---
+  // Les notes se calculent sur « restant », donc APRÈS les gardes : une rubrique
+  // que les liens morts ont vidée reçoit la sienne, là où le fichier de l'agent
+  // ne portait rien.
+  const notes = emptyNotes(restant);
+  if (notes) {
+    dire(`   rubriques vides : ${Object.keys(notes).join(', ')}`);
+  }
+
   const statut = inconnus.length ? 'draft' : 'published';
   const id = await saveBrief(client, {
     brief,
     items: retenus,
     status: statut,
     weather: météo,
+    emptyNotes: notes,
     ingestStatus: 'ok',
     failureReason: inconnus.length
       ? `Domaines absents de config/sources.json : ${[...new Set(inconnus.map((i) => i.host))].join(', ')}. ` +

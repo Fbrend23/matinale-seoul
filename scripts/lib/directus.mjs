@@ -137,7 +137,7 @@ export async function recentHeadlines(client, { today, days = 14 }) {
  */
 export async function saveBrief(
   client,
-  { brief, items, status, ingestStatus, failureReason, weather }
+  { brief, items, status, ingestStatus, failureReason, weather, emptyNotes }
 ) {
   const charge = {
     status,
@@ -156,26 +156,48 @@ export async function saveBrief(
   // droit d'effacer. On n'écrit donc la clé que lorsqu'on a de quoi la remplir.
   if (weather) charge.weather = weather;
 
-  // Le champ « weather » est arrivé après les autres. Si l'instance ne l'a pas
-  // encore — provisionnement en retard, restauration d'une sauvegarde
-  // antérieure —, Directus refuse la charge ENTIÈRE : le brief du jour serait
-  // perdu pour un encadré d'agrément. On réessaie donc une fois sans lui.
+  // Même règle, et pour la même raison : ne rien avoir à dire n'autorise pas à
+  // effacer ce qu'un passage précédent a dit. Un brief recalé, écrit en simple
+  // trace, ne porte aucune note — il ne doit pas emporter celles du matin.
+  if (emptyNotes) charge.empty_notes = emptyNotes;
+
+  // « weather » puis « empty_notes » sont arrivés après les autres. Si
+  // l'instance ne les a pas encore — provisionnement en retard, restauration
+  // d'une sauvegarde antérieure —, Directus refuse la charge ENTIÈRE : le brief
+  // du jour serait perdu pour un encadré d'agrément, ou pour une phrase sous une
+  // rubrique vide. On réessaie donc sans eux, un par un.
   //
-  // « La météo ne recale jamais un brief » vaut aussi à l'écriture, et c'est le
-  // seul endroit où cette promesse pouvait encore être trahie.
+  // « Rien de tout cela ne recale jamais un brief » vaut aussi à l'écriture, et
+  // c'est le seul endroit où cette promesse pouvait encore être trahie.
+  const ACCESSOIRES = ['weather', 'empty_notes'];
+
   const écrire = async (méthode, chemin) => {
-    try {
-      return await client[méthode](chemin, charge);
-    } catch (e) {
-      // Une panne de TRANSPORT ne se rejoue pas, et la règle n'est pas à moi :
-      // la requête a pu être reçue alors que sa réponse s'est perdue, et un
-      // POST rejoué créerait un brief en double. Le client marque ce cas d'une
-      // `cause` ; un refus de Directus, lui, n'en a pas. Seul ce dernier peut
-      // venir d'un champ qu'il ne connaît pas.
-      if (e.cause || !charge.weather) throw e;
-      console.warn(`   (météo non écrite, brief conservé : ${e.message})`);
-      delete charge.weather;
-      return client[méthode](chemin, charge);
+    for (;;) {
+      try {
+        return await client[méthode](chemin, charge);
+      } catch (e) {
+        // Une panne de TRANSPORT ne se rejoue pas, et la règle n'est pas à moi :
+        // la requête a pu être reçue alors que sa réponse s'est perdue, et un
+        // POST rejoué créerait un brief en double. Le client marque ce cas d'une
+        // `cause` ; un refus de Directus, lui, n'en a pas. Seul ce dernier peut
+        // venir d'un champ qu'il ne connaît pas.
+        if (e.cause) throw e;
+
+        const présents = ACCESSOIRES.filter((clé) => clé in charge);
+        if (!présents.length) throw e;
+
+        // Directus nomme le champ qu'il refuse. S'en servir évite de sacrifier
+        // le bulletin météo pour une instance qui ne bute en réalité que sur
+        // « empty_notes » : retirer les accessoires dans un ordre fixe perdrait
+        // le premier de la liste sans que rien ne l'ait demandé.
+        const nommés = présents.filter((clé) => e.message.includes(clé));
+        const àRetirer = nommés.length ? nommés : présents;
+
+        console.warn(
+          `   (« ${àRetirer.join(' », « ')} » non écrit, brief conservé : ${e.message})`
+        );
+        for (const clé of àRetirer) delete charge[clé];
+      }
     }
   };
 

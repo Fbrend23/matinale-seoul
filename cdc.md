@@ -104,6 +104,7 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
 | `weather` | json | nullable — bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
+| `empty_notes` | json | nullable — pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
 
 Un brief recalé reste en `draft`, ce qui est déjà fonctionnellement l'échec puisque le build
 ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste dans la convention.

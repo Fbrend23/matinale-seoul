@@ -331,6 +331,45 @@ export function checkCoherence(brief, { today = seoulDate() } = {}) {
   return erreurs;
 }
 
+// --- Pourquoi une rubrique est vide ------------------------------------------
+
+/**
+ * Ce que l'ingestion écrit quand les gardes ont retiré le dernier item.
+ *
+ * Une rubrique vidée à la vérification n'est PAS une rubrique sans actualité,
+ * et le lecteur mérite la différence : il y avait des sujets, aucune de leurs
+ * sources n'a tenu.
+ */
+export const VIDÉE_PAR_LES_GARDES =
+  "Des sujets étaient proposés ce matin, mais aucune de leurs sources n'a pu être vérifiée.";
+
+/**
+ * La phrase à afficher sous chaque rubrique restée vide, indexée par sa clé.
+ *
+ * L'agent en écrit une pour chaque rubrique qu'il laisse vide — le schéma l'y
+ * oblige. Elle était jusqu'ici validée puis jetée : ni écrite dans le CMS, ni
+ * lue au build, le site affichant à sa place une phrase générale codée en dur.
+ * Un texte produit, contraint et perdu, dans un dépôt dont toute la doctrine
+ * est de ne rien laisser disparaître en silence.
+ *
+ * Se calcule sur le brief APRÈS les gardes : une rubrique vidée par des liens
+ * morts arrive ici sans note, et reçoit la sienne.
+ *
+ * @returns {Record<string, string>|null} null quand aucune rubrique n'est vide,
+ *   pour que la clé reste hors de la charge écrite — comme pour la météo, ne
+ *   rien avoir à dire ne doit pas effacer ce qu'un passage précédent a dit.
+ */
+export function emptyNotes(brief) {
+  const notes = {};
+
+  for (const section of brief.sections) {
+    if (section.items.length > 0) continue;
+    notes[section.key] = section.empty_note?.trim() || VIDÉE_PAR_LES_GARDES;
+  }
+
+  return Object.keys(notes).length ? notes : null;
+}
+
 // --- Utilitaires partagés ----------------------------------------------------
 
 /** Tous les items d'un brief, à plat, chacun sachant de quelle section il vient. */

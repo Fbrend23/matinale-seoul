@@ -48,6 +48,9 @@ import { SECTIONS } from '../../shared/sections.mjs';
  * @property {string}      standfirst
  * @property {string}      ingested_at
  * @property {object|null} weather       bulletin Open-Meteo figé à l'ingestion
+ * @property {Record<string,string>|null} empty_notes  pourquoi telle rubrique est
+ *   vide ce jour-là, indexé par clé de rubrique ; absent des briefs parus avant
+ *   ce champ
  */
 
 /**
@@ -114,7 +117,7 @@ function uneFois(clé, produire) {
 export function listBriefs() {
   return uneFois('briefs', async () => {
     const briefs = await request(
-      `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather`
+      `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather,empty_notes`
     );
 
     if (!briefs?.length) {
@@ -187,6 +190,10 @@ export function assemble(brief, items) {
     ...brief,
     sections: SECTIONS.map((key) => ({
       key,
+      // La phrase que l'agent — ou l'ingestion — a écrite sous une rubrique
+      // restée vide. Nulle pour les briefs parus avant ce champ : le composant
+      // retombe alors sur sa formule générale.
+      empty_note: brief.empty_notes?.[key] ?? null,
       items: items
         .filter((i) => i.section === key)
         .sort((a, b) => (a.importance ?? 99) - (b.importance ?? 99)),

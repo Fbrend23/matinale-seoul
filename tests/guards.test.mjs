@@ -13,6 +13,8 @@ import {
   findDuplicates,
   checkCoherence,
   similarity,
+  emptyNotes,
+  VIDÉE_PAR_LES_GARDES,
   seoulDate,
   wordCount,
   flatten,
@@ -335,4 +337,44 @@ test('checkCoherence sait dater toute seule, sans « today »', () => {
     erreurs.some((e) => e.includes('1999-01-01')),
     'la garde doit pouvoir calculer le jour de Séoul elle-même'
   );
+});
+
+// --- Pourquoi une rubrique est vide ------------------------------------------
+//
+// L'agent écrit une phrase sous chaque rubrique qu'il laisse vide, et le schéma
+// l'y oblige. Elle était validée puis jetée : ni écrite dans le CMS, ni lue au
+// build. Un texte produit, contraint, et perdu — dans un dépôt dont toute la
+// doctrine est de ne rien laisser disparaître en silence.
+
+const sectionVide = (key, note) => ({ key, empty_note: note, items: [] });
+const sectionPleine = (key) => ({ key, empty_note: null, items: [{ headline: 'h' }] });
+
+test("la phrase de l'agent est celle qui est retenue", () => {
+  const notes = emptyNotes({
+    sections: [sectionPleine('tourisme'), sectionVide('tech', 'Journée creuse côté technologie.')],
+  });
+  assert.equal(notes.tech, 'Journée creuse côté technologie.');
+});
+
+test('une rubrique pourvue ne reçoit aucune note', () => {
+  const notes = emptyNotes({ sections: [sectionPleine('coree'), sectionPleine('tech')] });
+  assert.equal(notes, null, 'aucune rubrique vide : la clé doit rester hors de la charge');
+});
+
+test('une rubrique vidée PAR LES GARDES reçoit sa propre phrase', () => {
+  // Le cas du 11 septembre : trois items de jeu vidéo, trois sources en 403.
+  // L'agent n'avait écrit aucune note — sa rubrique n'était pas vide. Dire
+  // « rien à signaler » serait faux : il y avait trois choses à signaler.
+  const notes = emptyNotes({
+    sections: [sectionPleine('coree'), { key: 'gaming', empty_note: null, items: [] }],
+  });
+  assert.equal(notes.gaming, VIDÉE_PAR_LES_GARDES);
+  assert.doesNotMatch(notes.gaming, /Rien à signaler/);
+});
+
+test('une note vide de sens vaut une note absente', () => {
+  const notes = emptyNotes({
+    sections: [sectionPleine('coree'), sectionVide('tech', '   ')],
+  });
+  assert.equal(notes.tech, VIDÉE_PAR_LES_GARDES);
 });
