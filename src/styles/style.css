@@ -55,6 +55,19 @@ a:hover { text-decoration-thickness: 2px; }
   z-index: 10;
 }
 
+/* Le focus, partout.
+   Seul le lien d'évitement était stylé : ailleurs, la navigation au clavier
+   reposait sur l'outline par défaut du navigateur, souvent invisible sur le
+   fond sombre. Un site qu'on ne peut pas parcourir au clavier n'est pas
+   « sobre », il est cassé pour une partie de ses lecteurs.
+   :focus-visible et non :focus — le clic à la souris ne doit pas encadrer
+   ce qu'il vient de toucher. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* En-tête et navigation */
 
 .entete {
@@ -141,12 +154,19 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 .etiquettes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0; padding: 0; list-style: none; }
 .etiquettes li {
-  font-size: 0.75rem;
-  color: var(--doux);
   border: 1px solid var(--trait);
   border-radius: 999px;
-  padding: 0.05rem 0.55rem;
 }
+/* La pastille EST le lien : la zone cliquable doit couvrir ce que l'œil voit,
+   pas seulement le texte à l'intérieur. */
+.etiquettes a {
+  display: block;
+  padding: 0.05rem 0.55rem;
+  font-size: 0.78rem;
+  color: var(--doux);
+  text-decoration: none;
+}
+.etiquettes a:hover { color: var(--accent); text-decoration: underline; }
 
 .vide { color: var(--doux); font-style: italic; }
 
