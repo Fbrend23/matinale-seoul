@@ -158,8 +158,10 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
   border-radius: 999px;
 }
 /* La pastille EST le lien : la zone cliquable doit couvrir ce que l'œil voit,
-   pas seulement le texte à l'intérieur. */
-.etiquettes a {
+   pas seulement le texte à l'intérieur. Le <span> reçoit le même habillage —
+   une étiquette sans page se lit pareil, elle ne se clique pas. */
+.etiquettes a,
+.etiquettes span {
   display: block;
   padding: 0.05rem 0.55rem;
   font-size: 0.78rem;

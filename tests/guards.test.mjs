@@ -426,3 +426,35 @@ test('une rubrique vidée de tous ses items reste présente, et vide', () => {
   assert.equal(restant.sections.length, 2, 'la rubrique ne disparaît pas du brief');
   assert.deepEqual(restant.sections[1].items, []);
 });
+
+// Les empreintes de bigrammes sont désormais calculées une fois par titre plutôt
+// qu'à chaque comparaison. Le seul chemin que ce remaniement pouvait casser est
+// celui des titres trop courts pour porter un seul bigramme : le coefficient de
+// Dice y divise par zéro, et le code retombe sur une comparaison directe.
+
+test('deux titres trop courts pour un bigramme se comparent quand même', () => {
+  assert.equal(similarity('', ''), 1, 'deux vides sont identiques');
+  assert.equal(similarity('a', 'a'), 1);
+  assert.equal(similarity('a', 'b'), 0);
+  assert.equal(similarity('É', 'e'), 1, "l'accent et la casse ne comptent pas");
+  assert.equal(similarity('a', ''), 0);
+});
+
+test('la ponctuation seule ne vaut pas un titre', () => {
+  // normalize() ne garde que lettres et chiffres : ces deux-là se réduisent au
+  // vide, et doivent donc se ressembler parfaitement plutôt que de lever.
+  assert.equal(similarity('...', '!!!'), 1);
+});
+
+test('le doublon retenu est le PLUS ressemblant, pas le premier venu', () => {
+  const items = [{ headline: "L'exemption de K-ETA prolongée jusqu'à fin 2027" }];
+  const doublons = findDuplicates(items, [
+    'Un sujet sans rapport avec le reste du brief',
+    "L'exemption de K-ETA prolongée jusqu'à fin 2027",
+    "L'exemption de K-ETA prolongée",
+  ]);
+
+  assert.equal(doublons.length, 1);
+  assert.equal(doublons[0].against, "L'exemption de K-ETA prolongée jusqu'à fin 2027");
+  assert.equal(doublons[0].score, 1);
+});
