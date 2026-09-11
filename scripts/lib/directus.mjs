@@ -197,23 +197,36 @@ export async function saveBrief(
     id = créé.id;
   }
 
-  for (const [rang, item] of items.entries()) {
-    await client.post(`/items/${ITEMS}`, {
-      status,
-      sort: rang + 1,
-      brief: id,
-      section: item.section,
-      headline: item.headline,
-      summary: item.summary,
-      analysis: item.analysis ?? null,
-      importance: item.importance,
-      tags: item.tags ?? [],
-      source_name: item.source_name,
-      source_url: item.source_url,
-      source_lang: item.source_lang ?? null,
-      published_at: item.published_at ?? null,
-      link_checked_at: item.link_checked_at ?? null,
-    });
+  // Un seul POST pour tous les items, et non un par item. Directus accepte un
+  // tableau, et l'instance est mutualisée : 384 Mo, pool à trois connexions, et
+  // un limiteur de débit que ce fichier prend soin de respecter quelques lignes
+  // plus haut. Vingt allers-retours pour un brief n'y étaient pas gratuits.
+  //
+  // Cela ne touche PAS la règle du fichier : une écriture ne se rejoue jamais
+  // dans un run. Un POST groupé qui échoue se rattrape comme avant, à l'échelle
+  // du run — et l'archivage ci-dessus garantit qu'un rejeu n'empile rien.
+  if (items.length) {
+    await client.post(
+      `/items/${ITEMS}`,
+      items.map((item, rang) => ({
+        status,
+        sort: rang + 1,
+        brief: id,
+        section: item.section,
+        headline: item.headline,
+        summary: item.summary,
+        analysis: item.analysis ?? null,
+        importance: item.importance,
+        tags: item.tags ?? [],
+        source_name: item.source_name,
+        source_url: item.source_url,
+        source_lang: item.source_lang ?? null,
+        published_at: item.published_at ?? null,
+        // Vide quand la garde 2 n'a pas pu voir la page — un accès refusé
+        // conserve l'item, mais ne permet d'affirmer aucune vérification.
+        link_checked_at: item.link_checked_at ?? null,
+      }))
+    );
   }
 
   return id;

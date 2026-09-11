@@ -270,3 +270,73 @@ test('le brief de l’agent n’est jamais muté', async () => {
 
   assert.ok(!('weather' in brief));
 });
+
+// --- L'écriture des items ----------------------------------------------------
+//
+// Jusqu'ici, tous les tests de saveBrief passaient « items: [] » : la seule
+// partie qui écrit réellement le contenu du brief n'était pas couverte.
+
+const unItem = (n) => ({
+  section: 'tech',
+  headline: `Titre ${n}`,
+  summary: 'Résumé.',
+  importance: n,
+  source_name: 'Source',
+  source_url: `https://exemple.test/${n}`,
+});
+
+test('les items partent en UN seul POST, pas un par item', async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1), unItem(2), unItem(3)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const écritures = faux1.posts.filter((p) => p.chemin.includes('mat_news_items'));
+  assert.equal(écritures.length, 1, 'une instance à 384 Mo ne mérite pas trois allers-retours');
+  assert.equal(écritures[0].corps.length, 3);
+});
+
+test('le rang des items est celui du brief, et il est conservé', async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1), unItem(2), unItem(3)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const envoyés = faux1.posts.find((p) => p.chemin.includes('mat_news_items')).corps;
+  assert.deepEqual(
+    envoyés.map((i) => i.sort),
+    [1, 2, 3]
+  );
+  assert.deepEqual(
+    envoyés.map((i) => i.headline),
+    ['Titre 1', 'Titre 2', 'Titre 3']
+  );
+});
+
+test('un item sans date de vérification part quand même, la clé à null', async () => {
+  // Le cas de l'accès refusé : la garde 2 conserve l'item sans pouvoir dater
+  // quoi que ce soit. Écrire une date inventée serait pire que ne rien écrire.
+  const faux1 = faux();
+  await saveBrief(faux1.client, {
+    brief,
+    items: [unItem(1)],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const envoyés = faux1.posts.find((p) => p.chemin.includes('mat_news_items')).corps;
+  assert.equal(envoyés[0].link_checked_at, null);
+});
+
+test("aucun item n'écrit aucun POST d'items", async () => {
+  const faux1 = faux();
+  await saveBrief(faux1.client, { brief, items: [], status: 'draft', ingestStatus: 'failed' });
+
+  assert.equal(faux1.posts.filter((p) => p.chemin.includes('mat_news_items')).length, 0);
+});
