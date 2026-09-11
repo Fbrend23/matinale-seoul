@@ -228,6 +228,34 @@ export function checkAllowlist(items, domains) {
   return inconnus;
 }
 
+// --- Ce qui ne recale rien, mais mérite d'être vu ----------------------------
+
+/**
+ * D'où viennent les items retenus, la source la plus portée d'abord.
+ *
+ * CE N'EST PAS UNE GARDE, et la place le dit : rien ici ne retire ni ne recale.
+ * L'allowlist compte une cinquantaine de domaines et les premiers briefs n'en
+ * ont utilisé que trois ou quatre, l'un d'eux portant la moitié d'un brief.
+ * Rien ne le mesurait, donc rien ne pouvait le signaler — une dérive éditoriale
+ * se serait installée sans que le journal du run en dise un mot.
+ *
+ * Mesurer n'est pas contraindre : une journée peut légitimement appartenir à
+ * une seule rédaction. C'est la répétition qui se lit, et elle ne se lit que si
+ * chaque run laisse sa trace.
+ */
+export function sourceSpread(items) {
+  const parHôte = new Map();
+
+  for (const item of items) {
+    const hôte = hostOf(item.source_url) ?? '(adresse illisible)';
+    parHôte.set(hôte, (parHôte.get(hôte) ?? 0) + 1);
+  }
+
+  return [...parHôte]
+    .map(([host, n]) => ({ host, n }))
+    .sort((a, b) => b.n - a.n || a.host.localeCompare(b.host));
+}
+
 // --- Garde 4 : doublons ------------------------------------------------------
 
 /** Réduit un titre à ce qui se compare : sans casse, sans accents, sans ponctuation. */

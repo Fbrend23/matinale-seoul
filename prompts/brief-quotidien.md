@@ -150,9 +150,11 @@ npm ci
 npm run preflight -- inbox/brief-AAAA-MM-JJ.json
 ```
 
-Le contrôle applique quatre des cinq gardes : schéma, liens vivants, allowlist,
-cohérence. Il n'y a que les doublons qu'il ne peut pas juger, faute d'accès au
-CMS.
+Le contrôle applique **les cinq gardes** : schéma, liens vivants, allowlist,
+doublons, cohérence. Les doublons sont jugés sur `recent.json`, le même fichier
+que tu as lu au § 1 — la CI, elle, interroge le CMS. Les deux disent la même
+chose à un cheveu près, et le contrôle penche du côté prudent : il peut signaler
+un doublon que la CI laisserait passer, jamais l'inverse.
 
 **Tant qu'il recale, corrige et recommence.** Un lien mort ? Retire l'item ou
 trouve la vraie adresse — ne la devine pas. Un résumé trop long ? Coupe. Un
@@ -189,6 +191,11 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   interroge chaque lien : une adresse inventée fait disparaître l'item, et une
   adresse inventée qui répondrait par hasard publierait une information fausse.
 - Une seule source par item, celle qui porte l'information.
+- **Varie les rédactions.** Un brief entier tenu par trois domaines n'est plus
+  vraiment une revue de presse. Quand plusieurs sources connues couvrent la même
+  information, prends celle qui n'a pas déjà servi ce matin. L'ingestion compte
+  les domaines et le dit au journal du run : ce n'est pas une garde, personne ne
+  sera recalé pour cela — c'est une habitude à prendre.
 - Préfère les sources déjà connues du site — Yonhap, Korea Herald, Korea Times,
   Hankyoreh, Chosun, KBS, Reuters, AP, Ars Technica, The Verge, TechCrunch,
   Eurogamer, GamesIndustry.biz, Polygon, PC Gamer, Inven. Une
@@ -220,7 +227,8 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
   le fichier qui décide, pas le prompt.
 - `recent.json` n'existe qu'une fois le site déployé une première fois. Le prompt
   prévoit son absence, mais tant qu'il manque, l'agent ne peut pas savoir ce qui
-  a déjà été couvert : c'est la garde des doublons qui rattrape, en aval.
+  a déjà été couvert, et le contrôle avant vol ne peut pas davantage juger les
+  doublons : c'est la garde du CMS qui rattrape, en aval.
 - Si l'agent ne parvient pas à committer (connecteur absent, jeton expiré), rien
   n'arrive dans `inbox/` et **le workflow ne se déclenche pas du tout** : il n'y
   a donc aucune alerte. C'est le seul silence connu de la chaîne. Le repérer se

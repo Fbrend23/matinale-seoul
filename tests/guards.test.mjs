@@ -13,6 +13,7 @@ import {
   findDuplicates,
   checkCoherence,
   similarity,
+  sourceSpread,
   emptyNotes,
   VIDÉE_PAR_LES_GARDES,
   seoulDate,
@@ -457,4 +458,51 @@ test('le doublon retenu est le PLUS ressemblant, pas le premier venu', () => {
   assert.equal(doublons.length, 1);
   assert.equal(doublons[0].against, "L'exemption de K-ETA prolongée jusqu'à fin 2027");
   assert.equal(doublons[0].score, 1);
+});
+
+// --- La répartition des sources ----------------------------------------------
+//
+// Ni garde ni veto : une trace, pour qu'une dérive éditoriale se voie. Les
+// premiers briefs n'utilisaient que trois ou quatre domaines sur la
+// cinquantaine de l'allowlist, et rien ne le disait.
+
+const source = (url) => ({ source_url: url });
+
+test('les sources sont comptées par domaine, la plus portée d abord', () => {
+  const réparti = sourceSpread([
+    source('https://www.koreaherald.com/a'),
+    source('https://www.koreatimes.co.kr/b'),
+    source('https://www.koreaherald.com/c'),
+    source('https://www.koreaherald.com/d'),
+  ]);
+
+  assert.deepEqual(réparti, [
+    { host: 'koreaherald.com', n: 3 },
+    { host: 'koreatimes.co.kr', n: 1 },
+  ]);
+});
+
+test('un sous-domaine compte pour lui-même, comme partout ailleurs', () => {
+  // hostOf ne retire que « www. » : « english.hani.co.kr » reste distinct de
+  // « hani.co.kr », ce qui est l'information utile ici — deux rédactions.
+  const réparti = sourceSpread([
+    source('https://hani.co.kr/a'),
+    source('https://english.hani.co.kr/b'),
+  ]);
+  assert.equal(réparti.length, 2);
+});
+
+test('une adresse illisible est comptée plutôt que perdue', () => {
+  const réparti = sourceSpread([source('pas une url'), source('https://x.test/a')]);
+  assert.ok(réparti.some((r) => r.host === '(adresse illisible)'));
+  assert.equal(réparti.reduce((n, r) => n + r.n, 0), 2);
+});
+
+test('à égalité, l ordre reste stable', () => {
+  const réparti = sourceSpread([source('https://b.test/1'), source('https://a.test/1')]);
+  assert.deepEqual(réparti.map((r) => r.host), ['a.test', 'b.test']);
+});
+
+test('aucun item, aucune source', () => {
+  assert.deepEqual(sourceSpread([]), []);
 });

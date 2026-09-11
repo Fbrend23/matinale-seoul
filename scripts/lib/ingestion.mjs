@@ -18,6 +18,7 @@ import {
   findDuplicates,
   checkCoherence,
   emptyNotes,
+  sourceSpread,
   flatten,
   unflatten,
 } from './guards.mjs';
@@ -139,6 +140,28 @@ export async function ingérer({
   }
   const retenus = vivants.filter((i) => !doublons.some((d) => d.item === i));
   dire(`   garde 4 · ${retenus.length} items retenus sur ${items.length} proposés`);
+
+  // --- D'où vient ce brief ---
+  // Ni garde ni veto : une trace. L'allowlist compte une cinquantaine de
+  // domaines et les premiers briefs n'en ont utilisé que trois ou quatre. Une
+  // journée peut légitimement appartenir à une seule rédaction ; c'est la
+  // répétition qui se lit, et elle ne se lit que si chaque run la note.
+  const sources = sourceSpread(retenus);
+  dire(
+    `   sources · ${sources.length} domaine(s) : ` +
+      sources.map((s) => `${s.host} ×${s.n}`).join(', ')
+  );
+
+  // Un brief étoffé dont plus de la moitié vient d'une seule rédaction mérite
+  // d'être vu passer. Le plancher évite de crier sur un brief court, où deux
+  // items sur trois ne veulent rien dire.
+  const dominante = sources[0];
+  if (dominante && retenus.length >= 6 && dominante.n * 2 > retenus.length) {
+    annoter(
+      `::notice::${dominante.host} porte ${dominante.n} des ${retenus.length} items ` +
+        `du brief ${brief.date}.`
+    );
+  }
 
   // --- Garde 5 : cohérence, sur ce qui reste ---
   const restant = unflatten(brief, retenus);

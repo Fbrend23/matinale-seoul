@@ -83,6 +83,48 @@ async function request(path) {
   return json?.data ?? null;
 }
 
+// Combien d'éléments par requête.
+//
+// « limit=-1 » demandait TOUT en une fois. À quatre briefs c'est indolore ; à
+// deux cent cinquante par an, c'est une réponse de plusieurs mégaoctets servie
+// par une instance mutualisée de 384 Mo dont le pool ne tient que trois
+// connexions. La panne serait arrivée un matin, sur le build, sans rapport
+// apparent avec sa cause — et un an après le commit qui l'aura causée.
+//
+// Mille : assez large pour que l'archive tienne en une requête pendant des
+// années, assez borné pour que la réponse reste d'une taille connue.
+const PAR_PAGE = 1000;
+
+/**
+ * Lit une collection entière, page par page.
+ *
+ * La boucle s'arrête sur une page incomplète — c'est la seule condition qui ne
+ * suppose rien du total, que Directus ne donne pas sans qu'on le lui demande.
+ *
+ * @param {string} chemin  l'adresse SANS « limit » ni « page »
+ * @returns {Promise<any[]>}
+ */
+async function requestAll(chemin) {
+  const tout = [];
+
+  for (let page = 1; ; page++) {
+    const lot = await request(`${chemin}&limit=${PAR_PAGE}&page=${page}`);
+    if (!lot?.length) break;
+
+    tout.push(...lot);
+    if (lot.length < PAR_PAGE) break;
+
+    // Un garde-fou, pas une limite de conception : si Directus rendait des
+    // pages pleines indéfiniment, mieux vaut échouer bruyamment que boucler
+    // jusqu'à épuiser la mémoire du runner.
+    if (page > 100) {
+      throw new Error(`CMS ${chemin} : plus de cent pages, la pagination ne termine pas.`);
+    }
+  }
+
+  return tout;
+}
+
 // Une fois, et une seule, par build. Les raisons — et le piège du rejet gardé —
 // sont dans le module, avec ses tests.
 const uneFois = créerMémo();
@@ -98,8 +140,8 @@ const uneFois = créerMémo();
  */
 export function listBriefs() {
   return uneFois('briefs', async () => {
-    const briefs = await request(
-      `/items/${BRIEFS}?limit=-1&sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather,empty_notes`
+    const briefs = await requestAll(
+      `/items/${BRIEFS}?sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather,empty_notes`
     );
 
     if (!briefs?.length) {
@@ -145,8 +187,8 @@ export async function itemsFor(briefIds) {
  */
 function tousLesItems() {
   return uneFois('items', async () => {
-    const items = await request(
-      `/items/${ITEMS}?limit=-1&sort=importance` +
+    const items = await requestAll(
+      `/items/${ITEMS}?sort=importance` +
         `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
         `source_name,source_url,source_lang,published_at`
     );
