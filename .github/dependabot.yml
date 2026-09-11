@@ -1,0 +1,35 @@
+# Mises à jour de dépendances, par pull request.
+#
+# POURQUOI. Le dernier gros commit du dépôt est « Passer à Astro 7, qui referme
+# les treize alertes » : la dette s'était accumulée jusqu'à devenir un chantier.
+# Une PR par mois la garde à la taille d'une relecture.
+#
+# Ce qui rend ces PR sûres à fusionner est le workflow Contrôle : il joue les
+# tests dans les deux fuseaux et vérifie les types sur chacune d'elles. Sans
+# lui, Dependabot ne ferait que proposer des changements que personne ne sait
+# juger.
+
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    commit-message:
+      # La convention du dépôt : type(Portée) Sujet à l'infinitif.
+      prefix: 'chore(Dépendances)'
+    groups:
+      # Astro et ses intégrations montent ensemble : les séparer produirait des
+      # PR qui se cassent l'une l'autre.
+      astro:
+        patterns:
+          - 'astro'
+          - '@astrojs/*'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: 'chore(CI)'

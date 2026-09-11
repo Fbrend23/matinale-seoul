@@ -20,8 +20,17 @@ const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
 const prompt = await lire('prompts/brief-quotidien.md');
 const schéma = JSON.parse(await lire('schemas/brief.schema.json'));
 
-/** Le premier bloc ```json du prompt : l'exemple que l'agent recopiera. */
-const exemple = JSON.parse(prompt.match(/```json\n([\s\S]*?)```/)[1]);
+// Le premier bloc ```json du prompt : l'exemple que l'agent recopiera.
+//
+// `\r?` n'est pas une précaution de style. Le dépôt normalise en LF
+// (.gitattributes, « * text=auto »), mais la copie de travail d'un poste
+// Windows porte des CRLF : sans lui, ce test échoue chez le mainteneur et
+// passe en CI. Une suite rouge sur la machine où l'on développe est une
+// suite qu'on cesse de lire — et celle-ci tient le prompt et le schéma
+// ensemble.
+const bloc = prompt.match(/```json\r?\n([\s\S]*?)```/);
+assert.ok(bloc, "aucun bloc ```json dans le prompt : l'exemple donné à l'agent a disparu");
+const exemple = JSON.parse(bloc[1]);
 
 test("l'exemple donné à l'agent passe le schéma", () => {
   assert.deepEqual(validateSchema(exemple, schéma), []);

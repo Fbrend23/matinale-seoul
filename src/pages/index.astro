@@ -36,12 +36,13 @@ const [dernier, ...precedents] = briefs;
     import { seoulToday, longDate } from '../lib/date.js';
 
     const avis = document.getElementById('avis-parution');
+    const jour = document.getElementById('avis-jour');
     const paru = avis?.dataset.brief;
     const aujourdhui = seoulToday();
 
     // Comparaison de deux AAAA-MM-JJ : l'ordre des chaînes est celui des jours.
-    if (avis && paru && paru < aujourdhui) {
-      document.getElementById('avis-jour').textContent = longDate(aujourdhui);
+    if (avis && jour && paru && paru < aujourdhui) {
+      jour.textContent = longDate(aujourdhui);
       avis.hidden = false;
     }
   </script>

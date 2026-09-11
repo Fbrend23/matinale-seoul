@@ -1,0 +1,86 @@
+# Contrôle du code, à chaque fois qu'il change.
+#
+# POURQUOI CE FICHIER EXISTE. La Publication ne se déclenche que sur
+# « paths: inbox/** » — le canal par lequel l'agent dépose son brief. C'est le
+# bon filtre pour elle : un commit de code n'a pas à relancer une ingestion.
+# Mais il laissait un trou, et c'était le dernier de la chaîne : un commit qui
+# casse guards.mjs ne jouait les tests QU'AU BRIEF SUIVANT, en production, à
+# 7 h 30 heure de Séoul. Tout le reste du dépôt refuse de laisser une faute
+# attendre la production pour se déclarer ; le code lui-même en était exempté.
+#
+# Ce job ne publie rien et ne touche à aucun secret. Il lit, il joue les tests,
+# il dit non. C'est tout ce qu'on lui demande.
+
+name: Contrôle
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      # Le miroir du filtre de la Publication : ce qui arrive par inbox/ est du
+      # CONTENU, jugé par les cinq gardes, pas par les tests. Et archive/ n'est
+      # que la trace de ce qui est déjà passé.
+      - 'inbox/**'
+      - 'archive/**'
+      - 'logs/**'
+  pull_request:
+    paths-ignore:
+      - 'inbox/**'
+      - 'archive/**'
+      - 'logs/**'
+
+# Les fichiers .md ne sont VOLONTAIREMENT pas ignorés : tests/prompt.test.mjs
+# tient ensemble le prompt, le schéma et la documentation. Une rubrique ajoutée
+# au code sans être dite dans le README y fait échouer un test — ce qui n'aurait
+# aucun effet si un commit de documentation sautait la CI.
+
+concurrency:
+  # Contrairement à la Publication, qui ne doit jamais être interrompue en cours
+  # de déploiement, un contrôle dépassé n'apprend plus rien : on annule.
+  group: controle-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  controler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci --prefer-offline --no-audit --no-fund
+
+      # Les deux passes de fuseau, comme dans la Publication : un brief daté à
+      # Séoul et un runner en UTC sont à quinze heures l'un de l'autre, et la
+      # garde de cohérence juge précisément sur cet écart.
+      - name: Tests (fuseau de Séoul)
+        run: npm test
+        env:
+          TZ: Asia/Seoul
+      - name: Tests (runner en UTC)
+        run: npm test
+        env:
+          TZ: UTC
+
+      # astro check lit les types du site — y compris le « // @ts-check » posé
+      # en tête d'astro.config.mjs, que personne n'exécutait.
+      - name: Types du site
+        run: npm run check
+
+      # Les workflows et le lanceur portent l'essentiel de la logique de
+      # déploiement — dont un « mirror --delete » sur un compte FTP sans
+      # corbeille — et sont la seule partie du dépôt qu'aucun test ne couvre.
+      - name: Workflows
+        uses: raven-actions/actionlint@v2
+        with:
+          files: .github/workflows/*.yml
+
+      - name: Lanceur de la parution
+        run: shellcheck bin/brief-du-jour.sh

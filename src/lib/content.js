@@ -14,6 +14,48 @@
 import { DIRECTUS_URL, DIRECTUS_TOKEN } from 'astro:env/server';
 import { SECTIONS } from '../../shared/sections.mjs';
 
+// Les formes que le CMS rend. Écrites en JSDoc plutôt qu'en TypeScript : le
+// dépôt est en JavaScript, et une annotation qui demanderait une compilation
+// coûterait plus qu'elle ne rapporte. `astro check` les lit, et les pages
+// cessent de deviner ce qu'elles reçoivent.
+//
+// Elles décrivent ce que le BUILD voit, c'est-à-dire le contenu publié — pas le
+// contrat de sortie de l'agent, qui est dans schemas/brief.schema.json et porte
+// d'autres champs.
+
+/**
+ * @typedef {object} Item
+ * @property {number}        id
+ * @property {number}        brief        identifiant du brief porteur
+ * @property {string}        section      une clé de shared/sections.mjs
+ * @property {string}        headline
+ * @property {string}        summary
+ * @property {string|null}   analysis     une au plus par section
+ * @property {number}        importance   1 = le plus important de sa section
+ * @property {string[]}      tags
+ * @property {string}        source_name
+ * @property {string}        source_url
+ * @property {string|null}   source_lang
+ * @property {string|null}   published_at
+ */
+
+/**
+ * @typedef {object} Brief
+ * @property {number}      id
+ * @property {string}      date          AAAA-MM-JJ, heure de Séoul
+ * @property {string}      slug
+ * @property {string}      title
+ * @property {string}      standfirst
+ * @property {string}      ingested_at
+ * @property {object|null} weather       bulletin Open-Meteo figé à l'ingestion
+ */
+
+/**
+ * @typedef {Brief & { sections: { key: string, items: Item[] }[], count: number }} BriefComplet
+ * Un brief tel que les pages le consomment : ses items rangés par section.
+ */
+
+
 const BRIEFS = 'mat_briefs';
 const ITEMS = 'mat_news_items';
 
@@ -42,6 +84,8 @@ async function request(path) {
  * Zéro brief n'est pas un site vide, c'est une chaîne cassée : la publication
  * est quotidienne. On refuse de construire plutôt que de mettre en ligne un
  * site sans contenu, qui écraserait celui d'hier.
+ *
+ * @returns {Promise<Brief[]>}
  */
 export async function listBriefs() {
   const briefs = await request(
@@ -58,7 +102,12 @@ export async function listBriefs() {
   return briefs;
 }
 
-/** Les items publiés des briefs demandés, rangés par section puis par rang. */
+/**
+ * Les items publiés des briefs demandés, rangés par section puis par rang.
+ *
+ * @param {number[]} briefIds
+ * @returns {Promise<Map<number, Item[]>>}
+ */
 export async function itemsFor(briefIds) {
   if (!briefIds.length) return new Map();
 
@@ -76,7 +125,13 @@ export async function itemsFor(briefIds) {
   return parBrief;
 }
 
-/** Un brief complet : ses métadonnées et ses items rangés par section. */
+/**
+ * Un brief complet : ses métadonnées et ses items rangés par section.
+ *
+ * @param {Brief} brief
+ * @param {Item[]} items
+ * @returns {BriefComplet}
+ */
 export function assemble(brief, items) {
   return {
     ...brief,
@@ -90,14 +145,22 @@ export function assemble(brief, items) {
   };
 }
 
-/** Les `n` briefs les plus récents, items compris. */
+/**
+ * Les `n` briefs les plus récents, items compris.
+ *
+ * @returns {Promise<BriefComplet[]>}
+ */
 export async function recentBriefs(n = 14) {
   const briefs = (await listBriefs()).slice(0, n);
   const items = await itemsFor(briefs.map((b) => b.id));
   return briefs.map((b) => assemble(b, items.get(b.id) ?? []));
 }
 
-/** Tous les briefs, items compris. Utilisé par les pages d'archive. */
+/**
+ * Tous les briefs, items compris. Utilisé par les pages d'archive.
+ *
+ * @returns {Promise<BriefComplet[]>}
+ */
 export async function allBriefs() {
   const briefs = await listBriefs();
   const items = await itemsFor(briefs.map((b) => b.id));

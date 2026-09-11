@@ -14,6 +14,12 @@ for (const brief of briefs) {
   parMois.get(clé).push(brief);
 }
 
+// listBriefs() lève plutôt que de rendre une liste vide : ces deux bornes
+// existent donc toujours. Les nommer ici évite de le redemander deux fois plus
+// bas, et dit au passage pourquoi c'est sûr.
+const plusRecent = briefs[0];
+const plusAncien = briefs[briefs.length - 1];
+
 const moisLisible = (clé) =>
   new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC', month: 'long', year: 'numeric' })
     .format(new Date(`${clé}-15T12:00:00Z`));
@@ -21,12 +27,12 @@ const moisLisible = (clé) =>
 
 <BaseLayout
   title="Archive"
-  description={`${briefs.length} briefs publiés depuis le ${briefs.at(-1).date}.`}
+  description={`${briefs.length} briefs publiés depuis le ${plusAncien.date}.`}
 >
   <h1>Archive</h1>
   <p class="chapeau">
     {briefs.length} brief{briefs.length > 1 ? 's' : ''} publié{briefs.length > 1 ? 's' : ''},
-    du {longDate(briefs.at(-1).date)} au {longDate(briefs[0].date)}.
+    du {longDate(plusAncien.date)} au {longDate(plusRecent.date)}.
   </p>
 
   {[...parMois].map(([clé, dumois]) => (
