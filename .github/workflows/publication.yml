@@ -195,7 +195,11 @@ jobs:
             exit 1
           fi
 
-          briefs=$(ls inbox/brief-*.json 2>/dev/null | wc -l)
+          # Le motif plutôt que « ls | wc -l » : nullglob est déjà posé plus
+          # haut, un dossier vide rend donc un tableau vide, et le compte ne
+          # dépend plus de la façon dont ls présente des noms inhabituels.
+          a_ingerer=(inbox/brief-*.json)
+          briefs=${#a_ingerer[@]}
           echo "briefs=$briefs" >> "$GITHUB_OUTPUT"
           echo "$briefs brief(s) à ingérer."
 
