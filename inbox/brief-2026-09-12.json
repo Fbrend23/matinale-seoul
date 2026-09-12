@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-12",
+  "title": "Missiles nord-coréens, popularité en berne et record d'exportations pour la Corée",
+  "standfirst": "Tirs de missiles nord-coréens et cote de popularité de Lee Jae-myung au plus bas dominent l'actualité coréenne, pendant que les exportations de puces battent des records. Côté tourisme, Wi-Fi gratuit chez Korean Air et festival d'écrivains à Séoul. En tech, Anthropic détaille des abus de Claude et une startup de données robotiques séduit Sequoia. Wardogs franchit le million de copies.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Chuseok : les réservations de train atteignent 84 %, un record",
+          "summary": "Korail a vendu 1,8 million de billets pour les sept jours de réservation Chuseok, un taux de 84 %, en nette hausse sur l'an dernier. La ligne Gyeongjeon affiche le plus fort taux, la ligne Gangneung le plus faible.",
+          "analysis": "Un afflux pareil resserre l'offre de sièges à l'approche du 24 septembre : pour qui doit se déplacer pendant Chuseok, mieux vaut réserver correspondances et hébergements sans attendre.",
+          "importance": 1,
+          "tags": ["chuseok", "train", "korail", "transports"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871015",
+          "source_lang": "en",
+          "published_at": "2026-09-11T21:12:00+09:00"
+        },
+        {
+          "headline": "Korean Air et Asiana passent au Wi-Fi Starlink gratuit à bord",
+          "summary": "Korean Air devient le premier transporteur complet d'Asie de l'Est à adopter Starlink : Wi-Fi gratuit dès le 15 septembre sur quatre appareils long-courriers, extension prévue à toute la flotte d'ici fin 2027.",
+          "importance": 2,
+          "tags": ["korean-air", "wifi", "starlink", "transports"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/business/companies/20260911/korean-air-asiana-to-offer-free-in-flight-wi-fi-services",
+          "source_lang": "en",
+          "published_at": "2026-09-11T15:23:00+09:00"
+        },
+        {
+          "headline": "Le Festival international des écrivains de Séoul interroge « qui sommes-nous »",
+          "summary": "À sa 15e édition, le festival réunit du 11 au 16 septembre 24 écrivains coréens et étrangers à l'Ara Art Center d'Insa-dong, dont Kim Ae-ran et Benjamín Labatut, autour de la littérature face à l'IA.",
+          "importance": 3,
+          "tags": ["litterature", "festival", "insa-dong"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10869611",
+          "source_lang": "en",
+          "published_at": "2026-09-10T17:42:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée du Nord tire plusieurs missiles balistiques, Séoul réunit son conseil de sécurité",
+          "summary": "Plusieurs missiles balistiques de courte portée ont été tirés samedi depuis Wonsan vers la mer de l'Est, sur environ 250 km. Séoul dénonce une violation des résolutions de l'ONU, au lendemain d'exercices conjoints avec Washington et Tokyo.",
+          "analysis": "Vingt-trois jours après le précédent tir, et au lendemain de la fin des exercices Freedom Edge : Pyongyang répond aux manœuvres conjointes plutôt que d'ouvrir un canal diplomatique.",
+          "importance": 1,
+          "tags": ["coree-du-nord", "missiles", "securite", "defense"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871157",
+          "source_lang": "en",
+          "published_at": "2026-09-12T10:41:00+09:00"
+        },
+        {
+          "headline": "La cote de popularité de Lee Jae-myung tombe à un plus bas de 38 %",
+          "summary": "Selon Gallup Korea, 38 % des sondés approuvent l'action du président, contre 51 % de désapprobation. Les nominations contestées de deux ministres et le dossier du logement expliquent l'essentiel du recul.",
+          "importance": 2,
+          "tags": ["lee-jae-myung", "politique", "sondage"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/politics/20260911/lees-approval-rating-dips-to-record-low-of-38-poll",
+          "source_lang": "en",
+          "published_at": "2026-09-11T11:20:00+09:00"
+        },
+        {
+          "headline": "Les exportations coréennes bondissent de 83 % début septembre, portées par les puces",
+          "summary": "Sur les dix premiers jours de septembre, la Corée a exporté pour 35 milliards de dollars, un record, avec des semi-conducteurs en hausse de 270 % à 16,5 milliards de dollars grâce à la demande liée à l'IA.",
+          "importance": 3,
+          "tags": ["exportations", "semi-conducteurs", "economie"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10869986",
+          "source_lang": "en",
+          "published_at": "2026-09-11T09:21:00+09:00"
+        },
+        {
+          "headline": "Les chauffeurs de bus de Séoul votent la grève pour le 16 septembre",
+          "summary": "87,94 % des 16 089 syndiqués ont voté pour un arrêt de travail si aucun accord n'est trouvé sur le calcul du salaire ordinaire, lors d'une médiation prévue mardi.",
+          "importance": 4,
+          "tags": ["seoul", "greve", "transports", "travail"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20260911/unionized-workers-of-seouls-city-buses-vote-to-strike-over-wages",
+          "source_lang": "en",
+          "published_at": "2026-09-11T20:44:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic détaille des usages malveillants de Claude, dont un hacktiviste francophone",
+          "summary": "Le rapport de menaces recense des campagnes d'espionnage russe, d'extorsion via des clés API volées, et un acteur francophone ayant utilisé Claude pour cibler 42 partis politiques, médias et think tanks européens, avec 14 compromissions.",
+          "importance": 1,
+          "tags": ["anthropic", "claude", "cybersecurite", "ia"],
+          "source_name": "Anthropic",
+          "source_url": "https://www.anthropic.com/threat-intelligence-report-september-2026",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Mecka AI proche d'une valorisation de 500 millions de dollars avec Sequoia",
+          "summary": "La startup, qui paie des particuliers pour enregistrer leurs gestes quotidiens afin d'entraîner des robots humanoïdes, lève des fonds trois mois après un tour de 60 millions de dollars mené par Framework Ventures.",
+          "importance": 2,
+          "tags": ["robotique", "financement", "sequoia", "ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/11/mecka-ai-nears-500m-valuation-in-sequoia-led-deal-amid-rush-for-robot-training-data/",
+          "source_lang": "en",
+          "published_at": "2026-09-11T15:58:00-07:00"
+        },
+        {
+          "headline": "Le patron de Y Combinator défend la distillation de modèles d'IA, y compris américaine",
+          "summary": "Garry Tan s'oppose à un encadrement réglementaire de la distillation, technique reprochée aux laboratoires chinois par Anthropic, et suggère que les petits laboratoires ouverts américains l'utilisent aussi sur les modèles de pointe du pays.",
+          "importance": 3,
+          "tags": ["y-combinator", "ia", "open-weight", "regulation"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/",
+          "source_lang": "en",
+          "published_at": "2026-09-11T13:59:00-07:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le tir tactique Wardogs dépasse le million de copies dès son premier jour",
+          "summary": "Le jeu de Bulkhead, publié par Team17, a dépassé les 300 000 joueurs simultanés sur Steam au lancement de son accès anticipé, malgré des files d'attente, pour le lancement le plus réussi à ce jour de l'éditeur.",
+          "importance": 1,
+          "tags": ["wardogs", "fps", "team17", "early-access"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/fps/wardogs-sold-over-1-million-copies-in-its-first-24-hours-making-its-launch-a-bright-spot-in-an-otherwise-tough-year-for-multiplayer-shooters/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Roblox élargit son outil de création de jeux par IA et permet des jeux hors plateforme",
+          "summary": "Lors de sa conférence développeurs, Roblox étend « Build », son générateur de jeux en langage naturel, à plus de régions, et permettra aux créateurs de déployer leurs titres comme applications indépendantes sur mobile, PC et consoles.",
+          "importance": 2,
+          "tags": ["roblox", "ia", "jeu-video", "developpeurs"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/11/roblox-is-making-it-easier-to-build-games-with-ai-and-play-them-outside-roblox/",
+          "source_lang": "en",
+          "published_at": "2026-09-11T12:00:00-07:00"
+        }
+      ]
+    }
+  ]
+}
