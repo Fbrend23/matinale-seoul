@@ -35,6 +35,7 @@ import {
   unflatten,
   seoulDate,
 } from './lib/guards.mjs';
+import { contrôlerÉvénements } from './lib/evenements.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 
@@ -78,6 +79,32 @@ async function titresDéjàCouverts(avant, { timeoutMs = 10_000 } = {}) {
     const raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
     console.log(`! doublons      recent.json injoignable (${raison})`);
     console.log('                cette garde est sautée ; la CI la jouera, elle.');
+    return null;
+  } finally {
+    clearTimeout(minuteur);
+  }
+}
+
+/**
+ * Les événements que le site connaît déjà, en cours ou à venir.
+ *
+ * Même règle que titresDéjàCouverts() : `null` quand le fichier est hors
+ * d'atteinte, parce que « je n'ai pas pu regarder » n'est pas « il n'y a rien ».
+ */
+async function événementsDéjàConnus({ timeoutMs = 10_000 } = {}) {
+  const controller = new AbortController();
+  const minuteur = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(`${SITE}/api/evenements.json`, { signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const charge = await res.json();
+    return charge?.events ?? [];
+  } catch (e) {
+    const raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
+    console.log(`! événements    evenements.json injoignable (${raison})`);
+    console.log('                les doublons d événements ne sont pas jugés ; la CI le fera.');
     return null;
   } finally {
     clearTimeout(minuteur);
@@ -188,6 +215,32 @@ if (!fautes.length) {
     console.log(`✗ cohérence     ${incoherences.length} problème(s)`);
   } else {
     console.log('✓ cohérence');
+  }
+
+  // --- Événements : des avertissements, jamais une faute ---
+  //
+  // L'ingestion écarte, elle ne recale pas. Mais l'agent doit savoir AVANT de
+  // pousser qu'un événement partirait à la trappe — sans quoi l'onglet
+  // maigrirait en silence, et lui croirait l'avoir garni.
+  const événements = brief.events ?? [];
+  if (événements.length) {
+    const connus = await événementsDéjàConnus();
+    const { retenus, écartés, liensRetirés } = await contrôlerÉvénements(événements, {
+      domaines: domains,
+      connus: connus ?? [],
+      today: seoulDate(),
+    });
+
+    for (const { event, raison } of écartés) {
+      console.log(`! événement     « ${event.name.slice(0, 58)} »`);
+      console.log(`                serait ÉCARTÉ à l'ingestion : ${raison}`);
+    }
+    for (const { event, champ, raison } of liensRetirés) {
+      console.log(`! événement     ${champ} de « ${event.name.slice(0, 44)} » serait retiré (${raison})`);
+    }
+    console.log(
+      `${écartés.length ? '!' : '✓'} événements    ${retenus.length} retenu(s) sur ${événements.length}`
+    );
   }
 }
 

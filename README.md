@@ -1,8 +1,10 @@
 # La Matinale de Séoul
 
 Brief d'actualité quotidien en français : tourisme en Corée, actualités
-coréennes, tech et IA, jeu vidéo. Un brief par jour ouvré, quatre rubriques,
-12 à 24 items.
+coréennes, tech et IA, jeu vidéo. Un brief par jour, quatre rubriques,
+12 à 24 items — et un onglet « Pop-ups & événements » qui liste tout ce qui se
+passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le jeu
+vidéo.
 
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
@@ -94,6 +96,45 @@ imputait alors à la source ce qui venait de la garde.
 
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
+
+## Pop-ups et événements
+
+Le brief peut porter un tableau `events` facultatif : boutiques éphémères,
+concerts, expositions, salons — pour quatre thèmes seulement, anime et manga,
+Pokémon, K-pop, jeu vidéo. **Ce n'est pas une cinquième rubrique.** Une rubrique
+vit dans le brief du jour ; un événement dure jusqu'à sa date de fin, quel que
+soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
+(`/evenements/`) et ses propres contrôles.
+
+| ce qui cloche | sanction |
+|---|---|
+| dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots | événement écarté |
+| domaine hors allowlist | événement écarté — **pas** de brief retenu en brouillon |
+| déjà connu (nom proche d'un événement actif) | événement écarté |
+| source morte | événement écarté ; un accès refusé le garde, sans date |
+| billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |
+| collection absente du CMS | avertissement au run, le brief paraît |
+
+Un accessoire, comme la météo : rien de tout cela ne recale jamais un brief.
+Seule une faute de schéma le fait, parce que le schéma juge le fichier entier.
+Les écartés sont dits au résumé du run, et le contrôle avant vol les annonce à
+l'agent en avertissement, jamais en faute.
+
+**La page liste tout l'ensemble actif**, pas le seul apport du jour : l'agent
+ajoute, la collection tient la liste. Il lit d'abord `/api/evenements.json`
+pour ne pas reproposer ce qui s'y trouve. À chaque run, ce qui est fini passe à
+l'archive — la chaîne n'efface jamais. Le site filtre en plus sur la date de fin
+au build, et masque chez le lecteur ce qui a fini depuis, en quelques lignes qui
+reprennent l'avis de parution.
+
+**L'épingle Naver Map** est un lien de recherche construit du lieu et du
+quartier. Le dépôt interdit de reconstruire une URL, et celle-ci en est une : la
+différence est ce qu'elle affirme. Une source reconstruite publie un fait qu'on
+n'a pas vu ; un lien de recherche pose à Naver la question que le lecteur aurait
+tapée. Quand l'agent a *vu* la fiche du lieu, il la donne dans `map_url`, et
+elle remplace la recherche — sondée comme un lien, mais la sonde est partielle :
+`map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
+seuls les liens courts `naver.me` répondent 404. D'où le repli.
 
 ## Ce qui ne doit jamais réussir en silence
 

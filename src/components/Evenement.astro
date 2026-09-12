@@ -1,0 +1,70 @@
+---
+// Un événement, tel qu'on le lit sur l'onglet.
+//
+// Calqué sur NewsItem : même titre, même résumé, même ligne de source. Ce qui
+// change est la ligne du dessus — quand, où, quoi — et l'épingle Naver Map.
+import { dateRange } from '../lib/date.js';
+import { KIND_LABELS, THEME_LABELS, lienNaverMap } from '../../shared/evenements.mjs';
+
+const { event } = Astro.props;
+
+// La fiche vue par l'agent quand il y en a une, le lien de recherche sinon.
+// Le second n'est jamais inventé : il pose une question à Naver, il n'affirme
+// pas une adresse.
+const carte = event.map_url ?? lienNaverMap(event);
+---
+
+{/* Les deux dates sont posées en data-* pour le script de la page, qui
+    masque chez le lecteur ce qui a fini depuis le build. */}
+<article class="item evenement" data-debut={event.start_date} data-fin={event.end_date} data-theme={event.theme}>
+  <h3>{event.name}</h3>
+
+  <p class="quand">
+    <span><time datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time></span>
+    <span>{event.venue}, {event.area}</span>
+    <span>{KIND_LABELS[event.kind] ?? event.kind}</span>
+  </p>
+
+  <p class="resume">{event.summary}</p>
+
+  <p class="source">
+    {/* rel="nofollow ugc" : ces liens sont choisis par une machine — la fiche
+        Naver Map et la billetterie comme la source. */}
+    <a
+      href={event.source_url}
+      rel="nofollow ugc noopener"
+      target="_blank"
+      aria-label={`${event.source_name} — s'ouvre dans une nouvelle fenêtre`}
+    >
+      {event.source_name}
+    </a>
+    {event.source_lang && <span class="langue"> · {event.source_lang}</span>}
+    <span> · </span>
+    <a
+      href={carte}
+      rel="nofollow ugc noopener"
+      target="_blank"
+      aria-label="Voir sur Naver Map — s'ouvre dans une nouvelle fenêtre"
+    >
+      Voir sur Naver Map
+    </a>
+    {event.booking_url && (
+      <>
+        <span> · </span>
+        <a
+          href={event.booking_url}
+          rel="nofollow ugc noopener"
+          target="_blank"
+          aria-label="Réserver — s'ouvre dans une nouvelle fenêtre"
+        >
+          Réserver
+        </a>
+      </>
+    )}
+  </p>
+
+  {/* Le thème, en pastille, comme une étiquette sans page. */}
+  <ul class="etiquettes">
+    <li><span>{THEME_LABELS[event.theme] ?? event.theme}</span></li>
+  </ul>
+</article>

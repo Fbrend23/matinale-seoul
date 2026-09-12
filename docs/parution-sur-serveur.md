@@ -1,7 +1,7 @@
 # Installer la parution sur un serveur
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
-installation : chaque jour ouvré, le brief est rédigé, vérifié et poussé dans
+installation : chaque jour, le brief est rédigé, vérifié et poussé dans
 `inbox/` pour être en ligne à 8 h, heure de Séoul — la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
@@ -138,7 +138,7 @@ dans la ligne, systemd le convertit, et l'heure d'été de Berne se règle seule
 Description=Déclenche la Matinale à 7 h 30, heure de Séoul (parution à 8 h)
 
 [Timer]
-OnCalendar=Mon..Fri 07:30 Asia/Seoul
+OnCalendar=*-*-* 07:30 Asia/Seoul
 AccuracySec=30s
 Persistent=true
 
@@ -185,6 +185,20 @@ sudo loginctl enable-linger UTILISATEUR
 > Dans `Documentation=`, un `%` doit s'écrire `%%` — sinon systemd lit `%20`
 > comme un specifier.
 
+> **Le timer vit sur le serveur, pas dans le dépôt.** Ce fichier ne fait que
+> le documenter. Changer l'horaire ou les jours — passer du lundi-vendredi à
+> tous les jours, par exemple — se fait à la main dans
+> `~/.config/systemd/user/matinale.timer`, puis :
+>
+> ```bash
+> systemctl --user daemon-reload
+> systemctl --user restart matinale.timer
+> systemctl --user list-timers matinale.timer   # NEXT doit tomber demain, samedi compris
+> ```
+>
+> Sans le `daemon-reload`, systemd garde l'ancienne ligne en mémoire et le
+> fichier ment.
+
 `Persistent=true` rattrape au réveil un déclenchement manqué (machine éteinte ou
 endormie à l'heure dite) plutôt que de sauter le jour. Le brief sort en retard,
 mais il sort — et il porte la bonne date, puisque le script lit toujours le jour
@@ -196,7 +210,7 @@ sur `Asia/Seoul`, jamais sur l'heure du rattrapage.
 systemctl --user list-timers matinale.timer
 # NEXT doit tomber sur 00:30 heure de Berne l'été, 23:30 la veille l'hiver.
 
-systemd-analyze calendar "Mon..Fri 07:30 Asia/Seoul"   # sans rien installer
+systemd-analyze calendar "*-*-* 07:30 Asia/Seoul"   # sans rien installer
 ```
 
 Cette vérification en une ligne est ce que le cron ne permettait pas : c'est elle

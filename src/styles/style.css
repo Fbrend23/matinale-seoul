@@ -150,6 +150,12 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 }
 
 .source { margin: 0; font-size: 0.88rem; color: var(--doux); }
+
+/* Un événement : ses dates et son lieu, discrets comme la source. Le
+   séparateur est en ::after de chaque span, comme pour la météo. */
+.quand { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--doux); }
+.quand > span::after { content: '·'; margin: 0 0.45em; color: var(--trait); }
+.quand > span:last-child::after { content: none; }
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 
 .etiquettes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0; padding: 0; list-style: none; }

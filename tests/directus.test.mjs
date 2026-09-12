@@ -12,7 +12,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { createClient, saveBrief } from '../scripts/lib/directus.mjs';
+import {
+  createClient,
+  saveBrief,
+  activeEvents,
+  saveEvents,
+  archiveExpiredEvents,
+} from '../scripts/lib/directus.mjs';
 
 // --- Le client : ce qui se rejoue, et ce qui ne se rejoue pas ----------------
 
@@ -398,4 +404,115 @@ test('une instance sans le champ garde le brief, et le reste avec', async () => 
   assert.ok(!('empty_notes' in écrite), 'le champ refusé doit partir');
   assert.deepEqual(écrite.weather, bulletin, 'le bulletin, lui, n avait rien à se reprocher');
   assert.equal(écrite.title, brief.title, 'et le brief est bien écrit');
+});
+
+// --- Les événements : même doctrine, autre collection -----------------------
+//
+// Archiver, jamais effacer ; un seul POST ; et au rejeu, ne pas se reconnaître
+// soi-même. Ce dernier point tient à un filtre côté client, et c'est le seul
+// qu'une relecture de la requête ne montre pas.
+
+/** Client factice pour mat_events : rend ce qu'on lui donne, note ce qu'on écrit. */
+function fauxÉvénements({ actifs = [], anciens = [], finis = [] } = {}) {
+  const patchs = [];
+  const posts = [];
+
+  const client = {
+    get: async (chemin) => {
+      if (chemin.includes('fields=id,name,start_date')) return actifs;
+      if (chemin.includes('fields=id,name,end_date')) return finis;
+      if (chemin.includes('filter[brief][_eq]')) return anciens;
+      return [];
+    },
+    post: async (chemin, corps) => {
+      posts.push({ chemin, corps: structuredClone(corps) });
+      return corps.map((_, i) => ({ id: 100 + i }));
+    },
+    patch: async (chemin, corps) => {
+      patchs.push({ chemin, corps: structuredClone(corps) });
+      return null;
+    },
+  };
+
+  return { client, patchs, posts };
+}
+
+const événement = {
+  name: 'Pop-up Pokémon Center',
+  kind: 'popup',
+  theme: 'pokemon',
+  venue: 'Pokémon Center Seoul',
+  area: 'Seongsu',
+  start_date: '2026-09-01',
+  end_date: '2026-10-12',
+  summary: 'Boutique éphémère.',
+  source_name: 'Visit Seoul',
+  source_url: 'https://english.visitseoul.net/pop-up',
+  link_checked_at: '2026-09-04T22:00:00.000Z',
+};
+
+test('les événements partent en un seul POST, rattachés au brief', async () => {
+  const f = fauxÉvénements();
+  const n = await saveEvents(f.client, { events: [événement, { ...événement, name: 'Autre' }], briefId: 7 });
+
+  assert.equal(n, 2);
+  assert.equal(f.posts.length, 1, 'un seul aller-retour');
+  assert.equal(f.posts[0].corps.length, 2);
+  assert.equal(f.posts[0].corps[0].brief, 7);
+  assert.equal(f.posts[0].corps[0].status, 'published');
+  assert.deepEqual(f.posts[0].corps.map((e) => e.sort), [1, 2]);
+  // Les champs facultatifs absents partent à null, pas absents : la charge
+  // dit exactement ce qu'on sait.
+  assert.equal(f.posts[0].corps[0].map_url, null);
+  assert.equal(f.posts[0].corps[0].booking_url, null);
+});
+
+test('sans événement à écrire, rien n est POSTé', async () => {
+  const f = fauxÉvénements();
+  assert.equal(await saveEvents(f.client, { events: [], briefId: 7 }), 0);
+  assert.equal(f.posts.length, 0);
+});
+
+test('un rejeu archive les événements du passage précédent, ceux de CE brief seulement', async () => {
+  const f = fauxÉvénements({ anciens: [{ id: 3 }, { id: 4 }] });
+  await saveEvents(f.client, { events: [événement], briefId: 7 });
+
+  assert.deepEqual(
+    f.patchs.map((p) => [p.chemin, p.corps.status]),
+    [
+      ['/items/mat_events/3', 'archived'],
+      ['/items/mat_events/4', 'archived'],
+    ]
+  );
+  assert.equal(f.posts.length, 1, 'puis il réécrit');
+});
+
+test('les événements actifs excluent ceux du brief rejoué, sans perdre ceux sans brief', async () => {
+  const f = fauxÉvénements({
+    actifs: [
+      { id: 1, name: 'du brief rejoué', brief: 7 },
+      { id: 2, name: 'd un autre brief', brief: 2 },
+      { id: 3, name: 'orphelin', brief: null },
+    ],
+  });
+
+  const connus = await activeEvents(f.client, { today: '2026-09-04', saufBrief: 7 });
+  assert.deepEqual(connus.map((e) => e.name), ['d un autre brief', 'orphelin']);
+
+  const tous = await activeEvents(f.client, { today: '2026-09-04' });
+  assert.equal(tous.length, 3);
+});
+
+test('l archivage ne touche qu à ce qui est fini, et le rend', async () => {
+  const f = fauxÉvénements({ finis: [{ id: 9, name: 'Fini', end_date: '2026-09-01' }] });
+  const archivés = await archiveExpiredEvents(f.client, { today: '2026-09-04' });
+
+  assert.deepEqual(archivés.map((a) => a.id), [9]);
+  assert.deepEqual(f.patchs, [{ chemin: '/items/mat_events/9', corps: { status: 'archived' } }]);
+});
+
+test('rien de fini, rien d archivé', async () => {
+  const f = fauxÉvénements();
+  assert.deepEqual(await archiveExpiredEvents(f.client, { today: '2026-09-04' }), []);
+  assert.equal(f.patchs.length, 0);
 });

@@ -85,6 +85,13 @@
         }
       ],
       "description": "Les quatre sections sont toujours présentes, même vides."
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      },
+      "description": "Facultatif. Pop-ups et événements temporaires à Séoul — anime et manga, Pokémon, K-pop, jeu vidéo. Ce n'est PAS une cinquième rubrique : un événement écarté ne retient jamais le brief, et la liste vit dans sa propre collection jusqu'à sa date de fin. Ce que le schéma ne peut pas dire (fin ≥ début, fin ≥ aujourd'hui, 40 mots) est vérifié par scripts/lib/evenements.mjs."
     }
   },
   "$defs": {
@@ -209,6 +216,101 @@
           ],
           "format": "date-time",
           "description": "Omis quand la source ne l'horodate pas de façon fiable."
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "kind",
+        "theme",
+        "venue",
+        "area",
+        "start_date",
+        "end_date",
+        "summary",
+        "source_name",
+        "source_url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "kind": {
+          "enum": [
+            "popup",
+            "concert",
+            "exposition",
+            "festival",
+            "salon",
+            "autre"
+          ]
+        },
+        "theme": {
+          "enum": [
+            "anime",
+            "pokemon",
+            "kpop",
+            "gaming"
+          ],
+          "description": "Un seul thème, parmi les quatre que l'onglet couvre. Pas de « autre » : un événement hors de ces quatre n'a pas sa place ici."
+        },
+        "venue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160,
+          "description": "Le lieu tel qu'on le chercherait sur Naver Map : « Pokémon Center Seoul », « KSPO Dome »."
+        },
+        "area": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Le quartier : Seongsu, Hongdae, Jamsil."
+        },
+        "start_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "end_date": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Dernier jour, inclus. Égal à start_date pour un événement d'un jour. Obligatoire : c'est lui qui fait sortir l'événement de la page, puis l'archive."
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        },
+        "source_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "En clair et complète, jamais reconstruite : vérifiée vivante, et soumise à l’allowlist."
+        },
+        "source_lang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Za-z]{2,4})?$"
+        },
+        "booking_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://",
+          "description": "Billetterie ou réservation, si elle existe. Vérifiée : morte, elle est retirée, l'événement reste."
+        },
+        "map_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://(map.naver.com|naver.me)/",
+          "description": "Facultatif : la fiche Naver Map du lieu, SEULEMENT si tu l'as vue. Sans elle, le site pose un lien de recherche Naver Map construit à partir de venue et area — jamais une adresse inventée."
         }
       }
     }

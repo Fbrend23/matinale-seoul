@@ -1,5 +1,5 @@
 {
-  "note": "Domaines connus. Un item venant d'ailleurs n'est PAS jeté : il est gardé et le brief entier reste en brouillon, le temps qu'un humain regarde et, s'il y a lieu, ajoute le domaine ici. C'est ainsi que la liste s'enrichit. La jeter à la place ferait disparaître la source sans que personne ne l'apprenne.",
+  "note": "Domaines connus. Un item venant d'ailleurs n'est PAS jeté : il est gardé et le brief entier reste en brouillon, le temps qu'un humain regarde et, s'il y a lieu, ajoute le domaine ici. C'est ainsi que la liste s'enrichit. La jeter à la place ferait disparaître la source sans que personne ne l'apprenne. Un ÉVÉNEMENT venant d'ailleurs, lui, est écarté avec un avertissement : c'est un accessoire du brief, pas un item. Les liens Naver Map ne sont pas des sources et n'y sont pas soumis.",
   "domains": [
     "yna.co.kr",
     "en.yna.co.kr",
@@ -49,6 +49,17 @@
     "gamekult.com",
     "jeuxvideo.com",
     "inven.co.kr",
-    "thisisgame.com"
+    "thisisgame.com",
+    "visitseoul.net",
+    "timeout.com",
+    "soompi.com",
+    "allkpop.com",
+    "hypebeast.com",
+    "interpark.com",
+    "yes24.com",
+    "melon.com",
+    "pokemonkorea.co.kr",
+    "coex.co.kr",
+    "ddp.or.kr"
   ]
 }

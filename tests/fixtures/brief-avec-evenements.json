@@ -1,0 +1,151 @@
+{
+  "date": "2026-09-04",
+  "title": "Séoul assouplit le K-ETA, Samsung pousse ses puces mémoire",
+  "standfirst": "Trois sections, cinq histoires : une exemption de visa prolongée, un budget culturel en hausse, et une bataille de mémoire pour l'IA.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'exemption de K-ETA prolongée jusqu'à fin 2027",
+          "summary": "Les voyageurs de vingt-deux pays restent dispensés d'autorisation électronique préalable. La mesure, présentée comme temporaire en 2023, est reconduite pour deux ans.",
+          "analysis": "La prolongation vise moins le confort du voyageur que le taux de remplissage des vols long-courriers, encore sous son niveau de 2019.",
+          "importance": 1,
+          "tags": [
+            "k-eta",
+            "visa"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260903000100320",
+          "source_lang": "en",
+          "published_at": "2026-09-03T21:10:00+09:00"
+        },
+        {
+          "headline": "Le pass transports de Séoul étendu à la province de Gyeonggi",
+          "summary": "Le forfait mensuel illimité couvre désormais les bus interurbains vers Suwon et Seongnam.",
+          "importance": 2,
+          "tags": [
+            "transports",
+            "seoul"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/view.php?ud=20260903000456",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le budget 2027 de la culture augmente de 8 %",
+          "summary": "Le ministère consacre l'essentiel de la hausse aux tournées à l'étranger et aux salles de province.",
+          "importance": 1,
+          "tags": [
+            "budget",
+            "culture"
+          ],
+          "source_name": "Hankyoreh",
+          "source_url": "https://english.hani.co.kr/arti/english_edition/e_national/1160001.html",
+          "source_lang": "ko",
+          "published_at": "2026-09-03T11:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Samsung annonce une mémoire HBM4 pour la mi-2027",
+          "summary": "Le fabricant vise les accélérateurs d'entraînement et promet une bande passante en hausse de moitié.",
+          "analysis": "L'annonce arrive trois semaines après celle de son concurrent local : le calendrier tient autant du signal aux clients que de la production.",
+          "importance": 1,
+          "tags": [
+            "samsung",
+            "hbm4",
+            "semi-conducteurs"
+          ],
+          "source_name": "The Elec",
+          "source_url": "https://www.thelec.kr/news/articleView.html?idxno=40001",
+          "source_lang": "ko"
+        },
+        {
+          "headline": "Un modèle ouvert franchit le seuil du million de tokens de contexte",
+          "summary": "La fenêtre annoncée double celle de la version précédente, sans hausse du coût par million de tokens.",
+          "importance": 2,
+          "tags": [
+            "ia",
+            "modeles-ouverts"
+          ],
+          "source_name": "Ars Technica",
+          "source_url": "https://arstechnica.com/ai/2026/09/open-model-million-token-context/",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un studio annonce le report de son jeu phare au printemps",
+          "summary": "Le report tient à un moteur refondu en cours de route, dit le studio, et non à un manque de contenu.",
+          "importance": 1,
+          "tags": [
+            "report",
+            "studios"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/report-du-jeu-phare",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up Pokémon Center à Seongsu",
+      "kind": "popup",
+      "theme": "pokemon",
+      "venue": "Pokémon Center Seoul pop-up",
+      "area": "Seongsu",
+      "start_date": "2026-09-01",
+      "end_date": "2026-10-12",
+      "summary": "Boutique éphémère avec des produits exclusifs à la Corée. Entrée libre, file d'attente le week-end.",
+      "source_name": "Visit Seoul",
+      "source_url": "https://english.visitseoul.net/exemple-pop-up-pokemon",
+      "source_lang": "en",
+      "booking_url": "https://tickets.interpark.com/exemple",
+      "map_url": "https://naver.me/exemple"
+    },
+    {
+      "name": "Exposition One Piece au DDP",
+      "kind": "exposition",
+      "theme": "anime",
+      "venue": "Dongdaemun Design Plaza",
+      "area": "Dongdaemun",
+      "start_date": "2026-07-10",
+      "end_date": "2026-08-31",
+      "summary": "Déjà terminée au jour du brief : elle doit être écartée, pas publiée.",
+      "source_name": "Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/exemple-one-piece",
+      "source_lang": "en"
+    },
+    {
+      "name": "Fan meeting NewJeans à Jamsil",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "KSPO Dome",
+      "area": "Jamsil",
+      "start_date": "2026-09-20",
+      "end_date": "2026-09-21",
+      "summary": "Source hors allowlist : l'événement est écarté, le brief passe.",
+      "source_name": "Blog inconnu",
+      "source_url": "https://blog-inconnu.test/newjeans-jamsil",
+      "source_lang": "ko"
+    }
+  ]
+}

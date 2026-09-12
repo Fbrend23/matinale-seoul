@@ -49,6 +49,7 @@ const image = new URL('/og.png', Astro.site).toString();
       <nav aria-label="Navigation principale">
         <a href="/">Aujourd'hui</a>
         {SECTIONS.map((s) => <a href={`/sections/${s}/`}>{SECTION_LABELS[s]}</a>)}
+        <a href="/evenements/">Pop-ups &amp; événements</a>
         <a href="/briefs/">Archive</a>
       </nav>
     </header>
@@ -59,7 +60,7 @@ const image = new URL('/og.png', Astro.site).toString();
 
     <footer class="pied">
       <p>
-        <strong>La Matinale de Séoul</strong> — brief quotidien, du lundi au vendredi.
+        <strong>La Matinale de Séoul</strong> — brief quotidien, sept jours sur sept.
         <a href="/rss.xml">Flux RSS</a>
       </p>
       <p class="mention">

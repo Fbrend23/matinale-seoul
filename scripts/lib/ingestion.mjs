@@ -22,8 +22,16 @@ import {
   flatten,
   unflatten,
 } from './guards.mjs';
-import { briefForDate, recentHeadlines, saveBrief } from './directus.mjs';
+import {
+  briefForDate,
+  recentHeadlines,
+  saveBrief,
+  activeEvents,
+  saveEvents,
+  archiveExpiredEvents,
+} from './directus.mjs';
 import { relevéMétéo } from './meteo.mjs';
+import { contrôlerÉvénements } from './evenements.mjs';
 
 export const NOM_ATTENDU = /^brief-(\d{4}-\d{2}-\d{2})\.json$/;
 
@@ -214,6 +222,71 @@ export async function ingérer({
   });
 
   dire(`   écrit : brief ${id}, ${retenus.length} items, statut « ${statut} »`);
+
+  // --- Pop-ups et événements ---
+  // Ni sixième garde ni cinquième rubrique : un accessoire, comme la météo.
+  // Tout ce qui cloche ici ÉCARTE un événement ou saute l'étape, et rien ne
+  // touche au verdict rendu plus haut. Après l'écriture du brief, donc : un
+  // événement porte l'identifiant du brief qui l'a repéré, et le brief n'a pas
+  // à attendre qu'on ait fini de sonder une boutique éphémère.
+  //
+  // Les événements partent « published » même quand le brief est retenu en
+  // brouillon : ce qui retient le brief est le domaine d'un ITEM, et chaque
+  // événement a passé sa propre allowlist. Les écrire en brouillon les ferait
+  // de surcroît compter comme connus au rejeu, qui écarterait alors la version
+  // corrigée pour garder l'invisible.
+  const proposés = brief.events ?? [];
+  try {
+    // « Sauf ce brief » : ses événements d'un passage précédent vont être
+    // archivés par saveEvents ; les compter comme connus écarterait le rejeu.
+    const connus = await activeEvents(client, { today: aujourdhui, saufBrief: id });
+    const { retenus: événements, écartés, liensRetirés } = await contrôlerÉvénements(proposés, {
+      domaines,
+      connus,
+      today: aujourdhui,
+    });
+
+    for (const { event, raison } of écartés) {
+      dire(`   événements · écarté « ${event.name.slice(0, 60)} » : ${raison}`);
+    }
+    for (const { event, champ, raison } of liensRetirés) {
+      dire(`   événements · ${champ} retiré de « ${event.name.slice(0, 60)} » : ${raison}`);
+    }
+
+    const écrits = await saveEvents(client, { events: événements, briefId: id });
+    if (proposés.length) {
+      dire(`   événements · ${écrits} écrit(s) sur ${proposés.length} proposé(s)`);
+    }
+
+    // Une seule annotation pour tous les écartés : le résumé du run doit se
+    // lire d'un coup d'œil, pas se dérouler.
+    if (écartés.length) {
+      annoter(
+        `::warning::${écartés.length} événement(s) écarté(s) du brief ${brief.date} : ` +
+          écartés.map((e) => `« ${e.event.name.slice(0, 40)} » (${e.raison})`).join(' ; ')
+      );
+    }
+  } catch (e) {
+    dire(`   événements · non écrits, le brief est déjà en ligne : ${e.message}`);
+    annoter(
+      `::warning::Événements du brief ${brief.date} non écrits : ${e.message}` +
+        (proposés.length ? ` — ${proposés.length} proposé(s) perdu(s) pour ce run.` : '')
+    );
+  }
+
+  // Ce qui est fini sort de la page, et il en sort par l'archive : la chaîne
+  // n'efface jamais. Une étape à part, jouée à chaque run — un brief sans
+  // événement doit quand même ranger ceux d'hier.
+  try {
+    const finis = await archiveExpiredEvents(client, { today: aujourdhui });
+    if (finis.length) {
+      dire(`   événements · ${finis.length} terminé(s) archivé(s) : ${finis.map((f) => f.name).join(', ')}`);
+    }
+  } catch (e) {
+    dire(`   événements · archivage impossible : ${e.message}`);
+    annoter(`::warning::Événements terminés non archivés (${brief.date}) : ${e.message}`);
+  }
+
   return { statut: statut === 'published' ? 'publié' : 'brouillon', id };
 }
 

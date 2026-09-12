@@ -39,26 +39,46 @@ const bulletin = { date: JOUR, tmin: 18, tmax: 26, code: 1 };
  *
  * `publié` fait répondre « ce jour est déjà en ligne » ; `anciens` fournit les
  * titres des quatorze derniers jours que lit la garde des doublons.
+ * `événementsConnus` sont les événements actifs du CMS ; `événementsFinis`
+ * ceux dont la date est passée ; `sansÉvénements` imite une instance où la
+ * collection n'est pas encore provisionnée — Directus y répond 403.
  */
-function fauxClient({ publié = false, anciens = [] } = {}) {
+function fauxClient({
+  publié = false,
+  anciens = [],
+  événementsConnus = [],
+  événementsFinis = [],
+  sansÉvénements = false,
+} = {}) {
   const écritures = [];
+
+  const refuserLesÉvénements = (verbe, chemin) => {
+    if (sansÉvénements && chemin.includes('mat_events')) {
+      throw new Error(`${verbe} ${chemin} → 403 You don't have permission to access this.`);
+    }
+  };
 
   return {
     écritures,
     get: async (chemin) => {
+      refuserLesÉvénements('GET', chemin);
       if (chemin.includes('mat_briefs?filter')) {
         return publié ? [{ id: 42, status: 'published' }] : [];
       }
       if (chemin.includes('mat_news_items?fields=headline')) {
         return anciens.map((headline) => ({ headline }));
       }
+      if (chemin.includes('mat_events?fields=id,name,start_date')) return événementsConnus;
+      if (chemin.includes('mat_events?fields=id,name,end_date')) return événementsFinis;
       return [];
     },
     post: async (chemin, corps) => {
+      refuserLesÉvénements('POST', chemin);
       écritures.push({ verbe: 'post', chemin, corps: structuredClone(corps) });
       return { id: 7 };
     },
     patch: async (chemin, corps) => {
+      refuserLesÉvénements('PATCH', chemin);
       écritures.push({ verbe: 'patch', chemin, corps: structuredClone(corps) });
       return null;
     },
@@ -92,6 +112,18 @@ const briefÉcrit = (client) =>
 /** Les items écrits, à plat. */
 const itemsÉcrits = (client) =>
   client.écritures.filter((e) => e.chemin.includes('mat_news_items')).flatMap((e) => e.corps);
+
+/** Les événements écrits, à plat. */
+const événementsÉcrits = (client) =>
+  client.écritures
+    .filter((e) => e.verbe === 'post' && e.chemin.includes('mat_events'))
+    .flatMap((e) => e.corps);
+
+/** Les identifiants d'événements passés en « archived ». */
+const événementsArchivés = (client) =>
+  client.écritures
+    .filter((e) => e.verbe === 'patch' && e.chemin.includes('mat_events/') && e.corps.status === 'archived')
+    .map((e) => Number(e.chemin.split('/').at(-1)));
 
 // --- Le chemin nominal -------------------------------------------------------
 
@@ -361,4 +393,148 @@ test('sans brief lisible, il n y a rien à tracer', async () => {
   const client = fauxClient();
   assert.equal(await tracerLÉchec({ client, brief: undefined, raison: 'JSON illisible' }), false);
   assert.equal(client.écritures.length, 0);
+});
+
+// --- Les événements ne sont pas une sixième garde ----------------------------
+//
+// Ils partent avec le brief, dans leur propre collection, et rien de ce qui
+// leur arrive ne touche au verdict rendu sur le brief : un événement fautif
+// est écarté, une collection absente est un avertissement, jamais un rouge.
+
+const AVEC_ÉVÉNEMENTS = await lireJSON('tests', 'fixtures', 'brief-avec-evenements.json');
+
+const lancerAvecÉvénements = ({ client, annoter, aujourdhui = JOUR, texte } = {}) =>
+  ingérer({
+    nom: NOM,
+    texte: texte ?? JSON.stringify(AVEC_ÉVÉNEMENTS),
+    client,
+    aujourdhui,
+    schéma,
+    domaines,
+    relevé: async () => bulletin,
+    annoter: annoter ?? (() => {}),
+  });
+
+test('les événements sains partent avec le brief, publiés et rattachés à lui', async () => {
+  sondeur();
+  const client = fauxClient();
+  const issue = await lancerAvecÉvénements({ client });
+
+  assert.equal(issue.statut, 'publié');
+  const écrits = événementsÉcrits(client);
+  // La fixture en propose trois : un sain, un terminé, un hors allowlist.
+  assert.equal(écrits.length, 1);
+  assert.equal(écrits[0].name, 'Pop-up Pokémon Center à Seongsu');
+  assert.equal(écrits[0].brief, 7);
+  assert.equal(écrits[0].status, 'published');
+  assert.equal(écrits[0].map_url, 'https://naver.me/exemple');
+});
+
+test('les écartés sont annoncés au run, en une seule annotation, sans le faire rougir', async () => {
+  sondeur();
+  const annonces = [];
+  const issue = await lancerAvecÉvénements({ client: fauxClient(), annoter: (m) => annonces.push(m) });
+
+  assert.equal(issue.statut, 'publié');
+  assert.equal(annonces.length, 1);
+  assert.match(annonces[0], /^::warning::2 événement\(s\) écarté\(s\)/);
+  assert.match(annonces[0], /terminé le/);
+  assert.match(annonces[0], /domaine inconnu/);
+});
+
+test('une source d événement morte écarte l événement, le brief part quand même', async () => {
+  sondeur({ [AVEC_ÉVÉNEMENTS.events[0].source_url]: 404 });
+  const client = fauxClient();
+  const issue = await lancerAvecÉvénements({ client });
+
+  assert.equal(issue.statut, 'publié');
+  assert.equal(événementsÉcrits(client).length, 0);
+  assert.equal(itemsÉcrits(client).length, 6, 'les items ne sont pas touchés');
+});
+
+test('un domaine inconnu sur un événement ne retient PAS le brief en brouillon', async () => {
+  // La fixture porte déjà un événement hors allowlist. Le brief est publié :
+  // la retenue en brouillon est la sanction d'un item, pas d'un accessoire.
+  sondeur();
+  const client = fauxClient();
+  await lancerAvecÉvénements({ client });
+
+  assert.equal(briefÉcrit(client).status, 'published');
+  assert.equal(briefÉcrit(client).failure_reason, null);
+});
+
+test('une collection d événements absente est un avertissement, pas un échec', async () => {
+  sondeur();
+  const annonces = [];
+  const client = fauxClient({ sansÉvénements: true });
+  const issue = await lancerAvecÉvénements({ client, annoter: (m) => annonces.push(m) });
+
+  assert.equal(issue.statut, 'publié');
+  assert.equal(briefÉcrit(client).status, 'published');
+  // L'écriture, puis l'archivage : deux étapes, deux avertissements.
+  assert.equal(annonces.length, 2);
+  assert.match(annonces[0], /non écrits/);
+  assert.match(annonces[0], /3 proposé\(s\) perdu\(s\)/);
+  assert.match(annonces[1], /non archivés/);
+});
+
+test('un événement déjà connu du CMS n est pas réécrit', async () => {
+  sondeur();
+  const client = fauxClient({
+    événementsConnus: [{ id: 3, name: AVEC_ÉVÉNEMENTS.events[0].name, brief: 2 }],
+  });
+  await lancerAvecÉvénements({ client });
+
+  assert.equal(événementsÉcrits(client).length, 0);
+});
+
+test('au rejeu, les événements du brief lui-même ne comptent pas comme connus', async () => {
+  // Sans cela, un rejeu se reconnaîtrait et écarterait tout ce qu'il apporte.
+  sondeur();
+  const client = fauxClient({
+    événementsConnus: [{ id: 3, name: AVEC_ÉVÉNEMENTS.events[0].name, brief: 7 }],
+  });
+  await lancerAvecÉvénements({ client });
+
+  assert.equal(événementsÉcrits(client).length, 1);
+});
+
+test('les événements terminés sont archivés à chaque run, même sans événement proposé', async () => {
+  sondeur();
+  const client = fauxClient({ événementsFinis: [{ id: 11, name: 'Fini', end_date: '2026-09-01' }] });
+  const issue = await lancer({ client }); // le brief de référence, sans « events »
+
+  assert.equal(issue.statut, 'publié');
+  assert.deepEqual(événementsArchivés(client), [11]);
+});
+
+test('un brief retenu en brouillon écrit tout de même ses événements, publiés', async () => {
+  sondeur();
+  const client = fauxClient();
+  const retouché = structuredClone(AVEC_ÉVÉNEMENTS);
+  retouché.sections[3].items[0].source_url = 'https://exemple-inconnu.test/article';
+  const issue = await lancerAvecÉvénements({ client, texte: JSON.stringify(retouché) });
+
+  assert.equal(issue.statut, 'brouillon');
+  assert.equal(événementsÉcrits(client).length, 1);
+  assert.equal(événementsÉcrits(client)[0].status, 'published');
+});
+
+test('un brief recalé n écrit aucun événement', async () => {
+  sondeur();
+  const client = fauxClient();
+  const issue = await lancerAvecÉvénements({ client, aujourdhui: '2026-09-05' });
+
+  assert.equal(issue.statut, 'recalé');
+  assert.equal(client.écritures.length, 0);
+});
+
+test('les événements viennent APRÈS le brief : ils portent son identifiant', async () => {
+  sondeur();
+  const client = fauxClient();
+  await lancerAvecÉvénements({ client });
+
+  const rangBrief = client.écritures.findIndex((e) => e.chemin.includes('mat_briefs'));
+  const rangÉvénements = client.écritures.findIndex((e) => e.chemin.includes('mat_events'));
+  assert.ok(rangBrief < rangÉvénements);
 });

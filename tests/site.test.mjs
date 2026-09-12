@@ -175,3 +175,13 @@ test('le seuil est réglable, et sa valeur par défaut est celle du module', () 
   assert.equal(groupByTag(briefs, { minItems: 1 }).size, 1);
   assert.equal(MIN_ITEMS_PAR_TAG, 2);
 });
+
+// --- Les dates d'un événement ------------------------------------------------
+
+test('une plage de dates se lit « du … au … », et un seul jour « le … »', async () => {
+  const { dateRange } = await import('../src/lib/date.js');
+  assert.equal(dateRange('2026-09-05', '2026-10-12'), 'du 5 sept. au 12 oct.');
+  assert.equal(dateRange('2026-09-05', '2026-09-05'), 'le 5 sept.');
+  // Le 1er du mois, encore lui : minuit à Séoul, c est la veille en UTC.
+  assert.equal(dateRange('2026-01-01', '2026-01-03'), 'du 1 janv. au 3 janv.');
+});

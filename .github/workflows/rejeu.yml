@@ -31,9 +31,9 @@ name: Rejeu
 on:
   schedule:
     # Les crons de GitHub sont en UTC ; Séoul est à UTC+9. Le décalage de date
-    # est voulu : lundi 8 h 15 à Séoul, c'est dimanche 23 h 15 UTC.
-    - cron: '15 23 * * 0-4' # 8 h 15 à Séoul, du lundi au vendredi
-    - cron: '15 0 * * 1-5' # 9 h 15 à Séoul, du lundi au vendredi
+    # est voulu : 8 h 15 à Séoul, c'est 23 h 15 UTC la veille.
+    - cron: '15 23 * * *' # 8 h 15 à Séoul, tous les jours
+    - cron: '15 0 * * *' # 9 h 15 à Séoul, tous les jours
   workflow_dispatch:
 
 permissions:
