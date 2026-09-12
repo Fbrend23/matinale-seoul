@@ -12,6 +12,8 @@
 // porte deux dates — celle du brief, et celle du cours — et pourquoi le widget
 // affiche la seconde.
 
+import { joursEntre } from '../../shared/date.mjs';
+
 const BASE = 'https://api.frankfurter.dev/v1/latest';
 
 export const DEVISES = { base: 'CHF', quote: 'KRW' };
@@ -28,10 +30,6 @@ export function urlCours() {
 }
 
 const nombre = (v) => (typeof v === 'number' && Number.isFinite(v) && v > 0 ? v : null);
-
-function joursEntre(a, b) {
-  return Math.round((new Date(`${b}T00:00:00Z`) - new Date(`${a}T00:00:00Z`)) / 86_400_000);
-}
 
 /** Le cours du jour, ou une exception qui dit pourquoi non. */
 export async function relevéChange({ date }, { fetcher = fetch, timeoutMs = 5_000 } = {}) {
