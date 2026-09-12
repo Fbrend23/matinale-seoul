@@ -18,6 +18,7 @@ import {
   activeEvents,
   saveEvents,
   archiveExpiredEvents,
+  updateEventDates,
 } from '../scripts/lib/directus.mjs';
 
 // --- Le client : ce qui se rejoue, et ce qui ne se rejoue pas ----------------
@@ -534,4 +535,14 @@ test("un champ fx absent du CMS ne fait pas perdre le brief, ni sa météo", asy
   assert.equal(f.posts.length, 1);
   assert.ok(!('fx' in f.posts[0].corps));
   assert.deepEqual(f.posts[0].corps.weather, bulletin, 'la météo ne paie pas pour le change');
+});
+
+test('une mise à jour de dates ne touche qu aux dates et à la source qui les annonce', async () => {
+  const f = fauxÉvénements();
+  await updateEventDates(f.client, 3, { ...événement, end_date: '2026-11-01' });
+
+  assert.equal(f.patchs.length, 1);
+  assert.equal(f.patchs[0].chemin, '/items/mat_events/3');
+  assert.deepEqual(Object.keys(f.patchs[0].corps).sort(), ['end_date', 'link_checked_at', 'source_lang', 'source_name', 'source_url', 'start_date']);
+  assert.equal(f.patchs[0].corps.end_date, '2026-11-01');
 });

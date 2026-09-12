@@ -257,8 +257,10 @@ de lui-même à sa date de fin. Ton rôle est d'y **ajouter** ce qui est nouveau
 pas de redire ce qui s'y trouve :
 
 - Récupère d'abord `https://matinale.brendanfleurdelys.ch/api/evenements.json`.
-  Ce qui y figure est déjà connu : ne le propose pas une seconde fois. Si le
-  fichier est introuvable, continue sans lui.
+  Ce qui y figure est déjà connu : ne le propose pas une seconde fois — **sauf
+  si ses dates ont changé** (prolongation, report). Repropose-le alors avec le
+  même `name` et les dates nouvelles : l'ingestion corrige la fiche au lieu
+  d'en créer une. Si le fichier est introuvable, continue sans lui.
 - **Zéro à quatre événements nouveaux par jour**, pas davantage. Cherche
   brièvement — trois à quatre minutes au plus. Le brief passe avant : un matin
   sans événement est normal, un brief en retard ne l'est pas.

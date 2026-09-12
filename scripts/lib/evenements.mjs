@@ -81,6 +81,13 @@ export function cohérenceÉvénement(event, { today }) {
  * la même mesure que les titres : deux rédactions ne nomment presque jamais un
  * pop-up dans les mêmes mots, et un rejeu se reconnaît à 1,00.
  *
+ * Un doublon dont les DATES ont changé n'est pas écarté : c'est une
+ * prolongation ou un report, et la fiche connue est à mettre à jour. Il passe
+ * les mêmes sondes qu'un événement neuf — une prolongation annoncée par un
+ * lien mort ne vaut rien — et ressort dans `prolongés`, avec la fiche à
+ * corriger. Ce sont les seules écritures que l'ingestion fait sur un
+ * événement qu'elle n'a pas créé.
+ *
  * Les liens facultatifs — billetterie, fiche Naver Map — sont sondés eux
  * aussi, mais un lien mort ne retire que le CHAMP : l'événement reste, et le
  * site pose son lien de recherche à la place de la fiche. Une limite à
@@ -91,7 +98,9 @@ export function cohérenceÉvénement(event, { today }) {
  * @param {object[]} events         brief.events, tel que l'agent l'a écrit
  * @param {object} p
  * @param {string[]} p.domaines     l'allowlist
- * @param {{name: string}[]} [p.connus]  les événements actifs déjà connus
+ * @param {{name: string, start_date?: string, end_date?: string, id?: any}[]} [p.connus]
+ *   les événements actifs déjà connus, avec leurs dates pour reconnaître une
+ *   prolongation
  * @param {string} p.today          le jour à Séoul
  * @param {Function} [p.fetcher]    injectable, comme checkLinks
  * @param {number} [p.timeoutMs]
@@ -99,6 +108,7 @@ export function cohérenceÉvénement(event, { today }) {
  *   retenus: object[],
  *   écartés: {event: object, raison: string}[],
  *   liensRetirés: {event: object, champ: string, raison: string}[],
+ *   prolongés: {event: object, connu: object}[],
  * }>}
  */
 export async function contrôlerÉvénements(
@@ -107,6 +117,7 @@ export async function contrôlerÉvénements(
 ) {
   const écartés = [];
   const liensRetirés = [];
+  const prolongés = [];
 
   // Des copies : l'agent a écrit ces objets, on ne les retouche pas — les
   // champs qu'on retire ici ne doivent pas disparaître du fichier qu'il relit.
@@ -127,14 +138,27 @@ export async function contrôlerÉvénements(
   survivants = survivants.filter((event) => !inconnus.some((i) => i.item === event));
 
   // --- Doublons, sur le nom ---
+  // Mêmes dates : déjà connu, écarté. Dates nouvelles : une prolongation, qui
+  // continue son chemin marquée de la fiche à corriger.
   const doublons = findDuplicates(
     survivants.map((event) => ({ headline: event.name, event })),
     connus.map((c) => c.name)
   );
+  const àProlonger = new Map();
   for (const { item, score, against } of doublons) {
-    écarter(item.event, `déjà connu (${score.toFixed(2)}) : « ${against.slice(0, 50)} »`);
+    const connu = connus.find((c) => c.name === against);
+    // Une fiche sans dates — une liste de noms seuls — ne peut pas dire si
+    // elles ont changé : dans le doute, c'est un doublon.
+    const datesNouvelles =
+      connu?.start_date && connu?.end_date &&
+      (connu.start_date !== item.event.start_date || connu.end_date !== item.event.end_date);
+    if (datesNouvelles) {
+      àProlonger.set(item.event, connu);
+    } else {
+      écarter(item.event, `déjà connu (${score.toFixed(2)}) : « ${against.slice(0, 50)} »`);
+    }
   }
-  survivants = survivants.filter((event) => !doublons.some((d) => d.item.event === event));
+  survivants = survivants.filter((event) => !doublons.some((d) => d.item.event === event) || àProlonger.has(event));
 
   // --- La source : vivante, refusée, ou morte ---
   const sondes = await checkLinks(survivants, { fetcher, timeoutMs });
@@ -145,7 +169,10 @@ export async function contrôlerÉvénements(
       continue;
     }
     // Un refus garde l'événement sans date, comme pour un item.
-    retenus.push({ ...sonde.item, link_checked_at: sonde.checkedAt });
+    const vérifié = { ...sonde.item, link_checked_at: sonde.checkedAt };
+    const connu = àProlonger.get(sonde.item);
+    if (connu) prolongés.push({ event: vérifié, connu });
+    else retenus.push(vérifié);
   }
 
   // --- Les liens facultatifs : le champ saute, l'événement reste ---
@@ -164,5 +191,5 @@ export async function contrôlerÉvénements(
     liensRetirés.push({ event, champ, raison: sonde.reason });
   }
 
-  return { retenus, écartés, liensRetirés };
+  return { retenus, écartés, liensRetirés, prolongés };
 }

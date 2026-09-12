@@ -14,7 +14,7 @@ export async function GET() {
   const charge = {
     generated_at: new Date().toISOString(),
     today: seoulToday(),
-    note: "Événements déjà connus, en cours ou à venir. À lire avant d'en proposer : un événement qui figure ici ne se propose pas une seconde fois.",
+    note: "Événements déjà connus, en cours ou à venir. À lire avant d'en proposer : un événement qui figure ici ne se propose pas une seconde fois — sauf si ses dates ont changé, auquel cas le reproposer sous le même nom met la fiche à jour.",
     events: events.map(({ name, kind, theme, venue, area, start_date, end_date, source_url }) => ({
       name,
       kind,
