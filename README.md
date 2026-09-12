@@ -127,6 +127,11 @@ l'archive — la chaîne n'efface jamais. Le site filtre en plus sur la date de 
 au build, et masque chez le lecteur ce qui a fini depuis, en quelques lignes qui
 reprennent l'avis de parution.
 
+**Un flux RSS par événement** (`/evenements.xml`), à l'inverse du flux des
+briefs qui compte un élément par parution : on le suit pour être prévenu de
+chaque nouveau pop-up. Stable d'un build à l'autre — identifiant et date de
+création de l'événement — pour qu'un lecteur ne renotifie pas.
+
 **L'épingle Naver Map** est un lien de recherche construit du lieu et du
 quartier. Le dépôt interdit de reconstruire une URL, et celle-ci en est une : la
 différence est ce qu'elle affirme. Une source reconstruite publie un fait qu'on

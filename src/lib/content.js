@@ -81,6 +81,8 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {string|null} booking_url
  * @property {string|null} map_url      fiche Naver Map vue par l'agent ; sinon
  *   le site construit un lien de recherche
+ * @property {string}      date_created quand l'ingestion l'a écrit — la date de
+ *   publication du flux, stable d'un build à l'autre
  */
 
 
@@ -307,7 +309,7 @@ export function listEvents() {
       `/items/${EVENTS}?sort=start_date,end_date,name` +
         `&filter[end_date][_gte]=${seoulToday()}` +
         `&fields=id,brief,name,kind,theme,venue,area,start_date,end_date,summary,` +
-        `source_name,source_url,source_lang,booking_url,map_url`
+        `source_name,source_url,source_lang,booking_url,map_url,date_created`
     )
   );
 }

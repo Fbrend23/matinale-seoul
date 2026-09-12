@@ -185,3 +185,11 @@ test('une plage de dates se lit « du … au … », et un seul jour « le … �
   // Le 1er du mois, encore lui : minuit à Séoul, c est la veille en UTC.
   assert.equal(dateRange('2026-01-01', '2026-01-03'), 'du 1 janv. au 3 janv.');
 });
+
+// --- L'échappement des flux --------------------------------------------------
+
+test('les flux échappent ce qu ils composent à la main', async () => {
+  const { escapeHtml } = await import('../src/lib/html.js');
+  assert.equal(escapeHtml('<b>Pop-ups & "événements"</b>'), '&lt;b&gt;Pop-ups &amp; &quot;événements&quot;&lt;/b&gt;');
+  assert.equal(escapeHtml(null), '', 'un champ absent ne devient pas « null »');
+});

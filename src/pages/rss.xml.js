@@ -8,6 +8,7 @@
 import rss from '@astrojs/rss';
 import { recentBriefs } from '../lib/content.js';
 import { SECTION_LABELS, RUBRIQUES_EN_PROSE } from '../../shared/sections.mjs';
+import { escapeHtml } from '../lib/html.js';
 
 export async function GET(context) {
   const briefs = await recentBriefs(30);
@@ -50,10 +51,3 @@ export async function GET(context) {
   });
 }
 
-function escapeHtml(texte) {
-  return String(texte ?? '')
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;');
-}
