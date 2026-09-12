@@ -52,6 +52,9 @@ Cherche ensuite l'actualité des dernières 24 heures pour quatre sections :
 Trois à six items par section. Vise l'utile pour quelqu'un qui vit à Séoul ou
 s'y rend, pas l'exhaustivité.
 
+Puis, brièvement, les pop-ups et événements : voir § 7. Ils sont facultatifs et
+passent après le brief.
+
 ### 2. Ce que tu rends
 
 **Un unique fichier JSON**, déposé par commit dans le dépôt
@@ -132,6 +135,23 @@ Recopier sa forme est sans risque.
         }
       ]
     }
+  ],
+  "events": [
+    {
+      "name": "Pop-up Pokémon Center à Seongsu",
+      "kind": "popup",
+      "theme": "pokemon",
+      "venue": "Pokémon Center Seoul pop-up",
+      "area": "Seongsu",
+      "start_date": "2026-09-05",
+      "end_date": "2026-10-12",
+      "summary": "Boutique éphémère avec des produits exclusifs à la Corée. Entrée libre, file d'attente le week-end.",
+      "source_name": "Visit Seoul",
+      "source_url": "https://english.visitseoul.net/exemple-pop-up-pokemon",
+      "source_lang": "en",
+      "booking_url": "https://tickets.interpark.com/exemple",
+      "map_url": "https://naver.me/exemple"
+    }
   ]
 }
 ```
@@ -139,6 +159,9 @@ Recopier sa forme est sans risque.
 Noter les deux pièges que cet exemple montre en creux : une section vide porte un
 `empty_note` **non vide** — `null` la ferait rejeter — et un brief a besoin d'au
 moins **deux** sections pourvues.
+
+`events` est facultatif : un matin sans événement nouveau, omets la clé plutôt
+que d'écrire `[]`.
 
 ### 3. Avant de committer : relis-toi
 
@@ -151,7 +174,9 @@ npm run preflight -- inbox/brief-AAAA-MM-JJ.json
 ```
 
 Le contrôle applique **les cinq gardes** : schéma, liens vivants, allowlist,
-doublons, cohérence. Les doublons sont jugés sur `recent.json`, le même fichier
+doublons, cohérence. Il dit aussi le sort de chaque événement proposé — en
+avertissement (`!`), jamais en faute : un événement écarté ne recale pas le
+brief, mais tu dois le savoir avant de pousser. Les doublons sont jugés sur `recent.json`, le même fichier
 que tu as lu au § 1 — la CI, elle, interroge le CMS. Les deux disent la même
 chose à un cheveu près, et le contrôle penche du côté prudent : il peut signaler
 un doublon que la CI laisserait passer, jamais l'inverse.
@@ -182,6 +207,11 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`published_at`** : horodatage de l'article source, avec son fuseau. Omets-le
   si la source n'en donne pas de fiable — ne le devine pas.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
+- **`events`** : chaque événement porte `start_date` **et** `end_date`, des
+  dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
+  `pokemon`, `kpop`, `gaming` ; un `summary` de 40 mots au plus. Un
+  événement fautif est écarté, le brief passe — mais un champ inventé dans un
+  événement, lui, est une faute de schéma, et le schéma juge le fichier entier.
 - Aucun autre champ que ceux listés. Un champ inventé fait rejeter le brief.
 
 ### 5. Les sources
@@ -215,6 +245,38 @@ prose est en français. Pas d'emoji, pas d'exclamation.
 Si la journée est creuse, dis-le dans le `standfirst` et laisse les sections
 courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissage.
 
+### 7. Pop-ups et événements
+
+Le site tient un onglet de ce qui se passe à Séoul et qu'on peut aller voir :
+boutiques éphémères, concerts, expositions, salons — pour quatre thèmes, et
+seulement ceux-là : **anime et manga, Pokémon, K-pop, jeu vidéo**. Séoul et sa
+proche banlieue (Goyang, Seongnam, Incheon), rien au-delà.
+
+L'onglet liste tout ce qui est en cours ou annoncé, et chaque événement en sort
+de lui-même à sa date de fin. Ton rôle est d'y **ajouter** ce qui est nouveau,
+pas de redire ce qui s'y trouve :
+
+- Récupère d'abord `https://matinale.brendanfleurdelys.ch/api/evenements.json`.
+  Ce qui y figure est déjà connu : ne le propose pas une seconde fois. Si le
+  fichier est introuvable, continue sans lui.
+- **Zéro à quatre événements nouveaux par jour**, pas davantage. Cherche
+  brièvement — trois à quatre minutes au plus. Le brief passe avant : un matin
+  sans événement est normal, un brief en retard ne l'est pas.
+- **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
+  source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
+  pour un événement d'un jour. Un événement sans date de fin annoncée ne va
+  pas dans l'onglet.
+- `venue` est le lieu tel qu'on le chercherait sur Naver Map, `area` le
+  quartier. Le site en fait un lien de recherche Naver Map : c'est l'épingle
+  par défaut, et elle n'invente rien.
+- `map_url` **seulement si tu as vu** la fiche Naver Map du lieu
+  (`map.naver.com` ou `naver.me`). Sinon, omets le champ. Même règle pour
+  `booking_url` : la billetterie si tu l'as vue, rien sinon.
+- La source d'un événement suit les règles du § 5 : une adresse vue, complète,
+  d'une rédaction connue. Un événement dont la source est morte ou hors liste
+  est **écarté** — il ne retient pas le brief, il disparaît simplement, et le
+  journal du run le dit.
+
 ---
 
 ## Notes de maintenance
@@ -225,6 +287,10 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
+- `evenements.json` n'existe qu'une fois la collection `mat_events` provisionnée
+  et le site redéployé. Tant qu'il manque, l'agent ne sait pas ce qui est déjà
+  connu : c'est la garde des doublons de l'ingestion, jouée contre le CMS, qui
+  rattrape.
 - `recent.json` n'existe qu'une fois le site déployé une première fois. Le prompt
   prévoit son absence, mais tant qu'il manque, l'agent ne peut pas savoir ce qui
   a déjà été couvert, et le contrôle avant vol ne peut pas davantage juger les

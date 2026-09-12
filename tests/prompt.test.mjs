@@ -48,6 +48,18 @@ test('le prompt nomme les quatre sections attendues', () => {
   }
 });
 
+test("le prompt donne l'exemple d'un événement, et ses quatre thèmes", async () => {
+  // L'onglet n'existe que par ce que l'agent y dépose. Un exemple sans
+  // événement, et l'agent n'en écrirait jamais — le schéma l'y autorise sans
+  // l'y inviter.
+  const { THEMES } = await import('../shared/evenements.mjs');
+  assert.ok(Array.isArray(exemple.events) && exemple.events.length > 0, "l'exemple ne porte aucun événement");
+  for (const theme of THEMES) {
+    assert.ok(prompt.includes(`\`${theme}\``), `thème « ${theme} » absent du prompt`);
+  }
+  assert.ok(prompt.includes('/api/evenements.json'), "le prompt ne dit pas où lire les événements déjà connus");
+});
+
 test('le prompt annonce la bonne limite de mots', async () => {
   const { MAX_SUMMARY_WORDS } = await import('../scripts/lib/guards.mjs');
   assert.ok(
