@@ -17,6 +17,18 @@ const avecGauche = gauche.length > 0;
 // Combien de colonnes la page occupe : c'est ce qui fixe la largeur de
 // l'en-tête et du pied, pour que leurs bords tombent sur ceux du contenu.
 const colonnes = 1 + Number(avecCote) + Number(avecGauche);
+
+// La barre de navigation, et l'onglet courant. Un préfixe suffit : un brief
+// de l'archive allume « Archive », une rubrique allume la sienne. L'accueil
+// seul demande l'égalité, sinon il serait allumé partout.
+const chemin = Astro.url.pathname;
+const onglets = [
+  { href: '/', label: "Aujourd'hui", exact: true },
+  ...SECTIONS.map((s) => ({ href: `/sections/${s}/`, label: SECTION_LABELS[s] })),
+  { href: '/evenements/', label: 'Pop-ups & événements' },
+  { href: '/briefs/', label: 'Archive' },
+];
+const courant = (o) => (o.exact ? chemin === o.href : chemin.startsWith(o.href));
 const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
 const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
@@ -61,10 +73,9 @@ const image = new URL('/og.png', Astro.site).toString();
     <header class="entete">
       <p class="marque"><a href="/">La Matinale de Séoul</a></p>
       <nav aria-label="Navigation principale">
-        <a href="/">Aujourd'hui</a>
-        {SECTIONS.map((s) => <a href={`/sections/${s}/`}>{SECTION_LABELS[s]}</a>)}
-        <a href="/evenements/">Pop-ups &amp; événements</a>
-        <a href="/briefs/">Archive</a>
+        {onglets.map((o) => (
+          <a href={o.href} aria-current={courant(o) ? 'page' : undefined}>{o.label}</a>
+        ))}
       </nav>
     </header>
 

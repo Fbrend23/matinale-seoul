@@ -140,21 +140,57 @@ a:hover { text-decoration-thickness: 2px; }
   border-radius: 2px;
 }
 
-/* En-tête et navigation */
+/* En-tête et navigation.
+   Une barre : la marque à gauche, les onglets à droite sur la même ligne, et
+   l'onglet courant souligné en couleur, posé sur le trait de l'en-tête. Quand
+   la ligne ne suffit plus, les onglets passent dessous, sur deux lignes au
+   besoin ; sur un téléphone, ils défilent en bande, avec un fondu qui dit
+   qu'il y en a d'autres à droite. */
 
 .entete {
   max-width: var(--mesure-page);
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 1rem;
+  padding: 1.25rem 1.25rem 0;
   border-bottom: 1px solid var(--trait);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
 }
 
-.marque { margin: 0 0 0.5rem; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+.marque { margin: 0; padding-bottom: 0.7rem; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
 .marque a { color: inherit; text-decoration: none; }
 
-.entete nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.92rem; }
-.entete nav a { color: var(--doux); text-decoration: none; }
-.entete nav a:hover { color: var(--accent); text-decoration: underline; }
+.entete nav {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  margin-bottom: -1px; /* le soulignement de l'onglet courant recouvre le trait */
+  font-size: 0.92rem;
+}
+@media (max-width: 48rem) {
+  .entete nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent);
+  }
+  .entete nav::-webkit-scrollbar { display: none; }
+}
+.entete nav a {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.7rem 0.65rem;
+  border-bottom: 2px solid transparent;
+  color: var(--doux);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.entete nav a:hover { color: var(--texte); border-bottom-color: var(--trait); }
+.entete nav a[aria-current="page"] { color: var(--texte); border-bottom-color: var(--accent); font-weight: 600; }
+/* Le focus reste visible, mais à l'intérieur de l'onglet : un contour posé
+   autour déborderait de la bande qui défile. */
+.entete nav a:focus-visible { outline-offset: -3px; }
 
 /* Avis : le brief du jour n'est pas encore paru */
 
