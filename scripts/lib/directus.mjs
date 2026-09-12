@@ -7,6 +7,7 @@
 
 const BRIEFS = 'mat_briefs';
 const ITEMS = 'mat_news_items';
+const EVENTS = 'mat_events';
 
 // Attentes entre deux tentatives quand la connexion n'aboutit pas du tout.
 // Douze secondes en tout : de quoi passer un redémarrage de l'instance ou un
@@ -252,4 +253,109 @@ export async function saveBrief(
   }
 
   return id;
+}
+
+// --- Les pop-ups et événements -----------------------------------------------
+//
+// Une collection à part, parce qu'un événement dure au-delà du brief qui l'a
+// repéré. Mêmes règles qu'au-dessus : la chaîne n'efface jamais, elle archive ;
+// une écriture ne se rejoue jamais dans un run.
+//
+// Une collection absente — provisionnement en retard — fait répondre 403 au
+// jeton d'écriture. Ces fonctions laissent remonter l'erreur : la décision de
+// continuer sans les événements appartient à l'ingestion, là où se lit que
+// « rien de tout cela ne recale jamais un brief ».
+
+/**
+ * Les événements encore en cours ou à venir, c'est-à-dire ceux contre lesquels
+ * se jugent les doublons. Tous statuts sauf archivé : un événement écrit en
+ * brouillon par une correction manuelle compte déjà comme connu.
+ *
+ * `saufBrief` exclut ceux du brief qu'on rejoue : saveEvents() va les archiver
+ * pour les réécrire, et les compter comme connus ferait écarter tout ce que le
+ * rejeu apporte — le même piège que recentHeadlines(), « strictement avant
+ * aujourd'hui ». Filtré ici et non dans la requête : un `_neq` SQL laisserait
+ * de côté les lignes dont le brief est NULL, et un événement survit à son brief.
+ */
+export async function activeEvents(client, { today, saufBrief = null }) {
+  const trouvés = await client.get(
+    `/items/${EVENTS}?fields=id,name,start_date,end_date,venue,brief` +
+      `&filter[status][_neq]=archived` +
+      `&filter[end_date][_gte]=${today}` +
+      `&limit=-1`
+  );
+
+  return (trouvés ?? []).filter((e) => saufBrief == null || e.brief !== saufBrief);
+}
+
+/**
+ * Écrit les événements d'un brief.
+ *
+ * Un rejeu ARCHIVE ceux du passage précédent avant de réécrire, exactement
+ * comme saveBrief() pour les items — et pour la même raison : ce qui a été
+ * ingéré une première fois reste consultable, et un rejeu n'empile rien.
+ *
+ * @returns {Promise<number>} combien ont été écrits
+ */
+export async function saveEvents(client, { events, briefId, status = 'published' }) {
+  const anciens = await client.get(
+    `/items/${EVENTS}?filter[brief][_eq]=${briefId}&filter[status][_neq]=archived&fields=id&limit=-1`
+  );
+  for (const ancien of anciens ?? []) {
+    await client.patch(`/items/${EVENTS}/${ancien.id}`, { status: 'archived' });
+  }
+
+  if (!events.length) return 0;
+
+  // Un seul POST, comme pour les items : l'instance est mutualisée.
+  await client.post(
+    `/items/${EVENTS}`,
+    events.map((event, rang) => ({
+      status,
+      sort: rang + 1,
+      brief: briefId,
+      name: event.name,
+      kind: event.kind,
+      theme: event.theme,
+      venue: event.venue,
+      area: event.area,
+      start_date: event.start_date,
+      end_date: event.end_date,
+      summary: event.summary,
+      source_name: event.source_name,
+      source_url: event.source_url,
+      source_lang: event.source_lang ?? null,
+      booking_url: event.booking_url ?? null,
+      map_url: event.map_url ?? null,
+      link_checked_at: event.link_checked_at ?? null,
+    }))
+  );
+
+  return events.length;
+}
+
+/**
+ * Archive ce qui est fini.
+ *
+ * Le site ne liste que ce dont la date de fin n'est pas passée, donc rien ne
+ * DÉPEND de cette étape pour l'affichage. Elle tient le CMS d'accord avec la
+ * page : un événement terminé qui resterait « publié » se relirait dans
+ * l'interface comme s'il l'était encore, et l'archive est ce que la chaîne
+ * fait de tout ce qui a cessé d'être vrai.
+ *
+ * @returns {Promise<{id: any, name: string, end_date: string}[]>} les archivés
+ */
+export async function archiveExpiredEvents(client, { today }) {
+  const finis = await client.get(
+    `/items/${EVENTS}?fields=id,name,end_date` +
+      `&filter[status][_neq]=archived` +
+      `&filter[end_date][_lt]=${today}` +
+      `&limit=-1`
+  );
+
+  for (const fini of finis ?? []) {
+    await client.patch(`/items/${EVENTS}/${fini.id}`, { status: 'archived' });
+  }
+
+  return finis ?? [];
 }

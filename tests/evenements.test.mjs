@@ -86,3 +86,151 @@ test('l ordre d arrivée est conservé dans chaque groupe', () => {
   const { àVenir } = grouperParÉtat([ev('b', '2026-09-06', '2026-09-06'), ev('a', '2026-09-05', '2026-09-05')], '2026-09-01');
   assert.deepEqual(àVenir.map((e) => e.name), ['b', 'a']);
 });
+
+// --- Ce qui écarte un événement ----------------------------------------------
+//
+// Une seule sanction, l'événement écarté. Jamais « retenu en brouillon » comme
+// un item au domaine inconnu, jamais « brief recalé » comme une date d'hier :
+// un accessoire n'a pas de veto.
+
+import { cohérenceÉvénement, contrôlerÉvénements } from '../scripts/lib/evenements.mjs';
+
+const { domains: domaines } = await lireJSON('config', 'sources.json');
+const AUJOURDHUI = '2026-09-04';
+
+const sain = (retouche = {}) => ({
+  name: 'Pop-up Pokémon Center à Seongsu',
+  kind: 'popup',
+  theme: 'pokemon',
+  venue: 'Pokémon Center Seoul pop-up',
+  area: 'Seongsu',
+  start_date: '2026-09-01',
+  end_date: '2026-10-12',
+  summary: 'Boutique éphémère avec des produits exclusifs.',
+  source_name: 'Visit Seoul',
+  source_url: 'https://english.visitseoul.net/pop-up-pokemon',
+  ...retouche,
+});
+
+/** Toutes les URL répondent 200, sauf celles qu'on désigne autrement. */
+const sondeur = (parURL = {}) => {
+  const vues = [];
+  const fetcher = async (url) => {
+    vues.push(url);
+    const statut = parURL[url] ?? 200;
+    return { ok: statut >= 200 && statut < 300, status: statut };
+  };
+  return { fetcher, vues };
+};
+
+const contrôler = (events, options = {}) =>
+  contrôlerÉvénements(events, { domaines, today: AUJOURDHUI, fetcher: sondeur().fetcher, ...options });
+
+test('la cohérence d un événement : dates réelles, fin après début, pas encore fini, 40 mots', () => {
+  assert.deepEqual(cohérenceÉvénement(sain(), { today: AUJOURDHUI }), []);
+  assert.match(cohérenceÉvénement(sain({ start_date: '2026-08-01', end_date: '2026-08-31' }), { today: AUJOURDHUI })[0], /terminé le 2026-08-31/);
+  assert.match(cohérenceÉvénement(sain({ start_date: '2026-10-20' }), { today: AUJOURDHUI })[0], /avant d'avoir commencé/);
+  assert.match(cohérenceÉvénement(sain({ end_date: '2026-02-31' }), { today: AUJOURDHUI })[0], /irréelle/);
+  assert.match(
+    cohérenceÉvénement(sain({ summary: Array(41).fill('mot').join(' ') }), { today: AUJOURDHUI })[0],
+    /41 mots/
+  );
+});
+
+test('un événement d un jour, ce jour-là, est cohérent', () => {
+  assert.deepEqual(
+    cohérenceÉvénement(sain({ start_date: AUJOURDHUI, end_date: AUJOURDHUI }), { today: AUJOURDHUI }),
+    []
+  );
+});
+
+test('un événement sain est retenu, daté de sa vérification', async () => {
+  const { retenus, écartés } = await contrôler([sain()]);
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 1);
+  assert.ok(retenus[0].link_checked_at);
+});
+
+test('une source morte écarte l événement', async () => {
+  const event = sain();
+  const { fetcher } = sondeur({ [event.source_url]: 404 });
+  const { retenus, écartés } = await contrôler([event], { fetcher });
+
+  assert.equal(retenus.length, 0);
+  assert.match(écartés[0].raison, /source morte/);
+});
+
+test('un accès refusé garde l événement, sans date de vérification', async () => {
+  const event = sain();
+  const { fetcher } = sondeur({ [event.source_url]: 403 });
+  const { retenus } = await contrôler([event], { fetcher });
+
+  assert.equal(retenus.length, 1);
+  assert.equal(retenus[0].link_checked_at, null);
+});
+
+test('un domaine inconnu ÉCARTE l événement — il ne retient rien en brouillon', async () => {
+  const { retenus, écartés } = await contrôler([sain({ source_url: 'https://blog-inconnu.test/pop-up' })]);
+
+  assert.equal(retenus.length, 0);
+  assert.match(écartés[0].raison, /domaine inconnu : blog-inconnu\.test/);
+});
+
+test('un événement déjà connu du site est écarté', async () => {
+  const { retenus, écartés } = await contrôler([sain()], {
+    connus: [{ name: 'Pop-up Pokémon Center à Seongsu' }],
+  });
+
+  assert.equal(retenus.length, 0);
+  assert.match(écartés[0].raison, /déjà connu \(1\.00\)/);
+});
+
+test('un événement terminé est écarté sans coûter une sonde', async () => {
+  const { fetcher, vues } = sondeur();
+  const { écartés } = await contrôler([sain({ end_date: '2026-09-01' })], { fetcher });
+
+  assert.equal(écartés.length, 1);
+  assert.equal(vues.length, 0, "on ne sonde pas l'adresse d'un événement qu'on n'écrira pas");
+});
+
+test('une fiche Naver Map morte retire le CHAMP, pas l événement', async () => {
+  const event = sain({ map_url: 'https://naver.me/inventé' });
+  const { fetcher } = sondeur({ [event.map_url]: 404 });
+  const { retenus, écartés, liensRetirés } = await contrôler([event], { fetcher });
+
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 1);
+  assert.ok(!('map_url' in retenus[0]), 'le site posera son lien de recherche à la place');
+  assert.deepEqual(liensRetirés.map((l) => l.champ), ['map_url']);
+});
+
+test('une billetterie morte, de même', async () => {
+  const event = sain({ booking_url: 'https://tickets.interpark.com/fermé' });
+  const { fetcher } = sondeur({ [event.booking_url]: 404 });
+  const { retenus, liensRetirés } = await contrôler([event], { fetcher });
+
+  assert.equal(retenus.length, 1);
+  assert.ok(!('booking_url' in retenus[0]));
+  assert.equal(liensRetirés[0].champ, 'booking_url');
+});
+
+test('une fiche Naver Map n est pas une source : elle échappe à l allowlist', async () => {
+  // naver.me n'est pas dans config/sources.json, et ne doit pas y être.
+  const { retenus, écartés } = await contrôler([sain({ map_url: 'https://naver.me/abc' })]);
+
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus[0].map_url, 'https://naver.me/abc');
+});
+
+test('les objets de l agent ne sont jamais retouchés', async () => {
+  const event = sain({ map_url: 'https://naver.me/inventé' });
+  const { fetcher } = sondeur({ [event.map_url]: 404 });
+  await contrôler([event], { fetcher });
+
+  assert.equal(event.map_url, 'https://naver.me/inventé');
+  assert.ok(!('link_checked_at' in event));
+});
+
+test('sans événement, rien à dire', async () => {
+  assert.deepEqual(await contrôler([]), { retenus: [], écartés: [], liensRetirés: [] });
+});

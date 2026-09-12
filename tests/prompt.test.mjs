@@ -60,6 +60,21 @@ test("le prompt donne l'exemple d'un événement, et ses quatre thèmes", async 
   assert.ok(prompt.includes('/api/evenements.json'), "le prompt ne dit pas où lire les événements déjà connus");
 });
 
+test("l'exemple donné à l'agent porte un événement qui serait retenu", async () => {
+  // Le schéma ne dit ni « fin après début » ni « pas encore terminé » : c'est
+  // le tri des événements qui le dit, et l'exemple doit le passer aussi.
+  const { contrôlerÉvénements } = await import('../scripts/lib/evenements.mjs');
+  const { domains } = JSON.parse(await lire('config/sources.json'));
+  const { retenus, écartés } = await contrôlerÉvénements(exemple.events, {
+    domaines: domains,
+    connus: [],
+    today: exemple.date,
+    fetcher: async () => ({ ok: true, status: 200 }),
+  });
+  assert.deepEqual(écartés, []);
+  assert.equal(retenus.length, exemple.events.length);
+});
+
 test('le prompt annonce la bonne limite de mots', async () => {
   const { MAX_SUMMARY_WORDS } = await import('../scripts/lib/guards.mjs');
   assert.ok(
