@@ -164,6 +164,7 @@ seuls les liens courts `naver.me` répondent 404. D'où le repli.
 ```bash
 npm install
 npm test                 # les gardes, sur des briefs volontairement cassés
+npm run rendu            # construit le site contre un faux CMS et vérifie chaque page
 npm run dev              # demande DIRECTUS_URL et un jeton de lecture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 ```
