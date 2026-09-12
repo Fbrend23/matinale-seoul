@@ -74,6 +74,12 @@ jobs:
       - name: Types du site
         run: npm run check
 
+      # Le site se construit contre un CMS de pacotille, et chaque page, chaque
+      # flux, chaque JSON doit en sortir. astro check lit les types ; ceci lit le
+      # résultat. Une page qui casse se voyait jusqu'ici au déploiement du matin.
+      - name: Rendu du site
+        run: npm run rendu
+
       # Les workflows et le lanceur portent l'essentiel de la logique de
       # déploiement — dont un « mirror --delete » sur un compte FTP sans
       # corbeille — et sont la seule partie du dépôt qu'aucun test ne couvre.
