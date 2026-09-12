@@ -34,6 +34,18 @@ export function shortDate(isoDay) {
   }).format(new Date(`${isoDay}T12:00:00Z`));
 }
 
+/**
+ * « du 5 sept. au 12 oct. », ou « le 5 sept. » pour un événement d'un jour.
+ *
+ * Même format court que les listes d'archive, et même ancrage UTC : un jour
+ * ISO n'a pas de fuseau, et lui en prêter un décalerait la date d'un jour une
+ * partie de la journée.
+ */
+export function dateRange(début, fin) {
+  if (fin === début) return `le ${shortDate(début)}`;
+  return `du ${shortDate(début)} au ${shortDate(fin)}`;
+}
+
 /** L'heure de publication d'une source, dite à Séoul puisque c'est là qu'on lit. */
 export function sourceTime(iso) {
   if (!iso) return null;

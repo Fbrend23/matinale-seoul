@@ -49,6 +49,7 @@ const image = new URL('/og.png', Astro.site).toString();
       <nav aria-label="Navigation principale">
         <a href="/">Aujourd'hui</a>
         {SECTIONS.map((s) => <a href={`/sections/${s}/`}>{SECTION_LABELS[s]}</a>)}
+        <a href="/evenements/">Pop-ups &amp; événements</a>
         <a href="/briefs/">Archive</a>
       </nav>
     </header>

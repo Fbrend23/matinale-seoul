@@ -126,6 +126,25 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 | `published_at` | timestamp | nullable |
 | `link_checked_at` | timestamp | rempli par la garde n°2 |
 
+### `mat_events`
+
+Ajoutée après coup, pour l'onglet « Pop-ups & événements ». Un événement dure
+au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
+
+| champ | type | notes |
+|---|---|---|
+| `status` | système | idem ; l'ingestion archive ce dont `end_date` est passée, à chaque run |
+| `brief` | m2o → `mat_briefs` | **non requis** : un événement survit à son brief |
+| `name` | string | |
+| `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
+| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` — pas de « autre » |
+| `venue`, `area` | string | le lieu tel qu'on le cherche sur Naver Map, et le quartier |
+| `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
+| `summary` | text | 40 mots max |
+| `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |
+| `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |
+| `link_checked_at` | timestamp | rempli par la sonde de la source |
+
 ### Trois développements dans `provision-client.mjs`
 
 Déclaratifs, jamais à la main dans l'interface : l'instance est mutualisée, ce qui n'est pas dans
@@ -184,6 +203,10 @@ section. `published_at` omis si la source ne donne pas d'horodatage fiable.
 
 Le champ `status` a disparu du contrat : il est décidé par l'ingestion, pas par l'agent.
 
+Le fichier peut porter un tableau `events` facultatif — voir `$defs/event` dans le
+schéma. Ce n'est pas une cinquième rubrique : les quatre `key` restent seules dans
+`sections`, et `events` vit à la racine.
+
 Écrire `schemas/brief.schema.json` et valider contre lui.
 
 ---
@@ -211,6 +234,13 @@ le fichier reste dans `inbox/` pour rejeu.
 
 **Idempotence.** Si un brief `published` existe déjà pour cette date, l'ingestion s'arrête sans
 rien écrire et le workflow sort en succès.
+
+**Les événements ne sont pas une sixième garde.** Chaque événement passe ses propres contrôles
+— dates réelles, fin ≥ début, fin ≥ aujourd'hui, 40 mots, allowlist, doublons contre les
+événements actifs, source vivante — et ce qui échoue est **écarté** avec un `::warning::`,
+jamais le brief : un domaine inconnu écarte au lieu de retenir en brouillon, une collection
+absente est un avertissement. Ils sont écrits après le brief, rattachés à lui, toujours
+`published`. À chaque run, ce dont `end_date` est passée est archivé.
 
 ---
 

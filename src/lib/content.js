@@ -13,6 +13,7 @@
 
 import { DIRECTUS_URL, DIRECTUS_TOKEN } from 'astro:env/server';
 import { SECTIONS } from '../../shared/sections.mjs';
+import { seoulToday } from '../../shared/date.mjs';
 import { créerMémo } from './une-fois.js';
 import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
 
@@ -60,9 +61,30 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * Un brief tel que les pages le consomment : ses items rangés par section.
  */
 
+/**
+ * @typedef {object} Evenement
+ * @property {number}      id
+ * @property {number|null} brief        brief qui l'a repéré ; null s'il a disparu
+ * @property {string}      name
+ * @property {string}      kind         une clé de shared/evenements.mjs KINDS
+ * @property {string}      theme        une clé de THEMES
+ * @property {string}      venue
+ * @property {string}      area
+ * @property {string}      start_date   AAAA-MM-JJ
+ * @property {string}      end_date     AAAA-MM-JJ, dernier jour inclus
+ * @property {string}      summary
+ * @property {string}      source_name
+ * @property {string}      source_url
+ * @property {string|null} source_lang
+ * @property {string|null} booking_url
+ * @property {string|null} map_url      fiche Naver Map vue par l'agent ; sinon
+ *   le site construit un lien de recherche
+ */
+
 
 const BRIEFS = 'mat_briefs';
 const ITEMS = 'mat_news_items';
+const EVENTS = 'mat_events';
 
 async function request(path) {
   let res;
@@ -260,4 +282,30 @@ export async function allBriefs() {
   const briefs = await listBriefs();
   const items = await itemsFor(briefs.map((b) => b.id));
   return briefs.map((b) => assemble(b, items.get(b.id) ?? []));
+}
+
+/**
+ * Les événements publiés encore en cours ou à venir, du plus proche au plus
+ * lointain.
+ *
+ * ZÉRO N'EST PAS UNE PANNE, à la différence des briefs : une semaine sans
+ * pop-up existe, et la page le dit. Une collection absente, elle, reste une
+ * panne — la requête échoue, et le build avec, comme pour toute source qui
+ * manque.
+ *
+ * Filtré sur la date de fin au build, ce qui suffit presque : le site se
+ * reconstruit chaque matin. Le « presque » est un build qui échoue — et la page
+ * le rattrape chez le lecteur, en quelques lignes, comme l'avis de parution.
+ *
+ * @returns {Promise<Evenement[]>}
+ */
+export function listEvents() {
+  return uneFois('events', () =>
+    requestAll(
+      `/items/${EVENTS}?sort=start_date,end_date,name` +
+        `&filter[end_date][_gte]=${seoulToday()}` +
+        `&fields=id,brief,name,kind,theme,venue,area,start_date,end_date,summary,` +
+        `source_name,source_url,source_lang,booking_url,map_url`
+    )
+  );
 }
