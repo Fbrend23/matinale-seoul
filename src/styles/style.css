@@ -14,7 +14,7 @@
   --carte: #ffffff;
   --mesure: 44rem;        /* la colonne de texte */
   --cote: 15rem;          /* la colonne latérale */
-  --mesure-page: calc(var(--mesure) + 3rem + var(--cote));   /* les deux, et l'en-tête */
+  --mesure-page: var(--mesure);   /* la page entière, et l'en-tête : réglée par le nombre de colonnes */
 
   /* Une couleur par thème d'événement, pour la carte. Sobres : c'est un repère
      à la lecture, pas une identité de marque. */
@@ -66,18 +66,47 @@ body {
   gap: 2rem 3rem;
 }
 .page[data-cote="oui"] { grid-template-columns: minmax(0, var(--mesure)) var(--cote); }
+.page[data-gauche="oui"] { grid-template-columns: var(--cote) minmax(0, var(--mesure)); }
+.page[data-gauche="oui"][data-cote="oui"] { grid-template-columns: var(--cote) minmax(0, var(--mesure)) var(--cote); }
 .page[data-largeur="large"] { grid-template-columns: minmax(0, 1fr); }
+
+/* Le texte d'abord dans le document, la colonne de gauche à sa gauche à
+   l'écran : c'est la grille qui les place, pas l'ordre des balises. */
+.page[data-gauche="oui"] > main { grid-column: 2; grid-row: 1; }
+.page[data-gauche="oui"] > .gauche { grid-column: 1; grid-row: 1; }
+.page[data-gauche="oui"] > .cote { grid-column: 3; grid-row: 1; }
+
+/* L'en-tête et le pied s'alignent sur la page qu'ils encadrent. */
+body[data-colonnes="2"] { --mesure-page: calc(var(--mesure) + 3rem + var(--cote)); }
+body[data-colonnes="3"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
 
 main { min-width: 0; }
 main > h1:first-child { margin-top: 2rem; }
 
-.cote { align-self: start; position: sticky; top: 1.5rem; padding-top: 2.5rem; }
+.cote, .gauche { align-self: start; position: sticky; top: 1.5rem; padding-top: 2.5rem; }
 
-@media (max-width: 64rem) {
-  /* Une seule colonne : la colonne latérale passe au-dessus du texte, en
-     bandeau, et ne colle plus. */
-  .page[data-cote="oui"] { grid-template-columns: minmax(0, 1fr); }
-  .cote { order: -1; position: static; padding-top: 1.5rem; }
+@media (max-width: 80rem) {
+  /* Plus la place pour trois colonnes : les deux latérales passent au-dessus
+     du texte, en bandeaux côte à côte, et ne collent plus. */
+  .page[data-cote="oui"], .page[data-gauche="oui"], .page[data-gauche="oui"][data-cote="oui"] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .page[data-gauche="oui"] > main, .page > main { grid-column: 1 / -1; grid-row: 2; }
+  .page[data-gauche="oui"] > .gauche { grid-column: 1; grid-row: 1; }
+  .page[data-gauche="oui"] > .cote { grid-column: 2; grid-row: 1; }
+  .page[data-gauche="non"][data-cote="oui"] > .cote { grid-column: 1 / -1; grid-row: 1; }
+  .cote, .gauche { position: static; padding-top: 1.5rem; }
+  /* Et la page revient à la mesure du texte : les bandeaux se partagent la
+     largeur d'une colonne de lecture, ils ne l'élargissent pas. */
+  body[data-colonnes="2"], body[data-colonnes="3"] { --mesure-page: var(--mesure); }
+}
+
+@media (max-width: 48rem) {
+  /* Un seul bandeau par ligne. */
+  .page[data-gauche="oui"][data-cote="oui"] { grid-template-columns: minmax(0, 1fr); }
+  .page[data-gauche="oui"] > .gauche { grid-row: 1; grid-column: 1; }
+  .page[data-gauche="oui"] > .cote { grid-row: 2; grid-column: 1; }
+  .page[data-gauche="oui"] > main { grid-row: 3; }
 }
 
 a { color: var(--accent); text-underline-offset: 0.2em; }
@@ -179,7 +208,32 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .meteo a { color: inherit; text-decoration-color: var(--trait); }
 .meteo a:hover { color: var(--accent); }
 
-@media (max-width: 64rem) {
+/* Le cours du change : même carte que la météo, le taux en grand. */
+.change {
+  padding: 1rem 1.1rem 0.8rem;
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  background: var(--carte);
+  color: var(--doux);
+  font-size: 0.9rem;
+}
+.change p { margin: 0; }
+.change-titre { display: flex; justify-content: space-between; gap: 0.5rem; }
+.change-titre .devises { font-variant-caps: small-caps; letter-spacing: 0.04em; font-weight: 600; color: var(--texte); }
+.change-taux { margin: 0.5rem 0 0.15rem; color: var(--texte); font-size: 1.7rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.change-taux small { font-size: 0.95rem; font-weight: 400; color: var(--doux); letter-spacing: 0; }
+.change-inverse { color: var(--texte); font-variant-numeric: tabular-nums; }
+.change-source { margin-top: 0.6rem; font-size: 0.78rem; }
+.change a { color: inherit; text-decoration-color: var(--trait); }
+.change a:hover { color: var(--accent); }
+
+@media (max-width: 80rem) {
+  .change { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
+  .change-taux { margin: 0; font-size: 1.4rem; }
+  .change-source { margin: 0 0 0 auto; }
+}
+
+@media (max-width: 80rem) {
   /* En bandeau : tout sur une ligne, l'icône et les degrés d'abord. */
   .meteo { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
   .meteo-corps { margin: 0; }

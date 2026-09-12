@@ -31,6 +31,7 @@ import {
   archiveExpiredEvents,
 } from './directus.mjs';
 import { relevéMétéo } from './meteo.mjs';
+import { relevéChange } from './change.mjs';
 import { contrôlerÉvénements } from './evenements.mjs';
 
 export const NOM_ATTENDU = /^brief-(\d{4}-\d{2}-\d{2})\.json$/;
@@ -51,6 +52,7 @@ export const NOM_ATTENDU = /^brief-(\d{4}-\d{2}-\d{2})\.json$/;
  * @param {object} p.schéma       brief.schema.json, déjà lu
  * @param {string[]} p.domaines   l'allowlist, déjà lue
  * @param {Function} [p.relevé]   le bulletin météo ; injectable pour les tests
+ * @param {Function} [p.cours]    le cours du change ; injectable de même
  * @param {Function} [p.dire]     le journal du run
  * @param {Function} [p.annoter]  les annotations GitHub Actions (::warning::)
  * @returns {Promise<{statut: string, raison?: string, brief?: object, id?: any}>}
@@ -63,6 +65,7 @@ export async function ingérer({
   schéma,
   domaines,
   relevé = relevéMétéo,
+  cours = relevéChange,
   dire = () => {},
   annoter = () => {},
 }) {
@@ -198,6 +201,18 @@ export async function ingérer({
     annoter(`::warning::Météo absente du brief ${brief.date} : ${e.message}`);
   }
 
+  // --- Cours du change ---
+  // Même statut que la météo, mêmes raisons : un accessoire, qui n'a rien à
+  // recaler et dont l'absence se lit au journal du run.
+  let change = null;
+  try {
+    change = await cours({ date: brief.date });
+    dire(`   change · 1 ${change.base} = ${change.rate} ${change.quote} (cours BCE du ${change.rate_date})`);
+  } catch (e) {
+    dire(`   change · indisponible, le brief part sans son bloc : ${e.message}`);
+    annoter(`::warning::Cours du change absent du brief ${brief.date} : ${e.message}`);
+  }
+
   // --- Écriture ---
   // Les notes se calculent sur « restant », donc APRÈS les gardes : une rubrique
   // que les liens morts ont vidée reçoit la sienne, là où le fichier de l'agent
@@ -213,6 +228,7 @@ export async function ingérer({
     items: retenus,
     status: statut,
     weather: météo,
+    fx: change,
     emptyNotes: notes,
     ingestStatus: 'ok',
     failureReason: inconnus.length

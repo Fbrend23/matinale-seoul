@@ -1,0 +1,38 @@
+---
+// Le cours du won contre le franc, en widget à côté du brief.
+//
+// Se garde lui-même, comme le bulletin météo : un brief sans relevé — service
+// muet ce matin-là, ou brief paru avant ce module — ne rend rien.
+//
+// Deux lectures du même taux : combien de wons pour un franc, et ce que vaut
+// un billet de 10 000 wons, parce que c'est la coupure qu'on a en main.
+import { shortDate } from '../lib/date.js';
+
+const { fx } = Astro.props;
+
+const taux = typeof fx?.rate === 'number' && fx.rate > 0 ? fx.rate : null;
+
+// Espaces fines insécables entre les milliers, virgule décimale : la typographie
+// du lecteur, pas celle de l'API.
+const wons = new Intl.NumberFormat('fr-CH', { maximumFractionDigits: 0 });
+const francs = new Intl.NumberFormat('fr-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+{taux !== null && (
+  <div class="change">
+    <p class="change-titre">
+      <span class="devises">CHF · KRW</span>
+      {fx.rate_date && <time datetime={fx.rate_date}>{shortDate(fx.rate_date)}</time>}
+    </p>
+
+    <p class="change-taux">
+      <small>1 CHF =</small> {wons.format(taux)}&#8239;₩
+    </p>
+    <p class="change-inverse">10&#8239;000&#8239;₩ = {francs.format(10_000 / taux)}&#8239;CHF</p>
+
+    {/* Taux de référence de la BCE, servis par Frankfurter : la source est due. */}
+    <p class="change-source">
+      Cours BCE · <a href="https://frankfurter.dev/" rel="nofollow noopener" target="_blank">Frankfurter</a>
+    </p>
+  </div>
+)}

@@ -33,6 +33,7 @@ const NOM = `brief-${JOUR}.json`;
 const brief = (retouche = (b) => b) => retouche(structuredClone(VALIDE));
 
 const bulletin = { date: JOUR, tmin: 18, tmax: 26, code: 1 };
+const cours = { date: JOUR, rate_date: JOUR, base: 'CHF', quote: 'KRW', rate: 1646.98, source: 'frankfurter' };
 
 /**
  * Client CMS factice.
@@ -94,7 +95,14 @@ const sondeur = (parURL = {}) => {
 };
 
 /** Lance l'ingestion avec des dépendances saines par défaut. */
-const lancer = ({ client, texte, nom = NOM, relevé = async () => bulletin, aujourdhui = JOUR } = {}) =>
+const lancer = ({
+  client,
+  texte,
+  nom = NOM,
+  relevé = async () => bulletin,
+  change = async () => cours,
+  aujourdhui = JOUR,
+} = {}) =>
   ingérer({
     nom,
     texte: texte ?? JSON.stringify(VALIDE),
@@ -103,6 +111,7 @@ const lancer = ({ client, texte, nom = NOM, relevé = async () => bulletin, aujo
     schéma,
     domaines,
     relevé,
+    cours: change,
   });
 
 /** Le brief écrit dans le CMS, s'il l'a été. */
@@ -322,6 +331,7 @@ test('une météo absente est annoncée au run, sans le faire rougir', async () 
     relevé: async () => {
       throw new Error('HTTP 503');
     },
+    cours: async () => cours,
     annoter: (m) => annonces.push(m),
   });
 
@@ -412,6 +422,7 @@ const lancerAvecÉvénements = ({ client, annoter, aujourdhui = JOUR, texte } = 
     schéma,
     domaines,
     relevé: async () => bulletin,
+    cours: async () => cours,
     annoter: annoter ?? (() => {}),
   });
 
@@ -537,4 +548,38 @@ test('les événements viennent APRÈS le brief : ils portent son identifiant', 
   const rangBrief = client.écritures.findIndex((e) => e.chemin.includes('mat_briefs'));
   const rangÉvénements = client.écritures.findIndex((e) => e.chemin.includes('mat_events'));
   assert.ok(rangBrief < rangÉvénements);
+});
+
+// --- Le cours du change : même statut que la météo --------------------------
+
+test('le cours du change part avec le brief', async () => {
+  sondeur();
+  const client = fauxClient();
+  await lancer({ client });
+
+  assert.deepEqual(briefÉcrit(client).fx, cours);
+});
+
+test('un service de change muet ne retient jamais un brief', async () => {
+  sondeur();
+  const client = fauxClient();
+  const annonces = [];
+  const issue = await ingérer({
+    nom: NOM,
+    texte: JSON.stringify(VALIDE),
+    client,
+    aujourdhui: JOUR,
+    schéma,
+    domaines,
+    relevé: async () => bulletin,
+    cours: async () => {
+      throw new Error('HTTP 502');
+    },
+    annoter: (m) => annonces.push(m),
+  });
+
+  assert.equal(issue.statut, 'publié');
+  assert.equal(briefÉcrit(client).fx, undefined, 'la clé reste hors de la charge');
+  assert.equal(annonces.length, 1);
+  assert.match(annonces[0], /^::warning::Cours du change absent/);
 });
