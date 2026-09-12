@@ -1,0 +1,166 @@
+{
+  "date": "2026-09-13",
+  "title": "Chuseok approche, Séoul rassure sur le pétrole, Blizzard relance StarCraft et Diablo",
+  "standfirst": "Une journée calme côté actualité coréenne, entre gestes symboliques - jeans autorisés à la fonction publique, boycott répété du site de Sado - et assurances présidentielles sur les prix de l'énergie. Côté jeu vidéo, la BlizzCon fait revenir StarCraft sous forme de jeu de tir et annonce Diablo 5 pour 2029.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Où partir pour un court séjour de Chuseok",
+          "summary": "Sokcho pour la randonnée automnale et les sources chaudes, Gyeongju pour ses sites historiques et ses fleurs roses, Andong pour son festival de danse masquée : trois idées d'escapade pour la fête.",
+          "importance": 1,
+          "tags": ["chuseok", "voyage-domestique"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10869414",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Korean Air lance son Wi-Fi Starlink gratuit le 15 septembre",
+          "summary": "Le service démarre sur quatre appareils rétrofités avant de s'étendre à la majorité de la flotte d'ici fin 2027, sur les routes vers les Amériques, l'Europe et l'Asie du Sud-Est.",
+          "importance": 2,
+          "tags": ["korean-air", "wifi", "aviation"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10870311",
+          "source_lang": "en",
+          "published_at": "2026-09-11T11:07:00+09:00"
+        },
+        {
+          "headline": "Le mur d'onggi de Haebangchon, repère touristique, disparaît",
+          "summary": "La boutique Hanshin Onggi a retiré ses poteries traditionnelles après quarante ans, l'administration lui réclamant des frais d'occupation du terrain. Sa propriétaire y voyait un repère apprécié des touristes du quartier.",
+          "importance": 3,
+          "tags": ["haebangchon", "patrimoine-urbain"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10870959",
+          "source_lang": "en",
+          "published_at": "2026-09-11T18:52:30+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Jae-myung assure que les prix du pétrole sont sous contrôle",
+          "summary": "Le président affirme que la Corée a réduit sa dépendance au pétrole du Moyen-Orient de 70 à 50 %, et mise sur les réserves stratégiques et la lutte anti-spéculation. « Ne vous inquiétez pas du tout », dit-il.",
+          "analysis": "Le message présidentiel vise à couper court aux craintes d'inflation avant Chuseok, alors que les tensions au Moyen-Orient font grimper les cours du brut depuis plusieurs jours.",
+          "importance": 1,
+          "tags": ["petrole", "politique-energetique"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/politics/20260912/president-lee-reassures-public-over-oil-prices-amid-escalating-middle-east-tensions",
+          "source_lang": "en",
+          "published_at": "2026-09-12T18:46:00+09:00"
+        },
+        {
+          "headline": "Séoul boycotte pour la troisième année la cérémonie du site minier de Sado",
+          "summary": "Le Japon n'a de nouveau pas mentionné explicitement le travail forcé des Coréens lors de la cérémonie annuelle. Séoul organisera sa propre commémoration et exhorte Tokyo à appliquer les recommandations du Comité du patrimoine mondial.",
+          "importance": 2,
+          "tags": ["japon", "memoire-historique"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/foreignaffairs/20260912/japan-again-makes-no-mention-of-koreans-forced-labor-at-sado-memorial-event",
+          "source_lang": "en",
+          "published_at": "2026-09-12T18:49:00+09:00"
+        },
+        {
+          "headline": "La fonction publique autorise jeans et baskets aux entretiens",
+          "summary": "Le ministère de la Gestion du personnel publie des directives illustrées par IA pour remplacer le costume noir de rigueur aux entretiens. But : réduire la pression financière et psychologique des candidats, dès octobre.",
+          "importance": 3,
+          "tags": ["fonction-publique", "societe"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871252",
+          "source_lang": "en",
+          "published_at": "2026-09-12T17:23:51+09:00"
+        },
+        {
+          "headline": "Un porte-conteneurs coréen atteint le Royaume-Uni via la route arctique",
+          "summary": "Le Panstar Acro rallie Felixstowe, à mi-parcours d'un voyage test reliant la Corée à l'Europe par l'Arctique, une route 32 % plus courte. Séoul évalue sa navigabilité future à mesure que la banquise recule.",
+          "importance": 4,
+          "tags": ["arctique", "transport-maritime"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871205",
+          "source_lang": "en",
+          "published_at": "2026-09-12T14:02:47+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sam Altman écarte une entrée en bourse d'OpenAI dès 2026",
+          "summary": "Le patron d'OpenAI juge une introduction en bourse « mal avisée » vu les enjeux de sécurité de l'IA. L'entreprise attendra 2027 ou plus tard, quand le moment conviendra socialement et pour l'activité.",
+          "importance": 1,
+          "tags": ["openai", "gouvernance"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/12/openais-sam-altman-says-it-would-be-ill-advised-to-go-public-in-2026/",
+          "source_lang": "en",
+          "published_at": "2026-09-12T13:19:00-07:00"
+        },
+        {
+          "headline": "Anthropic propose un plan pour ralentir le rythme de l'IA",
+          "summary": "Dario Amodei détaille trois pistes : évaluateurs externes comme METR, normes de sécurité communes entre grands acteurs sous médiation gouvernementale, et coordination mondiale, Chine incluse, sur les usages dangereux de l'IA.",
+          "importance": 2,
+          "tags": ["anthropic", "securite-ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/12/anthropic-ceo-outlines-plan-to-pace-the-frontier/",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Blizzard annonce un nouveau StarCraft, tir en monde ouvert pour 2030",
+          "summary": "Dévoilé à la BlizzCon, le projet est mené par Dan Hay, ex-producteur de Far Cry, soixante-dix ans après StarCraft II. Seul un trailer cinématique a été montré, sans gameplay ni plateforme annoncée.",
+          "importance": 1,
+          "tags": ["blizzard", "starcraft", "blizzcon"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/fps/new-starcraft-game-is-an-open-world-shooter-coming-in-2030/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Diablo 5 annoncé pour le printemps 2029",
+          "summary": "À la BlizzCon, Blizzard dévoile Diablo 5 : Sanctuaire y est déjà tombé, Diablo a triomphé et les héros ont disparu. Un premier teaser a été montré, sans séquences de jeu pour l'instant.",
+          "importance": 2,
+          "tags": ["blizzard", "diablo", "blizzcon"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/blizzard-announces-diablo-5-for-2029-release/",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pokémon Méga Festa 2026 : la sortie automnale de Pikachu",
+      "kind": "festival",
+      "theme": "pokemon",
+      "venue": "Hiker Ground",
+      "area": "Jung-gu",
+      "start_date": "2026-09-18",
+      "end_date": "2026-10-11",
+      "summary": "Exposition, art numérique et boutique éphémère autour d'un Pikachu en hanbok, au centre touristique Hiker Ground. Photocalls et jeu de piste aussi à l'aéroport d'Incheon et sur le train express.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=320362",
+      "source_lang": "ko"
+    },
+    {
+      "name": "ENHYPEN - House of Vampire : Dive into ENHYPEN Chronicle",
+      "kind": "exposition",
+      "theme": "kpop",
+      "venue": "Ara Art Center",
+      "area": "Insadong",
+      "start_date": "2026-08-13",
+      "end_date": "2026-09-27",
+      "summary": "Exposition immersive de HYBE autour de l'univers vampirique du groupe ENHYPEN, à l'occasion de leur mini-album « The Sin : Bliss ». Billetterie via Melon Ticket, deux formules d'entrée.",
+      "source_name": "allkpop",
+      "source_url": "https://www.allkpop.com/article/2026/08/hybe-brings-enhypens-house-of-vampire-immersive-exhibition-to-seoul",
+      "source_lang": "en"
+    }
+  ]
+}
