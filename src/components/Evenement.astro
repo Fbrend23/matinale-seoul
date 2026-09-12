@@ -5,9 +5,14 @@
 // trouver ce qui se passe ce week-end, pas pour lire de haut en bas. D'où le
 // thème en couleur, les dates et le lieu avant le texte, et les liens en pied.
 import { dateRange } from '../lib/date.js';
-import { KIND_LABELS, THEME_LABELS, lienNaverMap } from '../../shared/evenements.mjs';
+import { KIND_LABELS, THEME_LABELS, lienNaverMap, badgeDélai } from '../../shared/evenements.mjs';
 
-const { event } = Astro.props;
+const { event, today } = Astro.props;
+
+// Combien de jours il reste — le nombre, pas un « bientôt » : c'est lui qui
+// décide d'un week-end. Calculé au build, comme le reste de la page, qui se
+// reconstruit chaque matin.
+const badge = today ? badgeDélai(event, today) : null;
 
 // La fiche vue par l'agent quand il y en a une, le lien de recherche sinon.
 // Le second n'est jamais inventé : il pose une question à Naver, il n'affirme
@@ -21,6 +26,7 @@ const carte = event.map_url ?? lienNaverMap(event);
   <p class="evenement-theme">
     <span class="pastille">{THEME_LABELS[event.theme] ?? event.theme}</span>
     <span class="genre">{KIND_LABELS[event.kind] ?? event.kind}</span>
+    {badge && <span class="delai" data-urgent={badge.urgent ? 'oui' : 'non'}>{badge.texte}</span>}
   </p>
 
   <h3>{event.name}</h3>

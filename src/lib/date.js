@@ -11,8 +11,8 @@
 //
 // Importé ET réexporté : sourceTime() se sert de SEOUL plus bas, et une simple
 // réexportation ne met pas le nom dans la portée du module.
-import { SEOUL, seoulToday } from '../../shared/date.mjs';
-export { SEOUL, seoulToday };
+import { SEOUL, seoulToday, joursEntre, jourPlus } from '../../shared/date.mjs';
+export { SEOUL, seoulToday, joursEntre, jourPlus };
 
 /** « jeudi 4 septembre 2026 » — la date affichée en tête de brief. */
 export function longDate(isoDay) {
@@ -59,7 +59,4 @@ export function sourceTime(iso) {
 }
 
 /** Écart en jours entre deux jours ISO. Sert à dire « le brief date d'hier ». */
-export function daysBetween(a, b) {
-  const ms = new Date(`${b}T00:00:00Z`) - new Date(`${a}T00:00:00Z`);
-  return Math.round(ms / 86_400_000);
-}
+export const daysBetween = joursEntre;

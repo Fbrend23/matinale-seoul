@@ -18,6 +18,9 @@ import {
   THEME_LABELS,
   lienNaverMap,
   grouperParÉtat,
+  weekEndDe,
+  badgeDélai,
+  JOURS_URGENTS,
 } from '../shared/evenements.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -57,18 +60,46 @@ test('sans quartier, la recherche porte sur le seul lieu, sans espace traînant'
   assert.equal(lienNaverMap({ venue: 'KSPO Dome', area: null }), 'https://map.naver.com/p/search/KSPO%20Dome');
 });
 
-// --- En cours, à venir, terminé ----------------------------------------------
+// --- Le week-end qui vient ----------------------------------------------------
+
+test('le week-end qui vient, vu de chaque jour de la semaine', () => {
+  // Le 4 septembre 2026 est un vendredi.
+  assert.deepEqual(weekEndDe('2026-09-04'), { samedi: '2026-09-05', dimanche: '2026-09-06' });
+  assert.deepEqual(weekEndDe('2026-08-31'), { samedi: '2026-09-05', dimanche: '2026-09-06' }, 'le lundi vise déjà le samedi');
+  assert.deepEqual(weekEndDe('2026-09-05'), { samedi: '2026-09-05', dimanche: '2026-09-06' }, 'le samedi, on y est');
+  assert.deepEqual(weekEndDe('2026-09-06'), { samedi: '2026-09-05', dimanche: '2026-09-06' }, 'le dimanche, le samedi est passé');
+});
+
+// --- Ce week-end, en cours, à venir, terminé ---------------------------------
 
 const ev = (name, start_date, end_date) => ({ name, start_date, end_date });
 
-test('un événement se range selon le jour, et les terminés sortent', () => {
-  const { enCours, àVenir } = grouperParÉtat(
-    [ev('fini', '2026-08-01', '2026-09-03'), ev('ouvert', '2026-09-01', '2026-09-10'), ev('bientôt', '2026-09-05', '2026-09-06')],
+test('trois groupes sans recouvrement, et les terminés sortent', () => {
+  // Vendredi 4 : le week-end est les 5 et 6.
+  const { ceWeekEnd, enCours, àVenir, weekEnd } = grouperParÉtat(
+    [
+      ev('fini', '2026-08-01', '2026-09-03'),
+      ev('long pop-up', '2026-09-01', '2026-10-10'),
+      ev('ferme vendredi', '2026-09-01', '2026-09-04'),
+      ev('concert de dimanche', '2026-09-06', '2026-09-06'),
+      ev('semaine prochaine', '2026-09-08', '2026-09-12'),
+    ],
     '2026-09-04'
   );
 
-  assert.deepEqual(enCours.map((e) => e.name), ['ouvert']);
-  assert.deepEqual(àVenir.map((e) => e.name), ['bientôt']);
+  assert.deepEqual(weekEnd, { samedi: '2026-09-05', dimanche: '2026-09-06' });
+  assert.deepEqual(ceWeekEnd.map((e) => e.name), ['long pop-up', 'concert de dimanche']);
+  assert.deepEqual(enCours.map((e) => e.name), ['ferme vendredi']);
+  assert.deepEqual(àVenir.map((e) => e.name), ['semaine prochaine']);
+});
+
+test('le dimanche, ce qui a fermé samedi est terminé, et le week-end se réduit au jour même', () => {
+  const { ceWeekEnd, enCours } = grouperParÉtat(
+    [ev('fermé hier', '2026-09-01', '2026-09-05'), ev('encore ouvert', '2026-09-01', '2026-09-06')],
+    '2026-09-06'
+  );
+  assert.deepEqual(ceWeekEnd.map((e) => e.name), ['encore ouvert']);
+  assert.equal(enCours.length, 0);
 });
 
 test('le dernier jour est inclus : un événement qui finit aujourd hui est encore en cours', () => {
@@ -76,15 +107,36 @@ test('le dernier jour est inclus : un événement qui finit aujourd hui est enco
   assert.equal(enCours.length, 1);
 });
 
-test('un événement d un seul jour, ce jour-là, est en cours', () => {
-  const { enCours, àVenir } = grouperParÉtat([ev('concert', '2026-09-04', '2026-09-04')], '2026-09-04');
+test('un événement d un seul jour, ce jour-là en semaine, est en cours', () => {
+  // Mercredi 2 septembre.
+  const { enCours, àVenir, ceWeekEnd } = grouperParÉtat([ev('concert', '2026-09-02', '2026-09-02')], '2026-09-02');
   assert.equal(enCours.length, 1);
   assert.equal(àVenir.length, 0);
+  assert.equal(ceWeekEnd.length, 0);
 });
 
 test('l ordre d arrivée est conservé dans chaque groupe', () => {
-  const { àVenir } = grouperParÉtat([ev('b', '2026-09-06', '2026-09-06'), ev('a', '2026-09-05', '2026-09-05')], '2026-09-01');
+  const { àVenir } = grouperParÉtat([ev('b', '2026-09-09', '2026-09-09'), ev('a', '2026-09-08', '2026-09-08')], '2026-09-01');
   assert.deepEqual(àVenir.map((e) => e.name), ['b', 'a']);
+});
+
+// --- Le badge : des jours, pas un « bientôt » --------------------------------
+
+test('le badge compte les jours restants, et passe en urgent sous une semaine', () => {
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-01', '2026-09-04'), '2026-09-04'), { texte: 'Dernier jour', urgent: true });
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-01', '2026-09-05'), '2026-09-04'), { texte: '1 jour restant', urgent: true });
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-01', '2026-09-11'), '2026-09-04'), { texte: '7 jours restants', urgent: true });
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-01', '2026-09-12'), '2026-09-04'), { texte: '8 jours restants', urgent: false });
+  assert.equal(JOURS_URGENTS, 7);
+});
+
+test('le badge d un événement à venir dit dans combien de jours', () => {
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-05', '2026-09-06'), '2026-09-04'), { texte: 'Demain', urgent: false });
+  assert.deepEqual(badgeDélai(ev('x', '2026-09-20', '2026-09-21'), '2026-09-04'), { texte: 'Dans 16 jours', urgent: false });
+});
+
+test('un événement terminé n a pas de badge', () => {
+  assert.equal(badgeDélai(ev('x', '2026-08-01', '2026-09-03'), '2026-09-04'), null);
 });
 
 // --- Ce qui écarte un événement ----------------------------------------------

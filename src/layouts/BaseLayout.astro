@@ -55,7 +55,7 @@ const image = new URL('/og.png', Astro.site).toString();
     <slot name="tete" />
   </head>
 
-  <body data-colonnes={colonnes}>
+  <body data-colonnes={colonnes} data-largeur={largeur}>
     <a class="saut" href="#contenu">Aller au contenu</a>
 
     <header class="entete">

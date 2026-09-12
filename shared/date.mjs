@@ -31,3 +31,19 @@ export function seoulToday(now = new Date()) {
     day: '2-digit',
   }).format(now);
 }
+
+/**
+ * Écart en jours entre deux jours AAAA-MM-JJ, ancré sur UTC : un jour ISO n'a
+ * pas de fuseau, et lui en prêter un ferait rendre 30,96 jours arrondis au
+ * petit bonheur par-dessus un changement d'heure.
+ */
+export function joursEntre(a, b) {
+  return Math.round((new Date(`${b}T00:00:00Z`) - new Date(`${a}T00:00:00Z`)) / 86_400_000);
+}
+
+/** Le jour AAAA-MM-JJ décalé de n jours. */
+export function jourPlus(jour, n) {
+  const d = new Date(`${jour}T00:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+}

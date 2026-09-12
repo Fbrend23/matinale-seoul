@@ -38,6 +38,22 @@ export const THEME_LABELS = {
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');
 
+import { joursEntre, jourPlus } from './date.mjs';
+
+/**
+ * Le week-end qui vient : samedi et dimanche prochains — ou ceux en cours,
+ * quand on est déjà dedans. Le dimanche, le samedi est passé : le week-end se
+ * réduit au jour même, et ce qui a fermé la veille n'y figure plus.
+ *
+ * @param {string} today  le jour à Séoul
+ * @returns {{samedi: string, dimanche: string}}
+ */
+export function weekEndDe(today) {
+  const jour = new Date(`${today}T00:00:00Z`).getUTCDay(); // 0 = dimanche
+  const samedi = jour === 0 ? jourPlus(today, -1) : jourPlus(today, 6 - jour);
+  return { samedi, dimanche: jourPlus(samedi, 1) };
+}
+
 /**
  * Le lien de recherche Naver Map, construit du lieu et du quartier.
  *
@@ -58,25 +74,61 @@ export function lienNaverMap({ venue, area }) {
 }
 
 /**
- * En cours, à venir — et les terminés sortent.
+ * Trois groupes, sans recouvrement, et les terminés sortent.
  *
- * Comparaison de chaînes AAAA-MM-JJ, comme partout dans le dépôt : l'ordre
- * des chaînes est celui des jours. `end_date` est le dernier jour INCLUS, donc
- * un événement qui finit aujourd'hui est encore en cours ce soir.
+ *   ceWeekEnd  ouvert samedi ou dimanche prochains — la question qu'on se pose
+ *              vraiment le jeudi soir. Un pop-up de deux mois y est aussi.
+ *   enCours    ouvert aujourd'hui, mais fermé avant le week-end
+ *   àVenir     commence après le week-end
+ *
+ * Sans recouvrement, parce qu'une grille de cartes qui répète les mêmes
+ * cartes deux fois ne se parcourt plus. Comparaison de chaînes AAAA-MM-JJ,
+ * comme partout : l'ordre des chaînes est celui des jours. `end_date` est le
+ * dernier jour INCLUS.
  *
  * @template {{start_date: string, end_date: string}} E
  * @param {E[]} events
  * @param {string} today  le jour à Séoul
- * @returns {{enCours: E[], àVenir: E[]}}
+ * @returns {{ceWeekEnd: E[], enCours: E[], àVenir: E[], weekEnd: {samedi: string, dimanche: string}}}
  */
 export function grouperParÉtat(events, today) {
+  const weekEnd = weekEndDe(today);
+  const ceWeekEnd = [];
   const enCours = [];
   const àVenir = [];
 
   for (const event of events) {
     if (event.end_date < today) continue;
-    (event.start_date <= today ? enCours : àVenir).push(event);
+    const ouvertCeWeekEnd = event.start_date <= weekEnd.dimanche && event.end_date >= weekEnd.samedi;
+    if (ouvertCeWeekEnd) ceWeekEnd.push(event);
+    else if (event.start_date <= today) enCours.push(event);
+    else àVenir.push(event);
   }
 
-  return { enCours, àVenir };
+  return { ceWeekEnd, enCours, àVenir, weekEnd };
+}
+
+/** En dessous, le badge passe en couleur : c'est le moment d'y aller. */
+export const JOURS_URGENTS = 7;
+
+/**
+ * Le badge d'une carte : combien de jours il reste, ou dans combien de jours
+ * ça commence. Le nombre plutôt qu'un « bientôt » : un pop-up est temporaire,
+ * et « 3 jours » décide d'un week-end là où « bientôt » ne décide de rien.
+ *
+ * @param {{start_date: string, end_date: string}} event
+ * @param {string} today
+ * @returns {{texte: string, urgent: boolean}|null} null si terminé
+ */
+export function badgeDélai(event, today) {
+  if (event.end_date < today) return null;
+
+  if (event.start_date > today) {
+    const dans = joursEntre(today, event.start_date);
+    return { texte: dans === 1 ? 'Demain' : `Dans ${dans} jours`, urgent: false };
+  }
+
+  const reste = joursEntre(today, event.end_date);
+  if (reste === 0) return { texte: 'Dernier jour', urgent: true };
+  return { texte: reste === 1 ? '1 jour restant' : `${reste} jours restants`, urgent: reste <= JOURS_URGENTS };
 }

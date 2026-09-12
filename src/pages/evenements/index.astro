@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Evenement from '../../components/Evenement.astro';
 import AiNotice from '../../components/AiNotice.astro';
 import { listEvents } from '../../lib/content.js';
-import { seoulToday } from '../../lib/date.js';
-import { grouperParÉtat, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
+import { seoulToday, shortDate } from '../../lib/date.js';
+import { grouperParÉtat, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
 
 // TOUT ce qui est en cours ou à venir, quel que soit le brief qui l'a repéré.
 // L'agent du matin ne fait qu'ajouter ; c'est la collection qui tient la liste,
@@ -14,11 +14,33 @@ import { grouperParÉtat, THEMES_EN_PROSE } from '../../../shared/evenements.mjs
 // brief », et un événement n'est pas une parution.
 const events = await listEvents();
 const aujourdhui = seoulToday();
-const { enCours, àVenir } = grouperParÉtat(events, aujourdhui);
+const { ceWeekEnd, enCours, àVenir, weekEnd } = grouperParÉtat(events, aujourdhui);
 
+// Le week-end d'abord : c'est la question qu'on se pose vraiment. Les trois
+// groupes ne se recouvrent pas — une grille qui répète ses cartes ne se
+// parcourt plus.
 const groupes = [
-  { id: 'en-cours', titre: 'En ce moment', events: enCours, vide: 'Rien en ce moment.' },
-  { id: 'a-venir', titre: 'À venir', events: àVenir, vide: "Rien d'annoncé pour l'instant." },
+  {
+    id: 'ce-week-end',
+    titre: 'Ce week-end',
+    détail: `samedi ${shortDate(weekEnd.samedi)} et dimanche ${shortDate(weekEnd.dimanche)}`,
+    events: ceWeekEnd,
+    vide: 'Rien d’ouvert ce week-end.',
+  },
+  {
+    id: 'en-cours',
+    titre: 'En semaine seulement',
+    détail: 'ouvert aujourd’hui, fermé avant le week-end',
+    events: enCours,
+    vide: 'Rien qui ferme avant le week-end.',
+  },
+  {
+    id: 'a-venir',
+    titre: 'Plus tard',
+    détail: 'annoncé pour après le week-end',
+    events: àVenir,
+    vide: 'Rien d’annoncé pour l’instant.',
+  },
 ];
 ---
 
@@ -34,44 +56,79 @@ const groupes = [
     page à leur date de fin.
   </p>
 
-  {groupes.map(({ id, titre, events, vide }) => (
+  {/* Masqué sans JavaScript : un bouton qui ne filtre rien est un mensonge.
+      Le script le révèle. */}
+  <div class="filtres" role="group" aria-label="Filtrer par thème" hidden>
+    <button type="button" data-filtre="tous" aria-pressed="true">Tous</button>
+    {THEMES.map((theme) => (
+      <button type="button" data-filtre={theme} aria-pressed="false">{THEME_LABELS[theme]}</button>
+    ))}
+  </div>
+
+  {groupes.map(({ id, titre, détail, events, vide }) => (
     <section class="groupe-evenements" id={id}>
-      <h2>{titre}</h2>
+      <h2>{titre} <span class="detail">— {détail}</span></h2>
       {/* Le message de vide est toujours rendu, masqué quand il y a de quoi
-          lire : le script ci-dessous peut vider un groupe après le build. */}
+          lire : le filtre et le masquage des terminés peuvent vider un groupe. */}
       <p class="vide" hidden={events.length > 0}>{vide}</p>
       <div class="cartes">
-        {events.map((event) => <Evenement event={event} />)}
+        {events.map((event) => <Evenement event={event} today={aujourdhui} />)}
       </div>
     </section>
   ))}
 
   <script>
-    // Le même principe que l'avis de parution de l'accueil : « aujourd'hui »
-    // ne peut pas être figé au build. Le site se reconstruit chaque matin, donc
-    // presque rien ne change ici — sauf le jour où le build échoue, et c'est
-    // ce jour-là qu'un pop-up terminé ne doit pas rester affiché.
+    // Deux choses que le build ne peut pas décider : le jour où le lecteur
+    // regarde — le site se reconstruit chaque matin, mais un build peut
+    // échouer, et un pop-up terminé ne doit pas rester affiché —, et le thème
+    // qu'il veut voir.
     import { seoulToday } from '../../lib/date.js';
 
     const aujourdhui = seoulToday();
-    const enCours = document.querySelector<HTMLElement>('#en-cours .cartes');
+    const cartes = [...document.querySelectorAll<HTMLElement>('.evenement')];
 
-    for (const carte of document.querySelectorAll<HTMLElement>('.evenement')) {
-      const { debut, fin } = carte.dataset;
-      // Comparaison de deux AAAA-MM-JJ : l'ordre des chaînes est celui des jours.
-      if (fin && fin < aujourdhui) {
-        carte.hidden = true;
-      } else if (debut && debut <= aujourdhui && enCours && !enCours.contains(carte)) {
-        // Commencé depuis le build : il change de groupe.
-        enCours.append(carte);
+    // Terminé depuis le build : masqué pour de bon, quel que soit le filtre.
+    for (const carte of cartes) {
+      if (carte.dataset.fin && carte.dataset.fin < aujourdhui) carte.dataset.termine = 'oui';
+    }
+
+    let filtre = 'tous';
+    try {
+      // Le dernier filtre choisi, pour ce navigateur seulement : un confort,
+      // pas un état. Sans stockage, on repart de « tous ».
+      filtre = localStorage.getItem('evenements:filtre') ?? 'tous';
+    } catch {}
+
+    const boutons = [...document.querySelectorAll<HTMLButtonElement>('.filtres button')];
+    if (!boutons.some((b) => b.dataset.filtre === filtre)) filtre = 'tous';
+
+    function appliquer() {
+      for (const carte of cartes) {
+        const hors = filtre !== 'tous' && carte.dataset.theme !== filtre;
+        carte.hidden = hors || carte.dataset.termine === 'oui';
+      }
+      for (const bouton of boutons) {
+        bouton.setAttribute('aria-pressed', String(bouton.dataset.filtre === filtre));
+      }
+      for (const bloc of document.querySelectorAll('.groupe-evenements')) {
+        const vide = bloc.querySelector<HTMLElement>('.vide');
+        if (vide) vide.hidden = [...bloc.querySelectorAll<HTMLElement>('.evenement')].some((c) => !c.hidden);
       }
     }
 
-    for (const bloc of document.querySelectorAll('.groupe-evenements')) {
-      const vide = bloc.querySelector<HTMLElement>('.vide');
-      if (!vide) continue;
-      vide.hidden = [...bloc.querySelectorAll<HTMLElement>('.evenement')].some((c) => !c.hidden);
+    for (const bouton of boutons) {
+      bouton.addEventListener('click', () => {
+        filtre = bouton.dataset.filtre ?? 'tous';
+        try {
+          localStorage.setItem('evenements:filtre', filtre);
+        } catch {}
+        appliquer();
+      });
     }
+
+    appliquer();
+    const filtres = document.querySelector<HTMLElement>('.filtres');
+    if (filtres) filtres.hidden = false;
   </script>
 
   <AiNotice />

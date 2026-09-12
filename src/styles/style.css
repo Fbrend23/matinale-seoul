@@ -79,6 +79,8 @@ body {
 /* L'en-tête et le pied s'alignent sur la page qu'ils encadrent. */
 body[data-colonnes="2"] { --mesure-page: calc(var(--mesure) + 3rem + var(--cote)); }
 body[data-colonnes="3"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
+/* Une page large — la grille de cartes — prend la place des trois colonnes. */
+body[data-largeur="large"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
 
 main { min-width: 0; }
 main > h1:first-child { margin-top: 2rem; }
@@ -318,8 +320,31 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
 
-.evenement-theme { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--doux); }
+.evenement-theme { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; font-size: 0.78rem; color: var(--doux); }
+/* Le badge des jours restants, à droite. En couleur sous une semaine : c'est
+   le moment d'y aller. */
+.delai { margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.delai[data-urgent="oui"] { color: var(--accent); font-weight: 600; }
+
+/* Les filtres par thème : des boutons-pastilles, celui qui est enfoncé prend
+   la couleur du texte. */
+.filtres { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 0; }
+.filtres button {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  background: var(--carte);
+  color: var(--doux);
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.filtres button:hover { color: var(--accent); border-color: var(--accent); }
+.filtres button[aria-pressed="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
+
+.groupe-evenements h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .pastille {
+  white-space: nowrap;
   padding: 0.05rem 0.55rem;
   border-radius: 999px;
   background: var(--theme);
