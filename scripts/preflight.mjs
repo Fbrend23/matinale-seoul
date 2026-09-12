@@ -225,7 +225,7 @@ if (!fautes.length) {
   const événements = brief.events ?? [];
   if (événements.length) {
     const connus = await événementsDéjàConnus();
-    const { retenus, écartés, liensRetirés } = await contrôlerÉvénements(événements, {
+    const { retenus, écartés, liensRetirés, prolongés } = await contrôlerÉvénements(événements, {
       domaines: domains,
       connus: connus ?? [],
       today: seoulDate(),
@@ -238,8 +238,13 @@ if (!fautes.length) {
     for (const { event, champ, raison } of liensRetirés) {
       console.log(`! événement     ${champ} de « ${event.name.slice(0, 44)} » serait retiré (${raison})`);
     }
+    for (const { event, connu } of prolongés) {
+      console.log(`· événement     « ${event.name.slice(0, 58)} » est déjà connu :`);
+      console.log(`                ses dates seraient mises à jour (${connu.end_date} → ${event.end_date}).`);
+    }
     console.log(
-      `${écartés.length ? '!' : '✓'} événements    ${retenus.length} retenu(s) sur ${événements.length}`
+      `${écartés.length ? '!' : '✓'} événements    ${retenus.length} retenu(s), ${prolongés.length} mis à jour, ` +
+        `sur ${événements.length}`
     );
   }
 }

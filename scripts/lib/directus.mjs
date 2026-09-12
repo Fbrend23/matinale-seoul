@@ -362,3 +362,21 @@ export async function archiveExpiredEvents(client, { today }) {
 
   return finis ?? [];
 }
+
+/**
+ * Met à jour une fiche connue avec les dates nouvelles, et la source qui les
+ * annonce. Rien d'autre : le nom, le lieu, le résumé et le brief d'origine
+ * restent ceux de la première fois — c'est une prolongation, pas une
+ * réécriture. Un PATCH, pas un archivage : la fiche garde son identifiant, et
+ * le flux ne renotifie pas.
+ */
+export async function updateEventDates(client, id, event) {
+  await client.patch(`/items/${EVENTS}/${id}`, {
+    start_date: event.start_date,
+    end_date: event.end_date,
+    source_name: event.source_name,
+    source_url: event.source_url,
+    source_lang: event.source_lang ?? null,
+    link_checked_at: event.link_checked_at ?? null,
+  });
+}

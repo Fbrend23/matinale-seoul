@@ -110,7 +110,8 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 |---|---|
 | dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots | événement écarté |
 | domaine hors allowlist | événement écarté — **pas** de brief retenu en brouillon |
-| déjà connu (nom proche d'un événement actif) | événement écarté |
+| déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
+| déjà connu, **dates nouvelles** | la fiche connue est mise à jour — prolongation, report — si la source répond |
 | source morte | événement écarté ; un accès refusé le garde, sans date |
 | billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |
 | collection absente du CMS | avertissement au run, le brief paraît |

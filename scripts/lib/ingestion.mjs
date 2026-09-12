@@ -28,6 +28,7 @@ import {
   saveBrief,
   activeEvents,
   saveEvents,
+  updateEventDates,
   archiveExpiredEvents,
 } from './directus.mjs';
 import { relevéMétéo } from './meteo.mjs';
@@ -256,7 +257,7 @@ export async function ingérer({
     // « Sauf ce brief » : ses événements d'un passage précédent vont être
     // archivés par saveEvents ; les compter comme connus écarterait le rejeu.
     const connus = await activeEvents(client, { today: aujourdhui, saufBrief: id });
-    const { retenus: événements, écartés, liensRetirés } = await contrôlerÉvénements(proposés, {
+    const { retenus: événements, écartés, liensRetirés, prolongés } = await contrôlerÉvénements(proposés, {
       domaines,
       connus,
       today: aujourdhui,
@@ -270,8 +271,22 @@ export async function ingérer({
     }
 
     const écrits = await saveEvents(client, { events: événements, briefId: id });
+
+    // Une prolongation corrige la fiche connue, elle n'en crée pas une autre :
+    // même identifiant, donc même adresse dans le flux, qui ne renotifie pas.
+    for (const { event, connu } of prolongés) {
+      await updateEventDates(client, connu.id, event);
+      dire(
+        `   événements · « ${event.name.slice(0, 60)} » mis à jour : ` +
+          `${connu.start_date} → ${connu.end_date} devient ${event.start_date} → ${event.end_date}`
+      );
+    }
+
     if (proposés.length) {
-      dire(`   événements · ${écrits} écrit(s) sur ${proposés.length} proposé(s)`);
+      dire(
+        `   événements · ${écrits} écrit(s), ${prolongés.length} mis à jour, ` +
+          `sur ${proposés.length} proposé(s)`
+      );
     }
 
     // Une seule annotation pour tous les écartés : le résumé du run doit se

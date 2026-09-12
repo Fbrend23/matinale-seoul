@@ -284,5 +284,41 @@ test('les objets de l agent ne sont jamais retouchés', async () => {
 });
 
 test('sans événement, rien à dire', async () => {
-  assert.deepEqual(await contrôler([]), { retenus: [], écartés: [], liensRetirés: [] });
+  assert.deepEqual(await contrôler([]), { retenus: [], écartés: [], liensRetirés: [], prolongés: [] });
+});
+
+// --- Les prolongations -------------------------------------------------------
+//
+// Un doublon dont les dates ont changé n'est pas un doublon : c'est une fiche
+// à corriger. Il passe les mêmes sondes qu'un neuf, et ressort à part.
+
+const connuAvecDates = { id: 3, name: 'Pop-up Pokémon Center à Seongsu', start_date: '2026-09-01', end_date: '2026-09-30' };
+
+test('un événement connu aux dates nouvelles est une prolongation, pas un doublon', async () => {
+  const { retenus, écartés, prolongés } = await contrôler([sain({ end_date: '2026-10-12' })], {
+    connus: [connuAvecDates],
+  });
+
+  assert.equal(retenus.length, 0, 'il ne crée pas de fiche');
+  assert.equal(écartés.length, 0);
+  assert.equal(prolongés.length, 1);
+  assert.equal(prolongés[0].connu.id, 3);
+  assert.equal(prolongés[0].event.end_date, '2026-10-12');
+  assert.ok(prolongés[0].event.link_checked_at, 'la source a été sondée');
+});
+
+test('un événement connu aux mêmes dates reste un doublon', async () => {
+  const { écartés, prolongés } = await contrôler([sain({ start_date: '2026-09-01', end_date: '2026-09-30' })], {
+    connus: [connuAvecDates],
+  });
+  assert.equal(prolongés.length, 0);
+  assert.match(écartés[0].raison, /déjà connu/);
+});
+
+test('une prolongation annoncée par un lien mort est écartée', async () => {
+  const event = sain({ end_date: '2026-10-12' });
+  const { fetcher } = sondeur({ [event.source_url]: 404 });
+  const { écartés, prolongés } = await contrôler([event], { connus: [connuAvecDates], fetcher });
+  assert.equal(prolongés.length, 0);
+  assert.match(écartés[0].raison, /source morte/);
 });

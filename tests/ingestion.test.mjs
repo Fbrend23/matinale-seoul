@@ -583,3 +583,19 @@ test('un service de change muet ne retient jamais un brief', async () => {
   assert.equal(annonces.length, 1);
   assert.match(annonces[0], /^::warning::Cours du change absent/);
 });
+
+test('une prolongation corrige la fiche connue au lieu d en créer une', async () => {
+  sondeur();
+  const proposé = AVEC_ÉVÉNEMENTS.events[0];
+  const client = fauxClient({
+    événementsConnus: [{ id: 3, name: proposé.name, start_date: proposé.start_date, end_date: '2026-09-20', brief: 2 }],
+  });
+  await lancerAvecÉvénements({ client });
+
+  assert.equal(événementsÉcrits(client).length, 0, 'aucune fiche neuve');
+  const patch = client.écritures.find((e) => e.verbe === 'patch' && e.chemin === '/items/mat_events/3');
+  assert.ok(patch, 'la fiche 3 est corrigée');
+  assert.equal(patch.corps.end_date, proposé.end_date);
+  assert.equal(patch.corps.source_url, proposé.source_url);
+  assert.equal(patch.corps.status, undefined, 'le statut ne bouge pas');
+});
