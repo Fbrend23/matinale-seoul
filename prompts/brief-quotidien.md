@@ -9,8 +9,8 @@ Il forme un couple avec `schemas/brief.schema.json` : si l'un change, l'autre
 doit suivre, sans quoi l'agent produira consciencieusement des briefs que les
 gardes recaleront. Des tests tiennent les deux ensemble.
 
-**Réglages :** cron d un serveur allumé en permanence, tous les jours ouvrés à
-**7 h heure de Séoul** (CRON_TZ=Asia/Seoul), pour que le brief soit en ligne à
+**Réglages :** timer d'un serveur allumé en permanence, tous les jours,
+week-end compris, à **7 h 30 heure de Séoul**, pour que le brief soit en ligne à
 8 h — le fuseau dont il parle, et celui où son lecteur le lira.
 
 Ni tâche à connecteurs ni routine cloud : la première lit le web mais ne peut

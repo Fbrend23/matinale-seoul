@@ -40,13 +40,13 @@ l'écart plutôt que de réécrire l'existant.
 
 ## 2. Objectif
 
-Publier automatiquement, chaque matin de semaine, un brief d'actualité en français : tourisme en
+Publier automatiquement, chaque matin, un brief d'actualité en français : tourisme en
 Corée, actualités coréennes générales, tech et IA mondiales, jeu vidéo mondial. Contenu
 produit par une tâche planifiée Claude qui cherche sur le web et rend un JSON structuré.
 
 Aucune relecture humaine avant mise en ligne — la qualité repose sur les cinq gardes (section 6).
 
-Volume : un brief par jour ouvré, quatre rubriques, 12 à 24 items. Charge négligeable, ne
+Volume : un brief par jour, week-end compris, quatre rubriques, 12 à 24 items. Charge négligeable, ne
 surdimensionne rien.
 
 ---

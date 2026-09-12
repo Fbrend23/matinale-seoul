@@ -1,7 +1,7 @@
 # La Matinale de Séoul
 
 Brief d'actualité quotidien en français : tourisme en Corée, actualités
-coréennes, tech et IA, jeu vidéo. Un brief par jour ouvré, quatre rubriques,
+coréennes, tech et IA, jeu vidéo. Un brief par jour, quatre rubriques,
 12 à 24 items — et un onglet « Pop-ups & événements » qui liste tout ce qui se
 passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le jeu
 vidéo.

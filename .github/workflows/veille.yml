@@ -11,7 +11,7 @@
 # Ce job constate l'absence plutôt que l'échec. Il interroge le CMS et demande
 # une seule chose : y a-t-il un brief PUBLIÉ daté d'aujourd'hui ?
 #
-# COMBIEN ÇA COÛTE. Une vingtaine de secondes par jour ouvré, et ce dépôt est
+# COMBIEN ÇA COÛTE. Une vingtaine de secondes par jour, et ce dépôt est
 # public : les minutes Actions y sont gratuites. C'est ce qui rend cette
 # surveillance acceptable alors qu'on a retiré le rebuild nocturne pour la
 # raison inverse.
@@ -25,7 +25,7 @@ name: Veille
 
 on:
   schedule:
-    - cron: '0 1 * * 1-5' # 10 h 00 à Séoul, du lundi au vendredi
+    - cron: '0 1 * * *' # 10 h 00 à Séoul, tous les jours
   workflow_dispatch:
 
 jobs:
