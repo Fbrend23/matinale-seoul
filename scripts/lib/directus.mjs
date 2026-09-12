@@ -138,7 +138,7 @@ export async function recentHeadlines(client, { today, days = 14 }) {
  */
 export async function saveBrief(
   client,
-  { brief, items, status, ingestStatus, failureReason, weather, emptyNotes }
+  { brief, items, status, ingestStatus, failureReason, weather, fx, emptyNotes }
 ) {
   const charge = {
     status,
@@ -157,6 +157,9 @@ export async function saveBrief(
   // droit d'effacer. On n'écrit donc la clé que lorsqu'on a de quoi la remplir.
   if (weather) charge.weather = weather;
 
+  // Le cours du change suit la météo en tout point.
+  if (fx) charge.fx = fx;
+
   // Même règle, et pour la même raison : ne rien avoir à dire n'autorise pas à
   // effacer ce qu'un passage précédent a dit. Un brief recalé, écrit en simple
   // trace, ne porte aucune note — il ne doit pas emporter celles du matin.
@@ -170,7 +173,7 @@ export async function saveBrief(
   //
   // « Rien de tout cela ne recale jamais un brief » vaut aussi à l'écriture, et
   // c'est le seul endroit où cette promesse pouvait encore être trahie.
-  const ACCESSOIRES = ['weather', 'empty_notes'];
+  const ACCESSOIRES = ['weather', 'fx', 'empty_notes'];
 
   const écrire = async (méthode, chemin) => {
     for (;;) {

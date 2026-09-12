@@ -51,6 +51,8 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {string}      standfirst
  * @property {string}      ingested_at
  * @property {object|null} weather       bulletin Open-Meteo figé à l'ingestion
+ * @property {object|null} fx            cours CHF→KRW (Frankfurter, BCE) figé à
+ *   l'ingestion ; absent des briefs parus avant ce champ
  * @property {Record<string,string>|null} empty_notes  pourquoi telle rubrique est
  *   vide ce jour-là, indexé par clé de rubrique ; absent des briefs parus avant
  *   ce champ
@@ -163,7 +165,7 @@ const uneFois = créerMémo();
 export function listBriefs() {
   return uneFois('briefs', async () => {
     const briefs = await requestAll(
-      `/items/${BRIEFS}?sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather,empty_notes`
+      `/items/${BRIEFS}?sort=-date&fields=id,date,slug,title,standfirst,ingested_at,weather,fx,empty_notes`
     );
 
     if (!briefs?.length) {

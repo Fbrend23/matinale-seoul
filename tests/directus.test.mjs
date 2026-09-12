@@ -516,3 +516,22 @@ test('rien de fini, rien d archivé', async () => {
   assert.deepEqual(await archiveExpiredEvents(f.client, { today: '2026-09-04' }), []);
   assert.equal(f.patchs.length, 0);
 });
+
+test("un champ fx absent du CMS ne fait pas perdre le brief, ni sa météo", async () => {
+  // Même filet que pour weather : Directus nomme le champ qu'il refuse, et
+  // seul celui-là est sacrifié.
+  const f = faux({ refuse: ['fx'] });
+  const cours = { date: '2026-09-10', rate_date: '2026-09-10', base: 'CHF', quote: 'KRW', rate: 1646.98 };
+  await saveBrief(f.client, {
+    brief,
+    items: [],
+    status: 'published',
+    ingestStatus: 'ok',
+    weather: bulletin,
+    fx: cours,
+  });
+
+  assert.equal(f.posts.length, 1);
+  assert.ok(!('fx' in f.posts[0].corps));
+  assert.deepEqual(f.posts[0].corps.weather, bulletin, 'la météo ne paie pas pour le change');
+});
