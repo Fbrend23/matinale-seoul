@@ -1,7 +1,9 @@
 /* La Matinale de Séoul.
-   Une seule colonne, des polices système, aucun script : le contenu est du
-   texte et des liens, il n'a besoin de rien d'autre. Thème clair et sombre
-   suivant le réglage du lecteur. */
+   Une colonne de texte, des polices système, presque aucun script : le contenu
+   est du texte et des liens. À côté du texte, quand il y a lieu, une colonne
+   étroite pour le contexte du jour ; et pour les événements, une grille de
+   cartes sur toute la largeur. Thème clair et sombre suivant le réglage du
+   lecteur. */
 
 :root {
   --fond: #fbfaf8;
@@ -10,7 +12,16 @@
   --trait: #e2ded7;
   --accent: #9a3412;
   --carte: #ffffff;
-  --mesure: 44rem;
+  --mesure: 44rem;        /* la colonne de texte */
+  --cote: 15rem;          /* la colonne latérale */
+  --mesure-page: calc(var(--mesure) + 3rem + var(--cote));   /* les deux, et l'en-tête */
+
+  /* Une couleur par thème d'événement, pour la carte. Sobres : c'est un repère
+     à la lecture, pas une identité de marque. */
+  --theme-anime: #7c3aed;
+  --theme-pokemon: #ca8a04;
+  --theme-kpop: #db2777;
+  --theme-gaming: #2563eb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +32,10 @@
     --trait: #2e2c34;
     --accent: #fb923c;
     --carte: #1e1d23;
+    --theme-anime: #a78bfa;
+    --theme-pokemon: #facc15;
+    --theme-kpop: #f472b6;
+    --theme-gaming: #60a5fa;
   }
 }
 
@@ -37,7 +52,33 @@ body {
   line-height: 1.6;
 }
 
-main { max-width: var(--mesure); margin: 0 auto; padding: 0 1.25rem 4rem; }
+/* La page : le texte au centre, la colonne latérale à droite quand elle existe.
+   La colonne de texte garde sa mesure ; c'est l'en-tête et le pied qui
+   s'élargissent pour aligner leurs bords sur la colonne latérale. Sans colonne,
+   le texte reste centré comme avant. */
+.page {
+  max-width: var(--mesure-page);
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, var(--mesure));
+  justify-content: center;
+  gap: 2rem 3rem;
+}
+.page[data-cote="oui"] { grid-template-columns: minmax(0, var(--mesure)) var(--cote); }
+.page[data-largeur="large"] { grid-template-columns: minmax(0, 1fr); }
+
+main { min-width: 0; }
+main > h1:first-child { margin-top: 2rem; }
+
+.cote { align-self: start; position: sticky; top: 1.5rem; padding-top: 2.5rem; }
+
+@media (max-width: 64rem) {
+  /* Une seule colonne : la colonne latérale passe au-dessus du texte, en
+     bandeau, et ne colle plus. */
+  .page[data-cote="oui"] { grid-template-columns: minmax(0, 1fr); }
+  .cote { order: -1; position: static; padding-top: 1.5rem; }
+}
 
 a { color: var(--accent); text-underline-offset: 0.2em; }
 a:hover { text-decoration-thickness: 2px; }
@@ -71,7 +112,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* En-tête et navigation */
 
 .entete {
-  max-width: var(--mesure);
+  max-width: var(--mesure-page);
   margin: 0 auto;
   padding: 1.5rem 1.25rem 1rem;
   border-bottom: 1px solid var(--trait);
@@ -113,19 +154,39 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 .chapeau { margin: 0; color: var(--doux); font-size: 1.1rem; }
 
-/* Le bulletin météo. Discret comme la date et la source : c'est du contexte,
-   pas une information de plus. Le séparateur est posé en ::after de chaque
-   span — jamais en ::before du lien, où il hériterait de son soulignement. */
+/* Le widget météo. Du contexte, pas une information de plus : à côté du
+   texte, dans une carte discrète, avec la température en grand parce que c'est
+   ce qu'on vient y lire. */
 
 .meteo {
-  margin: 0.9rem 0 0;
-  font-size: 0.9rem;
+  padding: 1rem 1.1rem 0.8rem;
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  background: var(--carte);
   color: var(--doux);
+  font-size: 0.9rem;
 }
-.meteo > span::after { content: '·'; margin: 0 0.45em; color: var(--trait); }
-.meteo .lieu { font-variant-caps: small-caps; letter-spacing: 0.04em; }
+.meteo p { margin: 0; }
+.meteo-lieu { display: flex; justify-content: space-between; gap: 0.5rem; }
+.meteo-lieu .lieu { font-variant-caps: small-caps; letter-spacing: 0.04em; font-weight: 600; color: var(--texte); }
+.meteo-corps { display: flex; align-items: center; gap: 0.75rem; margin: 0.5rem 0 0.15rem; }
+.meteo-icone { flex: 0 0 auto; width: 3rem; height: 3rem; color: var(--texte); }
+.meteo-temp { display: flex; align-items: baseline; gap: 0.5rem; color: var(--texte); }
+.meteo-temp .max { font-size: 2rem; font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
+.meteo-temp .min { font-size: 1.1rem; color: var(--doux); }
+.meteo-ciel { color: var(--texte); }
+.meteo-source { margin-top: 0.6rem; font-size: 0.78rem; }
 .meteo a { color: inherit; text-decoration-color: var(--trait); }
 .meteo a:hover { color: var(--accent); }
+
+@media (max-width: 64rem) {
+  /* En bandeau : tout sur une ligne, l'icône et les degrés d'abord. */
+  .meteo { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
+  .meteo-corps { margin: 0; }
+  .meteo-icone { width: 2rem; height: 2rem; }
+  .meteo-temp .max { font-size: 1.4rem; }
+  .meteo-source { margin: 0 0 0 auto; }
+}
 
 .rubrique-bloc { margin: 2.5rem 0; border-top: 1px solid var(--trait); padding-top: 0.5rem; }
 
@@ -151,11 +212,6 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 .source { margin: 0; font-size: 0.88rem; color: var(--doux); }
 
-/* Un événement : ses dates et son lieu, discrets comme la source. Le
-   séparateur est en ::after de chaque span, comme pour la météo. */
-.quand { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--doux); }
-.quand > span::after { content: '·'; margin: 0 0.45em; color: var(--trait); }
-.quand > span:last-child::after { content: none; }
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 
 .etiquettes { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0 0; padding: 0; list-style: none; }
@@ -177,6 +233,61 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .etiquettes a:hover { color: var(--accent); text-decoration: underline; }
 
 .vide { color: var(--doux); font-style: italic; }
+
+/* Les événements : une grille de cartes, sur toute la largeur de la page. On
+   la parcourt des yeux, on ne la lit pas de haut en bas — d'où le thème en
+   couleur en tête de carte, les dates et le lieu avant le texte, et les
+   liens en pied, en boutons. */
+
+.groupe-evenements { margin: 2.5rem 0; }
+.cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+}
+
+.evenement {
+  --theme: var(--doux);
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.1rem 1.1rem;
+  border: 1px solid var(--trait);
+  border-top: 4px solid var(--theme);
+  border-radius: 8px;
+  background: var(--carte);
+}
+.evenement[data-theme="anime"] { --theme: var(--theme-anime); }
+.evenement[data-theme="pokemon"] { --theme: var(--theme-pokemon); }
+.evenement[data-theme="kpop"] { --theme: var(--theme-kpop); }
+.evenement[data-theme="gaming"] { --theme: var(--theme-gaming); }
+
+.evenement p { margin: 0; }
+.evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
+
+.evenement-theme { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: var(--doux); }
+.pastille {
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--theme);
+  color: var(--fond);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.evenement-quand { font-weight: 600; font-variant-numeric: tabular-nums; }
+.evenement-ou { color: var(--doux); font-size: 0.92rem; }
+.evenement .resume { margin: 0.6rem 0 0.9rem; font-size: 0.97rem; }
+
+.evenement-liens { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: auto; font-size: 0.85rem; }
+.bouton {
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--trait);
+  border-radius: 6px;
+  color: var(--texte);
+  text-decoration: none;
+}
+.bouton:hover { border-color: var(--accent); color: var(--accent); }
+.source-lien { margin-left: auto; color: var(--doux); font-size: 0.8rem; }
 
 /* Mention IA : lisible, jamais tapie en bas de page en corps 8 */
 
@@ -211,7 +322,7 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 /* Pied */
 
 .pied {
-  max-width: var(--mesure);
+  max-width: var(--mesure-page);
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
   border-top: 1px solid var(--trait);

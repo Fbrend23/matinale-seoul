@@ -1,5 +1,5 @@
 ---
-// Le bulletin du jour, en tête de brief.
+// Le bulletin du jour, en widget à côté du brief.
 //
 // Le composant se garde lui-même plutôt que de faire porter la condition à
 // l'appelant : un brief sans relevé — service muet ce matin-là, ou brief
@@ -7,23 +7,93 @@
 // afficher, et cela doit rester vrai partout où le composant est posé.
 //
 // Le libellé du ciel est DÉRIVÉ du code WMO stocké, jamais lu depuis le brief :
-// une formulation qu'on corrige vaut alors pour toute l'archive.
+// une formulation qu'on corrige vaut alors pour toute l'archive. L'icône suit
+// la même règle, par familles de codes.
 import { libelléCiel } from '../../shared/meteo.mjs';
+import { shortDate } from '../lib/date.js';
 
-const { weather } = Astro.props;
+const { weather, date } = Astro.props;
 
 // La probabilité manque quand le relevé sort de la fenêtre de prévision. Zéro
 // pour cent est une information, l'absence n'en est pas une : on distingue.
 const pluie = typeof weather?.precip_probability === 'number' ? weather.precip_probability : null;
+
+// Une famille par icône, du code WMO vers un dessin. Volontairement grossier :
+// six dessins suffisent à dire le temps qu'il fait, et le libellé précise.
+function famille(code) {
+  if (code === 0 || code === 1) return 'soleil';
+  if (code === 2) return 'eclaircies';
+  if (code === 3) return 'nuages';
+  if (code === 45 || code === 48) return 'brouillard';
+  if (code >= 71 && code <= 86 && code !== 80 && code !== 81 && code !== 82) return 'neige';
+  if (code >= 95) return 'orage';
+  return 'pluie';
+}
+const ciel = weather ? famille(weather.code) : null;
 ---
 
 {weather && (
-  <p class="meteo">
-    <span class="lieu">Séoul</span>
-    <span>{weather.tmin} à {weather.tmax}&#8239;°C</span>
-    <span>{libelléCiel(weather.code)}</span>
-    {pluie !== null && <span>{pluie}&#8239;% de pluie</span>}
+  <div class="meteo" data-ciel={ciel}>
+    <p class="meteo-lieu">
+      <span class="lieu">Séoul</span>
+      {date && <time datetime={date}>{shortDate(date)}</time>}
+    </p>
+
+    <div class="meteo-corps">
+      {/* Traits seuls, sans couleur figée : l'icône hérite du texte et suit le
+          thème clair ou sombre. aria-hidden : le libellé dit déjà tout. */}
+      <svg class="meteo-icone" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        {ciel === 'soleil' && (
+          <>
+            <circle cx="24" cy="24" r="8" />
+            <path d="M24 6v4M24 38v4M6 24h4M38 24h4M11.3 11.3l2.8 2.8M33.9 33.9l2.8 2.8M11.3 36.7l2.8-2.8M33.9 14.1l2.8-2.8" />
+          </>
+        )}
+        {ciel === 'eclaircies' && (
+          <>
+            <circle cx="18" cy="18" r="7" />
+            <path d="M18 5v3M5 18h3M8.8 8.8l2.1 2.1M27.2 8.8l-2.1 2.1" />
+            <path d="M17 38h18a7 7 0 0 0 .8-13.95A10 10 0 0 0 16.6 26 6 6 0 0 0 17 38z" fill="var(--fond)" />
+          </>
+        )}
+        {ciel === 'nuages' && (
+          <path d="M14 36h20a8 8 0 0 0 1-15.94A11 11 0 0 0 13.6 23 6.5 6.5 0 0 0 14 36z" />
+        )}
+        {ciel === 'brouillard' && (
+          <path d="M8 18h32M12 26h24M8 34h32" />
+        )}
+        {ciel === 'pluie' && (
+          <>
+            <path d="M14 30h20a8 8 0 0 0 1-15.94A11 11 0 0 0 13.6 17 6.5 6.5 0 0 0 14 30z" />
+            <path d="M17 35l-2 6M24 35l-2 6M31 35l-2 6" />
+          </>
+        )}
+        {ciel === 'neige' && (
+          <>
+            <path d="M14 30h20a8 8 0 0 0 1-15.94A11 11 0 0 0 13.6 17 6.5 6.5 0 0 0 14 30z" />
+            <path d="M17 36v4M22.5 37v4M28 36v4M33.5 37v4" />
+          </>
+        )}
+        {ciel === 'orage' && (
+          <>
+            <path d="M14 28h20a8 8 0 0 0 1-15.94A11 11 0 0 0 13.6 15 6.5 6.5 0 0 0 14 28z" />
+            <path d="M26 30l-5 8h6l-4 7" />
+          </>
+        )}
+      </svg>
+
+      <p class="meteo-temp">
+        <span class="max">{weather.tmax}°</span>
+        <span class="min">{weather.tmin}°</span>
+      </p>
+    </div>
+
+    <p class="meteo-ciel">{libelléCiel(weather.code)}</p>
+    {pluie !== null && <p class="meteo-pluie">{pluie}&#8239;% de pluie</p>}
+
     {/* Les données Open-Meteo sont sous CC-BY 4.0 : l'attribution est due. */}
-    <a href="https://open-meteo.com/" rel="nofollow noopener" target="_blank">Open-Meteo</a>
-  </p>
+    <p class="meteo-source">
+      <a href="https://open-meteo.com/" rel="nofollow noopener" target="_blank">Open-Meteo</a>
+    </p>
+  </div>
 )}
