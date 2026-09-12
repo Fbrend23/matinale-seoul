@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BriefArticle from '../../components/BriefArticle.astro';
+import BulletinMeteo from '../../components/BulletinMeteo.astro';
 import { allBriefs } from '../../lib/content.js';
 import { longDate } from '../../lib/date.js';
 
@@ -48,6 +49,8 @@ const jsonLd = {
     type="application/ld+json"
     set:html={JSON.stringify(jsonLd)}
   />
+
+  <BulletinMeteo slot="cote" weather={brief.weather} date={brief.date} />
 
   <BriefArticle brief={brief} />
 

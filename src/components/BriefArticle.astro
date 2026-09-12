@@ -1,7 +1,6 @@
 ---
 import NewsItem from './NewsItem.astro';
 import AiNotice from './AiNotice.astro';
-import BulletinMeteo from './BulletinMeteo.astro';
 import { SECTION_LABELS } from '../../shared/sections.mjs';
 import { longDate } from '../lib/date.js';
 
@@ -16,10 +15,6 @@ const Titre = headingLevel;
     <p class="date"><time datetime={brief.date}>{longDate(brief.date)}</time></p>
     <Titre>{brief.title}</Titre>
     <p class="chapeau">{brief.standfirst}</p>
-
-    {/* Le contexte du jour, pas une information de plus : avant les rubriques,
-        et sans titre. Absent des briefs parus avant ce module. */}
-    <BulletinMeteo weather={brief.weather} />
   </header>
 
   {brief.sections.map((section) => (

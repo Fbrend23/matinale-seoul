@@ -2,7 +2,15 @@
 import '../styles/style.css';
 import { SECTIONS, SECTION_LABELS, RUBRIQUES_EN_PROSE } from '../../shared/sections.mjs';
 
-const { title, description, canonical, type = 'website' } = Astro.props;
+// `largeur` : « lecture » (une colonne de texte, le défaut) ou « large » (toute
+// la page, pour une grille de cartes). Le slot « cote » pose une colonne
+// latérale à droite du texte — le widget météo — qui passe au-dessus sur un
+// écran étroit.
+const { title, description, canonical, type = 'website', largeur = 'lecture' } = Astro.props;
+// Rendu d'abord, posé ensuite : un brief sans relevé météo remplit le slot
+// d'un composant qui ne rend rien, et une colonne vide décalerait le texte.
+const cote = Astro.slots.has('cote') ? (await Astro.slots.render('cote')).trim() : '';
+const avecCote = cote.length > 0;
 const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
 const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
@@ -54,9 +62,14 @@ const image = new URL('/og.png', Astro.site).toString();
       </nav>
     </header>
 
-    <main id="contenu">
-      <slot />
-    </main>
+    <div class="page" data-largeur={largeur} data-cote={avecCote ? 'oui' : 'non'}>
+      <main id="contenu">
+        <slot />
+      </main>
+      {avecCote && (
+        <aside class="cote" set:html={cote} />
+      )}
+    </div>
 
     <footer class="pied">
       <p>

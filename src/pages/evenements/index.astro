@@ -23,6 +23,7 @@ const groupes = [
 ---
 
 <BaseLayout
+  largeur="large"
   title="Pop-ups & événements"
   description={`Pop-ups, concerts, expositions et salons à Séoul — ${THEMES_EN_PROSE}. ${events.length} en cours ou à venir.`}
 >
@@ -34,12 +35,14 @@ const groupes = [
   </p>
 
   {groupes.map(({ id, titre, events, vide }) => (
-    <section class="jour-bloc" id={id}>
+    <section class="groupe-evenements" id={id}>
       <h2>{titre}</h2>
       {/* Le message de vide est toujours rendu, masqué quand il y a de quoi
           lire : le script ci-dessous peut vider un groupe après le build. */}
       <p class="vide" hidden={events.length > 0}>{vide}</p>
-      {events.map((event) => <Evenement event={event} />)}
+      <div class="cartes">
+        {events.map((event) => <Evenement event={event} />)}
+      </div>
     </section>
   ))}
 
@@ -51,7 +54,7 @@ const groupes = [
     import { seoulToday } from '../../lib/date.js';
 
     const aujourdhui = seoulToday();
-    const enCours = document.getElementById('en-cours');
+    const enCours = document.querySelector<HTMLElement>('#en-cours .cartes');
 
     for (const carte of document.querySelectorAll<HTMLElement>('.evenement')) {
       const { debut, fin } = carte.dataset;
@@ -64,7 +67,7 @@ const groupes = [
       }
     }
 
-    for (const bloc of document.querySelectorAll('.jour-bloc')) {
+    for (const bloc of document.querySelectorAll('.groupe-evenements')) {
       const vide = bloc.querySelector<HTMLElement>('.vide');
       if (!vide) continue;
       vide.hidden = [...bloc.querySelectorAll<HTMLElement>('.evenement')].some((c) => !c.hidden);

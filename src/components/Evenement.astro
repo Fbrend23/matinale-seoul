@@ -1,8 +1,9 @@
 ---
-// Un événement, tel qu'on le lit sur l'onglet.
+// Un événement, en carte.
 //
-// Calqué sur NewsItem : même titre, même résumé, même ligne de source. Ce qui
-// change est la ligne du dessus — quand, où, quoi — et l'épingle Naver Map.
+// Une carte et non un item de brief : on parcourt l'onglet des yeux pour
+// trouver ce qui se passe ce week-end, pas pour lire de haut en bas. D'où le
+// thème en couleur, les dates et le lieu avant le texte, et les liens en pied.
 import { dateRange } from '../lib/date.js';
 import { KIND_LABELS, THEME_LABELS, lienNaverMap } from '../../shared/evenements.mjs';
 
@@ -16,55 +17,52 @@ const carte = event.map_url ?? lienNaverMap(event);
 
 {/* Les deux dates sont posées en data-* pour le script de la page, qui
     masque chez le lecteur ce qui a fini depuis le build. */}
-<article class="item evenement" data-debut={event.start_date} data-fin={event.end_date} data-theme={event.theme}>
+<article class="evenement" data-debut={event.start_date} data-fin={event.end_date} data-theme={event.theme}>
+  <p class="evenement-theme">
+    <span class="pastille">{THEME_LABELS[event.theme] ?? event.theme}</span>
+    <span class="genre">{KIND_LABELS[event.kind] ?? event.kind}</span>
+  </p>
+
   <h3>{event.name}</h3>
 
-  <p class="quand">
-    <span><time datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time></span>
-    <span>{event.venue}, {event.area}</span>
-    <span>{KIND_LABELS[event.kind] ?? event.kind}</span>
+  <p class="evenement-quand">
+    <time datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time>
   </p>
+  <p class="evenement-ou">{event.venue} · {event.area}</p>
 
   <p class="resume">{event.summary}</p>
 
-  <p class="source">
+  <p class="evenement-liens">
     {/* rel="nofollow ugc" : ces liens sont choisis par une machine — la fiche
         Naver Map et la billetterie comme la source. */}
     <a
-      href={event.source_url}
-      rel="nofollow ugc noopener"
-      target="_blank"
-      aria-label={`${event.source_name} — s'ouvre dans une nouvelle fenêtre`}
-    >
-      {event.source_name}
-    </a>
-    {event.source_lang && <span class="langue"> · {event.source_lang}</span>}
-    <span> · </span>
-    <a
+      class="bouton"
       href={carte}
       rel="nofollow ugc noopener"
       target="_blank"
       aria-label="Voir sur Naver Map — s'ouvre dans une nouvelle fenêtre"
     >
-      Voir sur Naver Map
+      Naver Map
     </a>
     {event.booking_url && (
-      <>
-        <span> · </span>
-        <a
-          href={event.booking_url}
-          rel="nofollow ugc noopener"
-          target="_blank"
-          aria-label="Réserver — s'ouvre dans une nouvelle fenêtre"
-        >
-          Réserver
-        </a>
-      </>
+      <a
+        class="bouton"
+        href={event.booking_url}
+        rel="nofollow ugc noopener"
+        target="_blank"
+        aria-label="Réserver — s'ouvre dans une nouvelle fenêtre"
+      >
+        Réserver
+      </a>
     )}
+    <a
+      class="source-lien"
+      href={event.source_url}
+      rel="nofollow ugc noopener"
+      target="_blank"
+      aria-label={`Source : ${event.source_name} — s'ouvre dans une nouvelle fenêtre`}
+    >
+      {event.source_name}
+    </a>
   </p>
-
-  {/* Le thème, en pastille, comme une étiquette sans page. */}
-  <ul class="etiquettes">
-    <li><span>{THEME_LABELS[event.theme] ?? event.theme}</span></li>
-  </ul>
 </article>
