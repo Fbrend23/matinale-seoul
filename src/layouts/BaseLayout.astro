@@ -52,6 +52,7 @@ const image = new URL('/og.png', Astro.site).toString();
     <link rel="canonical" href={url} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul — Pop-ups &amp; événements" href="/evenements.xml" />
 
     <meta property="og:title" content={titreComplet} />
     <meta property="og:description" content={résumé} />
@@ -97,7 +98,8 @@ const image = new URL('/og.png', Astro.site).toString();
     <footer class="pied">
       <p>
         <strong>La Matinale de Séoul</strong> — brief quotidien, sept jours sur sept.
-        <a href="/rss.xml">Flux RSS</a>
+        <a href="/rss.xml">Flux RSS</a> ·
+        <a href="/evenements.xml">Flux des événements</a>
       </p>
       <p class="mention">
         Contenu produit automatiquement. Les résumés sont rédigés par une IA à partir

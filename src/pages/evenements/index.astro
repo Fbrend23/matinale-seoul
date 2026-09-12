@@ -10,8 +10,8 @@ import { grouperParÉtat, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../..
 // L'agent du matin ne fait qu'ajouter ; c'est la collection qui tient la liste,
 // et la date de fin qui en fait sortir chaque événement.
 //
-// Pas de flux RSS pour cette page, à dessein : le flux est « un élément par
-// brief », et un événement n'est pas une parution.
+// Le flux de cette page est /evenements.xml : un élément par événement, à
+// l'inverse du flux des briefs — on le suit pour être prévenu de chacun.
 const events = await listEvents();
 const aujourdhui = seoulToday();
 const { ceWeekEnd, enCours, àVenir, weekEnd } = grouperParÉtat(events, aujourdhui);
@@ -54,6 +54,7 @@ const groupes = [
     Pop-ups, concerts, expositions et salons à Séoul — {THEMES_EN_PROSE}.
     Seuls les événements en cours ou annoncés sont listés ; ils sortent de la
     page à leur date de fin.
+    <a href="/evenements.xml">S’abonner au flux</a> pour être prévenu de chaque nouveau.
   </p>
 
   {/* Masqué sans JavaScript : un bouton qui ne filtre rien est un mensonge.
