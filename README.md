@@ -100,9 +100,10 @@ personne ne l'apprenne, et la liste ne s'enrichirait jamais.
 ## Pop-ups et événements
 
 Le brief peut porter un tableau `events` facultatif : boutiques éphémères,
-concerts, expositions, salons, pour sept thèmes seulement : anime et manga,
-Pokémon, K-pop, jeu vidéo, personnages (Sanrio, Chiikawa…), mode et marques,
-festivals de Séoul. **Ce n'est pas une cinquième rubrique.** Une rubrique
+concerts, expositions, salons, tout ce qui se passe à Séoul, classé en neuf
+thèmes : anime et manga, Pokémon, K-pop, jeu vidéo, personnages (Sanrio,
+Chiikawa…), mode et marques, festivals de Séoul, culture et expos, food et
+boissons. **Ce n'est pas une cinquième rubrique.** Une rubrique
 vit dans le brief du jour ; un événement dure jusqu'à sa date de fin, quel que
 soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 (`/evenements/`) et ses propres contrôles.
