@@ -53,6 +53,10 @@
 *::before,
 *::after { box-sizing: border-box; }
 
+/* L'attribut hidden doit gagner sur tout display posé ici : sans ça, une carte
+   en flex ou la barre de filtres en flex restent visibles une fois masquées. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background: var(--fond);
