@@ -24,6 +24,7 @@
   --theme-gaming: #2563eb;
   --theme-personnages: #dc2626;
   --theme-mode: #0f766e;
+  --theme-seoul: #57534e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +41,7 @@
     --theme-gaming: #60a5fa;
     --theme-personnages: #f87171;
     --theme-mode: #2dd4bf;
+    --theme-seoul: #a8a29e;
   }
 }
 
@@ -358,6 +360,7 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .evenement[data-theme="gaming"] { --theme: var(--theme-gaming); }
 .evenement[data-theme="personnages"] { --theme: var(--theme-personnages); }
 .evenement[data-theme="mode"] { --theme: var(--theme-mode); }
+.evenement[data-theme="seoul"] { --theme: var(--theme-seoul); }
 
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
