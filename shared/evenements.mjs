@@ -23,14 +23,13 @@ export const KIND_LABELS = {
   autre: 'Événement',
 };
 
-// Les sept thèmes que l'onglet couvre, et rien d'autre : pas de « autre »
-// ici. Un seau fourre-tout deviendrait la sortie de secours d'un agent qui
-// travaille avec dix-huit minutes de marge, et l'onglet cesserait de parler
-// de ce pour quoi il existe. « mode » et « seoul » sont les plus larges des
-// sept, les pop-ups de marque sans idol, les grands rendez-vous de la ville,
-// et c'est le prompt qui en tient la porte : streetwear et beauté, pas le café
-// du coin ; la Han et les palais, pas le marché de quartier.
-export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode', 'seoul'];
+// Les neuf thèmes de l'onglet, qui couvre tout ce qui se passe à Séoul et
+// qu'on peut aller voir. Toujours pas de « autre » : les deux derniers,
+// « culture » et « food », sont larges, mais ils disent quelque chose. Un
+// seau sans nom deviendrait la sortie de secours d'un agent qui travaille
+// avec dix-huit minutes de marge, et le filtre cesserait de servir. C'est le
+// prompt qui dit où passe chaque frontière.
+export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode', 'seoul', 'culture', 'food'];
 
 export const THEME_LABELS = {
   anime: 'Anime et manga',
@@ -40,6 +39,8 @@ export const THEME_LABELS = {
   personnages: 'Personnages',
   mode: 'Mode et marques',
   seoul: 'Festivals de Séoul',
+  culture: 'Culture et expos',
+  food: 'Food et boissons',
 };
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');

@@ -25,6 +25,8 @@
   --theme-personnages: #dc2626;
   --theme-mode: #0f766e;
   --theme-seoul: #57534e;
+  --theme-culture: #4f46e5;
+  --theme-food: #ea580c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,6 +44,8 @@
     --theme-personnages: #f87171;
     --theme-mode: #2dd4bf;
     --theme-seoul: #a8a29e;
+    --theme-culture: #818cf8;
+    --theme-food: #fdba74;
   }
 }
 
@@ -484,6 +488,8 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .evenement[data-theme="personnages"] { --theme: var(--theme-personnages); }
 .evenement[data-theme="mode"] { --theme: var(--theme-mode); }
 .evenement[data-theme="seoul"] { --theme: var(--theme-seoul); }
+.evenement[data-theme="culture"] { --theme: var(--theme-culture); }
+.evenement[data-theme="food"] { --theme: var(--theme-food); }
 
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
