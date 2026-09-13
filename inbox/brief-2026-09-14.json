@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-14",
+  "title": "Succession chez KB Financial, victoire judiciaire face à Pékin, et Wolverine plombe PlayStation avant Tokyo Game Show",
+  "standfirst": "Semaine de dénouements : KB Financial change de président, Séoul gagne son bras de fer avec un investisseur chinois après six ans de procédure, Oracle et l'IA agitent la Silicon Valley, et le nouveau Wolverine essuie la pire note PlayStation Studios de la génération, à trois jours de l'ouverture du Tokyo Game Show.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Myeong-dong reste le premier quartier commerçant du tourisme coréen",
+          "summary": "Le quartier de Myeong-dong concentre 24,1 % des dépenses des touristes étrangers au deuxième trimestre 2026, selon l'Office du tourisme coréen et Lotte Members, même si Seongsu et Yeouido gagnent des visiteurs plus vite.",
+          "importance": 1,
+          "tags": ["shopping", "myeongdong", "statistiques"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871768",
+          "source_lang": "en",
+          "published_at": "2026-09-13T18:42:00+09:00"
+        },
+        {
+          "headline": "Korean Air relance sa liaison vers Oita pour l'hiver",
+          "summary": "Korean Air relance sa liaison Incheon-Oita, ville thermale du Kyushu japonais, quatre fois par semaine du 25 octobre au 26 mars, les lundis, mercredis, vendredis et dimanches.",
+          "importance": 2,
+          "tags": ["korean-air", "aviation", "japon"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871517",
+          "source_lang": "en",
+          "published_at": "2026-09-13T10:48:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "KB Financial Group choisit Lee Jae-keun à sa tête",
+          "summary": "Le groupe bancaire désigne Lee Jae-keun, 60 ans, comme prochain président, dans une succession surprise du sortant Yang Jong-hee, retenu pour son potentiel de croissance et de renouvellement générationnel.",
+          "importance": 1,
+          "tags": ["kb-financial", "entreprises", "succession"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871653",
+          "source_lang": "en",
+          "published_at": "2026-09-13T14:55:00+09:00"
+        },
+        {
+          "headline": "La candidate au ministère de l'Égalité des genres retire sa candidature",
+          "summary": "Yong Hye-in, députée pressentie pour diriger le ministère de l'Égalité des genres, renonce après deux semaines de contestation : le parti au pouvoir jugeait incompatible son double rôle de ministre et de parlementaire.",
+          "analysis": "Onze jours plus tôt, elle refusait de céder son siège de députée pour accepter le poste ; elle finit par renoncer à la nomination elle-même, signe de la pression exercée jusque dans son propre camp.",
+          "importance": 2,
+          "tags": ["egalite-des-genres", "gouvernement", "demission"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871566",
+          "source_lang": "en",
+          "published_at": "2026-09-13T12:11:00+09:00"
+        },
+        {
+          "headline": "La Corée du Sud gagne un arbitrage de six ans contre un investisseur chinois",
+          "summary": "Un comité d'annulation rejette la demande de révision de l'investisseur chinois Fengzhen Min, qui réclamait 264,1 milliards de wons. La décision, rendue samedi, clôt un contentieux ouvert depuis six ans.",
+          "importance": 3,
+          "tags": ["justice", "arbitrage", "chine"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871757",
+          "source_lang": "en",
+          "published_at": "2026-09-13T18:12:00+09:00"
+        },
+        {
+          "headline": "Le secrétaire général de l'ONU adresse ses vœux à Pyongyang",
+          "summary": "António Guterres a envoyé un message de félicitations pour le 78e anniversaire du régime nord-coréen. Sa publication intégrale par Pyongyang suggère une tentative prudente de renouer le dialogue diplomatique.",
+          "importance": 4,
+          "tags": ["coree-du-nord", "onu", "diplomatie"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10871622",
+          "source_lang": "en",
+          "published_at": "2026-09-13T14:06:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Larry Ellison annule une vente de 7,5 milliards de dollars d'actions Oracle",
+          "summary": "Le cofondateur et président exécutif d'Oracle a annulé la cession prévue de 50 millions de titres, soit 7,5 milliards de dollars, sans qu'aucune raison officielle ne soit donnée par le groupe.",
+          "importance": 1,
+          "tags": ["oracle", "larry-ellison", "bourse"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/13/larry-ellison-cancels-7-5-billion-sale-of-oracle-stock/",
+          "source_lang": "en",
+          "published_at": "2026-09-13T13:49:00-07:00"
+        },
+        {
+          "headline": "Barack Obama appelle les démocrates à se doter d'un plan clair sur l'IA",
+          "summary": "L'ancien président a jugé jeudi que le parti démocrate doit faire de l'intelligence artificielle une priorité et se doter d'un plan clair face à ses risques économiques et sécuritaires.",
+          "importance": 2,
+          "tags": ["intelligence-artificielle", "politique-americaine"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/13/obama-urges-democrats-to-have-a-clear-plan-for-ai-safeguards/",
+          "source_lang": "en",
+          "published_at": "2026-09-13T09:30:00-07:00"
+        },
+        {
+          "headline": "Lyft ouvre son application aux robotaxis Waymo à Nashville",
+          "summary": "Le service de VTC entre pour la première fois dans les robotaxis commerciaux sans conducteur, via un partenariat avec Waymo lancé à Nashville, dans le Tennessee.",
+          "importance": 3,
+          "tags": ["robotaxi", "waymo", "lyft"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/13/techcrunch-mobility-lyft-has-entered-the-robotaxi-chat/",
+          "source_lang": "en",
+          "published_at": "2026-09-13T09:04:00-07:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Marvel's Wolverine devient le jeu PlayStation Studios le moins bien noté de la génération PS5",
+          "summary": "À la veille de sa sortie sur PS5, le jeu d'Insomniac plafonne à 77 sur Metacritic. Les critiques saluent le combat et les personnages, mais pointent une histoire prévisible et de la répétition.",
+          "importance": 1,
+          "tags": ["playstation", "insomniac-games", "marvel"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/action/wolverine-review-roundup-frankly-were-starting-to-feel-a-little-better-about-the-whole-playstation-5-exclusive-thing/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Le Tokyo Game Show 2026 réunit un nombre record d'exposants",
+          "summary": "Le salon japonais réunit 1 138 entreprises, dont 598 étrangères venues de 53 pays, pour sa 30e édition qui s'étend sur cinq jours, du 17 au 21 septembre, à Makuhari Messe.",
+          "importance": 2,
+          "tags": ["tokyo-game-show", "japon", "salon"],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=320734",
+          "source_lang": "ko"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "로컬트립 가을소풍 : cafés et pâtisseries régionales à l'antenne touristique",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "서울도시건축전시관",
+      "area": "Jung-gu",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-25",
+      "summary": "Des cafés, boulangeries et pâtisseries de huit régions coréennes s'installent cinq jours à l'antenne touristique régionale de Séoul, dans un programme de tourisme partagé entre la capitale et les provinces.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://news.seoul.go.kr/culture/archives/534385",
+      "source_lang": "ko"
+    },
+    {
+      "name": "LALARECIPE × MeME Art : le skincare vegan s'expose à la DDP",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "동대문디자인플라자",
+      "area": "Dongdaemun",
+      "start_date": "2026-08-01",
+      "end_date": "2026-09-30",
+      "summary": "La marque coréenne de soins vegan LALARECIPE s'associe à l'artiste MeME pour un espace de 330 m² mêlant produits, œuvres intégrées et zones photo, au sous-sol de la DDP, ouvert tous les jours.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/myeongdong/popups/lalarecipe-meme-art-collab-popup-ddp",
+      "source_lang": "en"
+    }
+  ]
+}
