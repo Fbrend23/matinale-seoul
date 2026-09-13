@@ -48,7 +48,7 @@ test('le prompt nomme les quatre sections attendues', () => {
   }
 });
 
-test("le prompt donne l'exemple d'un événement, et ses quatre thèmes", async () => {
+test("le prompt donne l'exemple d'un événement, et ses sept thèmes", async () => {
   // L'onglet n'existe que par ce que l'agent y dépose. Un exemple sans
   // événement, et l'agent n'en écrirait jamais — le schéma l'y autorise sans
   // l'y inviter.

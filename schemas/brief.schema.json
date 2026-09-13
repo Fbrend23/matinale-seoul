@@ -91,7 +91,7 @@
       "items": {
         "$ref": "#/$defs/event"
       },
-      "description": "Facultatif. Pop-ups et événements temporaires à Séoul — anime et manga, Pokémon, K-pop, jeu vidéo. Ce n'est PAS une cinquième rubrique : un événement écarté ne retient jamais le brief, et la liste vit dans sa propre collection jusqu'à sa date de fin. Ce que le schéma ne peut pas dire (fin ≥ début, fin ≥ aujourd'hui, 40 mots) est vérifié par scripts/lib/evenements.mjs."
+      "description": "Facultatif. Pop-ups et événements temporaires à Séoul — anime et manga, Pokémon, K-pop, jeu vidéo, personnages, mode et marques, festivals de Séoul. Ce n'est PAS une cinquième rubrique : un événement écarté ne retient jamais le brief, et la liste vit dans sa propre collection jusqu'à sa date de fin. Ce que le schéma ne peut pas dire (fin ≥ début, fin ≥ aujourd'hui, 40 mots) est vérifié par scripts/lib/evenements.mjs."
     }
   },
   "$defs": {
@@ -255,9 +255,12 @@
             "anime",
             "pokemon",
             "kpop",
-            "gaming"
+            "gaming",
+            "personnages",
+            "mode",
+            "seoul"
           ],
-          "description": "Un seul thème, parmi les quatre que l'onglet couvre. Pas de « autre » : un événement hors de ces quatre n'a pas sa place ici."
+          "description": "Un seul thème, parmi les sept que l'onglet couvre. Pas de « autre » : un événement hors de ces sept n'a pas sa place ici. « seoul » : les grands rendez-vous de la ville — Han, palais, feux d'artifice, lanternes, arts de rue — pas un marché de quartier ni une fête de la bière. « personnages » : Sanrio, Chiikawa, Miffy, Line Friends, Pop Mart — quand c'est le personnage qu'on vient voir ; une série ou un manga va dans « anime ». « mode » : les pop-ups de marque sans idol — streetwear, beauté, lifestyle ; avec un idol en tête d'affiche, c'est « kpop »."
         },
         "venue": {
           "type": "string",
