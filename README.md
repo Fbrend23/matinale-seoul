@@ -187,6 +187,38 @@ Jamais le jeton d'administration, qui appartient à `platform-cms` : un build
 local qui le porterait verrait des brouillons que la CI ne voit pas, réussirait
 là où le déploiement échoue, et cesserait de prouver quoi que ce soit.
 
+### Où les retrouver
+
+Nulle part : c'est voulu, et c'est le piège. Un jeton statique Directus ne
+s'affiche qu'à sa génération, et un secret GitHub s'écrit sans jamais se
+relire. Le seul endroit où un jeton se relit est le `.env` local, ignoré par
+git — s'il y est. Sinon, on ne le retrouve pas, on le **renouvelle** :
+
+| jeton | utilisateur Directus | secret GitHub | où il se relit |
+|---|---|---|---|
+| écriture | `mat ingestion` (policy `mat — écriture`) | `DIRECTUS_INGEST_TOKEN` | `.env` local, `DIRECTUS_TOKEN` |
+| lecture build | celui de la policy `mat — lecture build` | `DIRECTUS_BUILD_TOKEN` | `.env` local, `DIRECTUS_TOKEN` |
+
+Renouveler, dans cet ordre, sans s'arrêter entre les deux — l'ancien jeton
+meurt à la génération du nouveau, et la CI tourne avec l'ancien tant que le
+secret n'est pas redéposé :
+
+1. Directus → **User Directory** → l'utilisateur → champ **Token** →
+   *Generate* → copier → **Save**.
+2. Le coller dans `.env` (`DIRECTUS_TOKEN=…`), puis redéposer le secret sans
+   le retaper :
+   ```bash
+   cut -d= -f2- <(grep '^DIRECTUS_TOKEN=' .env) | gh secret set DIRECTUS_INGEST_TOKEN
+   gh secret list   # la date de DIRECTUS_INGEST_TOKEN doit être celle du jour
+   ```
+
+Le `.env` ne porte qu'un `DIRECTUS_TOKEN` à la fois : celui qu'on utilise en
+local est presque toujours celui d'écriture, pour corriger une fiche à la main
+(`scripts/lib/directus.mjs` sait faire un `PATCH` sur `mat_events`). Le jeton
+GitHub `github_pat_…` du serveur n'a rien à voir avec le CMS : il sert à
+pousser le brief, et le refuser en 401 est la façon dont Directus dit qu'on
+s'est trompé de jeton.
+
 ## Avant la première publication
 
 1. Créer les deux utilisateurs applicatifs dans Directus et leurs jetons
