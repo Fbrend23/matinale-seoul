@@ -126,7 +126,6 @@ main { min-width: 0; }
      repoussaient le titre sous le pli. Les marges sont celles d'une liste,
      pas celles de colonnes qui se tiennent à distance. */
   .page { padding-inline: 1rem; row-gap: 0.75rem; }
-  .entete, .pied { padding-inline: 1rem; }
   .cote, .gauche { padding-top: 1rem; }
   .page[data-gauche="oui"] > .cote { padding-top: 0; }
   .brief > header, .tete { margin: 1.5rem 0 1.25rem; }
@@ -265,22 +264,26 @@ a:hover { text-decoration-thickness: 2px; }
      sous la ligne, et son trait tombe exactement là où était la bordure. Un
      padding-bottom d'en-tête, lui, serait passé sous la liste, et le trait
      serait remonté d'autant. */
-  .entete[data-menu] { align-items: center; row-gap: 0; padding: 0.48rem 1.25rem 0; }
+  .entete[data-menu] { align-items: center; row-gap: 0; padding-top: 0.48rem; padding-bottom: 0; }
   .entete[data-menu] .marque { padding-bottom: 0; margin-bottom: 0.48rem; }
   .entete[data-menu] .burger { display: inline-flex; margin: 0 -0.6rem 0.48rem 0; }
   .entete[data-menu="ferme"] nav { display: none; }
   /* Ouvert : les onglets en liste sous la barre, l'onglet courant marqué d'un
      trait à gauche puisqu'il n'y a plus de trait dessous. Le même pas partout :
      0,6 rem de liste + 0,6 rem d'onglet au-dessus du premier, 0,6 + 0,6 entre
-     deux, 0,6 d'onglet + 0,6 d'en-tête sous le dernier. */
+     deux, 0,6 d'onglet + 0,6 d'en-tête sous le dernier. La liste déborde des
+     marges latérales de l'en-tête (1 rem sur un téléphone, ligne 129) et les
+     reprend en padding : son trait fait ainsi toute la largeur de la bordure,
+     et les onglets restent alignés sur la marque. */
   .entete[data-menu="ouvert"] { padding-bottom: 0.6rem; }
   .entete[data-menu="ouvert"] nav {
-    flex: 1 0 100%;
+    flex: 1 0 calc(100% + 2rem);
+    max-width: none;
     flex-direction: column;
     overflow: visible;
     mask-image: none;
-    margin: 0;
-    padding: 0.6rem 0 0;
+    margin: 0 -1rem;
+    padding: 0.6rem 1rem 0;
     border-top: 1px solid var(--trait);
     font-size: 1rem;
   }
@@ -621,6 +624,15 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   font-size: 0.88rem;
 }
 .pied .mention { margin-bottom: 0; }
+
+/* Sur un téléphone, l'en-tête et le pied prennent les marges de la page, 1 rem,
+   pour que la marque, les onglets dépliés et le texte partagent le même bord.
+   Cette règle vit ici, APRÈS .entete et .pied : posée plus haut, à côté de
+   celle de .page, elle était écrasée par leur padding de base, qui vient
+   après dans le fichier et à égalité de spécificité. */
+@media (max-width: 48rem) {
+  .entete, .pied { padding-inline: 1rem; }
+}
 
 @media (max-width: 34rem) {
   h1 { font-size: 1.6rem; }
