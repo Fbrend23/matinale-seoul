@@ -23,17 +23,21 @@ export const KIND_LABELS = {
   autre: 'Événement',
 };
 
-// Les quatre thèmes que l'onglet couvre, et rien d'autre : pas de « autre »
+// Les six thèmes que l'onglet couvre, et rien d'autre : pas de « autre »
 // ici. Un seau fourre-tout deviendrait la sortie de secours d'un agent qui
 // travaille avec dix-huit minutes de marge, et l'onglet cesserait de parler
-// de ce pour quoi il existe.
-export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming'];
+// de ce pour quoi il existe. « mode » est le plus large des six — les pop-ups
+// de marque sans idol — et c'est le prompt qui en tient la porte : streetwear,
+// beauté, lifestyle, pas le café du coin.
+export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode'];
 
 export const THEME_LABELS = {
   anime: 'Anime et manga',
   pokemon: 'Pokémon',
   kpop: 'K-pop',
   gaming: 'Jeu vidéo',
+  personnages: 'Personnages',
+  mode: 'Mode et marques',
 };
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');

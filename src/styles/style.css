@@ -22,6 +22,8 @@
   --theme-pokemon: #ca8a04;
   --theme-kpop: #db2777;
   --theme-gaming: #2563eb;
+  --theme-personnages: #dc2626;
+  --theme-mode: #0f766e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,6 +38,8 @@
     --theme-pokemon: #facc15;
     --theme-kpop: #f472b6;
     --theme-gaming: #60a5fa;
+    --theme-personnages: #f87171;
+    --theme-mode: #2dd4bf;
   }
 }
 
@@ -352,6 +356,8 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .evenement[data-theme="pokemon"] { --theme: var(--theme-pokemon); }
 .evenement[data-theme="kpop"] { --theme: var(--theme-kpop); }
 .evenement[data-theme="gaming"] { --theme: var(--theme-gaming); }
+.evenement[data-theme="personnages"] { --theme: var(--theme-personnages); }
+.evenement[data-theme="mode"] { --theme: var(--theme-mode); }
 
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
