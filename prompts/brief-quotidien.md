@@ -209,7 +209,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
 - **`events`** : chaque événement porte `start_date` **et** `end_date`, des
   dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
-  `pokemon`, `kpop`, `gaming`, `personnages`, `mode`, `seoul` ; un `summary`
+  `pokemon`, `kpop`, `gaming`, `personnages`, `mode`, `seoul`, `culture`,
+  `food` ; un `summary`
   de 40 mots au plus ; un `venue` en coréen, sauf si `map_url` est donné. Un
   événement fautif est écarté, le brief passe, mais un champ inventé dans un
   événement, lui, est une faute de schéma, et le schéma juge le fichier entier.
@@ -249,12 +250,12 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
 ### 7. Pop-ups et événements
 
 Le site tient un onglet de ce qui se passe à Séoul et qu'on peut aller voir :
-boutiques éphémères, concerts, expositions, salons, pour sept thèmes, et
-seulement ceux-là : **anime et manga, Pokémon, K-pop, jeu vidéo, personnages,
-mode et marques, festivals de Séoul**. Séoul et sa proche banlieue (Goyang,
-Seongnam, Incheon), rien au-delà.
+boutiques éphémères, concerts, expositions, salons, cafés, pour neuf thèmes,
+et seulement ceux-là : **anime et manga, Pokémon, K-pop, jeu vidéo,
+personnages, mode et marques, festivals de Séoul, culture, food et cafés**.
+Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), rien au-delà.
 
-Le thème, c'est ce qui fait venir les gens. Trois d'entre eux demandent une
+Le thème, c'est ce qui fait venir les gens. Cinq d'entre eux demandent une
 précision :
 
 - `personnages` : Sanrio, Chiikawa, Miffy, Line Friends, Kakao Friends, Pop
@@ -265,8 +266,7 @@ précision :
   (Adidas, Nike, New Balance), enseignes coréennes (Musinsa, Ader Error,
   Gentle Monster, Tamburins), beauté. Un idol en tête d'affiche, Adidas ×
   Jennie, Calvin Klein × Jungkook, c'est `kpop`. Un café, un restaurant, une
-  marque de boissons : ce n'est ni `mode` ni rien d'autre, ça ne va pas dans
-  l'onglet.
+  marque de boissons, c'est `food`.
 - `seoul` : les grands rendez-vous de la ville, ceux qu'on cite quand on
   demande « qu'est-ce qu'il y a ce week-end » : le pont Jamsu sans voitures,
   les feux d'artifice de Yeouido, les lanternes de Cheonggyecheon, les palais
@@ -274,6 +274,17 @@ précision :
   ville organise ou annonce (festival.seoul.go.kr, hangang.seoul.go.kr,
   Visit Seoul). Pas un marché de quartier, pas une fête de la bière, pas un
   salon professionnel.
+- `culture` : ce qu'on traverse la ville pour aller voir : les grandes
+  expositions (musées nationaux, Leeum, DDP, Seoul Museum of Art, Grand Palais
+  ou Pinault en visite), les scènes (comédie musicale, danse, théâtre), les
+  festivals de cinéma, l'art immersif. Pas la galerie de quartier ni la
+  rétrospective sans nom. Une exposition One Piece, Pokémon ou BTS garde son
+  thème ; `culture` est pour ce qui n'en a pas d'autre.
+- `food` : les cafés et restaurants éphémères, les pop-ups de marques de
+  boissons ou d'aliments (Starbucks, Oatly, Haribo, une brasserie), les
+  festivals gastronomiques. Un café à l'effigie d'un personnage, d'un groupe
+  ou d'un jeu reste dans son thème : c'est le personnage qu'on vient voir, pas
+  le café.
 
 L'onglet liste tout ce qui est en cours ou annoncé, et chaque événement en sort
 de lui-même à sa date de fin. Ton rôle est d'y **ajouter** ce qui est nouveau,
@@ -291,15 +302,17 @@ pas de redire ce qui s'y trouve :
 - **Cherche thème par thème, en coréen.** Une requête par thème, avec les
   mots que les sites coréens emploient, `애니메이션` ou `애니`, `만화`,
   `포켓몬`, `케이팝` ou `아이돌`, `게임` ou `e스포츠`, `캐릭터` (ou le nom :
-  `산리오`, `치이카와`), `패션 브랜드`, `서울 축제` ou `한강 축제`, combinés
-  à `팝업스토어`, `전시`, `콘서트`, `페스티벌`, `서울`, le mois en cours. L'anglais remonte surtout
-  des agrégateurs ; le coréen remonte les rédactions.
+  `산리오`, `치이카와`), `패션 브랜드`, `서울 축제` ou `한강 축제`, `전시회` ou
+  `뮤지컬`, `팝업 카페` ou `푸드 페스티벌`, combinés à `팝업스토어`, `전시`,
+  `콘서트`, `페스티벌`, `서울`, le mois en cours. L'anglais remonte surtout des
+  agrégateurs ; le coréen remonte les rédactions.
 - **Passe ensuite par les sources de l'allowlist qui annoncent les
   événements** : Inside Seoul (insideseoul.app), NOL World (world.nol.com)
   et Visit Seoul pour les pop-ups, Time Out, Soompi et allkpop pour la K-pop,
   pokemonkorea.co.kr pour Pokémon, Inven et This Is Game pour le jeu vidéo,
   Hypebeast pour la mode, festival.seoul.go.kr et hangang.seoul.go.kr pour
-  les festivals de la ville, COEX et DDP pour les salons. Une recherche `site:`
+  les festivals de la ville, COEX et DDP pour les salons, Time Out, Korea
+  Herald et Visit Seoul pour la culture et le food. Une recherche `site:`
   sur deux ou trois d'entre elles trouve ce que la requête générique n'a pas vu.
 - **Les autres agrégateurs de pop-ups sont des pistes, pas des sources.**
   popga, heypop, dealseoul, namu.wiki ne sont pas dans l'allowlist : un
@@ -310,7 +323,7 @@ pas de redire ce qui s'y trouve :
   l'onglet.
 - Le brief passe avant : compose-le d'abord, cherche les événements ensuite,
   avec le temps qui reste. Il en reste en général plus de dix minutes sur les
-  vingt-cinq de la session, assez pour les sept thèmes. L'onglet ne se
+  vingt-cinq de la session, assez pour les neuf thèmes. L'onglet ne se
   remplit que par ce que tu y déposes.
 - **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
   source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
