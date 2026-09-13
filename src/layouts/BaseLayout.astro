@@ -4,7 +4,7 @@ import { SECTIONS, SECTION_LABELS, RUBRIQUES_EN_PROSE } from '../../shared/secti
 
 // `largeur` : « lecture » (une colonne de texte, le défaut) ou « large » (toute
 // la page, pour une grille de cartes). Les slots « gauche » et « cote » posent
-// une colonne latérale de chaque côté du texte — le cours du change, la météo —
+// une colonne latérale de chaque côté du texte, le cours du change, la météo,
 // qui passent au-dessus, en bandeaux, sur un écran étroit.
 const { title, description, canonical, type = 'website', largeur = 'lecture' } = Astro.props;
 // Rendu d'abord, posé ensuite : un brief sans relevé météo remplit le slot
@@ -29,10 +29,10 @@ const onglets = [
   { href: '/briefs/', label: 'Archive' },
 ];
 const courant = (o) => (o.exact ? chemin === o.href : chemin.startsWith(o.href));
-const titreComplet = title ? `${title} — La Matinale de Séoul` : 'La Matinale de Séoul';
+const titreComplet = title ? `${title} · La Matinale de Séoul` : 'La Matinale de Séoul';
 const url = canonical ?? new URL(Astro.url.pathname, Astro.site).toString();
 
-const RESUME = `Brief quotidien — ${RUBRIQUES_EN_PROSE}.`;
+const RESUME = `Brief quotidien, ${RUBRIQUES_EN_PROSE}.`;
 const résumé = description ?? RESUME;
 
 // Une seule image, statique, pour tout le site. Pas une par brief : cela
@@ -57,7 +57,7 @@ const image = new URL('/og.png', Astro.site).toString();
     <link rel="canonical" href={url} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul" href="/rss.xml" />
-    <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul — Pop-ups &amp; événements" href="/evenements.xml" />
+    <link rel="alternate" type="application/rss+xml" title="La Matinale de Séoul · Pop-ups &amp; événements" href="/evenements.xml" />
 
     <meta property="og:title" content={titreComplet} />
     <meta property="og:description" content={résumé} />
@@ -97,8 +97,8 @@ const image = new URL('/og.png', Astro.site).toString();
 
     <script>
       // Le menu d'un téléphone : ouvert ou fermé, c'est l'en-tête qui le dit
-      // (data-menu), et c'est la feuille de style qui décide ce que ça montre
-      // — rien du tout sur un grand écran, où les onglets sont toujours là.
+      // (data-menu), et c'est la feuille de style qui décide ce que ça montre,
+      // rien du tout sur un grand écran, où les onglets sont toujours là.
       const entete = document.querySelector<HTMLElement>('.entete');
       const bouton = entete?.querySelector<HTMLButtonElement>('.burger');
       if (entete && bouton) {
@@ -140,12 +140,12 @@ const image = new URL('/og.png', Astro.site).toString();
       <p>
         {/* Sur une ligne : le compilateur avale l'espace au retour à la ligne
             entre le texte et le lien, et « sept.Flux RSS » sortait collé. */}
-        <strong>La Matinale de Séoul</strong> — brief quotidien, sept jours sur sept. <a href="/rss.xml">Flux RSS</a> · <a href="/evenements.xml">Flux des événements</a>
+        <strong>La Matinale de Séoul</strong>, brief quotidien, sept jours sur sept. <a href="/rss.xml">Flux RSS</a> · <a href="/evenements.xml">Flux des événements</a>
       </p>
       <p class="mention">
         Contenu produit automatiquement. Les résumés sont rédigés par une IA à partir
         des articles cités : ils peuvent se tromper, et rien n'est relu par un humain
-        avant publication. Chaque item porte le lien de sa source — la vérification
+        avant publication. Chaque item porte le lien de sa source, la vérification
         vous revient.
       </p>
     </footer>

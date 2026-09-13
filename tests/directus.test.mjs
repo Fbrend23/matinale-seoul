@@ -126,7 +126,7 @@ const bulletin = { date: '2026-09-10', tmin: 15, tmax: 22, code: 3, source: 'ope
 /**
  * Client factice : enregistre les charges au lieu de les envoyer.
  *
- * `refuseWeather` imite une instance où le champ n'est pas encore provisionné —
+ * `refuseWeather` imite une instance où le champ n'est pas encore provisionné,
  * Directus y refuse la charge entière, pas seulement le champ inconnu.
  */
 function faux({ existant = null, refuseWeather = false, refuse = [] } = {}) {
@@ -175,7 +175,7 @@ test('un bulletin fourni est écrit avec le brief', async () => {
 
 test("un bulletin absent n'efface pas celui d'un passage précédent", async () => {
   // Le cas concret : un brief publié ce matin AVEC sa météo, rejoué ce soir
-  // alors qu'Open-Meteo ne répond plus. La clé doit rester hors de la charge —
+  // alors qu'Open-Meteo ne répond plus. La clé doit rester hors de la charge,
   // « weather: null » remplacerait le bulletin du matin par du vide.
   const faux1 = faux({ existant: { id: 7, status: 'published' } });
   await saveBrief(faux1.client, {
@@ -244,7 +244,7 @@ test('une panne étrangère à la météo remonte telle quelle', async () => {
 
 test('une panne réseau ne rejoue pas l’écriture, même avec une météo', async () => {
   // La règle du client vaut ici aussi : un POST reçu dont la réponse s'est
-  // perdue créerait un brief en double. Le filet météo ne doit pas la défaire —
+  // perdue créerait un brief en double. Le filet météo ne doit pas la défaire,
   // il ne rattrape qu'un REFUS de Directus, qui n'a pas de `cause`.
   let appels = 0;
   const client = {

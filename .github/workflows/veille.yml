@@ -1,6 +1,6 @@
 # Chien de garde : le brief du jour est-il en ligne ?
 #
-# POURQUOI. Toute la chaîne signale ses échecs — un brief recalé fait échouer le
+# POURQUOI. Toute la chaîne signale ses échecs, un brief recalé fait échouer le
 # workflow de publication, et GitHub envoie le mail. Mais elle ne sait rien dire
 # de ce qui n'arrive PAS. Si l'agent ne tourne pas, ou ne parvient pas à
 # committer, rien n'entre dans inbox/, aucun workflow ne se déclenche, et le
@@ -33,15 +33,15 @@ jobs:
     runs-on: ubuntu-latest
     # Une question posée à un CMS ne demande pas dix minutes. Sans plafond, un
     # curl qui ne revient pas tiendrait le job jusqu'à la limite de six heures
-    # de GitHub sans rien dire — et cette veille existe précisément pour parler.
+    # de GitHub sans rien dire, et cette veille existe précisément pour parler.
     timeout-minutes: 5
     steps:
       - name: Le brief du jour est-il publié ?
         env:
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           # Jeton de LECTURE : il ne voit que le contenu publié, ce qui est
-          # exactement la question posée. Un brief resté en brouillon — recalé,
-          # ou retenu parce qu'une source est inconnue — doit compter comme
+          # exactement la question posée. Un brief resté en brouillon, recalé,
+          # ou retenu parce qu'une source est inconnue, doit compter comme
           # absent, puisque le lecteur ne le voit pas non plus.
           DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
         run: |
@@ -75,7 +75,7 @@ jobs:
             echo "     rien n'arrive dans inbox/, donc aucun workflow ne se déclenche"
             echo "     et rien d'autre ne le signalerait. Le journal du serveur dit"
             echo "     quoi : logs/brief-AAAA-MM.log ;"
-            echo "  2. le brief a été recalé par les gardes — dans ce cas le"
+            echo "  2. le brief a été recalé par les gardes, dans ce cas le"
             echo "     workflow Publication a déjà échoué, son journal dit pourquoi ;"
             echo "  3. le brief est resté en brouillon parce qu'une source sort de"
             echo "     config/sources.json : il est dans le CMS, à relire."

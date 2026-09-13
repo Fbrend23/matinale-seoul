@@ -1,7 +1,7 @@
 // Le cours du change, testé sans réseau.
 //
 // Deux façons de mentir en silence : afficher un cours périmé sous une date
-// récente — la BCE se tait le week-end et les jours fériés —, et laisser
+// récente, la BCE se tait le week-end et les jours fériés, et laisser
 // passer une réponse à trous. Le reste est du confort.
 
 import { test } from 'node:test';

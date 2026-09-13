@@ -1,6 +1,6 @@
 // Un CMS de pacotille, pour construire le site sans Directus.
 //
-// Le site refuse — à raison — de se construire sans ses sources, et src/ ne se
+// Le site refuse, à raison, de se construire sans ses sources, et src/ ne se
 // teste pas hors d'Astro. Il restait donc un trou : une page qui casse ne se
 // voyait qu'au déploiement du matin. Ce module sert trois collections lues
 // depuis une fixture, sur un port local, le temps d'un build : assez pour que
@@ -17,7 +17,7 @@ import { seoulToday, jourPlus } from '../../shared/date.mjs';
 
 /**
  * Les données servies : un brief avec météo et change, ses items, et des
- * événements posés autour d'aujourd'hui — un en cours, un qui finit bientôt,
+ * événements posés autour d'aujourd'hui, un en cours, un qui finit bientôt,
  * un à venir, un terminé qui ne doit pas paraître.
  */
 export async function donnéesDeDémonstration(cheminFixture) {
@@ -66,8 +66,8 @@ export async function donnéesDeDémonstration(cheminFixture) {
 /**
  * Démarre le serveur sur un port libre de 127.0.0.1.
  *
- * Il honore ce que content.js demande vraiment — la pagination, et le filtre
- * de date de fin sur les événements — et ignore le reste : un faux qui
+ * Il honore ce que content.js demande vraiment, la pagination, et le filtre
+ * de date de fin sur les événements, et ignore le reste : un faux qui
  * imiterait toute l'API Directus serait un second CMS à maintenir.
  *
  * @returns {Promise<{url: string, fermer: () => Promise<void>}>}

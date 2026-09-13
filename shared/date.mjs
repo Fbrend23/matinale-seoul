@@ -1,8 +1,8 @@
 // Le jour à Séoul, partagé par l'ingestion et par le site.
 //
 // Même raison que sections.mjs et meteo.mjs, et le même risque : cette fonction
-// existait en deux exemplaires — seoulDate() dans les gardes, seoulToday() sur
-// le site — pour un seul et même calcul. Deux copies qui divergeraient feraient
+// existait en deux exemplaires, seoulDate() dans les gardes, seoulToday() sur
+// le site, pour un seul et même calcul. Deux copies qui divergeraient feraient
 // recaler un brief que le site daterait pourtant correctement, sans que rien
 // n'échoue nulle part.
 //

@@ -20,8 +20,8 @@ cd "$DEPOT"
 mkdir -p logs
 # Daté à SÉOUL, comme le brief lui-même et comme la commande que la
 # documentation donne pour le relire. En UTC, le journal du 1er de chaque mois
-# partait dans le fichier du mois PRÉCÉDENT — 7 h 30 à Séoul valant 22 h 30 UTC
-# la veille — et « tail logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log » ouvrait un
+# partait dans le fichier du mois PRÉCÉDENT, 7 h 30 à Séoul valant 22 h 30 UTC
+# la veille, et « tail logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log » ouvrait un
 # fichier vide. Le matin précis où l'on cherche pourquoi le brief manque.
 JOURNAL="logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log"
 
@@ -42,7 +42,7 @@ ATTENDU="inbox/brief-${JOUR}.json"
 
 echo ""
 echo "════════════════════════════════════════════════════════"
-echo "$(date -u +%FT%TZ) UTC — brief du $JOUR (heure de Séoul)"
+echo "$(date -u +%FT%TZ) UTC, brief du $JOUR (heure de Séoul)"
 
 echec() {
   echo "ÉCHEC : $1"
@@ -57,7 +57,7 @@ git checkout --quiet main
 git reset --hard --quiet origin/main
 # npm ci SEULEMENT si les dépendances ont bougé. Le temps gagné est négligeable
 # et il faut le dire : npm ci prend 4 secondes ici, sur un run de douze minutes.
-# CE QUI EST GAGNÉ EST AILLEURS — une réinstallation quotidienne met le registre
+# CE QUI EST GAGNÉ EST AILLEURS : une réinstallation quotidienne met le registre
 # npm sur le chemin critique de la parution. Son incident devient alors un matin
 # sans brief, alors que node_modules était déjà bon. On retire une dépendance
 # réseau dont on n'avait pas besoin, pas quatre secondes.
@@ -85,7 +85,7 @@ CONSIGNE=$(cat prompts/consigne-serveur.txt)
 #
 # D'où l'identifiant COMPLET, et non l'alias « sonnet ». L'alias suit la
 # génération courante : le jour où Sonnet 6 sortira, il changera de modèle tout
-# seul, sans commit, sans ligne de journal — exactement ce que le paragraphe
+# seul, sans commit, sans ligne de journal, exactement ce que le paragraphe
 # ci-dessus dit vouloir empêcher. Le relever se fait ici, par un commit.
 #   MATINALE_MODELE=claude-opus-5 bin/brief-du-jour.sh   pour en essayer un autre
 MODELE="${MATINALE_MODELE:-claude-sonnet-5}"
@@ -93,7 +93,7 @@ echo "modèle : $MODELE"
 
 # --allowedTools plutôt que --dangerously-skip-permissions : la liste dit
 # exactement ce que l'agent peut faire. Un outil hors liste fait échouer la
-# session au lieu de l'autoriser en silence — et « échouer » est ici le bon
+# session au lieu de l'autoriser en silence, et « échouer » est ici le bon
 # comportement, puisque personne ne regarde.
 #
 # timeout : sans lui, une session qui s'enlise tiendrait la place jusqu'au
@@ -105,7 +105,7 @@ timeout 25m claude -p "$CONSIGNE" \
   || echec "la session Claude Code s'est terminée en erreur (ou a dépassé 25 minutes)"
 
 # La seule preuve qui vaille : le fichier est-il sur origin ?
-# Un agent peut très bien avoir « terminé » sans rien pousser — c'est même ce
+# Un agent peut très bien avoir « terminé » sans rien pousser, c'est même ce
 # qu'on lui demande quand ses sources ne tiennent pas.
 git fetch --quiet origin main
 if git ls-tree --name-only origin/main inbox/ | grep -qx "$ATTENDU"; then

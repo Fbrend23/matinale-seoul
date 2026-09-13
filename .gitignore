@@ -1,4 +1,4 @@
-# Environnement — jamais commité. Les valeurs vivent dans les secrets GitHub,
+# Environnement, jamais commité. Les valeurs vivent dans les secrets GitHub,
 # et le .env local n'est là que pour le développement.
 .env
 .env.local

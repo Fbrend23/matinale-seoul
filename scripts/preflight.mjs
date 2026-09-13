@@ -9,7 +9,7 @@
 // Un brief recalé ici, c'est une correction avant même le commit.
 //
 // LES CINQ GARDES, ET DANS LEUR ORDRE. Les doublons se jugeaient autrefois dans
-// la seule CI, faute d'accès au CMS — si bien que l'agent pouvait pousser un
+// la seule CI, faute d'accès au CMS, si bien que l'agent pouvait pousser un
 // brief dont des items seraient retirés en silence, sans jamais l'apprendre. Or
 // le site publie « /api/recent.json », qui porte les mêmes titres et que le
 // prompt lui fait déjà lire. Ce contrôle s'en sert.
@@ -55,11 +55,11 @@ if (!fichier) {
  *
  * Le filtre sur la date n'est pas une précaution : c'est la même règle que côté
  * CMS, où recentHeadlines() lit strictement « avant aujourd'hui ». Sans lui, un
- * brief déjà publié — ou rejoué après un premier passage — se reconnaîtrait
+ * brief déjà publié, ou rejoué après un premier passage, se reconnaîtrait
  * lui-même à 1.00 et verrait tous ses items marqués comme doublons. Vu au
  * premier essai, sur un brief de l'archive.
  *
- * Rend `null` — et non un tableau vide — quand le fichier est hors d'atteinte :
+ * Rend `null`, et non un tableau vide, quand le fichier est hors d'atteinte :
  * « je n'ai pas pu regarder » et « il n'y a rien » ne se disent pas de la même
  * façon, et seul le premier mérite d'être signalé à l'agent.
  */
@@ -115,7 +115,7 @@ const nom = path.basename(fichier);
 const nommage = /^brief-(\d{4}-\d{2}-\d{2})\.json$/.exec(nom);
 const problemes = [];
 
-console.log(`Contrôle avant vol — ${nom}\n`);
+console.log(`Contrôle avant vol : ${nom}\n`);
 
 if (!nommage) {
   problemes.push(`nom de fichier hors format : attendu brief-AAAA-MM-JJ.json`);
@@ -148,8 +148,8 @@ if (!fautes.length) {
   const items = flatten(brief);
 
   // --- Garde 2 : liens vivants ---
-  // Seul le verdict « mort » recale. Un accès refusé est signalé — il explique
-  // qu'un item paraîtra sans date de vérification — mais ne bloque pas le
+  // Seul le verdict « mort » recale. Un accès refusé est signalé, il explique
+  // qu'un item paraîtra sans date de vérification, mais ne bloque pas le
   // départ : l'ingestion ne le bloquera pas non plus.
   const sondes = await checkLinks(items);
 
@@ -206,7 +206,7 @@ if (!fautes.length) {
   //
   // L'ingestion juge après avoir retiré les liens morts ET les doublons : juger
   // ici sur le brief entier donnerait un verdict que la CI contredirait. D'où la
-  // MÊME reconstruction qu'elle, et non une qui lui ressemble — ce contrôle n'a
+  // MÊME reconstruction qu'elle, et non une qui lui ressemble, ce contrôle n'a
   // de valeur que s'il prédit exactement son verdict.
   const retenus = vivants.filter((i) => !doublons.some((d) => d.item === i));
   const incoherences = checkCoherence(unflatten(brief, retenus), { today: seoulDate() });
@@ -220,7 +220,7 @@ if (!fautes.length) {
   // --- Événements : des avertissements, jamais une faute ---
   //
   // L'ingestion écarte, elle ne recale pas. Mais l'agent doit savoir AVANT de
-  // pousser qu'un événement partirait à la trappe — sans quoi l'onglet
+  // pousser qu'un événement partirait à la trappe, sans quoi l'onglet
   // maigrirait en silence, et lui croirait l'avoir garni.
   const événements = brief.events ?? [];
   if (événements.length) {

@@ -9,7 +9,7 @@
 // gratuitement et sans clé : aucun secret nouveau. La BCE publie un taux par
 // jour OUVRÉ, vers 16 h à Francfort ; le samedi, le dimanche et les jours
 // fériés, « latest » rend celui du dernier jour ouvré. C'est pourquoi le relevé
-// porte deux dates — celle du brief, et celle du cours — et pourquoi le widget
+// porte deux dates, celle du brief, et celle du cours, et pourquoi le widget
 // affiche la seconde.
 
 import { joursEntre } from '../../shared/date.mjs';

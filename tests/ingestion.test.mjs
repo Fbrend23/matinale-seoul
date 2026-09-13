@@ -8,7 +8,7 @@
 //
 // Aucun de ces choix ne se voit dans une garde prise isolément. Intervertir
 // deux d'entre elles changerait le verdict sans faire rougir un seul test
-// unitaire — c'est précisément ce que ce fichier garde.
+// unitaire, c'est précisément ce que ce fichier garde.
 //
 // Rien ne touche au réseau : le client CMS et le relevé météo sont injectés.
 
@@ -42,7 +42,7 @@ const cours = { date: JOUR, rate_date: JOUR, base: 'CHF', quote: 'KRW', rate: 16
  * titres des quatorze derniers jours que lit la garde des doublons.
  * `événementsConnus` sont les événements actifs du CMS ; `événementsFinis`
  * ceux dont la date est passée ; `sansÉvénements` imite une instance où la
- * collection n'est pas encore provisionnée — Directus y répond 403.
+ * collection n'est pas encore provisionnée, Directus y répond 403.
  */
 function fauxClient({
   publié = false,

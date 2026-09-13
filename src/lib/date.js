@@ -14,7 +14,7 @@
 import { SEOUL, seoulToday, joursEntre, jourPlus } from '../../shared/date.mjs';
 export { SEOUL, seoulToday, joursEntre, jourPlus };
 
-/** « jeudi 4 septembre 2026 » — la date affichée en tête de brief. */
+/** « jeudi 4 septembre 2026 », la date affichée en tête de brief. */
 export function longDate(isoDay) {
   return new Intl.DateTimeFormat('fr-FR', {
     timeZone: 'UTC',
@@ -25,7 +25,7 @@ export function longDate(isoDay) {
   }).format(new Date(`${isoDay}T12:00:00Z`));
 }
 
-/** « 4 sept. » — pour les listes d'archive. */
+/** « 4 sept. », pour les listes d'archive. */
 export function shortDate(isoDay) {
   return new Intl.DateTimeFormat('fr-FR', {
     timeZone: 'UTC',

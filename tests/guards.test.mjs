@@ -345,7 +345,7 @@ test('checkCoherence sait dater toute seule, sans « today »', () => {
 //
 // L'agent écrit une phrase sous chaque rubrique qu'il laisse vide, et le schéma
 // l'y oblige. Elle était validée puis jetée : ni écrite dans le CMS, ni lue au
-// build. Un texte produit, contraint, et perdu — dans un dépôt dont toute la
+// build. Un texte produit, contraint, et perdu, dans un dépôt dont toute la
 // doctrine est de ne rien laisser disparaître en silence.
 
 const sectionVide = (key, note) => ({ key, empty_note: note, items: [] });
@@ -365,7 +365,7 @@ test('une rubrique pourvue ne reçoit aucune note', () => {
 
 test('une rubrique vidée PAR LES GARDES reçoit sa propre phrase', () => {
   // Le cas du 11 septembre : trois items de jeu vidéo, trois sources en 403.
-  // L'agent n'avait écrit aucune note — sa rubrique n'était pas vide. Dire
+  // L'agent n'avait écrit aucune note, sa rubrique n'était pas vide. Dire
   // « rien à signaler » serait faux : il y avait trois choses à signaler.
   const notes = emptyNotes({
     sections: [sectionPleine('coree'), { key: 'gaming', empty_note: null, items: [] }],
@@ -385,7 +385,7 @@ test('une note vide de sens vaut une note absente', () => {
 //
 // unflatten() dit sur QUOI la garde de cohérence se prononce : le brief une fois
 // les liens morts et les doublons retirés, jamais celui que l'agent a proposé.
-// L'ingestion et le contrôle avant vol le reconstruisaient chacun de son côté —
+// L'ingestion et le contrôle avant vol le reconstruisaient chacun de son côté,
 // or le second est censé prédire le verdict du premier.
 
 test('aplatir puis tout reconstruire rend le brief de départ', () => {
@@ -484,7 +484,7 @@ test('les sources sont comptées par domaine, la plus portée d abord', () => {
 
 test('un sous-domaine compte pour lui-même, comme partout ailleurs', () => {
   // hostOf ne retire que « www. » : « english.hani.co.kr » reste distinct de
-  // « hani.co.kr », ce qui est l'information utile ici — deux rédactions.
+  // « hani.co.kr », ce qui est l'information utile ici, deux rédactions.
   const réparti = sourceSpread([
     source('https://hani.co.kr/a'),
     source('https://english.hani.co.kr/b'),

@@ -1,17 +1,17 @@
-// Ce qui écarte un événement — et rien ici ne recale un brief.
+// Ce qui écarte un événement, et rien ici ne recale un brief.
 //
 // Les items ont cinq gardes et deux sanctions : l'item sauté, ou le brief
 // recalé. Les événements n'ont qu'une sanction, l'ÉVÉNEMENT ÉCARTÉ. Ils sont
 // un accessoire du brief, comme la météo : un pop-up mal sourcé ne doit pas
 // priver Séoul de sa Matinale. La seule exception est le schéma, qui juge le
-// fichier entier — et c'est la garde 1, pas ce module.
+// fichier entier, et c'est la garde 1, pas ce module.
 //
 // Même différence pour l'allowlist. Sur un item, un domaine inconnu RETIENT le
 // brief en brouillon, pour que la liste s'enrichisse. Sur un événement, il
 // écarte : retenir le brief ferait payer à toute l'actualité une boutique
 // éphémère, et le journal du run dit le domaine tout aussi bien.
 //
-// Tout est pur, sauf les sondes de liens qui reçoivent leur `fetch` — comme
+// Tout est pur, sauf les sondes de liens qui reçoivent leur `fetch`, comme
 // dans guards.mjs, et pour la même raison : testable sans réseau.
 
 import {
@@ -68,11 +68,11 @@ export function cohérenceÉvénement(event, { today }) {
     erreurs.push(`résumé de ${mots} mots, ${MAX_SUMMARY_WORDS} au plus`);
   }
 
-  // Sans fiche vue, l'épingle est une recherche Naver Map sur le lieu — et
+  // Sans fiche vue, l'épingle est une recherche Naver Map sur le lieu, et
   // Naver ne trouve pas « Hiker Ground », seulement « 하이커그라운드 ». Un lieu
   // en lettres latines donnerait un bouton qui s'ouvre sur rien.
   if (!event.map_url && !enCoréen(event.venue)) {
-    erreurs.push(`lieu sans hangul : « ${event.venue} » — Naver Map ne le trouvera pas`);
+    erreurs.push(`lieu sans hangul : « ${event.venue} », Naver Map ne le trouvera pas`);
   }
 
   return erreurs;
@@ -81,7 +81,7 @@ export function cohérenceÉvénement(event, { today }) {
 /**
  * Trie les événements proposés : ce qui passe, ce qui est écarté, et pourquoi.
  *
- * L'ordre va du gratuit au coûteux — cohérence, allowlist, doublons, puis les
+ * L'ordre va du gratuit au coûteux, cohérence, allowlist, doublons, puis les
  * sondes réseau. Il ne change aucun verdict, puisque tout écarte ; il évite
  * seulement de sonder une adresse pour un événement déjà terminé.
  *
@@ -91,17 +91,17 @@ export function cohérenceÉvénement(event, { today }) {
  *
  * Un doublon dont les DATES ont changé n'est pas écarté : c'est une
  * prolongation ou un report, et la fiche connue est à mettre à jour. Il passe
- * les mêmes sondes qu'un événement neuf — une prolongation annoncée par un
- * lien mort ne vaut rien — et ressort dans `prolongés`, avec la fiche à
+ * les mêmes sondes qu'un événement neuf, une prolongation annoncée par un
+ * lien mort ne vaut rien, et ressort dans `prolongés`, avec la fiche à
  * corriger. Ce sont les seules écritures que l'ingestion fait sur un
  * événement qu'elle n'a pas créé.
  *
- * Les liens facultatifs — billetterie, fiche Naver Map — sont sondés eux
+ * Les liens facultatifs, billetterie, fiche Naver Map, sont sondés eux
  * aussi, mais un lien mort ne retire que le CHAMP : l'événement reste, et le
  * site pose son lien de recherche à la place de la fiche. Une limite à
  * connaître : map.naver.com est une application qui répond 200 à n'importe
  * quelle fiche, inventée ou non ; seuls les liens courts naver.me répondent
- * 404. La sonde est honnête, elle n'est pas complète — d'où le repli.
+ * 404. La sonde est honnête, elle n'est pas complète, d'où le repli.
  *
  * @param {object[]} events         brief.events, tel que l'agent l'a écrit
  * @param {object} p
@@ -127,7 +127,7 @@ export async function contrôlerÉvénements(
   const liensRetirés = [];
   const prolongés = [];
 
-  // Des copies : l'agent a écrit ces objets, on ne les retouche pas — les
+  // Des copies : l'agent a écrit ces objets, on ne les retouche pas, les
   // champs qu'on retire ici ne doivent pas disparaître du fichier qu'il relit.
   let survivants = events.map((event) => ({ ...event }));
 
@@ -155,7 +155,7 @@ export async function contrôlerÉvénements(
   const àProlonger = new Map();
   for (const { item, score, against } of doublons) {
     const connu = connus.find((c) => c.name === against);
-    // Une fiche sans dates — une liste de noms seuls — ne peut pas dire si
+    // Une fiche sans dates, une liste de noms seuls, ne peut pas dire si
     // elles ont changé : dans le doute, c'est un doublon.
     const datesNouvelles =
       connu?.start_date && connu?.end_date &&

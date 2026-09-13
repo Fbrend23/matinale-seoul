@@ -11,7 +11,7 @@
 #
 # Un rebuild nocturne a existé ici, pour tenir à jour l'avis « le brief du jour
 # n'est pas encore paru » que l'accueil calculait au build. Une reconstruction
-# complète chaque nuit — et les minutes d'un dépôt privé — pour une seule phrase :
+# complète chaque nuit, et les minutes d'un dépôt privé, pour une seule phrase :
 # l'avis est désormais décidé chez le lecteur, et le site ne se reconstruit plus
 # que lorsqu'il a réellement quelque chose de neuf à dire.
 #
@@ -57,8 +57,8 @@ jobs:
   publier:
     runs-on: ubuntu-latest
     # Sans plafond, un job bloqué court jusqu'à la limite de six heures de
-    # GitHub sans rien dire. Vingt-cinq minutes couvrent largement le cas normal
-    # — trois à quatre minutes — et transforment un blocage en échec signalé,
+    # GitHub sans rien dire. Vingt-cinq minutes couvrent largement le cas normal,
+    # trois à quatre minutes, et transforment un blocage en échec signalé,
     # ce qui est tout ce qu'on lui demande. Vu le 8 septembre 2026 : lftp est
     # resté neuf minutes sur une connexion qui ne venait pas.
     timeout-minutes: 25
@@ -121,14 +121,14 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           DEPLOY_MARKER: ${{ vars.DEPLOY_MARKER }}
 
-      # apt-get update rafraîchit TOUS les index de paquets — dix à vingt-cinq
-      # secondes — pour installer un seul binaire. On tente d'abord sans, et on
+      # apt-get update rafraîchit TOUS les index de paquets, dix à vingt-cinq
+      # secondes, pour installer un seul binaire. On tente d'abord sans, et on
       # ne rafraîchit que si l'index du runner est trop vieux pour connaître
       # lftp. Le repli garde l'étape sûre : elle échoue toujours si le paquet
       # est réellement introuvable, elle ne fait que cesser de payer d'avance.
       #
-      # Ce que ça gagne ne va pas dans la facture — le dépôt est public, donc
-      # les minutes sont gratuites — mais dans la marge avant 8 h, heure de
+      # Ce que ça gagne ne va pas dans la facture, le dépôt est public, donc
+      # les minutes sont gratuites, mais dans la marge avant 8 h, heure de
       # Séoul, qui ne fait que quatorze minutes depuis le passage à 7 h 30.
       - name: Installer lftp
         run: |
@@ -165,7 +165,7 @@ jobs:
             echo "Vérifier D'ABORD que le listage ci-dessus est bien CE site : c'est là"
             echo "que le mirror --delete écrira. Un autre de vos sites porte peut-être"
             echo "son propre marqueur, ce qui ne l'autorise pas pour autant à recevoir"
-            echo "celui-ci — c'est exactement ce que cette garde vérifie."
+            echo "celui-ci, c'est exactement ce que cette garde vérifie."
             echo "Puis y déposer un fichier vide nommé « $DEPLOY_MARKER »."
             exit 1
           fi
@@ -205,7 +205,7 @@ jobs:
 
       # 3 · Les cinq gardes, puis l'écriture dans le CMS. Le jeton est celui de
       #     la policy « mat — écriture » : ni l'admin, ni celui du build.
-      #     Un brief recalé fait échouer le job — c'est le mail d'alerte — et son
+      #     Un brief recalé fait échouer le job, c'est le mail d'alerte, et son
       #     fichier reste dans inbox/ pour être rejoué.
       - name: Ingérer les briefs déposés
         if: steps.inbox.outputs.briefs != '0'

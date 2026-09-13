@@ -15,11 +15,11 @@ const EVENTS = 'mat_events';
 const ATTENTES_RÉSEAU = [1000, 3000, 8000];
 
 /**
- * « fetch failed » ne nomme pas la panne — tout est dans la cause.
+ * « fetch failed » ne nomme pas la panne, tout est dans la cause.
  *
  * Vu le 10 septembre 2026 : la publication du brief du 11 est morte sur un
  * « erreur pendant l'ingestion : fetch failed », et il a fallu prouver par le
- * journal du job — une connexion FTP réussie neuf secondes plus tôt — que le
+ * journal du job, une connexion FTP réussie neuf secondes plus tôt, que le
  * runner allait bien et que c'était le CMS qui ne répondait pas. Le code de la
  * cause (ECONNREFUSED, ENOTFOUND, UND_ERR_CONNECT_TIMEOUT) l'aurait dit seul.
  */
@@ -51,18 +51,18 @@ export function createClient({
         body: body ? JSON.stringify(body) : undefined,
       });
     } catch (e) {
-      // Échec de TRANSPORT : pas de réponse du tout — instance à l'arrêt, DNS,
+      // Échec de TRANSPORT : pas de réponse du tout, instance à l'arrêt, DNS,
       // TLS. Une LECTURE se rejoue sans risque, rien n'a pu être écrit.
       //
       // Une ÉCRITURE, non : la requête a pu être reçue alors que sa réponse
       // s'est perdue, et un POST rejoué créerait un item en double. Les
-      // écritures ont leur filet ailleurs, à l'échelle du run — le fichier
+      // écritures ont leur filet ailleurs, à l'échelle du run, le fichier
       // reste dans inbox/, saveBrief() est conçu pour être rejoué, et le
       // workflow Rejeu relance la publication.
       if (method === 'GET' && essaiRéseau < ATTENTES_RÉSEAU.length) {
         const attente = ATTENTES_RÉSEAU[essaiRéseau];
         console.warn(
-          `   (CMS injoignable : ${motifRéseau(e)} — nouvelle tentative dans ${attente / 1000} s)`
+          `   (CMS injoignable : ${motifRéseau(e)}, nouvelle tentative dans ${attente / 1000} s)`
         );
         await dormir(attente);
         return api(method, path, body, attempt, essaiRéseau + 1);
@@ -151,8 +151,8 @@ export async function saveBrief(
     ingested_at: new Date().toISOString(),
   };
 
-  // Un relevé absent — service météo muet, ou brief recalé qu'on écrit en
-  // simple trace — ne doit pas effacer celui d'un passage précédent. Même
+  // Un relevé absent, service météo muet, ou brief recalé qu'on écrit en
+  // simple trace, ne doit pas effacer celui d'un passage précédent. Même
   // principe que l'archivage des items un peu plus bas : la chaîne n'a pas le
   // droit d'effacer. On n'écrit donc la clé que lorsqu'on a de quoi la remplir.
   if (weather) charge.weather = weather;
@@ -162,12 +162,12 @@ export async function saveBrief(
 
   // Même règle, et pour la même raison : ne rien avoir à dire n'autorise pas à
   // effacer ce qu'un passage précédent a dit. Un brief recalé, écrit en simple
-  // trace, ne porte aucune note — il ne doit pas emporter celles du matin.
+  // trace, ne porte aucune note, il ne doit pas emporter celles du matin.
   if (emptyNotes) charge.empty_notes = emptyNotes;
 
   // « weather » puis « empty_notes » sont arrivés après les autres. Si
-  // l'instance ne les a pas encore — provisionnement en retard, restauration
-  // d'une sauvegarde antérieure —, Directus refuse la charge ENTIÈRE : le brief
+  // l'instance ne les a pas encore, provisionnement en retard, restauration
+  // d'une sauvegarde antérieure, Directus refuse la charge ENTIÈRE : le brief
   // du jour serait perdu pour un encadré d'agrément, ou pour une phrase sous une
   // rubrique vide. On réessaie donc sans eux, un par un.
   //
@@ -230,7 +230,7 @@ export async function saveBrief(
   //
   // Cela ne touche PAS la règle du fichier : une écriture ne se rejoue jamais
   // dans un run. Un POST groupé qui échoue se rattrape comme avant, à l'échelle
-  // du run — et l'archivage ci-dessus garantit qu'un rejeu n'empile rien.
+  // du run, et l'archivage ci-dessus garantit qu'un rejeu n'empile rien.
   if (items.length) {
     await client.post(
       `/items/${ITEMS}`,
@@ -248,7 +248,7 @@ export async function saveBrief(
         source_url: item.source_url,
         source_lang: item.source_lang ?? null,
         published_at: item.published_at ?? null,
-        // Vide quand la garde 2 n'a pas pu voir la page — un accès refusé
+        // Vide quand la garde 2 n'a pas pu voir la page, un accès refusé
         // conserve l'item, mais ne permet d'affirmer aucune vérification.
         link_checked_at: item.link_checked_at ?? null,
       }))
@@ -264,7 +264,7 @@ export async function saveBrief(
 // repéré. Mêmes règles qu'au-dessus : la chaîne n'efface jamais, elle archive ;
 // une écriture ne se rejoue jamais dans un run.
 //
-// Une collection absente — provisionnement en retard — fait répondre 403 au
+// Une collection absente, provisionnement en retard, fait répondre 403 au
 // jeton d'écriture. Ces fonctions laissent remonter l'erreur : la décision de
 // continuer sans les événements appartient à l'ingestion, là où se lit que
 // « rien de tout cela ne recale jamais un brief ».
@@ -276,7 +276,7 @@ export async function saveBrief(
  *
  * `saufBrief` exclut ceux du brief qu'on rejoue : saveEvents() va les archiver
  * pour les réécrire, et les compter comme connus ferait écarter tout ce que le
- * rejeu apporte — le même piège que recentHeadlines(), « strictement avant
+ * rejeu apporte, le même piège que recentHeadlines(), « strictement avant
  * aujourd'hui ». Filtré ici et non dans la requête : un `_neq` SQL laisserait
  * de côté les lignes dont le brief est NULL, et un événement survit à son brief.
  */
@@ -295,7 +295,7 @@ export async function activeEvents(client, { today, saufBrief = null }) {
  * Écrit les événements d'un brief.
  *
  * Un rejeu ARCHIVE ceux du passage précédent avant de réécrire, exactement
- * comme saveBrief() pour les items — et pour la même raison : ce qui a été
+ * comme saveBrief() pour les items, et pour la même raison : ce qui a été
  * ingéré une première fois reste consultable, et un rejeu n'empile rien.
  *
  * @returns {Promise<number>} combien ont été écrits
@@ -366,7 +366,7 @@ export async function archiveExpiredEvents(client, { today }) {
 /**
  * Met à jour une fiche connue avec les dates nouvelles, et la source qui les
  * annonce. Rien d'autre : le nom, le lieu, le résumé et le brief d'origine
- * restent ceux de la première fois — c'est une prolongation, pas une
+ * restent ceux de la première fois, c'est une prolongation, pas une
  * réécriture. Un PATCH, pas un archivage : la fiche garde son identifiant, et
  * le flux ne renotifie pas.
  */

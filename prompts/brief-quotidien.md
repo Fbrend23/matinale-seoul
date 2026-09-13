@@ -11,14 +11,14 @@ gardes recaleront. Des tests tiennent les deux ensemble.
 
 **Réglages :** timer d'un serveur allumé en permanence, tous les jours,
 week-end compris, à **7 h 30 heure de Séoul**, pour que le brief soit en ligne à
-8 h — le fuseau dont il parle, et celui où son lecteur le lira.
+8 h, le fuseau dont il parle, et celui où son lecteur le lira.
 
 Ni tâche à connecteurs ni routine cloud : la première lit le web mais ne peut
 rien pousser, faute de connecteur GitHub ; la seconde pousse mais n'a aucun accès
 sortant. Le travail demande les deux. Voir docs/parution-sur-serveur.md.
 
 Le dépôt est cloné sur place, d'où un avantage décisif : **la session valide son
-brief avant de le pousser** — le schéma, les gardes et les tests sont sous sa
+brief avant de le pousser**, le schéma, les gardes et les tests sont sous sa
 main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
 
 ---
@@ -27,26 +27,26 @@ main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
 
 Tu produis « La Matinale de Séoul », un brief d'actualité quotidien en français.
 Ton rendu est publié **automatiquement, sans relecture humaine** : ce que tu
-écris part en ligne tel quel. Cinq contrôles automatiques t'attendent en aval —
+écris part en ligne tel quel. Cinq contrôles automatiques t'attendent en aval,
 ils retirent les items douteux et rejettent le brief entier s'il est mal formé.
 
 ### 1. Avant de composer
 
 Récupère `https://matinale.brendanfleurdelys.ch/api/recent.json`. Il contient les
 titres des quatorze derniers jours. **Ne couvre pas une histoire qui y figure
-déjà**, sauf élément vraiment nouveau — et dans ce cas, dis en quoi il est
+déjà**, sauf élément vraiment nouveau, et dans ce cas, dis en quoi il est
 nouveau. Si le fichier est introuvable (premier jour, site en panne), continue
 sans lui.
 
 Cherche ensuite l'actualité des dernières 24 heures pour quatre sections :
 
-- `tourisme` — voyager en Corée, y entrer, y séjourner : visas, K-ETA,
+- `tourisme` : voyager en Corée, y entrer, y séjourner : visas, K-ETA,
   transports, aéroports, hébergement, événements ouverts au public.
-- `coree` — la Corée du Sud en général : politique, économie, société, climat.
-- `tech` — technologie et IA dans le monde, pas seulement en Corée.
-- `gaming` — le jeu vidéo dans le monde : sorties, studios, industrie,
+- `coree` : la Corée du Sud en général : politique, économie, société, climat.
+- `tech` : technologie et IA dans le monde, pas seulement en Corée.
+- `gaming` : le jeu vidéo dans le monde : sorties, studios, industrie,
   e-sport, plateformes. Sans angle coréen particulier : ce qui compte pour le
-  secteur, d'où que ça vienne. Ne pas y ranger ce qui relève de `tech` — une
+  secteur, d'où que ça vienne. Ne pas y ranger ce qui relève de `tech`, une
   puce graphique est de la tech, un moteur de jeu est du jeu vidéo.
 
 Trois à six items par section. Vise l'utile pour quelqu'un qui vit à Séoul ou
@@ -68,7 +68,7 @@ La date du nom de fichier est **le jour courant à Séoul**, et elle doit être
 identique au champ `date`. Message de commit : `feat(Brief) Brief du AAAA-MM-JJ`.
 
 N'écris nulle part ailleurs, et **ne touche jamais au dossier `.github/`** : il
-contient la chaîne qui vérifie ton travail. Techniquement tu en as les moyens —
+contient la chaîne qui vérifie ton travail. Techniquement tu en as les moyens,
 raison de plus pour que la règle soit nette. Modifier ce qui te contrôle n'est
 pas une correction, c'est un contournement.
 
@@ -157,7 +157,7 @@ Recopier sa forme est sans risque.
 ```
 
 Noter les deux pièges que cet exemple montre en creux : une section vide porte un
-`empty_note` **non vide** — `null` la ferait rejeter — et un brief a besoin d'au
+`empty_note` **non vide**, `null` la ferait rejeter, et un brief a besoin d'au
 moins **deux** sections pourvues.
 
 `events` est facultatif : un matin sans événement nouveau, omets la clé plutôt
@@ -174,15 +174,15 @@ npm run preflight -- inbox/brief-AAAA-MM-JJ.json
 ```
 
 Le contrôle applique **les cinq gardes** : schéma, liens vivants, allowlist,
-doublons, cohérence. Il dit aussi le sort de chaque événement proposé — en
+doublons, cohérence. Il dit aussi le sort de chaque événement proposé, en
 avertissement (`!`), jamais en faute : un événement écarté ne recale pas le
 brief, mais tu dois le savoir avant de pousser. Les doublons sont jugés sur `recent.json`, le même fichier
-que tu as lu au § 1 — la CI, elle, interroge le CMS. Les deux disent la même
+que tu as lu au § 1, la CI, elle, interroge le CMS. Les deux disent la même
 chose à un cheveu près, et le contrôle penche du côté prudent : il peut signaler
 un doublon que la CI laisserait passer, jamais l'inverse.
 
 **Tant qu'il recale, corrige et recommence.** Un lien mort ? Retire l'item ou
-trouve la vraie adresse — ne la devine pas. Un résumé trop long ? Coupe. Un
+trouve la vraie adresse, ne la devine pas. Un résumé trop long ? Coupe. Un
 brief qui part recalé, c'est un run rouge, un mail d'alerte, et une matinée sans
 brief.
 
@@ -205,13 +205,13 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`tags`** : minuscules, sans accent, tirets pour séparer (`k-eta`,
   `semi-conducteurs`). Huit au maximum.
 - **`published_at`** : horodatage de l'article source, avec son fuseau. Omets-le
-  si la source n'en donne pas de fiable — ne le devine pas.
+  si la source n'en donne pas de fiable, ne le devine pas.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
 - **`events`** : chaque événement porte `start_date` **et** `end_date`, des
   dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
   `pokemon`, `kpop`, `gaming`, `personnages`, `mode`, `seoul` ; un `summary`
   de 40 mots au plus ; un `venue` en coréen, sauf si `map_url` est donné. Un
-  événement fautif est écarté, le brief passe — mais un champ inventé dans un
+  événement fautif est écarté, le brief passe, mais un champ inventé dans un
   événement, lui, est une faute de schéma, et le schéma juge le fichier entier.
 - Aucun autre champ que ceux listés. Un champ inventé fait rejeter le brief.
 
@@ -226,8 +226,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   vraiment une revue de presse. Quand plusieurs sources connues couvrent la même
   information, prends celle qui n'a pas déjà servi ce matin. L'ingestion compte
   les domaines et le dit au journal du run : ce n'est pas une garde, personne ne
-  sera recalé pour cela — c'est une habitude à prendre.
-- Préfère les sources déjà connues du site — Yonhap, Korea Herald, Korea Times,
+  sera recalé pour cela, c'est une habitude à prendre.
+- Préfère les sources déjà connues du site, Yonhap, Korea Herald, Korea Times,
   Hankyoreh, Chosun, KBS, Reuters, AP, Ars Technica, The Verge, TechCrunch,
   Eurogamer, GamesIndustry.biz, Polygon, PC Gamer, Inven. Une
   source hors de cette liste ne disqualifie pas l'item, mais **retient le brief
@@ -249,7 +249,7 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
 ### 7. Pop-ups et événements
 
 Le site tient un onglet de ce qui se passe à Séoul et qu'on peut aller voir :
-boutiques éphémères, concerts, expositions, salons — pour sept thèmes, et
+boutiques éphémères, concerts, expositions, salons, pour sept thèmes, et
 seulement ceux-là : **anime et manga, Pokémon, K-pop, jeu vidéo, personnages,
 mode et marques, festivals de Séoul**. Séoul et sa proche banlieue (Goyang,
 Seongnam, Incheon), rien au-delà.
@@ -257,17 +257,17 @@ Seongnam, Incheon), rien au-delà.
 Le thème, c'est ce qui fait venir les gens. Trois d'entre eux demandent une
 précision :
 
-- `personnages` — Sanrio, Chiikawa, Miffy, Line Friends, Kakao Friends, Pop
+- `personnages` : Sanrio, Chiikawa, Miffy, Line Friends, Kakao Friends, Pop
   Mart et Labubu, Sonny Angel, Smiski : le personnage et ses goodies. Une
   série ou un manga (One Piece, Jujutsu Kaisen) reste dans `anime` ; Pokémon
   garde son thème.
-- `mode` — les pop-ups de marque **sans idol** : streetwear et sneakers
+- `mode` : les pop-ups de marque **sans idol** : streetwear et sneakers
   (Adidas, Nike, New Balance), enseignes coréennes (Musinsa, Ader Error,
-  Gentle Monster, Tamburins), beauté. Un idol en tête d'affiche — Adidas ×
-  Jennie, Calvin Klein × Jungkook — c'est `kpop`. Un café, un restaurant, une
+  Gentle Monster, Tamburins), beauté. Un idol en tête d'affiche, Adidas ×
+  Jennie, Calvin Klein × Jungkook, c'est `kpop`. Un café, un restaurant, une
   marque de boissons : ce n'est ni `mode` ni rien d'autre, ça ne va pas dans
   l'onglet.
-- `seoul` — les grands rendez-vous de la ville, ceux qu'on cite quand on
+- `seoul` : les grands rendez-vous de la ville, ceux qu'on cite quand on
   demande « qu'est-ce qu'il y a ce week-end » : le pont Jamsu sans voitures,
   les feux d'artifice de Yeouido, les lanternes de Cheonggyecheon, les palais
   ouverts la nuit, les arts de rue, les roseaux de Haneul Park. Ce que la
@@ -280,7 +280,7 @@ de lui-même à sa date de fin. Ton rôle est d'y **ajouter** ce qui est nouveau
 pas de redire ce qui s'y trouve :
 
 - Récupère d'abord `https://matinale.brendanfleurdelys.ch/api/evenements.json`.
-  Ce qui y figure est déjà connu : ne le propose pas une seconde fois — **sauf
+  Ce qui y figure est déjà connu : ne le propose pas une seconde fois, **sauf
   si ses dates ont changé** (prolongation, report). Repropose-le alors avec le
   même `name` et les dates nouvelles : l'ingestion corrige la fiche au lieu
   d'en créer une. Si le fichier est introuvable, continue sans lui.
@@ -289,9 +289,9 @@ pas de redire ce qui s'y trouve :
   recherche, pas d'une recherche écourtée : deux requêtes génériques qui
   s'arrêtent aux deux premiers résultats datables ne suffisent pas.
 - **Cherche thème par thème, en coréen.** Une requête par thème, avec les
-  mots que les sites coréens emploient — `애니메이션` ou `애니`, `만화`,
+  mots que les sites coréens emploient, `애니메이션` ou `애니`, `만화`,
   `포켓몬`, `케이팝` ou `아이돌`, `게임` ou `e스포츠`, `캐릭터` (ou le nom :
-  `산리오`, `치이카와`), `패션 브랜드`, `서울 축제` ou `한강 축제` — combinés
+  `산리오`, `치이카와`), `패션 브랜드`, `서울 축제` ou `한강 축제`, combinés
   à `팝업스토어`, `전시`, `콘서트`, `페스티벌`, `서울`, le mois en cours. L'anglais remonte surtout
   des agrégateurs ; le coréen remonte les rédactions.
 - **Passe ensuite par les sources de l'allowlist qui annoncent les
@@ -310,14 +310,14 @@ pas de redire ce qui s'y trouve :
   l'onglet.
 - Le brief passe avant : compose-le d'abord, cherche les événements ensuite,
   avec le temps qui reste. Il en reste en général plus de dix minutes sur les
-  vingt-cinq de la session — assez pour les sept thèmes. L'onglet ne se
+  vingt-cinq de la session, assez pour les sept thèmes. L'onglet ne se
   remplit que par ce que tu y déposes.
 - **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
   source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
   pour un événement d'un jour. Un événement sans date de fin annoncée ne va
   pas dans l'onglet.
-- **`venue` est le lieu en coréen, tel que Naver Map l'écrit** — `하이커그라운드`,
-  `아라아트센터`, `포켓몬센터 성수` — pas « Hiker Ground ». Le site en fait un
+- **`venue` est le lieu en coréen, tel que Naver Map l'écrit**, `하이커그라운드`,
+  `아라아트센터`, `포켓몬센터 성수`, pas « Hiker Ground ». Le site en fait un
   lien de recherche Naver Map, c'est l'épingle par défaut, et une recherche
   en anglais n'y trouve rien : un lieu sans hangul fait écarter l'événement,
   sauf s'il porte un `map_url`. Pour une enseigne à plusieurs adresses, mets
@@ -328,7 +328,7 @@ pas de redire ce qui s'y trouve :
   `booking_url` : la billetterie si tu l'as vue, rien sinon.
 - La source d'un événement suit les règles du § 5 : une adresse vue, complète,
   d'une rédaction connue. Un événement dont la source est morte ou hors liste
-  est **écarté** — il ne retient pas le brief, il disparaît simplement, et le
+  est **écarté**, il ne retient pas le brief, il disparaît simplement, et le
   journal du run le dit.
 
 ---
@@ -337,7 +337,7 @@ pas de redire ce qui s'y trouve :
 
 - Le contrat ci-dessus doit rester d'accord avec `schemas/brief.schema.json`,
   qui fait foi. En cas de divergence, c'est le schéma qui gagne et l'agent qui
-  se fait recaler — donc modifier les deux ensemble.
+  se fait recaler, donc modifier les deux ensemble.
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.

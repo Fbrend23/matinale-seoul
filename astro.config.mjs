@@ -16,7 +16,7 @@ export default defineConfig({
 
   // Les deux variables ne sont PAS optionnelles, à la différence du site de la
   // compagnie : la Matinale n'a pas de contenu local sur lequel retomber, et
-  // c'est voulu. Sans source, le build doit s'arrêter — `astro:env` le fait
+  // c'est voulu. Sans source, le build doit s'arrêter, `astro:env` le fait
   // mécaniquement, avant même la première requête.
   env: {
     schema: {
