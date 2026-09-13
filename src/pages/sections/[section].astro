@@ -2,7 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsItem from '../../components/NewsItem.astro';
 import AiNotice from '../../components/AiNotice.astro';
-import { recentBriefs } from '../../lib/content.js';
+import TetePage from '../../components/TetePage.astro';
+import AutresRubriques from '../../components/AutresRubriques.astro';
+import BulletinMeteo from '../../components/BulletinMeteo.astro';
+import CoursDuChange from '../../components/CoursDuChange.astro';
+import { recentBriefs, dernierBrief } from '../../lib/content.js';
 import { SECTIONS, SECTION_LABELS } from '../../../shared/sections.mjs';
 import { longDate } from '../../lib/date.js';
 
@@ -26,14 +30,30 @@ export async function getStaticPaths() {
 
 const { section, jours } = Astro.props;
 const total = jours.reduce((n, jour) => n + jour.items.length, 0);
+
+// Le contexte du jour, comme sur l'accueil : la page garde le même cadre d'un
+// onglet à l'autre, et le lecteur lit une rubrique aujourd'hui, pas hors du
+// temps.
+const dernier = await dernierBrief();
+
+// Le chapeau dit ce qu'on va lire, et jusqu'où ça remonte — la fenêtre est
+// de trente jours, mais le premier jour qui a quelque chose peut être plus
+// proche.
+const plusAncien = jours[jours.length - 1]?.brief;
 ---
 
 <BaseLayout
   title={SECTION_LABELS[section]}
   description={`${SECTION_LABELS[section]} : ${total} items sur les trente derniers briefs.`}
 >
-  <h1>{SECTION_LABELS[section]}</h1>
-  <p class="chapeau">Les {total} derniers items de cette rubrique.</p>
+  <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <CoursDuChange slot="gauche" fx={dernier.fx} />
+
+  <TetePage surtitre="Rubrique" titre={SECTION_LABELS[section]}>
+    {total === 0
+      ? 'Rien reçu ces trente derniers jours.'
+      : `${total} item${total > 1 ? 's' : ''} sur ${jours.length} jour${jours.length > 1 ? 's' : ''}, depuis le ${longDate(plusAncien.date)}. Le plus récent d'abord.`}
+  </TetePage>
 
   {jours.length === 0 ? (
     <p class="vide">
@@ -42,11 +62,13 @@ const total = jours.reduce((n, jour) => n + jour.items.length, 0);
     </p>
   ) : (
     jours.map(({ brief, items }) => (
-      <section class="jour-bloc">
+      <section class="jour-bloc" aria-labelledby={`j-${brief.id}`}>
+        {/* La date en titre, comme la rubrique l'est sur l'accueil ; le lien
+            vers le brief complet à part, en clair, plutôt qu'un titre entier
+            souligné. */}
         <h2>
-          <a href={`/briefs/${brief.slug}/`}>
-            <time datetime={brief.date}>{longDate(brief.date)}</time>
-          </a>
+          <time id={`j-${brief.id}`} datetime={brief.date}>{longDate(brief.date)}</time>
+          <a class="detail" href={`/briefs/${brief.slug}/`}>Lire le brief du jour →</a>
         </h2>
         {items.map((item) => <NewsItem item={item} />)}
       </section>
@@ -54,4 +76,6 @@ const total = jours.reduce((n, jour) => n + jour.items.length, 0);
   )}
 
   <AiNotice />
+
+  <AutresRubriques sauf={section} />
 </BaseLayout>

@@ -89,7 +89,6 @@ body[data-colonnes="3"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--
 body[data-largeur="large"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
 
 main { min-width: 0; }
-main > h1:first-child { margin-top: 2rem; }
 
 .cote, .gauche { align-self: start; position: sticky; top: 1.5rem; padding-top: 2.5rem; }
 
@@ -209,11 +208,13 @@ a:hover { text-decoration-thickness: 2px; }
   font-size: 0.95rem;
 }
 
-/* Le brief */
+/* Le brief — et la tête de toute page de liste, qui a la même forme : un
+   surtitre en petites capitales (la date d'un brief, « Rubrique » ailleurs),
+   le titre, le chapeau. */
 
-.brief > header { margin: 2.5rem 0 2rem; }
+.brief > header, .tete { margin: 2.5rem 0 2rem; }
 
-.date {
+.date, .surtitre {
   margin: 0 0 0.35rem;
   color: var(--doux);
   font-size: 0.9rem;
@@ -286,7 +287,15 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
   .meteo-source { margin: 0 0 0 auto; }
 }
 
-.rubrique-bloc { margin: 2.5rem 0; border-top: 1px solid var(--trait); padding-top: 0.5rem; }
+.rubrique-bloc, .jour-bloc { margin: 2.5rem 0; border-top: 1px solid var(--trait); padding-top: 0.5rem; }
+
+/* Sur une rubrique, chaque jour est un bloc, comme chaque rubrique l'est sur
+   un brief : même filet, même titre. Le lien vers le brief complet se pose à
+   côté de la date, en bas de casse, et non sur la date entière — un titre
+   souligné en capitales n'est pas un titre. */
+h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.jour-bloc h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; }
+.jour-bloc h2 .detail { margin-left: auto; font-size: 0.88rem; }
 
 .item { margin: 1.75rem 0; }
 .item h3 { margin: 0 0 0.4rem; font-size: 1.2rem; line-height: 1.3; }
@@ -387,7 +396,6 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .filtres button:hover { color: var(--accent); border-color: var(--accent); }
 .filtres button[aria-pressed="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
 
-.groupe-evenements h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .pastille {
   white-space: nowrap;
   padding: 0.05rem 0.55rem;
@@ -426,19 +434,22 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 }
 .mention-ia p { margin: 0; }
 
-/* Listes de briefs */
+/* Listes de briefs — et, en pied d'une rubrique, la liste des autres, de la
+   même forme. */
 
-.precedents, .mois, .jour-bloc { margin: 3rem 0; }
+.precedents, .mois { margin: 3rem 0; }
 .precedents ul, .mois ul { list-style: none; margin: 0; padding: 0; }
 .precedents li, .mois li { border-top: 1px solid var(--trait); }
-.precedents a, .mois a {
+/* Les entrées de la liste sont des lignes, pas des liens soulignés ; le
+   « Toute l'archive » qui suit reste un lien ordinaire. */
+.precedents li a, .mois li a {
   display: flex;
   gap: 1rem;
   padding: 0.6rem 0;
   color: inherit;
   text-decoration: none;
 }
-.precedents a:hover .titre, .mois a:hover .titre { color: var(--accent); text-decoration: underline; }
+.precedents li a:hover .titre, .mois li a:hover .titre { color: var(--accent); text-decoration: underline; }
 .jour { flex: 0 0 4.5rem; color: var(--doux); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 
 .voisins { display: flex; justify-content: space-between; gap: 1rem; margin: 3rem 0 0; font-size: 0.92rem; }
@@ -457,5 +468,5 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 @media (max-width: 34rem) {
   h1 { font-size: 1.6rem; }
-  .precedents a, .mois a { flex-direction: column; gap: 0.15rem; }
+  .precedents li a, .mois li a { flex-direction: column; gap: 0.15rem; }
 }

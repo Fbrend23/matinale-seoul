@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TetePage from '../../components/TetePage.astro';
 import Evenement from '../../components/Evenement.astro';
 import AiNotice from '../../components/AiNotice.astro';
 import { listEvents } from '../../lib/content.js';
@@ -49,13 +50,12 @@ const groupes = [
   title="Pop-ups & événements"
   description={`Pop-ups, concerts, expositions et salons à Séoul — ${THEMES_EN_PROSE}. ${events.length} en cours ou à venir.`}
 >
-  <h1>Pop-ups &amp; événements</h1>
-  <p class="chapeau">
+  <TetePage surtitre="À Séoul" titre="Pop-ups & événements">
     Pop-ups, concerts, expositions et salons à Séoul — {THEMES_EN_PROSE}.
     Seuls les événements en cours ou annoncés sont listés ; ils sortent de la
     page à leur date de fin.
     <a href="/evenements.xml">S’abonner au flux</a> pour être prévenu de chaque nouveau.
-  </p>
+  </TetePage>
 
   {/* Masqué sans JavaScript : un bouton qui ne filtre rien est un mensonge.
       Le script le révèle. */}

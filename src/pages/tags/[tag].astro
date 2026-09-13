@@ -8,10 +8,16 @@
 //
 // Le tri — qui mérite une page, qui n'en mérite pas — vit dans src/lib/tags.js,
 // parce que NewsItem a besoin de la MÊME réponse pour décider s'il pose un lien.
+//
+// Même gabarit qu'une rubrique : une étiquette est une rubrique transversale.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NewsItem from '../../components/NewsItem.astro';
 import AiNotice from '../../components/AiNotice.astro';
-import { tagPages } from '../../lib/content.js';
+import TetePage from '../../components/TetePage.astro';
+import AutresRubriques from '../../components/AutresRubriques.astro';
+import BulletinMeteo from '../../components/BulletinMeteo.astro';
+import CoursDuChange from '../../components/CoursDuChange.astro';
+import { tagPages, dernierBrief } from '../../lib/content.js';
 import { SECTION_LABELS } from '../../../shared/sections.mjs';
 import { longDate } from '../../lib/date.js';
 
@@ -22,23 +28,27 @@ export async function getStaticPaths() {
 
 const { tag, jours } = Astro.props;
 const total = jours.reduce((n, jour) => n + jour.items.length, 0);
+const dernier = await dernierBrief();
+const plusAncien = jours[jours.length - 1].brief;
 ---
 
 <BaseLayout
   title={`Étiquette « ${tag} »`}
   description={`${total} items étiquetés « ${tag} » sur les trente derniers briefs.`}
 >
-  <h1>{tag}</h1>
-  <p class="chapeau">
-    {total} items portant cette étiquette, sur les trente derniers briefs.
-  </p>
+  <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <CoursDuChange slot="gauche" fx={dernier.fx} />
+
+  <TetePage surtitre="Étiquette" titre={tag}>
+    {total} items sur {jours.length} jour{jours.length > 1 ? 's' : ''}, depuis le
+    {longDate(plusAncien.date)}. Le plus récent d'abord.
+  </TetePage>
 
   {jours.map(({ brief, items }) => (
-    <section class="jour-bloc">
+    <section class="jour-bloc" aria-labelledby={`j-${brief.id}`}>
       <h2>
-        <a href={`/briefs/${brief.slug}/`}>
-          <time datetime={brief.date}>{longDate(brief.date)}</time>
-        </a>
+        <time id={`j-${brief.id}`} datetime={brief.date}>{longDate(brief.date)}</time>
+        <a class="detail" href={`/briefs/${brief.slug}/`}>Lire le brief du jour →</a>
       </h2>
       {items.map((item) => (
         <NewsItem item={item} showSection sectionLabel={SECTION_LABELS[item.section]} />
@@ -47,4 +57,6 @@ const total = jours.reduce((n, jour) => n + jour.items.length, 0);
   ))}
 
   <AiNotice />
+
+  <AutresRubriques />
 </BaseLayout>

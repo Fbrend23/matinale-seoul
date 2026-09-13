@@ -1,0 +1,24 @@
+---
+// Où aller ensuite, en pied d'une rubrique ou d'une étiquette.
+//
+// L'accueil enchaîne sur « Les jours précédents » et l'archive ; une page qui
+// s'arrête sur la mention IA laisse le lecteur devant un mur. La liste a la
+// forme de celle de l'accueil, pour se lire de la même façon.
+import { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
+
+// `sauf` : la rubrique courante, qu'on ne se propose pas à soi-même.
+const { sauf = null } = Astro.props;
+const rubriques = SECTIONS.filter((s) => s !== sauf);
+---
+
+<nav class="precedents autres" aria-label="Autres rubriques">
+  <h2>{sauf ? 'Les autres rubriques' : 'Les rubriques'}</h2>
+  <ul>
+    {rubriques.map((s) => (
+      <li>
+        <a href={`/sections/${s}/`}><span class="titre">{SECTION_LABELS[s]}</span></a>
+      </li>
+    ))}
+  </ul>
+  <p><a href="/briefs/">Toute l'archive</a></p>
+</nav>
