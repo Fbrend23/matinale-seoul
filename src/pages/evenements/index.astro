@@ -66,16 +66,21 @@ const groupes = [
     ))}
   </div>
 
+  {/* Chaque groupe se replie : sur un téléphone, le script ferme ceux qui
+      suivent le week-end, et le compte dans le titre dit ce qu'on y trouve.
+      Ouverts au build — sans script, tout se lit. */}
   {groupes.map(({ id, titre, détail, events, vide }) => (
-    <section class="groupe-evenements" id={id}>
-      <h2>{titre} <span class="detail">— {détail}</span></h2>
+    <details class="groupe-evenements" id={id} open>
+      <summary>
+        <h2>{titre} <span class="detail">— {détail}</span> <span class="compte">{events.length}</span></h2>
+      </summary>
       {/* Le message de vide est toujours rendu, masqué quand il y a de quoi
           lire : le filtre et le masquage des terminés peuvent vider un groupe. */}
       <p class="vide" hidden={events.length > 0}>{vide}</p>
       <div class="cartes">
         {events.map((event) => <Evenement event={event} today={aujourdhui} />)}
       </div>
-    </section>
+    </details>
   ))}
 
   <script>
@@ -112,8 +117,11 @@ const groupes = [
         bouton.setAttribute('aria-pressed', String(bouton.dataset.filtre === filtre));
       }
       for (const bloc of document.querySelectorAll('.groupe-evenements')) {
+        const visibles = [...bloc.querySelectorAll<HTMLElement>('.evenement')].filter((c) => !c.hidden).length;
         const vide = bloc.querySelector<HTMLElement>('.vide');
-        if (vide) vide.hidden = [...bloc.querySelectorAll<HTMLElement>('.evenement')].some((c) => !c.hidden);
+        if (vide) vide.hidden = visibles > 0;
+        const compte = bloc.querySelector<HTMLElement>('.compte');
+        if (compte) compte.textContent = String(visibles);
       }
     }
 
@@ -129,7 +137,25 @@ const groupes = [
 
     appliquer();
     const filtres = document.querySelector<HTMLElement>('.filtres');
-    if (filtres) filtres.hidden = false;
+    if (filtres) {
+      filtres.hidden = false;
+      // Sur un téléphone, les filtres défilent en bande : le filtre retenu
+      // doit être sous les yeux, pas hors champ à droite.
+      const retenu = boutons.find((b) => b.dataset.filtre === filtre);
+      if (retenu && retenu.offsetLeft + retenu.offsetWidth > filtres.clientWidth) {
+        filtres.scrollLeft = retenu.offsetLeft - 16;
+      }
+    }
+
+    // Sur un téléphone, seul le week-end est déplié : les deux autres groupes
+    // font l'essentiel de la longueur de la page, et leur titre dit combien
+    // d'événements ils tiennent. Au chargement seulement — ce que le lecteur
+    // ouvre ensuite reste ouvert.
+    if (matchMedia('(max-width: 48rem)').matches) {
+      for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements:not(#ce-week-end)')) {
+        bloc.open = false;
+      }
+    }
   </script>
 
   <AiNotice />

@@ -31,12 +31,14 @@ const carte = event.map_url ?? lienNaverMap(event);
 
   <h3>{event.name}</h3>
 
-  <p class="evenement-quand">
-    <time datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time>
+  {/* Les dates et le lieu dans un même paragraphe : deux lignes sur une carte
+      large, une seule sur un téléphone — c'est la feuille de style qui
+      tranche. Le lieu est en coréen, tel que Naver Map l'écrit : lang="ko"
+      pour que les lecteurs d'écran et la typographie le traitent comme tel. */}
+  <p class="evenement-infos">
+    <time class="evenement-quand" datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time>
+    <span class="evenement-ou"><span lang="ko">{event.venue}</span> · {event.area}</span>
   </p>
-  {/* Le lieu est en coréen, tel que Naver Map l'écrit : lang="ko" pour que
-      les lecteurs d'écran et la typographie le traitent comme tel. */}
-  <p class="evenement-ou"><span lang="ko">{event.venue}</span> · {event.area}</p>
 
   <p class="resume">{event.summary}</p>
 
