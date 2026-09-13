@@ -149,8 +149,9 @@ a:hover { text-decoration-thickness: 2px; }
    Une barre : la marque à gauche, les onglets à droite sur la même ligne, et
    l'onglet courant souligné en couleur, posé sur le trait de l'en-tête. Quand
    la ligne ne suffit plus, les onglets passent dessous, sur deux lignes au
-   besoin ; sur un téléphone, ils défilent en bande, avec un fondu qui dit
-   qu'il y en a d'autres à droite. */
+   besoin ; sur un téléphone, ils se replient derrière un bouton, en liste.
+   Sans script — l'en-tête n'a pas de data-menu —, ils défilent en bande, avec
+   un fondu qui dit qu'il y en a d'autres à droite. */
 
 .entete {
   max-width: var(--mesure-page);
@@ -196,6 +197,49 @@ a:hover { text-decoration-thickness: 2px; }
 /* Le focus reste visible, mais à l'intérieur de l'onglet : un contour posé
    autour déborderait de la bande qui défile. */
 .entete nav a:focus-visible { outline-offset: -3px; }
+
+/* Le bouton du menu : trois traits, posés sur la ligne de la marque. Il
+   n'existe que sur un téléphone, et seulement quand le script est là pour
+   lui répondre. */
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 -0.6rem 0.2rem 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--texte);
+  cursor: pointer;
+}
+.burger svg { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.burger:hover { background: var(--carte); }
+@media (max-width: 48rem) {
+  .entete[data-menu] .burger { display: inline-flex; }
+  .entete[data-menu="ferme"] nav { display: none; }
+  /* Ouvert : les onglets en liste sous la barre, l'onglet courant marqué d'un
+     trait à gauche puisqu'il n'y a plus de trait dessous. */
+  .entete[data-menu="ouvert"] nav {
+    flex: 1 0 100%;
+    flex-direction: column;
+    overflow: visible;
+    mask-image: none;
+    margin: 0;
+    padding: 0.5rem 0 0.75rem;
+    border-top: 1px solid var(--trait);
+    font-size: 1rem;
+  }
+  .entete[data-menu="ouvert"] nav a {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 0;
+    border-left: 2px solid transparent;
+  }
+  .entete[data-menu="ouvert"] nav a:hover { border-left-color: var(--trait); }
+  .entete[data-menu="ouvert"] nav a[aria-current="page"] { border-left-color: var(--accent); }
+}
 
 /* Avis : le brief du jour n'est pas encore paru */
 
@@ -349,7 +393,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .groupe-evenements { margin: 2.5rem 0; }
 .cartes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
   gap: 1.25rem;
 }
 
@@ -374,10 +418,23 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
 
-.evenement-theme { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.6rem; font-size: 0.78rem; color: var(--doux); }
+/* L'en-tête tient sur une ligne, toujours : le thème et le genre à gauche, les
+   jours qui restent à droite. Une grille et non un flex qui replie — sur une
+   carte trop étroite pour les trois, c'est le genre, le moins utile, qui se
+   coupe en points de suspension, plutôt que le badge qui descende seul sur
+   une deuxième ligne. */
+.evenement-theme {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--doux);
+}
+.genre { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 /* Le badge des jours restants, à droite. En couleur sous une semaine : c'est
    le moment d'y aller. */
-.delai { margin-left: auto; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.delai { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .delai[data-urgent="oui"] { color: var(--accent); font-weight: 600; }
 
 /* Les filtres par thème : des boutons-pastilles, celui qui est enfoncé prend

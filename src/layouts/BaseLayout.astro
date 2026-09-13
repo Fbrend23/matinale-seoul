@@ -73,12 +73,48 @@ const image = new URL('/og.png', Astro.site).toString();
 
     <header class="entete">
       <p class="marque"><a href="/">La Matinale de Séoul</a></p>
-      <nav aria-label="Navigation principale">
+      {/* Le bouton du menu, pour un téléphone. Le script ci-dessous le montre
+          et replie les onglets ; sans script, les onglets restent en bande
+          qui défile, et le bouton n'existe pas. */}
+      <button class="burger" type="button" aria-expanded="false" aria-controls="navigation" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <nav id="navigation" aria-label="Navigation principale">
         {onglets.map((o) => (
           <a href={o.href} aria-current={courant(o) ? 'page' : undefined}>{o.label}</a>
         ))}
       </nav>
     </header>
+
+    <script>
+      // Le menu d'un téléphone : ouvert ou fermé, c'est l'en-tête qui le dit
+      // (data-menu), et c'est la feuille de style qui décide ce que ça montre
+      // — rien du tout sur un grand écran, où les onglets sont toujours là.
+      const entete = document.querySelector<HTMLElement>('.entete');
+      const bouton = entete?.querySelector<HTMLButtonElement>('.burger');
+      if (entete && bouton) {
+        const ouvrir = (ouvert: boolean) => {
+          entete.dataset.menu = ouvert ? 'ouvert' : 'ferme';
+          bouton.setAttribute('aria-expanded', String(ouvert));
+        };
+        ouvrir(false);
+        bouton.addEventListener('click', () => ouvrir(entete.dataset.menu !== 'ouvert'));
+        // Échap referme et rend le focus au bouton ; un clic ailleurs referme.
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && entete.dataset.menu === 'ouvert') {
+            ouvrir(false);
+            bouton.focus();
+          }
+        });
+        document.addEventListener('click', (e) => {
+          if (entete.dataset.menu === 'ouvert' && !entete.contains(e.target as Node)) ouvrir(false);
+        });
+      }
+    </script>
 
     <div
       class="page"
