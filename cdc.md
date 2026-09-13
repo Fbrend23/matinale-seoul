@@ -138,7 +138,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `brief` | m2o → `mat_briefs` | **non requis** : un événement survit à son brief |
 | `name` | string | |
 | `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
-| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` — pas de « autre » |
+| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` \| `culture` \| `food` — pas de « autre » |
 | `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit — c'est la requête du bouton — et le quartier, romanisé |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
