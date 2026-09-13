@@ -108,7 +108,7 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 
 | ce qui cloche | sanction |
 |---|---|
-| dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots | événement écarté |
+| dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots, lieu sans hangul et sans fiche Naver Map | événement écarté |
 | domaine hors allowlist | événement écarté — **pas** de brief retenu en brouillon |
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour — prolongation, report — si la source répond |
@@ -133,11 +133,14 @@ briefs qui compte un élément par parution : on le suit pour être prévenu de
 chaque nouveau pop-up. Stable d'un build à l'autre — identifiant et date de
 création de l'événement — pour qu'un lecteur ne renotifie pas.
 
-**L'épingle Naver Map** est un lien de recherche construit du lieu et du
-quartier. Le dépôt interdit de reconstruire une URL, et celle-ci en est une : la
-différence est ce qu'elle affirme. Une source reconstruite publie un fait qu'on
-n'a pas vu ; un lien de recherche pose à Naver la question que le lecteur aurait
-tapée. Quand l'agent a *vu* la fiche du lieu, il la donne dans `map_url`, et
+**L'épingle Naver Map** est un lien de recherche sur le lieu. Le dépôt interdit
+de reconstruire une URL, et celle-ci en est une : la différence est ce qu'elle
+affirme. Une source reconstruite publie un fait qu'on n'a pas vu ; un lien de
+recherche pose à Naver la question que le lecteur aurait tapée. Encore faut-il
+la poser en coréen : Naver Map ne connaît pas « Hiker Ground », seulement
+« 하이커그라운드 ». Le lieu est donc en coréen, tel que Naver l'écrit, et un lieu
+sans hangul écarte l'événement — sauf fiche vue. Le quartier, romanisé, reste
+affiché et hors de la requête. Quand l'agent a *vu* la fiche du lieu, il la donne dans `map_url`, et
 elle remplace la recherche — sondée comme un lien, mais la sonde est partielle :
 `map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
 seuls les liens courts `naver.me` répondent 404. D'où le repli.

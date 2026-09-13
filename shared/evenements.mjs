@@ -55,22 +55,30 @@ export function weekEndDe(today) {
 }
 
 /**
- * Le lien de recherche Naver Map, construit du lieu et du quartier.
+ * Le lien de recherche Naver Map, construit du lieu.
  *
  * Le dépôt interdit de reconstruire une URL, et cette fonction en construit
  * une : la différence est ce qu'elle affirme. Une source reconstruite publie
  * un fait qu'on n'a pas vu ; un lien de recherche pose à Naver la question que
  * le lecteur aurait tapée lui-même. Il ne peut pas être faux, seulement vide.
  *
- * Le quartier est dans la requête pour départager les enseignes à plusieurs
- * adresses — « Pokémon Center » en a trois à Séoul.
+ * Vide, c'est ce qu'il est quand la question est en anglais : Naver Map ne
+ * connaît « Hiker Ground » que sous « 하이커그라운드 ». D'où `venue` en coréen,
+ * tel que Naver l'écrit — c'est le schéma et le tri des événements qui le
+ * demandent — et le quartier hors de la requête : romanisé pour le lecteur,
+ * il ne ferait que brouiller une recherche coréenne. Une enseigne à plusieurs
+ * adresses se départage dans le lieu lui-même : « 포켓몬센터 성수 ».
  *
- * @param {{venue: string, area?: string|null}} event
+ * @param {{venue: string}} event
  * @returns {string}
  */
-export function lienNaverMap({ venue, area }) {
-  const requête = `${venue} ${area ?? ''}`.trim();
-  return `https://map.naver.com/p/search/${encodeURIComponent(requête)}`;
+export function lienNaverMap({ venue }) {
+  return `https://map.naver.com/p/search/${encodeURIComponent(venue.trim())}`;
+}
+
+/** Au moins une syllabe hangul : ce que Naver Map sait chercher. */
+export function enCoréen(texte) {
+  return /[\uAC00-\uD7A3]/.test(texte ?? '');
 }
 
 /**

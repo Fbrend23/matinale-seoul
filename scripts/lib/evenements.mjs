@@ -21,6 +21,7 @@ import {
   wordCount,
   MAX_SUMMARY_WORDS,
 } from './guards.mjs';
+import { enCoréen } from '../../shared/evenements.mjs';
 
 /** Les liens facultatifs d'un événement : vérifiés, jamais décisifs. */
 const LIENS_FACULTATIFS = ['booking_url', 'map_url'];
@@ -65,6 +66,13 @@ export function cohérenceÉvénement(event, { today }) {
   const mots = wordCount(event.summary);
   if (mots > MAX_SUMMARY_WORDS) {
     erreurs.push(`résumé de ${mots} mots, ${MAX_SUMMARY_WORDS} au plus`);
+  }
+
+  // Sans fiche vue, l'épingle est une recherche Naver Map sur le lieu — et
+  // Naver ne trouve pas « Hiker Ground », seulement « 하이커그라운드 ». Un lieu
+  // en lettres latines donnerait un bouton qui s'ouvre sur rien.
+  if (!event.map_url && !enCoréen(event.venue)) {
+    erreurs.push(`lieu sans hangul : « ${event.venue} » — Naver Map ne le trouvera pas`);
   }
 
   return erreurs;

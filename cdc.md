@@ -139,7 +139,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `name` | string | |
 | `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
 | `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` — pas de « autre » |
-| `venue`, `area` | string | le lieu tel qu'on le cherche sur Naver Map, et le quartier |
+| `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit — c'est la requête du bouton — et le quartier, romanisé |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
 | `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |

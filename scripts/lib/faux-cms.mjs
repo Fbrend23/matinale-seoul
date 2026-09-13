@@ -54,9 +54,9 @@ export async function donnéesDeDémonstration(cheminFixture) {
   const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, date_created: `${today}T00:00:00.000Z` };
   const events = [
     { ...base, id: 1, ...brief.events[0], start_date: jourPlus(today, -12), end_date: jourPlus(today, 30) },
-    { ...base, id: 2, name: 'Exposition Jujutsu Kaisen', kind: 'exposition', theme: 'anime', venue: 'Hyundai Seoul', area: 'Yeouido', start_date: jourPlus(today, -20), end_date: jourPlus(today, 3) },
-    { ...base, id: 3, name: 'Concert aespa', kind: 'concert', theme: 'kpop', venue: 'KSPO Dome', area: 'Jamsil', start_date: jourPlus(today, 6), end_date: jourPlus(today, 7) },
-    { ...base, id: 4, name: 'Café Nintendo', kind: 'popup', theme: 'gaming', venue: 'Lotte World Mall', area: 'Jamsil', start_date: today, end_date: today },
+    { ...base, id: 2, name: 'Exposition Jujutsu Kaisen', kind: 'exposition', theme: 'anime', venue: '더현대 서울', area: 'Yeouido', start_date: jourPlus(today, -20), end_date: jourPlus(today, 3) },
+    { ...base, id: 3, name: 'Concert aespa', kind: 'concert', theme: 'kpop', venue: 'KSPO돔', area: 'Jamsil', start_date: jourPlus(today, 6), end_date: jourPlus(today, 7) },
+    { ...base, id: 4, name: 'Café Nintendo', kind: 'popup', theme: 'gaming', venue: '롯데월드몰', area: 'Jamsil', start_date: today, end_date: today },
     { ...base, id: 5, name: 'Terminé, ne doit pas paraître', start_date: jourPlus(today, -30), end_date: jourPlus(today, -1) },
   ];
 

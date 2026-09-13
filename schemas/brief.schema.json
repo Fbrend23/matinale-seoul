@@ -263,13 +263,13 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 160,
-          "description": "Le lieu tel qu'on le chercherait sur Naver Map : « Pokémon Center Seoul », « KSPO Dome »."
+          "description": "Le lieu en coréen, tel que Naver Map l'écrit : « 포켓몬센터 성수 », « KSPO돔 ». Le site en fait une recherche Naver Map, qui ne trouve rien en anglais : sans hangul et sans map_url, l'événement est écarté."
         },
         "area": {
           "type": "string",
           "minLength": 1,
           "maxLength": 80,
-          "description": "Le quartier : Seongsu, Hongdae, Jamsil."
+          "description": "Le quartier, romanisé pour le lecteur : Seongsu, Hongdae, Jamsil. Affiché, jamais cherché."
         },
         "start_date": {
           "type": "string",
@@ -310,7 +310,7 @@
           "type": "string",
           "format": "uri",
           "pattern": "^https://(map.naver.com|naver.me)/",
-          "description": "Facultatif : la fiche Naver Map du lieu, SEULEMENT si tu l'as vue. Sans elle, le site pose un lien de recherche Naver Map construit à partir de venue et area — jamais une adresse inventée."
+          "description": "Facultatif : la fiche Naver Map du lieu, SEULEMENT si tu l'as vue. Sans elle, le site pose un lien de recherche Naver Map sur venue — jamais une adresse inventée."
         }
       }
     }
