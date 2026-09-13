@@ -141,7 +141,7 @@ Recopier sa forme est sans risque.
       "name": "Pop-up Pokémon Center à Seongsu",
       "kind": "popup",
       "theme": "pokemon",
-      "venue": "Pokémon Center Seoul pop-up",
+      "venue": "포켓몬센터 성수",
       "area": "Seongsu",
       "start_date": "2026-09-05",
       "end_date": "2026-10-12",
@@ -209,7 +209,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
 - **`events`** : chaque événement porte `start_date` **et** `end_date`, des
   dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
-  `pokemon`, `kpop`, `gaming` ; un `summary` de 40 mots au plus. Un
+  `pokemon`, `kpop`, `gaming` ; un `summary` de 40 mots au plus ; un `venue`
+  en coréen, sauf si `map_url` est donné. Un
   événement fautif est écarté, le brief passe — mais un champ inventé dans un
   événement, lui, est une faute de schéma, et le schéma juge le fichier entier.
 - Aucun autre champ que ceux listés. Un champ inventé fait rejeter le brief.
@@ -261,16 +262,43 @@ pas de redire ce qui s'y trouve :
   si ses dates ont changé** (prolongation, report). Repropose-le alors avec le
   même `name` et les dates nouvelles : l'ingestion corrige la fiche au lieu
   d'en créer une. Si le fichier est introuvable, continue sans lui.
-- **Zéro à quatre événements nouveaux par jour**, pas davantage. Cherche
-  brièvement — trois à quatre minutes au plus. Le brief passe avant : un matin
-  sans événement est normal, un brief en retard ne l'est pas.
+- **Vise trois ou quatre événements nouveaux par jour**, quatre au plus. Un
+  matin sans événement peut arriver, mais il doit être le résultat d'une
+  recherche, pas d'une recherche écourtée : deux requêtes génériques qui
+  s'arrêtent aux deux premiers résultats datables ne suffisent pas.
+- **Cherche thème par thème, en coréen.** Une requête par thème, avec les
+  mots que les sites coréens emploient — `애니메이션` ou `애니`, `만화`,
+  `포켓몬`, `케이팝` ou `아이돌`, `게임` ou `e스포츠` — combinés à `팝업스토어`,
+  `전시`, `콘서트`, `페스티벌`, `서울`, le mois en cours. L'anglais remonte
+  surtout des agrégateurs ; le coréen remonte les rédactions.
+- **Passe ensuite par les sources de l'allowlist qui annoncent les
+  événements** : Inside Seoul (insideseoul.app), NOL World (world.nol.com)
+  et Visit Seoul pour les pop-ups, Time Out, Soompi et allkpop pour la K-pop,
+  pokemonkorea.co.kr pour Pokémon, Inven et This Is Game pour le jeu vidéo,
+  COEX et DDP pour les salons. Une recherche `site:` sur deux ou trois
+  d'entre elles trouve ce que la requête générique n'a pas vu.
+- **Les autres agrégateurs de pop-ups sont des pistes, pas des sources.**
+  popga, heypop, dealseoul, namu.wiki ne sont pas dans l'allowlist : un
+  événement sourcé chez eux serait écarté. Mais ils disent ce
+  qui existe. Quand tu y repères un événement à venir, cherche-le ensuite par
+  son nom pour trouver l'article d'une rédaction connue, et cite celui-là.
+  Un événement vu chez un agrégateur et introuvable ailleurs ne va pas dans
+  l'onglet.
+- Le brief passe avant : compose-le d'abord, cherche les événements ensuite,
+  avec le temps qui reste. Il en reste en général plus de dix minutes sur les
+  vingt-cinq de la session — assez pour les quatre thèmes. L'onglet ne se
+  remplit que par ce que tu y déposes.
 - **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
   source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
   pour un événement d'un jour. Un événement sans date de fin annoncée ne va
   pas dans l'onglet.
-- `venue` est le lieu tel qu'on le chercherait sur Naver Map, `area` le
-  quartier. Le site en fait un lien de recherche Naver Map : c'est l'épingle
-  par défaut, et elle n'invente rien.
+- **`venue` est le lieu en coréen, tel que Naver Map l'écrit** — `하이커그라운드`,
+  `아라아트센터`, `포켓몬센터 성수` — pas « Hiker Ground ». Le site en fait un
+  lien de recherche Naver Map, c'est l'épingle par défaut, et une recherche
+  en anglais n'y trouve rien : un lieu sans hangul fait écarter l'événement,
+  sauf s'il porte un `map_url`. Pour une enseigne à plusieurs adresses, mets
+  la succursale dans le lieu (`포켓몬센터 성수`). `area` est le quartier,
+  romanisé pour le lecteur : `Seongsu`, `Jung-gu`.
 - `map_url` **seulement si tu as vu** la fiche Naver Map du lieu
   (`map.naver.com` ou `naver.me`). Sinon, omets le champ. Même règle pour
   `booking_url` : la billetterie si tu l'as vue, rien sinon.

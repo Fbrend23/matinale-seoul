@@ -51,13 +51,15 @@ test('le tableau events est facultatif, et un événement n accepte aucun champ 
 
 // --- Le lien Naver Map -------------------------------------------------------
 
-test('le lien Naver Map est une recherche sur le lieu et le quartier', () => {
-  const lien = lienNaverMap({ venue: 'Pokémon Center Seoul', area: 'Seongsu' });
-  assert.equal(lien, 'https://map.naver.com/p/search/Pok%C3%A9mon%20Center%20Seoul%20Seongsu');
+test('le lien Naver Map est une recherche sur le lieu seul, en coréen', () => {
+  // Le quartier reste hors de la requête : romanisé, il brouillerait une
+  // recherche coréenne. L'enseigne se départage dans le lieu lui-même.
+  const lien = lienNaverMap({ venue: '포켓몬센터 성수', area: 'Seongsu' });
+  assert.equal(lien, 'https://map.naver.com/p/search/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%84%BC%ED%84%B0%20%EC%84%B1%EC%88%98');
 });
 
-test('sans quartier, la recherche porte sur le seul lieu, sans espace traînant', () => {
-  assert.equal(lienNaverMap({ venue: 'KSPO Dome', area: null }), 'https://map.naver.com/p/search/KSPO%20Dome');
+test('le lieu est nettoyé de ses espaces avant la recherche', () => {
+  assert.equal(lienNaverMap({ venue: ' 하이커그라운드 ', area: null }), 'https://map.naver.com/p/search/%ED%95%98%EC%9D%B4%EC%BB%A4%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C');
 });
 
 // --- Le week-end qui vient ----------------------------------------------------
@@ -154,7 +156,7 @@ const sain = (retouche = {}) => ({
   name: 'Pop-up Pokémon Center à Seongsu',
   kind: 'popup',
   theme: 'pokemon',
-  venue: 'Pokémon Center Seoul pop-up',
+  venue: '포켓몬센터 성수',
   area: 'Seongsu',
   start_date: '2026-09-01',
   end_date: '2026-10-12',
@@ -181,6 +183,14 @@ const contrôler = (events, options = {}) =>
 test('la cohérence d un événement : dates réelles, fin après début, pas encore fini, 40 mots', () => {
   assert.deepEqual(cohérenceÉvénement(sain(), { today: AUJOURDHUI }), []);
   assert.match(cohérenceÉvénement(sain({ start_date: '2026-08-01', end_date: '2026-08-31' }), { today: AUJOURDHUI })[0], /terminé le 2026-08-31/);
+});
+
+test('un lieu sans hangul est une faute — sauf si la fiche Naver Map a été vue', () => {
+  // Le bouton Naver Map cherche le lieu tel quel : « Hiker Ground » n'y trouve
+  // rien, « 하이커그라운드 » si. Avec une fiche vue, la recherche ne sert plus.
+  assert.match(cohérenceÉvénement(sain({ venue: 'Hiker Ground' }), { today: AUJOURDHUI })[0], /lieu sans hangul/);
+  assert.deepEqual(cohérenceÉvénement(sain({ venue: 'Hiker Ground', map_url: 'https://naver.me/abc' }), { today: AUJOURDHUI }), []);
+  assert.deepEqual(cohérenceÉvénement(sain({ venue: 'KSPO돔' }), { today: AUJOURDHUI }), []);
   assert.match(cohérenceÉvénement(sain({ start_date: '2026-10-20' }), { today: AUJOURDHUI })[0], /avant d'avoir commencé/);
   assert.match(cohérenceÉvénement(sain({ end_date: '2026-02-31' }), { today: AUJOURDHUI })[0], /irréelle/);
   assert.match(

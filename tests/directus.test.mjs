@@ -442,7 +442,7 @@ const événement = {
   name: 'Pop-up Pokémon Center',
   kind: 'popup',
   theme: 'pokemon',
-  venue: 'Pokémon Center Seoul',
+  venue: '포켓몬센터 성수',
   area: 'Seongsu',
   start_date: '2026-09-01',
   end_date: '2026-10-12',
