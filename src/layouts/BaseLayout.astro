@@ -97,9 +97,9 @@ const image = new URL('/og.png', Astro.site).toString();
 
     <footer class="pied">
       <p>
-        <strong>La Matinale de Séoul</strong> — brief quotidien, sept jours sur sept.
-        <a href="/rss.xml">Flux RSS</a> ·
-        <a href="/evenements.xml">Flux des événements</a>
+        {/* Sur une ligne : le compilateur avale l'espace au retour à la ligne
+            entre le texte et le lien, et « sept.Flux RSS » sortait collé. */}
+        <strong>La Matinale de Séoul</strong> — brief quotidien, sept jours sur sept. <a href="/rss.xml">Flux RSS</a> · <a href="/evenements.xml">Flux des événements</a>
       </p>
       <p class="mention">
         Contenu produit automatiquement. Les résumés sont rédigés par une IA à partir

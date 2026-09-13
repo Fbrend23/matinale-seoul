@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TetePage from '../../components/TetePage.astro';
 import { listBriefs } from '../../lib/content.js';
 import { longDate } from '../../lib/date.js';
 
@@ -29,11 +30,10 @@ const moisLisible = (clé) =>
   title="Archive"
   description={`${briefs.length} briefs publiés depuis le ${plusAncien.date}.`}
 >
-  <h1>Archive</h1>
-  <p class="chapeau">
+  <TetePage surtitre="Tous les briefs" titre="Archive">
     {briefs.length} brief{briefs.length > 1 ? 's' : ''} publié{briefs.length > 1 ? 's' : ''},
     du {longDate(plusAncien.date)} au {longDate(plusRecent.date)}.
-  </p>
+  </TetePage>
 
   {[...parMois].map(([clé, dumois]) => (
     <section class="mois">

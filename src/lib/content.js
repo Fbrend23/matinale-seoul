@@ -253,6 +253,20 @@ export function assemble(brief, items) {
 }
 
 /**
+ * Le dernier brief paru, sans ses items.
+ *
+ * C'est ce qu'il faut pour poser le contexte du jour — météo, cours du
+ * change — sur les pages qui ne sont pas un brief : une rubrique, une
+ * étiquette. Sans lui, ces pages perdent leurs colonnes latérales et l'en-tête
+ * rétrécit d'un onglet à l'autre.
+ *
+ * @returns {Promise<Brief>}
+ */
+export async function dernierBrief() {
+  return (await listBriefs())[0];
+}
+
+/**
  * Les `n` briefs les plus récents, items compris.
  *
  * @returns {Promise<BriefComplet[]>}

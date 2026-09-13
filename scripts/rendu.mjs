@@ -68,7 +68,9 @@ if (code !== 0) {
     ['index.html', ['class="meteo"', 'class="change"', 'aria-current="page"', 'class="brief"']],
     ['briefs/index.html', ['class="mois"']],
     ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"']],
-    ['sections/tourisme/index.html', ['class="item"']],
+    // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
+    // tête de page, et où aller ensuite.
+    ['sections/tourisme/index.html', ['class="item"', 'class="meteo"', 'class="change"', 'class="tete"', 'class="jour-bloc"', 'Autres rubriques']],
     ['evenements/index.html', ['id="ce-week-end"', 'class="filtres"', 'id="evenement-1"', 'class="delai"', 'map.naver.com/p/search/']],
     ['evenements.xml', ['<item>', '/evenements/#evenement-']],
     ['rss.xml', ['<item>', '/briefs/brief-2026-09-04/']],

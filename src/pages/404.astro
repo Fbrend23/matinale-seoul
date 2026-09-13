@@ -1,12 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TetePage from '../components/TetePage.astro';
 ---
 
 <BaseLayout title="Page introuvable">
-  <h1>Page introuvable</h1>
-  <p class="chapeau">
+  <TetePage surtitre="Erreur 404" titre="Page introuvable">
     Cette adresse ne correspond à aucun brief. Les briefs vivent sous
     <code>/briefs/brief-AAAA-MM-JJ/</code> ; l'archive les liste tous.
-  </p>
+  </TetePage>
   <p><a href="/">Le brief du jour</a> · <a href="/briefs/">L'archive</a></p>
 </BaseLayout>
