@@ -56,6 +56,10 @@ body {
   font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 1.05rem;
   line-height: 1.6;
+  /* Un téléphone tourné ne grossit pas le texte de lui-même, et un mot trop
+     long — une adresse, un nom de lieu — se coupe plutôt que de déborder. */
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: break-word;
 }
 
 /* La page : le texte au centre, la colonne latérale à droite quand elle existe.
@@ -114,6 +118,37 @@ main { min-width: 0; }
   .page[data-gauche="oui"] > .gauche { grid-row: 1; grid-column: 1; }
   .page[data-gauche="oui"] > .cote { grid-row: 2; grid-column: 1; }
   .page[data-gauche="oui"] > main { grid-row: 3; }
+  /* Et serrés : sur un téléphone, deux bandeaux et leurs marges d'écran large
+     repoussaient le titre sous le pli. Les marges sont celles d'une liste,
+     pas celles de colonnes qui se tiennent à distance. */
+  .page { padding-inline: 1rem; row-gap: 0.75rem; }
+  .entete, .pied { padding-inline: 1rem; }
+  .cote, .gauche { padding-top: 1rem; }
+  .page[data-gauche="oui"] > .cote { padding-top: 0; }
+  .brief > header, .tete { margin: 1.5rem 0 1.25rem; }
+  .mention-ia { margin-top: 2rem; }
+
+  /* Les événements, en colonne : la page est longue, tout ce qui peut se
+     serrer se serre. Les filtres défilent en bande plutôt que de se replier
+     sur quatre lignes ; les dates et le lieu tiennent sur une ligne ; les
+     cartes perdent l'air des colonnes. */
+  .filtres {
+    flex-wrap: nowrap;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent);
+  }
+  .filtres::-webkit-scrollbar { display: none; }
+  .filtres button { flex: 0 0 auto; }
+  .groupe-evenements { margin: 1.5rem 0; }
+  .cartes { gap: 0.75rem; }
+  .evenement { padding: 0.8rem 0.9rem 0.9rem; }
+  .evenement h3 { margin: 0.4rem 0 0.2rem; font-size: 1.05rem; }
+  .evenement-quand, .evenement-ou { display: inline; }
+  .evenement-ou::before { content: " · "; }
+  .evenement .resume { margin: 0.4rem 0 0.7rem; font-size: 0.93rem; }
 }
 
 a { color: var(--accent); text-underline-offset: 0.2em; }
@@ -216,7 +251,6 @@ a:hover { text-decoration-thickness: 2px; }
   cursor: pointer;
 }
 .burger svg { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-.burger:hover { background: var(--carte); }
 @media (max-width: 48rem) {
   .entete[data-menu] .burger { display: inline-flex; }
   .entete[data-menu="ferme"] nav { display: none; }
@@ -381,7 +415,6 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   color: var(--doux);
   text-decoration: none;
 }
-.etiquettes a:hover { color: var(--accent); text-decoration: underline; }
 
 .vide { color: var(--doux); font-style: italic; }
 
@@ -390,7 +423,37 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
    couleur en tête de carte, les dates et le lieu avant le texte, et les
    liens en pied, en boutons. */
 
+/* Chaque groupe est un <details> : son titre le replie, un chevron le dit,
+   et le compte à côté du titre dit ce qu'il cache. */
 .groupe-evenements { margin: 2.5rem 0; }
+.groupe-evenements summary { display: flex; align-items: baseline; gap: 0.6rem; cursor: pointer; list-style: none; }
+.groupe-evenements summary::-webkit-details-marker { display: none; }
+.groupe-evenements summary h2 { margin: 0.83em 0; }
+.groupe-evenements summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 0.45em;
+  height: 0.45em;
+  margin-left: auto;
+  border-right: 2px solid var(--doux);
+  border-bottom: 2px solid var(--doux);
+  transform: translateY(-0.2em) rotate(45deg);
+  transition: transform 0.15s;
+}
+.groupe-evenements[open] summary::after { transform: translateY(0.1em) rotate(-135deg); }
+.compte {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 0.4em;
+  border-radius: 999px;
+  background: var(--trait);
+  color: var(--texte);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: none;
+}
 .cartes {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
@@ -450,7 +513,6 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   font-size: 0.88rem;
   cursor: pointer;
 }
-.filtres button:hover { color: var(--accent); border-color: var(--accent); }
 .filtres button[aria-pressed="true"] { background: var(--texte); border-color: var(--texte); color: var(--fond); }
 
 .pastille {
@@ -463,8 +525,8 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   letter-spacing: 0.02em;
 }
 
-.evenement-quand { font-weight: 600; font-variant-numeric: tabular-nums; }
-.evenement-ou { color: var(--doux); font-size: 0.92rem; }
+.evenement-quand { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
+.evenement-ou { display: block; color: var(--doux); font-size: 0.92rem; }
 .evenement .resume { margin: 0.6rem 0 0.9rem; font-size: 0.97rem; }
 
 .evenement-liens { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: auto; font-size: 0.85rem; }
@@ -475,8 +537,25 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   color: var(--texte);
   text-decoration: none;
 }
-.bouton:hover { border-color: var(--accent); color: var(--accent); }
 .source-lien { margin-left: auto; color: var(--doux); font-size: 0.8rem; }
+
+/* Au doigt plutôt qu'à la souris. Le survol n'existe pas : un bouton touché
+   garderait sa couleur de survol jusqu'au toucher suivant, comme s'il était
+   resté enfoncé. Et ce qu'on touche doit être assez grand pour l'être — les
+   pastilles, les filtres, les boutons d'une carte prennent de la hauteur. */
+@media (hover: hover) {
+  .burger:hover { background: var(--carte); }
+  .etiquettes a:hover { color: var(--accent); text-decoration: underline; }
+  .filtres button:hover { color: var(--accent); border-color: var(--accent); }
+  .bouton:hover { border-color: var(--accent); color: var(--accent); }
+}
+@media (pointer: coarse) {
+  .etiquettes a, .etiquettes span { padding: 0.2rem 0.7rem; }
+  .filtres button { padding: 0.5rem 1rem; }
+  .bouton { padding: 0.5rem 0.9rem; }
+  .evenement-liens { gap: 0.6rem; }
+  .precedents li a, .mois li a { padding: 0.75rem 0; }
+}
 
 /* Mention IA : lisible, jamais tapie en bas de page en corps 8 */
 

@@ -171,6 +171,7 @@ npm install
 npm test                 # les gardes, sur des briefs volontairement cassés
 npm run rendu            # construit le site contre un faux CMS et vérifie chaque page
 npm run dev              # demande DIRECTUS_URL et un jeton de lecture
+npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu de la fixture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 ```
 

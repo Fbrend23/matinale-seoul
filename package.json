@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "dev:faux": "node scripts/dev-faux.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
