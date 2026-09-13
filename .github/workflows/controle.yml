@@ -1,7 +1,7 @@
 # Contrôle du code, à chaque fois qu'il change.
 #
 # POURQUOI CE FICHIER EXISTE. La Publication ne se déclenche que sur
-# « paths: inbox/** » — le canal par lequel l'agent dépose son brief. C'est le
+# « paths: inbox/** », le canal par lequel l'agent dépose son brief. C'est le
 # bon filtre pour elle : un commit de code n'a pas à relancer une ingestion.
 # Mais il laissait un trou, et c'était le dernier de la chaîne : un commit qui
 # casse guards.mjs ne jouait les tests QU'AU BRIEF SUIVANT, en production, à
@@ -31,7 +31,7 @@ on:
 
 # Les fichiers .md ne sont VOLONTAIREMENT pas ignorés : tests/prompt.test.mjs
 # tient ensemble le prompt, le schéma et la documentation. Une rubrique ajoutée
-# au code sans être dite dans le README y fait échouer un test — ce qui n'aurait
+# au code sans être dite dans le README y fait échouer un test, ce qui n'aurait
 # aucun effet si un commit de documentation sautait la CI.
 
 concurrency:
@@ -69,7 +69,7 @@ jobs:
         env:
           TZ: UTC
 
-      # astro check lit les types du site — y compris le « // @ts-check » posé
+      # astro check lit les types du site, y compris le « // @ts-check » posé
       # en tête d'astro.config.mjs, que personne n'exécutait.
       - name: Types du site
         run: npm run check
@@ -81,8 +81,8 @@ jobs:
         run: npm run rendu
 
       # Les workflows et le lanceur portent l'essentiel de la logique de
-      # déploiement — dont un « mirror --delete » sur un compte FTP sans
-      # corbeille — et sont la seule partie du dépôt qu'aucun test ne couvre.
+      # déploiement, dont un « mirror --delete » sur un compte FTP sans
+      # corbeille, et sont la seule partie du dépôt qu'aucun test ne couvre.
       # L'image officielle d'actionlint, sous la forme que son propre README
       # donne. Elle lit .github/workflows/ toute seule.
       - name: Workflows

@@ -4,7 +4,7 @@
 //   npm run rendu
 //
 // Construit le site contre un CMS de pacotille (scripts/lib/faux-cms.mjs),
-// puis vérifie que ce qu'on attend est bien là — chaque page, chaque flux,
+// puis vérifie que ce qu'on attend est bien là, chaque page, chaque flux,
 // chaque JSON, et dedans ce qui prouve que le gabarit a fait son travail. Ni
 // capture d'écran ni navigateur : un test qui demande un navigateur ne tourne
 // plus, et celui-ci doit tourner à chaque commit.
@@ -29,7 +29,7 @@ const FIXTURE = path.join(RACINE, 'tests', 'fixtures', 'brief-avec-evenements.js
 const faux = await démarrerLeFauxCms(await donnéesDeDémonstration(FIXTURE));
 const dist = await mkdtemp(path.join(tmpdir(), 'matinale-rendu-'));
 
-console.log(`Contrôle de rendu — faux CMS sur ${faux.url}, sortie dans ${dist}\n`);
+console.log(`Contrôle de rendu : faux CMS sur ${faux.url}, sortie dans ${dist}\n`);
 
 // --- Le build ----------------------------------------------------------------
 
@@ -62,7 +62,7 @@ if (code !== 0) {
 } else {
   // --- Ce qui doit être là, et ce qu'on doit y lire -------------------------
   //
-  // Chaque attente est une chose que le gabarit DÉCIDE — pas un mot du contenu,
+  // Chaque attente est une chose que le gabarit DÉCIDE, pas un mot du contenu,
   // qui vient de la fixture et changerait avec elle.
   const attendus = [
     ['index.html', ['class="meteo"', 'class="change"', 'aria-current="page"', 'class="brief"']],

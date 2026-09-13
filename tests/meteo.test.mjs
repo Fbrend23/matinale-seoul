@@ -1,7 +1,7 @@
 // Le relevé météo, testé sans réseau.
 //
 // Ce module a deux façons de mentir en silence, et ce sont elles qu'on teste :
-// porter sur le mauvais jour — la CI vit en UTC, à quinze heures de Séoul — et
+// porter sur le mauvais jour, la CI vit en UTC, à quinze heures de Séoul, et
 // laisser passer une réponse à trous. Le reste est du confort.
 
 import { test } from 'node:test';
@@ -80,7 +80,7 @@ test('un relevé daté d’un autre jour est refusé', async () => {
 test('un relevé calculé sur une journée UTC est refusé', async () => {
   // Le cas le plus retors, et la raison d'être du contrôle de décalage : sans
   // le paramètre « timezone », Open-Meteo répond AVEC LA BONNE DATE mais des
-  // min/max découpés sur une journée UTC — neuf heures à côté. Contrôler la
+  // min/max découpés sur une journée UTC, neuf heures à côté. Contrôler la
   // date seule laisserait passer un bulletin faux qui a l'air juste.
   const { fetcher } = faux({
     corps: { ...réponse('2026-09-10'), utc_offset_seconds: 0, timezone: 'GMT' },

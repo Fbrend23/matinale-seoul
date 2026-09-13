@@ -2,7 +2,7 @@
 //
 // Un lecteur suit une parution quotidienne, pas quinze dépêches éparses : quinze
 // entrées par jour noieraient sa liste et feraient perdre le fil éditorial du
-// brief. Le contenu de chaque entrée reprend les titres, avec la mention IA —
+// brief. Le contenu de chaque entrée reprend les titres, avec la mention IA,
 // un flux repris ailleurs doit la porter aussi.
 
 import rss from '@astrojs/rss';
@@ -16,7 +16,7 @@ export async function GET(context) {
   return rss({
     title: 'La Matinale de Séoul',
     description:
-      `Brief quotidien — ${RUBRIQUES_EN_PROSE}. ` +
+      `Brief quotidien, ${RUBRIQUES_EN_PROSE}. ` +
       'Contenu généré automatiquement, résumés produits par IA, sources à vérifier.',
     site: context.site,
     customData: '<language>fr</language>',
@@ -37,7 +37,7 @@ export async function GET(context) {
               s.items
                 .map(
                   (i) =>
-                    `<li><strong>${escapeHtml(i.headline)}</strong> — ` +
+                    `<li><strong>${escapeHtml(i.headline)}</strong> : ` +
                     `${escapeHtml(i.summary)} ` +
                     `<a href="${escapeHtml(i.source_url)}">${escapeHtml(i.source_name)}</a></li>`
                 )

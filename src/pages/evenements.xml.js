@@ -2,8 +2,8 @@
 //
 // L'inverse du flux des briefs, et pour la raison inverse : on suit ce flux
 // pour être prévenu de CHAQUE nouveau pop-up, pas pour lire une parution. Un
-// élément stable par événement — même identifiant, même date d'un build à
-// l'autre — pour qu'un lecteur ne le renotifie pas chaque matin.
+// élément stable par événement, même identifiant, même date d'un build à
+// l'autre, pour qu'un lecteur ne le renotifie pas chaque matin.
 //
 // Ce qui est fini sort du flux avec la page ; le lecteur garde ce qu'il a lu.
 
@@ -20,20 +20,20 @@ export async function GET(context) {
   const parArrivée = [...events].sort((a, b) => String(b.date_created).localeCompare(String(a.date_created)));
 
   return rss({
-    title: 'La Matinale de Séoul — Pop-ups & événements',
+    title: 'La Matinale de Séoul · Pop-ups & événements',
     description:
-      `Pop-ups, concerts, expositions et salons à Séoul — ${THEMES_EN_PROSE}. ` +
+      `Pop-ups, concerts, expositions et salons à Séoul, ${THEMES_EN_PROSE}. ` +
       'Un élément par événement, repéré automatiquement ; dates et liens à vérifier.',
     site: context.site,
     // Le site pose une barre finale sur chaque adresse, et le flux la poserait
-    // aussi — après l'ancre, ce qui la casserait. On l'écrit soi-même.
+    // aussi, après l'ancre, ce qui la casserait. On l'écrit soi-même.
     trailingSlash: false,
     customData: '<language>fr</language>',
     items: parArrivée.map((event) => {
       const lieu = `${event.venue}, ${event.area}`;
       const carte = event.map_url ?? lienNaverMap(event);
       return {
-        title: `${event.name} — ${dateRange(event.start_date, event.end_date)}`,
+        title: `${event.name}, ${dateRange(event.start_date, event.end_date)}`,
         link: `/evenements/#evenement-${event.id}`,
         // Quand l'ingestion l'a écrit, pas quand il commence : un lecteur veut
         // savoir qu'un pop-up est annoncé, pas attendre son premier jour.
@@ -41,7 +41,7 @@ export async function GET(context) {
         description: `${lieu}. ${event.summary}`,
         categories: [THEME_LABELS[event.theme] ?? event.theme, KIND_LABELS[event.kind] ?? event.kind],
         content: [
-          `<p><strong>${escapeHtml(dateRange(event.start_date, event.end_date))}</strong> — ${escapeHtml(lieu)}</p>`,
+          `<p><strong>${escapeHtml(dateRange(event.start_date, event.end_date))}</strong>, ${escapeHtml(lieu)}</p>`,
           `<p>${escapeHtml(THEME_LABELS[event.theme] ?? event.theme)} · ${escapeHtml(KIND_LABELS[event.kind] ?? event.kind)}</p>`,
           `<p>${escapeHtml(event.summary)}</p>`,
           '<p>' +

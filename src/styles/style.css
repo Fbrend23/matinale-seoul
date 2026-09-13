@@ -57,7 +57,7 @@ body {
   font-size: 1.05rem;
   line-height: 1.6;
   /* Un téléphone tourné ne grossit pas le texte de lui-même, et un mot trop
-     long — une adresse, un nom de lieu — se coupe plutôt que de déborder. */
+     long, une adresse, un nom de lieu, se coupe plutôt que de déborder. */
   -webkit-text-size-adjust: 100%;
   overflow-wrap: break-word;
 }
@@ -89,7 +89,7 @@ body {
 /* L'en-tête et le pied s'alignent sur la page qu'ils encadrent. */
 body[data-colonnes="2"] { --mesure-page: calc(var(--mesure) + 3rem + var(--cote)); }
 body[data-colonnes="3"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
-/* Une page large — la grille de cartes — prend la place des trois colonnes. */
+/* Une page large, la grille de cartes, prend la place des trois colonnes. */
 body[data-largeur="large"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var(--cote))); }
 
 main { min-width: 0; }
@@ -172,7 +172,7 @@ a:hover { text-decoration-thickness: 2px; }
    reposait sur l'outline par défaut du navigateur, souvent invisible sur le
    fond sombre. Un site qu'on ne peut pas parcourir au clavier n'est pas
    « sobre », il est cassé pour une partie de ses lecteurs.
-   :focus-visible et non :focus — le clic à la souris ne doit pas encadrer
+   :focus-visible et non :focus, le clic à la souris ne doit pas encadrer
    ce qu'il vient de toucher. */
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -185,7 +185,7 @@ a:hover { text-decoration-thickness: 2px; }
    l'onglet courant souligné en couleur, posé sur le trait de l'en-tête. Quand
    la ligne ne suffit plus, les onglets passent dessous, sur deux lignes au
    besoin ; sur un téléphone, ils se replient derrière un bouton, en liste.
-   Sans script — l'en-tête n'a pas de data-menu —, ils défilent en bande, avec
+   Sans script, l'en-tête n'a pas de data-menu, ils défilent en bande, avec
    un fondu qui dit qu'il y en a d'autres à droite. */
 
 .entete {
@@ -252,17 +252,24 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .burger svg { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 @media (max-width: 48rem) {
-  .entete[data-menu] .burger { display: inline-flex; }
+  /* Avec le menu, la barre est une ligne : marque et bouton centrés, la même
+     marge dessus et dessous. Le calage en bas et le trait qui remonte sur la
+     bordure n'ont de sens que pour les onglets en ligne, sur grand écran. */
+  .entete[data-menu] { align-items: center; row-gap: 0; padding: 0.6rem 1.25rem; }
+  .entete[data-menu] .marque { padding-bottom: 0; }
+  .entete[data-menu] .burger { display: inline-flex; margin-bottom: 0; }
   .entete[data-menu="ferme"] nav { display: none; }
   /* Ouvert : les onglets en liste sous la barre, l'onglet courant marqué d'un
-     trait à gauche puisqu'il n'y a plus de trait dessous. */
+     trait à gauche puisqu'il n'y a plus de trait dessous. Le même pas partout :
+     0,6 rem de liste + 0,6 rem d'onglet au-dessus du premier, 0,6 + 0,6 entre
+     deux, 0,6 d'onglet + 0,6 d'en-tête sous le dernier. */
   .entete[data-menu="ouvert"] nav {
     flex: 1 0 100%;
     flex-direction: column;
     overflow: visible;
     mask-image: none;
     margin: 0;
-    padding: 0.5rem 0 0.75rem;
+    padding: 0.6rem 0 0;
     border-top: 1px solid var(--trait);
     font-size: 1rem;
   }
@@ -286,7 +293,7 @@ a:hover { text-decoration-thickness: 2px; }
   font-size: 0.95rem;
 }
 
-/* Le brief — et la tête de toute page de liste, qui a la même forme : un
+/* Le brief, et la tête de toute page de liste, qui a la même forme : un
    surtitre en petites capitales (la date d'un brief, « Rubrique » ailleurs),
    le titre, le chapeau. */
 
@@ -369,7 +376,7 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 
 /* Sur une rubrique, chaque jour est un bloc, comme chaque rubrique l'est sur
    un brief : même filet, même titre. Le lien vers le brief complet se pose à
-   côté de la date, en bas de casse, et non sur la date entière — un titre
+   côté de la date, en bas de casse, et non sur la date entière, un titre
    souligné en capitales n'est pas un titre. */
 h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .jour-bloc h2 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; }
@@ -405,7 +412,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   border-radius: 999px;
 }
 /* La pastille EST le lien : la zone cliquable doit couvrir ce que l'œil voit,
-   pas seulement le texte à l'intérieur. Le <span> reçoit le même habillage —
+   pas seulement le texte à l'intérieur. Le <span> reçoit le même habillage,
    une étiquette sans page se lit pareil, elle ne se clique pas. */
 .etiquettes a,
 .etiquettes span {
@@ -419,7 +426,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .vide { color: var(--doux); font-style: italic; }
 
 /* Les événements : une grille de cartes, sur toute la largeur de la page. On
-   la parcourt des yeux, on ne la lit pas de haut en bas — d'où le thème en
+   la parcourt des yeux, on ne la lit pas de haut en bas, d'où le thème en
    couleur en tête de carte, les dates et le lieu avant le texte, et les
    liens en pied, en boutons. */
 
@@ -482,7 +489,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }
 
 /* L'en-tête tient sur une ligne, toujours : le thème et le genre à gauche, les
-   jours qui restent à droite. Une grille et non un flex qui replie — sur une
+   jours qui restent à droite. Une grille et non un flex qui replie, sur une
    carte trop étroite pour les trois, c'est le genre, le moins utile, qui se
    coupe en points de suspension, plutôt que le badge qui descende seul sur
    une deuxième ligne. */
@@ -541,7 +548,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 
 /* Au doigt plutôt qu'à la souris. Le survol n'existe pas : un bouton touché
    garderait sa couleur de survol jusqu'au toucher suivant, comme s'il était
-   resté enfoncé. Et ce qu'on touche doit être assez grand pour l'être — les
+   resté enfoncé. Et ce qu'on touche doit être assez grand pour l'être, les
    pastilles, les filtres, les boutons d'une carte prennent de la hauteur. */
 @media (hover: hover) {
   .burger:hover { background: var(--carte); }
@@ -570,7 +577,7 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 .mention-ia p { margin: 0; }
 
-/* Listes de briefs — et, en pied d'une rubrique, la liste des autres, de la
+/* Listes de briefs, et, en pied d'une rubrique, la liste des autres, de la
    même forme. */
 
 .precedents, .mois { margin: 3rem 0; }

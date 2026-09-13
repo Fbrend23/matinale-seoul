@@ -1,13 +1,13 @@
 // L'ingestion d'un brief : l'ordre des gardes, et ce qu'on décide de leur verdict.
 //
-// Séparé de scripts/ingest.mjs, qui garde l'entrée-sortie — lire l'inbox,
+// Séparé de scripts/ingest.mjs, qui garde l'entrée-sortie, lire l'inbox,
 // construire le client, poser le code de sortie. Ici, rien ne touche au disque
 // ni au réseau de sa propre initiative : tout arrive en paramètre.
 //
 // POURQUOI CETTE SÉPARATION. C'est le cœur de la chaîne : l'ORDRE des cinq
 // gardes, le choix entre « publié » et « brouillon », l'idempotence qui empêche
 // un rejeu d'écrire deux fois. Chaque brique était testée, leur enchaînement ne
-// l'était pas — et c'est l'enchaînement qui porte les décisions. Un script qui
+// l'était pas, et c'est l'enchaînement qui porte les décisions. Un script qui
 // s'exécute au chargement ne se teste pas ; une fonction qui reçoit ses
 // dépendances, si.
 
@@ -301,12 +301,12 @@ export async function ingérer({
     dire(`   événements · non écrits, le brief est déjà en ligne : ${e.message}`);
     annoter(
       `::warning::Événements du brief ${brief.date} non écrits : ${e.message}` +
-        (proposés.length ? ` — ${proposés.length} proposé(s) perdu(s) pour ce run.` : '')
+        (proposés.length ? `, ${proposés.length} proposé(s) perdu(s) pour ce run.` : '')
     );
   }
 
   // Ce qui est fini sort de la page, et il en sort par l'archive : la chaîne
-  // n'efface jamais. Une étape à part, jouée à chaque run — un brief sans
+  // n'efface jamais. Une étape à part, jouée à chaque run, un brief sans
   // événement doit quand même ranger ceux d'hier.
   try {
     const finis = await archiveExpiredEvents(client, { today: aujourdhui });
@@ -328,7 +328,7 @@ export async function ingérer({
  * durable de son passage. Sans elle, un échec ne laisserait que des journaux de
  * CI, qui expirent.
  *
- * Cette écriture ne doit JAMAIS masquer la cause première — si elle échoue à son
+ * Cette écriture ne doit JAMAIS masquer la cause première, si elle échoue à son
  * tour, on le dit et on s'arrête là. Le brief est déjà recalé ; une seconde
  * panne par-dessus ne changerait ni le verdict ni le code de sortie.
  */

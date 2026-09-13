@@ -5,7 +5,7 @@
 #
 # « text=auto » ci-dessus les stocke déjà en LF dans le dépôt, donc le clone du
 # serveur de parution reçoit bien des LF. Mais sur un poste Windows, la copie de
-# travail reçoit des CRLF — et un script shell en CRLF NE DÉMARRE PAS sous Linux :
+# travail reçoit des CRLF, et un script shell en CRLF NE DÉMARRE PAS sous Linux :
 # le noyau lit « /usr/bin/env bash\r » et ne trouve pas d'interpréteur.
 #
 # Tant que personne ne copie ce fichier ailleurs qu'à travers git, cela reste

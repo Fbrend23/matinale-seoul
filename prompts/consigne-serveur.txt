@@ -8,4 +8,4 @@ Si le contrôle ne passe pas après tes corrections, ou si tu n'as pu vérifier 
 
 Ne modifie aucun autre fichier. Ne touche jamais au dossier .github/ : il contient la chaîne qui vérifie ton travail. Aucune pull request.
 
-Termine par un compte rendu en français : items par section, sources retenues, et le SHA poussé — ou la raison précise pour laquelle tu n'as rien poussé. Ce compte rendu part dans un journal que personne ne lira tant que tout va bien : écris-le pour le matin où quelque chose aura manqué.
+Termine par un compte rendu en français : items par section, sources retenues, et le SHA poussé, ou la raison précise pour laquelle tu n'as rien poussé. Ce compte rendu part dans un journal que personne ne lira tant que tout va bien : écris-le pour le matin où quelque chose aura manqué.

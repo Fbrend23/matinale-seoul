@@ -7,7 +7,7 @@
 // d'une machine qui, elle, n'a rien à faire à cette heure-là.
 //
 // La garde des doublons, elle, interroge Directus : elle tourne dans la CI, où
-// le CMS est de toute façon requis. Les deux ne se remplacent pas — ce fichier
+// le CMS est de toute façon requis. Les deux ne se remplacent pas, ce fichier
 // évite le doublon, la garde l'attrape.
 
 import { recentBriefs } from '../../lib/content.js';

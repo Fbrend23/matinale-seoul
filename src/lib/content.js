@@ -1,8 +1,8 @@
 // Lecture du CMS au build. Le site n'a pas d'autre source.
 //
 // Le jeton est celui de la policy « mat — lecture build » : lecture seule, et
-// filtrée sur `status = published` par Directus lui-même. Un brief en brouillon
-// — recalé par les gardes, ou retenu parce qu'un domaine est inconnu — reste
+// filtrée sur `status = published` par Directus lui-même. Un brief en brouillon,
+// recalé par les gardes, ou retenu parce qu'un domaine est inconnu, reste
 // donc invisible ici, même si une requête l'oubliait.
 //
 // AUCUN REPLI LOCAL, volontairement. Un site qui se construit sans ses sources
@@ -22,7 +22,7 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
 // coûterait plus qu'elle ne rapporte. `astro check` les lit, et les pages
 // cessent de deviner ce qu'elles reçoivent.
 //
-// Elles décrivent ce que le BUILD voit, c'est-à-dire le contenu publié — pas le
+// Elles décrivent ce que le BUILD voit, c'est-à-dire le contenu publié, pas le
 // contrat de sortie de l'agent, qui est dans schemas/brief.schema.json et porte
 // d'autres champs.
 
@@ -81,7 +81,7 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {string|null} booking_url
  * @property {string|null} map_url      fiche Naver Map vue par l'agent ; sinon
  *   le site construit un lien de recherche
- * @property {string}      date_created quand l'ingestion l'a écrit — la date de
+ * @property {string}      date_created quand l'ingestion l'a écrit, la date de
  *   publication du flux, stable d'un build à l'autre
  */
 
@@ -115,7 +115,7 @@ async function request(path) {
 // deux cent cinquante par an, c'est une réponse de plusieurs mégaoctets servie
 // par une instance mutualisée de 384 Mo dont le pool ne tient que trois
 // connexions. La panne serait arrivée un matin, sur le build, sans rapport
-// apparent avec sa cause — et un an après le commit qui l'aura causée.
+// apparent avec sa cause, et un an après le commit qui l'aura causée.
 //
 // Mille : assez large pour que l'archive tienne en une requête pendant des
 // années, assez borné pour que la réponse reste d'une taille connue.
@@ -124,7 +124,7 @@ const PAR_PAGE = 1000;
 /**
  * Lit une collection entière, page par page.
  *
- * La boucle s'arrête sur une page incomplète — c'est la seule condition qui ne
+ * La boucle s'arrête sur une page incomplète, c'est la seule condition qui ne
  * suppose rien du total, que Directus ne donne pas sans qu'on le lui demande.
  *
  * @param {string} chemin  l'adresse SANS « limit » ni « page »
@@ -151,7 +151,7 @@ async function requestAll(chemin) {
   return tout;
 }
 
-// Une fois, et une seule, par build. Les raisons — et le piège du rejet gardé —
+// Une fois, et une seule, par build. Les raisons, et le piège du rejet gardé,
 // sont dans le module, avec ses tests.
 const uneFois = créerMémo();
 
@@ -240,7 +240,7 @@ export function assemble(brief, items) {
     ...brief,
     sections: SECTIONS.map((key) => ({
       key,
-      // La phrase que l'agent — ou l'ingestion — a écrite sous une rubrique
+      // La phrase que l'agent, ou l'ingestion, a écrite sous une rubrique
       // restée vide. Nulle pour les briefs parus avant ce champ : le composant
       // retombe alors sur sa formule générale.
       empty_note: brief.empty_notes?.[key] ?? null,
@@ -255,8 +255,8 @@ export function assemble(brief, items) {
 /**
  * Le dernier brief paru, sans ses items.
  *
- * C'est ce qu'il faut pour poser le contexte du jour — météo, cours du
- * change — sur les pages qui ne sont pas un brief : une rubrique, une
+ * C'est ce qu'il faut pour poser le contexte du jour, météo, cours du
+ * change, sur les pages qui ne sont pas un brief : une rubrique, une
  * étiquette. Sans lui, ces pages perdent leurs colonnes latérales et l'en-tête
  * rétrécit d'un onglet à l'autre.
  *
@@ -282,7 +282,7 @@ export async function recentBriefs(n = 14) {
  *
  * Mémoïsé comme le reste : NewsItem le demande pour chaque item rendu, afin de
  * savoir s'il pose un lien, et les pages d'étiquette s'en servent pour savoir
- * lesquelles construire. Une seule règle pour les deux — deux règles qui
+ * lesquelles construire. Une seule règle pour les deux, deux règles qui
  * divergeraient sèmeraient des liens vers des pages inexistantes.
  *
  * @returns {Promise<Map<string, {brief: any, items: any[]}[]>>}
@@ -308,11 +308,11 @@ export async function allBriefs() {
  *
  * ZÉRO N'EST PAS UNE PANNE, à la différence des briefs : une semaine sans
  * pop-up existe, et la page le dit. Une collection absente, elle, reste une
- * panne — la requête échoue, et le build avec, comme pour toute source qui
+ * panne, la requête échoue, et le build avec, comme pour toute source qui
  * manque.
  *
  * Filtré sur la date de fin au build, ce qui suffit presque : le site se
- * reconstruit chaque matin. Le « presque » est un build qui échoue — et la page
+ * reconstruit chaque matin. Le « presque » est un build qui échoue, et la page
  * le rattrape chez le lecteur, en quelques lignes, comme l'avis de parution.
  *
  * @returns {Promise<Evenement[]>}

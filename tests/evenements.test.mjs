@@ -2,8 +2,8 @@
 //
 // Un événement n'est ni un item ni une rubrique. Il dure au-delà de son brief,
 // il a ses propres contrôles, et aucun d'eux ne recale jamais le brief : tout
-// ce qui cloche ÉCARTE l'événement, avec un avertissement. C'est cette règle
-// — « accessoire, jamais veto » — que ce fichier garde, à côté du lien Naver
+// ce qui cloche ÉCARTE l'événement, avec un avertissement. C'est cette règle,
+// « accessoire, jamais veto », que ce fichier garde, à côté du lien Naver
 // Map, qui est la seule URL que le dépôt s'autorise à construire.
 
 import { test } from 'node:test';
@@ -185,7 +185,7 @@ test('la cohérence d un événement : dates réelles, fin après début, pas en
   assert.match(cohérenceÉvénement(sain({ start_date: '2026-08-01', end_date: '2026-08-31' }), { today: AUJOURDHUI })[0], /terminé le 2026-08-31/);
 });
 
-test('un lieu sans hangul est une faute — sauf si la fiche Naver Map a été vue', () => {
+test('un lieu sans hangul est une faute, sauf si la fiche Naver Map a été vue', () => {
   // Le bouton Naver Map cherche le lieu tel quel : « Hiker Ground » n'y trouve
   // rien, « 하이커그라운드 » si. Avec une fiche vue, la recherche ne sert plus.
   assert.match(cohérenceÉvénement(sain({ venue: 'Hiker Ground' }), { today: AUJOURDHUI })[0], /lieu sans hangul/);
@@ -231,7 +231,7 @@ test('un accès refusé garde l événement, sans date de vérification', async 
   assert.equal(retenus[0].link_checked_at, null);
 });
 
-test('un domaine inconnu ÉCARTE l événement — il ne retient rien en brouillon', async () => {
+test('un domaine inconnu ÉCARTE l événement, il ne retient rien en brouillon', async () => {
   const { retenus, écartés } = await contrôler([sain({ source_url: 'https://blog-inconnu.test/pop-up' })]);
 
   assert.equal(retenus.length, 0);

@@ -35,8 +35,8 @@ export const DUPLICATE_THRESHOLD = 0.85;
  */
 // Compiler un schéma Ajv coûte une vingtaine de millisecondes, et le schéma ne
 // change pas d'un brief à l'autre. Une WeakMap plutôt qu'une Map : elle ne
-// retient pas le schéma en vie, et deux schémas différents — les fixtures des
-// tests — gardent chacun le sien.
+// retient pas le schéma en vie, et deux schémas différents, les fixtures des
+// tests, gardent chacun le sien.
 const validateurs = new WeakMap();
 
 function validateurPour(schema) {
@@ -64,7 +64,7 @@ export function validateSchema(brief, schema) {
 // --- Garde 2 : liens vivants -------------------------------------------------
 
 // Ce que le robot dit de lui-même. Le `fetch` de Node s'annonce « undici », que
-// beaucoup de sites de presse refusent — et un refus retirait jusqu'ici l'item.
+// beaucoup de sites de presse refusent, et un refus retirait jusqu'ici l'item.
 //
 // Un en-tête DESCRIPTIF, et non un faux navigateur : se déguiser pour passer
 // irait contre tout ce que ce dépôt tient par ailleurs, et se ferait bloquer
@@ -89,7 +89,7 @@ const REESSAYER_EN_GET = new Set([401, 403, 405, 406, 501]);
 
 // Combien d'adresses sont sondées de front.
 //
-// En séquence, un brief de treize items pouvait coûter plus de deux minutes —
+// En séquence, un brief de treize items pouvait coûter plus de deux minutes,
 // dix secondes d'attente par lien muet, et le double quand HEAD échoue avant
 // GET. Sur une rédaction de douze minutes qui n'a que dix-huit minutes de marge
 // avant 8 h, et un contrôle avant vol que l'agent rejoue à chaque correction,
@@ -111,7 +111,7 @@ const CONCURRENCE = 6;
  *
  * TROIS VERDICTS, ET NON DEUX. La garde cherche les URL INVENTÉES. Or un 403
  * ne dit pas que la page n'existe pas : il dit qu'on n'a pas voulu nous la
- * montrer — mur anti-robot, mur payant, filtrage géographique. Conclure « lien
+ * montrer, mur anti-robot, mur payant, filtrage géographique. Conclure « lien
  * mort » retirait l'item en silence, et le journal imputait alors à la source
  * ce qui venait de la garde.
  *
@@ -236,7 +236,7 @@ export function checkAllowlist(items, domains) {
  * CE N'EST PAS UNE GARDE, et la place le dit : rien ici ne retire ni ne recale.
  * L'allowlist compte une cinquantaine de domaines et les premiers briefs n'en
  * ont utilisé que trois ou quatre, l'un d'eux portant la moitié d'un brief.
- * Rien ne le mesurait, donc rien ne pouvait le signaler — une dérive éditoriale
+ * Rien ne le mesurait, donc rien ne pouvait le signaler, une dérive éditoriale
  * se serait installée sans que le journal du run en dise un mot.
  *
  * Mesurer n'est pas contraindre : une journée peut légitimement appartenir à
@@ -415,7 +415,7 @@ export const VIDÉE_PAR_LES_GARDES =
 /**
  * La phrase à afficher sous chaque rubrique restée vide, indexée par sa clé.
  *
- * L'agent en écrit une pour chaque rubrique qu'il laisse vide — le schéma l'y
+ * L'agent en écrit une pour chaque rubrique qu'il laisse vide, le schéma l'y
  * oblige. Elle était jusqu'ici validée puis jetée : ni écrite dans le CMS, ni
  * lue au build, le site affichant à sa place une phrase générale codée en dur.
  * Un texte produit, contraint et perdu, dans un dépôt dont toute la doctrine
@@ -425,7 +425,7 @@ export const VIDÉE_PAR_LES_GARDES =
  * morts arrive ici sans note, et reçoit la sienne.
  *
  * @returns {Record<string, string>|null} null quand aucune rubrique n'est vide,
- *   pour que la clé reste hors de la charge écrite — comme pour la météo, ne
+ *   pour que la clé reste hors de la charge écrite, comme pour la météo, ne
  *   rien avoir à dire ne doit pas effacer ce qu'un passage précédent a dit.
  */
 export function emptyNotes(brief) {
@@ -451,7 +451,7 @@ export function flatten(brief) {
 /**
  * L'inverse : le même brief, ne gardant que les items donnés.
  *
- * C'est sur CE brief que se juge la cohérence — la garde 5 se prononce sur ce
+ * C'est sur CE brief que se juge la cohérence, la garde 5 se prononce sur ce
  * qui reste une fois les liens morts et les doublons retirés, jamais sur ce que
  * l'agent a proposé.
  *

@@ -3,7 +3,7 @@
 // Seule pièce de la chaîne dont la panne ne doit RIEN arrêter. La météo est un
 // accessoire du brief : elle ne retient jamais l'actualité. Le module se
 // contente donc de lever, et c'est l'ingestion qui choisit d'en faire un
-// silence — la décision d'ignorer un échec doit se lire là où le brief se
+// silence, la décision d'ignorer un échec doit se lire là où le brief se
 // publie, pas être enterrée ici.
 //
 // `fetcher` injectable et minuteur d'abandon, comme checkLinks : c'est ce qui
@@ -11,7 +11,7 @@
 //
 // Open-Meteo est gratuit et sans clé : aucun secret nouveau à déposer dans le
 // dépôt. Ses données sont sous CC-BY 4.0, d'où l'attribution que le composant
-// affiche — elle n'est pas décorative.
+// affiche, elle n'est pas décorative.
 
 export const SEOUL = { latitude: 37.5665, longitude: 126.978 };
 
@@ -19,7 +19,7 @@ const BASE = 'https://api.open-meteo.com/v1/forecast';
 
 // Séoul ne passe pas à l'heure d'été : ce décalage est constant. En recevoir un
 // autre ne veut donc jamais dire « saison », cela veut dire que le paramètre
-// « timezone » n'a pas été pris en compte — et c'est le piège de ce module.
+// « timezone » n'a pas été pris en compte, et c'est le piège de ce module.
 // Sans lui, l'API répond avec LA BONNE DATE mais des min/max agrégés sur une
 // journée UTC, décalée de neuf heures. Contrôler la date seule laisserait donc
 // passer un bulletin faux qui a toutes les apparences du bon.
@@ -62,7 +62,7 @@ const nombre = (v) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
 /** Le bulletin de Séoul pour ce jour-là, ou une exception qui dit pourquoi non. */
 // Plus court que les 10 s de checkLinks, et à dessein : un lien mort retire un
 // item du brief, un relevé manquant ne retire qu'un encadré. Il ne reste qu'une
-// quinzaine de minutes avant 8 h, heure de Séoul — on ne les dépense pas ici.
+// quinzaine de minutes avant 8 h, heure de Séoul, on ne les dépense pas ici.
 export async function relevéMétéo({ date }, { fetcher = fetch, timeoutMs = 5_000 } = {}) {
   const controller = new AbortController();
   const minuteur = setTimeout(() => controller.abort(), timeoutMs);
@@ -110,7 +110,7 @@ export async function relevéMétéo({ date }, { fetcher = fetch, timeoutMs = 5_
     tmin: Math.round(tmin),
     tmax: Math.round(tmax),
     code,
-    // Hors fenêtre de prévision — un rejeu tardif —, Open-Meteo laisse la
+    // Hors fenêtre de prévision, un rejeu tardif, Open-Meteo laisse la
     // probabilité vide. Ce n'est pas un échec : la ligne disparaît, le
     // bulletin reste.
     precip_probability: nombre(jour.precipitation_probability_max?.[0]),

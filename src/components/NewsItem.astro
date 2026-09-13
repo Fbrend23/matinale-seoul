@@ -8,7 +8,7 @@ const tags = Array.isArray(item.tags) ? item.tags : [];
 
 // Toutes les étiquettes n'ont pas de page : celles qui ne portent qu'un item
 // n'en méritent pas, et celles d'un brief plus vieux que la fenêtre n'en ont
-// plus. On demande donc la liste plutôt que de la supposer — lier sans vérifier
+// plus. On demande donc la liste plutôt que de la supposer, lier sans vérifier
 // sèmerait un 404 par étiquette, sur un site statique où rien ne le dirait.
 // L'appel est mémoïsé : il ne coûte qu'une fois pour tout le build.
 const avecPage = await tagPages();
@@ -34,7 +34,7 @@ const avecPage = await tagPages();
       href={item.source_url}
       rel="nofollow ugc noopener"
       target="_blank"
-      aria-label={`${item.source_name} — s'ouvre dans une nouvelle fenêtre`}
+      aria-label={`${item.source_name} (s’ouvre dans une nouvelle fenêtre)`}
     >
       {item.source_name}
     </a>
@@ -44,7 +44,7 @@ const avecPage = await tagPages();
 
   {/* Cliquables quand il y a quelque chose à aller voir : le schéma les
       contraint, l'agent les pose, le CMS les garde. Celles qui n'ont pas de
-      page restent affichées — l'information ne se perd pas, seul le lien
+      page restent affichées, l'information ne se perd pas, seul le lien
       manque. */}
   {tags.length > 0 && (
     <ul class="etiquettes">

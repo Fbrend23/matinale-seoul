@@ -6,10 +6,10 @@
 //
 // UNE SEULE RÈGLE, POUR DEUX USAGES. Les pages d'étiquette sont construites
 // d'ici, et NewsItem décide d'ici s'il pose un lien. Deux règles qui
-// divergeraient produiraient des liens vers des pages inexistantes — un 404 par
+// divergeraient produiraient des liens vers des pages inexistantes, un 404 par
 // étiquette, sur un site statique où rien ne le signalerait.
 
-/** Au-delà, une étiquette se lit par l'archive — même fenêtre que les rubriques. */
+/** Au-delà, une étiquette se lit par l'archive, même fenêtre que les rubriques. */
 export const TAG_WINDOW_DAYS = 30;
 
 /**
@@ -18,7 +18,7 @@ export const TAG_WINDOW_DAYS = 30;
  * Sur les premiers briefs, 80 étiquettes sur 97 ne portaient qu'un seul item.
  * Une page qui ne montre qu'un item ne regroupe rien : elle recopie cet item,
  * ajoute une adresse à indexer, et fait grossir le sitemap sans rien apprendre
- * à personne. Le seuil ne perd aucune information — l'item reste sur son brief
+ * à personne. Le seuil ne perd aucune information, l'item reste sur son brief
  * et dans sa rubrique, l'étiquette reste affichée, elle n'est simplement pas
  * cliquable.
  */

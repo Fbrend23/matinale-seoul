@@ -2,7 +2,7 @@
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
 installation : chaque jour, le brief est rédigé, vérifié et poussé dans
-`inbox/` pour être en ligne à 8 h, heure de Séoul — la suite appartient à GitHub Actions.
+`inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
 
@@ -11,8 +11,8 @@ premiers ne convient, et c'est une affaire de capacités, pas de réglages :
 
 | | lit le web | pousse dans le dépôt |
 |---|---|---|
-| Tâche planifiée claude.ai | oui | **non** — aucun connecteur GitHub sur ce compte |
-| Routine Claude Code cloud | **non** — egress fermé, y compris `example.com` | oui |
+| Tâche planifiée claude.ai | oui | **non**, aucun connecteur GitHub sur ce compte |
+| Routine Claude Code cloud | **non**, egress fermé, y compris `example.com` | oui |
 | Claude Code sur un serveur | oui | oui |
 
 Le travail exige les deux : lire de vraies pages pour en citer de vraies
@@ -23,7 +23,7 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 - **Node ≥ 22.12** (exigé par Astro 7) et **git**
 - **Claude Code**, authentifié pour le compte qui paiera les sessions
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
-  la session rédige, valide, commite — puis échoue sur
+  la session rédige, valide, commite, puis échoue sur
   `could not read Username for 'https://github.com'`, parce qu'il n'y a personne
   pour taper un mot de passe. Le travail est fait, il ne part pas.
 
@@ -51,7 +51,7 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   ```bash
   ssh -i ~/.ssh/matinale -T git@github.com
   # « Hi Fbrend23/matinale-seoul! You've successfully authenticated,
-  #   but GitHub does not provide shell access. » — c'est la bonne réponse.
+  #   but GitHub does not provide shell access. », c'est la bonne réponse.
   git push --dry-run origin main
   ```
 
@@ -60,8 +60,8 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   > pour un nom d'hôte. Relire la valeur avec
   > `git config --get core.sshCommand | cat -A` avant de chercher ailleurs.
 
-  **`gh` n'a rien à faire sur ce serveur.** Il sert à administrer le dépôt —
-  activer un workflow, poser un secret — ce qui se fait depuis un poste de
+  **`gh` n'a rien à faire sur ce serveur.** Il sert à administrer le dépôt,
+  activer un workflow, poser un secret, ce qui se fait depuis un poste de
   travail. Le serveur, lui, ne fait que pousser un fichier.
 
   Ne jamais accorder la permission `Workflows` à quoi que ce soit ici : l'agent
@@ -81,14 +81,14 @@ bin/brief-du-jour.sh ; echo "code de sortie : $?"
 ```
 
 Si rien ne s'affiche, c'est que la sortie n'a pas été reconnue comme un
-terminal — tout est alors dans le journal :
+terminal, tout est alors dans le journal :
 
 ```bash
 cat logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log
 ```
 
 Le script part de `origin/main` par un `reset --hard` : ce qui traîne dans la
-copie locale est écrasé. C'est voulu — le dépôt du serveur est un poste de
+copie locale est écrasé. C'est voulu, le dépôt du serveur est un poste de
 travail automatique, pas un endroit où l'on garde des modifications.
 
 > **Ne jamais faire `git pull` sur ce clone.** Une session interrompue peut y
@@ -98,7 +98,7 @@ travail automatique, pas un endroit où l'on garde des modifications.
 > il n'y a rien à mettre à jour avant de le lancer.
 >
 > Pour reprendre la main après une divergence, regarder d'abord ce que le
-> serveur a en trop — ce peut être un brief rédigé mais jamais parti :
+> serveur a en trop, ce peut être un brief rédigé mais jamais parti :
 >
 > ```bash
 > git fetch origin && git log --oneline origin/main..HEAD
@@ -113,13 +113,13 @@ travail automatique, pas un endroit où l'on garde des modifications.
 celui où son lecteur le lira. Le déclenchement part donc à **7 h 30** là-bas : la
 rédaction prend une douzaine de minutes (mesurées), la chaîne GitHub trois de
 plus. Partir au plus tard rend l'actualité du brief d'autant plus fraîche, et
-laisse encore 18 minutes de marge — une fois et demie la durée observée.
+laisse encore 18 minutes de marge, une fois et demie la durée observée.
 
 Le serveur vit à l'heure de Berne, mais **on ne convertit pas de tête** : une
 heure de Berne figée dériverait d'une heure deux fois l'an, précisément dans le
 fuseau où l'on ne veut pas dériver.
 
-> **N'utilisez pas `CRON_TZ` — le cron de Debian et d'Ubuntu ne le connaît pas.**
+> **N'utilisez pas `CRON_TZ`, le cron de Debian et d'Ubuntu ne le connaît pas.**
 > Ce n'est pas une subtilité d'ordre des lignes : la directive n'existe pas dans
 > ce cron (Vixie, et non cronie). Elle est avalée comme une variable
 > d'environnement ordinaire, **sans le moindre avertissement**, et l'horaire est
@@ -150,7 +150,7 @@ WantedBy=timers.target
 
 ```ini
 [Unit]
-Description=La Matinale de Séoul — rédaction et dépôt du brief du jour
+Description=La Matinale de Séoul, rédaction et dépôt du brief du jour
 
 [Service]
 Type=oneshot
@@ -175,19 +175,19 @@ sudo loginctl enable-linger UTILISATEUR
 > **`Environment=PATH=` n'est pas décoratif.** systemd démarre avec un chemin
 > minimal, où `claude` ne figure pas s'il vit dans `~/.local/bin`, ni `node` s'il
 > vient de nvm. Sans cette ligne, le script échoue en 127 chaque matin, alors
-> qu'il marche parfaitement lancé à la main — le genre de panne qu'on cherche du
+> qu'il marche parfaitement lancé à la main, le genre de panne qu'on cherche du
 > mauvais côté pendant une heure.
 
 > **Guillemets autour du chemin d'`ExecStart`**, à cause de l'espace de « Seoul
 > News » : systemd découpe cette ligne sur les blancs et prendrait « News/… »
 > pour un argument. Sans eux, le service meurt en `status=203/EXEC`.
 > `WorkingDirectory=`, lui, prend toute la fin de ligne et n'en a pas besoin.
-> Dans `Documentation=`, un `%` doit s'écrire `%%` — sinon systemd lit `%20`
+> Dans `Documentation=`, un `%` doit s'écrire `%%`, sinon systemd lit `%20`
 > comme un specifier.
 
 > **Le timer vit sur le serveur, pas dans le dépôt.** Ce fichier ne fait que
-> le documenter. Changer l'horaire ou les jours — passer du lundi-vendredi à
-> tous les jours, par exemple — se fait à la main dans
+> le documenter. Changer l'horaire ou les jours, passer du lundi-vendredi à
+> tous les jours, par exemple, se fait à la main dans
 > `~/.config/systemd/user/matinale.timer`, puis :
 >
 > ```bash
@@ -201,7 +201,7 @@ sudo loginctl enable-linger UTILISATEUR
 
 `Persistent=true` rattrape au réveil un déclenchement manqué (machine éteinte ou
 endormie à l'heure dite) plutôt que de sauter le jour. Le brief sort en retard,
-mais il sort — et il porte la bonne date, puisque le script lit toujours le jour
+mais il sort, et il porte la bonne date, puisque le script lit toujours le jour
 sur `Asia/Seoul`, jamais sur l'heure du rattrapage.
 
 **Vérifier que c'est bien réglé, et non le croire :**
@@ -257,7 +257,7 @@ heures après la parution, elle constate qu'aucun brief du jour n'est publié et
 signale par courriel. C'est le seul garde-fou qui parle de ce qui **n'a pas eu
 lieu** ; tous les autres ne signalent que des échecs.
 
-Si on la met un jour en pause, la rallumer depuis un poste de travail — pas
+Si on la met un jour en pause, la rallumer depuis un poste de travail, pas
 depuis le serveur, qui n'a pas à administrer le dépôt :
 
 ```bash

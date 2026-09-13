@@ -1,4 +1,4 @@
-// Échapper pour du HTML écrit à la main — les flux, qui composent leur contenu
+// Échapper pour du HTML écrit à la main, les flux, qui composent leur contenu
 // en chaînes. Les pages Astro n'en ont pas besoin : le gabarit échappe seul.
 //
 // Dans son propre module parce que deux flux le faisaient chacun de leur côté,

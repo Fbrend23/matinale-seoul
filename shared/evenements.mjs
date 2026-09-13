@@ -8,7 +8,7 @@
 // CE N'EST PAS UNE CINQUIÈME RUBRIQUE. Une rubrique est éphémère : elle vit
 // dans le brief du jour. Un événement, lui, dure jusqu'à sa date de fin, quel
 // que soit le brief qui l'a repéré. Il a donc sa collection, sa page, et ses
-// propres contrôles — dont aucun ne recale jamais le brief.
+// propres contrôles, dont aucun ne recale jamais le brief.
 
 // Ce qu'on peut aller voir. « autre » existe ici parce qu'un lancement de jeu
 // en boutique ou une projection ne sont ni un pop-up ni un concert.
@@ -27,7 +27,7 @@ export const KIND_LABELS = {
 // ici. Un seau fourre-tout deviendrait la sortie de secours d'un agent qui
 // travaille avec dix-huit minutes de marge, et l'onglet cesserait de parler
 // de ce pour quoi il existe. « mode » et « seoul » sont les plus larges des
-// sept — les pop-ups de marque sans idol, les grands rendez-vous de la ville —
+// sept, les pop-ups de marque sans idol, les grands rendez-vous de la ville,
 // et c'est le prompt qui en tient la porte : streetwear et beauté, pas le café
 // du coin ; la Han et les palais, pas le marché de quartier.
 export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode', 'seoul'];
@@ -47,7 +47,7 @@ export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', 
 import { joursEntre, jourPlus } from './date.mjs';
 
 /**
- * Le week-end qui vient : samedi et dimanche prochains — ou ceux en cours,
+ * Le week-end qui vient : samedi et dimanche prochains, ou ceux en cours,
  * quand on est déjà dedans. Le dimanche, le samedi est passé : le week-end se
  * réduit au jour même, et ce qui a fermé la veille n'y figure plus.
  *
@@ -70,8 +70,8 @@ export function weekEndDe(today) {
  *
  * Vide, c'est ce qu'il est quand la question est en anglais : Naver Map ne
  * connaît « Hiker Ground » que sous « 하이커그라운드 ». D'où `venue` en coréen,
- * tel que Naver l'écrit — c'est le schéma et le tri des événements qui le
- * demandent — et le quartier hors de la requête : romanisé pour le lecteur,
+ * tel que Naver l'écrit, c'est le schéma et le tri des événements qui le
+ * demandent, et le quartier hors de la requête : romanisé pour le lecteur,
  * il ne ferait que brouiller une recherche coréenne. Une enseigne à plusieurs
  * adresses se départage dans le lieu lui-même : « 포켓몬센터 성수 ».
  *
@@ -90,7 +90,7 @@ export function enCoréen(texte) {
 /**
  * Trois groupes, sans recouvrement, et les terminés sortent.
  *
- *   ceWeekEnd  ouvert samedi ou dimanche prochains — la question qu'on se pose
+ *   ceWeekEnd  ouvert samedi ou dimanche prochains, la question qu'on se pose
  *              vraiment le jeudi soir. Un pop-up de deux mois y est aussi.
  *   enCours    ouvert aujourd'hui, mais fermé avant le week-end
  *   àVenir     commence après le week-end

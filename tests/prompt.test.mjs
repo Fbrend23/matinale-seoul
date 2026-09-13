@@ -4,7 +4,7 @@
 //
 // Sans lui, resserrer le schéma laisserait derrière un prompt qui promet
 // l'ancienne forme, et l'agent produirait chaque matin, consciencieusement, des
-// briefs que les gardes recaleraient — l'erreur ne se voyant qu'au premier run
+// briefs que les gardes recaleraient, l'erreur ne se voyant qu'au premier run
 // raté, en production.
 
 import { test } from 'node:test';
@@ -26,7 +26,7 @@ const schéma = JSON.parse(await lire('schemas/brief.schema.json'));
 // (.gitattributes, « * text=auto »), mais la copie de travail d'un poste
 // Windows porte des CRLF : sans lui, ce test échoue chez le mainteneur et
 // passe en CI. Une suite rouge sur la machine où l'on développe est une
-// suite qu'on cesse de lire — et celle-ci tient le prompt et le schéma
+// suite qu'on cesse de lire, et celle-ci tient le prompt et le schéma
 // ensemble.
 const bloc = prompt.match(/```json\r?\n([\s\S]*?)```/);
 assert.ok(bloc, "aucun bloc ```json dans le prompt : l'exemple donné à l'agent a disparu");
@@ -50,7 +50,7 @@ test('le prompt nomme les quatre sections attendues', () => {
 
 test("le prompt donne l'exemple d'un événement, et ses sept thèmes", async () => {
   // L'onglet n'existe que par ce que l'agent y dépose. Un exemple sans
-  // événement, et l'agent n'en écrirait jamais — le schéma l'y autorise sans
+  // événement, et l'agent n'en écrirait jamais, le schéma l'y autorise sans
   // l'y inviter.
   const { THEMES } = await import('../shared/evenements.mjs');
   assert.ok(Array.isArray(exemple.events) && exemple.events.length > 0, "l'exemple ne porte aucun événement");
@@ -97,7 +97,7 @@ test('le prompt donne le chemin de dépôt attendu par le workflow', async () =>
 // à rester vrai : l'ajout de la rubrique « gaming » a laissé derrière lui un
 // README qui annonçait trois rubriques et un cahier des charges qui décrivait
 // un modèle de données à trois valeurs. Une référence fausse est pire qu'une
-// référence absente — on la croit.
+// référence absente, on la croit.
 //
 // Ces deux tests coûtent trois lignes et attrapent exactement cette faute, la
 // prochaine fois qu'une rubrique sera ajoutée.

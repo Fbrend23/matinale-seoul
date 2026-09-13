@@ -1,15 +1,15 @@
 # Rejeu : relancer la publication quand elle est morte d'un accident, pas d'un
 # désaccord.
 #
-# POURQUOI. Le 10 septembre 2026, le brief du 11 — valide, déjà passé par la
-# garde du schéma — n'est jamais paru : l'instance Directus n'a pas répondu au
+# POURQUOI. Le 10 septembre 2026, le brief du 11, valide, déjà passé par la
+# garde du schéma, n'est jamais paru : l'instance Directus n'a pas répondu au
 # premier appel. Une panne de quelques minutes chez l'hébergeur, et la matinée
 # était perdue jusqu'à une relance à la main. Le client CMS rejoue désormais ses
 # LECTURES pendant une douzaine de secondes ; au-delà, il n'y a plus rien à
 # attendre dans le même run, et c'est ici que ça se rattrape.
 #
 # CE QUI REND LE REJEU SÛR. Le fichier reste dans inbox/ tant qu'il n'est pas
-# publié — l'archivage n'a lieu qu'après le déploiement. Donc « inbox/ non vide »
+# publié, l'archivage n'a lieu qu'après le déploiement. Donc « inbox/ non vide »
 # est exactement l'invariant « quelque chose n'est pas passé », sans état à
 # tenir ailleurs. Et l'ingestion est conçue pour être rejouée : briefForDate()
 # rend la main si le brief du jour est déjà publié, et saveBrief() archive les
@@ -23,8 +23,8 @@
 # DEUX TENTATIVES, PAS UNE BOUCLE. L'agent dépose vers 7 h 30, heure de Séoul.
 # On repasse à 8 h 15 puis à 9 h 15, et on s'arrête là : la Veille de 10 h
 # prend le relais et nomme l'absence. Un rejeu toutes les heures, lui,
-# transformerait un brief durablement recalé — une garde qui dit non, ce qui
-# n'est pas un accident — en un mail d'échec par heure.
+# transformerait un brief durablement recalé, une garde qui dit non, ce qui
+# n'est pas un accident, en un mail d'échec par heure.
 
 name: Rejeu
 
@@ -65,8 +65,8 @@ jobs:
           fi
 
       # Relancer contre un CMS toujours à terre ne fait que rejouer l'échec, et
-      # avec lui son mail. On pose donc la même question que la Veille — avec le
-      # même jeton de lecture — avant de décider. Si le CMS ne répond pas, on ne
+      # avec lui son mail. On pose donc la même question que la Veille, avec le
+      # même jeton de lecture, avant de décider. Si le CMS ne répond pas, on ne
       # tente rien : soit la tentative suivante le trouvera debout, soit la
       # Veille de 10 h dira l'absence, ce qui est le bon message.
       - name: Le CMS répond-il ?
@@ -79,7 +79,7 @@ jobs:
           # La MÊME requête que la Veille, à la date près : une collection que
           # ce jeton lit déjà tous les jours. Un point de santé dédié
           # (/server/ping) serait plus élégant, mais rien ici ne prouve qu'il
-          # est exposé par cette instance — et un 404 permanent ferait un filet
+          # est exposé par cette instance, et un 404 permanent ferait un filet
           # qui ne se déclenche jamais, sans que personne ne s'en aperçoive.
           # -g : curl lirait les crochets d'un filtre comme une plage à
           # développer et refuserait l'URL, code 3, avant d'avoir rien demandé.
@@ -92,7 +92,7 @@ jobs:
           if [ "$code" = "200" ]; then
             echo "CMS debout (HTTP 200), le rejeu a une chance d'aboutir." >> "$GITHUB_STEP_SUMMARY"
           else
-            echo "::notice::CMS toujours injoignable (HTTP ${code:-aucun}) — aucun rejeu lancé."
+            echo "::notice::CMS toujours injoignable (HTTP ${code:-aucun}), aucun rejeu lancé."
             echo "CMS injoignable (HTTP ${code:-aucun}) : rejeu inutile, on n'y touche pas." >> "$GITHUB_STEP_SUMMARY"
           fi
 

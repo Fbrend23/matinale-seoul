@@ -1,7 +1,7 @@
 // Les deux pièces du site qui portent une décision, et que rien ne gardait.
 //
-// src/ était entièrement non testé. La plus grande partie s'y prête mal — les
-// pages dépendent d'« astro:env », qui ne se résout pas hors d'Astro — mais ces
+// src/ était entièrement non testé. La plus grande partie s'y prête mal, les
+// pages dépendent d'« astro:env », qui ne se résout pas hors d'Astro, mais ces
 // deux-ci n'en dépendent pas, et ce sont précisément celles qui décident :
 //
 //   · le cache du build, qui pourrait servir du contenu figé sans le dire ;
@@ -51,7 +51,7 @@ test('deux appels en parallèle partagent la requête EN VOL', async () => {
 
 test('un rejet est relancé à l identique, et ne devient jamais un repli', async () => {
   // La propriété la plus importante du fichier. Quand le CMS ne répond pas, le
-  // build doit ÉCHOUER — le déploiement précédent reste alors en ligne, et le
+  // build doit ÉCHOUER, le déploiement précédent reste alors en ligne, et le
   // lecteur voit le brief d'hier, ce qui est vrai. Un cache qui avalerait la
   // panne publierait un site éternellement frais et faux.
   const mémo = créerMémo();
@@ -121,7 +121,7 @@ test('le site et les gardes datent le même jour à Séoul', () => {
 // Une page qui ne montre qu'un item ne regroupe rien : elle le recopie, et
 // ajoute une adresse à indexer.
 //
-// La même règle sert deux fois — elle décide des pages à construire, et elle
+// La même règle sert deux fois, elle décide des pages à construire, et elle
 // décide si NewsItem pose un lien. Ces tests gardent la règle elle-même ; c'est
 // sa duplication qui produirait des 404.
 

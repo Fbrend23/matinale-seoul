@@ -2,7 +2,7 @@
   "name": "matinale-seoul",
   "private": true,
   "type": "module",
-  "description": "La Matinale de Séoul — brief d'actualité quotidien, site statique",
+  "description": "La Matinale de Séoul, brief d'actualité quotidien, site statique",
   "engines": {
     "node": ">=22.12"
   },

@@ -9,7 +9,7 @@ import { KIND_LABELS, THEME_LABELS, lienNaverMap, badgeDélai } from '../../shar
 
 const { event, today } = Astro.props;
 
-// Combien de jours il reste — le nombre, pas un « bientôt » : c'est lui qui
+// Combien de jours il reste, le nombre, pas un « bientôt » : c'est lui qui
 // décide d'un week-end. Calculé au build, comme le reste de la page, qui se
 // reconstruit chaque matin.
 const badge = today ? badgeDélai(event, today) : null;
@@ -32,7 +32,7 @@ const carte = event.map_url ?? lienNaverMap(event);
   <h3>{event.name}</h3>
 
   {/* Les dates et le lieu dans un même paragraphe : deux lignes sur une carte
-      large, une seule sur un téléphone — c'est la feuille de style qui
+      large, une seule sur un téléphone, c'est la feuille de style qui
       tranche. Le lieu est en coréen, tel que Naver Map l'écrit : lang="ko"
       pour que les lecteurs d'écran et la typographie le traitent comme tel. */}
   <p class="evenement-infos">
@@ -43,14 +43,14 @@ const carte = event.map_url ?? lienNaverMap(event);
   <p class="resume">{event.summary}</p>
 
   <p class="evenement-liens">
-    {/* rel="nofollow ugc" : ces liens sont choisis par une machine — la fiche
+    {/* rel="nofollow ugc" : ces liens sont choisis par une machine, la fiche
         Naver Map et la billetterie comme la source. */}
     <a
       class="bouton"
       href={carte}
       rel="nofollow ugc noopener"
       target="_blank"
-      aria-label="Voir sur Naver Map — s'ouvre dans une nouvelle fenêtre"
+      aria-label="Voir sur Naver Map (s’ouvre dans une nouvelle fenêtre)"
     >
       Naver Map
     </a>
@@ -60,7 +60,7 @@ const carte = event.map_url ?? lienNaverMap(event);
         href={event.booking_url}
         rel="nofollow ugc noopener"
         target="_blank"
-        aria-label="Réserver — s'ouvre dans une nouvelle fenêtre"
+        aria-label="Réserver (s’ouvre dans une nouvelle fenêtre)"
       >
         Réserver
       </a>
@@ -70,7 +70,7 @@ const carte = event.map_url ?? lienNaverMap(event);
       href={event.source_url}
       rel="nofollow ugc noopener"
       target="_blank"
-      aria-label={`Source : ${event.source_name} — s'ouvre dans une nouvelle fenêtre`}
+      aria-label={`Source : ${event.source_name} (s’ouvre dans une nouvelle fenêtre)`}
     >
       {event.source_name}
     </a>

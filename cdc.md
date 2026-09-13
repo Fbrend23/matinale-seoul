@@ -1,4 +1,4 @@
-# Cahier des charges — La Matinale de Séoul (v2)
+# Cahier des charges : La Matinale de Séoul (v2)
 
 Remplace la v1, rédigée sans accès au dépôt. Cette version intègre l'état des lieux et tranche
 les cinq écarts relevés. Elle reste subordonnée au dépôt : en cas de contradiction, signale
@@ -12,13 +12,13 @@ l'écart plutôt que de réécrire l'existant.
   La Matinale n'est pas un CMS à monter : c'est **un client de plus à provisionner**
   (`clients/matinale.json` + `npm run provision`). Préfixe : `mat_`.
 - Hébergement : « Site Node.js » Infomaniak lançant `directus start`. Enveloppe serrée et
-  assumée (384 Mo, pool DB à 3, WebSockets coupés) — ne rien y ajouter de gourmand.
+  assumée (384 Mo, pool DB à 3, WebSockets coupés), ne rien y ajouter de gourmand.
 - Base : MariaDB Infomaniak, `DB_CLIENT=mysql`.
 - **Le snapshot de schéma est une sauvegarde, jamais un gabarit.** `directus schema apply`
   réconcilie l'instance entière et supprimerait les collections des autres clients. Ne jamais
   l'exécuter. La source de vérité par client est la fiche JSON déclarative jouée par
   `provision-client.mjs` via l'API, idempotente.
-- Modèle frontend réutilisable : Maisallezfieu — Astro statique, `@astrojs/sitemap`,
+- Modèle frontend réutilisable : Maisallezfieu, Astro statique, `@astrojs/sitemap`,
   `scripts/fetch-media.mjs`, tests joués deux fois (TZ local et UTC), déploiement FTPS par `lftp`
   avec ses trois gardes (marqueur `.deploy-cible`, refus de builder sans secrets, `build.json`
   envoyé seul et en dernier). Transposer, ne pas réinventer.
@@ -44,7 +44,7 @@ Publier automatiquement, chaque matin, un brief d'actualité en français : tour
 Corée, actualités coréennes générales, tech et IA mondiales, jeu vidéo mondial. Contenu
 produit par une tâche planifiée Claude qui cherche sur le web et rend un JSON structuré.
 
-Aucune relecture humaine avant mise en ligne — la qualité repose sur les cinq gardes (section 6).
+Aucune relecture humaine avant mise en ligne : la qualité repose sur les cinq gardes (section 6).
 
 Volume : un brief par jour, week-end compris, quatre rubriques, 12 à 24 items. Charge négligeable, ne
 surdimensionne rien.
@@ -81,7 +81,7 @@ Site **entièrement statique**. Pas de SSR, pas d'ISR, pas de base côté public
 PAT fine-grained, scopé au seul dépôt, `Contents: write`. Le dépôt avait écarté
 `repository_dispatch` pour ne pas accorder ce droit ; la différence ici est que le jeton n'est pas
 dans le CMS mutualisé mais porté par une tâche isolée. Et surtout : un PAT fine-grained avec
-`Contents: write` **ne peut pas modifier `.github/workflows/`** — cela exige la permission
+`Contents: write` **ne peut pas modifier `.github/workflows/`** : cela exige la permission
 `Workflows`, séparée, qu'on n'accorde pas. L'agent dépose du contenu, il ne peut pas altérer la
 chaîne qui le valide.
 
@@ -90,22 +90,22 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 
 ---
 
-## 4. Modèle de données — fiche client `mat_`
+## 4. Modèle de données : fiche client `mat_`
 
 ### `mat_briefs`
 | champ | type | notes |
 |---|---|---|
-| `status` | système | `draft` \| `published` \| `archived` — **ne pas toucher.** La policy de build ne lit que `published` |
-| `date` | date | `unique: true` — porte l'idempotence |
+| `status` | système | `draft` \| `published` \| `archived`, **ne pas toucher.** La policy de build ne lit que `published` |
+| `date` | date | `unique: true`, porte l'idempotence |
 | `title` | string | |
 | `standfirst` | text | |
 | `slug` | string | `unique: true` |
-| `ingest_status` | enum | `ok` \| `failed` — traçabilité, distinct du champ système |
+| `ingest_status` | enum | `ok` \| `failed`, traçabilité, distinct du champ système |
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
-| `weather` | json | nullable — bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
-| `fx` | json | nullable — cours CHF→KRW (taux de référence BCE via Frankfurter) figé à l'ingestion, avec la date du cours. Même règles que `weather` |
-| `empty_notes` | json | nullable — pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
+| `weather` | json | nullable, bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
+| `fx` | json | nullable, cours CHF→KRW (taux de référence BCE via Frankfurter) figé à l'ingestion, avec la date du cours. Même règles que `weather` |
+| `empty_notes` | json | nullable, pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
 
 Un brief recalé reste en `draft`, ce qui est déjà fonctionnellement l'échec puisque le build
 ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste dans la convention.
@@ -138,8 +138,8 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `brief` | m2o → `mat_briefs` | **non requis** : un événement survit à son brief |
 | `name` | string | |
 | `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
-| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` — pas de « autre » |
-| `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit — c'est la requête du bouton — et le quartier, romanisé |
+| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul`, pas de « autre » |
+| `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
 | `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |
@@ -163,7 +163,7 @@ Le m2m `tags` est écarté pour la v1 : les pages par tag s'agrègent au build d
 JSON. On ajoutera le support des tables de jonction au provisionneur quand un client en aura
 réellement besoin.
 
-Après provisionnement : `npm run schema:snapshot` et commiter — comme sauvegarde.
+Après provisionnement : `npm run schema:snapshot` et commiter, comme sauvegarde.
 
 ---
 
@@ -204,7 +204,7 @@ section. `published_at` omis si la source ne donne pas d'horodatage fiable.
 
 Le champ `status` a disparu du contrat : il est décidé par l'ingestion, pas par l'agent.
 
-Le fichier peut porter un tableau `events` facultatif — voir `$defs/event` dans le
+Le fichier peut porter un tableau `events` facultatif, voir `$defs/event` dans le
 schéma. Ce n'est pas une cinquième rubrique : les quatre `key` restent seules dans
 `sections`, et `events` vit à la racine.
 
@@ -216,17 +216,17 @@ schéma. Ce n'est pas une cinquième rubrique : les quatre `key` restent seules 
 
 Elles remplacent la relecture humaine. Ordre d'exécution :
 
-1. **Schéma** — validation contre `brief.schema.json`. Échec ⇒ brief entier recalé.
-2. **Liens vivants** — HEAD sur chaque `source_url`, timeout 10 s, redirections suivies, repli GET
+1. **Schéma** : validation contre `brief.schema.json`. Échec ⇒ brief entier recalé.
+2. **Liens vivants** : HEAD sur chaque `source_url`, timeout 10 s, redirections suivies, repli GET
    si le serveur conteste la méthode. *La garde la plus rentable : elle attrape les URL inventées,
    mode de défaillance le plus probable.* Trois verdicts, parce que la question posée est « cette
    adresse existe-t-elle ? » et non « ai-je pu la lire ? » : 2xx ⇒ l'item passe, daté ;
    401/403/406/429 ⇒ **l'item passe sans date**, un refus d'accès ne prouvant pas une invention ;
    404, 5xx ou silence ⇒ l'item saute.
-3. **Allowlist de domaines** — `config/sources.json`, éditable. Domaine inconnu ⇒ item conservé
+3. **Allowlist de domaines** : `config/sources.json`, éditable. Domaine inconnu ⇒ item conservé
    mais brief laissé en `draft` (pas jeté : c'est ainsi que la liste s'enrichit).
-4. **Doublons** — similarité du `headline` contre les 14 derniers jours, seuil 0,85.
-5. **Cohérence** — `date` = aujourd'hui à Séoul ; au moins deux sections non vides ;
+4. **Doublons** : similarité du `headline` contre les 14 derniers jours, seuil 0,85.
+5. **Cohérence** : `date` = aujourd'hui à Séoul ; au moins deux sections non vides ;
    `summary` ≤ 40 mots ; `importance` sans doublon dans une section.
 
 **Échec.** Item recalé ⇒ retiré, le brief part sans lui. Brief recalé ⇒ écrit en `draft` avec
@@ -236,9 +236,9 @@ le fichier reste dans `inbox/` pour rejeu.
 **Idempotence.** Si un brief `published` existe déjà pour cette date, l'ingestion s'arrête sans
 rien écrire et le workflow sort en succès.
 
-**Les événements ne sont pas une sixième garde.** Chaque événement passe ses propres contrôles
-— dates réelles, fin ≥ début, fin ≥ aujourd'hui, 40 mots, allowlist, doublons contre les
-événements actifs, source vivante — et ce qui échoue est **écarté** avec un `::warning::`,
+**Les événements ne sont pas une sixième garde.** Chaque événement passe ses propres contrôles :
+dates réelles, fin ≥ début, fin ≥ aujourd'hui, 40 mots, allowlist, doublons contre les
+événements actifs, source vivante, et ce qui échoue est **écarté** avec un `::warning::`,
 jamais le brief : un domaine inconnu écarte au lieu de retenir en brouillon, une collection
 absente est un avertissement. Ils sont écrits après le brief, rattachés à lui, toujours
 `published`. À chaque run, ce dont `end_date` est passée est archivé.
@@ -247,7 +247,7 @@ absente est un avertissement. Ils sont écrits après le brief, rattachés à lu
 
 ## 7. Sémantique de l'échec
 
-Distinction à tenir strictement — c'est le fil conducteur de la chaîne :
+Distinction à tenir strictement, c'est le fil conducteur de la chaîne :
 
 - **« Pas de brief aujourd'hui »** : cas de contenu normal. La page rend, datée explicitement.
   Build vert.

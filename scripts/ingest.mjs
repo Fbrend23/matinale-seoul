@@ -10,7 +10,7 @@
 //
 // Codes de sortie :
 //   0  brief publié, ou déjà publié (rien à faire), ou inbox vide
-//   1  brief recalé — le workflow échoue, GitHub envoie le mail, et le fichier
+//   1  brief recalé, le workflow échoue, GitHub envoie le mail, et le fichier
 //      reste dans inbox/ pour être rejoué une fois la cause comprise
 
 import { readFile, readdir } from 'node:fs/promises';
@@ -59,7 +59,7 @@ const client = createClient({
   token: process.env.DIRECTUS_TOKEN,
 });
 const aujourdhui = seoulDate();
-console.log(`Ingestion — ${fichiers.length} fichier(s), ${aujourdhui} à Séoul`);
+console.log(`Ingestion : ${fichiers.length} fichier(s), ${aujourdhui} à Séoul`);
 
 let échec = false;
 
@@ -83,7 +83,7 @@ for (const fichier of fichiers) {
   if (issue.statut !== 'recalé') continue;
 
   échec = true;
-  dire(`   RECALÉ — ${issue.raison}`);
+  dire(`   RECALÉ : ${issue.raison}`);
   await tracerLÉchec({
     client,
     brief: issue.brief,

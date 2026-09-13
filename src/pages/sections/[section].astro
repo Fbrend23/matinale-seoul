@@ -36,7 +36,7 @@ const total = jours.reduce((n, jour) => n + jour.items.length, 0);
 // temps.
 const dernier = await dernierBrief();
 
-// Le chapeau dit ce qu'on va lire, et jusqu'où ça remonte — la fenêtre est
+// Le chapeau dit ce qu'on va lire, et jusqu'où ça remonte, la fenêtre est
 // de trente jours, mais le premier jour qui a quelque chose peut être plus
 // proche.
 const plusAncien = jours[jours.length - 1]?.brief;

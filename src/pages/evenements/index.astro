@@ -12,13 +12,13 @@ import { grouperParÉtat, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../..
 // et la date de fin qui en fait sortir chaque événement.
 //
 // Le flux de cette page est /evenements.xml : un élément par événement, à
-// l'inverse du flux des briefs — on le suit pour être prévenu de chacun.
+// l'inverse du flux des briefs, on le suit pour être prévenu de chacun.
 const events = await listEvents();
 const aujourdhui = seoulToday();
 const { ceWeekEnd, enCours, àVenir, weekEnd } = grouperParÉtat(events, aujourdhui);
 
 // Le week-end d'abord : c'est la question qu'on se pose vraiment. Les trois
-// groupes ne se recouvrent pas — une grille qui répète ses cartes ne se
+// groupes ne se recouvrent pas, une grille qui répète ses cartes ne se
 // parcourt plus.
 const groupes = [
   {
@@ -48,10 +48,10 @@ const groupes = [
 <BaseLayout
   largeur="large"
   title="Pop-ups & événements"
-  description={`Pop-ups, concerts, expositions et salons à Séoul — ${THEMES_EN_PROSE}. ${events.length} en cours ou à venir.`}
+  description={`Pop-ups, concerts, expositions et salons à Séoul, ${THEMES_EN_PROSE}. ${events.length} en cours ou à venir.`}
 >
   <TetePage surtitre="À Séoul" titre="Pop-ups & événements">
-    Pop-ups, concerts, expositions et salons à Séoul — {THEMES_EN_PROSE}.
+    Pop-ups, concerts, expositions et salons à Séoul, {THEMES_EN_PROSE}.
     Seuls les événements en cours ou annoncés sont listés ; ils sortent de la
     page à leur date de fin.
     <a href="/evenements.xml">S’abonner au flux</a> pour être prévenu de chaque nouveau.
@@ -68,11 +68,11 @@ const groupes = [
 
   {/* Chaque groupe se replie : sur un téléphone, le script ferme ceux qui
       suivent le week-end, et le compte dans le titre dit ce qu'on y trouve.
-      Ouverts au build — sans script, tout se lit. */}
+      Ouverts au build, sans script, tout se lit. */}
   {groupes.map(({ id, titre, détail, events, vide }) => (
     <details class="groupe-evenements" id={id} open>
       <summary>
-        <h2>{titre} <span class="detail">— {détail}</span> <span class="compte">{events.length}</span></h2>
+        <h2>{titre} <span class="detail">{détail}</span> <span class="compte">{events.length}</span></h2>
       </summary>
       {/* Le message de vide est toujours rendu, masqué quand il y a de quoi
           lire : le filtre et le masquage des terminés peuvent vider un groupe. */}
@@ -85,8 +85,8 @@ const groupes = [
 
   <script>
     // Deux choses que le build ne peut pas décider : le jour où le lecteur
-    // regarde — le site se reconstruit chaque matin, mais un build peut
-    // échouer, et un pop-up terminé ne doit pas rester affiché —, et le thème
+    // regarde, le site se reconstruit chaque matin, mais un build peut
+    // échouer, et un pop-up terminé ne doit pas rester affiché, et le thème
     // qu'il veut voir.
     import { seoulToday } from '../../lib/date.js';
 
@@ -149,7 +149,7 @@ const groupes = [
 
     // Sur un téléphone, seul le week-end est déplié : les deux autres groupes
     // font l'essentiel de la longueur de la page, et leur titre dit combien
-    // d'événements ils tiennent. Au chargement seulement — ce que le lecteur
+    // d'événements ils tiennent. Au chargement seulement, ce que le lecteur
     // ouvre ensuite reste ouvert.
     if (matchMedia('(max-width: 48rem)').matches) {
       for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements:not(#ce-week-end)')) {
