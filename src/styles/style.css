@@ -256,17 +256,22 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .burger svg { stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 @media (max-width: 48rem) {
-  /* Avec le menu, la barre est une ligne : marque et bouton centrés, la même
-     marge dessus et dessous. Le calage en bas et le trait qui remonte sur la
-     bordure n'ont de sens que pour les onglets en ligne, sur grand écran. */
-  .entete[data-menu] { align-items: center; row-gap: 0; padding: 0.6rem 1.25rem; }
+  /* Avec le menu, la barre garde les marges de base, 1,25 rem au-dessus, 0,7 rem
+     sous la marque, pour que la bordure tombe à la même hauteur que sur grand
+     écran. Le 0,7 rem passe de la marque à l'en-tête, afin de centrer le bouton
+     sur le texte et non sur le texte plus sa marge. Le bouton, 2,75 rem de
+     haut pour le doigt, rentre dans la ligne de la marque (1,1 rem × 1,6) par
+     des marges négatives : la zone tactile ne change pas, la ligne ne grandit
+     pas. */
+  .entete[data-menu] { align-items: center; row-gap: 0; padding: 1.25rem 1.25rem 0.7rem; }
   .entete[data-menu] .marque { padding-bottom: 0; }
-  .entete[data-menu] .burger { display: inline-flex; margin-bottom: 0; }
+  .entete[data-menu] .burger { display: inline-flex; margin: -0.5rem -0.6rem -0.5rem 0; }
   .entete[data-menu="ferme"] nav { display: none; }
   /* Ouvert : les onglets en liste sous la barre, l'onglet courant marqué d'un
      trait à gauche puisqu'il n'y a plus de trait dessous. Le même pas partout :
      0,6 rem de liste + 0,6 rem d'onglet au-dessus du premier, 0,6 + 0,6 entre
      deux, 0,6 d'onglet + 0,6 d'en-tête sous le dernier. */
+  .entete[data-menu="ouvert"] { padding-bottom: 0.6rem; }
   .entete[data-menu="ouvert"] nav {
     flex: 1 0 100%;
     flex-direction: column;
