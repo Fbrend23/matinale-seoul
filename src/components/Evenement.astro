@@ -20,9 +20,16 @@ const badge = today ? badgeDélai(event, today) : null;
 const carte = event.map_url ?? lienNaverMap(event);
 ---
 
-{/* Les deux dates sont posées en data-* pour le script de la page, qui
-    masque chez le lecteur ce qui a fini depuis le build. */}
-<article class="evenement" id={`evenement-${event.id}`} data-debut={event.start_date} data-fin={event.end_date} data-theme={event.theme}>
+{/* Les dates sont posées en data-* pour le script de la page, qui masque chez
+    le lecteur ce qui a fini depuis le build, et retrie les cartes à sa demande. */}
+<article
+  class="evenement"
+  id={`evenement-${event.id}`}
+  data-debut={event.start_date}
+  data-fin={event.end_date}
+  data-repere={event.date_created ?? ''}
+  data-theme={event.theme}
+>
   <p class="evenement-theme">
     <span class="pastille">{THEME_LABELS[event.theme] ?? event.theme}</span>
     <span class="genre">{KIND_LABELS[event.kind] ?? event.kind}</span>

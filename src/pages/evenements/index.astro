@@ -4,8 +4,8 @@ import TetePage from '../../components/TetePage.astro';
 import Evenement from '../../components/Evenement.astro';
 import AiNotice from '../../components/AiNotice.astro';
 import { listEvents } from '../../lib/content.js';
-import { seoulToday, shortDate } from '../../lib/date.js';
-import { grouperParÉtat, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
+import { seoulToday } from '../../lib/date.js';
+import { grouperParÉtat, trierEvents, TRIS, TRI_LABELS, TRI_PAR_DEFAUT, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
 
 // TOUT ce qui est en cours ou à venir, quel que soit le brief qui l'a repéré.
 // L'agent du matin ne fait qu'ajouter ; c'est la collection qui tient la liste,
@@ -15,30 +15,26 @@ import { grouperParÉtat, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../..
 // l'inverse du flux des briefs, on le suit pour être prévenu de chacun.
 const events = await listEvents();
 const aujourdhui = seoulToday();
-const { ceWeekEnd, enCours, àVenir, weekEnd } = grouperParÉtat(events, aujourdhui);
 
-// Le week-end d'abord : c'est la question qu'on se pose vraiment. Les trois
+// Ce qui finit le plus tôt d'abord : c'est ce qu'on risque de rater. Le
+// lecteur peut en changer, le script retrie les cartes sans rien recharger.
+const { enCours, àVenir } = grouperParÉtat(trierEvents(events, TRI_PAR_DEFAUT), aujourdhui);
+
+// Ce qui est ouvert d'abord : c'est la question qu'on se pose. Les deux
 // groupes ne se recouvrent pas, une grille qui répète ses cartes ne se
 // parcourt plus.
 const groupes = [
   {
-    id: 'ce-week-end',
-    titre: 'Ce week-end',
-    détail: `samedi ${shortDate(weekEnd.samedi)} et dimanche ${shortDate(weekEnd.dimanche)}`,
-    events: ceWeekEnd,
-    vide: 'Rien d’ouvert ce week-end.',
-  },
-  {
-    id: 'en-cours',
-    titre: 'En semaine seulement',
-    détail: 'ouvert aujourd’hui, fermé avant le week-end',
+    id: 'en-ce-moment',
+    titre: 'En ce moment',
+    détail: 'ouvert aujourd’hui',
     events: enCours,
-    vide: 'Rien qui ferme avant le week-end.',
+    vide: 'Rien d’ouvert en ce moment.',
   },
   {
     id: 'a-venir',
     titre: 'Plus tard',
-    détail: 'annoncé pour après le week-end',
+    détail: 'pas encore commencé',
     events: àVenir,
     vide: 'Rien d’annoncé pour l’instant.',
   },
@@ -57,17 +53,25 @@ const groupes = [
     <a href="/evenements.xml">S’abonner au flux</a> pour être prévenu de chaque nouveau.
   </TetePage>
 
-  {/* Masqué sans JavaScript : un bouton qui ne filtre rien est un mensonge.
-      Le script le révèle. */}
+  {/* Masqués sans JavaScript : un bouton qui ne filtre rien et un menu qui ne
+      trie rien sont des mensonges. Le script les révèle. */}
   <div class="filtres" role="group" aria-label="Filtrer par thème" hidden>
     <button type="button" data-filtre="tous" aria-pressed="true">Tous</button>
     {THEMES.map((theme) => (
       <button type="button" data-filtre={theme} aria-pressed="false">{THEME_LABELS[theme]}</button>
     ))}
   </div>
+  <p class="tri" hidden>
+    <label for="tri">Trier</label>
+    <select id="tri">
+      {TRIS.map((tri) => (
+        <option value={tri} selected={tri === TRI_PAR_DEFAUT}>{TRI_LABELS[tri]}</option>
+      ))}
+    </select>
+  </p>
 
-  {/* Chaque groupe se replie : sur un téléphone, le script ferme ceux qui
-      suivent le week-end, et le compte dans le titre dit ce qu'on y trouve.
+  {/* Chaque groupe se replie : sur un téléphone, le script ferme « Plus
+      tard », et le compte dans le titre dit ce qu'on y trouve.
       Ouverts au build, sans script, tout se lit. */}
   {groupes.map(({ id, titre, détail, events, vide }) => (
     <details class="groupe-evenements" id={id} open>
@@ -89,6 +93,7 @@ const groupes = [
     // échouer, et un pop-up terminé ne doit pas rester affiché, et le thème
     // qu'il veut voir.
     import { seoulToday } from '../../lib/date.js';
+    import { comparateur, TRIS, TRI_PAR_DEFAUT } from '../../../shared/evenements.mjs';
 
     const aujourdhui = seoulToday();
     const cartes = [...document.querySelectorAll<HTMLElement>('.evenement')];
@@ -99,14 +104,38 @@ const groupes = [
     }
 
     let filtre = 'tous';
+    let tri = TRI_PAR_DEFAUT;
     try {
-      // Le dernier filtre choisi, pour ce navigateur seulement : un confort,
-      // pas un état. Sans stockage, on repart de « tous ».
+      // Le dernier filtre et le dernier tri choisis, pour ce navigateur
+      // seulement : un confort, pas un état. Sans stockage, on repart de
+      // « tous » et du tri du build.
       filtre = localStorage.getItem('evenements:filtre') ?? 'tous';
+      tri = localStorage.getItem('evenements:tri') ?? TRI_PAR_DEFAUT;
     } catch {}
 
     const boutons = [...document.querySelectorAll<HTMLButtonElement>('.filtres button')];
     if (!boutons.some((b) => b.dataset.filtre === filtre)) filtre = 'tous';
+    if (!TRIS.includes(tri)) tri = TRI_PAR_DEFAUT;
+
+    // Le tri lit la carte comme le build lit l'événement : mêmes champs, même
+    // comparateur, pour que changer de tri puis y revenir rende l'ordre du build.
+    const commeEvent = (carte: HTMLElement) => ({
+      name: carte.querySelector('h3')?.textContent ?? '',
+      start_date: carte.dataset.debut ?? '',
+      end_date: carte.dataset.fin ?? '',
+      date_created: carte.dataset.repere ?? '',
+    });
+
+    function retrier() {
+      const parCarte = comparateur(tri);
+      for (const grille of document.querySelectorAll<HTMLElement>('.cartes')) {
+        const siennes = [...grille.querySelectorAll<HTMLElement>('.evenement')];
+        siennes.sort((a, b) => parCarte(commeEvent(a), commeEvent(b)));
+        // append() déplace un nœud déjà dans l'arbre : pas de copie, les
+        // écouteurs et l'état des cartes restent.
+        grille.append(...siennes);
+      }
+    }
 
     function appliquer() {
       for (const carte of cartes) {
@@ -135,6 +164,23 @@ const groupes = [
       });
     }
 
+    const menuTri = document.querySelector<HTMLSelectElement>('#tri');
+    if (menuTri) {
+      menuTri.value = tri;
+      menuTri.addEventListener('change', () => {
+        tri = TRIS.includes(menuTri.value) ? menuTri.value : TRI_PAR_DEFAUT;
+        try {
+          localStorage.setItem('evenements:tri', tri);
+        } catch {}
+        retrier();
+      });
+      const blocTri = menuTri.closest<HTMLElement>('.tri');
+      if (blocTri) blocTri.hidden = false;
+    }
+
+    // Le build a déjà trié selon le tri par défaut : on ne retrie que si le
+    // lecteur en avait choisi un autre.
+    if (tri !== TRI_PAR_DEFAUT) retrier();
     appliquer();
     const filtres = document.querySelector<HTMLElement>('.filtres');
     if (filtres) {
@@ -147,12 +193,11 @@ const groupes = [
       }
     }
 
-    // Sur un téléphone, seul le week-end est déplié : les deux autres groupes
-    // font l'essentiel de la longueur de la page, et leur titre dit combien
-    // d'événements ils tiennent. Au chargement seulement, ce que le lecteur
-    // ouvre ensuite reste ouvert.
+    // Sur un téléphone, seul « En ce moment » est déplié : « Plus tard »
+    // allonge la page, et son titre dit combien d'événements il tient. Au
+    // chargement seulement, ce que le lecteur ouvre ensuite reste ouvert.
     if (matchMedia('(max-width: 48rem)').matches) {
-      for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements:not(#ce-week-end)')) {
+      for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements:not(#en-ce-moment)')) {
         bloc.open = false;
       }
     }
