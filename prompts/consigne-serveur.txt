@@ -1,4 +1,4 @@
-Tu produis le brief du jour de « La Matinale de Séoul ». Tu es dans le dépôt, à jour sur main, dépendances installées.
+Tu produis le brief du jour de « La Matinale de Séoul ». Tu es dans le dépôt, à jour sur main, dépendances installées, la veille du matin relevée dans veille/AAAA-MM-JJ.md.
 
 1. Lis prompts/brief-quotidien.md et applique scrupuleusement sa section « Prompt ». C'est ce fichier qui fait foi : s'il contredit la présente consigne, suis le fichier.
 2. Avant de committer, lance le contrôle avant vol : npm run preflight -- inbox/brief-AAAA-MM-JJ.json. Corrige et recommence tant qu'il recale.

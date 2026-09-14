@@ -32,13 +32,35 @@ ils retirent les items douteux et rejettent le brief entier s'il est mal formé.
 
 ### 1. Avant de composer
 
-Récupère `https://matinale.brendanfleurdelys.ch/api/recent.json`. Il contient les
-titres des quatorze derniers jours. **Ne couvre pas une histoire qui y figure
-déjà**, sauf élément vraiment nouveau, et dans ce cas, dis en quoi il est
-nouveau. Si le fichier est introuvable (premier jour, site en panne), continue
-sans lui.
+Le serveur a relevé la veille du matin avant ta session : **lis
+`veille/AAAA-MM-JJ.md`**, daté du jour à Séoul. Il tient en trois listes :
 
-Cherche ensuite l'actualité des dernières 24 heures pour quatre sections :
+- ce que le site a déjà publié, les titres des quatorze derniers briefs.
+  **Ne couvre pas une histoire qui y figure déjà**, sauf élément vraiment
+  nouveau, et dans ce cas, dis en quoi il est nouveau ;
+- l'onglet événements tel qu'il est, pour le § 7 ;
+- les titres parus depuis trente heures dans les flux des rédactions connues,
+  par rédaction, avec l'adresse, l'heure de publication à l'heure de Séoul et
+  un extrait. Chaque adresse est une adresse vue : elle peut servir de
+  `source_url` telle quelle, et son heure de `published_at`. L'extrait sert à
+  choisir ; pour résumer, ouvre l'article.
+
+C'est ta matière première : la plupart des items du jour sont dans cette liste,
+il s'agit de les choisir, pas de les chercher. Avec le présent prompt, c'est
+tout ce qu'il y a à lire avant de composer. **Ne lis pas
+`schemas/brief.schema.json`** : l'exemple du
+§ 2 en est la forme, vérifiée par les tests, et le contrôle du § 3 te dira
+toute faute de schéma. Le lire coûte trois mille tokens relus à chaque tour
+pour ne rien t'apprendre.
+
+Si `veille/` manque (session lancée à la main, serveur en panne), récupère
+`https://matinale.brendanfleurdelys.ch/api/recent.json` et
+`https://matinale.brendanfleurdelys.ch/api/evenements.json`, une fois chacun,
+en un seul tour, et fais la veille toi-même avec les pages de rubrique
+ci-dessous. Si eux aussi sont introuvables (premier jour, site en panne),
+continue sans.
+
+Compose ensuite l'actualité des dernières 24 heures pour quatre sections :
 
 - `tourisme` : voyager en Corée, y entrer, y séjourner : visas, K-ETA,
   transports, aéroports, hébergement, événements ouverts au public.
@@ -50,10 +72,58 @@ Cherche ensuite l'actualité des dernières 24 heures pour quatre sections :
   puce graphique est de la tech, un moteur de jeu est du jeu vidéo.
 
 Trois à six items par section. Vise l'utile pour quelqu'un qui vit à Séoul ou
-s'y rend, pas l'exhaustivité.
+s'y rend, pas l'exhaustivité. **Une section qui a trois items est finie** :
+passe à la suivante, ne cherche pas un quatrième pour le principe.
 
 Puis, brièvement, les pop-ups et événements : voir § 7. Ils sont facultatifs et
 passent après le brief.
+
+**Comment chercher, et combien.** Tout ce qu'un appel web te rapporte reste
+sous tes yeux jusqu'à la fin de la session, et tu le relis à chaque tour : le
+coût d'une session croît avec le carré du nombre d'appels, pas avec le nombre
+d'items. La session du 14 septembre 2026 a fait cent vingt-six appels web pour
+onze items et deux événements, et coûté sept fois celle du 7 septembre, pour un
+brief de même taille. D'où un budget, à tenir :
+
+- **Quarante appels web pour toute la session**, recherches et pages
+  confondues, et **la moitié quand la veille est là** : avec elle, la phase
+  brief tient en une quinzaine d'appels, les articles retenus, ouverts une
+  fois chacun pour écrire le résumé. Seize appels pour les événements, dans
+  les deux cas. Compte-les. Le budget épuisé, compose avec ce que tu as : une
+  section courte et honnête vaut mieux que dix requêtes de plus.
+- **Ce qui ne dépend de rien se lance en un seul tour.** Ce qui coûte, c'est
+  le nombre de tours, chacun relit tout le contexte, plus encore que le nombre
+  d'appels. Les articles retenus d'une section s'ouvrent ensemble, en un
+  tour ; les pages de rubrique d'une section aussi ; les quatre pages
+  d'événements du § 7 aussi. Un appel par tour, c'est trois fois le prix.
+- **Ce que la veille ne couvre pas se cherche par les pages de rubrique
+  des rédactions connues, en `WebFetch`, jamais par une recherche
+  générique.** Une page de rubrique rend quinze titres datés avec leurs
+  adresses pour le prix d'un seul résultat de recherche, là où « Korea news
+  14 septembre » ne rend que du bruit, ce que tu constates chaque matin avant
+  de repartir. Demande au fetch la liste des titres des dernières 24 heures,
+  avec URL et date. Les pages qui répondent :
+  - `coree` et `tourisme` : `https://www.koreaherald.com/National`,
+    `https://www.koreaherald.com/Business`,
+    `https://www.koreaherald.com/LifenCulture/Travel`, la une de
+    `https://www.koreatimes.co.kr/`. Yonhap bloque le fetch : une seule
+    recherche `en.yna.co.kr` avec le sujet, pas plus.
+  - `tech` : `https://techcrunch.com/latest/`. Ars Technica et The Verge
+    bloquent : une recherche `site:` chacun, au plus.
+  - `gaming` : `https://www.videogameschronicle.com/news/` et
+    `https://www.inven.co.kr/webzine/news/`. Eurogamer, IGN, PC Gamer,
+    GamesIndustry.biz bloquent le fetch ou ne rendent que leur menu : ne
+    les fetche pas, une recherche `site:` chacun, au plus.
+  Une page qui rend un menu sans titres est une page qui bloque : ne la
+  redemande pas, passe à la recherche `site:`.
+- **La recherche sert à vérifier une piste, pas à en trouver.** Un titre vu
+  sur une page de rubrique se fetche une fois, pour la date et l'adresse ;
+  quand le fetch de l'article échoue, une recherche par son titre, et c'est
+  tout. Deux appels par histoire, au plus. Une histoire qui en demande huit,
+  c'est une histoire qu'on laisse.
+- **Une adresse ne se demande qu'une fois.** La veille, `recent.json`,
+  `evenements.json`, une page de rubrique, un article : ce que tu as lu est
+  encore sous tes yeux, relis-le au lieu de le redemander.
 
 ### 2. Ce que tu rends
 
@@ -176,8 +246,9 @@ npm run preflight -- inbox/brief-AAAA-MM-JJ.json
 Le contrôle applique **les cinq gardes** : schéma, liens vivants, allowlist,
 doublons, cohérence. Il dit aussi le sort de chaque événement proposé, en
 avertissement (`!`), jamais en faute : un événement écarté ne recale pas le
-brief, mais tu dois le savoir avant de pousser. Les doublons sont jugés sur `recent.json`, le même fichier
-que tu as lu au § 1, la CI, elle, interroge le CMS. Les deux disent la même
+brief, mais tu dois le savoir avant de pousser. Les doublons sont jugés sur
+`recent.json`, celui dont la veille du § 1 t'a donné les titres, la CI, elle,
+interroge le CMS. Les deux disent la même
 chose à un cheveu près, et le contrôle penche du côté prudent : il peut signaler
 un doublon que la CI laisserait passer, jamais l'inverse.
 
@@ -286,30 +357,43 @@ L'onglet liste tout ce qui est en cours ou annoncé, et chaque événement en so
 de lui-même à sa date de fin. Ton rôle est d'y **ajouter** ce qui est nouveau,
 pas de redire ce qui s'y trouve :
 
-- Récupère d'abord `https://matinale.brendanfleurdelys.ch/api/evenements.json`.
-  Ce qui y figure est déjà connu : ne le propose pas une seconde fois, **sauf
-  si ses dates ont changé** (prolongation, report). Repropose-le alors avec le
-  même `name` et les dates nouvelles : l'ingestion corrige la fiche au lieu
-  d'en créer une. Si le fichier est introuvable, continue sans lui.
-- **Vise quatre à six événements nouveaux par jour**, huit au plus. Un matin
-  sans événement peut arriver, mais il doit être le résultat d'une recherche,
-  pas d'une recherche écourtée : deux requêtes génériques qui s'arrêtent aux
-  deux premiers résultats datables ne suffisent pas.
-- **Cherche thème par thème, en coréen.** Une requête par thème, avec les
-  mots que les sites coréens emploient, `애니메이션` ou `애니`, `만화`,
-  `포켓몬`, `케이팝` ou `아이돌`, `게임` ou `e스포츠`, `캐릭터` (ou le nom :
-  `산리오`, `치이카와`), `패션 브랜드`, `서울 축제` ou `한강 축제`, `전시회`,
-  `콘서트 서울`, `푸드 팝업`, combinés à `팝업스토어`, `전시`, `콘서트`,
-  `페스티벌`, `서울`, le mois en cours. L'anglais remonte surtout des
-  agrégateurs ; le coréen remonte les rédactions.
-- **Passe ensuite par les sources de l'allowlist qui annoncent les
-  événements** : Inside Seoul (insideseoul.app), NOL World (world.nol.com)
-  et Visit Seoul pour les pop-ups, Time Out, Soompi et allkpop pour la K-pop,
-  kpopofficial.com et le Korea JoongAng Daily pour les concerts,
-  pokemonkorea.co.kr pour Pokémon, Inven et This Is Game pour le jeu vidéo,
-  Hypebeast pour la mode, festival.seoul.go.kr et hangang.seoul.go.kr pour
-  les festivals de la ville, COEX et DDP pour les salons. Une recherche `site:`
-  sur deux ou trois d'entre elles trouve ce que la requête générique n'a pas vu.
+- L'onglet tel qu'il est figure dans la veille du § 1 (`/api/evenements.json`,
+  à récupérer toi-même seulement si la veille manque). Ce qui y figure est
+  déjà connu : ne le propose pas une seconde fois, **sauf si ses dates ont
+  changé** (prolongation, report). Repropose-le alors avec le même `name` et
+  les dates nouvelles : l'ingestion corrige la fiche au lieu d'en créer une.
+  Si rien n'est disponible, continue sans.
+- **Vise quatre à six événements nouveaux par jour**, huit au plus, dans
+  les **seize appels web** du budget du § 1. Un matin sans événement peut
+  arriver, mais il doit être le résultat d'une recherche, pas d'une
+  recherche écourtée : deux requêtes génériques qui s'arrêtent aux deux
+  premiers résultats datables ne suffisent pas.
+- **Commence par les quatre pages qui listent, en `WebFetch`** : elles
+  couvrent à elles seules la plupart des thèmes, pour quatre appels.
+  `https://insideseoul.app/popups` rend une trentaine de pop-ups avec lieu et
+  dates, anime, personnages, mode, food ; `https://world.nol.com/` les
+  expositions et festivals à billet ; `https://kpopofficial.com/schedule/south-korea/`
+  les concerts ; `https://festival.seoul.go.kr/festival/year/loadMap.do` les
+  festivals de la ville. Demande au fetch ce qui commence dans les deux
+  semaines ou vient d'ouvrir, avec lieu, dates et lien. Compare à l'onglet
+  tel que la veille le donne **avant** d'ouvrir une fiche : n'ouvre que celles qui
+  sont nouvelles, une fois, pour l'adresse et les dates.
+- **Puis, pour les thèmes que ces pages n'ont pas couverts, une requête en
+  coréen par thème**, avec les mots que les sites coréens emploient,
+  `애니메이션` ou `애니`, `만화`, `포켓몬`, `케이팝` ou `아이돌`, `게임` ou
+  `e스포츠`, `캐릭터` (ou le nom : `산리오`, `치이카와`), `패션 브랜드`,
+  `서울 축제` ou `한강 축제`, `전시회`, `콘서트 서울`, `푸드 팝업`, combinés à
+  `팝업스토어`, `전시`, `콘서트`, `페스티벌`, `서울`, le mois en cours.
+  L'anglais remonte surtout des agrégateurs ; le coréen remonte les
+  rédactions. Une requête par thème, pas une par piste : une piste dont la
+  source n'apparaît pas dans les résultats de la requête du thème se laisse.
+- **Les autres sources de l'allowlist qui annoncent les événements** ne
+  se visitent que pour un thème encore vide : Visit Seoul pour les pop-ups,
+  Time Out, Soompi et allkpop pour la K-pop, le Korea JoongAng Daily pour
+  les concerts, pokemonkorea.co.kr pour Pokémon, Inven et This Is Game pour
+  le jeu vidéo, Hypebeast pour la mode, hangang.seoul.go.kr pour le fleuve,
+  COEX et DDP pour les salons. Une recherche `site:` sur l'une d'elles, pas
+  une tournée.
 - **Les autres agrégateurs de pop-ups sont des pistes, pas des sources.**
   popga, heypop, dealseoul, namu.wiki ne sont pas dans l'allowlist : un
   événement sourcé chez eux serait écarté. Mais ils disent ce
@@ -318,9 +402,10 @@ pas de redire ce qui s'y trouve :
   Un événement vu chez un agrégateur et introuvable ailleurs ne va pas dans
   l'onglet.
 - Le brief passe avant : compose-le d'abord, cherche les événements ensuite,
-  avec le temps qui reste. Il en reste en général plus de dix minutes sur les
-  vingt-cinq de la session, assez pour les neuf thèmes. L'onglet ne se
-  remplit que par ce que tu y déposes.
+  avec le temps et les appels qui restent. Il reste en général plus de dix
+  minutes sur les vingt-cinq de la session : le temps n'est pas ce qui
+  manque, c'est le budget d'appels qui borne. L'onglet ne se remplit que par
+  ce que tu y déposes.
 - **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
   source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
   pour un événement d'un jour. Un événement sans date de fin annoncée ne va
@@ -350,6 +435,13 @@ pas de redire ce qui s'y trouve :
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
+- La veille du § 1 est produite par `scripts/veille.mjs` à partir de
+  `config/flux.json`, lancé par `bin/brief-du-jour.sh` juste avant la session.
+  Ajouter une rédaction, c'est ajouter son flux là, et son domaine dans
+  `sources.json` : un test refuse un flux dont le domaine n'est pas dans
+  l'allowlist, sans quoi la veille proposerait des adresses qui retiendraient
+  le brief en brouillon. Le fichier n'est pas versionné (`veille/`) : sans
+  lui, le prompt fait faire à l'agent la veille par les pages de rubrique.
 - `evenements.json` n'existe qu'une fois la collection `mat_events` provisionnée
   et le site redéployé. Tant qu'il manque, l'agent ne sait pas ce qui est déjà
   connu : c'est la garde des doublons de l'ingestion, jouée contre le CMS, qui

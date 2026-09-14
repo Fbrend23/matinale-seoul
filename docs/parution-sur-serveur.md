@@ -1,7 +1,8 @@
 # Installer la parution sur un serveur
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
-installation : chaque jour, le brief est rédigé, vérifié et poussé dans
+installation : chaque jour, la veille est relevée (flux RSS des rédactions,
+titres déjà publiés), puis le brief est rédigé, vérifié et poussé dans
 `inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
@@ -240,6 +241,10 @@ tail -40 logs/brief-$(TZ=Asia/Seoul date +%Y-%m).log   # ce que le script racont
 ```
 
 Le journal du script est le plus bavard des trois : c'est lui qu'on lit d'abord.
+À côté, `veille/AAAA-MM-JJ.md` (gardé une semaine) dit ce que l'agent avait sous
+les yeux ce matin-là : si un titre évident manque au brief, c'est là qu'on
+regarde s'il manquait déjà à la veille, un flux en panne, ou si l'agent l'a
+écarté.
 Pour être prévenu sans regarder, un `OnFailure=` dans le service accroche l'unité
 de notification de son choix.
 

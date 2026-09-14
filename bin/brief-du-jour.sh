@@ -74,6 +74,18 @@ else
   echo "$ATTENDUE" > "$EMPREINTE"
 fi
 
+# La veille AVANT la session : les flux RSS des rédactions connues et ce que le
+# site a déjà publié, déposés dans veille/AAAA-MM-JJ.md pour que l'agent lise
+# des titres au lieu de les chercher. C'est la recherche qui coûtait : chaque
+# résultat restait dans le contexte et y était relu à chaque tour, au carré du
+# nombre d'appels. Un flux en panne est un flux en moins, pas une matinée sans
+# brief : le prompt prévoit l'absence du fichier, et l'agent cherche alors
+# lui-même, avec un budget.
+node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent cherchera lui-même"
+# Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
+# vu le matin où un brief manque : une semaine, puis on jette.
+find veille -name '*.md' -mtime +7 -delete 2>/dev/null || true
+
 # La consigne est versionnée à côté : la modifier est un commit, relu, et non un
 # réglage de cron que personne ne relit jamais.
 CONSIGNE=$(cat prompts/consigne-serveur.txt)
