@@ -45,21 +45,7 @@ export const THEME_LABELS = {
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');
 
-import { joursEntre, jourPlus } from './date.mjs';
-
-/**
- * Le week-end qui vient : samedi et dimanche prochains, ou ceux en cours,
- * quand on est déjà dedans. Le dimanche, le samedi est passé : le week-end se
- * réduit au jour même, et ce qui a fermé la veille n'y figure plus.
- *
- * @param {string} today  le jour à Séoul
- * @returns {{samedi: string, dimanche: string}}
- */
-export function weekEndDe(today) {
-  const jour = new Date(`${today}T00:00:00Z`).getUTCDay(); // 0 = dimanche
-  const samedi = jour === 0 ? jourPlus(today, -1) : jourPlus(today, 6 - jour);
-  return { samedi, dimanche: jourPlus(samedi, 1) };
-}
+import { joursEntre } from './date.mjs';
 
 /**
  * Le lien de recherche Naver Map, construit du lieu.
@@ -89,38 +75,80 @@ export function enCoréen(texte) {
 }
 
 /**
- * Trois groupes, sans recouvrement, et les terminés sortent.
+ * Deux groupes, sans recouvrement, et les terminés sortent.
  *
- *   ceWeekEnd  ouvert samedi ou dimanche prochains, la question qu'on se pose
- *              vraiment le jeudi soir. Un pop-up de deux mois y est aussi.
- *   enCours    ouvert aujourd'hui, mais fermé avant le week-end
- *   àVenir     commence après le week-end
+ *   enCours  commencé et pas fini : on peut y aller aujourd'hui
+ *   àVenir   pas encore commencé
  *
- * Sans recouvrement, parce qu'une grille de cartes qui répète les mêmes
- * cartes deux fois ne se parcourt plus. Comparaison de chaînes AAAA-MM-JJ,
- * comme partout : l'ordre des chaînes est celui des jours. `end_date` est le
- * dernier jour INCLUS.
+ * Il y a eu un groupe « ce week-end » entre les deux ; il coupait « en cours »
+ * en deux selon la date de fin, et personne ne lisait la différence. Le badge
+ * de la carte dit déjà combien de jours il reste. Comparaison de chaînes
+ * AAAA-MM-JJ, comme partout : l'ordre des chaînes est celui des jours.
+ * `end_date` est le dernier jour INCLUS.
  *
  * @template {{start_date: string, end_date: string}} E
  * @param {E[]} events
  * @param {string} today  le jour à Séoul
- * @returns {{ceWeekEnd: E[], enCours: E[], àVenir: E[], weekEnd: {samedi: string, dimanche: string}}}
+ * @returns {{enCours: E[], àVenir: E[]}}
  */
 export function grouperParÉtat(events, today) {
-  const weekEnd = weekEndDe(today);
-  const ceWeekEnd = [];
   const enCours = [];
   const àVenir = [];
 
   for (const event of events) {
     if (event.end_date < today) continue;
-    const ouvertCeWeekEnd = event.start_date <= weekEnd.dimanche && event.end_date >= weekEnd.samedi;
-    if (ouvertCeWeekEnd) ceWeekEnd.push(event);
-    else if (event.start_date <= today) enCours.push(event);
+    if (event.start_date <= today) enCours.push(event);
     else àVenir.push(event);
   }
 
-  return { ceWeekEnd, enCours, àVenir, weekEnd };
+  return { enCours, àVenir };
+}
+
+/**
+ * Les tris de la page, dans l'ordre du menu. Le premier est celui du build :
+ * ce qui finit le plus tôt d'abord, parce que c'est ce qu'on risque de rater.
+ * Les deux autres se choisissent chez le lecteur.
+ */
+export const TRIS = ['fin', 'debut', 'nouveau'];
+export const TRI_PAR_DEFAUT = TRIS[0];
+export const TRI_LABELS = {
+  fin: 'Finit bientôt',
+  debut: 'Commence bientôt',
+  nouveau: 'Repéré récemment',
+};
+
+const cmp = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+
+/**
+ * Le comparateur d'un tri. Chaîné jusqu'au nom pour que deux builds, ou le
+ * build et le lecteur, rangent les mêmes cartes dans le même ordre. Les
+ * dates sont des AAAA-MM-JJ et `date_created` un ISO 8601 : l'ordre des
+ * chaînes est celui du temps.
+ *
+ * @param {string} tri  une clé de TRIS
+ * @returns {(a: {name: string, start_date: string, end_date: string, date_created?: string}, b: typeof a) => number}
+ */
+export function comparateur(tri) {
+  const parNom = (a, b) => cmp(a.name, b.name);
+  switch (tri) {
+    case 'debut':
+      return (a, b) => cmp(a.start_date, b.start_date) || cmp(a.end_date, b.end_date) || parNom(a, b);
+    case 'nouveau':
+      return (a, b) => cmp(String(b.date_created ?? ''), String(a.date_created ?? '')) || cmp(a.end_date, b.end_date) || parNom(a, b);
+    case 'fin':
+    default:
+      return (a, b) => cmp(a.end_date, b.end_date) || cmp(a.start_date, b.start_date) || parNom(a, b);
+  }
+}
+
+/**
+ * @template {{name: string, start_date: string, end_date: string, date_created?: string}} E
+ * @param {E[]} events
+ * @param {string} [tri]
+ * @returns {E[]} une copie triée
+ */
+export function trierEvents(events, tri = TRI_PAR_DEFAUT) {
+  return [...events].sort(comparateur(tri));
 }
 
 /** En dessous, le badge passe en couleur : c'est le moment d'y aller. */
