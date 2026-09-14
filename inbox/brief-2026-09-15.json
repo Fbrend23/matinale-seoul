@@ -1,0 +1,191 @@
+{
+  "date": "2026-09-15",
+  "title": "Séoul élargit sa loi anti-espionnage, le débat sur le rythme de l'IA gagne Trump",
+  "standfirst": "Tourisme calme ce matin, hormis le festival indien Sarang en tournée dans cinq villes coréennes. Séoul élargit sa loi anti-espionnage au vol de technologie pendant que Trump prend position, depuis Los Angeles, dans le clash entre Dario Amodei et Jensen Huang sur le rythme de l'IA. Côté jeu vidéo, le Steam Frame de Valve ouvre les précommandes et Bungie repousse Marathon à décembre.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le festival indien Sarang tourne dans cinq villes coréennes",
+          "summary": "La 12e édition du festival Sarang, organisé par l'ambassade d'Inde, se tient du 15 au 22 septembre à Séoul, Busan, Gwangju et Chuncheon. Une troupe de danse odissi ouvre le programme à l'université Ewha.",
+          "importance": 1,
+          "tags": ["inde", "festival", "danse", "seoul"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260914008100315",
+          "source_lang": "en",
+          "published_at": "2026-09-14T16:08:21+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La loi anti-espionnage s'étend au vol de technologie",
+          "summary": "Une réforme entrée en vigueur élargit les poursuites au-delà de la Corée du Nord, visant le vol de technologies sensibles (semi-conducteurs, IA), avec des peines de 3 à 30 ans. La Chine reste la première destination détectée.",
+          "analysis": "Première extension du régime depuis 1953, elle vise directement l'espionnage industriel, pas seulement militaire.",
+          "importance": 1,
+          "tags": ["espionnage", "semi-conducteurs", "securite-nationale", "loi"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10872887",
+          "source_lang": "en",
+          "published_at": "2026-09-14T15:07:31+09:00"
+        },
+        {
+          "headline": "La Bourse de Séoul ouvre une session après-clôture",
+          "summary": "La Korea Exchange a lancé lundi sa première séance de négociation après les heures régulières, de 16h à 20h, sur le KOSPI et le Kosdaq. 1 820 milliards de wons échangés dès le premier jour, environ 7% du volume habituel.",
+          "importance": 2,
+          "tags": ["bourse", "kospi", "kosdaq", "finance"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20260915/18-tln-won-traded-in-first-krx-after-hours-stock-trading-session?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-15T07:27:03+09:00"
+        },
+        {
+          "headline": "Le futur patron de l'agence des crimes graves défend la réforme pénale",
+          "summary": "Kim Ji-yong, ex-procureur désigné à la tête de la nouvelle agence d'enquête sur les crimes graves, dit soutenir la réforme malgré son passé de magistrat, et invoque son souci des victimes face aux critiques de parlementaires.",
+          "importance": 3,
+          "tags": ["justice", "reforme", "nominations"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10873162",
+          "source_lang": "en",
+          "published_at": "2026-09-14T18:44:38+09:00"
+        },
+        {
+          "headline": "Séoul prépare un envoi de matériel médical vers un hôpital nord-coréen",
+          "summary": "Séoul prépare l'envoi d'équipements essentiels à un hôpital du comté de Kangdong, à Pyongyang, après une exemption des sanctions de l'ONU obtenue en mai. Le gouvernement distingue la coopération humanitaire des tensions politiques et militaires actuelles.",
+          "importance": 4,
+          "tags": ["coree-du-nord", "humanitaire", "sante"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10872905",
+          "source_lang": "en",
+          "published_at": "2026-09-14T15:13:20+09:00"
+        },
+        {
+          "headline": "Le réchauffement des eaux décime l'aquaculture coréenne",
+          "summary": "125 millions de poissons d'élevage sont morts en cinq ans en Corée du Sud, dont 13,5 millions cette année, pour 205 milliards de wons de pertes. Les alertes à la chaleur ont duré 57 jours d'affilée.",
+          "importance": 5,
+          "tags": ["climat", "peche", "aquaculture", "environnement"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20260915/koreas-aquaculture-takes-full-blow-of-climate-change?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-15T07:27:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le débat sur le ralentissement de l'IA gagne Trump",
+          "summary": "L'essai de Dario Amodei appelant à ralentir l'IA, soutenu par Musk et Altman, s'est heurté à Jensen Huang, patron de Nvidia. À Los Angeles, Trump a défendu Huang, qualifiant l'appel au ralentissement de « canular ».",
+          "analysis": "Le clivage dépasse l'habituel duel Nvidia-Anthropic : il oppose désormais l'exécutif américain lui-même aux appels à la prudence sur l'IA.",
+          "importance": 1,
+          "tags": ["intelligence-artificielle", "nvidia", "anthropic", "regulation"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/14/nvidia-ceo-jensen-huang-tells-trump-were-not-going-to-let-an-ai-slowdown-happen/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T06:51:02+09:00"
+        },
+        {
+          "headline": "iOS 27 relance Siri grâce à Gemini",
+          "summary": "Le nouveau Siri d'iOS 27, appuyé sur le modèle Gemini de Google, gère des demandes complexes à plusieurs étapes et accède au contexte de l'écran, aux fichiers et aux messages. Un changement jugé enfin utilisable au quotidien.",
+          "importance": 2,
+          "tags": ["apple", "ios", "siri", "gemini"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/14/with-ios-27-im-actually-using-siri-again/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T02:10:30+09:00"
+        },
+        {
+          "headline": "Waymo ouvre son robotaxi à Las Vegas",
+          "summary": "Waymo lance son service de robotaxi dans sa 15e ville, avec une flotte initiale de dizaines de minivans, d'abord sur le Strip sud et à Boulder Junction. L'entreprise exploite plus de 4000 véhicules autonomes à travers le pays.",
+          "importance": 3,
+          "tags": ["waymo", "robotaxi", "conduite-autonome"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/14/waymo-opens-robotaxi-service-in-las-vegas/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T01:04:16+09:00"
+        },
+        {
+          "headline": "Comment Unitree a pris la tête des robots humanoïdes bon marché",
+          "summary": "Le fondateur d'Unitree, Wang Xingxing, doit son avance sur les robots humanoïdes bon marché à un contrôle extrême de la conception, jusqu'aux couleurs des matériaux. La Chine domine ce marché grâce à cette méthode.",
+          "importance": 4,
+          "tags": ["robotique", "chine", "unitree", "industrie"],
+          "source_name": "Ars Technica",
+          "source_url": "https://arstechnica.com/ai/2026/09/founders-cost-cutting-obsession-drove-unitree-lead-in-cheap-humanoid-robots/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T04:38:46+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le casque VR Steam Frame de Valve ouvre les précommandes",
+          "summary": "Le Steam Frame, casque VR sans fil de Valve, est disponible en précommande à 1059 dollars pour la version 256 Go et 1299 dollars pour 1 To. Half-Life: Alyx est inclus, mais le bloc d'alimentation se vend séparément.",
+          "importance": 1,
+          "tags": ["valve", "steam-frame", "realite-virtuelle", "materiel"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/you-can-now-sign-up-to-order-valves-steam-frame-vr-headset-it-costs-over-1000-but-includes-half-life-alyx/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T02:32:33+09:00"
+        },
+        {
+          "headline": "Bungie repousse la mise à jour majeure de Marathon à décembre",
+          "summary": "L'extraction shooter Marathon voit sa mise à jour Symbiosis, avec un mode PvE permanent, glisser de septembre au 8 décembre. Bungie abandonne aussi son calendrier de saisons strict pour se donner plus de temps de test.",
+          "importance": 2,
+          "tags": ["bungie", "marathon", "report", "pve"],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/marathon-pve-mode-delay-bungie-major-update",
+          "source_lang": "en",
+          "published_at": "2026-09-15T02:54:07+09:00"
+        },
+        {
+          "headline": "Rockstar et l'IWGB détaillent leurs arguments devant le tribunal du travail",
+          "summary": "Le tribunal du travail examine jusqu'au 16 octobre le licenciement de 34 salariés de Rockstar : l'entreprise détaille des fuites d'informations confidentielles, le syndicat IWGB allègue une taupe dans son serveur Discord dès 2024.",
+          "importance": 3,
+          "tags": ["rockstar", "syndicat", "tribunal", "royaume-uni"],
+          "source_name": "GamesIndustry.biz",
+          "source_url": "https://www.gamesindustry.biz/rockstar-and-iwgb-outline-arguments-at-start-of-tribunal",
+          "source_lang": "en",
+          "published_at": "2026-09-15T01:22:08+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Nongshim × Sanrio Characters K-Snack Tour",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "올리브영 센트럴 명동타운",
+      "area": "Myeongdong",
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-30",
+      "summary": "Dégustation de collations coréennes Nongshim (chicken frit, boulangerie) en collaboration avec les personnages Sanrio, dans un espace Olive Young au cœur de Myeongdong. Ouvert tous les jours de 10h à 22h30.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/myeongdong/popups/nongshim-sanrio-k-snack-tour-popup-myeongdong",
+      "source_lang": "en"
+    },
+    {
+      "name": "Gyeongbokgung Palace Saenggwabang",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "경복궁",
+      "area": "Jongno-gu",
+      "start_date": "2026-09-02",
+      "end_date": "2026-10-26",
+      "summary": "Le palais fait revivre le Saenggwabang, l'atelier royal des pâtisseries et tisanes de la dynastie Joseon : les visiteurs y goûtent des douceurs royales inspirées des archives historiques. Fermé le mardi, réservation par tirage au sort.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/019ffd87-2888-7ff4-8633-3305215e70c6",
+      "source_lang": "en"
+    }
+  ]
+}
