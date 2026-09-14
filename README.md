@@ -18,7 +18,9 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ## La chaîne, du fichier au site
 
 ```
-Tâche Claude planifiée (timer systemd, 7 h 30 Asia/Seoul)
+Timer systemd, 7 h 30 Asia/Seoul
+        ├─ veille : flux RSS des rédactions + titres déjà publiés → veille/AAAA-MM-JJ.md
+        └─ session Claude Code : lit la veille, choisit, vérifie, rédige
         │  commit  inbox/brief-AAAA-MM-JJ.json
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
@@ -174,6 +176,7 @@ npm run rendu            # construit le site contre un faux CMS et vérifie chaq
 npm run dev              # demande DIRECTUS_URL et un jeton de lecture
 npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu de la fixture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
+npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

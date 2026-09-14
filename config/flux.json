@@ -1,0 +1,17 @@
+{
+  "note": "Les flux RSS que le serveur relève avant la session de rédaction (scripts/veille.mjs). Chaque domaine doit figurer dans sources.json : ce que la veille propose, l'allowlist doit l'accepter, sans quoi l'agent recevrait des adresses qui retiendraient le brief en brouillon. Un test le vérifie. « pour » n'est qu'une indication de rubrique : l'agent classe.",
+  "flux": [
+    { "source_name": "Korea Herald", "lang": "en", "pour": ["coree", "tourisme"], "url": "https://www.koreaherald.com/rss/newsAll" },
+    { "source_name": "Yonhap", "lang": "en", "pour": ["coree", "tourisme"], "url": "https://en.yna.co.kr/RSS/news.xml" },
+    { "source_name": "Korea Times", "lang": "en", "pour": ["coree", "tourisme"], "url": "https://feed.koreatimes.co.kr/k/southkorea.xml" },
+    { "source_name": "TechCrunch", "lang": "en", "pour": ["tech"], "url": "https://techcrunch.com/feed/" },
+    { "source_name": "Ars Technica", "lang": "en", "pour": ["tech"], "url": "https://feeds.arstechnica.com/arstechnica/index" },
+    { "source_name": "The Verge", "lang": "en", "pour": ["tech"], "url": "https://www.theverge.com/rss/index.xml" },
+    { "source_name": "VGC", "lang": "en", "pour": ["gaming"], "url": "https://www.videogameschronicle.com/feed/" },
+    { "source_name": "PC Gamer", "lang": "en", "pour": ["gaming"], "url": "https://www.pcgamer.com/rss/" },
+    { "source_name": "Eurogamer", "lang": "en", "pour": ["gaming"], "url": "https://www.eurogamer.net/feed" },
+    { "source_name": "GamesIndustry.biz", "lang": "en", "pour": ["gaming"], "url": "https://www.gamesindustry.biz/feed" },
+    { "source_name": "Polygon", "lang": "en", "pour": ["gaming"], "url": "https://www.polygon.com/rss/index.xml" },
+    { "source_name": "jeuxvideo.com", "lang": "fr", "pour": ["gaming"], "url": "https://www.jeuxvideo.com/rss/rss-news.xml" }
+  ]
+}

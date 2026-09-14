@@ -26,3 +26,7 @@ Thumbs.db
 
 # Journaux de parution : un fichier par mois, propre au serveur qui les produit.
 logs/
+
+# La veille du matin (flux RSS, titres déjà publiés), relevée par le serveur
+# avant chaque session et lue par l'agent. Périssable, et propre au serveur.
+veille/
