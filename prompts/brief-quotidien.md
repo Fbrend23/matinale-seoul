@@ -33,7 +33,7 @@ ils retirent les items douteux et rejettent le brief entier s'il est mal formé.
 ### 1. Avant de composer
 
 Le serveur a relevé la veille du matin avant ta session : **lis
-`veille/AAAA-MM-JJ.md`**, daté du jour à Séoul. Il tient en trois listes :
+`veille/AAAA-MM-JJ.md`**, daté du jour à Séoul. Il tient en quatre listes :
 
 - ce que le site a déjà publié, les titres des quatorze derniers briefs.
   **Ne couvre pas une histoire qui y figure déjà**, sauf élément vraiment
@@ -43,7 +43,10 @@ Le serveur a relevé la veille du matin avant ta session : **lis
   par rédaction, avec l'adresse, l'heure de publication à l'heure de Séoul et
   un extrait. Chaque adresse est une adresse vue : elle peut servir de
   `source_url` telle quelle, et son heure de `published_at`. L'extrait sert à
-  choisir ; pour résumer, ouvre l'article.
+  choisir ; pour résumer, ouvre l'article ;
+- les **pistes événements**, cherchées par Gemini avant ta session et déjà
+  passées au tri de l'ingestion, chacune sous la forme exacte d'un événement
+  du § 7. Elles remplacent ta propre recherche : voir § 7.
 
 C'est ta matière première : la plupart des items du jour sont dans cette liste,
 il s'agit de les choisir, pas de les chercher. Avec le présent prompt, c'est
@@ -88,8 +91,9 @@ brief de même taille. D'où un budget, à tenir :
 - **Quarante appels web pour toute la session**, recherches et pages
   confondues, et **la moitié quand la veille est là** : avec elle, la phase
   brief tient en une quinzaine d'appels, les articles retenus, ouverts une
-  fois chacun pour écrire le résumé. Seize appels pour les événements, dans
-  les deux cas. Compte-les. Le budget épuisé, compose avec ce que tu as : une
+  fois chacun pour écrire le résumé. Pour les événements, un appel par
+  piste de la veille, en un tour ; seize appels seulement si les pistes
+  manquent. Compte-les. Le budget épuisé, compose avec ce que tu as : une
   section courte et honnête vaut mieux que dix requêtes de plus.
 - **Ce qui ne dépend de rien se lance en un seul tour.** Ce qui coûte, c'est
   le nombre de tours, chacun relit tout le contexte, plus encore que le nombre
@@ -363,10 +367,22 @@ pas de redire ce qui s'y trouve :
   changé** (prolongation, report). Repropose-le alors avec le même `name` et
   les dates nouvelles : l'ingestion corrige la fiche au lieu d'en créer une.
   Si rien n'est disponible, continue sans.
-- **Vise quatre à six événements nouveaux par jour**, huit au plus, dans
-  les **seize appels web** du budget du § 1. Un matin sans événement peut
-  arriver, mais il doit être le résultat d'une recherche, pas d'une
-  recherche écourtée : deux requêtes génériques qui s'arrêtent aux deux
+- **Pars des pistes de la veille.** La section « Pistes événements » de
+  `veille/AAAA-MM-JJ.md` a été cherchée par Gemini avant ta session, puis
+  passée au tri de l'ingestion : allowlist, dates, doublons de l'onglet, lien
+  vivant. Ce qui y figure serait retenu. Pour chaque piste, **ouvre sa source
+  une fois**, en un seul tour pour toutes, confirme les dates et le lieu, et
+  recopie l'objet dans `events`, corrigé si la page dit autre chose, et le
+  `name` mis en français si Gemini l'a laissé en coréen ou en anglais. Une
+  piste dont la source ne dit pas ce qu'elle annonce se laisse. Une piste
+  marquée « dates nouvelles » se repropose avec le nom connu. **Tant qu'il
+  reste des pistes, ne cherche pas d'autres événements** : un appel par
+  piste, et le § 7 est fini.
+- **Ce qui suit ne vaut que si la section manque, dit une panne, ou est
+  vide** : alors cherche toi-même, dans les seize appels du budget du § 1.
+  Vise quatre à six événements nouveaux, huit au plus. Un matin sans
+  événement peut arriver, mais il doit être le résultat d'une recherche, pas
+  d'une recherche écourtée : deux requêtes génériques qui s'arrêtent aux deux
   premiers résultats datables ne suffisent pas.
 - **Commence par les quatre pages qui listent, en `WebFetch`** : elles
   couvrent à elles seules la plupart des thèmes, pour quatre appels.
@@ -435,6 +451,13 @@ pas de redire ce qui s'y trouve :
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
+- Les pistes événements du § 7 sont produites par `scripts/recherche.mjs` :
+  Gemini, par Antigravity CLI en headless et sans droit d'écriture, suit
+  `prompts/recherche-evenements.md` et rend un tableau ; le script le passe à
+  `contrôlerÉvénements()`, le tri même de l'ingestion, puis l'ajoute à la
+  veille. Corriger ce que Gemini cherche se fait dans ce prompt-là ; ce qui
+  l'écarte, dans les gardes. Gemini absent ou muet, la section le dit et
+  l'agent retombe sur sa propre recherche, avec son budget.
 - La veille du § 1 est produite par `scripts/veille.mjs` à partir de
   `config/flux.json`, lancé par `bin/brief-du-jour.sh` juste avant la session.
   Ajouter une rédaction, c'est ajouter son flux là, et son domaine dans

@@ -2,7 +2,8 @@
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
 installation : chaque jour, la veille est relevée (flux RSS des rédactions,
-titres déjà publiés), puis le brief est rédigé, vérifié et poussé dans
+titres déjà publiés), les événements sont cherchés par Gemini, puis le brief
+est rédigé, vérifié et poussé dans
 `inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
@@ -23,6 +24,44 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
 - **Node ≥ 22.12** (exigé par Astro 7) et **git**
 - **Claude Code**, authentifié pour le compte qui paiera les sessions
+- **Antigravity CLI** (`agy`), authentifié avec le compte Google dont
+  l'abonnement porte le quota. C'est lui qui fait chercher les événements à
+  Gemini (`scripts/recherche.mjs`). Pas Gemini CLI : abandonné pour les
+  comptes individuels, Google AI Pro compris, le 18 juin 2026.
+
+  ```bash
+  curl -fsSL https://antigravity.google/cli/install.sh | bash
+  agy          # une fois, en interactif : « Sign in with Google », puis /quit
+  ```
+
+  Sur un serveur sans navigateur, la connexion se fait depuis un poste de
+  travail et les identifiants se copient ensuite (`~/.gemini/antigravity-cli/`).
+
+  **Puis les permissions**, dans `~/.gemini/antigravity-cli/settings.json`.
+  En headless, un outil non autorisé est refusé en silence : sans la ligne
+  `allow`, Gemini cherche mais ne peut ouvrir aucune page, et rend une liste
+  vide ou inventée. Les `deny` sont ce qui permet de lancer une recherche sans
+  personne devant : elle ne peut ni écrire, ni lancer une commande.
+
+  ```json
+  {
+    "permissions": {
+      "allow": ["read_url(*)"],
+      "deny": ["write_file(*)", "command(*)", "unsandboxed(*)", "mcp(*)"]
+    }
+  }
+  ```
+
+  **Facultatif** : sans `agy`, `scripts/recherche.mjs` échoue en quelques
+  millisecondes, la veille le dit, et l'agent cherche les événements
+  lui-même, comme avant. Vérifier une fois, dans le dépôt :
+
+  ```bash
+  node scripts/recherche.mjs --jour "$(TZ=Asia/Seoul date +%F)"
+  # « ✓ Gemini  N pistes en … s », puis une ligne par piste, et la section
+  # « Pistes événements » à la fin de veille/AAAA-MM-JJ.md.
+  # Des lignes de refus de permission sous « ✓ Gemini » : c'est le allow qui manque.
+  ```
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
   la session rédige, valide, commite, puis échoue sur
   `could not read Username for 'https://github.com'`, parce qu'il n'y a personne

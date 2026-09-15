@@ -20,6 +20,7 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ```
 Timer systemd, 7 h 30 Asia/Seoul
         ├─ veille : flux RSS des rédactions + titres déjà publiés → veille/AAAA-MM-JJ.md
+        ├─ recherche : Gemini (Antigravity CLI) cherche les événements, les gardes trient → même fichier
         └─ session Claude Code : lit la veille, choisit, vérifie, rédige
         │  commit  inbox/brief-AAAA-MM-JJ.json
         ▼
@@ -177,6 +178,7 @@ npm run dev              # demande DIRECTUS_URL et un jeton de lecture
 npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu de la fixture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
+npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief
