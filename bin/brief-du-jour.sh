@@ -82,6 +82,16 @@ fi
 # brief : le prompt prévoit l'absence du fichier, et l'agent cherche alors
 # lui-même, avec un budget.
 node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent cherchera lui-même"
+
+# Les événements AUSSI avant la session, mais par Gemini : les pop-ups et
+# concerts de Séoul n'ont pas de flux, ils se cherchent, en coréen, et c'était
+# le morceau qui restait cher dans la session Claude, seize appels pour deux
+# événements. Antigravity CLI cherche sur l'abonnement Google, sans droit
+# d'écriture (permissions du serveur, voir docs/parution-sur-serveur.md), et
+# rend une liste que le script passe aux gardes du dépôt avant de l'ajouter à
+# la veille. Gemini absent, muet ou hors quota : la veille le dit, et l'agent
+# cherche lui-même, avec son budget.
+node scripts/recherche.mjs --jour "$JOUR" || echo "recherche indisponible : l'agent cherchera les événements lui-même"
 # Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
 # vu le matin où un brief manque : une semaine, puis on jette.
 find veille -name '*.md' -mtime +7 -delete 2>/dev/null || true
