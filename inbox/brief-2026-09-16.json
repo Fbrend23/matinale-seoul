@@ -1,0 +1,248 @@
+{
+  "date": "2026-09-16",
+  "title": "Séoul évite de justesse la grève des bus, l'IA négocie ses propres garde-fous",
+  "standfirst": "Un accord conclu à 1h50 du matin écarte la grève des bus séoulites ce mercredi, pendant que Lee Jae-myung prépare une conférence de presse vendredi sur fond de cote de popularité en berne. Dans la tech, OpenAI, Anthropic et Google discutent en coulisses de la sécurité de l'IA. Aux Jeux asiatiques, la Corée du Sud démarre par une large victoire contre le Qatar.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La grève des bus de Séoul évitée in extremis",
+          "summary": "Direction et syndicat ont trouvé un accord à 1h50 du matin, le 16 septembre, avant le début prévu du débrayage à 4h. Les salaires augmentent de 3,2 % en 2026. Les bus circulent normalement.",
+          "importance": 1,
+          "tags": ["greve", "bus-seoul", "transport"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20260916/seoul-bus-strike-averted-after-last-minute-wage-deal?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-16T07:27:03+09:00"
+        },
+        {
+          "headline": "Le festival international des arts vivants de Séoul revient en octobre",
+          "summary": "Le 26e Seoul International Performing Arts Festival se tient du 8 au 25 octobre, sous le thème « Multiverse of Art » : sept productions internationales et des créations coréennes expérimentales, dont une adaptation d'un roman de Han Kang avec Isabelle Huppert.",
+          "importance": 2,
+          "tags": ["spaf", "festival", "arts-vivants"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874594",
+          "source_lang": "en",
+          "published_at": "2026-09-15T17:54:42+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Jae-myung tiendra une conférence de presse vendredi sur sa politique",
+          "summary": "Le président doit présenter vendredi sa position sur les principaux dossiers, alors que sa cote de popularité recule à 33,8 % selon Realmeter, minée par des scandales gouvernementaux et la politique immobilière. Politique étrangère et économie seront abordées.",
+          "analysis": "Cette conférence intervient alors que la présidence Lee traverse sa passe la plus difficile depuis son entrée en fonction, avec une cote de popularité au plus bas et une majorité elle-même divisée.",
+          "importance": 1,
+          "tags": ["lee-jae-myung", "politique", "conference-presse"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874600",
+          "source_lang": "en",
+          "published_at": "2026-09-15T18:04:28+09:00"
+        },
+        {
+          "headline": "Séoul et Tokyo réaffirment leur coopération de défense",
+          "summary": "Les ministres de la Défense Ahn Gyu-back et Shinjiro Koizumi ont convenu par téléphone d'une coopération bilatérale fondée sur la « compréhension mutuelle », et réaffirmé l'importance de la collaboration trilatérale avec les États-Unis pour la stabilité régionale.",
+          "importance": 2,
+          "tags": ["defense", "japon", "cooperation-militaire"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874668",
+          "source_lang": "en",
+          "published_at": "2026-09-15T20:26:52+09:00"
+        },
+        {
+          "headline": "La Corée du Sud et le Kazakhstan élèvent leur partenariat",
+          "summary": "Séoul et Astana font passer leurs relations au rang de partenariat stratégique global tourné vers l'avenir, avec un renforcement de la coopération énergétique : approvisionnement pétrolier et accord nucléaire portant sur la technologie des réacteurs et le combustible.",
+          "importance": 3,
+          "tags": ["kazakhstan", "diplomatie", "energie"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874621",
+          "source_lang": "en",
+          "published_at": "2026-09-15T18:35:30+09:00"
+        },
+        {
+          "headline": "Un adolescent chinois arrêté à l'aéroport de Jeju pour écoute des communications aériennes",
+          "summary": "Le jeune homme a été interpellé le 27 août après avoir écouté 90 minutes les échanges entre la tour de contrôle et les avions. Sa caméra contenait des photos d'installations militaires sud-coréennes.",
+          "importance": 4,
+          "tags": ["securite", "jeju", "aeroport"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874555",
+          "source_lang": "en",
+          "published_at": "2026-09-15T17:15:17+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI, Anthropic et Google discutent en coulisses de la sécurité de l'IA",
+          "summary": "Les trois laboratoires échangent depuis plusieurs semaines sur les risques de l'IA et proposent des évaluateurs tiers indépendants. L'administration Trump balaie ces inquiétudes, jugeant la compétition avec la Chine prioritaire sur toute réglementation freinant les développements américains.",
+          "analysis": "Trois jours après l'appel public d'Anthropic à ralentir le rythme de l'IA, ces pourparlers montrent que le sujet s'installe désormais entre laboratoires eux-mêmes, à rebours de la ligne de Washington.",
+          "importance": 1,
+          "tags": ["intelligence-artificielle", "securite-ia", "openai", "anthropic"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/15/openai-anthropic-google-have-been-in-talks-on-ai-safety-for-weeks/",
+          "source_lang": "en",
+          "published_at": "2026-09-16T00:47:03+09:00"
+        },
+        {
+          "headline": "SpaceX vise la mise en orbite de Starship le 22 septembre",
+          "summary": "Le quatorzième vol d'essai doit permettre au lanceur d'atteindre l'orbite terrestre pour la première fois, avec le déploiement de 26 satellites Starlink de nouvelle génération V3, une étape clé pour les premiers revenus de cette division.",
+          "importance": 2,
+          "tags": ["spacex", "starship", "espace"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/15/spacex-will-try-to-put-starship-in-orbit-for-the-first-time-on-september-22/",
+          "source_lang": "en",
+          "published_at": "2026-09-16T03:16:07+09:00"
+        },
+        {
+          "headline": "Meta lance ses abonnements « Meta One », entre IA et réseaux sociaux",
+          "summary": "La nouvelle gamme regroupe un accès élargi aux outils d'IA de Meta et des fonctionnalités premium sur Facebook, Instagram et WhatsApp, de 7,99 dollars par mois pour les particuliers à 499 dollars pour les offres professionnelles.",
+          "importance": 3,
+          "tags": ["meta", "abonnement", "intelligence-artificielle"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/15/meta-expands-subscription-push-with-new-ai-focused-plans/",
+          "source_lang": "en",
+          "published_at": "2026-09-16T02:05:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Wardogs dépasse les deux millions de ventes en une semaine",
+          "summary": "Le jeu de tir tactique du studio britannique Bulkhead Interactive a atteint deux millions de ventes et 400 000 joueurs simultanés en moins d'une semaine. Le studio s'est dit « humblement dépassé » par cet accueil.",
+          "importance": 1,
+          "tags": ["wardogs", "ventes", "fps"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/in-less-than-a-week-wardogs-sells-2-million-copies-and-achieves-over-400k-concurrent-players/",
+          "source_lang": "en",
+          "published_at": "2026-09-15T22:25:24+09:00"
+        },
+        {
+          "headline": "Kakao Games prend le contrôle de ME2ON pour 98 milliards de wons",
+          "summary": "Kakao Games acquiert 39,56 % du studio ME2ON, spécialisé dans les jeux de casino social et casual, pour 98 milliards de wons. ME2ON génère 120,9 milliards de wons de revenus annuels, dont plus de 80 % à l'international.",
+          "importance": 2,
+          "tags": ["kakao-games", "acquisition", "jeux-mobiles"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874545",
+          "source_lang": "en",
+          "published_at": "2026-09-15T17:09:56+09:00"
+        },
+        {
+          "headline": "Le Steam Deck 2 reste sur les rails malgré la crise de la RAM",
+          "summary": "Valve confirme poursuivre le développement du Steam Deck 2 malgré la flambée des prix de la RAM, en visant une nette amélioration de performance avant la sortie. La Steam Machine dépassant 1 000 dollars, une hausse de prix semble probable.",
+          "importance": 3,
+          "tags": ["steam-deck", "valve", "materiel"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/steam-deck-2-plans-still-on-track-despite-ram-crisis-and-higher-prices/",
+          "source_lang": "en",
+          "published_at": "2026-09-16T00:15:45+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée du Sud domine le Qatar 4-1 en ouverture du tournoi de football des Jeux asiatiques",
+          "summary": "Le milieu de terrain Eom Ji-sung a inscrit un triplé, portant la Corée du Sud vers une victoire 4-1 face au Qatar à Nagoya, dans sa quête d'une quatrième médaille d'or consécutive.",
+          "importance": 1,
+          "tags": ["asiad", "football", "asian-games"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874703",
+          "source_lang": "en",
+          "published_at": "2026-09-15T21:53:32+09:00"
+        },
+        {
+          "headline": "Aux Jeux asiatiques, les deux Corées se retrouvent face à face",
+          "summary": "La Corée du Sud et la Corée du Nord s'affronteront en football féminin le 21 septembre aux Jeux d'Aichi-Nagoya. Le Sud vise sa première médaille en huit ans, le Nord un quatrième titre d'or consécutif.",
+          "importance": 2,
+          "tags": ["asiad", "coree-du-nord", "football"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10874549",
+          "source_lang": "en",
+          "published_at": "2026-09-15T17:14:22+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "RESCENE Scent Archive: MEMORIES OF RESCENE",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-09-15",
+      "end_date": "2026-09-23",
+      "summary": "Boutique éphémère qui archive les souvenirs du groupe féminin RESCENE sous forme de parfums plutôt que de photos, avec un parcours à cinq tampons et des produits dérivés exclusifs à la clé.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/yeouido/popups/rescene-scent-archive-popup-the-hyundai-seoul",
+      "source_lang": "en"
+    },
+    {
+      "name": "Ouverture du pop-up Marie Claire Maison à Bukchon",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "마리끌레르 맨숀 북촌점",
+      "area": "Bukchon",
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-11",
+      "summary": "Ouverture éphémère d'un espace Marie Claire dans un hanok rénové de Bukchon, avec la collection automne de la marque et un cadeau offert pour tout achat.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/jongno/popups/marie-claire-mansion-bukchon-opening",
+      "source_lang": "en",
+      "address": "서울 종로구 북촌로11길 9"
+    },
+    {
+      "name": "Horror House: Endless Escape (MOFUN)",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "모펀 AK플라자 홍대점",
+      "area": "Hongdae",
+      "start_date": "2026-09-15",
+      "end_date": "2026-10-01",
+      "summary": "Escape room et boutique inspirés des jeux d'horreur façon RPG Maker : un pensionnat en forêt, des inconnus amnésiques et un incident des années 1990 à élucider par énigmes, plutôt qu'une maison hantée classique.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/horror-house-endless-escape-mofun-ak-plaza-hongdae",
+      "source_lang": "en",
+      "address": "서울 마포구 양화로 188"
+    },
+    {
+      "name": "Festival d'automne Bitmorak à Gwanghwamun (빛모락가을축제)",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "광화문광장 놀이마당",
+      "area": "Jongno-gu",
+      "start_date": "2026-09-24",
+      "end_date": "2026-09-27",
+      "summary": "Festival automnal à la place Gwanghwamun : spectacles, conférences et activités participatives, calligraphie, cartes postales et jeux traditionnels, en plein cœur de Séoul.",
+      "source_name": "Seoul Festival",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=367",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival de Chuseok au village hanok de Namsangol (남산골 추석축제 [남산달빛마당])",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "남산골한옥마을",
+      "area": "Jung-gu",
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "summary": "Fête traditionnelle de Chuseok au village hanok de Namsangol : spectacles folkloriques, expériences de beauté coréenne, démonstrations rituelles et stands gourmands, de 10h à 20h.",
+      "source_name": "Seoul Festival",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=852",
+      "source_lang": "ko"
+    }
+  ]
+}
