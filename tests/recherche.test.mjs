@@ -8,7 +8,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { readFile, mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
@@ -152,7 +152,9 @@ test('la section rend chaque piste retenue en JSON recopiable, nomme les écart�
 test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit une panne quand il n\'y a pas de Gemini', async (t) => {
   // Dans veille/, ignoré par git, et non dans le dossier temporaire du
   // système : selon l'environnement, os.tmpdir() a déjà rendu un chemin
-  // relatif, et le dossier atterrissait à la racine du dépôt.
+  // relatif, et le dossier atterrissait à la racine du dépôt. Sur un clone
+  // frais, celui de la CI, veille/ n'existe pas encore.
+  await mkdir(path.join(RACINE, 'veille'), { recursive: true });
   const dossier = await mkdtemp(path.join(RACINE, 'veille', 'test-'));
   t.after(() => rm(dossier, { recursive: true, force: true }));
   const veille = path.join(dossier, `${TODAY}.md`);
