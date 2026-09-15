@@ -14,6 +14,7 @@ import { créerMémo } from '../src/lib/une-fois.js';
 import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
 import { grouperParMois, moisLisible, moisCourt, cléMois, MIN_MOIS_POUR_NAV } from '../src/lib/archive.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
+import { grouperParLieu, slugLieu, normaliserLieu, MIN_EVENTS_PAR_LIEU } from '../src/lib/lieux.js';
 
 // --- Le cache du build -------------------------------------------------------
 
@@ -218,6 +219,42 @@ test('les libellés du mois ne dépendent pas du fuseau du runner', () => {
 
 test('la barre de navigation demande au moins deux mois', () => {
   assert.equal(MIN_MOIS_POUR_NAV, 2);
+});
+
+// --- Les pages par lieu ------------------------------------------------------
+//
+// Même règle que les étiquettes, et même raison : elle décide des pages à
+// construire, et elle décide si la carte d'événement pose un lien.
+
+const évt = (venue, name, fin = '2026-09-20', début = '2026-09-01') => ({
+  venue, area: 'Jamsil', name, start_date: début, end_date: fin,
+});
+
+test('deux graphies à une espace près sont le même lieu', () => {
+  assert.equal(normaliserLieu('KSPO 돔'), normaliserLieu('KSPO돔'));
+  assert.equal(normaliserLieu(' Coex '), 'coex');
+  assert.equal(slugLieu('KSPO 돔'), slugLieu('kspo돔'));
+});
+
+test('le slug est stable, ASCII, et distingue deux lieux', () => {
+  assert.match(slugLieu('포켓몬센터 성수'), /^lieu-[0-9a-f]{8}$/);
+  assert.equal(slugLieu('포켓몬센터 성수'), slugLieu('포켓몬센터 성수'));
+  assert.notEqual(slugLieu('포켓몬센터 성수'), slugLieu('더현대 서울'));
+});
+
+test('un lieu à un seul événement n a pas de page', () => {
+  const lieux = grouperParLieu([évt('A', 'seul'), évt('B', 'un'), évt('B', 'deux')]);
+  assert.ok(!lieux.has(slugLieu('A')));
+  assert.equal(lieux.get(slugLieu('B')).events.length, 2);
+  assert.equal(MIN_EVENTS_PAR_LIEU, 2);
+  assert.equal(grouperParLieu([évt('A', 'seul')], { minEvents: 1 }).size, 1);
+});
+
+test('la page prend le nom du plus pressé, et range par date de fin', () => {
+  const lieux = grouperParLieu([évt('KSPO돔', 'tard', '2026-10-01'), évt('KSPO 돔', 'tôt', '2026-09-10')]);
+  const lieu = lieux.get(slugLieu('KSPO돔'));
+  assert.equal(lieu.venue, 'KSPO 돔');
+  assert.deepEqual(lieu.events.map((e) => e.name), ['tôt', 'tard']);
 });
 
 // --- Les dates d'un événement ------------------------------------------------

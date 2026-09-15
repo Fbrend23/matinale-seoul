@@ -5,11 +5,15 @@
 // Le lecteur qui arrive de l'accueil doit retrouver la même mise en page. Un
 // h1 nu suivi d'une phrase n'était pas une autre page du même site, c'était
 // une autre page.
-const { surtitre, titre } = Astro.props;
+//
+// `langTitre` : la langue du titre quand ce n'est pas celle de la page, le
+// nom coréen d'un lieu. Les lecteurs d'écran et la typographie le traitent
+// alors comme tel.
+const { surtitre, titre, langTitre } = Astro.props;
 ---
 
 <header class="tete">
   {surtitre && <p class="surtitre">{surtitre}</p>}
-  <h1>{titre}</h1>
+  <h1 lang={langTitre}>{titre}</h1>
   {Astro.slots.has('default') && <p class="chapeau"><slot /></p>}
 </header>

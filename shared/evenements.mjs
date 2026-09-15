@@ -70,6 +70,18 @@ export function lienNaverMap({ venue }) {
   return `https://map.naver.com/p/search/${encodeURIComponent(venue.trim())}`;
 }
 
+/**
+ * Deux noms de lieu se comparent sans espaces ni casse : « KSPO돔 » = « KSPO 돔 ».
+ *
+ * Une seule règle pour la carte Kakao, qui compare ce que Kakao rend à ce
+ * qu'elle a demandé, et pour les pages par lieu, qui regroupent les cartes :
+ * deux règles diraient deux lieux là où le lecteur n'en voit qu'un. Rien de
+ * plus malin : « COEX » et « 코엑스 » restent deux lieux, on ne devine pas.
+ */
+export function normaliserLieu(texte) {
+  return (texte ?? '').replace(/\s+/g, '').toLowerCase();
+}
+
 /** Au moins une syllabe hangul : ce que Naver Map sait chercher. */
 export function enCoréen(texte) {
   return /[\uAC00-\uD7A3]/.test(texte ?? '');

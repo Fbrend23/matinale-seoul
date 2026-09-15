@@ -5,9 +5,19 @@
 // trouver ce qui se passe ce week-end, pas pour lire de haut en bas. D'où le
 // thème en couleur, les dates et le lieu avant le texte, et les liens en pied.
 import { dateRange } from '../lib/date.js';
+import { lieuxPages } from '../lib/content.js';
+import { slugLieu } from '../lib/lieux.js';
 import { KIND_LABELS, THEME_LABELS, lienNaverMap, badgeDélai } from '../../shared/evenements.mjs';
 
 const { event, today } = Astro.props;
+
+// Le lieu est cliquable quand il a une page, c'est-à-dire quand il accueille
+// au moins deux événements. On demande la liste plutôt que de la supposer,
+// comme NewsItem pour les étiquettes : lier sans vérifier sèmerait un 404
+// par lieu. L'appel est mémoïsé, il ne coûte qu'une fois pour tout le build.
+const lieux = await lieuxPages();
+const slug = slugLieu(event.venue);
+const pageLieu = lieux.has(slug) ? `/lieux/${slug}/` : null;
 
 // Combien de jours il reste, le nombre, pas un « bientôt » : c'est lui qui
 // décide d'un week-end. Calculé au build, comme le reste de la page, qui se
@@ -47,7 +57,12 @@ const carte = event.map_url ?? lienNaverMap(event);
       pour que les lecteurs d'écran et la typographie le traitent comme tel. */}
   <p class="evenement-infos">
     <time class="evenement-quand" datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time>
-    <span class="evenement-ou"><span lang="ko">{event.venue}</span> · {event.area}</span>
+    <span class="evenement-ou">
+      {/* Lien ou simple texte, toujours lang="ko" : c'est cet attribut que
+          la carte Kakao lit pour retrouver le nom du lieu. */}
+      {pageLieu ? <a href={pageLieu} lang="ko">{event.venue}</a> : <span lang="ko">{event.venue}</span>}
+      {' · '}{event.area}
+    </span>
   </p>
 
   <p class="resume">{event.summary}</p>

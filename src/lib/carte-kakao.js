@@ -19,6 +19,8 @@
 // caché : une carte vide serait un mensonge, comme un filtre qui ne filtre
 // rien.
 
+import { normaliserLieu } from '../../shared/evenements.mjs';
+
 const SEOUL = { lat: 37.5665, lng: 126.978 };
 // Le rectangle de Séoul : une recherche par mot-clé n'y sort pas, un
 // homonyme à Busan ne peut pas répondre.
@@ -57,8 +59,9 @@ function chargerKakao(cle) {
   });
 }
 
-/** Deux noms de lieu se comparent sans espaces ni casse : « KSPO돔 » = « KSPO 돔 ». */
-const normaliser = (texte) => (texte ?? '').replace(/\s+/g, '').toLowerCase();
+// La comparaison des noms de lieu est celle des pages par lieu : une seule
+// règle, dans shared/evenements.mjs.
+const normaliser = normaliserLieu;
 
 /**
  * Le contenu de la bulle, construit en DOM : le nom et l'adresse viennent du
