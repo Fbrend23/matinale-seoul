@@ -241,7 +241,8 @@ rien écrire et le workflow sort en succès.
 
 **Les événements ne sont pas une sixième garde.** Chaque événement passe ses propres contrôles :
 dates réelles, fin ≥ début, fin ≥ aujourd'hui, 40 mots, allowlist, doublons contre les
-événements actifs, source vivante, et ce qui échoue est **écarté** avec un `::warning::`,
+événements actifs (par le nom, ou par le lieu et les dates avec la même source ou le même
+thème et un nom à moitié proche), source vivante, et ce qui échoue est **écarté** avec un `::warning::`,
 jamais le brief : un domaine inconnu écarte au lieu de retenir en brouillon, une collection
 absente est un avertissement. Ils sont écrits après le brief, rattachés à lui, toujours
 `published`. À chaque run, ce dont `end_date` est passée est archivé.

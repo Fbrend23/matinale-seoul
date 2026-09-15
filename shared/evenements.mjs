@@ -82,6 +82,17 @@ export function normaliserLieu(texte) {
   return (texte ?? '').replace(/\s+/g, '').toLowerCase();
 }
 
+/**
+ * Deux périodes ont au moins un jour en commun. Comparaison de chaînes
+ * AAAA-MM-JJ, comme partout, fin incluse.
+ *
+ * @param {{start_date: string, end_date: string}} a
+ * @param {{start_date: string, end_date: string}} b
+ */
+export function périodesSeRecouvrent(a, b) {
+  return a.start_date <= b.end_date && b.start_date <= a.end_date;
+}
+
 /** Au moins une syllabe hangul : ce que Naver Map sait chercher. */
 export function enCoréen(texte) {
   return /[\uAC00-\uD7A3]/.test(texte ?? '');

@@ -114,6 +114,15 @@ test('une piste passe le tri même de l\'ingestion : ce qui atteint l\'agent ser
   assert.equal(raisons['Sans source'], 'sans adresse source');
 });
 
+test('une piste connue de l’onglet sous un autre nom, au même lieu, est écartée avant l’agent', async () => {
+  // C'est ici que le doublon coûte le moins : Gemini nomme rarement un pop-up
+  // dans les mots de la rédaction qui l'a fait entrer dans l'onglet.
+  const connus = [{ name: 'Chiikawa Pop-up Store Seongsu', theme: 'personnages', start_date: '2026-09-18', end_date: '2026-10-05', venue: '무신사스퀘어 성수' }];
+  const tri = await trierPistes([PISTE], { domaines: DOMAINES, connus, today: TODAY, fetcher });
+  assert.equal(tri.retenues.length, 0);
+  assert.match(tri.écartées[0].raison, /déjà connu par le lieu/);
+});
+
 test('au plus trois pistes par domaine, dans l\'ordre de Gemini, le reste écarté et nommé', async () => {
   const { MAX_PAR_SOURCE } = await import('../scripts/lib/recherche.mjs');
   const pistes = [

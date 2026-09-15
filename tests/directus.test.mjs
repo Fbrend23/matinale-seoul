@@ -417,9 +417,11 @@ test('une instance sans le champ garde le brief, et le reste avec', async () => 
 function fauxÉvénements({ actifs = [], anciens = [], finis = [] } = {}) {
   const patchs = [];
   const posts = [];
+  const appels = [];
 
   const client = {
     get: async (chemin) => {
+      appels.push({ chemin });
       if (chemin.includes('fields=id,name,start_date')) return actifs;
       if (chemin.includes('fields=id,name,end_date')) return finis;
       if (chemin.includes('filter[brief][_eq]')) return anciens;
@@ -435,7 +437,7 @@ function fauxÉvénements({ actifs = [], anciens = [], finis = [] } = {}) {
     },
   };
 
-  return { client, patchs, posts };
+  return { client, patchs, posts, appels };
 }
 
 const événement = {
@@ -503,6 +505,13 @@ test('les événements actifs excluent ceux du brief rejoué, sans perdre ceux s
 
   const tous = await activeEvents(f.client, { today: '2026-09-04' });
   assert.equal(tous.length, 3);
+
+  // Le doublon par le lieu compare le lieu, le thème et la source : la
+  // requête doit les demander, sinon la règle se tait sans le dire.
+  const requête = f.appels.find((a) => a.chemin.includes('fields=id,name,start_date'))?.chemin ?? '';
+  for (const champ of ['venue', 'theme', 'source_url']) {
+    assert.ok(requête.includes(champ), `activeEvents demande ${champ}`);
+  }
 });
 
 test('l archivage ne touche qu à ce qui est fini, et le rend', async () => {
