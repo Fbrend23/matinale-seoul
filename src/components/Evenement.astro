@@ -90,14 +90,19 @@ const carte = event.map_url ?? lienNaverMap(event);
         Réserver
       </a>
     )}
-    <a
-      class="source-lien"
-      href={event.source_url}
-      rel="nofollow ugc noopener"
-      target="_blank"
-      aria-label={`Source : ${event.source_name} (s’ouvre dans une nouvelle fenêtre)`}
-    >
-      {event.source_name}
-    </a>
+    {/* Même règle que NewsItem : une source disparue garde son nom, sans lien. */}
+    {event.link_dead_at ? (
+      <span class="source-lien source-morte">{event.source_name} · page retirée</span>
+    ) : (
+      <a
+        class="source-lien"
+        href={event.source_url}
+        rel="nofollow ugc noopener"
+        target="_blank"
+        aria-label={`Source : ${event.source_name} (s’ouvre dans une nouvelle fenêtre)`}
+      >
+        {event.source_name}
+      </a>
+    )}
   </p>
 </article>

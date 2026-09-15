@@ -30,14 +30,24 @@ const avecPage = await tagPages();
         transmet pas de recommandation avec eux. */}
     {/* Le libellé dit l'ouverture en nouvelle fenêtre : à la lecture d'écran,
         un lien qui change de contexte sans le dire fait perdre sa place. */}
-    <a
-      href={item.source_url}
-      rel="nofollow ugc noopener"
-      target="_blank"
-      aria-label={`${item.source_name} (s’ouvre dans une nouvelle fenêtre)`}
-    >
-      {item.source_name}
-    </a>
+    {/* Une source disparue, marquée par le contrôle hebdomadaire des liens,
+        garde son nom et perd son lien : l'item disait vrai le jour où il l'a
+        dit, et un lien vers un 404 n'est pas une source. */}
+    {item.link_dead_at ? (
+      <>
+        <span class="source-morte">{item.source_name}</span>
+        <span class="quand"> · page retirée</span>
+      </>
+    ) : (
+      <a
+        href={item.source_url}
+        rel="nofollow ugc noopener"
+        target="_blank"
+        aria-label={`${item.source_name} (s’ouvre dans une nouvelle fenêtre)`}
+      >
+        {item.source_name}
+      </a>
+    )}
     {item.source_lang && <span class="langue"> · {item.source_lang}</span>}
     {quand && <span class="quand"> · {quand}</span>}
   </p>
