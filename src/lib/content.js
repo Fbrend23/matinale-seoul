@@ -16,6 +16,7 @@ import { SECTIONS } from '../../shared/sections.mjs';
 import { seoulToday } from '../../shared/date.mjs';
 import { créerMémo } from './une-fois.js';
 import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
+import { grouperParLieu } from './lieux.js';
 
 // Les formes que le CMS rend. Écrites en JSDoc plutôt qu'en TypeScript : le
 // dépôt est en JavaScript, et une annotation qui demanderait une compilation
@@ -292,6 +293,20 @@ export async function recentBriefs(n = 14) {
  */
 export function tagPages() {
   return uneFois('tags', async () => groupByTag(await recentBriefs(TAG_WINDOW_DAYS)));
+}
+
+/**
+ * Les lieux qui portent une page, chacun avec ses événements en cours ou à
+ * venir.
+ *
+ * Mémoïsé comme tagPages(), et pour la même raison : la carte d'événement le
+ * demande pour chaque carte rendue, afin de savoir si le lieu porte un lien,
+ * et les pages par lieu s'en servent pour savoir lesquelles construire.
+ *
+ * @returns {Promise<Map<string, {venue: string, area: string, events: Evenement[]}>>}
+ */
+export function lieuxPages() {
+  return uneFois('lieux', async () => grouperParLieu(await listEvents()));
 }
 
 /**

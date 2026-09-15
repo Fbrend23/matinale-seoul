@@ -22,6 +22,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { donnéesDeDémonstration, démarrerLeFauxCms } from './lib/faux-cms.mjs';
+import { slugLieu } from '../src/lib/lieux.js';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const FIXTURE = path.join(RACINE, 'tests', 'fixtures', 'brief-avec-evenements.json');
@@ -77,6 +78,10 @@ if (code !== 0) {
     // L'adresse est posée sur la carte d'événement pour la carte Kakao ; le
     // bloc carte, lui, n'existe pas sans clé, et ce contrôle n'en a pas.
     ['evenements/index.html', ['id="en-ce-moment"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'map.naver.com/p/search/', 'data-adresse="서울 성동구 아차산로 7"']],
+    // Le lieu partagé par deux événements a sa page, avec ses deux cartes, et
+    // les cartes de la page Événements y mènent ; le lieu d'un seul événement
+    // n'en a pas, et sa carte ne lie rien.
+    [`lieux/${slugLieu('KSPO돔')}/index.html`, ['class="tete"', 'lang="ko"', 'id="evenement-3"', 'id="evenement-4"', 'map.naver.com/p/search/']],
     ['evenements.xml', ['<item>', '/evenements/#evenement-']],
     ['rss.xml', ['<item>', '/briefs/brief-2026-09-04/']],
     ['api/recent.json', ['"headlines"']],
@@ -121,6 +126,12 @@ if (code !== 0) {
     for (const m of ['id="sur-la-carte"', 'dapi.kakao.com']) {
       if (texte.includes(m)) problèmes.push(`evenements/index.html : « ${m} » présent sans KAKAO_MAPS_APP_KEY`);
     }
+  }
+
+  {
+    const texte = await readFile(path.join(dist, 'evenements/index.html'), 'utf8').catch(() => '');
+    if (!texte.includes(`href="/lieux/${slugLieu('KSPO돔')}/"`)) problèmes.push('evenements/index.html : le lieu partagé ne mène pas à sa page');
+    if (texte.includes(`href="/lieux/${slugLieu('더현대 서울')}/"`)) problèmes.push('evenements/index.html : un lieu à un seul événement porte un lien');
   }
 
   // L'accueil rend le même brief : il ne doit pas être indexé une seconde fois.

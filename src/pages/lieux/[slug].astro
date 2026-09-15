@@ -1,0 +1,68 @@
+---
+// Une page par lieu, mais seulement pour ceux qui accueillent vraiment.
+//
+// Le lieu était sur chaque carte, en coréen tel que Naver Map l'écrit, mais
+// sans lien : rien ne disait ce qui s'y passe d'autre. Un lecteur qui va à
+// COEX samedi veut savoir ce qu'il y trouvera en plus. Le tri, qui mérite une
+// page, qui n'en mérite pas, vit dans src/lib/lieux.js, parce que la carte
+// d'événement a besoin de la MÊME réponse pour décider si elle pose un lien.
+//
+// Actifs seulement : la collection lue au build ne contient que les
+// événements en cours ou à venir, et c'est le périmètre voulu. Un lieu ne
+// raconte pas son passé ici, il dit où aller.
+//
+// Même cadre que la page Événements, sans ses filtres ni sa carte : trois à
+// cinq cartes n'en ont pas besoin, et la page reste sans script.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TetePage from '../../components/TetePage.astro';
+import Evenement from '../../components/Evenement.astro';
+import AiNotice from '../../components/AiNotice.astro';
+import { lieuxPages } from '../../lib/content.js';
+import { seoulToday } from '../../lib/date.js';
+import { grouperParÉtat, lienNaverMap } from '../../../shared/evenements.mjs';
+
+export async function getStaticPaths() {
+  const lieux = await lieuxPages();
+  return [...lieux].map(([slug, lieu]) => ({ params: { slug }, props: lieu }));
+}
+
+const { venue, area, events } = Astro.props;
+const aujourdhui = seoulToday();
+
+// Les événements arrivent déjà triés par date de fin : ce qui finit le plus
+// tôt d'abord, c'est ce qu'on risque de rater.
+const { enCours, àVenir } = grouperParÉtat(events, aujourdhui);
+
+const groupes = [
+  { id: 'en-ce-moment', titre: 'En ce moment', détail: 'ouvert aujourd’hui', events: enCours },
+  { id: 'a-venir', titre: 'Plus tard', détail: 'pas encore commencé', events: àVenir },
+].filter((g) => g.events.length > 0);
+---
+
+<BaseLayout
+  largeur="large"
+  title={venue}
+  description={`${events.length} événements en cours ou à venir à ${venue}, ${area}.`}
+>
+  {/* Le titre est le nom coréen du lieu : lang="ko", comme sur les cartes. */}
+  <TetePage surtitre={`Lieu · ${area}`} titre={venue} langTitre="ko">
+    {events.length} événement{events.length > 1 ? 's' : ''} en cours ou à venir.
+    <a href={lienNaverMap({ venue })} rel="nofollow ugc noopener" target="_blank">Voir sur Naver Map</a>
+    (s’ouvre dans une nouvelle fenêtre).
+  </TetePage>
+
+  {/* Les mêmes groupes repliables que la page Événements, ouverts : le
+      gabarit est le sien, et le lecteur y retrouve ses repères. */}
+  {groupes.map(({ id, titre, détail, events }) => (
+    <details class="groupe-evenements" id={id} open>
+      <summary>
+        <h2>{titre} <span class="detail">{détail}</span> <span class="compte">{events.length}</span></h2>
+      </summary>
+      <div class="cartes">
+        {events.map((event) => <Evenement event={event} today={aujourdhui} />)}
+      </div>
+    </details>
+  ))}
+
+  <AiNotice />
+</BaseLayout>

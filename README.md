@@ -151,6 +151,15 @@ elle remplace la recherche, sondée comme un lien, mais la sonde est partielle :
 `map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
 seuls les liens courts `naver.me` répondent 404. D'où le repli.
 
+**Une page par lieu** (`/lieux/…/`) pour ceux qui accueillent au moins deux
+événements en cours ou à venir, comme les étiquettes ont la leur à partir de
+deux items : une page à un seul événement recopierait sa carte. Le lieu devient
+alors cliquable sur les cartes ; en dessous, il reste affiché, sans lien. Deux
+graphies à une espace près sont le même lieu, rien de plus malin, on ne devine
+pas. L'adresse est un slug opaque, pas le nom coréen : un dossier en hangul
+déposé par FTPS sur un mutualisé est une surprise qu'on ne veut pas au premier
+déploiement, et ces adresses se cliquent, elles ne se tapent pas.
+
 **La carte de l'onglet** pose un pin par lieu que Kakao Map retrouve. Aucune
 coordonnée n'est stockée : les conditions des API de recherche de Naver comme
 de Kakao interdisent d'en conserver les résultats. C'est donc le navigateur du
