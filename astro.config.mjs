@@ -15,10 +15,43 @@ import sitemap from '@astrojs/sitemap';
 // Un index qui échoue fait échouer le build : un site sans recherche n'est
 // pas une panne de publication, mais un hook qui avalerait l'erreur serait un
 // silence, et c'est le silence que toute la chaîne cherche à fermer.
+//
+// En développement, `astro dev` ne construit rien : le serveur sert alors les
+// fichiers de /pagefind/ du DERNIER build, s'il y en a un. La recherche porte
+// donc sur l'index d'hier, ce qui suffit pour la regarder ; sans build, la
+// page reste sur sa phrase de repli, et le journal dit pourquoi.
 function pagefind() {
+  let outDir = '';
   return {
     name: 'pagefind',
     hooks: {
+      'astro:config:done': ({ config }) => {
+        outDir = fileURLToPath(config.outDir);
+      },
+      'astro:server:setup': ({ server, logger }) => {
+        const dossier = path.join(outDir, 'pagefind');
+        const types = { '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json' };
+        let prévenu = false;
+        server.middlewares.use('/pagefind', async (req, res, next) => {
+          const { readFile } = await import('node:fs/promises');
+          const relatif = decodeURIComponent((req.url ?? '/').split('?')[0]);
+          const fichier = path.normalize(path.join(dossier, relatif));
+          if (!fichier.startsWith(dossier)) return next();
+          try {
+            const corps = await readFile(fichier);
+            res.setHeader('Content-Type', types[path.extname(fichier)] ?? 'application/octet-stream');
+            res.end(corps);
+          } catch {
+            // Le composant est le premier fichier que la page demande : s'il
+            // manque, c'est qu'il n'y a pas eu de build, et on le dit une fois.
+            if (!prévenu && relatif === '/pagefind-ui.js') {
+              prévenu = true;
+              logger.warn('pas d’index de recherche : `npm run build` une fois, le serveur de dev servira le sien');
+            }
+            next();
+          }
+        });
+      },
       'astro:build:done': async ({ dir, logger }) => {
         const { createIndex, close } = await import('pagefind');
         const dossier = fileURLToPath(dir);
@@ -28,7 +61,7 @@ function pagefind() {
         if (fautes.length) throw new Error(`Pagefind : ${fautes.join(' ; ')}`);
         await index.writeFiles({ outputPath: path.join(dossier, 'pagefind') });
         await close();
-        logger.info(`index de recherche : ${page_count} page(s)`);
+        logger.info(`index de recherche écrit, ${page_count} page(s) parcourue(s)`);
       },
     },
   };

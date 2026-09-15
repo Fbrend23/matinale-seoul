@@ -227,8 +227,9 @@ Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brie
 daté à Séoul et un runner en UTC sont à quinze heures l'un de l'autre.
 
 La recherche n'existe que sur le site construit : `astro dev` n'écrit pas
-l'index, et la page `/recherche/` y reste sur sa phrase de repli. Pour la voir,
-`npm run build && npm run preview`.
+l'index, il sert celui du dernier build dans `dist/`. Sans build, la page
+`/recherche/` reste sur sa phrase de repli : `npm run build` une fois, et elle
+cherche dans l'index de ce build-là.
 
 ## Deux jetons Directus, à ne pas confondre
 

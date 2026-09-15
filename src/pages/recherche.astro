@@ -11,10 +11,10 @@
 // événements : un champ qui ne cherche rien serait un mensonge. Sans script,
 // la page renvoie à l'archive.
 //
-// EN DÉVELOPPEMENT, `astro dev` ne construit pas l'index : /pagefind/ n'existe
-// pas, le script du composant répond 404, et la page reste sur sa phrase de
-// repli. La recherche se voit après un build, `npm run build && npm run
-// preview`.
+// EN DÉVELOPPEMENT, `astro dev` ne construit pas l'index : l'intégration sert
+// celui du dernier build (astro.config.mjs). Sans build, le script du
+// composant répond 404 et la page reste sur sa phrase de repli : `npm run
+// build` une fois, et la recherche apparaît, sur l'index de ce build-là.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TetePage from '../components/TetePage.astro';
 import BulletinMeteo from '../components/BulletinMeteo.astro';
