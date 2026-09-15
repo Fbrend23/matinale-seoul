@@ -46,6 +46,7 @@ export async function donnéesDeDémonstration(cheminFixture) {
       section: section.key,
       ...item,
       analysis: item.analysis ?? null,
+      original_headline: item.original_headline ?? null,
       source_lang: item.source_lang ?? null,
       published_at: item.published_at ?? null,
     }))

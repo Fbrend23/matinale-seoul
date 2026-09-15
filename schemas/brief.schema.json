@@ -182,6 +182,12 @@
           "minLength": 1,
           "maxLength": 300
         },
+        "original_headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "description": "Le titre tel que la source l'a écrit, quand elle n'écrit pas en français. Recopié, jamais traduit ni raccourci. Omis pour une source en français."
+        },
         "summary": {
           "type": "string",
           "minLength": 1,

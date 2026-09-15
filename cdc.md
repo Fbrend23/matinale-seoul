@@ -124,6 +124,7 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 | `source_name` | string | |
 | `source_url` | string | |
 | `source_lang` | string | code ISO |
+| `original_headline` | string | nullable ; le titre tel que la source l'a écrit quand elle n'écrit pas en français, recopié sans traduction, affiché sous le titre dans sa langue. La garde n°5 le refuse sans `source_lang`, ou avec `fr` |
 | `published_at` | timestamp | nullable |
 | `link_checked_at` | timestamp | rempli par la garde n°2 |
 

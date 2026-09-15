@@ -424,6 +424,8 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 
 .source { margin: 0; font-size: 0.88rem; color: var(--doux); }
+/* Le titre original, sous le titre français : en retrait, dans sa langue. */
+.titre-original { margin: -0.3rem 0 0.5rem; font-size: 0.92rem; color: var(--doux); }
 
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 

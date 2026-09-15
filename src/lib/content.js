@@ -32,6 +32,9 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {number}        brief        identifiant du brief porteur
  * @property {string}        section      une clé de shared/sections.mjs
  * @property {string}        headline
+ * @property {string|null}   original_headline  le titre tel que la source l'a
+ *   écrit, quand elle n'écrit pas en français ; absent des briefs parus avant
+ *   ce champ
  * @property {string}        summary
  * @property {string|null}   analysis     une au plus par section
  * @property {number}        importance   1 = le plus important de sa section
@@ -218,7 +221,7 @@ function tousLesItems() {
   return uneFois('items', async () => {
     const items = await requestAll(
       `/items/${ITEMS}?sort=importance` +
-        `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
+        `&fields=id,brief,section,headline,original_headline,summary,analysis,importance,tags,` +
         `source_name,source_url,source_lang,published_at`
     );
 

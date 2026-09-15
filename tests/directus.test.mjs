@@ -173,6 +173,24 @@ test('un bulletin fourni est écrit avec le brief', async () => {
   assert.deepEqual(charge(faux1).weather, bulletin);
 });
 
+test('le titre original part avec l item, nul quand il manque', async () => {
+  const faux1 = faux();
+  const item = { section: 'coree', headline: 'Titre', summary: 'Résumé.', importance: 1, source_name: 'Yonhap', source_url: 'https://www.yna.co.kr/x' };
+  await saveBrief(faux1.client, {
+    brief,
+    items: [
+      { ...item, original_headline: '제목', source_lang: 'ko' },
+      { ...item, headline: 'Autre' },
+    ],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const écrits = faux1.posts.find((p) => Array.isArray(p.corps)).corps;
+  assert.equal(écrits[0].original_headline, '제목');
+  assert.equal(écrits[1].original_headline, null);
+});
+
 test("un bulletin absent n'efface pas celui d'un passage précédent", async () => {
   // Le cas concret : un brief publié ce matin AVEC sa météo, rejoué ce soir
   // alors qu'Open-Meteo ne répond plus. La clé doit rester hors de la charge,
