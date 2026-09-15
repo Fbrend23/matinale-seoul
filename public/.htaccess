@@ -18,6 +18,14 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
+  # Le chargeur et le composant de la recherche ne portent pas de hash dans
+  # leur nom, à la différence des fragments d'index (.pf_*), et changent avec
+  # chaque version de Pagefind : un an d'immutabilité laisserait un lecteur
+  # sur l'ancien chargeur face à un nouvel index. Une heure, ils sont petits.
+  <FilesMatch "^pagefind(-ui|-component-ui|-modular-ui|-highlight|-worker)?\.(js|css)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
   # Signal de fin de publication : envoyé seul et en dernier par le workflow.
   # no-store, sinon il répondrait l'ancienne date pendant des minutes.
   <Files "build.json">

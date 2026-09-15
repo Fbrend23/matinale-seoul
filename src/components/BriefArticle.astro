@@ -4,15 +4,21 @@ import AiNotice from './AiNotice.astro';
 import { SECTION_LABELS } from '../../shared/sections.mjs';
 import { longDate } from '../lib/date.js';
 
-const { brief, headingLevel = 'h1' } = Astro.props;
+// `indexable` : la page d'archive du brief le pose, l'accueil non. Le même
+// brief y est rendu deux fois, et la recherche ne doit le trouver qu'une
+// fois, à son adresse durable. Dès qu'une page porte data-pagefind-body,
+// Pagefind ignore toutes celles qui ne le portent pas : rubriques,
+// étiquettes et événements sortent de l'index d'eux-mêmes.
+const { brief, headingLevel = 'h1', indexable = false } = Astro.props;
 const Titre = headingLevel;
 ---
 
-<article class="brief">
+<article class="brief" data-pagefind-body={indexable ? '' : undefined}>
   <header>
     {/* La date est mise en avant : le lecteur doit savoir de quel jour il lit le
-        brief, y compris quand celui du jour n'est pas encore paru. */}
-    <p class="date"><time datetime={brief.date}>{longDate(brief.date)}</time></p>
+        brief, y compris quand celui du jour n'est pas encore paru. La
+        recherche la reprend en métadonnée, et trie dessus par l'attribut. */}
+    <p class="date"><time datetime={brief.date} data-pagefind-meta="date" data-pagefind-sort="date[datetime]">{longDate(brief.date)}</time></p>
     <Titre>{brief.title}</Titre>
     <p class="chapeau">{brief.standfirst}</p>
   </header>

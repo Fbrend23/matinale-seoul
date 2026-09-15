@@ -67,7 +67,8 @@ if (code !== 0) {
   const attendus = [
     ['index.html', ['class="meteo"', 'class="change"', 'aria-current="page"', 'class="brief"']],
     ['briefs/index.html', ['class="mois"']],
-    ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"']],
+    // Le brief est indexé à son adresse d'archive, et là seulement.
+    ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"', 'data-pagefind-body']],
     // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
     // tête de page, et où aller ensuite.
     ['sections/tourisme/index.html', ['class="item"', 'class="meteo"', 'class="change"', 'class="tete"', 'class="jour-bloc"', 'Autres rubriques']],
@@ -82,6 +83,11 @@ if (code !== 0) {
     ['api/evenements.json', ['"events"']],
     ['build.json', []],
     ['sitemap-index.xml', []],
+    // La recherche : la page, et l'index que l'intégration écrit après le
+    // build, dans CE dossier de sortie et pas un autre.
+    ['recherche/index.html', ['id="recherche"', '/pagefind/pagefind-ui.js']],
+    ['pagefind/pagefind-ui.js', []],
+    ['pagefind/pagefind-entry.json', []],
   ];
 
   for (const [fichier, marques] of attendus) {
@@ -117,8 +123,14 @@ if (code !== 0) {
     }
   }
 
+  // L'accueil rend le même brief : il ne doit pas être indexé une seconde fois.
+  {
+    const texte = await readFile(path.join(dist, 'index.html'), 'utf8').catch(() => '');
+    if (texte.includes('data-pagefind-body')) problèmes.push('index.html : data-pagefind-body présent, le brief du jour serait indexé deux fois');
+  }
+
   // Les JSON sont du JSON.
-  for (const fichier of ['api/recent.json', 'api/evenements.json', 'build.json']) {
+  for (const fichier of ['api/recent.json', 'api/evenements.json', 'build.json', 'pagefind/pagefind-entry.json']) {
     try {
       JSON.parse(await readFile(path.join(dist, fichier), 'utf8'));
     } catch (e) {
