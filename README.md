@@ -117,6 +117,7 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 | dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots, lieu sans hangul et sans fiche Naver Map | événement écarté |
 | domaine hors allowlist | événement écarté, **pas** de brief retenu en brouillon |
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
+| déjà connu par le lieu : même lieu, dates qui se recouvrent, et la même source ou le même thème avec un nom à moitié proche | événement écarté ; le nom seul en laissait passer, le lieu seul en écarterait trop, COEX accueille plusieurs pop-ups la même semaine |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour, prolongation, report, si la source répond |
 | source morte | événement écarté ; un accès refusé le garde, sans date |
 | billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |

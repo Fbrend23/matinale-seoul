@@ -21,7 +21,7 @@ Ce qui n'est pas un événement n'y va pas : boutique permanente qui ouvre, prom
 
 ## Déjà connu, à ne pas reproposer
 
-L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont changé** (prolongation, report) : repropose-le alors avec le même nom et les dates nouvelles.
+L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont changé** (prolongation, report) : repropose-le alors avec le même nom et les dates nouvelles. Un événement de cette liste trouvé sous un autre nom, au même lieu, aux mêmes dates et du même thème, est le même : ne le repropose pas.
 
 {{CONNUS}}
 

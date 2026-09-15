@@ -389,7 +389,10 @@ pas de redire ce qui s'y trouve :
   déjà connu : ne le propose pas une seconde fois, **sauf si ses dates ont
   changé** (prolongation, report). Repropose-le alors avec le même `name` et
   les dates nouvelles : l'ingestion corrige la fiche au lieu d'en créer une.
-  Si rien n'est disponible, continue sans.
+  Un événement déjà connu au même lieu, aux mêmes dates et du même thème est
+  le même, quel que soit le nom que lui donne une autre rédaction : ne le
+  repropose pas sous un autre nom, l'ingestion l'écarterait. Si rien n'est
+  disponible, continue sans.
 - **Pars des pistes de la veille.** La section « Pistes événements » de
   `veille/AAAA-MM-JJ.md` a été cherchée par Gemini avant ta session, puis
   passée au tri de l'ingestion : allowlist, dates, doublons de l'onglet, lien

@@ -18,13 +18,79 @@ import {
   checkLinks,
   checkAllowlist,
   findDuplicates,
+  similarity,
+  hostOf,
   wordCount,
   MAX_SUMMARY_WORDS,
 } from './guards.mjs';
-import { enCoréen } from '../../shared/evenements.mjs';
+import { enCoréen, normaliserLieu, périodesSeRecouvrent } from '../../shared/evenements.mjs';
 
 /** Les liens facultatifs d'un événement : vérifiés, jamais décisifs. */
 const LIENS_FACULTATIFS = ['booking_url', 'map_url'];
+
+/**
+ * Le seuil du doublon par le lieu, bien sous celui du nom seul.
+ *
+ * Deux rédactions ne nomment presque jamais un pop-up dans les mêmes mots, et
+ * le nom seul, à 0,85, laisse passer « Pop-up Pokémon Center Seongsu » contre
+ * « Pokémon Center Seongsu : le pop-up d'automne ». Quand le lieu, les dates
+ * et le thème concordent déjà, il ne reste au nom qu'à confirmer, et la
+ * moitié des bigrammes y suffit.
+ */
+export const DUPLICATE_THRESHOLD_LIEU = 0.5;
+
+/** L'hôte et le chemin d'une source, sans paramètres : le même article, quel que soit son utm. */
+function cléSource(url) {
+  try {
+    const u = new URL(url);
+    return `${hostOf(url)}${u.pathname.replace(/\/+$/, '')}`;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * L'événement connu dont celui-ci est le double, par le lieu.
+ *
+ * Le nom ne suffit pas, voir DUPLICATE_THRESHOLD_LIEU, et le lieu ne suffit
+ * pas non plus : COEX ou Seongsu accueillent plusieurs pop-ups la même
+ * semaine. Il faut donc le lieu ET des dates qui se recouvrent, ET l'une de
+ * ces deux preuves : la même source, le même article annonce le même
+ * événement quel que soit le nom qu'on lui donne, ou le même thème et un nom
+ * qui se ressemble à moitié. Deux pop-ups « personnages » à Seongsu la même
+ * semaine, Chiikawa et Sanrio, ne se ressemblent pas à moitié.
+ *
+ * Une fiche connue sans lieu, sans dates ou sans thème ne peut pas répondre :
+ * la règle se tait, celle du nom a déjà parlé.
+ *
+ * @param {object} event
+ * @param {object[]} connus
+ * @param {number} [seuil]
+ * @returns {{connu: object, preuve: string, score: number}|null}
+ */
+export function doublonParLieu(event, connus, seuil = DUPLICATE_THRESHOLD_LIEU) {
+  const lieu = normaliserLieu(event.venue);
+  if (!lieu) return null;
+  const source = cléSource(event.source_url);
+
+  let meilleur = null;
+  for (const connu of connus) {
+    if (!connu.venue || !connu.start_date || !connu.end_date) continue;
+    if (normaliserLieu(connu.venue) !== lieu) continue;
+    if (!périodesSeRecouvrent(event, connu)) continue;
+
+    if (source && cléSource(connu.source_url) === source) {
+      return { connu, preuve: 'même source', score: 1 };
+    }
+    if (connu.theme && connu.theme === event.theme) {
+      const score = similarity(event.name, connu.name ?? '');
+      if (score >= seuil && (!meilleur || score > meilleur.score)) {
+        meilleur = { connu, preuve: `même thème, nom à ${score.toFixed(2)}`, score };
+      }
+    }
+  }
+  return meilleur;
+}
 
 /**
  * « 2026-02-31 » passe le motif du schéma. Seul un aller-retour par Date
@@ -173,6 +239,25 @@ export async function contrôlerÉvénements(
     }
   }
   survivants = survivants.filter((event) => !doublons.some((d) => d.item.event === event) || àProlonger.has(event));
+
+  // --- Doublons, sur le lieu ---
+  // Même lieu, dates qui se recouvrent, et la même source ou le même thème
+  // avec un nom qui se ressemble à moitié : c'est le même événement sous un
+  // autre nom. Même sortie que le doublon par le nom : mêmes dates, écarté ;
+  // dates nouvelles, prolongation.
+  survivants = survivants.filter((event) => {
+    if (àProlonger.has(event)) return true;
+    const trouvé = doublonParLieu(event, connus);
+    if (!trouvé) return true;
+    const { connu, preuve } = trouvé;
+    const datesNouvelles = connu.start_date !== event.start_date || connu.end_date !== event.end_date;
+    if (datesNouvelles) {
+      àProlonger.set(event, connu);
+      return true;
+    }
+    écarter(event, `déjà connu par le lieu (${preuve}) : « ${String(connu.name ?? '').slice(0, 50)} »`);
+    return false;
+  });
 
   // --- La source : vivante, refusée, ou morte ---
   const sondes = await checkLinks(survivants, { fetcher, timeoutMs });

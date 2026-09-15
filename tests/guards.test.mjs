@@ -13,6 +13,8 @@ import {
   findDuplicates,
   checkCoherence,
   similarity,
+  normalize,
+  DUPLICATE_THRESHOLD,
   sourceSpread,
   emptyNotes,
   VIDÉE_PAR_LES_GARDES,
@@ -434,17 +436,28 @@ test('une rubrique vidée de tous ses items reste présente, et vide', () => {
 // Dice y divise par zéro, et le code retombe sur une comparaison directe.
 
 test('deux titres trop courts pour un bigramme se comparent quand même', () => {
-  assert.equal(similarity('', ''), 1, 'deux vides sont identiques');
   assert.equal(similarity('a', 'a'), 1);
   assert.equal(similarity('a', 'b'), 0);
   assert.equal(similarity('É', 'e'), 1, "l'accent et la casse ne comptent pas");
   assert.equal(similarity('a', ''), 0);
 });
 
-test('la ponctuation seule ne vaut pas un titre', () => {
+test('deux titres réduits à rien ne sont pas le double l un de l autre', () => {
   // normalize() ne garde que lettres et chiffres : ces deux-là se réduisent au
-  // vide, et doivent donc se ressembler parfaitement plutôt que de lever.
-  assert.equal(similarity('...', '!!!'), 1);
+  // vide. Ils ne doivent pas lever, et ils ne doivent pas non plus se
+  // ressembler : un vide n'est le double de personne.
+  assert.equal(similarity('', ''), 0);
+  assert.equal(similarity('...', '!!!'), 0);
+});
+
+test('un titre coréen se compare comme un autre', () => {
+  // Le hangul se réduisait au vide, et deux noms coréens sans rapport
+  // scoraient 1 : tout événement coréen passait pour déjà connu.
+  assert.notEqual(normalize('포켓몬센터 성수'), '');
+  assert.equal(similarity('아이유 콘서트', '아이유 콘서트'), 1);
+  assert.ok(similarity('아이유 콘서트', '뉴진스 팬미팅') < 0.5);
+  assert.ok(similarity('포켓몬센터 성수 팝업', '포켓몬센터 성수 팝업스토어') > DUPLICATE_THRESHOLD);
+  assert.equal(wordCount('안녕 세상'), 2);
 });
 
 test('le doublon retenu est le PLUS ressemblant, pas le premier venu', () => {
