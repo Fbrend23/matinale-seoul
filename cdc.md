@@ -126,6 +126,7 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 | `source_lang` | string | code ISO |
 | `published_at` | timestamp | nullable |
 | `link_checked_at` | timestamp | rempli par la garde n°2 |
+| `link_dead_at` | timestamp | nullable ; posé par le contrôle hebdomadaire des liens (workflow `Liens`) quand la source a répondu 404 ou 410 deux fois ; le site affiche alors la source sans lien, l'item reste |
 
 ### `mat_events`
 
@@ -146,6 +147,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |
 | `address` | string | nullable ; l'adresse routière coréenne vue par l'agent. La page Événements la géocode dans le navigateur (SDK Kakao Maps) pour poser un pin ; aucune coordonnée n'est stockée, les conditions de Naver comme de Kakao l'interdisent. Sans hangul, l'ingestion retire le champ |
 | `link_checked_at` | timestamp | rempli par la sonde de la source |
+| `link_dead_at` | timestamp | nullable ; comme pour un item |
 
 ### Trois développements dans `provision-client.mjs`
 

@@ -34,9 +34,11 @@ GitHub ──push (paths: inbox/**)──▶ Actions
 
 **Aucun cron dans la chaîne.** Le push déclenche tout, et le site ne se
 reconstruit que lorsqu'il a quelque chose de neuf à dire. Rejouer un run raté
-est un bouton dans l'onglet Actions, avec ses journaux. Deux surveillances, elles,
-sont bien à l'heure (`Rejeu` à 8 h 15 et 9 h 15, `Veille` à 10 h, heure de Séoul),
-mais aucune des deux ne reconstruit quoi que ce soit de son propre chef.
+est un bouton dans l'onglet Actions, avec ses journaux. Trois surveillances, elles,
+sont bien à l'heure (`Rejeu` à 8 h 15 et 9 h 15, `Veille` à 10 h, `Liens` le
+dimanche à midi, heure de Séoul). Les deux premières ne reconstruisent rien de
+leur propre chef ; la troisième relance la Publication seulement quand elle a
+marqué un lien mort, et le site a alors quelque chose de neuf à dire.
 
 L'avis « le brief du jour n'est pas encore paru » est la seule chose qui ne peut
 pas être décidée au build : « aujourd'hui » y serait figé. Il est calculé chez le
@@ -99,6 +101,19 @@ imputait alors à la source ce qui venait de la garde.
 
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
+
+**Et après la parution, les liens qui meurent.** La garde 2 ne regarde une source
+qu'une fois, le matin où elle paraît. Le workflow `Liens`, le dimanche à midi
+heure de Séoul, revisite les sources des quatre-vingt-dix derniers jours, items
+et événements, et pose `link_dead_at` sur celles qui répondent 404 ou 410 deux
+fois à une minute d'écart. Le site affiche alors le nom de la source sans lien,
+avec la note « page retirée » ; l'item reste, il disait vrai le jour où il l'a
+dit. Une page revenue perd sa marque. Les 5xx, les silences et les refus ne
+marquent jamais : un site en panne un dimanche n'a pas perdu son article. S'il
+a marqué quelque chose, le job relance la Publication pour que le site cesse
+de lier sans attendre le lendemain ; un lien mort n'est pas une panne, le job
+sort en succès, et seul un CMS muet le fait échouer. Le flux RSS, figé à la
+parution, garde le lien.
 
 ## Pop-ups et événements
 
@@ -187,6 +202,7 @@ npm run rendu            # construit le site contre un faux CMS et vérifie chaq
 npm run dev              # demande DIRECTUS_URL et un jeton de lecture
 npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu de la fixture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
+npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 ```

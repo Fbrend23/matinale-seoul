@@ -67,7 +67,9 @@ if (code !== 0) {
   const attendus = [
     ['index.html', ['class="meteo"', 'class="change"', 'aria-current="page"', 'class="brief"']],
     ['briefs/index.html', ['class="mois"']],
-    ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"']],
+    // Le deuxième item de la fixture porte link_dead_at : sa source sort
+    // sans lien, et le dit.
+    ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"', 'class="source-morte"', 'page retirée']],
     // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
     // tête de page, et où aller ensuite.
     ['sections/tourisme/index.html', ['class="item"', 'class="meteo"', 'class="change"', 'class="tete"', 'class="jour-bloc"', 'Autres rubriques']],

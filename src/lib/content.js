@@ -40,6 +40,9 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {string}        source_url
  * @property {string|null}   source_lang
  * @property {string|null}   published_at
+ * @property {string|null}   link_dead_at  posé par le contrôle hebdomadaire des
+ *   liens quand la source a répondu 404 ou 410 deux fois ; le site affiche alors
+ *   la source sans lien
  */
 
 /**
@@ -86,6 +89,7 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  *   pin, aucune coordonnée n'est stockée
  * @property {string}      date_created quand l'ingestion l'a écrit, la date de
  *   publication du flux, stable d'un build à l'autre
+ * @property {string|null} link_dead_at comme pour un item
  */
 
 
@@ -219,7 +223,7 @@ function tousLesItems() {
     const items = await requestAll(
       `/items/${ITEMS}?sort=importance` +
         `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
-        `source_name,source_url,source_lang,published_at`
+        `source_name,source_url,source_lang,published_at,link_dead_at`
     );
 
     const parBrief = new Map();
@@ -326,7 +330,7 @@ export function listEvents() {
       `/items/${EVENTS}?sort=start_date,end_date,name` +
         `&filter[end_date][_gte]=${seoulToday()}` +
         `&fields=id,brief,name,kind,theme,venue,area,start_date,end_date,summary,` +
-        `source_name,source_url,source_lang,booking_url,map_url,address,date_created`
+        `source_name,source_url,source_lang,booking_url,map_url,address,date_created,link_dead_at`
     )
   );
 }

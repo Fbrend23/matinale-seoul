@@ -424,6 +424,10 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 
 .source { margin: 0; font-size: 0.88rem; color: var(--doux); }
+/* Une source dont la page a disparu : le nom reste, en texte simple, et la
+   note à côté dit pourquoi il n'y a pas de lien. Pas de barré, la source
+   n'est pas fausse, elle est partie. */
+.source-morte { color: var(--doux); }
 
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 

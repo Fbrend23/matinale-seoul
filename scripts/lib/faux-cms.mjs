@@ -48,12 +48,15 @@ export async function donnéesDeDémonstration(cheminFixture) {
       analysis: item.analysis ?? null,
       source_lang: item.source_lang ?? null,
       published_at: item.published_at ?? null,
+      // Le deuxième item porte la marque du contrôle des liens : sa source
+      // doit sortir sans lien, et c'est ce que le contrôle de rendu attend.
+      link_dead_at: n === 2 ? `${brief.date}T03:00:00.000Z` : null,
     }))
   );
 
   // Deux événements avec adresse, deux sans : la carte pose les premiers à
   // l'adresse, et cherche les seconds par leur nom.
-  const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, address: null, date_created: `${today}T00:00:00.000Z` };
+  const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, address: null, link_dead_at: null, date_created: `${today}T00:00:00.000Z` };
   const events = [
     { ...base, id: 1, ...brief.events[0], start_date: jourPlus(today, -12), end_date: jourPlus(today, 30) },
     { ...base, id: 2, name: 'Exposition Jujutsu Kaisen', kind: 'exposition', theme: 'anime', venue: '더현대 서울', area: 'Yeouido', address: '서울 영등포구 여의대로 108', start_date: jourPlus(today, -20), end_date: jourPlus(today, 3) },
