@@ -66,7 +66,7 @@ const normaliser = (texte) => (texte ?? '').replace(/\s+/g, '').toLowerCase();
  *
  * @param {HTMLElement} carte  l'article de l'événement
  * @param {string} où          l'adresse, la nôtre ou celle que Kakao a rendue
- * @param {() => void} surLien  avant de suivre le lien vers la carte
+ * @param {(e: MouseEvent) => void} surLien  le clic sur le lien vers la carte
  */
 function bulle(carte, où, surLien) {
   const boîte = document.createElement('div');
@@ -156,23 +156,34 @@ export function préparerLaCarte({ bloc, cartes, surTéléphone }) {
     // c'est un élément à nous : le clic s'écoute dessus.
     épingle.addEventListener('click', () => {
       infobulle.setContent(
-        bulle(article, où, () => {
-          // Le lien mène à la carte de l'événement : elle doit être visible,
-          // donc son groupe déplié, ce que « Plus tard » n'est pas sur un
-          // téléphone.
+        bulle(article, où, (e) => {
+          // Le lien mène à la carte de l'événement. Pas par l'ancre : la
+          // carte Kakao avale la navigation d'un lien posé sur elle. On
+          // déplie le groupe, « Plus tard » ne l'est pas sur un téléphone, et
+          // on y va soi-même.
+          e.preventDefault();
           const groupe = article.closest('details');
           if (groupe && !groupe.open) groupe.open = true;
+          infobulle.setMap(null);
+          article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.replaceState(null, '', `#${article.id}`);
         })
       );
       infobulle.setPosition(position);
       infobulle.setMap(carte);
+      // Le pin sous les yeux, et la bulle au-dessus de lui, entière : au
+      // bord de la carte elle serait coupée.
+      carte.panTo(position);
     });
 
+    // clickable : un clic sur le pin ou la bulle ne compte pas comme un clic
+    // sur la carte, qui fermerait la bulle qu'on vient d'ouvrir.
     const pin = new maps.CustomOverlay({
       position,
       content: épingle,
       xAnchor: 0.5,
       yAnchor: 0.5,
+      clickable: true,
       map: article.hidden ? null : carte,
     });
     pins.set(article, pin);
@@ -230,7 +241,10 @@ export function préparerLaCarte({ bloc, cartes, surTéléphone }) {
   function abandonner(raison) {
     console.debug('[carte]', raison);
     conteneur.hidden = true;
-    if (note) note.textContent = 'La carte Kakao n’a pas pu se charger.';
+    if (note) {
+      note.textContent = 'La carte Kakao n’a pas pu se charger.';
+      note.hidden = false;
+    }
     if (compte) compte.textContent = '0';
   }
 
@@ -247,7 +261,7 @@ export function préparerLaCarte({ bloc, cartes, surTéléphone }) {
       center: new maps.LatLng(SEOUL.lat, SEOUL.lng),
       level: NIVEAU_VILLE,
     });
-    infobulle = new maps.CustomOverlay({ content: '', xAnchor: 0.5, yAnchor: 1.2, zIndex: 2 });
+    infobulle = new maps.CustomOverlay({ content: '', xAnchor: 0.5, yAnchor: 1.2, zIndex: 2, clickable: true });
     maps.event.addListener(carte, 'click', () => infobulle.setMap(null));
 
     // Tous les lieux d'un coup, une réponse à la fois : chaque pin se pose
