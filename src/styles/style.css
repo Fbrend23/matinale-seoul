@@ -564,10 +564,18 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   color: var(--doux);
 }
 .genre { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-/* Le badge des jours restants, à droite. En couleur sous une semaine : c'est
-   le moment d'y aller. */
+/* Le badge des jours restants, à droite. Sous une semaine il passe en pastille
+   pleine, la géométrie de .pastille mais à l'accent : c'est le moment d'y
+   aller, et un simple texte en couleur ne le disait pas assez fort. */
 .delai { font-variant-numeric: tabular-nums; white-space: nowrap; }
-.delai[data-urgent="oui"] { color: var(--accent); font-weight: 600; }
+.delai[data-urgent="oui"] {
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--fond);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
 
 /* Les filtres par thème : des boutons-pastilles, celui qui est enfoncé prend
    la couleur du texte. */
