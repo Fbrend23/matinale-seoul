@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TetePage from '../../components/TetePage.astro';
 import BulletinMeteo from '../../components/BulletinMeteo.astro';
+import MotDuJour from '../../components/MotDuJour.astro';
 import CoursDuChange from '../../components/CoursDuChange.astro';
 import { listBriefs } from '../../lib/content.js';
 import { longDate } from '../../lib/date.js';
@@ -35,6 +36,7 @@ const dernier = plusRecent;
   description={`${briefs.length} briefs publiés depuis le ${plusAncien.date}.`}
 >
   <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <MotDuJour slot="cote" date={dernier.date} />
   <CoursDuChange slot="gauche" fx={dernier.fx} />
 
   <TetePage surtitre="Tous les briefs" titre="Archive">

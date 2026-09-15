@@ -1,0 +1,56 @@
+---
+// Tous les mots du jour parus, du plus récent au plus ancien.
+//
+// Le widget montre un mot ; cette page est le cahier. Chaque date mène à son
+// brief quand il existe, et la page est dans l'index de la recherche : un mot
+// coréen ou son sens s'y retrouve.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TetePage from '../components/TetePage.astro';
+import BulletinMeteo from '../components/BulletinMeteo.astro';
+import CoursDuChange from '../components/CoursDuChange.astro';
+import { listBriefs, dernierBrief } from '../lib/content.js';
+import { motsParus, MOTS } from '../lib/vocabulaire.js';
+import { longDate, shortDate } from '../lib/date.js';
+
+const dernier = await dernierBrief();
+const parus = motsParus(dernier.date);
+// DEBUT est antérieur au premier brief : la liste n'est jamais vide, et le
+// dernier élément est le premier jour. Nommé ici pour que le gabarit ne le
+// suppose pas.
+const premier = parus[parus.length - 1] ?? { date: dernier.date };
+
+// Les jours qui ont un brief : la date y mène. Les autres, un jour sans
+// parution, gardent leur mot, sans lien.
+const briefs = new Map((await listBriefs()).map((b) => [b.date, b.slug]));
+---
+
+<BaseLayout title="Vocabulaire" description={`${parus.length} mots de coréen, un par jour, niveau débutant.`}>
+  <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <CoursDuChange slot="gauche" fx={dernier.fx} />
+
+  <TetePage surtitre="Un mot par jour" titre="Vocabulaire">
+    {parus.length} mot{parus.length > 1 ? 's' : ''} de coréen depuis le {longDate(premier.date)},
+    niveau débutant, avec sa romanisation et une phrase. La liste en compte {MOTS.length} et se rejoue
+    quand elle est épuisée.
+  </TetePage>
+
+  <ol class="mot-liste" data-pagefind-body>
+    {parus.map((fiche) => (
+      <li class="mot-fiche" id={`mot-${fiche.date}`}>
+        <p class="mot-date">
+          {briefs.has(fiche.date) ? (
+            <a href={`/briefs/${briefs.get(fiche.date)}/`}><time datetime={fiche.date}>{shortDate(fiche.date)}</time></a>
+          ) : (
+            <time datetime={fiche.date}>{shortDate(fiche.date)}</time>
+          )}
+        </p>
+        <p class="mot-hangul" lang="ko">{fiche.mot}</p>
+        <p class="mot-sens"><span class="mot-roman">{fiche.romanisation}</span> · {fiche.sens}</p>
+        <p class="mot-exemple">
+          <span lang="ko">{fiche.exemple.ko}</span>
+          <span class="mot-traduction">{fiche.exemple.fr}</span>
+        </p>
+      </li>
+    ))}
+  </ol>
+</BaseLayout>
