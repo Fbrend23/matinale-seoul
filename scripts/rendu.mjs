@@ -71,7 +71,9 @@ if (code !== 0) {
     // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
     // tête de page, et où aller ensuite.
     ['sections/tourisme/index.html', ['class="item"', 'class="meteo"', 'class="change"', 'class="tete"', 'class="jour-bloc"', 'Autres rubriques']],
-    ['evenements/index.html', ['id="en-ce-moment"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'map.naver.com/p/search/']],
+    // L'adresse est posée sur la carte d'événement pour la carte Kakao ; le
+    // bloc carte, lui, n'existe pas sans clé, et ce contrôle n'en a pas.
+    ['evenements/index.html', ['id="en-ce-moment"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'map.naver.com/p/search/', 'data-adresse="서울 성동구 아차산로 7"']],
     ['evenements.xml', ['<item>', '/evenements/#evenement-']],
     ['rss.xml', ['<item>', '/briefs/brief-2026-09-04/']],
     ['api/recent.json', ['"headlines"']],
@@ -101,6 +103,15 @@ if (code !== 0) {
     const texte = await readFile(path.join(dist, fichier), 'utf8').catch(() => '');
     if (texte.includes('Terminé, ne doit pas paraître')) {
       problèmes.push(`${fichier} : un événement terminé y paraît`);
+    }
+  }
+
+  // Sans clé, la page n'a ni bloc carte ni SDK Kakao : un site sans compte
+  // Kakao reste un site, et n'appelle personne.
+  {
+    const texte = await readFile(path.join(dist, 'evenements/index.html'), 'utf8').catch(() => '');
+    for (const m of ['id="sur-la-carte"', 'dapi.kakao.com']) {
+      if (texte.includes(m)) problèmes.push(`evenements/index.html : « ${m} » présent sans KAKAO_MAPS_APP_KEY`);
     }
   }
 

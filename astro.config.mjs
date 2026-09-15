@@ -24,6 +24,11 @@ export default defineConfig({
       // `access: 'secret'` fait échouer le build si le jeton est référencé
       // depuis du code client. Une garde mécanique, plus sûre que la discipline.
       DIRECTUS_TOKEN: envField.string({ context: 'server', access: 'secret' }),
+      // La clé JavaScript de Kakao Maps, elle, est facultative et publique :
+      // elle n'ouvre que la carte de la page Événements, et Kakao la
+      // restreint aux domaines déclarés. Sans elle, la page se construit sans
+      // le bloc carte, et le contrôle de rendu tourne sans compte Kakao.
+      KAKAO_MAPS_APP_KEY: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
 });

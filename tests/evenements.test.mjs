@@ -169,6 +169,11 @@ test('un événement terminé n a pas de badge', () => {
 // un accessoire n'a pas de veto.
 
 import { cohérenceÉvénement, contrôlerÉvénements } from '../scripts/lib/evenements.mjs';
+import { validateSchema } from '../scripts/lib/guards.mjs';
+
+// La fixture, pour valider un événement dans un brief entier : le schéma ne
+// se valide qu'à la racine.
+const exempleDeBrief = await lireJSON('tests', 'fixtures', 'brief-avec-evenements.json');
 
 const { domains: domaines } = await lireJSON('config', 'sources.json');
 const AUJOURDHUI = '2026-09-04';
@@ -303,6 +308,29 @@ test('une fiche Naver Map n est pas une source : elle échappe à l allowlist', 
 
   assert.equal(écartés.length, 0);
   assert.equal(retenus[0].map_url, 'https://naver.me/abc');
+});
+
+test('une adresse sans hangul retire le CHAMP, pas l événement ; en coréen, elle passe', async () => {
+  // La carte géocode du coréen : une adresse en lettres latines ne poserait
+  // rien. Le champ saute, l'événement reste, et le journal le dit.
+  const latine = sain({ address: '7 Achasan-ro, Seongdong-gu' });
+  const coréenne = sain({ name: 'Autre pop-up', address: '서울 성동구 아차산로 7' });
+  const { retenus, écartés, liensRetirés } = await contrôler([latine, coréenne]);
+
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 2);
+  assert.ok(!('address' in retenus[0]));
+  assert.equal(retenus[1].address, '서울 성동구 아차산로 7');
+  assert.deepEqual(liensRetirés.map((l) => l.champ), ['address']);
+  assert.match(liensRetirés[0].raison, /sans hangul/);
+  assert.equal(latine.address, '7 Achasan-ro, Seongdong-gu', "l'objet de l'agent n'est pas retouché");
+});
+
+test('le schéma accepte une adresse, facultative, et la borne à 200 caractères', () => {
+  const brief = { ...exempleDeBrief, events: [sain({ address: '서울 성동구 아차산로 7' })] };
+  assert.deepEqual(validateSchema(brief, schéma), []);
+  assert.deepEqual(validateSchema({ ...brief, events: [sain()] }, schéma), []);
+  assert.notDeepEqual(validateSchema({ ...brief, events: [sain({ address: '서'.repeat(201) })] }, schéma), []);
 });
 
 test('les objets de l agent ne sont jamais retouchés', async () => {

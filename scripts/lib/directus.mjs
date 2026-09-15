@@ -330,6 +330,7 @@ export async function saveEvents(client, { events, briefId, status = 'published'
       source_lang: event.source_lang ?? null,
       booking_url: event.booking_url ?? null,
       map_url: event.map_url ?? null,
+      address: event.address ?? null,
       link_checked_at: event.link_checked_at ?? null,
     }))
   );

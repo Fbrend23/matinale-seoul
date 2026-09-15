@@ -466,6 +466,7 @@ test('les événements partent en un seul POST, rattachés au brief', async () =
   // dit exactement ce qu'on sait.
   assert.equal(f.posts[0].corps[0].map_url, null);
   assert.equal(f.posts[0].corps[0].booking_url, null);
+  assert.equal(f.posts[0].corps[0].address, null);
 });
 
 test('sans événement à écrire, rien n est POSTé', async () => {

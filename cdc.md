@@ -144,6 +144,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `summary` | text | 40 mots max |
 | `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |
 | `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |
+| `address` | string | nullable ; l'adresse routière coréenne vue par l'agent. La page Événements la géocode dans le navigateur (SDK Kakao Maps) pour poser un pin ; aucune coordonnée n'est stockée, les conditions de Naver comme de Kakao l'interdisent. Sans hangul, l'ingestion retire le champ |
 | `link_checked_at` | timestamp | rempli par la sonde de la source |
 
 ### Trois développements dans `provision-client.mjs`
