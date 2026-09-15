@@ -87,7 +87,8 @@ const groupes = [
         <h2>Sur la carte <span class="detail">les lieux que Kakao Map retrouve</span> <span class="compte">{àPlacer}</span></h2>
       </summary>
       <div class="carte-kakao" role="region" aria-label="Carte Kakao des événements"></div>
-      <p class="carte-note">Un pin par lieu que Kakao Map retrouve, à l’adresse vue par l’agent ou à son nom, posé à l’ouverture de la carte.</p>
+      {/* Muette tant que la carte vient ; si Kakao refuse, le script le dit ici. */}
+      <p class="carte-note" hidden></p>
     </details>
   )}
 
