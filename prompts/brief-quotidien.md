@@ -63,7 +63,7 @@ en un seul tour, et fais la veille toi-même avec les pages de rubrique
 ci-dessous. Si eux aussi sont introuvables (premier jour, site en panne),
 continue sans.
 
-Compose ensuite l'actualité des dernières 24 heures pour quatre sections :
+Compose ensuite l'actualité des dernières 24 heures pour cinq sections :
 
 - `tourisme` : voyager en Corée, y entrer, y séjourner : visas, K-ETA,
   transports, aéroports, hébergement, événements ouverts au public.
@@ -73,6 +73,11 @@ Compose ensuite l'actualité des dernières 24 heures pour quatre sections :
   e-sport, plateformes. Sans angle coréen particulier : ce qui compte pour le
   secteur, d'où que ça vienne. Ne pas y ranger ce qui relève de `tech`, une
   puce graphique est de la tech, un moteur de jeu est du jeu vidéo.
+- `sport` : la Corée d'abord, le monde ensuite. Le sport en Corée, KBO, K
+  League, équipes nationales, grands rendez-vous à Séoul ; les Coréens à
+  l'étranger, Son Heung-min, Kim Min-jae, les golfeuses de la LPGA ; puis les
+  grands événements mondiaux, finales, Jeux, Coupes du monde, quand ils
+  comptent pour quelqu'un qui vit à Séoul. L'e-sport reste dans `gaming`.
 
 Trois à six items par section. Vise l'utile pour quelqu'un qui vit à Séoul ou
 s'y rend, pas l'exhaustivité. **Une section qui a trois items est finie** :
@@ -118,6 +123,9 @@ brief de même taille. D'où un budget, à tenir :
     `https://www.inven.co.kr/webzine/news/`. Eurogamer, IGN, PC Gamer,
     GamesIndustry.biz bloquent le fetch ou ne rendent que leur menu : ne
     les fetche pas, une recherche `site:` chacun, au plus.
+  - `sport` : `https://en.yna.co.kr/sports`, `https://www.koreatimes.co.kr/sports`,
+    `https://www.bbc.com/sport`. ESPN et L'Équipe bloquent le fetch : une
+    recherche `site:` chacun, au plus.
   Une page qui rend un menu sans titres est une page qui bloque : ne la
   redemande pas, passe à la recherche `site:`.
 - **La recherche sert à vérifier une piste, pas à en trouver.** Un titre vu
@@ -166,7 +174,10 @@ Recopier sa forme est sans risque.
           "summary": "Quarante mots au maximum, rédigés par toi.",
           "analysis": "Facultatif. Un seul item par section peut en porter une.",
           "importance": 1,
-          "tags": ["k-eta", "immigration"],
+          "tags": [
+            "k-eta",
+            "immigration"
+          ],
           "source_name": "Yonhap",
           "source_url": "https://en.yna.co.kr/view/AEN20260906001200320",
           "source_lang": "ko",
@@ -182,7 +193,9 @@ Recopier sa forme est sans risque.
           "headline": "Un deuxième item, dans une autre section",
           "summary": "Un brief demande au moins deux sections pourvues : avec une seule, il est rejeté.",
           "importance": 1,
-          "tags": ["assemblee-nationale"],
+          "tags": [
+            "assemblee-nationale"
+          ],
           "source_name": "Korea Herald",
           "source_url": "https://www.koreaherald.com/article/10695567",
           "source_lang": "en"
@@ -202,12 +215,20 @@ Recopier sa forme est sans risque.
           "headline": "Un studio reporte son jeu phare au printemps",
           "summary": "Le report tient à un moteur refondu en cours de route, dit le studio, et non à un manque de contenu.",
           "importance": 1,
-          "tags": ["report", "studios"],
+          "tags": [
+            "report",
+            "studios"
+          ],
           "source_name": "Eurogamer",
           "source_url": "https://www.eurogamer.net/exemple-de-report",
           "source_lang": "en"
         }
       ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Journée creuse côté sport : pas de match ni d'annonce vérifiable ce matin.",
+      "items": []
     }
   ],
   "events": [
@@ -269,7 +290,7 @@ bloque. Un brief absent se rattrape, un brief faux se lit.
 
 Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 
-- **Les quatre sections sont toujours présentes**, dans cet ordre. Une section
+- **Les cinq sections sont toujours présentes**, dans cet ordre. Une section
   sans actualité garde `"items": []` **et** reçoit un `empty_note` d'une phrase
   qui dit pourquoi. Ne remplis jamais une section pour la remplir.
 - **`summary` : 40 mots maximum.** C'est la contrainte la plus facile à
@@ -286,7 +307,7 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 - **`events`** : chaque événement porte `start_date` **et** `end_date`, des
   dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
   `pokemon`, `kpop`, `gaming`, `personnages`, `mode`, `seoul`, `culture`,
-  `food` ; un `summary` de 40 mots au plus ; un `venue` en coréen, sauf si `map_url` est donné. Un
+  `food`, `sport` ; un `summary` de 40 mots au plus ; un `venue` en coréen, sauf si `map_url` est donné. Un
   événement fautif est écarté, le brief passe, mais un champ inventé dans un
   événement, lui, est une faute de schéma, et le schéma juge le fichier entier.
 - Aucun autre champ que ceux listés. Un champ inventé fait rejeter le brief.
@@ -305,7 +326,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   sera recalé pour cela, c'est une habitude à prendre.
 - Préfère les sources déjà connues du site, Yonhap, Korea Herald, Korea Times,
   Hankyoreh, Chosun, KBS, Reuters, AP, Ars Technica, The Verge, TechCrunch,
-  Eurogamer, GamesIndustry.biz, Polygon, PC Gamer, Inven. Une
+  Eurogamer, GamesIndustry.biz, Polygon, PC Gamer, Inven, BBC Sport, ESPN,
+  L'Équipe, K League, KBO. Une
   source hors de cette liste ne disqualifie pas l'item, mais **retient le brief
   entier en brouillon** jusqu'à ce qu'un humain regarde. N'en utilise donc que si
   elle apporte quelque chose qu'aucune source connue ne donne.
@@ -326,13 +348,13 @@ courtes. Un brief honnête et bref vaut mieux qu'un brief étoffé de remplissag
 
 Le site tient un onglet de **tout** ce qui se passe à Séoul et qu'on peut
 aller voir : boutiques éphémères, concerts, expositions, salons, festivals.
-Neuf thèmes le classent : **anime et manga, Pokémon, K-pop, jeu vidéo,
+Dix thèmes le classent : **anime et manga, Pokémon, K-pop, jeu vidéo,
 personnages, mode et marques, festivals de Séoul, culture et expos, food et
-boissons**. Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), rien
+boissons, sport**. Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), rien
 au-delà. Ce qui n'est pas un événement n'y va pas : une boutique permanente
 qui ouvre, une promotion en ligne, une sortie de produit sans lieu ni dates.
 
-Le thème, c'est ce qui fait venir les gens. Cinq d'entre eux demandent une
+Le thème, c'est ce qui fait venir les gens. Six d'entre eux demandent une
 précision :
 
 - `personnages` : Sanrio, Chiikawa, Miffy, Line Friends, Kakao Friends, Pop

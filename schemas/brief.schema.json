@@ -29,8 +29,8 @@
     },
     "sections": {
       "type": "array",
-      "minItems": 4,
-      "maxItems": 4,
+      "minItems": 5,
+      "maxItems": 5,
       "items": {
         "$ref": "#/$defs/section"
       },
@@ -82,16 +82,28 @@
               "key"
             ]
           }
+        },
+        {
+          "contains": {
+            "properties": {
+              "key": {
+                "const": "sport"
+              }
+            },
+            "required": [
+              "key"
+            ]
+          }
         }
       ],
-      "description": "Les quatre sections sont toujours présentes, même vides."
+      "description": "Les cinq sections sont toujours présentes, même vides."
     },
     "events": {
       "type": "array",
       "items": {
         "$ref": "#/$defs/event"
       },
-      "description": "Facultatif. Pop-ups et événements temporaires à Séoul, anime et manga, Pokémon, K-pop, jeu vidéo, personnages, mode et marques, festivals de Séoul, culture, food. Ce n'est PAS une cinquième rubrique : un événement écarté ne retient jamais le brief, et la liste vit dans sa propre collection jusqu'à sa date de fin. Ce que le schéma ne peut pas dire (fin ≥ début, fin ≥ aujourd'hui, 40 mots) est vérifié par scripts/lib/evenements.mjs."
+      "description": "Facultatif. Pop-ups et événements temporaires à Séoul, anime et manga, Pokémon, K-pop, jeu vidéo, personnages, mode et marques, festivals de Séoul, culture, food, sport. Ce n'est PAS une rubrique de plus : un événement écarté ne retient jamais le brief, et la liste vit dans sa propre collection jusqu'à sa date de fin. Ce que le schéma ne peut pas dire (fin ≥ début, fin ≥ aujourd'hui, 40 mots) est vérifié par scripts/lib/evenements.mjs."
     }
   },
   "$defs": {
@@ -108,7 +120,8 @@
             "tourisme",
             "coree",
             "tech",
-            "gaming"
+            "gaming",
+            "sport"
           ]
         },
         "empty_note": {
@@ -260,9 +273,10 @@
             "mode",
             "seoul",
             "culture",
-            "food"
+            "food",
+            "sport"
           ],
-          "description": "Un seul thème, parmi les neuf. Pas de « autre » : les neuf couvrent tout ce qui se passe à Séoul, c'est au thème d'être juste. « seoul » : les grands rendez-vous de la ville, Han, palais, feux d'artifice, lanternes, arts de rue. « personnages » : Sanrio, Chiikawa, Miffy, Line Friends, Pop Mart, quand c'est le personnage qu'on vient voir ; une série ou un manga va dans « anime ». « mode » : les pop-ups de marque sans idol, streetwear, beauté, lifestyle ; avec un idol en tête d'affiche, c'est « kpop ». « culture » : expositions, design, photo, patrimoine, papeterie, salons, concerts hors K-pop. « food » : cafés, restaurants, boissons, marques alimentaires, fêtes de la bière."
+          "description": "Un seul thème, parmi les dix. Pas de « autre » : les dix couvrent tout ce qui se passe à Séoul, c'est au thème d'être juste. « seoul » : les grands rendez-vous de la ville, Han, palais, feux d'artifice, lanternes, arts de rue. « personnages » : Sanrio, Chiikawa, Miffy, Line Friends, Pop Mart, quand c'est le personnage qu'on vient voir ; une série ou un manga va dans « anime ». « mode » : les pop-ups de marque sans idol, streetwear, beauté, lifestyle ; avec un idol en tête d'affiche, c'est « kpop ». « culture » : expositions, design, photo, patrimoine, papeterie, salons, concerts hors K-pop. « food » : cafés, restaurants, boissons, marques alimentaires, fêtes de la bière. « sport » : matchs à Séoul (KBO, K League, équipes nationales), marathons et courses ouvertes au public, fan events et pop-ups de marques de sport ; l'e-sport reste dans « gaming »."
         },
         "venue": {
           "type": "string",

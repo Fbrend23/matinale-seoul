@@ -4,7 +4,7 @@ Tu n'as besoin que de deux choses, la recherche web et la lecture de pages. Tu n
 
 ## Ce que tu cherches
 
-Tout ce qui se passe à Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), en cours ou à venir, et qu'on peut aller voir : boutiques éphémères, concerts, expositions, salons, festivals. Neuf thèmes :
+Tout ce qui se passe à Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), en cours ou à venir, et qu'on peut aller voir : boutiques éphémères, concerts, expositions, salons, festivals, matchs. Dix thèmes :
 
 - `anime` : anime et manga (One Piece, Jujutsu Kaisen, Ghibli…)
 - `pokemon` : Pokémon
@@ -15,6 +15,7 @@ Tout ce qui se passe à Séoul et sa proche banlieue (Goyang, Seongnam, Incheon)
 - `seoul` : les grands rendez-vous de la ville, pont Jamsu sans voitures, feux d'artifice, lanternes, palais ouverts la nuit, festivals du fleuve
 - `culture` : expositions, musées, design, photo, patrimoine, salons, concerts hors K-pop
 - `food` : cafés et restaurants éphémères, marques de boissons, marchés gourmands, fêtes de la bière
+- `sport` : matchs à Séoul (KBO, K League, équipes nationales), marathons et courses ouvertes au public, fan events et pop-ups de marques de sport ; l'e-sport reste dans `gaming`
 
 Ce qui n'est pas un événement n'y va pas : boutique permanente qui ouvre, promotion en ligne, sortie de produit sans lieu ni dates.
 
@@ -27,7 +28,7 @@ L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont chang�
 ## Comment chercher
 
 1. **Les quatre pages qui listent**, lues une fois chacune : `https://insideseoul.app/popups` (pop-ups, avec lieu et dates), `https://world.nol.com/` (expositions et festivals à billet), `https://kpopofficial.com/schedule/south-korea/` (concerts), `https://festival.seoul.go.kr/festival/year/loadMap.do` (festivals de la ville). Relève ce qui commence dans les deux semaines ou vient d'ouvrir. **Au plus trois événements par domaine** dans ta réponse : une liste tenue par un seul site n'est pas une veille, et le script écartera le quatrième. Quand une page t'en donne plus, garde les trois plus proches dans le temps et passe à la suite.
-2. **Puis les recherches en coréen, une par thème, et elles ne sont pas facultatives** : même si les pages qui listent t'ont déjà donné huit pistes, fais-les. Avec les mots des sites coréens : `애니메이션 팝업스토어`, `포켓몬 팝업`, `아이돌 팝업스토어` ou `콘서트 서울`, `게임 팝업스토어` ou `e스포츠`, `산리오` / `치이카와` / `캐릭터 팝업`, `패션 브랜드 팝업스토어`, `서울 축제` / `한강 축제`, `전시회 서울`, `푸드 팝업`, combinés au mois en cours et à `서울`. L'anglais remonte des agrégateurs, le coréen remonte les rédactions : Inven, This Is Game, Korea JoongAng Daily, Korea Herald, Visit Seoul, Time Out, Soompi, les sites officiels (pokemonkorea.co.kr, coex.co.kr, ddp.or.kr, seoul.go.kr).
+2. **Puis les recherches en coréen, une par thème, et elles ne sont pas facultatives** : même si les pages qui listent t'ont déjà donné huit pistes, fais-les. Avec les mots des sites coréens : `애니메이션 팝업스토어`, `포켓몬 팝업`, `아이돌 팝업스토어` ou `콘서트 서울`, `게임 팝업스토어` ou `e스포츠`, `산리오` / `치이카와` / `캐릭터 팝업`, `패션 브랜드 팝업스토어`, `서울 축제` / `한강 축제`, `전시회 서울`, `푸드 팝업`, `서울 마라톤` ou `야구 직관` / `K리그 서울`, combinés au mois en cours et à `서울`. L'anglais remonte des agrégateurs, le coréen remonte les rédactions : Inven, This Is Game, Korea JoongAng Daily, Korea Herald, Visit Seoul, Time Out, Soompi, les sites officiels (pokemonkorea.co.kr, coex.co.kr, ddp.or.kr, seoul.go.kr).
 3. **Pour chaque candidat, trouve sa source** : une page d'un de ces domaines, et d'aucun autre :
 
 {{DOMAINES}}

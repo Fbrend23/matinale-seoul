@@ -71,6 +71,8 @@ if (code !== 0) {
     // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
     // tête de page, et où aller ensuite.
     ['sections/tourisme/index.html', ['class="item"', 'class="meteo"', 'class="change"', 'class="tete"', 'class="jour-bloc"', 'Autres rubriques']],
+    // La dernière rubrique ajoutée : sa page doit sortir, même sans item.
+    ['sections/sport/index.html', ['class="tete"', 'Autres rubriques']],
     // L'adresse est posée sur la carte d'événement pour la carte Kakao ; le
     // bloc carte, lui, n'existe pas sans clé, et ce contrôle n'en a pas.
     ['evenements/index.html', ['id="en-ce-moment"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'map.naver.com/p/search/', 'data-adresse="서울 성동구 아차산로 7"']],

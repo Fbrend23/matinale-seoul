@@ -29,7 +29,7 @@ export const KIND_LABELS = {
 // seau sans nom deviendrait la sortie de secours d'un agent qui travaille
 // avec dix-huit minutes de marge, et le filtre cesserait de servir. C'est le
 // prompt qui dit où passe chaque frontière.
-export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode', 'seoul', 'culture', 'food'];
+export const THEMES = ['anime', 'pokemon', 'kpop', 'gaming', 'personnages', 'mode', 'seoul', 'culture', 'food', 'sport'];
 
 export const THEME_LABELS = {
   anime: 'Anime et manga',
@@ -41,6 +41,7 @@ export const THEME_LABELS = {
   seoul: 'Festivals de Séoul',
   culture: 'Culture et expos',
   food: 'Food et boissons',
+  sport: 'Sport',
 };
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');
