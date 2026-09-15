@@ -211,7 +211,7 @@ test('la recherche ne contourne jamais les permissions : ce sont elles qui la re
   assert.ok(!/dangerously-skip-permissions|--yolo|approval-mode/.test(code), 'le script lève les permissions');
 });
 
-test('la consigne de Gemini demande la forme même du schéma, et nomme les neuf thèmes', async () => {
+test('la consigne de Gemini demande la forme même du schéma, et nomme chaque thème', async () => {
   const consigne = await lire('prompts/recherche-evenements.md');
   const { THEMES, KINDS } = await import('../shared/evenements.mjs');
   for (const theme of THEMES) assert.ok(consigne.includes(`\`${theme}\``), `thème « ${theme} » absent`);
@@ -223,7 +223,9 @@ test('la consigne de Gemini demande la forme même du schéma, et nomme les neuf
   const { validateSchema } = await import('../scripts/lib/guards.mjs');
   const schéma = JSON.parse(await lire('schemas/brief.schema.json'));
   const exemple = JSON.parse(await lire('tests/fixtures/brief-avec-evenements.json'));
-  const bloc = consigne.match(/```\n(\[[\s\S]*?\])\n```/);
+  // `\r?` : la copie de travail d'un poste Windows porte des CRLF, comme
+  // dans prompt.test.mjs ; sans lui, ce test échoue chez le mainteneur.
+  const bloc = consigne.match(/```\r?\n(\[[\s\S]*?\])\r?\n```/);
   assert.ok(bloc, 'aucun exemple de tableau dans la consigne');
   assert.deepEqual(validateSchema({ ...exemple, events: JSON.parse(bloc[1]) }, schéma), []);
 });

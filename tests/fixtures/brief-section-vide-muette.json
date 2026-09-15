@@ -38,6 +38,11 @@
       "key": "gaming",
       "empty_note": "Rien de saillant côté jeu vidéo.",
       "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": "Rien de saillant côté sport.",
+      "items": []
     }
   ]
 }

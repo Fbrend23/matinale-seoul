@@ -46,7 +46,7 @@ produit par une tâche planifiée Claude qui cherche sur le web et rend un JSON 
 
 Aucune relecture humaine avant mise en ligne : la qualité repose sur les cinq gardes (section 6).
 
-Volume : un brief par jour, week-end compris, quatre rubriques, 12 à 24 items. Charge négligeable, ne
+Volume : un brief par jour, week-end compris, cinq rubriques, 15 à 30 items. Charge négligeable, ne
 surdimensionne rien.
 
 ---
@@ -115,7 +115,7 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 |---|---|---|
 | `status` | système | idem |
 | `brief` | m2o → `mat_briefs` | **à implémenter dans `provision-client.mjs`** (voir ci-dessous) |
-| `section` | string + `meta.options` | `tourisme` \| `coree` \| `tech` \| `gaming` |
+| `section` | string + `meta.options` | `tourisme` \| `coree` \| `tech` \| `gaming` \| `sport` |
 | `headline` | string | |
 | `summary` | text | 40 mots max |
 | `analysis` | text | nullable, un seul non-null par section |
@@ -138,7 +138,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `brief` | m2o → `mat_briefs` | **non requis** : un événement survit à son brief |
 | `name` | string | |
 | `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
-| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` \| `culture` \| `food`, pas de « autre » |
+| `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` \| `culture` \| `food` \| `sport`, pas de « autre » |
 | `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
@@ -199,14 +199,14 @@ Fichier `inbox/brief-YYYY-MM-DD.json`, contenant uniquement ce JSON :
 }
 ```
 
-Prose en français, noms de champs en anglais. Les quatre `key` toujours présentes, même vides
+Prose en français, noms de champs en anglais. Les cinq `key` toujours présentes, même vides
 (`items: []` + `empty_note` en une phrase française). `analysis` non-null pour au plus un item par
 section. `published_at` omis si la source ne donne pas d'horodatage fiable.
 
 Le champ `status` a disparu du contrat : il est décidé par l'ingestion, pas par l'agent.
 
 Le fichier peut porter un tableau `events` facultatif, voir `$defs/event` dans le
-schéma. Ce n'est pas une cinquième rubrique : les quatre `key` restent seules dans
+schéma. Ce n'est pas une rubrique de plus : les cinq `key` restent seules dans
 `sections`, et `events` vit à la racine.
 
 Écrire `schemas/brief.schema.json` et valider contre lui.

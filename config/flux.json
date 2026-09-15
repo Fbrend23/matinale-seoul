@@ -12,6 +12,9 @@
     { "source_name": "Eurogamer", "lang": "en", "pour": ["gaming"], "url": "https://www.eurogamer.net/feed" },
     { "source_name": "GamesIndustry.biz", "lang": "en", "pour": ["gaming"], "url": "https://www.gamesindustry.biz/feed" },
     { "source_name": "Polygon", "lang": "en", "pour": ["gaming"], "url": "https://www.polygon.com/rss/index.xml" },
-    { "source_name": "jeuxvideo.com", "lang": "fr", "pour": ["gaming"], "url": "https://www.jeuxvideo.com/rss/rss-news.xml" }
+    { "source_name": "jeuxvideo.com", "lang": "fr", "pour": ["gaming"], "url": "https://www.jeuxvideo.com/rss/rss-news.xml" },
+    { "source_name": "Yonhap", "lang": "en", "pour": ["sport"], "url": "https://en.yna.co.kr/RSS/sports.xml" },
+    { "source_name": "Korea Times", "lang": "en", "pour": ["sport"], "url": "https://feed.koreatimes.co.kr/k/sports.xml" },
+    { "source_name": "BBC Sport", "lang": "en", "pour": ["sport"], "url": "https://feeds.bbci.co.uk/sport/rss.xml" }
   ]
 }

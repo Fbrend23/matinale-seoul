@@ -42,13 +42,13 @@ test("l'exemple donné à l'agent passe la garde de cohérence", () => {
   assert.deepEqual(checkCoherence(exemple, { today: exemple.date }), []);
 });
 
-test('le prompt nomme les quatre sections attendues', () => {
+test('le prompt nomme chaque section attendue', () => {
   for (const section of SECTIONS) {
     assert.ok(prompt.includes(`\`${section}\``), `section « ${section} » absente du prompt`);
   }
 });
 
-test("le prompt donne l'exemple d'un événement, et ses neuf thèmes", async () => {
+test("le prompt donne l'exemple d'un événement, et chacun de ses thèmes", async () => {
   // L'onglet n'existe que par ce que l'agent y dépose. Un exemple sans
   // événement, et l'agent n'en écrirait jamais, le schéma l'y autorise sans
   // l'y inviter.

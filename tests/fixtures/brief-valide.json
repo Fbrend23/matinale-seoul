@@ -103,6 +103,11 @@
           "source_lang": "en"
         }
       ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Journée creuse côté sport.",
+      "items": []
     }
   ]
 }

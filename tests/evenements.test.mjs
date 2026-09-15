@@ -44,7 +44,7 @@ test('les thèmes du schéma sont ceux du module partagé, avec chacun son libel
   for (const theme of THEMES) assert.ok(THEME_LABELS[theme], `pas de libellé pour « ${theme} »`);
 });
 
-test('pas de thème « autre » : l onglet chacun de ses neuf sujets a un nom', () => {
+test('pas de thème « autre » : chacun des sujets de l onglet a un nom', () => {
   assert.ok(!THEMES.includes('autre'));
 });
 

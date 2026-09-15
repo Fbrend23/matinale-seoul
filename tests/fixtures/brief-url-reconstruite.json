@@ -30,6 +30,11 @@
       "key": "gaming",
       "empty_note": "Journée creuse côté jeu vidéo.",
       "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": "Journée creuse côté sport.",
+      "items": []
     }
   ]
 }
