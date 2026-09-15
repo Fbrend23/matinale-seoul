@@ -7,8 +7,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { relevéMétéo, urlRelevé } from '../scripts/lib/meteo.mjs';
-import { libelléCiel, CIEL } from '../shared/meteo.mjs';
+import { relevéMétéo, urlRelevé, relevéAir, urlRelevéAir } from '../scripts/lib/meteo.mjs';
+import { libelléCiel, CIEL, gradeAir, SEUILS_PM25 } from '../shared/meteo.mjs';
 
 /** La forme que renvoie vraiment Open-Meteo, relevée sur l'API le 10/09/2026. */
 const réponse = (jour, sur = {}) => ({
@@ -145,4 +145,78 @@ test('aucun libellé n’est vide', () => {
   for (const [code, libellé] of Object.entries(CIEL)) {
     assert.ok(libellé.length > 2, `le code ${code} n’a pas de libellé`);
   }
+});
+
+// --- La qualité de l'air ------------------------------------------------------
+//
+// Mêmes pièges que le bulletin, le jour et le fuseau, et un de plus : une
+// journée à trous, dont la moyenne mentirait.
+
+/** Vingt-quatre heures de PM2,5 et PM10, la forme d'Open-Meteo. */
+const réponseAir = (jour, { pm2_5, pm10, sur = {} } = {}) => ({
+  utc_offset_seconds: 32_400,
+  timezone: 'Asia/Seoul',
+  hourly: {
+    time: Array.from({ length: 24 }, (_, h) => `${jour}T${String(h).padStart(2, '0')}:00`),
+    pm2_5: pm2_5 ?? Array.from({ length: 24 }, (_, h) => 20 + (h % 3)),
+    pm10: pm10 ?? Array(24).fill(40),
+    ...sur,
+  },
+});
+
+function fauxAir({ status = 200, corps = réponseAir('2026-09-10') } = {}) {
+  const appels = [];
+  const fetcher = async (url, options) => {
+    appels.push({ url, options });
+    return { ok: status >= 200 && status < 300, status, json: async () => corps };
+  };
+  return { fetcher, appels };
+}
+
+test('l adresse du relevé d air demande le jour, découpé sur Séoul, en horaire', () => {
+  const url = new URL(urlRelevéAir('2026-09-10'));
+  assert.equal(url.host, 'air-quality-api.open-meteo.com');
+  assert.equal(url.searchParams.get('timezone'), 'Asia/Seoul');
+  assert.equal(url.searchParams.get('start_date'), '2026-09-10');
+  assert.equal(url.searchParams.get('end_date'), '2026-09-10');
+  assert.equal(url.searchParams.get('hourly'), 'pm2_5,pm10');
+});
+
+test('le relevé d air est la moyenne arrondie de la journée', async () => {
+  const { fetcher } = fauxAir();
+  const air = await relevéAir({ date: '2026-09-10' }, { fetcher });
+  // 20, 21, 22 répétés : moyenne 21.
+  assert.equal(air.pm25, 21);
+  assert.equal(air.pm10, 40);
+  assert.ok(air.air_fetched_at);
+});
+
+test('les heures vides sont ignorées, et une journée trop creuse est refusée', async () => {
+  const creuse = réponseAir('2026-09-10', { pm2_5: [30, 30, 30, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null] });
+  await assert.rejects(relevéAir({ date: '2026-09-10' }, { fetcher: fauxAir({ corps: creuse }).fetcher }), /trop creux/);
+
+  const moitié = réponseAir('2026-09-10', { pm2_5: [...Array(12).fill(30), ...Array(12).fill(null)], pm10: Array(24).fill(null) });
+  const air = await relevéAir({ date: '2026-09-10' }, { fetcher: fauxAir({ corps: moitié }).fetcher });
+  assert.equal(air.pm25, 30);
+  assert.equal(air.pm10, null, 'le PM10 manquant ne retire rien');
+});
+
+test('un relevé d air d un autre jour, ou d un autre fuseau, est refusé', async () => {
+  await assert.rejects(relevéAir({ date: '2026-09-11' }, { fetcher: fauxAir().fetcher }), /daté du 2026-09-10/);
+  const utc = { ...réponseAir('2026-09-10'), utc_offset_seconds: 0, timezone: 'UTC' };
+  await assert.rejects(relevéAir({ date: '2026-09-10' }, { fetcher: fauxAir({ corps: utc }).fetcher }), /pas sur Séoul/);
+  await assert.rejects(relevéAir({ date: '2026-09-10' }, { fetcher: fauxAir({ status: 503 }).fetcher }), /HTTP 503/);
+});
+
+test('les grades sont ceux d AirKorea, aux bornes près', () => {
+  assert.equal(SEUILS_PM25.length, 4);
+  assert.deepEqual(gradeAir(15), { clé: 'bon', libellé: 'Bon' });
+  assert.equal(gradeAir(16).clé, 'moyen');
+  assert.equal(gradeAir(35).clé, 'moyen');
+  assert.equal(gradeAir(36).clé, 'mauvais');
+  assert.equal(gradeAir(75).clé, 'mauvais');
+  assert.equal(gradeAir(76).clé, 'tres-mauvais');
+  assert.equal(gradeAir(0).clé, 'bon');
+  assert.equal(gradeAir(undefined).clé, 'inconnu');
+  assert.equal(gradeAir(NaN).libellé, 'Air indéterminé');
 });

@@ -33,7 +33,7 @@ export async function donnéesDeDémonstration(cheminFixture) {
       title: brief.title,
       standfirst: brief.standfirst,
       ingested_at: `${brief.date}T22:00:00.000Z`,
-      weather: { date: brief.date, tmin: 18, tmax: 27, code: 2, precip_probability: 30, source: 'open-meteo' },
+      weather: { date: brief.date, tmin: 18, tmax: 27, code: 2, precip_probability: 30, pm25: 42, pm10: 61, source: 'open-meteo' },
       fx: { date: brief.date, rate_date: brief.date, base: 'CHF', quote: 'KRW', rate: 1646.98, source: 'frankfurter' },
       empty_notes: null,
     },

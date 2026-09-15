@@ -28,6 +28,12 @@
   --theme-culture: #4f46e5;
   --theme-food: #ea580c;
   --theme-sport: #16a34a;
+
+  /* Les quatre paliers de la qualité de l'air, dans l'ordre d'AirKorea. */
+  --air-bon: #2563eb;
+  --air-moyen: #16a34a;
+  --air-mauvais: #d97706;
+  --air-tres-mauvais: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,6 +54,10 @@
     --theme-culture: #818cf8;
     --theme-food: #fdba74;
     --theme-sport: #4ade80;
+    --air-bon: #60a5fa;
+    --air-moyen: #4ade80;
+    --air-mauvais: #fbbf24;
+    --air-tres-mauvais: #f87171;
   }
 }
 
@@ -355,6 +365,16 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .meteo-temp .max { font-size: 2rem; font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
 .meteo-temp .min { font-size: 1.1rem; color: var(--doux); }
 .meteo-ciel { color: var(--texte); }
+/* La qualité de l'air : un point coloré par grade, les couleurs qu'AirKorea
+   donne à ses quatre paliers, et la mesure en retrait. */
+.meteo-air { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.meteo-air-point { flex: 0 0 auto; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--doux); }
+.meteo-air[data-air="bon"] .meteo-air-point { background: var(--air-bon); }
+.meteo-air[data-air="moyen"] .meteo-air-point { background: var(--air-moyen); }
+.meteo-air[data-air="mauvais"] .meteo-air-point { background: var(--air-mauvais); }
+.meteo-air[data-air="tres-mauvais"] .meteo-air-point { background: var(--air-tres-mauvais); }
+.meteo-air[data-air="mauvais"], .meteo-air[data-air="tres-mauvais"] { color: var(--texte); font-weight: 600; }
+.meteo-air-mesure { color: var(--doux); font-size: 0.85em; font-weight: 400; font-variant-numeric: tabular-nums; }
 .meteo-source { margin-top: 0.6rem; font-size: 0.78rem; }
 .meteo a { color: inherit; text-decoration-color: var(--trait); }
 .meteo a:hover { color: var(--accent); }
