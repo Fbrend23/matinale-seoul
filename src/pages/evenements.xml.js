@@ -42,6 +42,9 @@ export async function GET(context) {
         categories: [THEME_LABELS[event.theme] ?? event.theme, KIND_LABELS[event.kind] ?? event.kind],
         content: [
           `<p><strong>${escapeHtml(dateRange(event.start_date, event.end_date))}</strong>, ${escapeHtml(lieu)}</p>`,
+          // L'adresse vue par l'agent, quand il y en a une : le lecteur de
+          // flux n'a pas la carte, il a de quoi la coller dans la sienne.
+          event.address ? `<p lang="ko">${escapeHtml(event.address)}</p>` : '',
           `<p>${escapeHtml(THEME_LABELS[event.theme] ?? event.theme)} · ${escapeHtml(KIND_LABELS[event.kind] ?? event.kind)}</p>`,
           `<p>${escapeHtml(event.summary)}</p>`,
           '<p>' +

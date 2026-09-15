@@ -24,6 +24,11 @@ export default defineConfig({
       // `access: 'secret'` fait échouer le build si le jeton est référencé
       // depuis du code client. Une garde mécanique, plus sûre que la discipline.
       DIRECTUS_TOKEN: envField.string({ context: 'server', access: 'secret' }),
+      // Le client ID de l'API Naver Maps, lui, est facultatif et public : il
+      // n'ouvre que la carte de la page Événements, et Naver le restreint au
+      // domaine du site. Sans lui, la page se construit sans le bloc carte,
+      // et le contrôle de rendu tourne sans compte Naver.
+      NAVER_MAPS_CLIENT_ID: envField.string({ context: 'client', access: 'public', optional: true }),
     },
   },
 });

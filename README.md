@@ -149,6 +149,15 @@ elle remplace la recherche, sondée comme un lien, mais la sonde est partielle :
 `map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
 seuls les liens courts `naver.me` répondent 404. D'où le repli.
 
+**La carte de l'onglet** pose un pin par événement dont l'agent a *vu*
+l'adresse routière coréenne (`address`). Aucune coordonnée n'est stockée : les
+conditions de l'API Recherche Naver interdisent d'en conserver les résultats,
+et c'est la seule API Naver qui résout un nom de lieu. C'est donc le navigateur
+du lecteur qui géocode l'adresse, par l'API JavaScript Naver Maps, à
+l'ouverture du bloc « Sur la carte », et pose le pin sur une carte Naver :
+l'usage prévu de l'API. Sans `NAVER_MAPS_CLIENT_ID` au build, la page se
+construit sans le bloc.
+
 ## Ce qui ne doit jamais réussir en silence
 
 - **Un build privé de ses sources doit échouer.** Ce site n'a aucun contenu

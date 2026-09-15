@@ -149,7 +149,8 @@ main { min-width: 0; }
   }
   .filtres::-webkit-scrollbar { display: none; }
   .filtres button { flex: 0 0 auto; }
-  .groupe-evenements { margin: 1.5rem 0; }
+  .groupe-evenements, .carte-evenements { margin: 1.5rem 0; }
+  .carte-naver { height: 14rem; }
   .cartes { gap: 0.75rem; }
   .evenement { padding: 0.8rem 0.9rem 0.9rem; }
   .evenement h3 { margin: 0.4rem 0 0.2rem; font-size: 1.05rem; }
@@ -450,11 +451,11 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 
 /* Chaque groupe est un <details> : son titre le replie, un chevron le dit,
    et le compte à côté du titre dit ce qu'il cache. */
-.groupe-evenements { margin: 2.5rem 0; }
-.groupe-evenements summary { display: flex; align-items: baseline; gap: 0.6rem; cursor: pointer; list-style: none; }
-.groupe-evenements summary::-webkit-details-marker { display: none; }
-.groupe-evenements summary h2 { margin: 0.83em 0; }
-.groupe-evenements summary::after {
+.groupe-evenements, .carte-evenements { margin: 2.5rem 0; }
+.groupe-evenements summary, .carte-evenements summary { display: flex; align-items: baseline; gap: 0.6rem; cursor: pointer; list-style: none; }
+.groupe-evenements summary::-webkit-details-marker, .carte-evenements summary::-webkit-details-marker { display: none; }
+.groupe-evenements summary h2, .carte-evenements summary h2 { margin: 0.83em 0; }
+.groupe-evenements summary::after, .carte-evenements summary::after {
   content: "";
   flex: 0 0 auto;
   width: 0.45em;
@@ -465,7 +466,42 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   transform: translateY(-0.2em) rotate(45deg);
   transition: transform 0.15s;
 }
-.groupe-evenements[open] summary::after { transform: translateY(0.1em) rotate(-135deg); }
+.groupe-evenements[open] summary::after, .carte-evenements[open] summary::after { transform: translateY(0.1em) rotate(-135deg); }
+
+/* La carte Naver : un cadre comme une carte d'événement, et les pins aux
+   couleurs des thèmes, posés par le script en HTML pour que la feuille de
+   style les habille. La bulle est du HTML libre dans la carte : fond et
+   police de la page, pas ceux de Naver. */
+.carte-naver { height: 22rem; border: 1px solid var(--trait); border-radius: 8px; background: var(--carte); overflow: hidden; }
+.carte-note { margin: 0.5rem 0 0; color: var(--doux); font-size: 0.8rem; }
+.epingle {
+  --theme: var(--doux);
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--fond);
+  border-radius: 50%;
+  background: var(--theme);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+}
+.bulle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-width: 16rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  background: var(--carte);
+  color: var(--texte);
+  font: inherit;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.bulle span { color: var(--doux); }
+.bulle a { margin-top: 0.25rem; }
 .compte {
   display: inline-block;
   min-width: 1.6em;
@@ -495,15 +531,16 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   border-radius: 8px;
   background: var(--carte);
 }
-.evenement[data-theme="anime"] { --theme: var(--theme-anime); }
-.evenement[data-theme="pokemon"] { --theme: var(--theme-pokemon); }
-.evenement[data-theme="kpop"] { --theme: var(--theme-kpop); }
-.evenement[data-theme="gaming"] { --theme: var(--theme-gaming); }
-.evenement[data-theme="personnages"] { --theme: var(--theme-personnages); }
-.evenement[data-theme="mode"] { --theme: var(--theme-mode); }
-.evenement[data-theme="seoul"] { --theme: var(--theme-seoul); }
-.evenement[data-theme="culture"] { --theme: var(--theme-culture); }
-.evenement[data-theme="food"] { --theme: var(--theme-food); }
+/* Les mêmes couleurs sur la carte d'événement et sur son pin. */
+.evenement[data-theme="anime"], .epingle[data-theme="anime"] { --theme: var(--theme-anime); }
+.evenement[data-theme="pokemon"], .epingle[data-theme="pokemon"] { --theme: var(--theme-pokemon); }
+.evenement[data-theme="kpop"], .epingle[data-theme="kpop"] { --theme: var(--theme-kpop); }
+.evenement[data-theme="gaming"], .epingle[data-theme="gaming"] { --theme: var(--theme-gaming); }
+.evenement[data-theme="personnages"], .epingle[data-theme="personnages"] { --theme: var(--theme-personnages); }
+.evenement[data-theme="mode"], .epingle[data-theme="mode"] { --theme: var(--theme-mode); }
+.evenement[data-theme="seoul"], .epingle[data-theme="seoul"] { --theme: var(--theme-seoul); }
+.evenement[data-theme="culture"], .epingle[data-theme="culture"] { --theme: var(--theme-culture); }
+.evenement[data-theme="food"], .epingle[data-theme="food"] { --theme: var(--theme-food); }
 
 .evenement p { margin: 0; }
 .evenement h3 { margin: 0.5rem 0 0.35rem; font-size: 1.15rem; line-height: 1.3; }

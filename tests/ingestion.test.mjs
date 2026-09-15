@@ -439,6 +439,7 @@ test('les événements sains partent avec le brief, publiés et rattachés à lu
   assert.equal(écrits[0].brief, 7);
   assert.equal(écrits[0].status, 'published');
   assert.equal(écrits[0].map_url, 'https://naver.me/exemple');
+  assert.equal(écrits[0].address, '서울 성동구 아차산로 7');
 });
 
 test('les écartés sont annoncés au run, en une seule annotation, sans le faire rougir', async () => {

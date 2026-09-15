@@ -220,7 +220,8 @@ Recopier sa forme est sans risque.
       "source_url": "https://english.visitseoul.net/exemple-pop-up-pokemon",
       "source_lang": "en",
       "booking_url": "https://tickets.interpark.com/exemple",
-      "map_url": "https://naver.me/exemple"
+      "map_url": "https://naver.me/exemple",
+      "address": "서울 성동구 아차산로 7"
     }
   ]
 }
@@ -420,6 +421,11 @@ pas de redire ce qui s'y trouve :
 - `map_url` **seulement si tu as vu** la fiche Naver Map du lieu
   (`map.naver.com` ou `naver.me`). Sinon, omets le champ. Même règle pour
   `booking_url` : la billetterie si tu l'as vue, rien sinon.
+- `address` **seulement si tu as vu** l'adresse routière coréenne du lieu
+  (도로명 주소 : `서울 성동구 아차산로 7`), sur sa fiche Naver Map ou dans la
+  source. Le site en fait un pin sur la carte de l'onglet. Sinon, omets le
+  champ : jamais une adresse déduite du quartier ou de l'enseigne, et jamais
+  en lettres latines, l'ingestion la retirerait.
 - La source d'un événement suit les règles du § 5 : une adresse vue, complète,
   d'une rédaction connue. Un événement dont la source est morte ou hors liste
   est **écarté**, il ne retient pas le brief, il disparaît simplement, et le

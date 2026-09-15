@@ -6,6 +6,7 @@ import AiNotice from '../../components/AiNotice.astro';
 import { listEvents } from '../../lib/content.js';
 import { seoulToday } from '../../lib/date.js';
 import { grouperParÉtat, trierEvents, TRIS, TRI_LABELS, TRI_PAR_DEFAUT, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
+import { NAVER_MAPS_CLIENT_ID } from 'astro:env/client';
 
 // TOUT ce qui est en cours ou à venir, quel que soit le brief qui l'a repéré.
 // L'agent du matin ne fait qu'ajouter ; c'est la collection qui tient la liste,
@@ -19,6 +20,11 @@ const aujourdhui = seoulToday();
 // Ce qui finit le plus tôt d'abord : c'est ce qu'on risque de rater. Le
 // lecteur peut en changer, le script retrie les cartes sans rien recharger.
 const { enCours, àVenir } = grouperParÉtat(trierEvents(events, TRI_PAR_DEFAUT), aujourdhui);
+
+// La carte ne pose que ce qu'elle sait placer : les événements dont l'agent a
+// vu l'adresse. Le compte du build est celui-là ; le script le remplace par
+// les pins que Naver a bien posés, une fois la carte ouverte.
+const placés = events.filter((e) => e.address).length;
 
 // Ce qui est ouvert d'abord : c'est la question qu'on se pose. Les deux
 // groupes ne se recouvrent pas, une grille qui répète ses cartes ne se
@@ -70,6 +76,21 @@ const groupes = [
     </select>
   </p>
 
+  {/* La carte Naver, seulement si le build a un client ID : sans lui, pas de
+      bloc du tout. Masquée sans JavaScript, c'est lui qui la dessine, et
+      repliée sur un téléphone, comme « Plus tard ». Le navigateur du lecteur
+      géocode les adresses à l'ouverture : rien de Naver n'est stocké, ses
+      conditions l'interdisent, voir src/lib/carte-naver.js. */}
+  {NAVER_MAPS_CLIENT_ID && (
+    <details class="carte-evenements" id="sur-la-carte" data-cle={NAVER_MAPS_CLIENT_ID} open hidden>
+      <summary>
+        <h2>Sur la carte <span class="detail">les lieux dont l’adresse est connue</span> <span class="compte">{placés}</span></h2>
+      </summary>
+      <div class="carte-naver" role="region" aria-label="Carte Naver des événements"></div>
+      <p class="carte-note">Un pin par événement dont l’adresse est connue, posé par Naver Map à l’ouverture de la carte.</p>
+    </details>
+  )}
+
   {/* Chaque groupe se replie : sur un téléphone, le script ferme « Plus
       tard », et le compte dans le titre dit ce qu'on y trouve.
       Ouverts au build, sans script, tout se lit. */}
@@ -94,9 +115,11 @@ const groupes = [
     // qu'il veut voir.
     import { seoulToday } from '../../lib/date.js';
     import { comparateur, TRIS, TRI_PAR_DEFAUT } from '../../../shared/evenements.mjs';
+    import { préparerLaCarte } from '../../lib/carte-naver.js';
 
     const aujourdhui = seoulToday();
     const cartes = [...document.querySelectorAll<HTMLElement>('.evenement')];
+    const surTéléphone = matchMedia('(max-width: 48rem)').matches;
 
     // Terminé depuis le build : masqué pour de bon, quel que soit le filtre.
     for (const carte of cartes) {
@@ -152,6 +175,8 @@ const groupes = [
         const compte = bloc.querySelector<HTMLElement>('.compte');
         if (compte) compte.textContent = String(visibles);
       }
+      // Les pins suivent les cartes : masquée, plus de pin.
+      carteNaver.synchroniser();
     }
 
     for (const bouton of boutons) {
@@ -178,6 +203,13 @@ const groupes = [
       if (blocTri) blocTri.hidden = false;
     }
 
+    // La carte, si le build en a une : préparée avant appliquer(), qui la
+    // tient d'accord avec le filtre dès le premier passage.
+    const blocCarte = document.querySelector<HTMLDetailsElement>('#sur-la-carte');
+    const carteNaver = blocCarte
+      ? préparerLaCarte({ bloc: blocCarte, cartes, surTéléphone })
+      : { synchroniser() {} };
+
     // Le build a déjà trié selon le tri par défaut : on ne retrie que si le
     // lecteur en avait choisi un autre.
     if (tri !== TRI_PAR_DEFAUT) retrier();
@@ -196,7 +228,7 @@ const groupes = [
     // Sur un téléphone, seul « En ce moment » est déplié : « Plus tard »
     // allonge la page, et son titre dit combien d'événements il tient. Au
     // chargement seulement, ce que le lecteur ouvre ensuite reste ouvert.
-    if (matchMedia('(max-width: 48rem)').matches) {
+    if (surTéléphone) {
       for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements:not(#en-ce-moment)')) {
         bloc.open = false;
       }
