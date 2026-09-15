@@ -17,10 +17,19 @@
 // preview`.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TetePage from '../components/TetePage.astro';
+import BulletinMeteo from '../components/BulletinMeteo.astro';
+import CoursDuChange from '../components/CoursDuChange.astro';
+import { dernierBrief } from '../lib/content.js';
+
+// Le contexte du jour à côté, comme sur toute page de lecture : sans lui,
+// l'en-tête rétrécit d'un onglet à l'autre.
+const dernier = await dernierBrief();
 ---
 
 <BaseLayout title="Rechercher" description="Rechercher dans tous les briefs publiés.">
   <link slot="tete" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <CoursDuChange slot="gauche" fx={dernier.fx} />
 
   <TetePage surtitre="Dans l’archive" titre="Rechercher">
     Un mot, un nom, un lieu : la recherche parcourt tous les briefs publiés,

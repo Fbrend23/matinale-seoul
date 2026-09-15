@@ -70,7 +70,9 @@ if (code !== 0) {
     ['index.html', ['class="meteo"', 'class="meteo-air"', 'data-air="mauvais"', 'class="change"', 'aria-current="page"', 'class="brief"']],
     // Deux mois dans la fixture : la barre d'ancres doit sortir, et pointer
     // sur des sections qui existent.
-    ['briefs/index.html', ['class="mois"', 'class="mois-nav"', 'href="#mois-2026-08"', 'id="mois-2026-08"', 'id="mois-2026-09"']],
+    // Le cadre des pages de lecture, météo et change à côté : sans lui,
+    // l'en-tête rétrécit d'un onglet à l'autre. Idem pour la recherche.
+    ['briefs/index.html', ['class="mois"', 'class="mois-nav"', 'href="#mois-2026-08"', 'id="mois-2026-08"', 'id="mois-2026-09"', 'class="meteo"', 'class="change"']],
     ['briefs/brief-2026-08-28/index.html', ['class="brief"']],
     // Le brief est indexé à son adresse d'archive, et là seulement. Le
     // deuxième item de la fixture porte link_dead_at : sa source sort sans
@@ -97,7 +99,7 @@ if (code !== 0) {
     ['sitemap-index.xml', []],
     // La recherche : la page, et l'index que l'intégration écrit après le
     // build, dans CE dossier de sortie et pas un autre.
-    ['recherche/index.html', ['id="recherche"', '/pagefind/pagefind-ui.js']],
+    ['recherche/index.html', ['id="recherche"', '/pagefind/pagefind-ui.js', 'class="meteo"', 'class="change"']],
     ['pagefind/pagefind-ui.js', []],
     ['pagefind/pagefind-entry.json', []],
   ];

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TetePage from '../../components/TetePage.astro';
+import BulletinMeteo from '../../components/BulletinMeteo.astro';
+import CoursDuChange from '../../components/CoursDuChange.astro';
 import { listBriefs } from '../../lib/content.js';
 import { longDate } from '../../lib/date.js';
 import { grouperParMois, moisLisible, moisCourt, MIN_MOIS_POUR_NAV } from '../../lib/archive.js';
@@ -21,12 +23,20 @@ const avecNav = mois.length >= MIN_MOIS_POUR_NAV;
 // bas, et dit au passage pourquoi c'est sûr.
 const plusRecent = briefs[0];
 const plusAncien = briefs[briefs.length - 1];
+
+// Le contexte du jour à côté, comme sur une rubrique ou une étiquette : sans
+// lui, la page perd ses colonnes latérales et l'en-tête rétrécit d'un onglet
+// à l'autre. Le plus récent est le brief du jour, c'est le sien qu'on pose.
+const dernier = plusRecent;
 ---
 
 <BaseLayout
   title="Archive"
   description={`${briefs.length} briefs publiés depuis le ${plusAncien.date}.`}
 >
+  <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <CoursDuChange slot="gauche" fx={dernier.fx} />
+
   <TetePage surtitre="Tous les briefs" titre="Archive">
     {briefs.length} brief{briefs.length > 1 ? 's' : ''} publié{briefs.length > 1 ? 's' : ''},
     du {longDate(plusAncien.date)} au {longDate(plusRecent.date)}.
