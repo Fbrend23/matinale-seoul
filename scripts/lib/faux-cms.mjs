@@ -51,8 +51,8 @@ export async function donnéesDeDémonstration(cheminFixture) {
     }))
   );
 
-  // Deux événements avec adresse, deux sans : la carte Naver doit poser les
-  // premiers et se taire sur les seconds.
+  // Deux événements avec adresse, deux sans : la carte pose les premiers à
+  // l'adresse, et cherche les seconds par leur nom.
   const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, address: null, date_created: `${today}T00:00:00.000Z` };
   const events = [
     { ...base, id: 1, ...brief.events[0], start_date: jourPlus(today, -12), end_date: jourPlus(today, 30) },

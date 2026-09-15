@@ -220,9 +220,9 @@ jobs:
       - name: Construire le site
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-          # Facultatif : sans lui, pas de carte Naver sur la page Événements,
+          # Facultatif : sans elle, pas de carte Kakao sur la page Événements,
           # et un site sans carte reste un site, d'où son absence de la garde.
-          NAVER_MAPS_CLIENT_ID: ${{ vars.NAVER_MAPS_CLIENT_ID }}
+          KAKAO_MAPS_APP_KEY: ${{ vars.KAKAO_MAPS_APP_KEY }}
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_BUILD_TOKEN }}
         run: npm run build

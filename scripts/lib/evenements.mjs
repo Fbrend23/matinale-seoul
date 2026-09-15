@@ -103,10 +103,11 @@ export function cohérenceÉvénement(event, { today }) {
  * quelle fiche, inventée ou non ; seuls les liens courts naver.me répondent
  * 404. La sonde est honnête, elle n'est pas complète, d'où le repli.
  *
- * L'adresse, même régime : elle sert à poser un pin sur la carte Naver, qui
- * géocode du coréen. Une adresse sans hangul ne placerait rien, le champ
+ * L'adresse, même régime : elle sert à poser un pin sur la carte de l'onglet,
+ * qui géocode du coréen. Une adresse sans hangul ne placerait rien, le champ
  * saute, l'événement reste. Elle ne se sonde pas : rien à sonder, et
- * l'interroger à l'ingestion reviendrait à stocker une réponse de Naver.
+ * l'interroger à l'ingestion reviendrait à stocker la réponse d'un service
+ * de cartes, ce que leurs conditions interdisent.
  *
  * @param {object[]} events         brief.events, tel que l'agent l'a écrit
  * @param {object} p
@@ -207,7 +208,7 @@ export async function contrôlerÉvénements(
   // --- L'adresse : sans hangul, le champ saute, l'événement reste ---
   for (const event of retenus) {
     if (event.address !== undefined && !enCoréen(event.address)) {
-      const raison = `sans hangul : « ${event.address} », Naver ne la géocodera pas`;
+      const raison = `sans hangul : « ${event.address} », la carte ne la géocodera pas`;
       delete event.address;
       liensRetirés.push({ event, champ: 'address', raison });
     }

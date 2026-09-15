@@ -150,7 +150,7 @@ main { min-width: 0; }
   .filtres::-webkit-scrollbar { display: none; }
   .filtres button { flex: 0 0 auto; }
   .groupe-evenements, .carte-evenements { margin: 1.5rem 0; }
-  .carte-naver { height: 14rem; }
+  .carte-kakao { height: 14rem; }
   .cartes { gap: 0.75rem; }
   .evenement { padding: 0.8rem 0.9rem 0.9rem; }
   .evenement h3 { margin: 0.4rem 0 0.2rem; font-size: 1.05rem; }
@@ -468,11 +468,11 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 .groupe-evenements[open] summary::after, .carte-evenements[open] summary::after { transform: translateY(0.1em) rotate(-135deg); }
 
-/* La carte Naver : un cadre comme une carte d'événement, et les pins aux
+/* La carte Kakao : un cadre comme une carte d'événement, et les pins aux
    couleurs des thèmes, posés par le script en HTML pour que la feuille de
    style les habille. La bulle est du HTML libre dans la carte : fond et
-   police de la page, pas ceux de Naver. */
-.carte-naver { height: 22rem; border: 1px solid var(--trait); border-radius: 8px; background: var(--carte); overflow: hidden; }
+   police de la page, pas ceux de Kakao. */
+.carte-kakao { height: 22rem; border: 1px solid var(--trait); border-radius: 8px; background: var(--carte); overflow: hidden; }
 .carte-note { margin: 0.5rem 0 0; color: var(--doux); font-size: 0.8rem; }
 .epingle {
   --theme: var(--doux);

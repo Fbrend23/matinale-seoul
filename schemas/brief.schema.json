@@ -321,7 +321,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 200,
-          "description": "Facultatif : l'adresse routière du lieu en coréen (도로명 주소, « 서울 성동구 아차산로 7 »), SEULEMENT si tu l'as vue sur la fiche Naver Map du lieu ou dans la source. Le site la géocode dans le navigateur pour poser un pin sur la carte Naver. Jamais déduite du quartier, jamais reconstruite : sans hangul, l'ingestion la retire."
+          "description": "Facultatif : l'adresse routière du lieu en coréen (도로명 주소, « 서울 성동구 아차산로 7 »), SEULEMENT si tu l'as vue sur la fiche Naver Map du lieu ou dans la source. Le site la géocode dans le navigateur pour poser un pin sur la carte de l'onglet. Jamais déduite du quartier, jamais reconstruite : sans hangul, l'ingestion la retire."
         }
       }
     }

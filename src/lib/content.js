@@ -83,7 +83,7 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  *   le site construit un lien de recherche
  * @property {string|null} address      adresse routière coréenne vue par
  *   l'agent ; la page Événements la géocode dans le navigateur pour poser un
- *   pin, rien n'est stocké de Naver
+ *   pin, aucune coordonnée n'est stockée
  * @property {string}      date_created quand l'ingestion l'a écrit, la date de
  *   publication du flux, stable d'un build à l'autre
  */

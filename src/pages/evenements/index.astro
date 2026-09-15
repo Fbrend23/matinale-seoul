@@ -6,7 +6,7 @@ import AiNotice from '../../components/AiNotice.astro';
 import { listEvents } from '../../lib/content.js';
 import { seoulToday } from '../../lib/date.js';
 import { grouperParÉtat, trierEvents, TRIS, TRI_LABELS, TRI_PAR_DEFAUT, THEMES, THEME_LABELS, THEMES_EN_PROSE } from '../../../shared/evenements.mjs';
-import { NAVER_MAPS_CLIENT_ID } from 'astro:env/client';
+import { KAKAO_MAPS_APP_KEY } from 'astro:env/client';
 
 // TOUT ce qui est en cours ou à venir, quel que soit le brief qui l'a repéré.
 // L'agent du matin ne fait qu'ajouter ; c'est la collection qui tient la liste,
@@ -21,10 +21,10 @@ const aujourdhui = seoulToday();
 // lecteur peut en changer, le script retrie les cartes sans rien recharger.
 const { enCours, àVenir } = grouperParÉtat(trierEvents(events, TRI_PAR_DEFAUT), aujourdhui);
 
-// La carte ne pose que ce qu'elle sait placer : les événements dont l'agent a
-// vu l'adresse. Le compte du build est celui-là ; le script le remplace par
-// les pins que Naver a bien posés, une fois la carte ouverte.
-const placés = events.filter((e) => e.address).length;
+// Le compte du bloc carte, au build : tout ce qu'on va tenter de placer. Le
+// script le remplace par les pins que Kakao a bien posés, une fois la carte
+// ouverte.
+const àPlacer = events.length;
 
 // Ce qui est ouvert d'abord : c'est la question qu'on se pose. Les deux
 // groupes ne se recouvrent pas, une grille qui répète ses cartes ne se
@@ -76,18 +76,18 @@ const groupes = [
     </select>
   </p>
 
-  {/* La carte Naver, seulement si le build a un client ID : sans lui, pas de
+  {/* La carte Kakao, seulement si le build a une clé : sans elle, pas de
       bloc du tout. Masquée sans JavaScript, c'est lui qui la dessine, et
       repliée sur un téléphone, comme « Plus tard ». Le navigateur du lecteur
-      géocode les adresses à l'ouverture : rien de Naver n'est stocké, ses
-      conditions l'interdisent, voir src/lib/carte-naver.js. */}
-  {NAVER_MAPS_CLIENT_ID && (
-    <details class="carte-evenements" id="sur-la-carte" data-cle={NAVER_MAPS_CLIENT_ID} open hidden>
+      résout les lieux à l'ouverture : rien de Kakao n'est stocké, ses
+      conditions l'interdisent, voir src/lib/carte-kakao.js. */}
+  {KAKAO_MAPS_APP_KEY && (
+    <details class="carte-evenements" id="sur-la-carte" data-cle={KAKAO_MAPS_APP_KEY} open hidden>
       <summary>
-        <h2>Sur la carte <span class="detail">les lieux dont l’adresse est connue</span> <span class="compte">{placés}</span></h2>
+        <h2>Sur la carte <span class="detail">les lieux que Kakao Map retrouve</span> <span class="compte">{àPlacer}</span></h2>
       </summary>
-      <div class="carte-naver" role="region" aria-label="Carte Naver des événements"></div>
-      <p class="carte-note">Un pin par événement dont l’adresse est connue, posé par Naver Map à l’ouverture de la carte.</p>
+      <div class="carte-kakao" role="region" aria-label="Carte Kakao des événements"></div>
+      <p class="carte-note">Un pin par lieu que Kakao Map retrouve, à l’adresse vue par l’agent ou à son nom, posé à l’ouverture de la carte.</p>
     </details>
   )}
 
@@ -115,7 +115,7 @@ const groupes = [
     // qu'il veut voir.
     import { seoulToday } from '../../lib/date.js';
     import { comparateur, TRIS, TRI_PAR_DEFAUT } from '../../../shared/evenements.mjs';
-    import { préparerLaCarte } from '../../lib/carte-naver.js';
+    import { préparerLaCarte } from '../../lib/carte-kakao.js';
 
     const aujourdhui = seoulToday();
     const cartes = [...document.querySelectorAll<HTMLElement>('.evenement')];
@@ -176,7 +176,7 @@ const groupes = [
         if (compte) compte.textContent = String(visibles);
       }
       // Les pins suivent les cartes : masquée, plus de pin.
-      carteNaver.synchroniser();
+      carteKakao.synchroniser();
     }
 
     for (const bouton of boutons) {
@@ -206,7 +206,7 @@ const groupes = [
     // La carte, si le build en a une : préparée avant appliquer(), qui la
     // tient d'accord avec le filtre dès le premier passage.
     const blocCarte = document.querySelector<HTMLDetailsElement>('#sur-la-carte');
-    const carteNaver = blocCarte
+    const carteKakao = blocCarte
       ? préparerLaCarte({ bloc: blocCarte, cartes, surTéléphone })
       : { synchroniser() {} };
 

@@ -149,14 +149,15 @@ elle remplace la recherche, sondée comme un lien, mais la sonde est partielle :
 `map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
 seuls les liens courts `naver.me` répondent 404. D'où le repli.
 
-**La carte de l'onglet** pose un pin par événement dont l'agent a *vu*
-l'adresse routière coréenne (`address`). Aucune coordonnée n'est stockée : les
-conditions de l'API Recherche Naver interdisent d'en conserver les résultats,
-et c'est la seule API Naver qui résout un nom de lieu. C'est donc le navigateur
-du lecteur qui géocode l'adresse, par l'API JavaScript Naver Maps, à
-l'ouverture du bloc « Sur la carte », et pose le pin sur une carte Naver :
-l'usage prévu de l'API. Sans `NAVER_MAPS_CLIENT_ID` au build, la page se
-construit sans le bloc.
+**La carte de l'onglet** pose un pin par lieu que Kakao Map retrouve. Aucune
+coordonnée n'est stockée : les conditions des API de recherche de Naver comme
+de Kakao interdisent d'en conserver les résultats. C'est donc le navigateur du
+lecteur qui résout le lieu, par le SDK JavaScript Kakao Maps, à l'ouverture du
+bloc « Sur la carte », et pose le pin sur une carte Kakao : l'usage prévu du
+SDK. L'adresse routière coréenne (`address`), quand l'agent l'a *vue*, désigne
+un point ; sinon le lieu se cherche par son nom, et le pin n'est posé que si
+Kakao rend bien ce nom-là, un homonyme n'affirme rien. Sans
+`KAKAO_MAPS_APP_KEY` au build, la page se construit sans le bloc.
 
 ## Ce qui ne doit jamais réussir en silence
 

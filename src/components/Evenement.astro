@@ -22,8 +22,8 @@ const carte = event.map_url ?? lienNaverMap(event);
 
 {/* Les dates sont posées en data-* pour le script de la page, qui masque chez
     le lecteur ce qui a fini depuis le build, et retrie les cartes à sa demande.
-    L'adresse aussi, pour la carte Naver, qui la géocode dans le navigateur :
-    elle ne s'affiche pas ici, le lieu et le quartier suffisent à la lecture. */}
+    L'adresse aussi, pour la carte de l'onglet, qui la géocode dans le
+    navigateur : elle ne s'affiche pas ici, le lieu et le quartier suffisent. */}
 <article
   class="evenement"
   id={`evenement-${event.id}`}
