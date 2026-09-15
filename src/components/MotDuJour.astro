@@ -1,0 +1,34 @@
+---
+// Le mot du jour, en widget à côté du brief, sous la météo.
+//
+// Se garde lui-même, comme les deux autres widgets : un jour d'avant la liste
+// ne rend rien. Le mot est celui du JOUR DU BRIEF, pas du jour où l'on lit :
+// un brief d'archive garde son mot, et la page /vocabulaire/ les retrouve tous.
+//
+// lang="ko" sur ce qui est en coréen : les lecteurs d'écran le prononcent en
+// coréen, et la typographie choisit une fonte qui a le hangul.
+import { motDuJour } from '../lib/vocabulaire.js';
+import { shortDate } from '../lib/date.js';
+
+const { date } = Astro.props;
+const fiche = date ? motDuJour(date) : null;
+---
+
+{fiche && (
+  <div class="mot">
+    <p class="mot-titre">
+      <span class="surtitre-widget">Mot du jour</span>
+      <time datetime={date}>{shortDate(date)}</time>
+    </p>
+
+    <p class="mot-hangul" lang="ko">{fiche.mot}</p>
+    <p class="mot-sens"><span class="mot-roman">{fiche.romanisation}</span> · {fiche.sens}</p>
+
+    <p class="mot-exemple">
+      <span lang="ko">{fiche.exemple.ko}</span>
+      <span class="mot-traduction">{fiche.exemple.fr}</span>
+    </p>
+
+    <p class="mot-suite"><a href="/vocabulaire/">Tous les mots</a></p>
+  </div>
+)}

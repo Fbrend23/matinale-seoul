@@ -5,6 +5,7 @@ import AiNotice from '../../components/AiNotice.astro';
 import TetePage from '../../components/TetePage.astro';
 import AutresRubriques from '../../components/AutresRubriques.astro';
 import BulletinMeteo from '../../components/BulletinMeteo.astro';
+import MotDuJour from '../../components/MotDuJour.astro';
 import CoursDuChange from '../../components/CoursDuChange.astro';
 import { recentBriefs, dernierBrief } from '../../lib/content.js';
 import { SECTIONS, SECTION_LABELS } from '../../../shared/sections.mjs';
@@ -47,6 +48,7 @@ const plusAncien = jours[jours.length - 1]?.brief;
   description={`${SECTION_LABELS[section]} : ${total} items sur les trente derniers briefs.`}
 >
   <BulletinMeteo slot="cote" weather={dernier.weather} date={dernier.date} />
+  <MotDuJour slot="cote" date={dernier.date} />
   <CoursDuChange slot="gauche" fx={dernier.fx} />
 
   <TetePage surtitre="Rubrique" titre={SECTION_LABELS[section]}>

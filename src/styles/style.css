@@ -398,6 +398,56 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .change a { color: inherit; text-decoration-color: var(--trait); }
 .change a:hover { color: var(--accent); }
 
+/* Le mot du jour, sous la météo : même boîte que les deux autres widgets. Le
+   hangul en grand, c'est lui qu'on est venu voir ; la romanisation et le
+   sens en dessous, la phrase en retrait. */
+.cote > * + *, .gauche > * + * { margin-top: 1rem; }
+.mot {
+  padding: 1rem 1.1rem 0.8rem;
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  background: var(--carte);
+  color: var(--doux);
+  font-size: 0.9rem;
+}
+.mot p { margin: 0; }
+.mot-titre { display: flex; justify-content: space-between; gap: 0.5rem; }
+.surtitre-widget { font-variant-caps: small-caps; letter-spacing: 0.04em; font-weight: 600; color: var(--texte); }
+.mot-hangul { margin: 0.4rem 0 0.1rem; color: var(--texte); font-size: 1.9rem; font-weight: 600; line-height: 1.15; }
+.mot-roman { font-style: italic; }
+.mot-sens { color: var(--texte); }
+.mot-exemple { display: flex; flex-direction: column; margin-top: 0.6rem; padding-left: 0.7rem; border-left: 2px solid var(--trait); }
+.mot-exemple [lang="ko"] { color: var(--texte); }
+.mot-traduction { font-size: 0.85em; }
+.mot-suite { margin-top: 0.6rem; font-size: 0.78rem; }
+.mot a { color: inherit; text-decoration-color: var(--trait); }
+.mot a:hover { color: var(--accent); }
+
+/* La page : un cahier, une fiche par jour, la date en marge. */
+.mot-liste { list-style: none; margin: 2rem 0; padding: 0; }
+.mot-fiche { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid var(--trait); }
+.mot-fiche p { margin: 0; }
+.mot-fiche > * { grid-column: 2; }
+.mot-fiche .mot-date { grid-column: 1; grid-row: 1 / span 3; color: var(--doux); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.mot-fiche .mot-date a { color: inherit; }
+.mot-fiche .mot-hangul { margin: 0; font-size: 1.5rem; }
+.mot-fiche .mot-sens { color: var(--texte); }
+.mot-fiche .mot-exemple { margin-top: 0.4rem; color: var(--doux); font-size: 0.95rem; }
+
+@media (max-width: 80rem) {
+  /* En bandeau, comme la météo et le change : le hangul et le sens sur une
+     ligne, la phrase à la suite. */
+  .cote > * + *, .gauche > * + * { margin-top: 0.5rem; }
+  .mot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
+  .mot-hangul { margin: 0; font-size: 1.4rem; }
+  .mot-exemple { flex-direction: row; flex-wrap: wrap; gap: 0 0.6rem; margin: 0; padding: 0; border: 0; }
+  .mot-suite { margin: 0 0 0 auto; }
+}
+@media (max-width: 34rem) {
+  .mot-fiche { grid-template-columns: minmax(0, 1fr); }
+  .mot-fiche > *, .mot-fiche .mot-date { grid-column: 1; grid-row: auto; }
+}
+
 @media (max-width: 80rem) {
   .change { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
   .change-taux { margin: 0; font-size: 1.4rem; }

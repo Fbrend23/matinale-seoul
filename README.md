@@ -6,6 +6,14 @@ coréennes, tech et IA, jeu vidéo, sport. Un brief par jour, cinq rubriques,
 passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le jeu
 vidéo.
 
+À côté du brief, un **mot du jour** de coréen, niveau débutant : le mot, sa
+romanisation, son sens, une phrase. La liste vit dans `config/vocabulaire.json`
+et le mot d'un jour se calcule de sa date (`src/lib/vocabulaire.js`) : rien
+n'est demandé à l'agent, rien n'est stocké dans le CMS, et un brief d'archive
+garde son mot. La page `/vocabulaire/` les retrouve tous. Pour enrichir la
+liste, **ajouter à la fin**, jamais au milieu, sinon les jours qui suivent
+changent de mot.
+
 Les sources sont en anglais, en coréen et en français ; quand elles n'écrivent
 pas en français, l'item porte leur titre tel quel, sous le sien, pour que le
 lecteur qui remonte à l'article le reconnaisse.

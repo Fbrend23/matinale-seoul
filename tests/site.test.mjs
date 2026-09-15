@@ -15,6 +15,7 @@ import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
 import { grouperParMois, moisLisible, moisCourt, cléMois, MIN_MOIS_POUR_NAV } from '../src/lib/archive.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
 import { grouperParLieu, slugLieu, normaliserLieu, MIN_EVENTS_PAR_LIEU } from '../src/lib/lieux.js';
+import { motDuJour, motsParus, fautesDeFiche, MOTS, DEBUT } from '../src/lib/vocabulaire.js';
 
 // --- Le cache du build -------------------------------------------------------
 
@@ -255,6 +256,55 @@ test('la page prend le nom du plus pressé, et range par date de fin', () => {
   const lieu = lieux.get(slugLieu('KSPO돔'));
   assert.equal(lieu.venue, 'KSPO 돔');
   assert.deepEqual(lieu.events.map((e) => e.name), ['tôt', 'tard']);
+});
+
+// --- Le mot du jour ----------------------------------------------------------
+//
+// Le mot d'un jour se calcule de sa date, et de rien d'autre : un brief
+// d'archive garde son mot, et deux fuseaux rendent le même. Le fichier, lui,
+// est tenu par un test : une fiche sans hangul ou un mot en double y
+// passerait sinon sans que rien ne le dise.
+
+const trois = [
+  { mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '가.', fr: 'A.' } },
+  { mot: '나', romanisation: 'na', sens: 'b', exemple: { ko: '나.', fr: 'B.' } },
+  { mot: '다', romanisation: 'da', sens: 'c', exemple: { ko: '다.', fr: 'C.' } },
+];
+
+test('le n-ième jour montre la n-ième fiche, et la liste se rejoue', () => {
+  assert.equal(motDuJour(DEBUT, trois).mot, '가');
+  assert.equal(motDuJour('2026-09-03', trois).mot, '다');
+  assert.equal(motDuJour('2026-09-04', trois).mot, '가', 'quatrième jour : on repart du début');
+  assert.equal(motDuJour('2026-09-04', trois).rang, 3);
+});
+
+test('avant le début, pas de mot ; une liste vide non plus', () => {
+  assert.equal(motDuJour('2026-08-31', trois), null);
+  assert.equal(motDuJour('2026-09-15', []), null);
+  assert.deepEqual(motsParus('2026-09-15', []), []);
+});
+
+test('les mots parus se listent du plus récent au plus ancien, chacun daté', () => {
+  const parus = motsParus('2026-09-04', trois);
+  assert.deepEqual(
+    parus.map((p) => [p.date, p.mot]),
+    [['2026-09-04', '가'], ['2026-09-03', '다'], ['2026-09-02', '나'], ['2026-09-01', '가']]
+  );
+});
+
+test('le fichier de vocabulaire est bien formé, sans doublon', () => {
+  assert.ok(MOTS.length >= 100, 'au moins cent fiches, trois mois sans se répéter');
+  for (const fiche of MOTS) {
+    assert.deepEqual(fautesDeFiche(fiche), [], `fiche « ${fiche.mot} »`);
+  }
+  const mots = MOTS.map((f) => f.mot);
+  assert.equal(new Set(mots).size, mots.length, 'un mot ne figure qu une fois');
+  assert.deepEqual(fautesDeFiche({ mot: 'abc', romanisation: '', sens: 'x', exemple: { ko: 'abc', fr: '' } }), [
+    'mot sans hangul',
+    'romanisation vide',
+    'exemple coréen sans hangul',
+    'exemple français vide',
+  ]);
 });
 
 // --- Les dates d'un événement ------------------------------------------------
