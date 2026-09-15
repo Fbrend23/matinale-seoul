@@ -448,6 +448,8 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
    note à côté dit pourquoi il n'y a pas de lien. Pas de barré, la source
    n'est pas fausse, elle est partie. */
 .source-morte { color: var(--doux); }
+/* Le titre original, sous le titre français : en retrait, dans sa langue. */
+.titre-original { margin: -0.3rem 0 0.5rem; font-size: 0.92rem; color: var(--doux); }
 
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 

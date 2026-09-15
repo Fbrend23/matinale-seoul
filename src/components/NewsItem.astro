@@ -17,6 +17,14 @@ const avecPage = await tagPages();
 <article class="item">
   <h3>{item.headline}</h3>
 
+  {/* Le titre tel que la source l'a écrit, dans sa langue : le lecteur qui
+      remonte à l'article le reconnaît, et un titre coréen se cherche tel quel.
+      lang= pour que les lecteurs d'écran et la typographie le traitent comme
+      tel, comme le lieu d'un événement. */}
+  {item.original_headline && (
+    <p class="titre-original" lang={item.source_lang ?? undefined}>{item.original_headline}</p>
+  )}
+
   {showSection && sectionLabel && <p class="rubrique">{sectionLabel}</p>}
 
   <p class="resume">{item.summary}</p>

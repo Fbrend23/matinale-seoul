@@ -408,6 +408,16 @@ export function checkCoherence(brief, { today = seoulDate() } = {}) {
           `« ${item.headline.slice(0, 60)} » : résumé de ${mots} mots, ${MAX_SUMMARY_WORDS} au plus`
         );
       }
+
+      // Le titre original n'a de sens que pour une source qui n'écrit pas en
+      // français : en porter un sur une source française, ou sans dire la
+      // langue, c'est un titre recopié d'on ne sait où. Le schéma ne sait pas
+      // lier deux champs ; la cohérence, si.
+      if (item.original_headline && (!item.source_lang || item.source_lang.startsWith('fr'))) {
+        erreurs.push(
+          `« ${item.headline.slice(0, 60)} » : un titre original sans langue de source, ou en français`
+        );
+      }
     }
   }
 

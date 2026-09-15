@@ -293,6 +293,25 @@ test('deux items ne peuvent pas se disputer le même rang', () => {
   assert.ok(fautes.some((f) => f.includes('même rang')));
 });
 
+test('un titre original demande une langue de source, et pas le français', () => {
+  const brief = structuredClone(valide);
+  const item = brief.sections[0].items[0];
+
+  item.original_headline = '정부, K-ETA 면제 연장';
+  item.source_lang = 'ko';
+  assert.deepEqual(validateSchema(brief, schéma), [], 'le schéma accepte le champ');
+  assert.deepEqual(checkCoherence(brief, { today: '2026-09-04' }), []);
+
+  item.source_lang = 'fr';
+  assert.ok(checkCoherence(brief, { today: '2026-09-04' }).some((f) => f.includes('titre original')));
+
+  delete item.source_lang;
+  assert.ok(checkCoherence(brief, { today: '2026-09-04' }).some((f) => f.includes('titre original')));
+
+  item.original_headline = '';
+  assert.ok(validateSchema(brief, schéma).length > 0, 'un titre original vide ne vaut rien');
+});
+
 test('une seule analyse par section', () => {
   const brief = structuredClone(valide);
   brief.sections[2].items[1].analysis = 'Une seconde analyse, de trop.';

@@ -6,6 +6,10 @@ coréennes, tech et IA, jeu vidéo, sport. Un brief par jour, cinq rubriques,
 passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le jeu
 vidéo.
 
+Les sources sont en anglais, en coréen et en français ; quand elles n'écrivent
+pas en français, l'item porte leur titre tel quel, sous le sien, pour que le
+lecteur qui remonte à l'article le reconnaisse.
+
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 
