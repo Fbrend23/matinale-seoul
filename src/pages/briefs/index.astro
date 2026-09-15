@@ -3,27 +3,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TetePage from '../../components/TetePage.astro';
 import { listBriefs } from '../../lib/content.js';
 import { longDate } from '../../lib/date.js';
+import { grouperParMois, moisLisible, moisCourt, MIN_MOIS_POUR_NAV } from '../../lib/archive.js';
 
 const briefs = await listBriefs();
 
 // Groupés par mois : une liste plate de plusieurs centaines de jours ne se
-// parcourt pas.
-const parMois = new Map();
-for (const brief of briefs) {
-  const clé = brief.date.slice(0, 7);
-  if (!parMois.has(clé)) parMois.set(clé, []);
-  parMois.get(clé).push(brief);
-}
+// parcourt pas. Le regroupement vit dans src/lib/archive.js, où il se teste.
+const mois = grouperParMois(briefs);
+
+// La barre qui saute d'un mois à l'autre, dès qu'il y en a deux. Des ancres,
+// pas un script : la page reste lisible sans lui, et le navigateur sait déjà
+// défiler jusqu'à un id.
+const avecNav = mois.length >= MIN_MOIS_POUR_NAV;
 
 // listBriefs() lève plutôt que de rendre une liste vide : ces deux bornes
 // existent donc toujours. Les nommer ici évite de le redemander deux fois plus
 // bas, et dit au passage pourquoi c'est sûr.
 const plusRecent = briefs[0];
 const plusAncien = briefs[briefs.length - 1];
-
-const moisLisible = (clé) =>
-  new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC', month: 'long', year: 'numeric' })
-    .format(new Date(`${clé}-15T12:00:00Z`));
 ---
 
 <BaseLayout
@@ -35,8 +32,16 @@ const moisLisible = (clé) =>
     du {longDate(plusAncien.date)} au {longDate(plusRecent.date)}.
   </TetePage>
 
-  {[...parMois].map(([clé, dumois]) => (
-    <section class="mois">
+  {avecNav && (
+    <nav class="mois-nav" aria-label="Aller à un mois">
+      {mois.map(({ clé, id }) => (
+        <a href={`#${id}`}>{moisCourt(clé)}</a>
+      ))}
+    </nav>
+  )}
+
+  {mois.map(({ clé, id, briefs: dumois }) => (
+    <section class="mois" id={id}>
       <h2>{moisLisible(clé)}</h2>
       <ul>
         {dumois.map((brief) => (
