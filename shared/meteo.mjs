@@ -50,3 +50,36 @@ export const CIEL = {
 export function libelléCiel(code) {
   return CIEL[code] ?? 'Temps indéterminé';
 }
+
+// --- La qualité de l'air --------------------------------------------------------
+//
+// Les seuils d'AirKorea sur les PM2,5 en moyenne journalière, µg/m³ : 좋음
+// jusqu'à 15, 보통 jusqu'à 35, 나쁨 jusqu'à 75, 매우나쁨 au-delà. Ce sont ceux
+// que les Séoulites lisent sur leur téléphone chaque matin, et la Matinale
+// parle de Séoul. Comme le libellé du ciel, la grille vit ici et se déduit au
+// rendu : ce qui est stocké est la mesure, et une grille corrigée vaut pour
+// toute l'archive.
+
+export const SEUILS_PM25 = [
+  { max: 15, clé: 'bon', libellé: 'Bon' },
+  { max: 35, clé: 'moyen', libellé: 'Moyen' },
+  { max: 75, clé: 'mauvais', libellé: 'Mauvais' },
+  { max: Infinity, clé: 'tres-mauvais', libellé: 'Très mauvais' },
+];
+
+/**
+ * Le grade d'une mesure de PM2,5.
+ *
+ * Même repli que le ciel : un non-nombre rend un grade nommé plutôt qu'un
+ * `undefined` en tête de brief.
+ *
+ * @param {unknown} pm25
+ * @returns {{clé: string, libellé: string}}
+ */
+export function gradeAir(pm25) {
+  if (typeof pm25 !== 'number' || !Number.isFinite(pm25)) {
+    return { clé: 'inconnu', libellé: 'Air indéterminé' };
+  }
+  const grade = SEUILS_PM25.find((s) => pm25 <= s.max);
+  return { clé: grade.clé, libellé: grade.libellé };
+}

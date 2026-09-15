@@ -103,7 +103,7 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 | `ingest_status` | enum | `ok` \| `failed`, traçabilité, distinct du champ système |
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
-| `weather` | json | nullable, bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
+| `weather` | json | nullable, bulletin Open-Meteo figé à l'ingestion, avec la qualité de l'air (`pm25`, `pm10`, moyenne prévue du jour, second service Open-Meteo, panne à part). Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
 | `fx` | json | nullable, cours CHF→KRW (taux de référence BCE via Frankfurter) figé à l'ingestion, avec la date du cours. Même règles que `weather` |
 | `empty_notes` | json | nullable, pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
 

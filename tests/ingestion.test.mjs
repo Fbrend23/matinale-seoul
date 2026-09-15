@@ -33,6 +33,7 @@ const NOM = `brief-${JOUR}.json`;
 const brief = (retouche = (b) => b) => retouche(structuredClone(VALIDE));
 
 const bulletin = { date: JOUR, tmin: 18, tmax: 26, code: 1 };
+const qualitéAir = { pm25: 22, pm10: 40, air_fetched_at: `${JOUR}T22:45:00.000Z` };
 const cours = { date: JOUR, rate_date: JOUR, base: 'CHF', quote: 'KRW', rate: 1646.98, source: 'frankfurter' };
 
 /**
@@ -100,6 +101,7 @@ const lancer = ({
   texte,
   nom = NOM,
   relevé = async () => bulletin,
+  air = async () => qualitéAir,
   change = async () => cours,
   aujourdhui = JOUR,
 } = {}) =>
@@ -111,6 +113,7 @@ const lancer = ({
     schéma,
     domaines,
     relevé,
+    air,
     cours: change,
   });
 
@@ -151,7 +154,8 @@ test('le bulletin météo part avec le brief', async () => {
   const client = fauxClient();
   await lancer({ client });
 
-  assert.deepEqual(briefÉcrit(client).weather, bulletin);
+  // Le bulletin, et l'air qui le complète, dans la même clé.
+  assert.deepEqual(briefÉcrit(client).weather, { ...bulletin, ...qualitéAir });
 });
 
 // --- Ce qui recale avant même la première garde ------------------------------
@@ -331,12 +335,64 @@ test('une météo absente est annoncée au run, sans le faire rougir', async () 
     relevé: async () => {
       throw new Error('HTTP 503');
     },
+    air: async () => qualitéAir,
     cours: async () => cours,
     annoter: (m) => annonces.push(m),
   });
 
   assert.equal(annonces.length, 1);
   assert.match(annonces[0], /^::warning::/);
+});
+
+test('la qualité de l air complète le bulletin', async () => {
+  sondeur();
+  const client = fauxClient();
+  await lancer({ client });
+  const { weather } = briefÉcrit(client);
+  assert.equal(weather.pm25, 22);
+  assert.equal(weather.pm10, 40);
+  assert.equal(weather.tmin, 18, 'le bulletin est intact');
+});
+
+test('un air muet laisse partir le bulletin sans sa ligne, et le dit au run', async () => {
+  sondeur();
+  const client = fauxClient();
+  const annonces = [];
+  await ingérer({
+    nom: NOM,
+    texte: JSON.stringify(VALIDE),
+    client,
+    aujourdhui: JOUR,
+    schéma,
+    domaines,
+    relevé: async () => bulletin,
+    air: async () => {
+      throw new Error('HTTP 503');
+    },
+    cours: async () => cours,
+    annoter: (m) => annonces.push(m),
+  });
+
+  const { weather } = briefÉcrit(client);
+  assert.equal(weather.tmin, 18, 'la météo est là');
+  assert.ok(!('pm25' in weather), "sans l'air");
+  assert.equal(annonces.length, 1);
+  assert.match(annonces[0], /^::warning::Qualité de l'air/);
+});
+
+test('sans bulletin, pas d appel à l air', async () => {
+  sondeur();
+  let appels = 0;
+  await lancer({
+    relevé: async () => {
+      throw new Error('HTTP 503');
+    },
+    air: async () => {
+      appels++;
+      return qualitéAir;
+    },
+  });
+  assert.equal(appels, 0);
 });
 
 test('un brief recalé ne paie pas l appel météo', async () => {
@@ -422,6 +478,7 @@ const lancerAvecÉvénements = ({ client, annoter, aujourdhui = JOUR, texte } = 
     schéma,
     domaines,
     relevé: async () => bulletin,
+    air: async () => qualitéAir,
     cours: async () => cours,
     annoter: annoter ?? (() => {}),
   });
@@ -573,6 +630,7 @@ test('un service de change muet ne retient jamais un brief', async () => {
     schéma,
     domaines,
     relevé: async () => bulletin,
+    air: async () => qualitéAir,
     cours: async () => {
       throw new Error('HTTP 502');
     },

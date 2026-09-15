@@ -9,7 +9,7 @@
 // Le libellé du ciel est DÉRIVÉ du code WMO stocké, jamais lu depuis le brief :
 // une formulation qu'on corrige vaut alors pour toute l'archive. L'icône suit
 // la même règle, par familles de codes.
-import { libelléCiel } from '../../shared/meteo.mjs';
+import { libelléCiel, gradeAir } from '../../shared/meteo.mjs';
 import { shortDate } from '../lib/date.js';
 
 const { weather, date } = Astro.props;
@@ -17,6 +17,12 @@ const { weather, date } = Astro.props;
 // La probabilité manque quand le relevé sort de la fenêtre de prévision. Zéro
 // pour cent est une information, l'absence n'en est pas une : on distingue.
 const pluie = typeof weather?.precip_probability === 'number' ? weather.precip_probability : null;
+
+// La qualité de l'air, même garde : les briefs parus avant ce relevé, et les
+// matins où le service s'est tu, n'ont pas la clé, et pas la ligne. Le grade
+// est DÉRIVÉ de la mesure au rendu, comme le ciel de son code.
+const pm25 = typeof weather?.pm25 === 'number' ? weather.pm25 : null;
+const air = pm25 !== null ? gradeAir(pm25) : null;
 
 // Une famille par icône, du code WMO vers un dessin. Volontairement grossier :
 // six dessins suffisent à dire le temps qu'il fait, et le libellé précise.
@@ -90,8 +96,14 @@ const ciel = weather ? famille(weather.code) : null;
 
     <p class="meteo-ciel">{libelléCiel(weather.code)}</p>
     {pluie !== null && <p class="meteo-pluie">{pluie}&#8239;% de pluie</p>}
+    {air && (
+      <p class="meteo-air" data-air={air.clé}>
+        <span class="meteo-air-point" aria-hidden="true"></span>
+        Air {air.libellé.toLowerCase()} <span class="meteo-air-mesure">PM2,5 {pm25}&#8239;µg/m³</span>
+      </p>
+    )}
 
-    {/* Les données Open-Meteo sont sous CC-BY 4.0 : l'attribution est due. */}
+    {/* Les données Open-Meteo, météo comme air, sont sous CC-BY 4.0 : l'attribution est due. */}
     <p class="meteo-source">
       <a href="https://open-meteo.com/" rel="nofollow noopener" target="_blank">Open-Meteo</a>
     </p>

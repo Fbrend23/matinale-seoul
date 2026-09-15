@@ -13,6 +13,7 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 |---|---|
 | Site | statique, Astro 7, déployé en FTPS sur mutualisé Infomaniak |
 | CMS | Directus 12 mutualisé, collections `mat_*` ([platform-cms](../platform-cms)) |
+| Météo et air | [Open-Meteo](https://open-meteo.com/), sans clé, CC-BY : bulletin du jour et PM2,5 en moyenne prévue, figés à l'ingestion, grade AirKorea au rendu |
 | Cahier des charges | [`cdc.md`](cdc.md), il fait foi |
 
 ## La chaîne, du fichier au site
