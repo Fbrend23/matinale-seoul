@@ -16,9 +16,10 @@ import { readFile } from 'node:fs/promises';
 import { seoulToday, jourPlus } from '../../shared/date.mjs';
 
 /**
- * Les données servies : un brief avec météo et change, ses items, et des
- * événements posés autour d'aujourd'hui, un en cours, un qui finit bientôt,
- * un à venir, un terminé qui ne doit pas paraître.
+ * Les données servies : un brief avec météo et change, ses items, un second
+ * brief vide du mois d'avant, et des événements posés autour d'aujourd'hui,
+ * un en cours, un qui finit bientôt, un à venir, un terminé qui ne doit pas
+ * paraître.
  */
 export async function donnéesDeDémonstration(cheminFixture) {
   const brief = JSON.parse(await readFile(cheminFixture, 'utf8'));
@@ -34,6 +35,20 @@ export async function donnéesDeDémonstration(cheminFixture) {
       ingested_at: `${brief.date}T22:00:00.000Z`,
       weather: { date: brief.date, tmin: 18, tmax: 27, code: 2, precip_probability: 30, source: 'open-meteo' },
       fx: { date: brief.date, rate_date: brief.date, base: 'CHF', quote: 'KRW', rate: 1646.98, source: 'frankfurter' },
+      empty_notes: null,
+    },
+    // Un brief du mois précédent, sans item ni accessoire : l'archive doit
+    // sortir deux mois et sa barre de navigation, et une page de brief vide
+    // doit sortir quand même, comme un brief paru avant la météo.
+    {
+      id: 2,
+      date: '2026-08-28',
+      slug: 'brief-2026-08-28',
+      title: 'Brief du mois précédent',
+      standfirst: 'Un brief sans item, pour que l’archive ait deux mois.',
+      ingested_at: '2026-08-27T22:00:00.000Z',
+      weather: null,
+      fx: null,
       empty_notes: null,
     },
   ];

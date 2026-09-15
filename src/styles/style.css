@@ -679,6 +679,22 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
    même forme. */
 
 .precedents, .mois { margin: 3rem 0; }
+/* L'ancre ne colle pas le titre du mois au bord de l'écran. */
+.mois { scroll-margin-top: 1rem; }
+
+/* La barre des mois, en tête de l'archive : des pastilles neutres, comme les
+   filtres des événements mais sans état enfoncé, ce sont des ancres. */
+.mois-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 0; }
+.mois-nav a {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  background: var(--carte);
+  color: var(--doux);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+.mois-nav a:hover { color: var(--accent); border-color: var(--accent); }
 .precedents ul, .mois ul { list-style: none; margin: 0; padding: 0; }
 .precedents li, .mois li { border-top: 1px solid var(--trait); }
 /* Les entrées de la liste sont des lignes, pas des liens soulignés ; le

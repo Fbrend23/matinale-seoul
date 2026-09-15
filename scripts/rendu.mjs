@@ -66,7 +66,10 @@ if (code !== 0) {
   // qui vient de la fixture et changerait avec elle.
   const attendus = [
     ['index.html', ['class="meteo"', 'class="change"', 'aria-current="page"', 'class="brief"']],
-    ['briefs/index.html', ['class="mois"']],
+    // Deux mois dans la fixture : la barre d'ancres doit sortir, et pointer
+    // sur des sections qui existent.
+    ['briefs/index.html', ['class="mois"', 'class="mois-nav"', 'href="#mois-2026-08"', 'id="mois-2026-08"', 'id="mois-2026-09"']],
+    ['briefs/brief-2026-08-28/index.html', ['class="brief"']],
     ['briefs/brief-2026-09-04/index.html', ['application/ld+json', 'class="meteo"']],
     // Une rubrique a le cadre de l'accueil : le contexte du jour à côté, une
     // tête de page, et où aller ensuite.

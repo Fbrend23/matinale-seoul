@@ -12,6 +12,7 @@ import assert from 'node:assert/strict';
 
 import { créerMémo } from '../src/lib/une-fois.js';
 import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
+import { grouperParMois, moisLisible, moisCourt, cléMois, MIN_MOIS_POUR_NAV } from '../src/lib/archive.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
 
 // --- Le cache du build -------------------------------------------------------
@@ -174,6 +175,49 @@ test('le seuil est réglable, et sa valeur par défaut est celle du module', () 
   assert.equal(groupByTag(briefs).size, 0);
   assert.equal(groupByTag(briefs, { minItems: 1 }).size, 1);
   assert.equal(MIN_ITEMS_PAR_TAG, 2);
+});
+
+// --- L'archive par mois ------------------------------------------------------
+//
+// La page d'archive groupe les briefs par mois et pose une barre d'ancres en
+// tête. Le regroupement est ici pour être testé : la page, elle, dépend
+// d'« astro:env ».
+
+test('les briefs se regroupent par mois, dans l ordre reçu', () => {
+  const mois = grouperParMois([
+    { date: '2026-10-02' },
+    { date: '2026-10-01' },
+    { date: '2026-09-30' },
+  ]);
+
+  assert.deepEqual(
+    mois.map((m) => [m.clé, m.id, m.briefs.length]),
+    [
+      ['2026-10', 'mois-2026-10', 2],
+      ['2026-09', 'mois-2026-09', 1],
+    ]
+  );
+});
+
+test('un mois vide n existe pas, et aucun brief ne se perd', () => {
+  const briefs = [{ date: '2026-11-01' }, { date: '2026-09-15' }];
+  const mois = grouperParMois(briefs);
+  assert.equal(mois.length, 2, 'octobre, sans brief, n a pas de section');
+  assert.equal(mois.flatMap((m) => m.briefs).length, briefs.length);
+  assert.deepEqual(grouperParMois([]), []);
+});
+
+test('les libellés du mois ne dépendent pas du fuseau du runner', () => {
+  // Le test tourne en fuseau local puis en UTC : les deux doivent rendre la
+  // même chose, et c'est l'ancrage UTC au 15 qui le garantit.
+  assert.equal(cléMois('2026-09-04'), '2026-09');
+  assert.equal(moisLisible('2026-09'), 'septembre 2026');
+  assert.equal(moisCourt('2026-09'), 'sept. 2026');
+  assert.equal(moisLisible('2026-01'), 'janvier 2026');
+});
+
+test('la barre de navigation demande au moins deux mois', () => {
+  assert.equal(MIN_MOIS_POUR_NAV, 2);
 });
 
 // --- Les dates d'un événement ------------------------------------------------
