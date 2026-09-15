@@ -12,7 +12,10 @@ import assert from 'node:assert/strict';
 
 import { créerMémo } from '../src/lib/une-fois.js';
 import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
+import { grouperParMois, moisLisible, moisCourt, cléMois, MIN_MOIS_POUR_NAV } from '../src/lib/archive.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
+import { grouperParLieu, slugLieu, normaliserLieu, MIN_EVENTS_PAR_LIEU } from '../src/lib/lieux.js';
+import { motDuJour, motsParus, fautesDeFiche, MOTS, DEBUT } from '../src/lib/vocabulaire.js';
 
 // --- Le cache du build -------------------------------------------------------
 
@@ -174,6 +177,134 @@ test('le seuil est réglable, et sa valeur par défaut est celle du module', () 
   assert.equal(groupByTag(briefs).size, 0);
   assert.equal(groupByTag(briefs, { minItems: 1 }).size, 1);
   assert.equal(MIN_ITEMS_PAR_TAG, 2);
+});
+
+// --- L'archive par mois ------------------------------------------------------
+//
+// La page d'archive groupe les briefs par mois et pose une barre d'ancres en
+// tête. Le regroupement est ici pour être testé : la page, elle, dépend
+// d'« astro:env ».
+
+test('les briefs se regroupent par mois, dans l ordre reçu', () => {
+  const mois = grouperParMois([
+    { date: '2026-10-02' },
+    { date: '2026-10-01' },
+    { date: '2026-09-30' },
+  ]);
+
+  assert.deepEqual(
+    mois.map((m) => [m.clé, m.id, m.briefs.length]),
+    [
+      ['2026-10', 'mois-2026-10', 2],
+      ['2026-09', 'mois-2026-09', 1],
+    ]
+  );
+});
+
+test('un mois vide n existe pas, et aucun brief ne se perd', () => {
+  const briefs = [{ date: '2026-11-01' }, { date: '2026-09-15' }];
+  const mois = grouperParMois(briefs);
+  assert.equal(mois.length, 2, 'octobre, sans brief, n a pas de section');
+  assert.equal(mois.flatMap((m) => m.briefs).length, briefs.length);
+  assert.deepEqual(grouperParMois([]), []);
+});
+
+test('les libellés du mois ne dépendent pas du fuseau du runner', () => {
+  // Le test tourne en fuseau local puis en UTC : les deux doivent rendre la
+  // même chose, et c'est l'ancrage UTC au 15 qui le garantit.
+  assert.equal(cléMois('2026-09-04'), '2026-09');
+  assert.equal(moisLisible('2026-09'), 'septembre 2026');
+  assert.equal(moisCourt('2026-09'), 'sept. 2026');
+  assert.equal(moisLisible('2026-01'), 'janvier 2026');
+});
+
+test('la barre de navigation demande au moins deux mois', () => {
+  assert.equal(MIN_MOIS_POUR_NAV, 2);
+});
+
+// --- Les pages par lieu ------------------------------------------------------
+//
+// Même règle que les étiquettes, et même raison : elle décide des pages à
+// construire, et elle décide si la carte d'événement pose un lien.
+
+const évt = (venue, name, fin = '2026-09-20', début = '2026-09-01') => ({
+  venue, area: 'Jamsil', name, start_date: début, end_date: fin,
+});
+
+test('deux graphies à une espace près sont le même lieu', () => {
+  assert.equal(normaliserLieu('KSPO 돔'), normaliserLieu('KSPO돔'));
+  assert.equal(normaliserLieu(' Coex '), 'coex');
+  assert.equal(slugLieu('KSPO 돔'), slugLieu('kspo돔'));
+});
+
+test('le slug est stable, ASCII, et distingue deux lieux', () => {
+  assert.match(slugLieu('포켓몬센터 성수'), /^lieu-[0-9a-f]{8}$/);
+  assert.equal(slugLieu('포켓몬센터 성수'), slugLieu('포켓몬센터 성수'));
+  assert.notEqual(slugLieu('포켓몬센터 성수'), slugLieu('더현대 서울'));
+});
+
+test('un lieu à un seul événement n a pas de page', () => {
+  const lieux = grouperParLieu([évt('A', 'seul'), évt('B', 'un'), évt('B', 'deux')]);
+  assert.ok(!lieux.has(slugLieu('A')));
+  assert.equal(lieux.get(slugLieu('B')).events.length, 2);
+  assert.equal(MIN_EVENTS_PAR_LIEU, 2);
+  assert.equal(grouperParLieu([évt('A', 'seul')], { minEvents: 1 }).size, 1);
+});
+
+test('la page prend le nom du plus pressé, et range par date de fin', () => {
+  const lieux = grouperParLieu([évt('KSPO돔', 'tard', '2026-10-01'), évt('KSPO 돔', 'tôt', '2026-09-10')]);
+  const lieu = lieux.get(slugLieu('KSPO돔'));
+  assert.equal(lieu.venue, 'KSPO 돔');
+  assert.deepEqual(lieu.events.map((e) => e.name), ['tôt', 'tard']);
+});
+
+// --- Le mot du jour ----------------------------------------------------------
+//
+// Le mot d'un jour se calcule de sa date, et de rien d'autre : un brief
+// d'archive garde son mot, et deux fuseaux rendent le même. Le fichier, lui,
+// est tenu par un test : une fiche sans hangul ou un mot en double y
+// passerait sinon sans que rien ne le dise.
+
+const trois = [
+  { mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '가.', fr: 'A.' } },
+  { mot: '나', romanisation: 'na', sens: 'b', exemple: { ko: '나.', fr: 'B.' } },
+  { mot: '다', romanisation: 'da', sens: 'c', exemple: { ko: '다.', fr: 'C.' } },
+];
+
+test('le n-ième jour montre la n-ième fiche, et la liste se rejoue', () => {
+  assert.equal(motDuJour(DEBUT, trois).mot, '가');
+  assert.equal(motDuJour('2026-09-03', trois).mot, '다');
+  assert.equal(motDuJour('2026-09-04', trois).mot, '가', 'quatrième jour : on repart du début');
+  assert.equal(motDuJour('2026-09-04', trois).rang, 3);
+});
+
+test('avant le début, pas de mot ; une liste vide non plus', () => {
+  assert.equal(motDuJour('2026-08-31', trois), null);
+  assert.equal(motDuJour('2026-09-15', []), null);
+  assert.deepEqual(motsParus('2026-09-15', []), []);
+});
+
+test('les mots parus se listent du plus récent au plus ancien, chacun daté', () => {
+  const parus = motsParus('2026-09-04', trois);
+  assert.deepEqual(
+    parus.map((p) => [p.date, p.mot]),
+    [['2026-09-04', '가'], ['2026-09-03', '다'], ['2026-09-02', '나'], ['2026-09-01', '가']]
+  );
+});
+
+test('le fichier de vocabulaire est bien formé, sans doublon', () => {
+  assert.ok(MOTS.length >= 100, 'au moins cent fiches, trois mois sans se répéter');
+  for (const fiche of MOTS) {
+    assert.deepEqual(fautesDeFiche(fiche), [], `fiche « ${fiche.mot} »`);
+  }
+  const mots = MOTS.map((f) => f.mot);
+  assert.equal(new Set(mots).size, mots.length, 'un mot ne figure qu une fois');
+  assert.deepEqual(fautesDeFiche({ mot: 'abc', romanisation: '', sens: 'x', exemple: { ko: 'abc', fr: '' } }), [
+    'mot sans hangul',
+    'romanisation vide',
+    'exemple coréen sans hangul',
+    'exemple français vide',
+  ]);
 });
 
 // --- Les dates d'un événement ------------------------------------------------

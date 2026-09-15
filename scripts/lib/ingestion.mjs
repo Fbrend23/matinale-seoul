@@ -31,7 +31,7 @@ import {
   updateEventDates,
   archiveExpiredEvents,
 } from './directus.mjs';
-import { relevéMétéo } from './meteo.mjs';
+import { relevéMétéo, relevéAir } from './meteo.mjs';
 import { relevéChange } from './change.mjs';
 import { contrôlerÉvénements } from './evenements.mjs';
 
@@ -53,6 +53,7 @@ export const NOM_ATTENDU = /^brief-(\d{4}-\d{2}-\d{2})\.json$/;
  * @param {object} p.schéma       brief.schema.json, déjà lu
  * @param {string[]} p.domaines   l'allowlist, déjà lue
  * @param {Function} [p.relevé]   le bulletin météo ; injectable pour les tests
+ * @param {Function} [p.air]      la qualité de l'air ; injectable de même
  * @param {Function} [p.cours]    le cours du change ; injectable de même
  * @param {Function} [p.dire]     le journal du run
  * @param {Function} [p.annoter]  les annotations GitHub Actions (::warning::)
@@ -66,6 +67,7 @@ export async function ingérer({
   schéma,
   domaines,
   relevé = relevéMétéo,
+  air = relevéAir,
   cours = relevéChange,
   dire = () => {},
   annoter = () => {},
@@ -200,6 +202,21 @@ export async function ingérer({
     // Annotation dans le résumé du run : l'absence se voit sans que le job
     // passe au rouge. Un encadré manquant n'est pas une panne de publication.
     annoter(`::warning::Météo absente du brief ${brief.date} : ${e.message}`);
+  }
+
+  // --- Qualité de l'air ---
+  // Un second relevé, dans le même bloc que la météo : il complète le
+  // bulletin, et n'existe pas sans lui. Sa panne est à part, le bulletin part
+  // sans sa ligne d'air, et se lit à part au journal.
+  if (météo) {
+    try {
+      const qualité = await air({ date: brief.date });
+      météo = { ...météo, ...qualité };
+      dire(`   air · PM2,5 ${qualité.pm25} µg/m³ en moyenne prévue`);
+    } catch (e) {
+      dire(`   air · indisponible, le bulletin part sans : ${e.message}`);
+      annoter(`::warning::Qualité de l'air absente du brief ${brief.date} : ${e.message}`);
+    }
   }
 
   // --- Cours du change ---

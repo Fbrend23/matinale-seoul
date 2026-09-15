@@ -240,6 +240,11 @@ export async function saveBrief(
         brief: id,
         section: item.section,
         headline: item.headline,
+        // Sans repli si l'instance ne connaît pas le champ, à la différence
+        // des accessoires du brief : un POST d'items refusé fait échouer le
+        // run bruyamment, et c'est le comportement voulu pour un
+        // provisionnement oublié. Le brief est déjà écrit, le rejeu reprend.
+        original_headline: item.original_headline ?? null,
         summary: item.summary,
         analysis: item.analysis ?? null,
         importance: item.importance,
@@ -282,7 +287,7 @@ export async function saveBrief(
  */
 export async function activeEvents(client, { today, saufBrief = null }) {
   const trouvés = await client.get(
-    `/items/${EVENTS}?fields=id,name,start_date,end_date,venue,brief` +
+    `/items/${EVENTS}?fields=id,name,start_date,end_date,venue,theme,source_url,brief` +
       `&filter[status][_neq]=archived` +
       `&filter[end_date][_gte]=${today}` +
       `&limit=-1`

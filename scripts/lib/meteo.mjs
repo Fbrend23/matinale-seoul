@@ -119,3 +119,93 @@ export async function relevéMétéo({ date }, { fetcher = fetch, timeoutMs = 5_
     source: 'open-meteo',
   };
 }
+
+// --- La qualité de l'air --------------------------------------------------------
+//
+// Même fournisseur, même licence, même attribution, autre service : Open-Meteo
+// sert les particules fines sur une seconde adresse. Un second relevé, à part
+// du premier, et pour une raison : l'air peut manquer sans que la météo
+// manque, et c'est l'ingestion qui les assemble.
+//
+// LA MOYENNE DU JOUR, pas le pic. Les seuils d'AirKorea, ceux que le lecteur
+// connaît, qualifient une moyenne sur vingt-quatre heures, et un pic à quatre
+// heures du matin ferait crier « mauvais » sur une journée « moyenne ». Le
+// brief part vers 7 h 45 : la journée est une prévision, et le composant
+// le dit.
+
+const BASE_AIR = 'https://air-quality-api.open-meteo.com/v1/air-quality';
+
+const CHAMPS_AIR = ['pm2_5', 'pm10'];
+
+/** En dessous, la journée est trop creuse pour une moyenne honnête. */
+const HEURES_MINIMUM = 12;
+
+/** L'adresse du relevé d'air, pour un jour donné. Exportée pour être testée. */
+export function urlRelevéAir(date) {
+  const params = new URLSearchParams({
+    latitude: String(SEOUL.latitude),
+    longitude: String(SEOUL.longitude),
+    hourly: CHAMPS_AIR.join(','),
+    // Les mêmes deux paramètres de fuseau que le bulletin, et pour la même
+    // raison : sans `timezone`, les vingt-quatre heures seraient celles d'UTC.
+    timezone: 'Asia/Seoul',
+    start_date: date,
+    end_date: date,
+  });
+  return `${BASE_AIR}?${params}`;
+}
+
+/** La moyenne arrondie des heures renseignées, ou null s'il y en a trop peu. */
+function moyenne(valeurs) {
+  const nombres = (valeurs ?? []).filter((v) => typeof v === 'number' && Number.isFinite(v));
+  if (nombres.length < HEURES_MINIMUM) return null;
+  return Math.round(nombres.reduce((a, b) => a + b, 0) / nombres.length);
+}
+
+/**
+ * Les particules fines de Séoul pour ce jour-là, ou une exception qui dit
+ * pourquoi non.
+ *
+ * @returns {Promise<{pm25: number, pm10: number|null, air_fetched_at: string}>}
+ */
+export async function relevéAir({ date }, { fetcher = fetch, timeoutMs = 5_000 } = {}) {
+  const controller = new AbortController();
+  const minuteur = setTimeout(() => controller.abort(), timeoutMs);
+
+  let res;
+  try {
+    res = await fetcher(urlRelevéAir(date), { signal: controller.signal });
+  } catch (e) {
+    throw new Error(
+      e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message
+    );
+  } finally {
+    clearTimeout(minuteur);
+  }
+
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+  const json = await res.json().catch(() => null);
+  const heures = json?.hourly;
+
+  // Les mêmes deux contrôles que le bulletin : le bon jour, découpé sur Séoul.
+  const premier = heures?.time?.[0] ?? '';
+  if (!premier.startsWith(date)) {
+    throw new Error(`relevé d'air daté du ${premier || '(rien)'}, attendu le ${date}`);
+  }
+  if (json.utc_offset_seconds !== DÉCALAGE_SEOUL) {
+    throw new Error(`journée calculée sur ${json.timezone ?? '?'}, pas sur Séoul`);
+  }
+
+  const pm25 = moyenne(heures.pm2_5);
+  if (pm25 === null) {
+    throw new Error(`relevé d'air trop creux : moins de ${HEURES_MINIMUM} heures de PM2,5`);
+  }
+
+  return {
+    pm25,
+    // Le PM10 est un complément : son absence ne retire pas la ligne.
+    pm10: moyenne(heures.pm10),
+    air_fetched_at: new Date().toISOString(),
+  };
+}

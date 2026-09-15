@@ -258,13 +258,22 @@ export function sourceSpread(items) {
 
 // --- Garde 4 : doublons ------------------------------------------------------
 
-/** Réduit un titre à ce qui se compare : sans casse, sans accents, sans ponctuation. */
+/**
+ * Réduit un titre à ce qui se compare : sans casse, sans accents, sans
+ * ponctuation.
+ *
+ * Toute lettre compte, pas seulement a-z : un nom d'événement en coréen se
+ * réduisait au vide, et deux noms coréens sans rapport se ressemblaient
+ * alors parfaitement. Le hangul est décomposé en jamo par la forme NFD, et
+ * c'est tant mieux, les bigrammes comparent alors des lettres et non des
+ * syllabes entières.
+ */
 export function normalize(texte) {
   return texte
     .normalize('NFD')
     .replace(/\p{Diacritic}/gu, '')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
     .trim();
 }
 
@@ -294,8 +303,13 @@ function empreinte(texte) {
 function dice(a, b) {
   const total = a.total + b.total;
   // Deux titres trop courts pour porter un seul bigramme : il ne reste qu'à
-  // les comparer tels quels.
-  if (total === 0) return normalize(a.texte) === normalize(b.texte) ? 1 : 0;
+  // les comparer tels quels. Deux vides, en revanche, ne se ressemblent pas,
+  // ils sont absents : un titre réduit à rien ne doit passer pour le double
+  // de personne.
+  if (total === 0) {
+    const na = normalize(a.texte);
+    return na !== '' && na === normalize(b.texte) ? 1 : 0;
+  }
 
   // On parcourt la plus petite des deux tables : le résultat est le même, et le
   // travail suit alors le titre le plus court.
@@ -392,6 +406,16 @@ export function checkCoherence(brief, { today = seoulDate() } = {}) {
       if (mots > MAX_SUMMARY_WORDS) {
         erreurs.push(
           `« ${item.headline.slice(0, 60)} » : résumé de ${mots} mots, ${MAX_SUMMARY_WORDS} au plus`
+        );
+      }
+
+      // Le titre original n'a de sens que pour une source qui n'écrit pas en
+      // français : en porter un sur une source française, ou sans dire la
+      // langue, c'est un titre recopié d'on ne sait où. Le schéma ne sait pas
+      // lier deux champs ; la cohérence, si.
+      if (item.original_headline && (!item.source_lang || item.source_lang.startsWith('fr'))) {
+        erreurs.push(
+          `« ${item.headline.slice(0, 60)} » : un titre original sans langue de source, ou en français`
         );
       }
     }

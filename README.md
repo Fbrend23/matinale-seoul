@@ -6,13 +6,27 @@ coréennes, tech et IA, jeu vidéo, sport. Un brief par jour, cinq rubriques,
 passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le jeu
 vidéo.
 
+À côté du brief, un **mot du jour** de coréen, niveau débutant : le mot, sa
+romanisation, son sens, une phrase. La liste vit dans `config/vocabulaire.json`
+et le mot d'un jour se calcule de sa date (`src/lib/vocabulaire.js`) : rien
+n'est demandé à l'agent, rien n'est stocké dans le CMS, et un brief d'archive
+garde son mot. La page `/vocabulaire/` les retrouve tous. Pour enrichir la
+liste, **ajouter à la fin**, jamais au milieu, sinon les jours qui suivent
+changent de mot.
+
+Les sources sont en anglais, en coréen et en français ; quand elles n'écrivent
+pas en français, l'item porte leur titre tel quel, sous le sien, pour que le
+lecteur qui remonte à l'article le reconnaisse.
+
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 
 | | |
 |---|---|
 | Site | statique, Astro 7, déployé en FTPS sur mutualisé Infomaniak |
+| Recherche | [Pagefind](https://pagefind.app/), index statique construit après le build, sur les briefs |
 | CMS | Directus 12 mutualisé, collections `mat_*` ([platform-cms](../platform-cms)) |
+| Météo et air | [Open-Meteo](https://open-meteo.com/), sans clé, CC-BY : bulletin du jour et PM2,5 en moyenne prévue, figés à l'ingestion, grade AirKorea au rendu |
 | Cahier des charges | [`cdc.md`](cdc.md), il fait foi |
 
 ## La chaîne, du fichier au site
@@ -34,9 +48,11 @@ GitHub ──push (paths: inbox/**)──▶ Actions
 
 **Aucun cron dans la chaîne.** Le push déclenche tout, et le site ne se
 reconstruit que lorsqu'il a quelque chose de neuf à dire. Rejouer un run raté
-est un bouton dans l'onglet Actions, avec ses journaux. Deux surveillances, elles,
-sont bien à l'heure (`Rejeu` à 8 h 15 et 9 h 15, `Veille` à 10 h, heure de Séoul),
-mais aucune des deux ne reconstruit quoi que ce soit de son propre chef.
+est un bouton dans l'onglet Actions, avec ses journaux. Trois surveillances, elles,
+sont bien à l'heure (`Rejeu` à 8 h 15 et 9 h 15, `Veille` à 10 h, `Liens` le
+dimanche à midi, heure de Séoul). Les deux premières ne reconstruisent rien de
+leur propre chef ; la troisième relance la Publication seulement quand elle a
+marqué un lien mort, et le site a alors quelque chose de neuf à dire.
 
 L'avis « le brief du jour n'est pas encore paru » est la seule chose qui ne peut
 pas être décidée au build : « aujourd'hui » y serait figé. Il est calculé chez le
@@ -100,6 +116,19 @@ imputait alors à la source ce qui venait de la garde.
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
 
+**Et après la parution, les liens qui meurent.** La garde 2 ne regarde une source
+qu'une fois, le matin où elle paraît. Le workflow `Liens`, le dimanche à midi
+heure de Séoul, revisite les sources des quatre-vingt-dix derniers jours, items
+et événements, et pose `link_dead_at` sur celles qui répondent 404 ou 410 deux
+fois à une minute d'écart. Le site affiche alors le nom de la source sans lien,
+avec la note « page retirée » ; l'item reste, il disait vrai le jour où il l'a
+dit. Une page revenue perd sa marque. Les 5xx, les silences et les refus ne
+marquent jamais : un site en panne un dimanche n'a pas perdu son article. S'il
+a marqué quelque chose, le job relance la Publication pour que le site cesse
+de lier sans attendre le lendemain ; un lien mort n'est pas une panne, le job
+sort en succès, et seul un CMS muet le fait échouer. Le flux RSS, figé à la
+parution, garde le lien.
+
 ## Pop-ups et événements
 
 Le brief peut porter un tableau `events` facultatif : boutiques éphémères,
@@ -116,6 +145,7 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 | dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots, lieu sans hangul et sans fiche Naver Map | événement écarté |
 | domaine hors allowlist | événement écarté, **pas** de brief retenu en brouillon |
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
+| déjà connu par le lieu : même lieu, dates qui se recouvrent, et la même source ou le même thème avec un nom à moitié proche | événement écarté ; le nom seul en laissait passer, le lieu seul en écarterait trop, COEX accueille plusieurs pop-ups la même semaine |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour, prolongation, report, si la source répond |
 | source morte | événement écarté ; un accès refusé le garde, sans date |
 | billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |
@@ -149,6 +179,15 @@ affiché et hors de la requête. Quand l'agent a *vu* la fiche du lieu, il la do
 elle remplace la recherche, sondée comme un lien, mais la sonde est partielle :
 `map.naver.com` est une application qui répond 200 à n'importe quelle fiche,
 seuls les liens courts `naver.me` répondent 404. D'où le repli.
+
+**Une page par lieu** (`/lieux/…/`) pour ceux qui accueillent au moins deux
+événements en cours ou à venir, comme les étiquettes ont la leur à partir de
+deux items : une page à un seul événement recopierait sa carte. Le lieu devient
+alors cliquable sur les cartes ; en dessous, il reste affiché, sans lien. Deux
+graphies à une espace près sont le même lieu, rien de plus malin, on ne devine
+pas. L'adresse est un slug opaque, pas le nom coréen : un dossier en hangul
+déposé par FTPS sur un mutualisé est une surprise qu'on ne veut pas au premier
+déploiement, et ces adresses se cliquent, elles ne se tapent pas.
 
 **La carte de l'onglet** pose un pin par lieu que Kakao Map retrouve. Aucune
 coordonnée n'est stockée : les conditions des API de recherche de Naver comme
@@ -187,12 +226,18 @@ npm run rendu            # construit le site contre un faux CMS et vérifie chaq
 npm run dev              # demande DIRECTUS_URL et un jeton de lecture
 npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu de la fixture
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
+npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief
 daté à Séoul et un runner en UTC sont à quinze heures l'un de l'autre.
+
+La recherche n'existe que sur le site construit : `astro dev` n'écrit pas
+l'index, il sert celui du dernier build dans `dist/`. Sans build, la page
+`/recherche/` reste sur sa phrase de repli : `npm run build` une fois, et elle
+cherche dans l'index de ce build-là.
 
 ## Deux jetons Directus, à ne pas confondre
 

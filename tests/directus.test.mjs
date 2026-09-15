@@ -173,6 +173,24 @@ test('un bulletin fourni est écrit avec le brief', async () => {
   assert.deepEqual(charge(faux1).weather, bulletin);
 });
 
+test('le titre original part avec l item, nul quand il manque', async () => {
+  const faux1 = faux();
+  const item = { section: 'coree', headline: 'Titre', summary: 'Résumé.', importance: 1, source_name: 'Yonhap', source_url: 'https://www.yna.co.kr/x' };
+  await saveBrief(faux1.client, {
+    brief,
+    items: [
+      { ...item, original_headline: '제목', source_lang: 'ko' },
+      { ...item, headline: 'Autre' },
+    ],
+    status: 'published',
+    ingestStatus: 'ok',
+  });
+
+  const écrits = faux1.posts.find((p) => Array.isArray(p.corps)).corps;
+  assert.equal(écrits[0].original_headline, '제목');
+  assert.equal(écrits[1].original_headline, null);
+});
+
 test("un bulletin absent n'efface pas celui d'un passage précédent", async () => {
   // Le cas concret : un brief publié ce matin AVEC sa météo, rejoué ce soir
   // alors qu'Open-Meteo ne répond plus. La clé doit rester hors de la charge,
@@ -417,9 +435,11 @@ test('une instance sans le champ garde le brief, et le reste avec', async () => 
 function fauxÉvénements({ actifs = [], anciens = [], finis = [] } = {}) {
   const patchs = [];
   const posts = [];
+  const appels = [];
 
   const client = {
     get: async (chemin) => {
+      appels.push({ chemin });
       if (chemin.includes('fields=id,name,start_date')) return actifs;
       if (chemin.includes('fields=id,name,end_date')) return finis;
       if (chemin.includes('filter[brief][_eq]')) return anciens;
@@ -435,7 +455,7 @@ function fauxÉvénements({ actifs = [], anciens = [], finis = [] } = {}) {
     },
   };
 
-  return { client, patchs, posts };
+  return { client, patchs, posts, appels };
 }
 
 const événement = {
@@ -503,6 +523,13 @@ test('les événements actifs excluent ceux du brief rejoué, sans perdre ceux s
 
   const tous = await activeEvents(f.client, { today: '2026-09-04' });
   assert.equal(tous.length, 3);
+
+  // Le doublon par le lieu compare le lieu, le thème et la source : la
+  // requête doit les demander, sinon la règle se tait sans le dire.
+  const requête = f.appels.find((a) => a.chemin.includes('fields=id,name,start_date'))?.chemin ?? '';
+  for (const champ of ['venue', 'theme', 'source_url']) {
+    assert.ok(requête.includes(champ), `activeEvents demande ${champ}`);
+  }
 });
 
 test('l archivage ne touche qu à ce qui est fini, et le rend', async () => {

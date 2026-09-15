@@ -1,0 +1,76 @@
+# Liens : revisiter les sources publiées, et cesser de lier celles qui ont
+# disparu.
+#
+# POURQUOI. La garde 2 vérifie chaque source le matin de sa parution, puis plus
+# jamais. Une page de presse disparaît, un billet est retiré, et l'archive y
+# lie encore pendant des années. Le lecteur qui remonte à la source, ce que le
+# pied de page lui demande, tombe sur un 404 : ce n'est pas ce qu'on lui a
+# promis.
+#
+# CE QUE ÇA FAIT. scripts/liens-morts.mjs sonde les sources des quatre-vingt-dix
+# derniers jours, et marque `link_dead_at` sur celles qui répondent 404 ou 410
+# deux fois à une minute d'écart. Le site affiche alors la source sans lien,
+# l'item reste. Une page revenue perd sa marque. Les 5xx, les silences et les
+# refus ne marquent jamais : un site en panne un dimanche n'a pas perdu son
+# article.
+#
+# CE JOB NE CRIE PAS pour un lien mort : c'est ce qu'il est venu chercher. Il
+# n'échoue que si le CMS ne répond pas, et c'est le mail. Ce qu'il a marqué se
+# lit dans son résumé de run.
+#
+# QUAND. Le dimanche, à midi heure de Séoul : hors de la parution du matin et
+# de ses rejeux, et à une heure où les rédactions sondées ne sont pas à leur
+# pointe. S'il a marqué quelque chose, il relance la Publication, l'inbox est
+# vide à cette heure-là, elle ne fait que reconstruire et déployer, pour que le
+# site cesse de lier sans attendre le lendemain.
+
+name: Liens
+
+on:
+  schedule:
+    # Les crons de GitHub sont en UTC ; Séoul est à UTC+9.
+    - cron: '0 3 * * 0' # dimanche 12 h à Séoul
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write # relancer Publication
+
+concurrency:
+  group: liens
+  cancel-in-progress: false
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    # Un millier de liens à six de front, dix secondes au pire chacun : bien
+    # en dessous, et un job bloqué devient un échec signalé.
+    timeout-minutes: 30
+    env:
+      TZ: Asia/Seoul
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci --prefer-offline --no-audit --no-fund
+
+      # Le jeton d'écriture : c'est lui qui pose la marque. Le même que
+      # l'ingestion, il patche déjà les événements.
+      - name: Sonder les sources publiées
+        id: liens
+        env:
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_INGEST_TOKEN }}
+        run: node scripts/liens-morts.mjs
+
+      - name: Reconstruire le site
+        if: steps.liens.outputs.marques != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run publication.yml --ref "$GITHUB_REF_NAME"
+          echo "Publication relancée : ${{ steps.liens.outputs.marques }} marque(s) à répercuter sur le site." >> "$GITHUB_STEP_SUMMARY"

@@ -168,7 +168,8 @@ test('un événement terminé n a pas de badge', () => {
 // un item au domaine inconnu, jamais « brief recalé » comme une date d'hier :
 // un accessoire n'a pas de veto.
 
-import { cohérenceÉvénement, contrôlerÉvénements } from '../scripts/lib/evenements.mjs';
+import { cohérenceÉvénement, contrôlerÉvénements, doublonParLieu, DUPLICATE_THRESHOLD_LIEU } from '../scripts/lib/evenements.mjs';
+import { similarity, DUPLICATE_THRESHOLD } from '../scripts/lib/guards.mjs';
 import { validateSchema } from '../scripts/lib/guards.mjs';
 
 // La fixture, pour valider un événement dans un brief entier : le schéma ne
@@ -372,6 +373,90 @@ test('un événement connu aux mêmes dates reste un doublon', async () => {
   });
   assert.equal(prolongés.length, 0);
   assert.match(écartés[0].raison, /déjà connu/);
+});
+
+// --- Le doublon par le lieu --------------------------------------------------
+//
+// Deux rédactions ne nomment presque jamais un pop-up dans les mêmes mots, et
+// le nom seul en laisse passer. Le lieu, les dates et le thème concordent
+// alors, et le nom n'a plus qu'à confirmer à moitié. Mais COEX accueille
+// plusieurs pop-ups la même semaine : le lieu seul n'accuse personne.
+
+const connuAuLieu = {
+  id: 4,
+  name: 'Pokémon Center Seongsu : le pop-up d’automne',
+  theme: 'pokemon',
+  venue: '포켓몬센터  성수',
+  start_date: '2026-09-01',
+  end_date: '2026-10-12',
+  source_url: 'https://www.koreaherald.com/article/pokemon-seongsu',
+};
+
+test('même lieu, dates qui se recouvrent, même thème, nom à moitié : écarté', async () => {
+  const event = sain({ name: 'Pop-up Pokémon Center Seongsu' });
+  assert.ok(similarity(event.name, connuAuLieu.name) < DUPLICATE_THRESHOLD, 'le nom seul ne suffit pas');
+  assert.ok(similarity(event.name, connuAuLieu.name) >= DUPLICATE_THRESHOLD_LIEU);
+
+  const { retenus, écartés, prolongés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.equal(retenus.length, 0);
+  assert.equal(prolongés.length, 0);
+  assert.match(écartés[0].raison, /déjà connu par le lieu/);
+});
+
+test('même lieu et même thème, mais les dates diffèrent : une prolongation', async () => {
+  const event = sain({ name: 'Pop-up Pokémon Center Seongsu', end_date: '2026-11-30' });
+  const { prolongés, écartés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.equal(écartés.length, 0);
+  assert.equal(prolongés.length, 1);
+  assert.equal(prolongés[0].connu.id, 4);
+});
+
+test('même lieu, même semaine, autre thème : deux événements', async () => {
+  const event = sain({ name: 'Pop-up Chiikawa Seongsu', theme: 'personnages' });
+  const { retenus, écartés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 1);
+});
+
+test('même lieu, même thème, mais un nom sans rapport : deux événements', async () => {
+  const event = sain({ name: 'Tournoi Pokémon Unite' });
+  assert.ok(similarity(event.name, connuAuLieu.name) < DUPLICATE_THRESHOLD_LIEU);
+  const { retenus, écartés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 1);
+});
+
+test('même lieu, dates disjointes : deux événements', async () => {
+  const event = sain({ name: 'Pop-up Pokémon Center Seongsu', start_date: '2026-11-01', end_date: '2026-11-30' });
+  const { retenus, écartés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.equal(écartés.length, 0);
+  assert.equal(retenus.length, 1);
+});
+
+test('la même source au même lieu suffit, quel que soit le nom', async () => {
+  const event = sain({
+    name: '포켓몬센터 성수 가을 팝업',
+    theme: 'personnages',
+    source_name: 'Korea Herald',
+    source_url: 'https://www.koreaherald.com/article/pokemon-seongsu/?utm_source=x',
+  });
+  const { écartés } = await contrôler([event], { connus: [connuAuLieu] });
+  assert.match(écartés[0].raison, /même source/);
+});
+
+test('une fiche connue sans lieu ni thème ne peut pas accuser', async () => {
+  const event = sain({ name: 'Pop-up Pokémon Center Seongsu' });
+  const { retenus } = await contrôler([event], { connus: [{ id: 5, name: 'Pokémon Center Seongsu : le pop-up d’automne' }] });
+  assert.equal(retenus.length, 1);
+});
+
+test('doublonParLieu rend le mieux nommé, et la preuve', () => {
+  const event = sain({ name: 'Pop-up Pokémon Center Seongsu' });
+  const autre = { ...connuAuLieu, id: 9, name: 'Pokémon Seongsu' };
+  const trouvé = doublonParLieu(event, [autre, connuAuLieu]);
+  assert.equal(trouvé.connu.id, 4);
+  assert.match(trouvé.preuve, /même thème/);
+  assert.equal(doublonParLieu(sain({ venue: '' }), [connuAuLieu]), null);
 });
 
 test('une prolongation annoncée par un lien mort est écartée', async () => {

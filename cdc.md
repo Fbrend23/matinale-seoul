@@ -74,7 +74,9 @@ tourne dans le vide, et le rejeu d'un run raté est un bouton dans l'onglet Acti
 et build dans le même job. Le `workflow_dispatch` existant reste en place, inchangé, pour le seul
 bouton « Mettre le site en ligne » posé sur `mat_publication`.
 
-Site **entièrement statique**. Pas de SSR, pas d'ISR, pas de base côté public.
+Site **entièrement statique**. Pas de SSR, pas d'ISR, pas de base côté public. La recherche
+plein texte (Pagefind) respecte cette règle : un index de fichiers écrit après le build, lu
+par le navigateur.
 
 ### Permissions du jeton de la tâche
 
@@ -103,7 +105,7 @@ fichier dont le nom ne correspond pas à `brief-YYYY-MM-DD.json`.
 | `ingest_status` | enum | `ok` \| `failed`, traçabilité, distinct du champ système |
 | `failure_reason` | text | nullable |
 | `ingested_at` | timestamp | |
-| `weather` | json | nullable, bulletin Open-Meteo figé à l'ingestion. Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
+| `weather` | json | nullable, bulletin Open-Meteo figé à l'ingestion, avec la qualité de l'air (`pm25`, `pm10`, moyenne prévue du jour, second service Open-Meteo, panne à part). Jamais écrasé par un rejeu, et sans droit de veto sur la publication |
 | `fx` | json | nullable, cours CHF→KRW (taux de référence BCE via Frankfurter) figé à l'ingestion, avec la date du cours. Même règles que `weather` |
 | `empty_notes` | json | nullable, pourquoi telle rubrique est vide, une phrase par rubrique concernée, indexée par sa clé. Celle de l'agent, ou celle de l'ingestion quand les gardes ont retiré tous les items. Jamais écrasé par un rejeu muet |
 
@@ -124,8 +126,10 @@ ne lit que `published`. Zéro cas particulier dans le filtre, la Matinale reste 
 | `source_name` | string | |
 | `source_url` | string | |
 | `source_lang` | string | code ISO |
+| `original_headline` | string | nullable ; le titre tel que la source l'a écrit quand elle n'écrit pas en français, recopié sans traduction, affiché sous le titre dans sa langue. La garde n°5 le refuse sans `source_lang`, ou avec `fr` |
 | `published_at` | timestamp | nullable |
 | `link_checked_at` | timestamp | rempli par la garde n°2 |
+| `link_dead_at` | timestamp | nullable ; posé par le contrôle hebdomadaire des liens (workflow `Liens`) quand la source a répondu 404 ou 410 deux fois ; le site affiche alors la source sans lien, l'item reste |
 
 ### `mat_events`
 
@@ -139,13 +143,14 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `name` | string | |
 | `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
 | `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` \| `culture` \| `food` \| `sport`, pas de « autre » |
-| `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé |
+| `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé. Un lieu qui accueille au moins deux événements actifs a sa page, assemblée au build (`/lieux/…/`) |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
 | `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |
 | `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |
 | `address` | string | nullable ; l'adresse routière coréenne vue par l'agent. La page Événements la géocode dans le navigateur (SDK Kakao Maps) pour poser un pin ; aucune coordonnée n'est stockée, les conditions de Naver comme de Kakao l'interdisent. Sans hangul, l'ingestion retire le champ |
 | `link_checked_at` | timestamp | rempli par la sonde de la source |
+| `link_dead_at` | timestamp | nullable ; comme pour un item |
 
 ### Trois développements dans `provision-client.mjs`
 
@@ -239,7 +244,8 @@ rien écrire et le workflow sort en succès.
 
 **Les événements ne sont pas une sixième garde.** Chaque événement passe ses propres contrôles :
 dates réelles, fin ≥ début, fin ≥ aujourd'hui, 40 mots, allowlist, doublons contre les
-événements actifs, source vivante, et ce qui échoue est **écarté** avec un `::warning::`,
+événements actifs (par le nom, ou par le lieu et les dates avec la même source ou le même
+thème et un nom à moitié proche), source vivante, et ce qui échoue est **écarté** avec un `::warning::`,
 jamais le brief : un domaine inconnu écarte au lieu de retenir en brouillon, une collection
 absente est un avertissement. Ils sont écrits après le brief, rattachés à lui, toujours
 `published`. À chaque run, ce dont `end_date` est passée est archivé.

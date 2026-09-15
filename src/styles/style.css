@@ -28,6 +28,12 @@
   --theme-culture: #4f46e5;
   --theme-food: #ea580c;
   --theme-sport: #16a34a;
+
+  /* Les quatre paliers de la qualité de l'air, dans l'ordre d'AirKorea. */
+  --air-bon: #2563eb;
+  --air-moyen: #16a34a;
+  --air-mauvais: #d97706;
+  --air-tres-mauvais: #dc2626;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,6 +54,10 @@
     --theme-culture: #818cf8;
     --theme-food: #fdba74;
     --theme-sport: #4ade80;
+    --air-bon: #60a5fa;
+    --air-moyen: #4ade80;
+    --air-mauvais: #fbbf24;
+    --air-tres-mauvais: #f87171;
   }
 }
 
@@ -355,6 +365,16 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .meteo-temp .max { font-size: 2rem; font-weight: 600; line-height: 1; letter-spacing: -0.03em; }
 .meteo-temp .min { font-size: 1.1rem; color: var(--doux); }
 .meteo-ciel { color: var(--texte); }
+/* La qualité de l'air : un point coloré par grade, les couleurs qu'AirKorea
+   donne à ses quatre paliers, et la mesure en retrait. */
+.meteo-air { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+.meteo-air-point { flex: 0 0 auto; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--doux); }
+.meteo-air[data-air="bon"] .meteo-air-point { background: var(--air-bon); }
+.meteo-air[data-air="moyen"] .meteo-air-point { background: var(--air-moyen); }
+.meteo-air[data-air="mauvais"] .meteo-air-point { background: var(--air-mauvais); }
+.meteo-air[data-air="tres-mauvais"] .meteo-air-point { background: var(--air-tres-mauvais); }
+.meteo-air[data-air="mauvais"], .meteo-air[data-air="tres-mauvais"] { color: var(--texte); font-weight: 600; }
+.meteo-air-mesure { color: var(--doux); font-size: 0.85em; font-weight: 400; font-variant-numeric: tabular-nums; }
 .meteo-source { margin-top: 0.6rem; font-size: 0.78rem; }
 .meteo a { color: inherit; text-decoration-color: var(--trait); }
 .meteo a:hover { color: var(--accent); }
@@ -377,6 +397,56 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .change-source { margin-top: 0.6rem; font-size: 0.78rem; }
 .change a { color: inherit; text-decoration-color: var(--trait); }
 .change a:hover { color: var(--accent); }
+
+/* Le mot du jour, sous la météo : même boîte que les deux autres widgets. Le
+   hangul en grand, c'est lui qu'on est venu voir ; la romanisation et le
+   sens en dessous, la phrase en retrait. */
+.cote > * + *, .gauche > * + * { margin-top: 1rem; }
+.mot {
+  padding: 1rem 1.1rem 0.8rem;
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+  background: var(--carte);
+  color: var(--doux);
+  font-size: 0.9rem;
+}
+.mot p { margin: 0; }
+.mot-titre { display: flex; justify-content: space-between; gap: 0.5rem; }
+.surtitre-widget { font-variant-caps: small-caps; letter-spacing: 0.04em; font-weight: 600; color: var(--texte); }
+.mot-hangul { margin: 0.4rem 0 0.1rem; color: var(--texte); font-size: 1.9rem; font-weight: 600; line-height: 1.15; }
+.mot-roman { font-style: italic; }
+.mot-sens { color: var(--texte); }
+.mot-exemple { display: flex; flex-direction: column; margin-top: 0.6rem; padding-left: 0.7rem; border-left: 2px solid var(--trait); }
+.mot-exemple [lang="ko"] { color: var(--texte); }
+.mot-traduction { font-size: 0.85em; }
+.mot-suite { margin-top: 0.6rem; font-size: 0.78rem; }
+.mot a { color: inherit; text-decoration-color: var(--trait); }
+.mot a:hover { color: var(--accent); }
+
+/* La page : un cahier, une fiche par jour, la date en marge. */
+.mot-liste { list-style: none; margin: 2rem 0; padding: 0; }
+.mot-fiche { display: grid; grid-template-columns: 5rem minmax(0, 1fr); gap: 0 1rem; padding: 1rem 0; border-top: 1px solid var(--trait); }
+.mot-fiche p { margin: 0; }
+.mot-fiche > * { grid-column: 2; }
+.mot-fiche .mot-date { grid-column: 1; grid-row: 1 / span 3; color: var(--doux); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.mot-fiche .mot-date a { color: inherit; }
+.mot-fiche .mot-hangul { margin: 0; font-size: 1.5rem; }
+.mot-fiche .mot-sens { color: var(--texte); }
+.mot-fiche .mot-exemple { margin-top: 0.4rem; color: var(--doux); font-size: 0.95rem; }
+
+@media (max-width: 80rem) {
+  /* En bandeau, comme la météo et le change : le hangul et le sens sur une
+     ligne, la phrase à la suite. */
+  .cote > * + *, .gauche > * + * { margin-top: 0.5rem; }
+  .mot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
+  .mot-hangul { margin: 0; font-size: 1.4rem; }
+  .mot-exemple { flex-direction: row; flex-wrap: wrap; gap: 0 0.6rem; margin: 0; padding: 0; border: 0; }
+  .mot-suite { margin: 0 0 0 auto; }
+}
+@media (max-width: 34rem) {
+  .mot-fiche { grid-template-columns: minmax(0, 1fr); }
+  .mot-fiche > *, .mot-fiche .mot-date { grid-column: 1; grid-row: auto; }
+}
 
 @media (max-width: 80rem) {
   .change { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; padding: 0.6rem 0.9rem; }
@@ -424,6 +494,12 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 
 .source { margin: 0; font-size: 0.88rem; color: var(--doux); }
+/* Une source dont la page a disparu : le nom reste, en texte simple, et la
+   note à côté dit pourquoi il n'y a pas de lien. Pas de barré, la source
+   n'est pas fausse, elle est partie. */
+.source-morte { color: var(--doux); }
+/* Le titre original, sous le titre français : en retrait, dans sa langue. */
+.titre-original { margin: -0.3rem 0 0.5rem; font-size: 0.92rem; color: var(--doux); }
 
 .rubrique { margin: 0 0 0.3rem; font-size: 0.8rem; color: var(--doux); }
 
@@ -564,10 +640,18 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   color: var(--doux);
 }
 .genre { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-/* Le badge des jours restants, à droite. En couleur sous une semaine : c'est
-   le moment d'y aller. */
+/* Le badge des jours restants, à droite. Sous une semaine il passe en pastille
+   pleine, la géométrie de .pastille mais à l'accent : c'est le moment d'y
+   aller, et un simple texte en couleur ne le disait pas assez fort. */
 .delai { font-variant-numeric: tabular-nums; white-space: nowrap; }
-.delai[data-urgent="oui"] { color: var(--accent); font-weight: 600; }
+.delai[data-urgent="oui"] {
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--fond);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
 
 /* Les filtres par thème : des boutons-pastilles, celui qui est enfoncé prend
    la couleur du texte. */
@@ -628,6 +712,10 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 
 .evenement-quand { display: block; font-weight: 600; font-variant-numeric: tabular-nums; }
 .evenement-ou { display: block; color: var(--doux); font-size: 0.92rem; }
+/* Le lieu, quand il a sa page : un lien discret, souligné au survol seulement,
+   la carte en porte déjà trois en pied. */
+.evenement-ou a { color: inherit; text-decoration: none; }
+.evenement-ou a:hover { color: var(--accent); text-decoration: underline; }
 .evenement .resume { margin: 0.6rem 0 0.9rem; font-size: 0.97rem; }
 
 .evenement-liens { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: auto; font-size: 0.85rem; }
@@ -679,6 +767,22 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
    même forme. */
 
 .precedents, .mois { margin: 3rem 0; }
+/* L'ancre ne colle pas le titre du mois au bord de l'écran. */
+.mois { scroll-margin-top: 1rem; }
+
+/* La barre des mois, en tête de l'archive : des pastilles neutres, comme les
+   filtres des événements mais sans état enfoncé, ce sont des ancres. */
+.mois-nav { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 0; }
+.mois-nav a {
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  background: var(--carte);
+  color: var(--doux);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+.mois-nav a:hover { color: var(--accent); border-color: var(--accent); }
 .precedents ul, .mois ul { list-style: none; margin: 0; padding: 0; }
 .precedents li, .mois li { border-top: 1px solid var(--trait); }
 /* Les entrées de la liste sont des lignes, pas des liens soulignés ; le
@@ -692,6 +796,23 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
 }
 .precedents li a:hover .titre, .mois li a:hover .titre { color: var(--accent); text-decoration: underline; }
 .jour { flex: 0 0 4.5rem; color: var(--doux); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+
+/* La recherche. Le composant de Pagefind porte sa propre feuille, et se
+   recolore par ses variables : on lui donne celles du site, et le thème
+   sombre suit sans autre règle. */
+.sans-script { color: var(--doux); font-style: italic; }
+.recherche {
+  margin: 1.5rem 0 0;
+  --pagefind-ui-scale: 0.9;
+  --pagefind-ui-primary: var(--accent);
+  --pagefind-ui-text: var(--texte);
+  --pagefind-ui-background: var(--carte);
+  --pagefind-ui-border: var(--trait);
+  --pagefind-ui-tag: var(--trait);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-font: inherit;
+}
 
 .voisins { display: flex; justify-content: space-between; gap: 1rem; margin: 3rem 0 0; font-size: 0.92rem; }
 

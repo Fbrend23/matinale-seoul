@@ -171,6 +171,7 @@ Recopier sa forme est sans risque.
       "items": [
         {
           "headline": "Le titre de l'item, en français",
+          "original_headline": "정부, K-ETA 면제 2027년 말까지 연장",
           "summary": "Quarante mots au maximum, rédigés par toi.",
           "analysis": "Facultatif. Un seul item par section peut en porter une.",
           "importance": 1,
@@ -303,6 +304,10 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   `semi-conducteurs`). Huit au maximum.
 - **`published_at`** : horodatage de l'article source, avec son fuseau. Omets-le
   si la source n'en donne pas de fiable, ne le devine pas.
+- **`original_headline`** : quand la source n'écrit pas en français, son titre
+  tel quel, recopié sans le traduire ni le raccourcir, et `source_lang` dit sa
+  langue. Omets-le pour une source en français : un titre original sans langue,
+  ou en français, fait recaler le brief.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
 - **`events`** : chaque événement porte `start_date` **et** `end_date`, des
   dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
@@ -319,6 +324,10 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   interroge chaque lien : une adresse inventée fait disparaître l'item, et une
   adresse inventée qui répondrait par hasard publierait une information fausse.
 - Une seule source par item, celle qui porte l'information.
+- **Le titre original voyage avec la source.** Quand elle n'écrit pas en
+  français, coréen, anglais, japonais, recopie son titre dans
+  `original_headline`, exactement comme elle l'a écrit : le lecteur qui remonte
+  à la source doit le reconnaître, et un titre coréen se cherche tel quel.
 - **Varie les rédactions.** Un brief entier tenu par trois domaines n'est plus
   vraiment une revue de presse. Quand plusieurs sources connues couvrent la même
   information, prends celle qui n'a pas déjà servi ce matin. L'ingestion compte
@@ -389,7 +398,10 @@ pas de redire ce qui s'y trouve :
   déjà connu : ne le propose pas une seconde fois, **sauf si ses dates ont
   changé** (prolongation, report). Repropose-le alors avec le même `name` et
   les dates nouvelles : l'ingestion corrige la fiche au lieu d'en créer une.
-  Si rien n'est disponible, continue sans.
+  Un événement déjà connu au même lieu, aux mêmes dates et du même thème est
+  le même, quel que soit le nom que lui donne une autre rédaction : ne le
+  repropose pas sous un autre nom, l'ingestion l'écarterait. Si rien n'est
+  disponible, continue sans.
 - **Pars des pistes de la veille.** La section « Pistes événements » de
   `veille/AAAA-MM-JJ.md` a été cherchée par Gemini avant ta session, puis
   passée au tri de l'ingestion : allowlist, dates, doublons de l'onglet, lien

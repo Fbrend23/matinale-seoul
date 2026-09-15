@@ -16,9 +16,10 @@ import { readFile } from 'node:fs/promises';
 import { seoulToday, jourPlus } from '../../shared/date.mjs';
 
 /**
- * Les données servies : un brief avec météo et change, ses items, et des
- * événements posés autour d'aujourd'hui, un en cours, un qui finit bientôt,
- * un à venir, un terminé qui ne doit pas paraître.
+ * Les données servies : un brief avec météo et change, ses items, un second
+ * brief vide du mois d'avant, et des événements posés autour d'aujourd'hui,
+ * un en cours, un qui finit bientôt, un à venir, un terminé qui ne doit pas
+ * paraître.
  */
 export async function donnéesDeDémonstration(cheminFixture) {
   const brief = JSON.parse(await readFile(cheminFixture, 'utf8'));
@@ -32,8 +33,22 @@ export async function donnéesDeDémonstration(cheminFixture) {
       title: brief.title,
       standfirst: brief.standfirst,
       ingested_at: `${brief.date}T22:00:00.000Z`,
-      weather: { date: brief.date, tmin: 18, tmax: 27, code: 2, precip_probability: 30, source: 'open-meteo' },
+      weather: { date: brief.date, tmin: 18, tmax: 27, code: 2, precip_probability: 30, pm25: 42, pm10: 61, source: 'open-meteo' },
       fx: { date: brief.date, rate_date: brief.date, base: 'CHF', quote: 'KRW', rate: 1646.98, source: 'frankfurter' },
+      empty_notes: null,
+    },
+    // Un brief du mois précédent, sans item ni accessoire : l'archive doit
+    // sortir deux mois et sa barre de navigation, et une page de brief vide
+    // doit sortir quand même, comme un brief paru avant la météo.
+    {
+      id: 2,
+      date: '2026-08-28',
+      slug: 'brief-2026-08-28',
+      title: 'Brief du mois précédent',
+      standfirst: 'Un brief sans item, pour que l’archive ait deux mois.',
+      ingested_at: '2026-08-27T22:00:00.000Z',
+      weather: null,
+      fx: null,
       empty_notes: null,
     },
   ];
@@ -46,19 +61,26 @@ export async function donnéesDeDémonstration(cheminFixture) {
       section: section.key,
       ...item,
       analysis: item.analysis ?? null,
+      original_headline: item.original_headline ?? null,
       source_lang: item.source_lang ?? null,
       published_at: item.published_at ?? null,
+      // Le deuxième item porte la marque du contrôle des liens : sa source
+      // doit sortir sans lien, et c'est ce que le contrôle de rendu attend.
+      link_dead_at: n === 2 ? `${brief.date}T03:00:00.000Z` : null,
     }))
   );
 
   // Deux événements avec adresse, deux sans : la carte pose les premiers à
-  // l'adresse, et cherche les seconds par leur nom.
-  const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, address: null, date_created: `${today}T00:00:00.000Z` };
+  // l'adresse, et cherche les seconds par leur nom. Deux au même lieu : une
+  // page de lieu doit sortir.
+  const base = { brief: 1, ...brief.events[0], map_url: null, booking_url: null, address: null, link_dead_at: null, date_created: `${today}T00:00:00.000Z` };
   const events = [
     { ...base, id: 1, ...brief.events[0], start_date: jourPlus(today, -12), end_date: jourPlus(today, 30) },
     { ...base, id: 2, name: 'Exposition Jujutsu Kaisen', kind: 'exposition', theme: 'anime', venue: '더현대 서울', area: 'Yeouido', address: '서울 영등포구 여의대로 108', start_date: jourPlus(today, -20), end_date: jourPlus(today, 3) },
     { ...base, id: 3, name: 'Concert aespa', kind: 'concert', theme: 'kpop', venue: 'KSPO돔', area: 'Jamsil', start_date: jourPlus(today, 6), end_date: jourPlus(today, 7) },
-    { ...base, id: 4, name: 'Café Nintendo', kind: 'popup', theme: 'gaming', venue: '롯데월드몰', area: 'Jamsil', start_date: today, end_date: today },
+    // Même lieu que le concert, à une espace près : les deux se rangent sous
+    // la même page de lieu, et c'est elle que le contrôle de rendu attend.
+    { ...base, id: 4, name: 'Café Nintendo', kind: 'popup', theme: 'gaming', venue: 'KSPO 돔', area: 'Jamsil', start_date: today, end_date: today },
     { ...base, id: 5, name: 'Terminé, ne doit pas paraître', start_date: jourPlus(today, -30), end_date: jourPlus(today, -1) },
   ];
 

@@ -16,6 +16,7 @@ import { SECTIONS } from '../../shared/sections.mjs';
 import { seoulToday } from '../../shared/date.mjs';
 import { créerMémo } from './une-fois.js';
 import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
+import { grouperParLieu } from './lieux.js';
 
 // Les formes que le CMS rend. Écrites en JSDoc plutôt qu'en TypeScript : le
 // dépôt est en JavaScript, et une annotation qui demanderait une compilation
@@ -32,6 +33,9 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {number}        brief        identifiant du brief porteur
  * @property {string}        section      une clé de shared/sections.mjs
  * @property {string}        headline
+ * @property {string|null}   original_headline  le titre tel que la source l'a
+ *   écrit, quand elle n'écrit pas en français ; absent des briefs parus avant
+ *   ce champ
  * @property {string}        summary
  * @property {string|null}   analysis     une au plus par section
  * @property {number}        importance   1 = le plus important de sa section
@@ -40,6 +44,9 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  * @property {string}        source_url
  * @property {string|null}   source_lang
  * @property {string|null}   published_at
+ * @property {string|null}   link_dead_at  posé par le contrôle hebdomadaire des
+ *   liens quand la source a répondu 404 ou 410 deux fois ; le site affiche alors
+ *   la source sans lien
  */
 
 /**
@@ -86,6 +93,7 @@ import { groupByTag, TAG_WINDOW_DAYS } from './tags.js';
  *   pin, aucune coordonnée n'est stockée
  * @property {string}      date_created quand l'ingestion l'a écrit, la date de
  *   publication du flux, stable d'un build à l'autre
+ * @property {string|null} link_dead_at comme pour un item
  */
 
 
@@ -218,8 +226,8 @@ function tousLesItems() {
   return uneFois('items', async () => {
     const items = await requestAll(
       `/items/${ITEMS}?sort=importance` +
-        `&fields=id,brief,section,headline,summary,analysis,importance,tags,` +
-        `source_name,source_url,source_lang,published_at`
+        `&fields=id,brief,section,headline,original_headline,summary,analysis,importance,tags,` +
+        `source_name,source_url,source_lang,published_at,link_dead_at`
     );
 
     const parBrief = new Map();
@@ -295,6 +303,20 @@ export function tagPages() {
 }
 
 /**
+ * Les lieux qui portent une page, chacun avec ses événements en cours ou à
+ * venir.
+ *
+ * Mémoïsé comme tagPages(), et pour la même raison : la carte d'événement le
+ * demande pour chaque carte rendue, afin de savoir si le lieu porte un lien,
+ * et les pages par lieu s'en servent pour savoir lesquelles construire.
+ *
+ * @returns {Promise<Map<string, {venue: string, area: string, events: Evenement[]}>>}
+ */
+export function lieuxPages() {
+  return uneFois('lieux', async () => grouperParLieu(await listEvents()));
+}
+
+/**
  * Tous les briefs, items compris. Utilisé par les pages d'archive.
  *
  * @returns {Promise<BriefComplet[]>}
@@ -326,7 +348,7 @@ export function listEvents() {
       `/items/${EVENTS}?sort=start_date,end_date,name` +
         `&filter[end_date][_gte]=${seoulToday()}` +
         `&fields=id,brief,name,kind,theme,venue,area,start_date,end_date,summary,` +
-        `source_name,source_url,source_lang,booking_url,map_url,address,date_created`
+        `source_name,source_url,source_lang,booking_url,map_url,address,date_created,link_dead_at`
     )
   );
 }
