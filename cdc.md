@@ -74,7 +74,9 @@ tourne dans le vide, et le rejeu d'un run raté est un bouton dans l'onglet Acti
 et build dans le même job. Le `workflow_dispatch` existant reste en place, inchangé, pour le seul
 bouton « Mettre le site en ligne » posé sur `mat_publication`.
 
-Site **entièrement statique**. Pas de SSR, pas d'ISR, pas de base côté public.
+Site **entièrement statique**. Pas de SSR, pas d'ISR, pas de base côté public. La recherche
+plein texte (Pagefind) respecte cette règle : un index de fichiers écrit après le build, lu
+par le navigateur.
 
 ### Permissions du jeton de la tâche
 

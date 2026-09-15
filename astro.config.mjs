@@ -1,6 +1,38 @@
 // @ts-check
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
 import { defineConfig, envField } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+
+// L'index de la recherche, construit sur le site fini.
+//
+// Une intégration et non un script npm « postbuild » : le contrôle de rendu
+// lance astro directement, avec son propre --outDir, et un script npm n'y
+// tournerait pas. Le hook, lui, reçoit le dossier réel, quel que soit celui
+// qui construit. Pagefind lit les pages qui portent data-pagefind-body, les
+// briefs, et n'écrit que des fichiers : le site reste entièrement statique.
+//
+// Un index qui échoue fait échouer le build : un site sans recherche n'est
+// pas une panne de publication, mais un hook qui avalerait l'erreur serait un
+// silence, et c'est le silence que toute la chaîne cherche à fermer.
+function pagefind() {
+  return {
+    name: 'pagefind',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        const { createIndex, close } = await import('pagefind');
+        const dossier = fileURLToPath(dir);
+        const { index, errors } = await createIndex();
+        if (!index) throw new Error(`Pagefind : ${errors.join(' ; ')}`);
+        const { page_count, errors: fautes } = await index.addDirectory({ path: dossier });
+        if (fautes.length) throw new Error(`Pagefind : ${fautes.join(' ; ')}`);
+        await index.writeFiles({ outputPath: path.join(dossier, 'pagefind') });
+        await close();
+        logger.info(`index de recherche : ${page_count} page(s)`);
+      },
+    },
+  };
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,7 +44,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
 
-  integrations: [sitemap()],
+  integrations: [sitemap(), pagefind()],
 
   // Les deux variables ne sont PAS optionnelles, à la différence du site de la
   // compagnie : la Matinale n'a pas de contenu local sur lequel retomber, et

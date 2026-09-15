@@ -27,6 +27,7 @@ const onglets = [
   ...SECTIONS.map((s) => ({ href: `/sections/${s}/`, label: SECTION_LABELS[s] })),
   { href: '/evenements/', label: 'Pop-ups & événements' },
   { href: '/briefs/', label: 'Archive' },
+  { href: '/recherche/', label: 'Rechercher' },
 ];
 const courant = (o) => (o.exact ? chemin === o.href : chemin.startsWith(o.href));
 const titreComplet = title ? `${title} · La Matinale de Séoul` : 'La Matinale de Séoul';

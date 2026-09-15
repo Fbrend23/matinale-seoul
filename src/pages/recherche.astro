@@ -1,0 +1,56 @@
+---
+// La recherche plein texte, dans le navigateur.
+//
+// L'index est construit sur le site fini par l'intégration Pagefind
+// (astro.config.mjs) : des fichiers statiques, chargés en fragments à la
+// demande, aucun serveur derrière. Il n'indexe que les pages de brief, les
+// rubriques et les étiquettes les recopient, et les événements sortent de la
+// page à leur date de fin.
+//
+// Le champ est masqué au build et révélé par le script, comme les filtres des
+// événements : un champ qui ne cherche rien serait un mensonge. Sans script,
+// la page renvoie à l'archive.
+//
+// EN DÉVELOPPEMENT, `astro dev` ne construit pas l'index : /pagefind/ n'existe
+// pas, le script du composant répond 404, et la page reste sur sa phrase de
+// repli. La recherche se voit après un build, `npm run build && npm run
+// preview`.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TetePage from '../components/TetePage.astro';
+---
+
+<BaseLayout title="Rechercher" description="Rechercher dans tous les briefs publiés.">
+  <link slot="tete" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+  <TetePage surtitre="Dans l’archive" titre="Rechercher">
+    Un mot, un nom, un lieu : la recherche parcourt tous les briefs publiés,
+    du plus récent au plus ancien.
+  </TetePage>
+
+  <p class="sans-script">
+    La recherche se fait dans votre navigateur et demande JavaScript.
+    Sans lui, <a href="/briefs/">l’archive</a> se parcourt par mois.
+  </p>
+
+  <div id="recherche" class="recherche" hidden></div>
+
+  {/* Le composant de Pagefind, en script classique et non en import : le
+      fichier n'existe pas quand Vite empaquette la page, il n'est écrit
+      qu'après le build. */}
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    // Le composant a-t-il chargé ? Non en développement, ni si l'index a
+    // manqué : la phrase de repli reste alors visible, et elle dit vrai.
+    if (window.PagefindUI) {
+      new window.PagefindUI({
+        element: '#recherche',
+        showImages: false,
+        showSubResults: false,
+        // Le plus récent d'abord, sur l'attribut datetime du brief.
+        sort: { date: 'desc' },
+      });
+      document.getElementById('recherche').hidden = false;
+      document.querySelector('.sans-script').hidden = true;
+    }
+  </script>
+</BaseLayout>

@@ -54,7 +54,7 @@ const jsonLd = {
   <BulletinMeteo slot="cote" weather={brief.weather} date={brief.date} />
   <CoursDuChange slot="gauche" fx={brief.fx} />
 
-  <BriefArticle brief={brief} />
+  <BriefArticle brief={brief} indexable />
 
   <nav class="voisins" aria-label="Autres briefs">
     {plusAncien && (

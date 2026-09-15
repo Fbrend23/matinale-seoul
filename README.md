@@ -12,6 +12,7 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 | | |
 |---|---|
 | Site | statique, Astro 7, déployé en FTPS sur mutualisé Infomaniak |
+| Recherche | [Pagefind](https://pagefind.app/), index statique construit après le build, sur les briefs |
 | CMS | Directus 12 mutualisé, collections `mat_*` ([platform-cms](../platform-cms)) |
 | Cahier des charges | [`cdc.md`](cdc.md), il fait foi |
 
@@ -193,6 +194,10 @@ npm run recherche        # fait chercher les événements à Gemini (agy) et ajo
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief
 daté à Séoul et un runner en UTC sont à quinze heures l'un de l'autre.
+
+La recherche n'existe que sur le site construit : `astro dev` n'écrit pas
+l'index, et la page `/recherche/` y reste sur sa phrase de repli. Pour la voir,
+`npm run build && npm run preview`.
 
 ## Deux jetons Directus, à ne pas confondre
 
