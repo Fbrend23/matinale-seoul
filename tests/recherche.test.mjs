@@ -255,7 +255,7 @@ test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit u
   await writeFile(faux, `#!/bin/sh\nprintf '%s' '{"status": "SUCCESS", "response": "", "denied_actions": [{"action": "read_url", "display_name": "ReadUrlContent"}]}'\n`, { mode: 0o755 });
   await assert.rejects(
     exécuter('node', ['scripts/recherche.mjs', '--jour', TODAY, '--dossier', dossier], { cwd: RACINE, env }),
-    ({ code, stdout }) => code === 1 && /! Gemini pages\s+permission refusée : read_url\. Ajouter « read_url\(\*\) »/.test(stdout)
+    ({ code, stdout }) => code === 1 && /! Gemini pages\s+permission refusée : read_url\. Compléter permissions\.allow/.test(stdout)
   );
   // La même panne des deux côtés se dit une fois.
   assert.match(await readFile(veille, 'utf8'), /n'a rien donné \(permission refusée : read_url/);
