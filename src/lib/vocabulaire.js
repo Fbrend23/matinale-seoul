@@ -60,6 +60,22 @@ export function motsParus(jusquau, mots = MOTS) {
 }
 
 /**
+ * La phrase d'exemple découpée autour de la forme marquée : `**매워요**`
+ * devient un segment en gras. La fiche dit la forme elle-même, un verbe se
+ * conjugue et un nom prend une particule, et deviner la morphologie
+ * surlignerait à côté.
+ *
+ * @param {string} phrase
+ * @returns {{texte: string, gras: boolean}[]}
+ */
+export function segmentsDeLaPhrase(phrase) {
+  return phrase
+    .split(/\*\*/)
+    .map((texte, i) => ({ texte, gras: i % 2 === 1 }))
+    .filter((s) => s.texte !== '');
+}
+
+/**
  * Ce qui rend une fiche fausse, pour le test qui garde le fichier.
  *
  * @param {Mot} fiche
@@ -72,6 +88,10 @@ export function fautesDeFiche(fiche) {
   if (!fiche.romanisation?.trim()) fautes.push('romanisation vide');
   if (!fiche.sens?.trim()) fautes.push('sens vide');
   if (!hangul.test(fiche.exemple?.ko ?? '')) fautes.push('exemple coréen sans hangul');
+  // Une forme marquée, une seule, et du hangul dedans : c'est elle que le
+  // site met en gras, une phrase sans marque n'enseignerait rien.
+  const marques = segmentsDeLaPhrase(fiche.exemple?.ko ?? '').filter((s) => s.gras);
+  if (marques.length !== 1 || !hangul.test(marques[0].texte)) fautes.push('exemple coréen sans forme marquée (**…**), ou plusieurs');
   if (!fiche.exemple?.fr?.trim()) fautes.push('exemple français vide');
   return fautes;
 }

@@ -9,7 +9,7 @@ import TetePage from '../components/TetePage.astro';
 import BulletinMeteo from '../components/BulletinMeteo.astro';
 import CoursDuChange from '../components/CoursDuChange.astro';
 import { listBriefs, dernierBrief } from '../lib/content.js';
-import { motsParus, MOTS } from '../lib/vocabulaire.js';
+import { motsParus, segmentsDeLaPhrase, MOTS } from '../lib/vocabulaire.js';
 import { longDate, shortDate } from '../lib/date.js';
 
 const dernier = await dernierBrief();
@@ -47,7 +47,7 @@ const briefs = new Map((await listBriefs()).map((b) => [b.date, b.slug]));
         <p class="mot-hangul" lang="ko">{fiche.mot}</p>
         <p class="mot-sens"><span class="mot-roman">{fiche.romanisation}</span> · {fiche.sens}</p>
         <p class="mot-exemple">
-          <span lang="ko">{fiche.exemple.ko}</span>
+          <span lang="ko">{segmentsDeLaPhrase(fiche.exemple.ko).map((s) => (s.gras ? <strong>{s.texte}</strong> : s.texte))}</span>
           <span class="mot-traduction">{fiche.exemple.fr}</span>
         </p>
       </li>

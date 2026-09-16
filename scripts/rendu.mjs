@@ -69,7 +69,7 @@ if (code !== 0) {
     // 42 µg/m³ de PM2,5 dans la fixture : « mauvais » selon AirKorea.
     ['index.html', ['class="meteo"', 'class="meteo-air"', 'data-air="mauvais"', 'class="change"', 'class="mot"', 'aria-current="page"', 'class="brief"']],
     // Le cahier des mots : une fiche par jour, la date liée à son brief.
-    ['vocabulaire/index.html', ['class="mot-liste"', 'id="mot-2026-09-04"', 'href="/briefs/brief-2026-09-04/"', 'lang="ko"']],
+    ['vocabulaire/index.html', ['class="mot-liste"', 'id="mot-2026-09-04"', 'href="/briefs/brief-2026-09-04/"', 'lang="ko"', '<strong>']],
     // Deux mois dans la fixture : la barre d'ancres doit sortir, et pointer
     // sur des sections qui existent.
     // Le cadre des pages de lecture, météo et change à côté : sans lui,
