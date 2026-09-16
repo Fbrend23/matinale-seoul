@@ -15,7 +15,7 @@ import { groupByTag, MIN_ITEMS_PAR_TAG } from '../src/lib/tags.js';
 import { grouperParMois, moisLisible, moisCourt, cléMois, MIN_MOIS_POUR_NAV } from '../src/lib/archive.js';
 import { longDate, shortDate, sourceTime, daysBetween, seoulToday } from '../src/lib/date.js';
 import { grouperParLieu, slugLieu, normaliserLieu, MIN_EVENTS_PAR_LIEU } from '../src/lib/lieux.js';
-import { motDuJour, motsParus, fautesDeFiche, MOTS, DEBUT } from '../src/lib/vocabulaire.js';
+import { motDuJour, motsParus, fautesDeFiche, segmentsDeLaPhrase, MOTS, DEBUT } from '../src/lib/vocabulaire.js';
 
 // --- Le cache du build -------------------------------------------------------
 
@@ -266,9 +266,9 @@ test('la page prend le nom du plus pressé, et range par date de fin', () => {
 // passerait sinon sans que rien ne le dise.
 
 const trois = [
-  { mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '가.', fr: 'A.' } },
-  { mot: '나', romanisation: 'na', sens: 'b', exemple: { ko: '나.', fr: 'B.' } },
-  { mot: '다', romanisation: 'da', sens: 'c', exemple: { ko: '다.', fr: 'C.' } },
+  { mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '**가**.', fr: 'A.' } },
+  { mot: '나', romanisation: 'na', sens: 'b', exemple: { ko: '**나**.', fr: 'B.' } },
+  { mot: '다', romanisation: 'da', sens: 'c', exemple: { ko: '**다**.', fr: 'C.' } },
 ];
 
 test('le n-ième jour montre la n-ième fiche, et la liste se rejoue', () => {
@@ -303,8 +303,24 @@ test('le fichier de vocabulaire est bien formé, sans doublon', () => {
     'mot sans hangul',
     'romanisation vide',
     'exemple coréen sans hangul',
+    'exemple coréen sans forme marquée (**…**), ou plusieurs',
     'exemple français vide',
   ]);
+  assert.ok(fautesDeFiche({ mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '가 나.', fr: 'x' } }).some((f) => f.includes('marquée')), 'sans marque');
+  assert.ok(fautesDeFiche({ mot: '가', romanisation: 'ga', sens: 'a', exemple: { ko: '**가** **나**.', fr: 'x' } }).some((f) => f.includes('marquée')), 'deux marques');
+});
+
+test('la phrase se découpe autour de la forme marquée, en gras', () => {
+  assert.deepEqual(segmentsDeLaPhrase('이 떡볶이는 너무 **매워요**.'), [
+    { texte: '이 떡볶이는 너무 ', gras: false },
+    { texte: '매워요', gras: true },
+    { texte: '.', gras: false },
+  ]);
+  assert.deepEqual(segmentsDeLaPhrase('**지하철**로 가요.'), [
+    { texte: '지하철', gras: true },
+    { texte: '로 가요.', gras: false },
+  ]);
+  assert.deepEqual(segmentsDeLaPhrase('sans marque'), [{ texte: 'sans marque', gras: false }]);
 });
 
 // --- Les dates d'un événement ------------------------------------------------

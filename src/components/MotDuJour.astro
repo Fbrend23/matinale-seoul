@@ -7,7 +7,7 @@
 //
 // lang="ko" sur ce qui est en coréen : les lecteurs d'écran le prononcent en
 // coréen, et la typographie choisit une fonte qui a le hangul.
-import { motDuJour } from '../lib/vocabulaire.js';
+import { motDuJour, segmentsDeLaPhrase } from '../lib/vocabulaire.js';
 import { shortDate } from '../lib/date.js';
 
 const { date } = Astro.props;
@@ -25,7 +25,7 @@ const fiche = date ? motDuJour(date) : null;
     <p class="mot-sens"><span class="mot-roman">{fiche.romanisation}</span> · {fiche.sens}</p>
 
     <p class="mot-exemple">
-      <span lang="ko">{fiche.exemple.ko}</span>
+      <span lang="ko">{segmentsDeLaPhrase(fiche.exemple.ko).map((s) => (s.gras ? <strong>{s.texte}</strong> : s.texte))}</span>
       <span class="mot-traduction">{fiche.exemple.fr}</span>
     </p>
 

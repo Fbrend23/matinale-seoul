@@ -7,7 +7,9 @@ passe à Séoul, en cours ou à venir, pour l'anime, Pokémon, la K-pop et le je
 vidéo.
 
 À côté du brief, un **mot du jour** de coréen, niveau débutant : le mot, sa
-romanisation, son sens, une phrase. La liste vit dans `config/vocabulaire.json`
+romanisation, son sens, une phrase où sa forme est en gras (la fiche la marque
+elle-même, `**매워요**`, un verbe se conjugue et un nom prend une particule).
+La liste vit dans `config/vocabulaire.json`
 et le mot d'un jour se calcule de sa date (`src/lib/vocabulaire.js`) : rien
 n'est demandé à l'agent, rien n'est stocké dans le CMS, et un brief d'archive
 garde son mot. La page `/vocabulaire/` les retrouve tous. Pour enrichir la

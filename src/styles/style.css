@@ -418,6 +418,9 @@ h2 { font-size: 1.05rem; letter-spacing: 0.02em; text-transform: uppercase; colo
 .mot-sens { color: var(--texte); }
 .mot-exemple { display: flex; flex-direction: column; margin-top: 0.6rem; padding-left: 0.7rem; border-left: 2px solid var(--trait); }
 .mot-exemple [lang="ko"] { color: var(--texte); }
+/* La forme du mot dans la phrase : en gras et à l'accent, c'est elle qu'on
+   cherche des yeux. */
+.mot-exemple strong { color: var(--accent); font-weight: 700; }
 .mot-traduction { font-size: 0.85em; }
 .mot-suite { margin-top: 0.6rem; font-size: 0.78rem; }
 .mot a { color: inherit; text-decoration-color: var(--trait); }
