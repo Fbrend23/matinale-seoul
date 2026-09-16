@@ -58,9 +58,10 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
   ```bash
   node scripts/recherche.mjs --jour "$(TZ=Asia/Seoul date +%F)"
-  # « ✓ Gemini  N pistes en … s », puis une ligne par piste, et la section
+  # « ✓ Gemini pages  N pistes en … s » et « ✓ Gemini coréen  N pistes en … s »,
+  # les deux sessions du matin, puis une ligne par piste, et la section
   # « Pistes événements » à la fin de veille/AAAA-MM-JJ.md.
-  # Des lignes de refus de permission sous « ✓ Gemini » : c'est le allow qui manque.
+  # Des lignes de refus de permission sous un « ✓ Gemini » : c'est le allow qui manque.
   ```
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
   la session rédige, valide, commite, puis échoue sur

@@ -39,11 +39,24 @@ const LIENS_FACULTATIFS = ['booking_url', 'map_url'];
  */
 export const DUPLICATE_THRESHOLD_LIEU = 0.5;
 
-/** L'hôte et le chemin d'une source, sans paramètres : le même article, quel que soit son utm. */
+/** Les paramètres qui suivent un lien sans désigner une page : ils sautent de la clé. */
+const PARAMÈTRES_DE_SUIVI = /^(utm_|fbclid$|gclid$|igshid$|ref$|source$)/;
+
+/**
+ * L'hôte, le chemin et les paramètres qui comptent d'une source : le même
+ * article, quel que soit son utm.
+ *
+ * Les paramètres restent, épurés du suivi : sur festival.seoul.go.kr, toutes
+ * les fiches partagent `festivalView.do` et seul `festacode=` les distingue.
+ * Sans lui, deux festivals au même lieu la même semaine, EnterTech et la
+ * Seoul Walk au DDP le 16 septembre 2026, passaient pour le même événement.
+ */
 function cléSource(url) {
   try {
     const u = new URL(url);
-    return `${hostOf(url)}${u.pathname.replace(/\/+$/, '')}`;
+    const paramètres = [...u.searchParams].filter(([nom]) => !PARAMÈTRES_DE_SUIVI.test(nom)).sort();
+    const requête = paramètres.length ? `?${new URLSearchParams(paramètres)}` : '';
+    return `${hostOf(url)}${u.pathname.replace(/\/+$/, '')}${requête}`;
   } catch {
     return null;
   }

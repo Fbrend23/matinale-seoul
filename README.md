@@ -34,7 +34,7 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ```
 Timer systemd, 7 h 30 Asia/Seoul
         ├─ veille : flux RSS des rédactions + titres déjà publiés → veille/AAAA-MM-JJ.md
-        ├─ recherche : Gemini (Antigravity CLI) cherche les événements, les gardes trient → même fichier
+        ├─ recherche : deux sessions Gemini (Antigravity CLI), pages qui listent + rédactions coréennes, les gardes trient → même fichier
         └─ session Claude Code : lit la veille, choisit, vérifie, rédige
         │  commit  inbox/brief-AAAA-MM-JJ.json
         ▼

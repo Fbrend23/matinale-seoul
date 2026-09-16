@@ -6,7 +6,9 @@
 //   node scripts/recherche.mjs --jour 2026-09-15
 //
 // Tourne APRÈS scripts/veille.mjs, dont il complète le fichier, et avant la
-// session Claude. Gemini est interrogé par Antigravity CLI (`agy`), le
+// session Claude. Deux sessions Gemini en parallèle, l'une sur les pages qui
+// listent, l'autre sur les rédactions coréennes (VOLETS, dans lib/recherche.mjs
+// dit pourquoi deux), interrogées par Antigravity CLI (`agy`), le
 // successeur de Gemini CLI, abandonné pour les comptes individuels le
 // 18 juin 2026, en headless, sur l'abonnement Google du compte connecté. Il
 // répond un tableau JSON qu'il ne dépose nulle part : c'est ce script qui
@@ -26,7 +28,7 @@ import { appendFile, mkdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
-import { composerConsigne, extraireTableau, trierPistes, rendrePistes } from './lib/recherche.mjs';
+import { composerConsigne, extraireTableau, trierPistes, rendrePistes, VOLETS } from './lib/recherche.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -147,34 +149,56 @@ const { connus, panne: panneSite } = await connusDuSite();
 console.log(`${panneSite ? '!' : '✓'} ${'evenements.json'.padEnd(18)} ${panneSite ?? `${connus.length} événements connus`}`);
 
 console.log(`modèle : ${MODELE}`);
-const consigne = composerConsigne(gabarit, { jour, connus, domaines: domains });
+
+// Les deux volets ensemble : chacun sa consigne, chacun sa session, chacun
+// sa ligne de journal. Un volet en panne est un volet en moins, pas une
+// matinée sans pistes ; les deux en panne, et c'est la panne d'avant, celle
+// que la veille dit à l'agent et le code de sortie au lanceur.
 const début = Date.now();
-const gemini = await interrogerGemini(consigne);
-const durée = Math.round((Date.now() - début) / 1000);
+const résultats = await Promise.all(
+  VOLETS.map(async (volet) => {
+    const méthode = readFileSync(path.join(RACINE, volet.méthode), 'utf8');
+    const consigne = composerConsigne(gabarit, { jour, connus, domaines: domains, méthode });
+    const gemini = await interrogerGemini(consigne);
+    return { volet: volet.nom, gemini, durée: Math.round((Date.now() - début) / 1000) };
+  })
+);
 
-if (gemini.panne) {
-  console.log(`! ${'Gemini'.padEnd(18)} ${gemini.panne} (${durée} s)`);
-  if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').map((l) => `    ${l}`).join('\n'));
-  await déposer(rendrePistes({ panne: gemini.panne }));
-  process.exit(1);
+const étiquette = (nom) => `Gemini ${nom}`.padEnd(18);
+const pistes = [];
+const pannes = [];
+for (const { volet, gemini, durée } of résultats) {
+  if (gemini.panne) {
+    console.log(`! ${étiquette(volet)} ${gemini.panne} (${durée} s)`);
+    if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').map((l) => `    ${l}`).join('\n'));
+    pannes.push({ volet, panne: gemini.panne });
+    continue;
+  }
+  let tableau;
+  try {
+    tableau = extraireTableau(gemini.réponse);
+  } catch (e) {
+    console.log(`! ${étiquette(volet)} ${e.message} (${durée} s)`);
+    const trace = [gemini.réponse.slice(0, 2000), gemini.stderr ?? ''].join('\n').trim();
+    if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
+    pannes.push({ volet, panne: e.message });
+    continue;
+  }
+  console.log(`✓ ${étiquette(volet)} ${tableau.length} pistes en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}`);
+  // Les refus de permission arrivent ici : un « read_url refusé » à chaque
+  // ligne, et c'est le réglage du serveur qui manque, pas Gemini qui n'a rien
+  // trouvé. Le journal doit pouvoir faire la différence.
+  if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
+  pistes.push(...tableau);
 }
 
-let pistes;
-try {
-  pistes = extraireTableau(gemini.réponse);
-} catch (e) {
-  console.log(`! ${'Gemini'.padEnd(18)} ${e.message} (${durée} s)`);
-  const trace = [gemini.réponse.slice(0, 2000), gemini.stderr ?? ''].join('\n').trim();
-  if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
-  await déposer(rendrePistes({ panne: e.message }));
+// Les deux en panne : une seule raison si c'est la même, agy absent ou un
+// réglage qui manque, sinon chacune avec son volet.
+if (pannes.length === résultats.length) {
+  const raisons = [...new Set(pannes.map(({ panne }) => panne))];
+  await déposer(rendrePistes({ panne: raisons.length === 1 ? raisons[0] : pannes.map(({ volet, panne }) => `${volet} : ${panne}`).join(' ; ') }));
   process.exit(1);
 }
-
-console.log(`✓ ${'Gemini'.padEnd(18)} ${pistes.length} pistes en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}`);
-// Les refus de permission arrivent ici : un « read_url refusé » à chaque
-// ligne, et c'est le réglage du serveur qui manque, pas Gemini qui n'a rien
-// trouvé. Le journal doit pouvoir faire la différence.
-if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
 
 const tri = await trierPistes(pistes, { domaines: domains, connus, today: jour });
 for (const e of tri.retenues) console.log(`  ✓ ${e.name} · ${e.theme} · ${e.start_date} → ${e.end_date}`);
