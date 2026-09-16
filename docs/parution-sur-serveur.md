@@ -4,7 +4,8 @@
 installation : chaque jour, la veille est relevée (flux RSS des rédactions,
 titres déjà publiés), les événements sont cherchés par Gemini, puis le brief
 est rédigé, vérifié et poussé dans
-`inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub Actions.
+`inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub
+Actions ; enfin Gemini rédige le même brief en ombre, pour comparaison.
 
 ## Pourquoi un serveur, et pas le cloud
 
@@ -39,18 +40,29 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
   **Puis les permissions**, dans `~/.gemini/antigravity-cli/settings.json`.
   En headless, un outil non autorisé est refusé en silence : sans la ligne
-  `allow`, Gemini cherche mais ne peut ouvrir aucune page, et rend une liste
-  vide ou inventée. Les `deny` sont ce qui permet de lancer une recherche sans
-  personne devant : elle ne peut ni écrire, ni lancer une commande.
+  `read_url`, Gemini cherche mais ne peut ouvrir aucune page, et rend une
+  liste vide ou inventée ; sans la ligne `read_file`, l'ombre (ci-dessous)
+  ne peut pas lire la veille. Les `deny` sont ce qui permet de lancer une
+  session sans personne devant : elle ne peut ni écrire, ni lancer une
+  commande.
 
   ```json
   {
     "permissions": {
-      "allow": ["read_url(*)"],
+      "allow": ["read_url(*)", "read_file(/chemin/absolu/du/dépôt/veille)"],
       "deny": ["write_file(*)", "command(*)", "unsandboxed(*)", "mcp(*)"]
     }
   }
   ```
+
+  La règle `read_file` prend le **chemin absolu du dossier**, et rien
+  d'autre : ni `veille/*`, ni un chemin relatif, ni un motif, essayés le
+  16 septembre 2026 et tous refusés. Un dossier, et pas `read_file(*)` : le
+  dépôt porte un `.env` avec un jeton, et une page ouverte peut dire
+  n'importe quoi à un modèle qui la lit. Vérifier :
+  `agy -p "Lis veille/AAAA-MM-JJ.md et dis combien de titres Korea Herald annonce"`
+  répond un nombre ; une réponse vide et `denied_actions: read_file`, c'est
+  le chemin qui ne correspond pas.
 
   **Facultatif** : sans `agy`, `scripts/recherche.mjs` échoue en quelques
   millisecondes, la veille le dit, et l'agent cherche les événements
@@ -58,9 +70,21 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
   ```bash
   node scripts/recherche.mjs --jour "$(TZ=Asia/Seoul date +%F)"
-  # « ✓ Gemini  N pistes en … s », puis une ligne par piste, et la section
+  # « ✓ Gemini pages  N pistes en … s » et « ✓ Gemini coréen  N pistes en … s »,
+  # les deux sessions du matin, puis une ligne par piste, et la section
   # « Pistes événements » à la fin de veille/AAAA-MM-JJ.md.
-  # Des lignes de refus de permission sous « ✓ Gemini » : c'est le allow qui manque.
+  # Des lignes de refus de permission sous un « ✓ Gemini » : c'est le allow qui manque.
+  ```
+
+  **L'ombre**, facultative elle aussi : après la session Claude, `agy` rédige
+  le même brief sur la même veille, le contrôle avant vol le juge, et il est
+  déposé dans `veille/ombre/` avec sa comparaison au brief du jour, jamais
+  commité (`scripts/ombre.mjs`, qui dit pourquoi). Le lanceur la lance et
+  n'attend rien d'elle. À relire de temps en temps :
+
+  ```bash
+  ls veille/ombre/            # brief-AAAA-MM-JJ.json et ombre-AAAA-MM-JJ.md, une semaine
+  cat veille/ombre/ombre-"$(TZ=Asia/Seoul date +%F)".md
   ```
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
   la session rédige, valide, commite, puis échoue sur

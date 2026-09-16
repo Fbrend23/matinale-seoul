@@ -93,8 +93,10 @@ node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent ch
 # cherche lui-même, avec son budget.
 node scripts/recherche.mjs --jour "$JOUR" || echo "recherche indisponible : l'agent cherchera les événements lui-même"
 # Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
-# vu le matin où un brief manque : une semaine, puis on jette.
-find veille -name '*.md' -mtime +7 -delete 2>/dev/null || true
+# vu le matin où un brief manque : une semaine, puis on jette. Les ombres
+# (veille/ombre/, voir plus bas) suivent le même sort : une semaine pour les
+# comparer, pas plus.
+find veille \( -name '*.md' -o -name '*.json' \) -mtime +7 -delete 2>/dev/null || true
 
 # La consigne est versionnée à côté : la modifier est un commit, relu, et non un
 # réglage de cron que personne ne relit jamais.
@@ -125,6 +127,15 @@ timeout 25m claude -p "$CONSIGNE" \
   --permission-mode acceptEdits \
   --allowedTools "Bash(git *)" "Bash(npm *)" "Bash(node *)" Read Write Edit Glob Grep WebSearch WebFetch \
   || echec "la session Claude Code s'est terminée en erreur (ou a dépassé 25 minutes)"
+
+# L'OMBRE, après la session et sur la même veille : Gemini rédige le même
+# brief, le contrôle avant vol le juge, et il est déposé dans veille/ombre/
+# avec sa comparaison au brief de la session, jamais commité. Quelques
+# matins de cela disent si Gemini peut prendre la rédaction, ce qui se
+# mesure et ne se devine pas (scripts/lib/ombre.mjs). Rien ici n'attend
+# dessus : la publication est déjà partie, et un échec de l'ombre est une
+# ligne de journal, pas une matinée sans brief.
+node scripts/ombre.mjs --jour "$JOUR" || echo "ombre indisponible ou recalée : voir plus haut"
 
 # La seule preuve qui vaille : le fichier est-il sur origin ?
 # Un agent peut très bien avoir « terminé » sans rien pousser, c'est même ce

@@ -442,6 +442,18 @@ test('la même source au même lieu suffit, quel que soit le nom', async () => {
   });
   const { écartés } = await contrôler([event], { connus: [connuAuLieu] });
   assert.match(écartés[0].raison, /même source/);
+
+  // Un paramètre qui désigne la page n'est pas un utm : deux fiches de
+  // festival.seoul.go.kr ne diffèrent que par lui.
+  const fiche = (festacode, name) => sain({
+    name,
+    theme: 'seoul',
+    venue: '동대문디자인플라자',
+    source_name: 'Séoul',
+    source_url: `https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=${festacode}`,
+  });
+  const deux = await contrôler([fiche(702, 'Seoul Walk Festival')], { connus: [{ ...fiche(333, 'EnterTech Seoul'), id: 9 }] });
+  assert.equal(deux.retenus.length, 1, `deux fiches, deux festivals : ${deux.écartés[0]?.raison}`);
 });
 
 test('une fiche connue sans lieu ni thème ne peut pas accuser', async () => {

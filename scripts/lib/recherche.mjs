@@ -21,8 +21,9 @@
 // Le module ne lance rien : la commande vit dans scripts/recherche.mjs, et tout
 // ce qui touche au réseau reçoit son `fetch`, comme dans guards.mjs.
 
-import { contrôlerÉvénements } from './evenements.mjs';
+import { contrôlerÉvénements, doublonParLieu } from './evenements.mjs';
 import { hostOf } from './guards.mjs';
+import { normaliserLieu } from '../../shared/evenements.mjs';
 
 /**
  * Au plus tant de pistes par domaine source, par matin.
@@ -35,6 +36,76 @@ import { hostOf } from './guards.mjs';
  */
 export const MAX_PAR_SOURCE = 3;
 
+/**
+ * Les salles que les billetteries écrivent en latin, et leur nom Naver.
+ *
+ * Le 15 et le 16 septembre 2026, Flash comme Pro ont rendu « KSPO DOME »
+ * pour deux concerts, TXT et &TEAM, et le tri les a écartés deux matins de
+ * suite : lieu sans hangul, Naver Map ne le trouverait pas. La consigne
+ * demande le coréen, et un modèle qui recopie world.nol.com ne le fait pas.
+ * Une table vaut mieux qu'une consigne plus insistante : elle ne se contourne
+ * pas, et ce sont toujours les mêmes salles. Les grandes salles de concert,
+ * les parcs et places des festivals, les centres de salons ; pas les grands
+ * magasins ni les boutiques, où c'est la succursale qui compte et qu'une
+ * table ne saurait deviner.
+ *
+ * Clé : le nom latin normalisé par normaliserLieu(), sans espaces ni casse.
+ */
+export const LIEUX_EN_COREEN = Object.fromEntries(
+  Object.entries({
+    'KSPO DOME': 'KSPO돔',
+    'KSPO Dome': 'KSPO돔',
+    'Olympic Gymnastics Arena': 'KSPO돔',
+    'Gocheok Sky Dome': '고척스카이돔',
+    'Gocheok Dome': '고척스카이돔',
+    'Inspire Arena': '인스파이어 아레나',
+    'KINTEX': '킨텍스',
+    'COEX': '코엑스',
+    'DDP': '동대문디자인플라자',
+    'Dongdaemun Design Plaza': '동대문디자인플라자',
+    'Olympic Hall': '올림픽홀',
+    'Olympic Park': '올림픽공원',
+    'Jamsil Arena': '잠실실내체육관',
+    'Jamsil Indoor Stadium': '잠실실내체육관',
+    'Jamsil Olympic Stadium': '잠실종합운동장',
+    'Seoul Olympic Stadium': '잠실종합운동장',
+    'Jamsil Sports Complex': '잠실종합운동장',
+    'Seoul World Cup Stadium': '서울월드컵경기장',
+    'Goyang Stadium': '고양종합운동장',
+    'SK Handball Gymnasium': 'SK핸드볼경기장',
+    'Handball Gymnasium': 'SK핸드볼경기장',
+    'Blue Square': '블루스퀘어',
+    'YES24 Live Hall': '예스24 라이브홀',
+    'Sejong Center': '세종문화회관',
+    'Seoul Arts Center': '예술의전당',
+    'Gwanghwamun Square': '광화문광장',
+    'Seoul Plaza': '서울광장',
+    'Namsangol Hanok Village': '남산골한옥마을',
+    'Nanji Hangang Park': '난지한강공원',
+    'Ttukseom Hangang Park': '뚝섬한강공원',
+    'Yeouido Hangang Park': '여의도한강공원',
+    'Banpo Hangang Park': '반포한강공원',
+    'Seoul Forest': '서울숲',
+    'Lotte World Tower': '롯데월드타워',
+    'Seoul Station': '서울역',
+  }).map(([latin, coréen]) => [normaliserLieu(latin), coréen])
+);
+
+/**
+ * Le lieu tel que Naver l'écrit, quand la table le connaît ; sinon tel quel.
+ *
+ * Une parenthèse en fin de nom, « KSPO DOME (Olympic Park) », est un
+ * complément, pas un autre lieu : elle saute avant la table. Un lieu déjà en
+ * coréen n'est pas touché, la table ne parle que le latin.
+ *
+ * @param {string} venue
+ * @returns {string}
+ */
+export function lieuEnCoréen(venue) {
+  const clé = normaliserLieu(String(venue ?? '').replace(/\s*\([^)]*\)\s*$/, ''));
+  return LIEUX_EN_COREEN[clé] ?? venue;
+}
+
 /** Les champs qu'un événement peut porter : le reste ferait recaler le brief au schéma. */
 const CHAMPS = [
   'name', 'kind', 'theme', 'venue', 'area', 'start_date', 'end_date', 'summary',
@@ -44,24 +115,48 @@ const CHAMPS = [
 /**
  * La consigne de Gemini, remplie : le jour, l'onglet tel qu'il est, l'allowlist.
  *
- * Trois gabarits, et pas un rendu à la main dans le script : la consigne est
+ * Quatre gabarits, et pas un rendu à la main dans le script : la consigne est
  * versionnée dans prompts/, relue, et c'est là qu'on la corrige.
+ *
+ * `{{METHODE}}` reçoit la façon de chercher, qui change d'un volet à l'autre
+ * quand le reste, thèmes, onglet, allowlist, forme de la réponse, ne change
+ * pas : voir VOLETS.
  *
  * @param {string} gabarit           prompts/recherche-evenements.md
  * @param {object} p
  * @param {string} p.jour            AAAA-MM-JJ à Séoul
  * @param {object[]} p.connus        les événements de l'onglet
  * @param {string[]} p.domaines      l'allowlist
+ * @param {string} [p.méthode]       prompts/recherche-methode-*.md
  */
-export function composerConsigne(gabarit, { jour, connus = [], domaines = [] }) {
+export function composerConsigne(gabarit, { jour, connus = [], domaines = [], méthode = '' }) {
   const listeConnus = connus.length
     ? connus.map((e) => `- ${e.start_date} → ${e.end_date} · ${e.theme} · ${e.name} · ${e.venue ?? ''}`.trimEnd()).join('\n')
     : "(l'onglet est vide ou injoignable : rien n'est connu)";
   return gabarit
     .replaceAll('{{JOUR}}', jour)
     .replaceAll('{{CONNUS}}', listeConnus)
-    .replaceAll('{{DOMAINES}}', domaines.join(', '));
+    .replaceAll('{{DOMAINES}}', domaines.join(', '))
+    .replaceAll('{{METHODE}}', méthode.trim());
 }
+
+/**
+ * Deux sessions Gemini par matin, en parallèle, une méthode chacune.
+ *
+ * Une seule session avec les deux méthodes, c'était la consigne des
+ * premiers matins, et elle disait « les recherches en coréen ne sont pas
+ * facultatives » : Flash comme Pro lisaient les quatre pages qui listent,
+ * y trouvaient leur compte, et rendaient zéro piste venue d'une recherche en
+ * coréen, dix thèmes durant, deux matins de suite. Le budget d'une session
+ * s'épuise sur ce qui vient en premier. Deux sessions, c'est deux budgets,
+ * et le coréen a le sien. Elles tournent ensemble, l'abonnement Google le
+ * permet et la matinée n'attend pas ; leurs pistes se rejoignent avant le
+ * tri, qui dédoublonne.
+ */
+export const VOLETS = [
+  { nom: 'pages', méthode: 'prompts/recherche-methode-pages.md' },
+  { nom: 'coréen', méthode: 'prompts/recherche-methode-coreen.md' },
+];
 
 /**
  * Le tableau JSON dans ce que Gemini a répondu.
@@ -159,7 +254,9 @@ export async function résoudre(url, { fetcher = fetch, timeoutMs = 10_000 } = {
  * @returns {Promise<{retenues: object[], écartées: {event: object, raison: string}[], prolongées: {event: object, connu: object}[]}>}
  */
 export async function trierPistes(pistes, { domaines, connus = [], today, fetcher = fetch, timeoutMs = 10_000 }) {
-  const épurées = pistes.map(épurer);
+  // Le lieu en coréen quand la table le connaît, AVANT le tri : c'est le
+  // test du hangul qui écartait KSPO DOME, et il ne sait pas traduire.
+  const épurées = pistes.map(épurer).map((p) => (p.venue ? { ...p, venue: lieuEnCoréen(p.venue) } : p));
 
   // Sans adresse, rien à résoudre ni à sonder : la cohérence ne l'attraperait
   // pas (elle ne regarde pas la source), l'allowlist rendrait « domaine
@@ -173,12 +270,27 @@ export async function trierPistes(pistes, { domaines, connus = [], today, fetche
 
   const { retenus, écartés, prolongés } = await contrôlerÉvénements(résolues, { domaines, connus, today, fetcher, timeoutMs });
 
+  // Les doublons du matin, entre pistes : contrôlerÉvénements() ne compare
+  // qu'à l'onglet, pas les pistes entre elles, et deux volets peuvent tomber
+  // sur le même concert, l'un par la billetterie, l'autre par la rédaction.
+  // La règle est celle de l'onglet, doublonParLieu(), et pas une plus
+  // simple : « même lieu, même jour » écarterait les trois pop-ups qui
+  // ouvrent le même vendredi à The Hyundai. Le premier rendu reste.
+  const gardées = [];
+  const doublonsDuMatin = [];
+  for (const event of retenus) {
+    const trouvé = doublonParLieu(event, gardées);
+    if (trouvé) doublonsDuMatin.push({ event, raison: `doublon du matin (${trouvé.preuve}) : « ${trouvé.connu.name.slice(0, 50)} »` });
+    else gardées.push(event);
+  }
+  const uniques = gardées;
+
   // Le plafond par domaine, après le tri : il ne compte que ce qui serait
   // retenu, et dans l'ordre où Gemini l'a rendu, le sien.
   const parDomaine = new Map();
   const retenues = [];
   const excédent = [];
-  for (const event of retenus) {
+  for (const event of uniques) {
     const hôte = hostOf(event.source_url);
     const n = (parDomaine.get(hôte) ?? 0) + 1;
     parDomaine.set(hôte, n);
@@ -195,6 +307,7 @@ export async function trierPistes(pistes, { domaines, connus = [], today, fetche
     écartées: [
       ...sansSource.map((event) => ({ event, raison: 'sans adresse source' })),
       ...écartés,
+      ...doublonsDuMatin.map(({ event, raison }) => ({ event: sansTampon(event), raison })),
       ...excédent.map(({ event, raison }) => ({ event: sansTampon(event), raison })),
     ],
     prolongées: prolongés.map(({ event, connu }) => ({ event: sansTampon(event), connu })),

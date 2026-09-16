@@ -36,9 +36,10 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ```
 Timer systemd, 7 h 30 Asia/Seoul
         ├─ veille : flux RSS des rédactions + titres déjà publiés → veille/AAAA-MM-JJ.md
-        ├─ recherche : Gemini (Antigravity CLI) cherche les événements, les gardes trient → même fichier
-        └─ session Claude Code : lit la veille, choisit, vérifie, rédige
+        ├─ recherche : deux sessions Gemini (Antigravity CLI), pages qui listent + rédactions coréennes, les gardes trient → même fichier
+        ├─ session Claude Code : lit la veille, choisit, vérifie, rédige
         │  commit  inbox/brief-AAAA-MM-JJ.json
+        └─ ombre : Gemini rédige le même brief, contrôlé, comparé, jamais commité → veille/ombre/
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
                                      ├─ nom du fichier + cinq gardes
@@ -231,6 +232,7 @@ npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
+npm run ombre            # fait rédiger le brief du jour à Gemini (agy) en ombre, contrôlé et comparé dans veille/ombre/
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

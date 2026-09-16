@@ -492,12 +492,23 @@ pas de redire ce qui s'y trouve :
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
 - Les pistes événements du § 7 sont produites par `scripts/recherche.mjs` :
-  Gemini, par Antigravity CLI en headless et sans droit d'écriture, suit
-  `prompts/recherche-evenements.md` et rend un tableau ; le script le passe à
-  `contrôlerÉvénements()`, le tri même de l'ingestion, puis l'ajoute à la
-  veille. Corriger ce que Gemini cherche se fait dans ce prompt-là ; ce qui
-  l'écarte, dans les gardes. Gemini absent ou muet, la section le dit et
-  l'agent retombe sur sa propre recherche, avec son budget.
+  deux sessions Gemini en parallèle, par Antigravity CLI en headless et sans
+  droit d'écriture, l'une sur les pages qui listent
+  (`prompts/recherche-methode-pages.md`), l'autre sur les rédactions
+  coréennes (`prompts/recherche-methode-coreen.md`), dans le cadre commun de
+  `prompts/recherche-evenements.md` ; chacune rend un tableau, le script
+  les réunit, traduit les salles que les billetteries écrivent en latin
+  (`LIEUX_EN_COREEN`), et passe le tout à `contrôlerÉvénements()`, le tri
+  même de l'ingestion, puis l'ajoute à la veille. Corriger ce que Gemini
+  cherche se fait dans ces prompts-là ; ce qui l'écarte, dans les gardes.
+  Une session en panne est une session en moins ; les deux, la section le
+  dit et l'agent retombe sur sa propre recherche, avec son budget.
+- L'exemple du § 2 sert aussi à `prompts/brief-ombre.md`, la consigne de
+  l'ombre : `scripts/ombre.mjs` fait rédiger le même brief à Gemini après la
+  session, sur la même veille, le passe au contrôle avant vol et le compare
+  au brief du jour dans `veille/ombre/`, sans jamais le commiter. Un seul
+  exemple pour deux rédactions, lu ici par `exempleDuPrompt()` : le changer
+  ici, c'est le changer pour les deux.
 - La veille du § 1 est produite par `scripts/veille.mjs` à partir de
   `config/flux.json`, lancé par `bin/brief-du-jour.sh` juste avant la session.
   Ajouter une rédaction, c'est ajouter son flux là, et son domaine dans

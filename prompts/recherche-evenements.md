@@ -27,16 +27,17 @@ L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont chang�
 
 ## Comment chercher
 
-1. **Les quatre pages qui listent**, lues une fois chacune : `https://insideseoul.app/popups` (pop-ups, avec lieu et dates), `https://world.nol.com/` (expositions et festivals à billet), `https://kpopofficial.com/schedule/south-korea/` (concerts), `https://festival.seoul.go.kr/festival/year/loadMap.do` (festivals de la ville). Relève ce qui commence dans les deux semaines ou vient d'ouvrir. **Au plus trois événements par domaine** dans ta réponse : une liste tenue par un seul site n'est pas une veille, et le script écartera le quatrième. Quand une page t'en donne plus, garde les trois plus proches dans le temps et passe à la suite.
-2. **Puis les recherches en coréen, une par thème, et elles ne sont pas facultatives** : même si les pages qui listent t'ont déjà donné huit pistes, fais-les. Avec les mots des sites coréens : `애니메이션 팝업스토어`, `포켓몬 팝업`, `아이돌 팝업스토어` ou `콘서트 서울`, `게임 팝업스토어` ou `e스포츠`, `산리오` / `치이카와` / `캐릭터 팝업`, `패션 브랜드 팝업스토어`, `서울 축제` / `한강 축제`, `전시회 서울`, `푸드 팝업`, `서울 마라톤` ou `야구 직관` / `K리그 서울`, combinés au mois en cours et à `서울`. L'anglais remonte des agrégateurs, le coréen remonte les rédactions : Inven, This Is Game, Korea JoongAng Daily, Korea Herald, Visit Seoul, Time Out, Soompi, les sites officiels (pokemonkorea.co.kr, coex.co.kr, ddp.or.kr, seoul.go.kr).
-3. **Pour chaque candidat, trouve sa source** : une page d'un de ces domaines, et d'aucun autre :
+{{METHODE}}
+
+Puis, **pour chaque candidat, trouve sa source** : une page d'un de ces domaines, et d'aucun autre :
 
 {{DOMAINES}}
 
-   Les agrégateurs (popga, heypop, popply, dayforyou, dealseoul, namu.wiki, blogs Naver, Instagram, X) disent ce qui existe, mais un événement sourcé chez eux sera écarté. Quand tu y repères un événement, cherche-le par son nom pour trouver l'article d'un domaine de la liste. Introuvable chez eux : laisse-le.
-4. **Ouvre la source retenue** pour y lire les dates et le lieu. Ce que tu rends vient de cette page, pas de ta mémoire.
+Les agrégateurs (popga, heypop, popply, dayforyou, dealseoul, namu.wiki, blogs Naver, Instagram, X) disent ce qui existe, mais un événement sourcé chez eux sera écarté. Quand tu y repères un événement, cherche-le par son nom pour trouver l'article d'un domaine de la liste. Introuvable chez eux : laisse-le.
 
-Vise six à dix événements nouveaux, venant d'au moins trois domaines différents. Ce qui te borne, c'est le temps, une dizaine de minutes, soit une cinquantaine d'appels d'outils : ne les économise pas, mais ne les gaspille pas non plus à rouvrir une page déjà lue. Au-delà, rends ce que tu as. Une liste vide est une réponse acceptable si tu as cherché.
+**Ouvre la source retenue** pour y lire les dates et le lieu. Ce que tu rends vient de cette page, pas de ta mémoire.
+
+Ce qui te borne, c'est le temps, une dizaine de minutes, soit une cinquantaine d'appels d'outils : ne les économise pas, mais ne les gaspille pas non plus à rouvrir une page déjà lue. Au-delà, rends ce que tu as. Une liste vide est une réponse acceptable si tu as cherché.
 
 ## Ce que tu rends
 
@@ -65,7 +66,7 @@ Vise six à dix événements nouveaux, venant d'au moins trois domaines différe
 - `name` : en français, court, le nom sous lequel on le reconnaît.
 - `kind` : `popup`, `concert`, `exposition`, `festival`, `salon` ou `autre`.
 - `theme` : l'un des neuf ci-dessus, en minuscules.
-- `venue` : **le lieu en coréen, tel que Naver Map l'écrit** (`하이커그라운드`, `아라아트센터`), pas en anglais. Pour une enseigne à plusieurs adresses, la succursale : `포켓몬센터 성수`. Sans nom de lieu, l'adresse en coréen (`서울 성동구 연무장3길 8-9`).
+- `venue` : **le lieu en coréen, tel que Naver Map l'écrit** (`하이커그라운드`, `아라아트센터`), pas en anglais. Pour une enseigne à plusieurs adresses, la succursale : `포켓몬센터 성수`. Les salles de concert ont un nom coréen même quand la billetterie l'écrit en latin : `KSPO돔`, pas « KSPO DOME » ; `고척스카이돔`, `인스파이어 아레나`, `킨텍스`. Sans nom de lieu, l'adresse en coréen (`서울 성동구 연무장3길 8-9`).
 - `area` : le quartier, romanisé : `Seongsu`, `Jung-gu`, `Goyang`.
 - `start_date`, `end_date` : AAAA-MM-JJ, telles que la source les donne. `end_date` est le dernier jour inclus, égal à `start_date` pour un jour unique. **Sans date de fin annoncée, pas d'événement.** Une date devinée est pire qu'un événement en moins.
 - `summary` : en français, 35 mots au plus, factuel, sans superlatif : ce qu'on y trouve, si c'est gratuit ou sur billet.
