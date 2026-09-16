@@ -13,7 +13,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
-import { composerConsigne, extraireTableau, épurer, résoudre, trierPistes, rendrePistes } from '../scripts/lib/recherche.mjs';
+import { composerConsigne, extraireTableau, épurer, résoudre, trierPistes, rendrePistes, lieuEnCoréen, VOLETS } from '../scripts/lib/recherche.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
@@ -45,14 +45,52 @@ const fetcher = async (url, init = {}) => {
 };
 
 test('la consigne reçoit le jour, l\'onglet et l\'allowlist, et dit quand l\'onglet est vide', () => {
-  const gabarit = 'Jour {{JOUR}}\n{{CONNUS}}\n{{DOMAINES}}';
+  const gabarit = 'Jour {{JOUR}}\n{{CONNUS}}\n{{DOMAINES}}\n{{METHODE}}';
   const avec = composerConsigne(gabarit, {
     jour: TODAY,
     connus: [{ name: 'Méga Festa', theme: 'pokemon', start_date: '2026-09-01', end_date: '2026-09-30', venue: '코엑스' }],
     domaines: DOMAINES,
+    méthode: '\nLis les pages.\n',
   });
-  assert.match(avec, /^Jour 2026-09-15\n- 2026-09-01 → 2026-09-30 · pokemon · Méga Festa · 코엑스\ninven\.co\.kr, koreaherald\.com, insideseoul\.app$/);
+  assert.match(avec, /^Jour 2026-09-15\n- 2026-09-01 → 2026-09-30 · pokemon · Méga Festa · 코엑스\ninven\.co\.kr, koreaherald\.com, insideseoul\.app\nLis les pages\.$/);
   assert.match(composerConsigne(gabarit, { jour: TODAY }), /rien n'est connu/);
+});
+
+test('une salle écrite en latin par la billetterie prend son nom Naver, le reste ne bouge pas', async () => {
+  // KSPO DOME, deux matins de suite, deux concerts écartés : la table sait
+  // ce que la consigne n'obtient pas.
+  assert.equal(lieuEnCoréen('KSPO DOME'), 'KSPO돔');
+  assert.equal(lieuEnCoréen('kspo dome (Olympic Park)'), 'KSPO돔');
+  assert.equal(lieuEnCoréen('Gocheok Sky Dome'), '고척스카이돔');
+  assert.equal(lieuEnCoréen('더현대 서울'), '더현대 서울');
+  assert.equal(lieuEnCoréen('Musinsa Square'), 'Musinsa Square');
+
+  const tri = await trierPistes(
+    [{ ...PISTE, name: 'Concert TXT', kind: 'concert', theme: 'kpop', venue: 'KSPO DOME' }],
+    { domaines: DOMAINES, connus: [], today: TODAY, fetcher }
+  );
+  assert.deepEqual(tri.retenues.map((e) => e.venue), ['KSPO돔']);
+});
+
+test('deux volets qui tombent sur le même événement n\'en font qu\'un, le premier rendu', async () => {
+  const pistes = [
+    PISTE,
+    // Même source : le même article, vu deux fois.
+    { ...PISTE, name: 'Chiikawa débarque à Seongsu' },
+    // Même lieu, mêmes dates, même thème, nom à moitié : le même pop-up, par une autre rédaction.
+    { ...PISTE, name: 'Pop-up Chiikawa Seongsu', source_url: 'https://www.koreaherald.com/article/1' },
+    // Même lieu, mêmes dates, autre thème et autre nom : un autre pop-up du même grand magasin, gardé.
+    { ...PISTE, name: 'Sanrio à Musinsa', theme: 'mode', source_url: 'https://www.koreaherald.com/article/2' },
+  ];
+  const tri = await trierPistes(pistes, { domaines: DOMAINES, connus: [], today: TODAY, fetcher });
+  assert.deepEqual(tri.retenues.map((e) => e.name), ['Pop-up Chiikawa à Seongsu', 'Sanrio à Musinsa']);
+  assert.deepEqual(
+    tri.écartées.map(({ event, raison }) => `${event.name} : ${raison.replace(/nom à \d\.\d\d/, 'nom à N')}`),
+    [
+      'Chiikawa débarque à Seongsu : doublon du matin (même source) : « Pop-up Chiikawa à Seongsu »',
+      'Pop-up Chiikawa Seongsu : doublon du matin (même thème, nom à N) : « Pop-up Chiikawa à Seongsu »',
+    ]
+  );
 });
 
 test('le tableau se lit malgré une phrase avant et une clôture de code autour', () => {
@@ -125,8 +163,10 @@ test('une piste connue de l’onglet sous un autre nom, au même lieu, est écar
 
 test('au plus trois pistes par domaine, dans l\'ordre de Gemini, le reste écarté et nommé', async () => {
   const { MAX_PAR_SOURCE } = await import('../scripts/lib/recherche.mjs');
+  // Chacune à son étage : au même lieu, aux mêmes dates, elles seraient des
+  // doublons du matin avant d'atteindre le plafond.
   const pistes = [
-    ...[1, 2, 3, 4, 5].map((i) => ({ ...PISTE, name: `Inside ${i}`, source_url: `https://insideseoul.app/popups/${i}` })),
+    ...[1, 2, 3, 4, 5].map((i) => ({ ...PISTE, name: `Inside ${i}`, venue: `더현대 서울 ${i}층`, source_url: `https://insideseoul.app/popups/${i}` })),
     { ...PISTE, name: 'Inven 1' },
   ];
   const tri = await trierPistes(pistes, { domaines: DOMAINES, connus: [], today: TODAY, fetcher });
@@ -169,24 +209,45 @@ test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit u
   const veille = path.join(dossier, `${TODAY}.md`);
   await writeFile(veille, '# Veille de test\n');
 
-  // Le faux répond la forme exacte de `gemini --output-format json`. Sa piste
-  // vise une adresse qui ne répond pas ici, et sera donc écartée par la
-  // sonde : le test ne dépend pas du réseau, et vérifie que le tri a eu lieu.
+  // Le faux répond la forme exacte de `gemini --output-format json`, et lit
+  // sa consigne ($2, après -p) pour répondre en volet « pages » ou en volet
+  // « coréen » : les deux sessions du matin, et la fusion de leurs pistes.
+  // Chaque piste vise une adresse qui ne répond pas ici, et sera donc
+  // écartée par la sonde : le test ne dépend pas du réseau, et vérifie que
+  // le tri a eu lieu.
   const faux = path.join(dossier, 'faux-gemini.sh');
+  const piste = (nom) =>
+    `[{\\"name\\": \\"${nom}\\", \\"kind\\": \\"popup\\", \\"theme\\": \\"food\\", \\"venue\\": \\"성수\\", \\"area\\": \\"Seongsu\\", \\"start_date\\": \\"2026-09-20\\", \\"end_date\\": \\"2026-09-21\\", \\"summary\\": \\"Test.\\", \\"source_name\\": \\"Inven\\", \\"source_url\\": \\"https://www.inven.co.kr.invalid/${nom.replaceAll(' ', '-')}\\", \\"source_lang\\": \\"ko\\"}]`;
   await writeFile(
     faux,
-    `#!/bin/sh\nprintf '%s' '{"status": "SUCCESS", "num_turns": 7, "response": "[{\\"name\\": \\"Pop-up test\\", \\"kind\\": \\"popup\\", \\"theme\\": \\"food\\", \\"venue\\": \\"성수\\", \\"area\\": \\"Seongsu\\", \\"start_date\\": \\"2026-09-20\\", \\"end_date\\": \\"2026-09-21\\", \\"summary\\": \\"Test.\\", \\"source_name\\": \\"Inven\\", \\"source_url\\": \\"https://www.inven.co.kr.invalid/x\\", \\"source_lang\\": \\"ko\\"}]"}'\n`,
+    `#!/bin/sh\ncase "$2" in *"pages qui listent"*) printf '%s' '{"status": "SUCCESS", "num_turns": 7, "response": "${piste('Pop-up pages')}"}' ;; *) printf '%s' '{"status": "SUCCESS", "num_turns": 9, "response": "${piste('Pop-up coréen')}"}' ;; esac\n`,
     { mode: 0o755 }
   );
 
   const env = { ...process.env, MATINALE_GEMINI: faux, SITE_URL: 'http://127.0.0.1:9' };
   const { stdout } = await exécuter('node', ['scripts/recherche.mjs', '--jour', TODAY, '--dossier', dossier], { cwd: RACINE, env });
-  assert.match(stdout, /✓ Gemini\s+1 pistes en \d+ s, 7 tours/);
-  assert.match(stdout, /! Pop-up test : (source morte|domaine inconnu)/);
+  assert.match(stdout, /✓ Gemini pages\s+1 pistes en \d+ s, 7 tours/);
+  assert.match(stdout, /✓ Gemini coréen\s+1 pistes en \d+ s, 9 tours/);
+  assert.match(stdout, /! Pop-up pages : (source morte|domaine inconnu)/);
+  assert.match(stdout, /! Pop-up coréen : (source morte|domaine inconnu)/);
   const md = await readFile(veille, 'utf8');
   assert.match(md, /^# Veille de test\n\n## Pistes événements\n/);
   assert.match(md, /Aucune piste retenue ce matin/);
-  assert.match(md, /- Pop-up test \(inven\.co\.kr\.invalid\) : /);
+  assert.match(md, /- Pop-up pages \(inven\.co\.kr\.invalid\) : /);
+  assert.match(md, /- Pop-up coréen \(inven\.co\.kr\.invalid\) : /);
+
+  // Un volet en panne est un volet en moins : l'autre suffit à la matinée,
+  // le journal nomme celui qui manque, le code de sortie reste bon.
+  await writeFile(veille, '# Veille de test\n');
+  await writeFile(
+    faux,
+    `#!/bin/sh\ncase "$2" in *"pages qui listent"*) printf '%s' '{"status": "SUCCESS", "num_turns": 7, "response": "${piste('Pop-up pages')}"}' ;; *) printf '%s' '{"status": "ERROR", "error": "quota"}' ;; esac\n`,
+    { mode: 0o755 }
+  );
+  const moitié = await exécuter('node', ['scripts/recherche.mjs', '--jour', TODAY, '--dossier', dossier], { cwd: RACINE, env });
+  assert.match(moitié.stdout, /✓ Gemini pages\s+1 pistes/);
+  assert.match(moitié.stdout, /! Gemini coréen\s+Gemini : ERROR, quota/);
+  assert.match(await readFile(veille, 'utf8'), /- Pop-up pages \(inven\.co\.kr\.invalid\) : /);
 
   // Permission refusée : la session rend SUCCESS et une réponse vide, c'est
   // `denied_actions` qui le dit, et le journal doit nommer le réglage.
@@ -194,8 +255,9 @@ test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit u
   await writeFile(faux, `#!/bin/sh\nprintf '%s' '{"status": "SUCCESS", "response": "", "denied_actions": [{"action": "read_url", "display_name": "ReadUrlContent"}]}'\n`, { mode: 0o755 });
   await assert.rejects(
     exécuter('node', ['scripts/recherche.mjs', '--jour', TODAY, '--dossier', dossier], { cwd: RACINE, env }),
-    ({ code, stdout }) => code === 1 && /! Gemini\s+permission refusée : read_url\. Ajouter « read_url\(\*\) »/.test(stdout)
+    ({ code, stdout }) => code === 1 && /! Gemini pages\s+permission refusée : read_url\. Ajouter « read_url\(\*\) »/.test(stdout)
   );
+  // La même panne des deux côtés se dit une fois.
   assert.match(await readFile(veille, 'utf8'), /n'a rien donné \(permission refusée : read_url/);
 
   // Pas de Gemini : le code de sortie le dit au lanceur, la veille le dit à l'agent.
@@ -205,7 +267,7 @@ test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit u
       cwd: RACINE,
       env: { ...env, MATINALE_GEMINI: path.join(dossier, 'absent') },
     }),
-    ({ code, stdout }) => code === 1 && /! Gemini\s+commande introuvable/.test(stdout)
+    ({ code, stdout }) => code === 1 && /! Gemini pages\s+commande introuvable/.test(stdout)
   );
   assert.match(await readFile(veille, 'utf8'), /La recherche du matin n'a rien donné \(commande introuvable/);
 });
@@ -225,7 +287,19 @@ test('la consigne de Gemini demande la forme même du schéma, et nomme chaque t
   const { THEMES, KINDS } = await import('../shared/evenements.mjs');
   for (const theme of THEMES) assert.ok(consigne.includes(`\`${theme}\``), `thème « ${theme} » absent`);
   for (const kind of KINDS) assert.ok(consigne.includes(`\`${kind}\``), `kind « ${kind} » absent`);
-  for (const gabarit of ['{{JOUR}}', '{{CONNUS}}', '{{DOMAINES}}']) assert.ok(consigne.includes(gabarit), `${gabarit} absent`);
+  for (const gabarit of ['{{JOUR}}', '{{CONNUS}}', '{{DOMAINES}}', '{{METHODE}}']) assert.ok(consigne.includes(gabarit), `${gabarit} absent`);
+
+  // Deux volets, deux méthodes, et chacune sait que l'autre existe : sans
+  // cela, la session « coréen » relirait les pages qui listent, et le second
+  // budget serait le premier, dépensé deux fois.
+  const méthodes = Object.fromEntries(await Promise.all(VOLETS.map(async (v) => [v.nom, await lire(v.méthode)])));
+  assert.deepEqual(Object.keys(méthodes), ['pages', 'coréen']);
+  for (const page of ['insideseoul.app/popups', 'world.nol.com', 'kpopofficial.com', 'festival.seoul.go.kr']) {
+    assert.ok(méthodes.pages.includes(page), `page « ${page} » absente du volet pages`);
+  }
+  assert.match(méthodes.pages, /ne fais pas de recherche par thème/i);
+  assert.match(méthodes.coréen, /ne lis aucune page qui liste/i);
+  for (const theme of THEMES) assert.ok(méthodes.coréen.includes(`\`${theme}\``), `thème « ${theme} » absent du volet coréen`);
 
   // L'exemple de la consigne, tel quel, passerait le schéma d'un brief : ce
   // que Gemini recopie doit être ce que l'ingestion accepte.
