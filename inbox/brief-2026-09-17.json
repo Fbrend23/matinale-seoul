@@ -1,0 +1,278 @@
+{
+  "date": "2026-09-17",
+  "title": "Travailleurs nord-coréens en Russie, vague de licenciements dans le jeu vidéo, la Corée solide à l'Asiad",
+  "standfirst": "Un rapport de surveillance chiffre à 800 millions de dollars l'argent tiré par Pyongyang de ses travailleurs à l'étranger, certains affectés à la production de drones russes. Séoul et Intel discutent mémoire, le jeu vidéo encaisse de nouveaux licenciements, et la Corée enchaîne les qualifications à l'Asiad de Nagoya.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une campagne d'automne fait baisser le coût des voyages en Corée",
+          "summary": "L'Office du tourisme coréen lance en octobre et novembre une campagne de réductions sur les trajets routiers et les billets de train, ciblée sur les régions moins visitées, pour alléger la facture des voyages domestiques.",
+          "importance": 1,
+          "tags": ["tourisme", "kto", "reductions"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/travel-food/20260916/korea-tourism-organizations-autumn-travel-campaign-can-lower-your-travel-costs",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Séoul court sur 100 km entre ville, fleuve et montagne",
+          "original_headline": "도심-한강-북한산까지… “3색 100K 러닝 맛집”",
+          "summary": "Le Séoul International Ultra-Trail Running revient les 19 et 20 septembre pour sa septième édition. Le parcours traverse le centre-ville, longe le fleuve Han et grimpe sur les hauteurs du Bukhansan, sur deux jours de course.",
+          "importance": 2,
+          "tags": ["trail", "sport", "evenement"],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Sports/article/all/20260917/134684476/2",
+          "source_lang": "ko",
+          "published_at": "2026-09-17T04:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée du Nord tire jusqu'à 800 millions de dollars de ses travailleurs expatriés",
+          "summary": "Un rapport de surveillance des sanctions évalue à plus de 100 000 les travailleurs nord-coréens déployés à l'étranger, générant jusqu'à 800 millions de dollars annuels. Certains, en Russie, ont été affectés à des drones Geran-2.",
+          "analysis": "Le chiffre dépasse les estimations précédentes et confirme que le contournement des sanctions se poursuit, y compris au service de l'effort de guerre russe.",
+          "importance": 1,
+          "tags": ["coree-du-nord", "sanctions", "travail"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10876114",
+          "source_lang": "en",
+          "published_at": "2026-09-16T23:36:24+09:00"
+        },
+        {
+          "headline": "SK hynix explore une production de mémoire aux États-Unis avec Intel",
+          "summary": "Le fabricant coréen discute avec Intel d'une possible fabrication de puces mémoire sur le sol américain, selon Reuters, notamment via la reprise d'une partie du site industriel d'Intel dans l'Ohio. Aucune décision n'est arrêtée.",
+          "importance": 2,
+          "tags": ["sk-hynix", "semi-conducteurs", "intel"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10875971",
+          "source_lang": "en",
+          "published_at": "2026-09-16T17:29:34+09:00"
+        },
+        {
+          "headline": "La contestation sociale gagne la sidérurgie et la construction navale coréennes",
+          "summary": "Posco a lancé une grève partielle et le chantier naval HD Hyundai Heavy est également touché, signe d'une agitation sociale croissante dans deux secteurs manufacturiers stratégiques de Corée du Sud.",
+          "importance": 3,
+          "tags": ["greve", "siderurgie", "construction-navale"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10875743",
+          "source_lang": "en",
+          "published_at": "2026-09-16T15:06:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Google corrige une faille zero-day exploitée sur des téléphones Pixel",
+          "summary": "Une vulnérabilité du modem de certains Pixel, référencée CVE-2026-58704, a été exploitée dans des attaques ciblées et limitées, permettant d'accéder aux données du téléphone sans interaction de l'utilisateur. Google a publié un correctif.",
+          "importance": 1,
+          "tags": ["securite", "google", "pixel"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/16/google-says-some-pixel-phone-owners-were-hacked-in-zero-day-attacks/",
+          "source_lang": "en",
+          "published_at": "2026-09-16T23:47:07+09:00"
+        },
+        {
+          "headline": "Google ouvre le contrôle de la maison connectée aux agents IA",
+          "summary": "Google lance un accès anticipé à un serveur MCP pour Google Home, permettant à des agents comme Claude ou ChatGPT de contrôler les appareils connectés, consulter les caméras et l'historique domotique. Réservé aux abonnés premium américains.",
+          "importance": 2,
+          "tags": ["google-home", "intelligence-artificielle", "domotique"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/",
+          "source_lang": "en",
+          "published_at": "2026-09-17T02:00:00+09:00"
+        },
+        {
+          "headline": "Apple envisagerait un retour sur le marché des serveurs, avec Nvidia",
+          "summary": "Selon The Information, Apple prépare un retour à la fabrication de serveurs, abandonnée depuis l'arrêt de sa gamme Xserve, pour profiter de l'essor de l'IA. Un partenariat avec Nvidia serait envisagé.",
+          "importance": 3,
+          "tags": ["apple", "serveurs", "nvidia"],
+          "source_name": "The Verge",
+          "source_url": "https://www.theverge.com/tech/996321/apple-servers-ai-nvidia",
+          "source_lang": "en",
+          "published_at": "2026-09-17T02:20:29+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le studio de MindsEye, Build A Rocket Boy, proche de la fermeture",
+          "summary": "Après des vagues de licenciements dépassant 400 employés, le studio écossais derrière le très mal noté MindsEye pourrait fermer définitivement. Un responsable RH dit vouloir rester jusqu'à la fin, tout en cherchant un nouvel emploi.",
+          "analysis": "Fondé par le vétéran de GTA Leslie Benzies, le studio incarne la difficulté à transformer un lancement raté en second souffle, malgré un investissement massif.",
+          "importance": 1,
+          "tags": ["licenciements", "studios", "mindseye"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/mindseye-studio-build-a-rocket-boy-may-be-closing-down-according-to-reports/",
+          "source_lang": "en",
+          "published_at": "2026-09-17T02:04:14+09:00"
+        },
+        {
+          "headline": "Heart Machine, le studio de Hyper Light Drifter, licencie presque toute son équipe",
+          "summary": "L'accord d'édition prévu pour un jeu non annoncé est tombé à l'eau, poussant le studio Heart Machine à licencier la quasi-totalité de ses employés. Son fondateur Alx Preston dit ignorer comment assurer la survie du studio.",
+          "importance": 2,
+          "tags": ["licenciements", "studios", "heart-machine"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/gaming-industry/hyper-light-studio-heart-machine-lays-off-nearly-everyone-after-publisher-deal-for-unannounced-game-falls-through/",
+          "source_lang": "en",
+          "published_at": "2026-09-17T06:01:30+09:00"
+        },
+        {
+          "headline": "Le patron de Wardogs répond à la polémique sur le crunch",
+          "summary": "Joe Brammer, patron du studio Bulkhead derrière le succès Wardogs, réagit après la controverse suscitée par ses propos excluant les développeurs opposés au crunch. Il publie une nouvelle déclaration pour tenter d'apaiser la polémique.",
+          "importance": 3,
+          "tags": ["wardogs", "crunch", "industrie"],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/wardogs-ceo-new-response-crunch-backlash-social-media-monitoring-statement",
+          "source_lang": "en",
+          "published_at": "2026-09-17T04:15:25+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le basket masculin coréen écrase la Jordanie et file en demi-finale",
+          "summary": "La sélection masculine de basketball s'est imposée 114 à 80 face à la Jordanie aux Jeux asiatiques de Nagoya, décrochant sa place en demi-finale, après un début de compétition marqué par les critiques.",
+          "importance": 1,
+          "tags": ["asiad", "basketball", "jeux-asiatiques"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260916005352315",
+          "source_lang": "en",
+          "published_at": "2026-09-16T15:39:45+09:00"
+        },
+        {
+          "headline": "Le volleyball féminin coréen réussit ses débuts face à Hong Kong",
+          "summary": "L'équipe de Corée du Sud a battu Hong Kong pour son entrée en lice aux Jeux asiatiques de Nagoya. La capitaine Kang So-hwi, qui craignait une rechute après blessure, a vite retrouvé son rythme.",
+          "importance": 2,
+          "tags": ["asiad", "volleyball", "jeux-asiatiques"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260916010451320",
+          "source_lang": "en",
+          "published_at": "2026-09-16T19:23:11+09:00"
+        },
+        {
+          "headline": "Couac d'organisation à l'Asiad : l'équipe de football coréenne retardée",
+          "summary": "La sélection masculine de football a vu son emploi du temps perturbé par un problème d'organisation des bus aux Jeux asiatiques de Nagoya, deux jours après son entrée réussie en compétition face au Qatar.",
+          "importance": 3,
+          "tags": ["asiad", "football", "organisation"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260916005800320",
+          "source_lang": "en",
+          "published_at": "2026-09-16T13:40:06+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up emart24 Tteokjeon à Seongsu",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "이마트24 트렌드랩 성수",
+      "area": "Seongsu",
+      "start_date": "2026-09-17",
+      "end_date": "2026-09-20",
+      "summary": "Boutique éphémère réunissant des maîtres artisans régionaux de gâteaux de riz proposant pizza seolgi, chapssaltteok à la crème et créations modernes. Entrée libre.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/emart24-tteokjeon-popup-seongsu",
+      "source_lang": "en",
+      "address": "서울 성동구 아차산로 104"
+    },
+    {
+      "name": "Café The Perks of Being a Villainess à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "카페 튜니크 유니버스",
+      "area": "Mapo-gu",
+      "start_date": "2026-09-17",
+      "end_date": "2026-10-11",
+      "summary": "Café collaboratif autour du webtoon avec boissons à thème, pâtisseries inspirées de l'œuvre et goodies exclusifs offerts sur place.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/perks-of-being-a-villainess-collab-cafe-hongdae",
+      "source_lang": "en",
+      "address": "서울 마포구 양화로 78-17"
+    },
+    {
+      "name": "Pop-up EDIT DEPT: NEO LOCAL à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-09-17",
+      "end_date": "2026-09-30",
+      "summary": "Espace éphémère du magazine local EDIT DEPT réunissant marques de design indépendantes, boutique sélective et rencontres avec des créateurs au sous-sol B1.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/yeouido/popups/edit-dept-neo-local-popup-the-hyundai-seoul",
+      "source_lang": "en",
+      "address": "서울 영등포구 여의대로 108"
+    },
+    {
+      "name": "Festival du film Cinema Wave à Dapsimni",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "답십리영화미디어아트센터",
+      "area": "Dongdaemun-gu",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-20",
+      "summary": "Festival gratuit de cinéma et d'arts médiatiques proposant projections de classiques coréens, séances jeune public, rencontres avec les réalisateurs et ateliers.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=849",
+      "source_lang": "ko",
+      "address": "서울특별시 동대문구 답십리로 210-9"
+    },
+    {
+      "name": "Fête d'anniversaire du musée de Cheonggyecheon",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "청계천박물관",
+      "area": "Seongdong-gu",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-19",
+      "summary": "Journée culturelle gratuite pour l'anniversaire du musée avec concert de trio à cordes, ateliers de cloches d'automne et fabrication de vases en feutre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=864",
+      "source_lang": "ko",
+      "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260820133344130489"
+    },
+    {
+      "name": "Concert de Vaundy en tournée asiatique à Incheon",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "인스파이어 아레나",
+      "area": "Incheon",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-20",
+      "summary": "Concert de l'artiste pop-rock japonais Vaundy pour son Asia Arena Tour 'HORO'. Forfaits billets et hébergement disponibles sur réservation.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000240/products/26003317",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26000240/products/26003317"
+    },
+    {
+      "name": "Fête de Chuseok au palais Unhyeongung",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "운현궁",
+      "area": "Jongno-gu",
+      "start_date": "2026-09-24",
+      "end_date": "2026-09-27",
+      "summary": "Célébrations traditionnelles de Chuseok avec jeux folkloriques coréens, spectacles de danse, ateliers artisanaux de nœuds et confection d'objets porte-bonheur. Entrée libre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=906",
+      "source_lang": "ko"
+    }
+  ]
+}
