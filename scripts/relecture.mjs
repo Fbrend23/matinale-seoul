@@ -39,7 +39,7 @@ import { seoulToday } from '../shared/date.mjs';
 const RACINE = path.join(import.meta.dirname, '..');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // Fixé et journalisé, comme les autres modèles du matin.
-const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.8-flash-high';
+const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.6-flash-high';
 // Quinze minutes : une page par item et par événement, une trentaine, plus
 // la réécriture ; l'ombre, qui en ouvre autant, y met sept minutes. Le nôtre
 // dépasse d'une minute, pour le cas où `agy` ne s'arrêterait pas.

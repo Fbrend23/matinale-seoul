@@ -162,7 +162,7 @@ test('le script dépose le brief de Gemini, le contrôle, corrige une fois, et c
   assert.equal(déposé.sections[1].items[0].summary.split(' ').length, 30, 'le brief déposé est le corrigé');
   const md = await readFile(path.join(dossier, 'ombre', `ombre-${jour}.md`), 'utf8');
   assert.match(md, /^# Ombre du 2026-09-16/);
-  assert.match(md, /Gemini \(gemini-3\.8-flash-high\)/);
+  assert.match(md, /Gemini \(gemini-3\.6-flash-high\)/);
   assert.match(md, /- \[ombre\] A — koreaherald\.com/);
 
   // Sans veille, rien à lire, et le code de sortie le dit.
