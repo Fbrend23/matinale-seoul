@@ -88,7 +88,7 @@ if (code !== 0) {
     ['sections/sport/index.html', ['class="tete"', 'Autres rubriques']],
     // L'adresse est posée sur la carte d'événement pour la carte Kakao ; le
     // bloc carte, lui, n'existe pas sans clé, et ce contrôle n'en a pas.
-    ['evenements/index.html', ['id="en-ce-moment"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'data-urgent="oui"', 'map.naver.com/p/search/', 'data-adresse="서울 성동구 아차산로 7"']],
+    ['evenements/index.html', ['id="en-ce-moment"', 'id="chercher"', 'class="filtres"', 'id="tri"', 'id="evenement-1"', 'class="delai"', 'data-urgent="oui"', 'map.naver.com/p/search/', 'data-adresse="서울 성동구 아차산로 7"']],
     // Le lieu partagé par deux événements a sa page, avec ses deux cartes, et
     // les cartes de la page Événements y mènent ; le lieu d'un seul événement
     // n'en a pas, et sa carte ne lie rien.
