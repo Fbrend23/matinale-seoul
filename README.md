@@ -344,6 +344,7 @@ npm run popups           # énumère les registres de pop-ups (Inside Seoul, NOL
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
+npm run quota            # ce qu'il reste du quota Gemini, 5 h et semaine ; le lanceur le relève avant et après chaque matinée
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

@@ -113,6 +113,14 @@ node scripts/popups.mjs --jour "$JOUR" || echo "registre des pop-ups indisponibl
 # ensemble, l'abonnement le permet et la matinée n'attend pas ; le journal de
 # l'actualité est recopié après celui de la recherche, pour qu'ils ne se
 # mêlent pas. Chacun n'écrit dans la veille qu'une fois, à la fin.
+#
+# LE QUOTA, AVANT ET APRÈS. Le quota Google est commun à tout ce que Gemini
+# fait le matin, sept sessions ici et les lots de la relecture plus bas, et il
+# se consomme « en proportion du coût des tokens », sans autre chiffre. Un
+# relevé avant la première session et un après la dernière, et la différence
+# est ce que la matinée a coûté : la seule mesure qui vaille pour décider
+# quoi couper le jour où il manque. Ne coûte rien (scripts/quota.mjs).
+node scripts/quota.mjs
 JOURNAL_ACTU=$(mktemp)
 node scripts/actualite.mjs --jour "$JOUR" > "$JOURNAL_ACTU" 2>&1 &
 PID_ACTU=$!
@@ -180,6 +188,9 @@ fi
 # panne ou relecture refusée : le brief de la session part tel quel, il a
 # déjà passé le contrôle. Le rapport est dans veille/relecture/.
 node scripts/relecture.mjs --jour "$JOUR" || echo "relecture indisponible ou refusée : le brief de la session part tel quel"
+
+# Le second relevé : ce qui reste après la dernière session Gemini.
+node scripts/quota.mjs
 
 # LE CONTRÔLE, UNE DERNIÈRE FOIS, PAR CE SCRIPT. La session dit l'avoir
 # passé, la relecture le rejoue sur ce qu'elle rend ; mais c'est ce script
