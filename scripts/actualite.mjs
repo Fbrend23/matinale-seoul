@@ -39,12 +39,14 @@ const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // une piste de moins un matin doit pouvoir se rattacher à sa cause. Un
 // « medium » : chercher n'est pas juger, et le quota est commun.
 const MODELE = process.env.MATINALE_GEMINI_MODELE ?? 'gemini-3.6-flash-medium';
-// Dix minutes par volet : une vingtaine d'appels, comme la consigne le dit,
-// et `agy` s'arrête à cinq par défaut en rendant un tour à moitié fait. Le
-// nôtre dépasse d'une minute, pour le cas où il ne s'arrêterait pas. Les
-// cinq tournent ensemble : c'est le plus lent qui fait attendre la session.
-const DELAI_CLI = '10m';
-const DELAI_MS = 11 * 60_000;
+// Douze minutes par volet, comme la recherche : une vingtaine d'appels, et
+// `agy` s'arrête à cinq par défaut en rendant un tour à moitié fait. À dix,
+// le 18 septembre 2026, les cinq volets en 3.6 ont été coupés au milieu de
+// leur réponse. Le nôtre dépasse d'une minute, pour le cas où il ne
+// s'arrêterait pas. Les cinq tournent ensemble : c'est le plus lent qui
+// fait attendre la session.
+const DELAI_CLI = '12m';
+const DELAI_MS = 13 * 60_000;
 
 const args = process.argv.slice(2);
 const option = (nom) => {
