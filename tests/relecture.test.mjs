@@ -13,7 +13,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
-import { MAX_RETRAITS, composerConsigneRelecture, extraireRelecture, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from '../scripts/lib/relecture.mjs';
+import { MAX_RETRAITS, lotsDe, composerConsigneRelecture, extraireRelecture, recomposer, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from '../scripts/lib/relecture.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
@@ -54,29 +54,57 @@ const ORIGINAL = briefDe({
 }, [EVENT]);
 const clone = (o) => JSON.parse(JSON.stringify(o));
 
-test('la consigne porte le jour et le brief entier, et nomme ce que le relecteur ne fait jamais', async () => {
+test('un brief se découpe en lots, une rubrique pourvue chacun, et un pour les événements', () => {
+  const lots = lotsDe(ORIGINAL);
+  assert.deepEqual(lots.map((l) => l.nom), ['coree', 'tech', 'events'], 'les rubriques vides n\'ont rien à relire');
+  assert.match(lots[0].libellé, /la rubrique « Actualités coréennes » \(`coree`\), 2 items/);
+  assert.deepEqual(lots[0].contenu, { section: ORIGINAL.sections[1] });
+  assert.match(lots[2].libellé, /les événements, 1 fiche/);
+  assert.deepEqual(lots[2].contenu, { events: [EVENT] });
+  assert.deepEqual(lotsDe(briefDe({ coree: [item('A', 'x.com')] })).map((l) => l.nom), ['coree']);
+});
+
+test('la consigne porte le jour, ce qu\'est le lot et le lot, et nomme ce que le relecteur ne fait jamais', async () => {
   const gabarit = await lire('prompts/relecture.md');
-  for (const g of ['{{JOUR}}', '{{BRIEF}}']) assert.ok(gabarit.includes(g), `${g} absent`);
-  const consigne = composerConsigneRelecture(gabarit, { jour: JOUR, brief: ORIGINAL });
+  for (const g of ['{{JOUR}}', '{{LOT}}', '{{CONTENU}}']) assert.ok(gabarit.includes(g), `${g} absent`);
+  const consigne = composerConsigneRelecture(gabarit, { jour: JOUR, lot: lotsDe(ORIGINAL)[0] });
   assert.ok(!/\{\{[A-Z]+\}\}/.test(consigne), 'un gabarit est resté');
   assert.match(consigne, /Nous sommes le 2026-09-18/);
+  assert.match(consigne, /tu en relis \*\*la rubrique « Actualités coréennes »/);
   assert.match(consigne, /"source_url": "https:\/\/www\.koreaherald\.com\/a\/A"/);
-  for (const règle of ["Tu n'ajoutes rien", 'Tu ne changes aucune adresse', '40 mots', 'tu ne cherches rien sur le web', 'tu ne lances aucune commande']) {
+  assert.ok(!consigne.includes('techcrunch.com'), 'le lot ne porte que sa rubrique');
+  for (const règle of ["Tu n'ajoutes rien", 'Tu ne changes aucune adresse', '40 mots', 'tu ne cherches rien sur le web', 'tu ne lances aucune commande', 'Ne le réécris pas dans un autre fuseau']) {
     assert.ok(consigne.includes(règle), `règle « ${règle} » absente`);
   }
   const { MAX_SUMMARY_WORDS } = await import('../scripts/lib/guards.mjs');
   assert.ok(consigne.includes(`${MAX_SUMMARY_WORDS} mots`), 'la consigne doit annoncer la limite réelle');
 });
 
-test('la réponse se lit avec ou sans enveloppe, et une réponse sans brief est une panne', () => {
-  const avec = extraireRelecture(`Voici.\n\`\`\`json\n${JSON.stringify({ corrections: [{ cible: 'coree/1', champ: 'summary', pourquoi: 'x' }, null], brief: ORIGINAL })}\n\`\`\``);
+test('la réponse d\'un lot se lit avec ou sans enveloppe, et une réponse sans lot est une panne', () => {
+  const section = ORIGINAL.sections[1];
+  const avec = extraireRelecture(`Voici.\n\`\`\`json\n${JSON.stringify({ corrections: [{ cible: 'coree/1', champ: 'summary', pourquoi: 'x' }, null], lot: { section } })}\n\`\`\``);
   assert.equal(avec.corrections.length, 1);
-  assert.deepEqual(avec.brief, ORIGINAL);
-  const nu = extraireRelecture(JSON.stringify(ORIGINAL));
-  assert.deepEqual(nu, { corrections: [], brief: ORIGINAL });
-  assert.ok(!('events' in extraireRelecture(JSON.stringify({ ...ORIGINAL, events: [] })).brief), 'un tableau d\'événements vide s\'omet');
-  assert.throws(() => extraireRelecture('{"corrections": []}'), /ni `brief` ni `sections`/);
+  assert.deepEqual(avec.lot, { section });
+  assert.deepEqual(extraireRelecture(JSON.stringify({ section })).lot, { section }, 'sans enveloppe');
+  assert.deepEqual(extraireRelecture(JSON.stringify(section)).lot, { section }, 'la section nue');
+  assert.deepEqual(extraireRelecture(JSON.stringify({ corrections: [], events: [EVENT] })).lot, { events: [EVENT] });
+  assert.deepEqual(extraireRelecture(JSON.stringify({ lot: { events: [] } })).lot, { events: [] });
+  assert.throws(() => extraireRelecture('{"corrections": []}'), /ni `section` ni `events`/);
   assert.throws(() => extraireRelecture('rien'), /aucun objet/);
+});
+
+test('le brief se recompose des lots relus, et garde ce qui n\'a pas été relu', () => {
+  const coree = clone(ORIGINAL.sections[1]);
+  coree.items[0].summary = 'Corrigé.';
+  const relu = recomposer(ORIGINAL, new Map([['coree', { section: coree }], ['events', { events: [] }]]));
+  assert.equal(relu.sections[1].items[0].summary, 'Corrigé.');
+  assert.deepEqual(relu.sections[2], ORIGINAL.sections[2], 'tech, non relue, reste');
+  assert.ok(!('events' in relu), 'le dernier événement retiré : la clé s\'omet');
+  assert.equal(relu.title, ORIGINAL.title);
+  // Une section rendue sous une autre clé n'en remplace pas une autre.
+  const égarée = recomposer(ORIGINAL, new Map([['coree', { section: { ...coree, key: 'tech' } }]]));
+  assert.deepEqual(égarée.sections, ORIGINAL.sections);
+  assert.deepEqual(ORIGINAL.sections[1].items[0].summary.split(' ').length, 12, 'l\'original n\'est pas touché');
 });
 
 test('une relecture qui ne fait que relire est acceptée, écarts compris', () => {
@@ -206,16 +234,25 @@ test('le rapport met côte à côte ce que le relecteur dit et ce que le dépôt
 
 // --- Le script, de bout en bout, avec un faux Gemini ----------------------------
 
-test('le script remplace le brief seulement si la relecture est acceptée et passe le contrôle', async (t) => {
+test('le script relit par lots, remplace le brief seulement si la relecture est acceptée et passe le contrôle', async (t) => {
   await mkdir(path.join(RACINE, 'veille'), { recursive: true });
   const dossier = await mkdtemp(path.join(RACINE, 'veille', 'test-relecture-'));
   t.after(() => rm(dossier, { recursive: true, force: true }));
   const fichier = path.join(dossier, `brief-${JOUR}.json`);
   const rapports = path.join(dossier, 'relecture');
-  const réponse = (objet) => JSON.stringify({ status: 'SUCCESS', num_turns: 5, duration_seconds: 20, response: JSON.stringify(objet) });
-  const faux = async (nom, objet) => {
+  // Le faux rend, pour chaque lot, le lot lu dans sa consigne, transformé par
+  // un petit script : c'est la consigne qui porte le lot, et la réponse doit
+  // lui répondre.
+  const faux = async (nom, transformer) => {
     const chemin = path.join(dossier, nom);
-    await writeFile(chemin, `#!/bin/sh\nprintf '%s' '${réponse(objet).replaceAll("'", "'\\''")}'\n`, { mode: 0o755 });
+    const js = path.join(dossier, `${nom}.mjs`);
+    await writeFile(js, `
+      const consigne = process.argv[2];
+      const lot = JSON.parse(consigne.slice(consigne.lastIndexOf('\\n\`\`\`json\\n') + 9, consigne.lastIndexOf('\\n\`\`\`')));
+      const { corrections, lot: rendu } = (${transformer})(lot);
+      process.stdout.write(JSON.stringify({ status: 'SUCCESS', num_turns: 2, duration_seconds: 5, response: JSON.stringify({ corrections, lot: rendu }) }));
+    `);
+    await writeFile(chemin, `#!/bin/sh\nexec node "${js}" "$2"\n`, { mode: 0o755 });
     return chemin;
   };
   const lancer = (commande) =>
@@ -224,31 +261,38 @@ test('le script remplace le brief seulement si la relecture est acceptée et pas
       env: { ...process.env, MATINALE_GEMINI: commande, SITE_URL: 'http://127.0.0.1:9' },
     }).catch((e) => e);
 
-  // Refusée : une adresse corrigée. Le fichier ne bouge pas, le rapport le dit.
-  const adresse = clone(ORIGINAL);
-  adresse.sections[1].items[0].source_url = 'https://www.koreaherald.com/a/corrigee';
+  // Refusée : une adresse corrigée dans un lot. Le fichier ne bouge pas, le rapport le dit.
   await writeFile(fichier, `${JSON.stringify(ORIGINAL, null, 2)}\n`);
-  let r = await lancer(await faux('refus.sh', { corrections: [], brief: adresse }));
+  let r = await lancer(await faux('refus.sh', `(lot) => { if (lot.section?.key === 'coree') lot.section.items[0].source_url = 'https://www.koreaherald.com/a/corrigee'; return { corrections: [], lot }; }`));
   assert.equal(r.code, 1);
+  assert.match(r.stdout, /✓ Gemini coree\s+relu en \d+ s, 2 tours/);
+  assert.match(r.stdout, /✓ Gemini events\s+relu/);
   assert.match(r.stdout, /! relecture\s+refusée, le brief de la session part tel quel :\n\s+· adresse\(s\) qui n'étaient pas dans le brief reçu/);
   assert.deepEqual(JSON.parse(await readFile(fichier, 'utf8')), ORIGINAL);
-  assert.match(await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8'), /Relecture \*\*refusée\*\*/);
+  assert.match(await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8'), /3 lot\(s\), tous relus\.\nRelecture \*\*refusée\*\*/);
 
   // Sans changement : rien n'est écrit, et le code de sortie est 0.
-  r = await lancer(await faux('pareil.sh', { corrections: [], brief: ORIGINAL }));
+  r = await lancer(await faux('pareil.sh', `(lot) => ({ corrections: [], lot })`));
   assert.equal(r.code ?? 0, 0);
   assert.match(r.stdout, /✓ relecture\s+rien à changer/);
 
-  // Recalée : un résumé de 41 mots. Le contrôle le dit, le fichier ne bouge pas.
+  // Recalée : un résumé de 41 mots dans un lot. Le contrôle le dit, le fichier ne bouge pas.
   // Les liens ne répondent pas ici non plus, le contrôle recale aussi pour
   // eux : ce qu'on vérifie est le chemin, pas le motif.
-  const long = clone(ORIGINAL);
-  long.sections[1].items[0].summary = Array.from({ length: 41 }, (_, i) => `m${i}`).join(' ');
-  r = await lancer(await faux('long.sh', { corrections: [{ cible: 'coree/1', champ: 'summary', pourquoi: 'x' }], brief: long }));
+  r = await lancer(await faux('long.sh', `(lot) => { if (lot.section?.key === 'tech') lot.section.items[0].summary = Array.from({ length: 41 }, (_, i) => 'm' + i).join(' '); return { corrections: [{ cible: 'tech/1', champ: 'summary', pourquoi: 'x' }], lot }; }`));
   assert.equal(r.code, 1);
+  assert.match(r.stdout, /· tech\/1 · summary\n\s+tech\/1 · summary : x/);
   assert.match(r.stdout, /! relecture\s+le brief relu serait recalé/);
   assert.deepEqual(JSON.parse(await readFile(fichier, 'utf8')), ORIGINAL);
-  assert.ok(await readFile(path.join(rapports, `brief-${JOUR}.json`), 'utf8'), 'le brief relu est déposé à côté, pour lecture');
+  const déposé = JSON.parse(await readFile(path.join(rapports, `brief-${JOUR}.json`), 'utf8'));
+  assert.equal(déposé.sections[2].items[0].summary.split(' ').length, 41, 'le brief recomposé est déposé à côté, pour lecture');
+  assert.deepEqual(déposé.sections[1], ORIGINAL.sections[1], 'les lots rendus tels quels ne changent rien');
+
+  // Un lot en panne : les autres comptent, le rapport le nomme.
+  r = await lancer(await faux('panne.sh', `(lot) => { if (lot.events) process.exit(3); return { corrections: [], lot }; }`));
+  assert.match(r.stdout, /! Gemini events\s+sortie illisible/);
+  assert.match(r.stdout, /rien à changer \(1 lot\(s\) non relu\(s\)\)/);
+  assert.match(await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8'), /3 lot\(s\), 1 non relu\(s\) : events : sortie illisible/);
 
   // Sans brief : rien à relire.
   r = await exécuter('node', ['scripts/relecture.mjs', '--jour', '2026-09-19', '--fichier', path.join(dossier, 'absent.json'), '--dossier', rapports], { cwd: RACINE }).catch((e) => e);

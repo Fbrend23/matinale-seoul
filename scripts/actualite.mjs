@@ -36,8 +36,9 @@ import { seoulToday } from '../shared/date.mjs';
 const RACINE = path.join(import.meta.dirname, '..');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // Le même modèle que la recherche, fixé et journalisé pour la même raison :
-// une piste de moins un matin doit pouvoir se rattacher à sa cause.
-const MODELE = process.env.MATINALE_GEMINI_MODELE ?? 'gemini-3.6-flash-high';
+// une piste de moins un matin doit pouvoir se rattacher à sa cause. Un
+// « medium » : chercher n'est pas juger, et le quota est commun.
+const MODELE = process.env.MATINALE_GEMINI_MODELE ?? 'gemini-3.6-flash-medium';
 // Dix minutes par volet : une vingtaine d'appels, comme la consigne le dit,
 // et `agy` s'arrête à cinq par défaut en rendant un tour à moitié fait. Le
 // nôtre dépasse d'une minute, pour le cas où il ne s'arrêterait pas. Les

@@ -23,11 +23,23 @@
 // session a passé : une relecture qui ferait recaler le brief est refusée
 // de même.
 //
+// PAR LOTS, ET NON D'UN BLOC. La première relecture, le 18 septembre 2026,
+// recevait le brief entier et ouvrait ses vingt-sept pages dans une seule
+// session : 2,4 millions de tokens lus, parce que chaque page ouverte est
+// relue à chaque appel suivant, au carré du nombre de pages. C'est la leçon
+// qui avait fait naître la veille RSS côté Claude, et elle vaut ici. Une
+// session par rubrique, trois ou quatre pages chacune, plus une pour les
+// événements, en parallèle : le même travail, cinq fois moins de tokens, et
+// le quota Google, commun à tout ce que Gemini fait le matin, tient.
+// Le titre et le chapeau ne sont pas relus : ils demanderaient le brief
+// entier, et un chapeau juste le reste après une correction de résumé.
+//
 // Le module ne lance rien : la commande vit dans scripts/relecture.mjs.
 
 import { extraireObjet } from './ombre.mjs';
 import { cléAdresse } from './actualite.mjs';
 import { similarity } from './guards.mjs';
+import { SECTION_LABELS } from '../../shared/sections.mjs';
 
 /**
  * Au plus tant d'items retirés, et tant d'événements, par relecture.
@@ -44,43 +56,99 @@ const CHAMPS_ITEM = ['headline', 'original_headline', 'summary', 'analysis', 'im
 const CHAMPS_EVENT = ['name', 'kind', 'theme', 'venue', 'area', 'start_date', 'end_date', 'summary', 'source_name', 'source_lang', 'address'];
 
 /**
- * La consigne de relecture, remplie : le jour et le brief entier.
+ * Les lots d'un brief : une rubrique pourvue par lot, et les événements.
  *
- * Le brief est dans la consigne, et non lu dans le dépôt : Gemini n'a alors
+ * Une rubrique vide n'a rien à relire, et un brief sans événements n'a pas
+ * de lot pour eux. Chaque lot porte ce que la consigne en dit (`libellé`) et
+ * ce que Gemini reçoit et doit rendre (`contenu`), de la même forme.
+ *
+ * @param {object} brief
+ * @returns {{ nom: string, libellé: string, contenu: object }[]}
+ */
+export function lotsDe(brief) {
+  const lots = [];
+  for (const section of brief?.sections ?? []) {
+    if (!section.items?.length) continue;
+    lots.push({
+      nom: section.key,
+      libellé: `la rubrique « ${SECTION_LABELS[section.key] ?? section.key} » (\`${section.key}\`), ${section.items.length} item${section.items.length > 1 ? 's' : ''}`,
+      contenu: { section },
+    });
+  }
+  if (brief?.events?.length) {
+    lots.push({ nom: 'events', libellé: `les événements, ${brief.events.length} fiche${brief.events.length > 1 ? 's' : ''}`, contenu: { events: brief.events } });
+  }
+  return lots;
+}
+
+/**
+ * La consigne d'un lot, remplie : le jour, ce qu'est le lot, et le lot.
+ *
+ * Le lot est dans la consigne, et non lu dans le dépôt : Gemini n'a alors
  * besoin que d'ouvrir des pages, la permission `read_file` ne compte pas, et
  * c'est elle qui a fait rater l'ombre le 18 septembre 2026.
  *
  * @param {string} gabarit      prompts/relecture.md
  * @param {object} p
  * @param {string} p.jour
- * @param {object} p.brief
+ * @param {{ libellé: string, contenu: object }} p.lot
  */
-export function composerConsigneRelecture(gabarit, { jour, brief }) {
-  return gabarit.replaceAll('{{JOUR}}', jour).replaceAll('{{BRIEF}}', JSON.stringify(brief, null, 2));
+export function composerConsigneRelecture(gabarit, { jour, lot }) {
+  return gabarit
+    .replaceAll('{{JOUR}}', jour)
+    .replaceAll('{{LOT}}', lot.libellé)
+    .replaceAll('{{CONTENU}}', JSON.stringify(lot.contenu, null, 2));
 }
 
 /**
- * Ce que Gemini a rendu : `corrections`, une liste, et `brief`, un objet.
+ * Ce que Gemini a rendu pour un lot : `corrections`, une liste, et `lot`,
+ * de la forme reçue, `{ section }` ou `{ events }`.
  *
- * Un relecteur qui rend le brief nu, sans l'enveloppe, a tout de même relu :
- * on le prend, avec une liste de corrections vide, et le rapport dira les
- * écarts qu'il calcule lui-même. Ce qui n'est ni l'un ni l'autre est une
- * panne.
+ * Un relecteur qui rend le contenu nu, sans l'enveloppe, ou la section
+ * seule sans sa clé `section`, a tout de même relu : on le prend, et le
+ * rapport dira les écarts qu'il calcule lui-même. Ce qui n'est rien de
+ * tout cela est une panne.
  *
  * @param {string} texte
- * @returns {{ corrections: object[], brief: object }}
+ * @returns {{ corrections: object[], lot: object }}
  */
 export function extraireRelecture(texte) {
   const objet = extraireObjet(texte);
-  // Un relecteur qui a retiré le dernier événement rend `events: []`, que
-  // le schéma refuse : la clé s'omet, comme le prompt le demande à l'agent.
-  const sansEventsVides = (brief) => (Array.isArray(brief.events) && brief.events.length === 0 ? (({ events, ...reste }) => reste)(brief) : brief);
-  if (objet.brief && typeof objet.brief === 'object' && !Array.isArray(objet.brief)) {
-    const corrections = Array.isArray(objet.corrections) ? objet.corrections.filter((c) => c && typeof c === 'object') : [];
-    return { corrections, brief: sansEventsVides(objet.brief) };
+  const corrections = Array.isArray(objet.corrections) ? objet.corrections.filter((c) => c && typeof c === 'object') : [];
+  const candidats = [objet.lot, objet, objet.section && { section: objet.section }, Array.isArray(objet.events) && { events: objet.events }];
+  for (const c of candidats) {
+    if (!c || typeof c !== 'object') continue;
+    if (c.section && typeof c.section === 'object' && Array.isArray(c.section.items)) return { corrections, lot: { section: c.section } };
+    if (Array.isArray(c.events)) return { corrections, lot: { events: c.events } };
   }
-  if (Array.isArray(objet.sections)) return { corrections: [], brief: sansEventsVides(objet) };
-  throw new Error('la réponse ne porte ni `brief` ni `sections`');
+  if (Array.isArray(objet.items) && typeof objet.key === 'string') return { corrections, lot: { section: objet } };
+  throw new Error('la réponse ne porte ni `section` ni `events`');
+}
+
+/**
+ * Le brief recomposé : les lots relus prennent la place des reçus, ce qui
+ * n'a pas été relu, lot en panne, rubrique vide, titre, chapeau, reste tel
+ * quel. Une section rendue sous une autre clé que la sienne est ignorée :
+ * un relecteur qui se trompe de rubrique n'en remplace pas une autre.
+ *
+ * @param {object} original
+ * @param {Map<string, object>} relus     nom du lot → lot rendu
+ * @returns {object}
+ */
+export function recomposer(original, relus) {
+  const brief = JSON.parse(JSON.stringify(original));
+  brief.sections = brief.sections.map((section) => {
+    const relu = relus.get(section.key)?.section;
+    return relu && relu.key === section.key ? { ...section, ...relu, key: section.key } : section;
+  });
+  const events = relus.get('events')?.events;
+  if (events) {
+    // Un relecteur qui a retiré le dernier événement rend `[]`, que le
+    // schéma refuse : la clé s'omet, comme le prompt le demande à l'agent.
+    if (events.length) brief.events = events;
+    else delete brief.events;
+  }
+  return brief;
 }
 
 const ADRESSES_EVENT = ['source_url', 'booking_url', 'map_url'];
@@ -298,7 +366,7 @@ const court = (v) => {
  * @param {string} [p.raison]              pourquoi refusée, recalée ou en panne
  * @param {object[]} [p.corrections]       ce que Gemini dit avoir changé
  * @param {object[]} [p.écarts]            ce que le dépôt constate
- * @param {object} [p.session]             { modèle, durée, tours, usage }
+ * @param {object} [p.session]             { modèle, durée, tours, usage, lots, pannes }
  * @param {string} [p.verdict]             la sortie du contrôle avant vol
  */
 export function rendreRapport({ jour, sort, raison, corrections = [], écarts: liste = [], session = {}, verdict }) {
@@ -307,6 +375,7 @@ export function rendreRapport({ jour, sort, raison, corrections = [], écarts: l
     `Gemini (${session.modèle ?? '?'}) : ${session.durée != null ? `${Math.round(session.durée)} s` : 'durée inconnue'}${session.tours ? `, ${session.tours} tours` : ''}${
       session.usage ? `, ${session.usage.input_tokens ?? '?'} tokens lus, ${session.usage.output_tokens ?? '?'} écrits` : ''
     }.`,
+    ...(session.lots ? [`${session.lots} lot(s)${session.pannes?.length ? `, ${session.pannes.length} non relu(s) : ${session.pannes.join(' ; ')}` : ', tous relus'}.`] : []),
     `Relecture **${sort}**${raison ? ` : ${raison}` : ''}.`,
     ''
   );
