@@ -101,6 +101,14 @@ node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent ch
 # ensemble, l'abonnement le permet et la matinée n'attend pas ; le journal de
 # l'actualité est recopié après celui de la recherche, pour qu'ils ne se
 # mêlent pas. Chacun n'écrit dans la veille qu'une fois, à la fin.
+#
+# LE QUOTA, AVANT ET APRÈS. Le quota Google est commun à tout ce que Gemini
+# fait le matin, sept sessions ici, la relecture et l'ombre plus bas, et il
+# se consomme « en proportion du coût des tokens », sans autre chiffre. Un
+# relevé avant la première session et un après la dernière, et la différence
+# est ce que la matinée a coûté : la seule mesure qui vaille pour décider
+# quoi couper le jour où il manque. Ne coûte rien (scripts/quota.mjs).
+node scripts/quota.mjs
 JOURNAL_ACTU=$(mktemp)
 node scripts/actualite.mjs --jour "$JOUR" > "$JOURNAL_ACTU" 2>&1 &
 PID_ACTU=$!
@@ -191,6 +199,9 @@ git push --quiet origin main || echec "git push : le brief est commité en local
 # dessus : la publication est déjà partie, et un échec de l'ombre est une
 # ligne de journal, pas une matinée sans brief.
 node scripts/ombre.mjs --jour "$JOUR" || echo "ombre indisponible ou recalée : voir plus haut"
+
+# Le second relevé : ce qui reste après la dernière session Gemini.
+node scripts/quota.mjs
 
 # La seule preuve qui vaille : le fichier est-il sur origin ?
 # Le push a dit oui ; on le relit quand même, c'est ce que le matin sans

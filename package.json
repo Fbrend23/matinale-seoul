@@ -21,6 +21,7 @@
     "recherche": "node scripts/recherche.mjs",
     "actualite": "node scripts/actualite.mjs",
     "relecture": "node scripts/relecture.mjs",
+    "quota": "node scripts/quota.mjs",
     "rendu": "node scripts/rendu.mjs"
   },
   "dependencies": {

@@ -268,6 +268,7 @@ npm run recherche        # fait chercher les événements à Gemini (agy) et ajo
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
 npm run ombre            # fait rédiger le brief du jour à Gemini (agy) en ombre, contrôlé et comparé dans veille/ombre/
+npm run quota            # ce qu'il reste du quota Gemini, 5 h et semaine ; le lanceur le relève avant et après chaque matinée
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

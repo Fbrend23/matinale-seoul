@@ -91,6 +91,17 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   # piste, et la section « Pistes actualité » à la fin de veille/AAAA-MM-JJ.md.
   ```
 
+  **Le quota**, à lire dans le journal : le lanceur relève `agy /usage` avant
+  la première session Gemini et après la dernière, deux lignes
+  `quota Gemini : semaine N % (reset …), 5 h N % (reset …)`, et la
+  différence est ce que la matinée a coûté. Le quota est commun aux Flash
+  et aux Pro, et se consomme en proportion du coût des tokens : le 18
+  septembre 2026, deux relectures d'un bloc en 3.8 (2,4 M tokens chacune)
+  plus sept recherches ont vidé la fenêtre de 5 heures ; sept recherches en
+  3.6 en ont pris 15 %. Le jour où il manque, couper l'ombre d'abord, elle
+  ne publie rien, puis réduire l'actualité aux rubriques les plus pauvres
+  en flux (`VOLETS_ACTUALITE`).
+
   **La relecture**, elle, n'est pas facultative dans l'esprit, mais le lanceur
   ne s'arrête pas sur elle : après la session Claude, `agy` reçoit le brief
   par lots, une session par rubrique pourvue et une pour les événements,
