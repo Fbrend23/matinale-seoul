@@ -26,6 +26,7 @@ import {
   badgeDélai,
   JOURS_URGENTS,
 } from '../shared/evenements.mjs';
+import { correspond } from '../shared/texte.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const lireJSON = async (...b) => JSON.parse(await readFile(path.join(RACINE, ...b), 'utf8'));
@@ -160,6 +161,36 @@ test('le badge d un événement à venir dit dans combien de jours', () => {
 
 test('un événement terminé n a pas de badge', () => {
   assert.equal(badgeDélai(ev('x', '2026-08-01', '2026-09-03'), '2026-09-04'), null);
+});
+
+// --- La recherche de l'onglet : chaque mot, sans accents ni casse ------------
+
+test('la recherche ignore les accents, la casse et la ponctuation', () => {
+  assert.ok(correspond('pokemon', 'Pokémon Center'));
+  assert.ok(correspond('POKÉMON', 'pokemon center'));
+  assert.ok(correspond('k-pop', 'K-pop'));
+  assert.ok(correspond('kpop', 'K-pop'));
+  // « k-pop » est un mot, pas deux : sinon « k » trouverait presque tout.
+  assert.ok(!correspond('k-pop', 'Pop-up Pokémon Center'));
+});
+
+test('chaque mot de la requête doit se trouver, dans n importe quel ordre', () => {
+  const texte = 'Pokémon Center 포켓몬센터 성수 · Seongsu';
+  assert.ok(correspond('seongsu pokemon', texte));
+  assert.ok(!correspond('pokemon hongdae', texte));
+});
+
+test('le hangul se cherche par sous-chaîne : une syllabe trouve le mot', () => {
+  assert.ok(correspond('포켓몬', '포켓몬센터 성수'));
+  assert.ok(correspond('성수', '포켓몬센터 성수'));
+  assert.ok(!correspond('홍대', '포켓몬센터 성수'));
+});
+
+test('une requête vide ne filtre rien', () => {
+  assert.ok(correspond('', 'n importe quoi'));
+  assert.ok(correspond('   ', 'n importe quoi'));
+  assert.ok(correspond('', ''));
+  assert.ok(!correspond('x', ''));
 });
 
 // --- Ce qui écarte un événement ----------------------------------------------

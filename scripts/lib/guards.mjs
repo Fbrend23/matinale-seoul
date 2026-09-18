@@ -18,6 +18,7 @@ import addFormats from 'ajv-formats';
 // Importé ET réexporté : checkCoherence() s'en sert comme valeur par défaut, et
 // une simple réexportation ne met pas le nom dans la portée du module.
 import { seoulToday } from '../../shared/date.mjs';
+import { normalize } from '../../shared/texte.mjs';
 
 export { SECTIONS, SECTION_LABELS } from '../../shared/sections.mjs';
 
@@ -258,24 +259,9 @@ export function sourceSpread(items) {
 
 // --- Garde 4 : doublons ------------------------------------------------------
 
-/**
- * Réduit un titre à ce qui se compare : sans casse, sans accents, sans
- * ponctuation.
- *
- * Toute lettre compte, pas seulement a-z : un nom d'événement en coréen se
- * réduisait au vide, et deux noms coréens sans rapport se ressemblaient
- * alors parfaitement. Le hangul est décomposé en jamo par la forme NFD, et
- * c'est tant mieux, les bigrammes comparent alors des lettres et non des
- * syllabes entières.
- */
-export function normalize(texte) {
-  return texte
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, ' ')
-    .trim();
-}
+// La réduction d'un titre vit dans shared/, parce que le site s'en sert aussi
+// pour filtrer les cartes d'événements : une seule règle d'accents et de casse.
+export { normalize };
 
 /**
  * Un titre réduit à ses bigrammes, avec leur compte total.

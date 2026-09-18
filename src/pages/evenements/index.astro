@@ -59,8 +59,13 @@ const groupes = [
     <a href="/evenements.xml">S’abonner au flux</a> pour être prévenu de chaque nouveau.
   </TetePage>
 
-  {/* Masqués sans JavaScript : un bouton qui ne filtre rien et un menu qui ne
-      trie rien sont des mensonges. Le script les révèle. */}
+  {/* Masqués sans JavaScript : un champ qui ne cherche rien, un bouton qui ne
+      filtre rien et un menu qui ne trie rien sont des mensonges. Le script les
+      révèle. */}
+  <p class="chercher" hidden>
+    <label for="chercher">Chercher</label>
+    <input type="search" id="chercher" autocomplete="off" placeholder="Un nom, un lieu, un mot…" />
+  </p>
   <div class="filtres" role="group" aria-label="Filtrer par thème" hidden>
     <button type="button" data-filtre="tous" aria-pressed="true">Tous</button>
     {THEMES.map((theme) => (
@@ -110,12 +115,13 @@ const groupes = [
   ))}
 
   <script>
-    // Deux choses que le build ne peut pas décider : le jour où le lecteur
+    // Trois choses que le build ne peut pas décider : le jour où le lecteur
     // regarde, le site se reconstruit chaque matin, mais un build peut
-    // échouer, et un pop-up terminé ne doit pas rester affiché, et le thème
-    // qu'il veut voir.
+    // échouer, et un pop-up terminé ne doit pas rester affiché ; le thème
+    // qu'il veut voir ; et ce qu'il cherche.
     import { seoulToday } from '../../lib/date.js';
     import { comparateur, TRIS, TRI_PAR_DEFAUT } from '../../../shared/evenements.mjs';
+    import { correspond } from '../../../shared/texte.mjs';
     import { préparerLaCarte } from '../../lib/carte-kakao.js';
 
     const aujourdhui = seoulToday();
@@ -126,6 +132,20 @@ const groupes = [
     for (const carte of cartes) {
       if (carte.dataset.fin && carte.dataset.fin < aujourdhui) carte.dataset.termine = 'oui';
     }
+
+    // Ce que la recherche lit sur une carte : le nom, le lieu et le quartier,
+    // le résumé, le thème et le genre tels qu'ils s'affichent. Lu une fois au
+    // chargement, pas à chaque frappe. La recherche n'est pas persistée : on
+    // cherche un moment, on ne s'abonne pas à un mot.
+    const texteDe = new Map(
+      cartes.map((carte) => [
+        carte,
+        ['h3', '.evenement-ou', '.resume', '.pastille', '.genre']
+          .map((sel) => carte.querySelector(sel)?.textContent ?? '')
+          .join(' '),
+      ])
+    );
+    let requête = '';
 
     let filtre = 'tous';
     let tri = TRI_PAR_DEFAUT;
@@ -161,18 +181,34 @@ const groupes = [
       }
     }
 
+    // Le message de vide du build dit qu'il n'y a rien d'ouvert ou rien
+    // d'annoncé ; quand c'est la recherche qui vide le groupe, il mentirait.
+    // On garde le texte du build pour le remettre quand le champ se vide.
+    const videDuBuild = new Map(
+      [...document.querySelectorAll<HTMLElement>('.groupe-evenements .vide')].map((p) => [p, p.textContent ?? ''])
+    );
+
     function appliquer() {
+      const cherche = requête.trim() !== '';
       for (const carte of cartes) {
-        const hors = filtre !== 'tous' && carte.dataset.theme !== filtre;
+        const hors =
+          (filtre !== 'tous' && carte.dataset.theme !== filtre) ||
+          (cherche && !correspond(requête, texteDe.get(carte) ?? ''));
         carte.hidden = hors || carte.dataset.termine === 'oui';
       }
       for (const bouton of boutons) {
         bouton.setAttribute('aria-pressed', String(bouton.dataset.filtre === filtre));
       }
-      for (const bloc of document.querySelectorAll('.groupe-evenements')) {
+      for (const bloc of document.querySelectorAll<HTMLDetailsElement>('.groupe-evenements')) {
         const visibles = [...bloc.querySelectorAll<HTMLElement>('.evenement')].filter((c) => !c.hidden).length;
         const vide = bloc.querySelector<HTMLElement>('.vide');
-        if (vide) vide.hidden = visibles > 0;
+        if (vide) {
+          vide.hidden = visibles > 0;
+          vide.textContent = cherche ? 'Rien ne correspond.' : (videDuBuild.get(vide) ?? '');
+        }
+        // Un résultat replié dans « Plus tard » est un résultat qu'on ne voit
+        // pas : la recherche déplie ce qu'elle trouve, et ne referme rien.
+        if (cherche && visibles > 0) bloc.open = true;
         const compte = bloc.querySelector<HTMLElement>('.compte');
         if (compte) compte.textContent = String(visibles);
       }
@@ -188,6 +224,18 @@ const groupes = [
         } catch {}
         appliquer();
       });
+    }
+
+    const champ = document.querySelector<HTMLInputElement>('#chercher');
+    if (champ) {
+      // Quelques dizaines de cartes : on filtre à chaque frappe, sans attendre.
+      // L'événement input couvre aussi la croix native et la touche Échap.
+      champ.addEventListener('input', () => {
+        requête = champ.value;
+        appliquer();
+      });
+      const blocChercher = champ.closest<HTMLElement>('.chercher');
+      if (blocChercher) blocChercher.hidden = false;
     }
 
     const menuTri = document.querySelector<HTMLSelectElement>('#tri');

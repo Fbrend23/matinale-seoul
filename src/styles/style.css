@@ -146,29 +146,6 @@ main { min-width: 0; }
   .page[data-gauche="oui"] > .cote { padding-top: 0; }
   .brief > header, .tete { margin: 1.5rem 0 1.25rem; }
   .mention-ia { margin-top: 2rem; }
-
-  /* Les événements, en colonne : la page est longue, tout ce qui peut se
-     serrer se serre. Les filtres défilent en bande plutôt que de se replier
-     sur quatre lignes ; les dates et le lieu tiennent sur une ligne ; les
-     cartes perdent l'air des colonnes. */
-  .filtres {
-    flex-wrap: nowrap;
-    margin-inline: -1rem;
-    padding-inline: 1rem;
-    overflow-x: auto;
-    scrollbar-width: none;
-    mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent);
-  }
-  .filtres::-webkit-scrollbar { display: none; }
-  .filtres button { flex: 0 0 auto; }
-  .groupe-evenements, .carte-evenements { margin: 1.5rem 0; }
-  .carte-kakao { height: 17rem; }
-  .cartes { gap: 0.75rem; }
-  .evenement { padding: 0.8rem 0.9rem 0.9rem; }
-  .evenement h3 { margin: 0.4rem 0 0.2rem; font-size: 1.05rem; }
-  .evenement-quand, .evenement-ou { display: inline; }
-  .evenement-ou::before { content: " · "; }
-  .evenement .resume { margin: 0.4rem 0 0.7rem; font-size: 0.93rem; }
 }
 
 a { color: var(--accent); text-underline-offset: 0.2em; }
@@ -656,9 +633,23 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   letter-spacing: 0.02em;
 }
 
+/* La recherche, au-dessus des filtres : un champ natif habillé comme une
+   pastille, le navigateur garde sa croix pour effacer et la touche Échap. */
+.chercher { display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0 0; font-size: 0.88rem; color: var(--doux); }
+.chercher input {
+  width: min(100%, 22rem);
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--trait);
+  border-radius: 999px;
+  background: var(--carte);
+  color: var(--texte);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
 /* Les filtres par thème : des boutons-pastilles, celui qui est enfoncé prend
    la couleur du texte. */
-.filtres { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 0; }
+.filtres { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0 0; }
 .filtres button {
   padding: 0.3rem 0.85rem;
   border: 1px solid var(--trait);
@@ -751,6 +742,35 @@ h2 .detail { text-transform: none; letter-spacing: 0; font-weight: 400; }
   .bouton { padding: 0.5rem 0.9rem; }
   .evenement-liens { gap: 0.6rem; }
   .precedents li a, .mois li a { padding: 0.75rem 0; }
+}
+
+/* Les événements, en colonne : la page est longue, tout ce qui peut se
+   serrer se serre. La recherche prend toute la largeur ; les filtres
+   défilent en bande plutôt que de se replier sur quatre lignes ; les dates et
+   le lieu tiennent sur une ligne ; les cartes perdent l'air des colonnes.
+   Ce bloc vit ici, APRÈS les règles de base des cartes, des filtres et des
+   groupes : posé plus haut, à côté de celui de .page, il était écrasé par
+   elles, qui venaient après dans le fichier et à égalité de spécificité. */
+@media (max-width: 48rem) {
+  .chercher input { flex: 1 1 auto; width: auto; }
+  .filtres {
+    flex-wrap: nowrap;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, black calc(100% - 2.5rem), transparent);
+  }
+  .filtres::-webkit-scrollbar { display: none; }
+  .filtres button { flex: 0 0 auto; }
+  .groupe-evenements, .carte-evenements { margin: 1.5rem 0; }
+  .carte-kakao { height: 17rem; }
+  .cartes { gap: 0.75rem; }
+  .evenement { padding: 0.8rem 0.9rem 0.9rem; }
+  .evenement h3 { margin: 0.4rem 0 0.2rem; font-size: 1.05rem; }
+  .evenement-quand, .evenement-ou { display: inline; }
+  .evenement-ou::before { content: " · "; }
+  .evenement .resume { margin: 0.4rem 0 0.7rem; font-size: 0.93rem; }
 }
 
 /* Mention IA : lisible, jamais tapie en bas de page en corps 8 */
