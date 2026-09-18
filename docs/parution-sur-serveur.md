@@ -117,8 +117,9 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
 
   **La relecture**, elle, n'est pas facultative dans l'esprit, mais le lanceur
   ne s'arrête pas sur elle : après la session Claude, `agy` reçoit le brief
-  dans sa consigne, rouvre chaque source, corrige, et rend le brief entier ;
-  le dépôt vérifie qu'il n'a fait que relire, le contrôle avant vol le juge,
+  par lots, une session par rubrique pourvue et une pour les événements,
+  rouvre les sources du lot, corrige, et rend le lot ; le dépôt recompose,
+  vérifie qu'il n'a fait que relire, le contrôle avant vol le juge,
   et le fichier d'inbox/ n'est remplacé que si tout passe
   (`scripts/relecture.mjs`). Elle n'a besoin que de `read_url` : le brief est
   dans la consigne, pas lu dans le dépôt. Le rapport est dans

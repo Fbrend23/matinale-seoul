@@ -170,12 +170,14 @@ if [ ! -f "$ATTENDU" ]; then
   exit 1
 fi
 
-# LA RELECTURE, avant le commit : Gemini rouvre chaque source, confronte le
-# résumé à la page, corrige le français, et rend le brief entier ; le script
-# vérifie qu'il n'a fait que relire, ni item ajouté ni adresse changée, et
-# repasse le contrôle avant vol ; le fichier d'inbox/ n'est remplacé que si
-# tout passe (scripts/lib/relecture.mjs dit pourquoi et jusqu'où). Gemini
-# muet ou relecture refusée : le brief de la session part tel quel, il a
+# LA RELECTURE, avant le commit, par lots : une session Gemini par rubrique
+# pourvue et une pour les événements, en parallèle, chacune rouvre les
+# sources de son lot, confronte le résumé à la page, corrige le français, et
+# rend son lot ; le script recompose le brief, vérifie qu'il n'a fait que
+# relire, ni item ajouté ni adresse changée, et repasse le contrôle avant
+# vol ; le fichier d'inbox/ n'est remplacé que si tout passe
+# (scripts/lib/relecture.mjs dit pourquoi et jusqu'où). Gemini muet, lot en
+# panne ou relecture refusée : le brief de la session part tel quel, il a
 # déjà passé le contrôle. Le rapport est dans veille/relecture/.
 node scripts/relecture.mjs --jour "$JOUR" || echo "relecture indisponible ou refusée : le brief de la session part tel quel"
 
