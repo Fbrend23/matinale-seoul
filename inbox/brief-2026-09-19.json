@@ -1,0 +1,458 @@
+{
+  "date": "2026-09-19",
+  "title": "Séoul négocie l'investissement américain, la Corée vise deux titres aux Jeux asiatiques",
+  "standfirst": "Le chef de la diplomatie sud-coréenne rencontre Marco Rubio à Washington pour négocier les 350 milliards de dollars d'investissement et le rôle de Séoul dans le détroit d'Ormuz. À Nagoya, la Corée du Sud atteint la finale de basketball masculin et vise un cinquième titre de baseball d'affilée. Ailleurs, des chercheurs en sécurité ont utilisé Claude pour percer les défenses d'OpenAI.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Six quartiers hors de Séoul misent sur la K-culture pour attirer les touristes",
+          "original_headline": "Beyond Seoul, local districts tap K-culture to attract tourists",
+          "summary": "Le gouvernement soutient six quartiers commerçants hors de Séoul, dont Gyodong à Daegu et Dongmyeong à Gwangju, avec jusqu'à cinq milliards de wons chacun d'ici 2027, pour en faire des destinations K-culture multilingues.",
+          "analysis": "Ce programme illustre la stratégie de dispersion touristique de Séoul, qui cherche à désengorger la capitale en redistribuant les visiteurs vers les régions.",
+          "importance": 1,
+          "tags": [
+            "tourisme-regional",
+            "k-culture",
+            "decentralisation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10878371",
+          "source_lang": "en",
+          "published_at": "2026-09-18T16:44:14+09:00"
+        },
+        {
+          "headline": "Séoul échange gratuitement l'ancienne carte climat contre le nouveau Pass Climat",
+          "original_headline": "기후동행카드 대신 기후동행패스? 직접 교환하고 궁금증 풀었다!",
+          "summary": "Le forfait transports climatique séoulite change de formule au 1er septembre : échange gratuit dans douze stations jusqu'au 2 octobre, couverture élargie aux GTX et bus régionaux, avantage jeunes étendu jusqu'à 39 ans.",
+          "importance": 2,
+          "tags": [
+            "transports",
+            "pass-climat",
+            "seoul"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://mediahub.seoul.go.kr/archives/2019335",
+          "source_lang": "ko",
+          "published_at": "2026-09-18T14:41:00+09:00"
+        },
+        {
+          "headline": "À Chuncheon, le dakgalbi n'est que le premier plat",
+          "original_headline": "In Chuncheon, dakgalbi is only the first course",
+          "summary": "Chuncheon, ville associée au poulet grillé épicé dakgalbi depuis les années 1960, offre une scène culinaire plus large que ce seul plat, un argument pour les visiteurs qui sortent de Séoul le temps d'un repas.",
+          "importance": 3,
+          "tags": [
+            "gastronomie",
+            "chuncheon",
+            "tourisme-regional"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10877398",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Séoul ouvre les inscriptions pour son championnat d'avions en papier sur le fleuve Han",
+          "original_headline": "제16대 한강 종이비행기 챔피언은 누구? 서울시, 참가자 700명 선착순 모집",
+          "summary": "La ville ouvre le 19 septembre les inscriptions pour la 16e édition de son concours d'avions en papier, le 10 octobre à Yeouido, plafonné à 700 participants entre épreuves de distance et de durée.",
+          "importance": 4,
+          "tags": [
+            "evenement",
+            "yeouido",
+            "fleuve-han"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://www.seoul.go.kr/news/news_report.do?nttNo=466732",
+          "source_lang": "ko"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Cho Hyun pose ses lignes rouges à Rubio sur l'investissement et le détroit d'Ormuz",
+          "original_headline": "Cho heads into Rubio talks as Seoul draws lines on investment, Hormuz",
+          "summary": "Le ministre des Affaires étrangères rencontre Marco Rubio à Washington pour négocier les 350 milliards de dollars d'investissement et la contribution sud-coréenne à la sécurité du détroit d'Ormuz, sans implication militaire dans un conflit armé.",
+          "analysis": "Les deux dossiers, investissement et Ormuz, sont désormais négociés ensemble à Washington, ce qui retarde la clôture de chacun.",
+          "importance": 1,
+          "tags": [
+            "diplomatie",
+            "etats-unis",
+            "hormuz",
+            "cho-hyun"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10878804",
+          "source_lang": "en",
+          "published_at": "2026-09-18T16:56:53+09:00"
+        },
+        {
+          "headline": "Lee Jae-myung confirme le retard du plan d'investissement américain de 350 milliards",
+          "original_headline": "Lee says $350 billion US investment plan delayed over unresolved terms",
+          "summary": "Le président Lee Jae-myung attribue le report du plan d'investissement de 350 milliards de dollars aux États-Unis à des désaccords sur la « raisonnabilité commerciale » : récupération du capital, répartition des profits et couverture des pertes.",
+          "importance": 2,
+          "tags": [
+            "investissement-etats-unis",
+            "lee-jae-myung",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10878652",
+          "source_lang": "en",
+          "published_at": "2026-09-18T15:14:02+09:00"
+        },
+        {
+          "headline": "Séoul gèle ses plafonds de prix du carburant face aux tensions au Moyen-Orient",
+          "original_headline": "Seoul freezes fuel price caps amid Mideast tensions",
+          "summary": "Le gouvernement maintient inchangés pour la troisième période consécutive les plafonds de prix : essence à 1 784 wons le litre, diesel à 1 773, kérosène à 1 380, alors que le baril dépasse 100 dollars.",
+          "importance": 3,
+          "tags": [
+            "carburant",
+            "inflation",
+            "moyen-orient"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10878905",
+          "source_lang": "en",
+          "published_at": "2026-09-18T19:12:47+09:00"
+        },
+        {
+          "headline": "Les survivants adultes de l'humidificateur toxique disent subir une discrimination continue",
+          "original_headline": "Toxic humidifier survivors face daily struggles, discrimination",
+          "summary": "Une enquête de 2025 montre que 26,5 % des 1 213 victimes ont vingt ans ou moins, plus de 80 % rapportant de graves difficultés scolaires. Une loi d'indemnisation entre en vigueur en octobre, jugée insuffisante par les victimes.",
+          "importance": 4,
+          "tags": [
+            "sante-publique",
+            "victimes",
+            "indemnisation"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20260919/toxic-humidifier-survivors-face-daily-struggles-discrimination?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-19T00:00:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des chercheurs utilisent Claude d'Anthropic pour pirater OpenAI",
+          "original_headline": "Researchers used Anthropic's Claude to hack into OpenAI",
+          "summary": "La startup de sécurité Hacktron a utilisé Claude Opus 5 pour exploiter deux failles critiques chez OpenAI, accédant à des comptes ChatGPT d'employés et au dépôt de code interne via une vulnérabilité d'ImageMagick.",
+          "analysis": "L'épisode montre que les capacités offensives des modèles avancés dépassent déjà certains dispositifs de sécurité d'entreprise, y compris chez les leaders de l'IA.",
+          "importance": 1,
+          "tags": [
+            "securite",
+            "anthropic",
+            "openai",
+            "claude"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/",
+          "source_lang": "en",
+          "published_at": "2026-09-18T23:00:14+09:00"
+        },
+        {
+          "headline": "Disney nomme comme premier directeur technique l'ex-patron de Character.AI, qu'il avait attaqué",
+          "original_headline": "Disney's first CTO led an AI startup it once accused of copying its characters",
+          "summary": "Disney nomme Karandeep Anand, ancien PDG de Character.AI, premier directeur technique de son histoire — un an après lui avoir envoyé une mise en demeure pour violation de droits d'auteur sur ses personnages.",
+          "importance": 2,
+          "tags": [
+            "disney",
+            "character-ai",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/18/disneys-first-cto-led-an-ai-startup-it-once-accused-of-copying-its-characters/",
+          "source_lang": "en",
+          "published_at": "2026-09-19T02:59:53+09:00"
+        },
+        {
+          "headline": "Jev, le modèle d'IA sans hallucinations d'un cofondateur de ChatGPT, séduit les développeurs",
+          "original_headline": "A new kind of AI model from a ChatGPT inventor is thrilling developers",
+          "summary": "TypeSafe AI, cofondée par Diogo Almeida, ancien de ChatGPT, lance Jev : au lieu de générer du texte, le modèle produit des décisions calibrées, plus rapides et moins coûteuses, utilisées pour la classification logicielle.",
+          "importance": 3,
+          "tags": [
+            "ia",
+            "startup",
+            "chatgpt"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/",
+          "source_lang": "en",
+          "published_at": "2026-09-19T03:49:30+09:00"
+        },
+        {
+          "headline": "Une IA militaire coréenne ramène le temps de décision opérationnelle à vingt secondes",
+          "original_headline": "미래전장용 작전 AI플랫폼 첫 시연…\"분석서 지휘까지 20초\"",
+          "summary": "La plateforme AROOP, conçue par le professeur Jeon Tae-il, a été présentée lors d'un séminaire militaire à Séoul : elle réduit de 480 à 20 secondes l'analyse de situation et l'aide à la décision de commandement.",
+          "importance": 4,
+          "tags": [
+            "intelligence-artificielle",
+            "defense",
+            "coree-du-sud"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260918175356",
+          "source_lang": "ko",
+          "published_at": "2026-09-18T17:53:56+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Control Resonant, le pari de changement de genre de Remedy, salué par la critique",
+          "original_headline": "Control Resonant review: Remedy gambles on a genre change in one of its most impressive games ever",
+          "summary": "La critique de VGC attribue la note maximale à la suite de Control : jeu d'acteurs, direction artistique et bande sonore salués, seul bémol quelques activités de monde ouvert répétitives en fin de partie.",
+          "analysis": "Remedy prenait un risque en changeant de genre pour cette suite très attendue ; l'accueil critique unanime valide le pari.",
+          "importance": 1,
+          "tags": [
+            "control-resonant",
+            "remedy",
+            "test"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/review/control-resonant/",
+          "source_lang": "en",
+          "published_at": "2026-09-18T22:00:55+09:00"
+        },
+        {
+          "headline": "Le patron de Twitch confirme le mode multijoueur de GTA 6 pour 2027",
+          "original_headline": "Twitch CEO says Grand Theft Auto 6's multiplayer mode will launch next year",
+          "summary": "Dan Clancy affirme avoir longuement discuté avec Rockstar de ses plans pour le mode multijoueur de GTA 6, prévu pour 2027, et anticipe une popularité massive du jeu lors de ce lancement.",
+          "importance": 2,
+          "tags": [
+            "gta-6",
+            "rockstar",
+            "twitch"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/twitch-ceo-says-grand-theft-auto-6s-multiplayer-mode-will-launch-next-year/",
+          "source_lang": "en",
+          "published_at": "2026-09-18T20:18:55+09:00"
+        },
+        {
+          "headline": "Krafton s'excuse pour des soucis d'équité aux PUBG Asia Stars et ajuste ses équipes",
+          "original_headline": "크래프톤, 'PUBG 아시아 스타즈' 운영 논란 사과… 선수 2명 구성 조정",
+          "summary": "Krafton présente ses excuses après des contestations sur l'équité du premier jour du tournoi PUBG Asia Stars 2026, ajuste la composition de deux joueurs, instaure un différé de diffusion et renforce la surveillance des matchs.",
+          "importance": 3,
+          "tags": [
+            "pubg",
+            "krafton",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321179",
+          "source_lang": "ko",
+          "published_at": "2026-09-19T01:55:09+09:00"
+        },
+        {
+          "headline": "Smilegate relance Special Force sous Unreal Engine 5",
+          "original_headline": "스토브, 스페셜포스 리마스터 정식 출시",
+          "summary": "Le studio Dragonfly publie sur la boutique Stove une refonte complète de son FPS culte de 2004 sous Unreal Engine 5 : sept cartes remasterisées, personnalisation d'armes et passe de combat, système de clan à venir.",
+          "importance": 4,
+          "tags": [
+            "fps",
+            "smilegate",
+            "unreal-engine"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321163",
+          "source_lang": "ko",
+          "published_at": "2026-09-18T16:45:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le basket masculin coréen rejoint la finale des Jeux asiatiques",
+          "original_headline": "S. Korea reaches men's basketball final",
+          "summary": "La Corée du Sud bat l'Iran 77-51 en demi-finale à Nagoya et affrontera dimanche le vainqueur du match Chine-Japon, en quête d'un premier titre continental depuis douze ans.",
+          "importance": 1,
+          "tags": [
+            "basketball",
+            "jeux-asiatiques",
+            "nagoya"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20260918/s-korea-reaches-mens-basketball-final",
+          "source_lang": "en"
+        },
+        {
+          "headline": "L'équipe de baseball coréenne arrive à Nagoya pour un cinquième titre asiatique d'affilée",
+          "original_headline": "Baseball team lands in Nagoya with eyes set on 5th straight gold",
+          "summary": "Menée par le manager Ryu Ji-hyun, la sélection professionnelle KBO entame la compétition lundi face à Taipei chinois. Kim Do-yeong, revenu d'une fracture du nez et auteur de 40 circuits cette saison, est attendu à l'attaque.",
+          "importance": 2,
+          "tags": [
+            "baseball",
+            "kbo",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20260918/baseball-team-lands-in-nagoya-with-eyes-set-on-5th-straight-gold",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Anders Tolhurst porte les LG Twins vers une cinquième victoire de rang face au KT Wiz",
+          "original_headline": "\"변한 게 없다\"는 톨허스트, 5G 'ERA 1.48' 폭발…2025년 위력 회복→이러면 LG도 '활짝' [SS스타]",
+          "summary": "Le lanceur des LG Twins Anders Tolhurst domine le leader KT Wiz 12-1 en accordant un seul point, signant son douzième succès. Troisièmes de KBO, les Twins portent à quatre matchs leur avance sur la quatrième place.",
+          "importance": 3,
+          "tags": [
+            "kbo",
+            "lg-twins",
+            "baseball"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1636279",
+          "source_lang": "ko",
+          "published_at": "2026-09-19T07:01:00+09:00"
+        },
+        {
+          "headline": "Lydia Ko manque le cut, Jang Eun-soo prend seule la tête à Daebudo",
+          "original_headline": "\"어렵다 어려워!\" 리디아 고도 컷탈락한 '악마의 코스'…장은수·황유민 어떻게 공략했나[SS 현장]",
+          "summary": "Au Hana Financial Group Championship, Lydia Ko est éliminée après deux tours à +8, au-dessus de la limite de coupure fixée à +5. Jang Eun-soo mène seule le tournoi féminin à -4 (140 coups).",
+          "importance": 4,
+          "tags": [
+            "klpga",
+            "golf",
+            "lydia-ko"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1636234",
+          "source_lang": "ko",
+          "published_at": "2026-09-18T16:01:43+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "2026 Guro G Festival sur les berges d'Anyangcheon",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "안양천 생태초화원",
+      "area": "Guro-gu",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-20",
+      "summary": "Festival culturel asiatique en plein air sur les berges de l'Anyangcheon : concerts, feux d'artifice, marché aux puces, artisanat et animations écologiques, de 9h à 22h le week-end.",
+      "source_name": "Seoul Festival",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=628",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition multimédia IVE : An Yu-jin et Jang Won-young <AN-YOUNG IN SEOUL>",
+      "kind": "exposition",
+      "theme": "kpop",
+      "venue": "더 서울라이티움",
+      "area": "Seongsu",
+      "start_date": "2026-09-05",
+      "end_date": "2026-09-27",
+      "summary": "Exposition immersive consacrée aux membres d'IVE An Yu-jin et Jang Won-young à Seongsu : photos inédites et installations dédiées à leur duo, à quatre minutes de la gare de Seoul Forest.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0458f-8bbb-7aee-b440-e56365f763c4",
+      "source_lang": "en"
+    },
+    {
+      "name": "Concert izna Tournée Séoul <WHO DAT GIRL?>",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "올림픽홀",
+      "area": "Songpa-gu",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-20",
+      "summary": "Premier concert en tournée du girl group izna, issu de I-LAND 2, à l'Olympic Hall : lancement d'une tournée asiatique qui se poursuivra à Taipei, Manille, Hong Kong, Singapour et Kuala Lumpur.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/019f8252-7d8a-7a82-a1b4-b83ba052ace5",
+      "source_lang": "en"
+    },
+    {
+      "name": "Concert 10e anniversaire de JUSTHIS <JT2DE: Welcome to My HOME>",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "명화라이브홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-20",
+      "summary": "Concert du rappeur JUSTHIS pour ses dix ans de carrière au Myunghwa Live Hall, avec une programmation d'invités hip-hop coréens : Kwaii, Don Malik, Mushvenom, Paloalto, Kid Milli, Giriboy et Sunwoojungya.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/019ff84c-fec7-752e-8b88-fe6810f2620c",
+      "source_lang": "en"
+    },
+    {
+      "name": "Café collaboration Which Way, Tamon-kun?! × Gratte à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "애니메이트 카페 홍대",
+      "area": "Hongdae",
+      "start_date": "2026-09-19",
+      "end_date": "2026-11-01",
+      "summary": "Café éphémère adapté du shôjo manga Tamon-kun ima docchi?! chez Animate Cafe Hongdae : boissons et produits à l'effigie des personnages, ouvert de 11h à 22h en semaine et dès 10h30 le week-end.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/tamon-kun-gratte-collab-cafe-animate-hongdae",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up lancement League of Legends TCG Riftbound chez Gen.G",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "젠지 GGX",
+      "area": "Jung-gu",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-23",
+      "summary": "Lancement coréen du jeu de cartes Riftbound dans l'espace e-sport GGX de Gen.G à Euljiro : cartes physiques et tapis de jeu à l'essai, decks de démonstration, personnel pour apprendre les règles.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/myeongdong/popups/riftbound-lol-tcg-popup-gen-g-euljiro",
+      "source_lang": "en"
+    },
+    {
+      "name": "Marché vintage de maillots de football sur le fleuve Han",
+      "kind": "popup",
+      "theme": "sport",
+      "venue": "서울크루즈",
+      "area": "Yeouido",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-20",
+      "summary": "Marché éphémère de plus de 1 000 maillots de football vintage et d'occasion, à bord du bateau Seoul Cruise amarré au parc du fleuve Han à Yeouido, de 11h à 22h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/yeouido/popups/football-culture-han-river-flea-market-yeouido",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up de lancement Riftbound TCG",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "아이파크몰 용산점",
+      "area": "Yongsan-gu",
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-30",
+      "summary": "Boutique éphémère du lancement coréen de Riftbound de Riot Games à l'IPark Mall de Yongsan : vente de decks et de boosters, sessions d'initiation au jeu de cartes, récompenses promotionnelles.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=321150",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition internationale de jardins de Séoul 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "서울숲",
+      "area": "Seongsu",
+      "start_date": "2026-05-01",
+      "end_date": "2026-10-27",
+      "summary": "Grande exposition paysagère à Seoul Forest, « Seoul, Green Culture » : jardins d'artistes internationaux, jardins participatifs d'entreprises et de citoyens, marché du jardin, ateliers et conférences. Entrée libre.",
+      "source_name": "서울특별시",
+      "source_url": "https://www.seoul.go.kr/festa/garden/y2026",
+      "source_lang": "ko"
+    }
+  ]
+}
