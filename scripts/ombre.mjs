@@ -36,7 +36,7 @@ const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // Fixé et journalisé, comme les deux autres modèles du matin. Le même Flash
 // que la recherche pour commencer : c'est lui qu'on compare à la session,
 // et le jour où il ne suffit pas, `agy models` en liste d'autres.
-const MODELE = process.env.MATINALE_OMBRE_MODELE ?? 'gemini-3.8-flash-high';
+const MODELE = process.env.MATINALE_OMBRE_MODELE ?? 'gemini-3.6-flash-high';
 const CORRECTIONS = Number(process.env.MATINALE_OMBRE_CORRECTIONS ?? 1);
 // Vingt minutes : une trentaine de pages à ouvrir et quatorze résumés à
 // écrire, la session Claude y met neuf minutes. Le tour de correction, lui,
