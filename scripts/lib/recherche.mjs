@@ -174,15 +174,39 @@ export const VOLETS = [
 export function extraireTableau(texte) {
   const début = texte.indexOf('[');
   const fin = texte.lastIndexOf(']');
-  if (début < 0 || fin < début) throw new Error('aucun tableau JSON dans la réponse');
+  if (début < 0) throw new Error('aucun tableau JSON dans la réponse');
   let tableau;
-  try {
-    tableau = JSON.parse(texte.slice(début, fin + 1));
-  } catch (e) {
-    throw new Error(`tableau JSON illisible : ${e.message}`);
+  if (fin > début) {
+    try {
+      tableau = JSON.parse(texte.slice(début, fin + 1));
+    } catch (e) {
+      throw new Error(`tableau JSON illisible : ${e.message}`);
+    }
+  } else {
+    // Un tableau ouvert et jamais fermé : `agy` a coupé la session au délai,
+    // « returning partial output », au milieu de la réponse. Le 18 septembre
+    // 2026, les cinq volets de l'actualité ont fini ainsi, avec trois ou
+    // quatre pistes propres chacun, jetées pour un crochet manquant. On
+    // referme au dernier objet complet : ce qui est entier est rendu, le
+    // reste n'a jamais existé.
+    tableau = refermer(texte.slice(début));
+    if (!tableau) throw new Error('aucun tableau JSON dans la réponse');
   }
   if (!Array.isArray(tableau)) throw new Error('la réponse n\'est pas un tableau');
   return tableau.filter((p) => p && typeof p === 'object' && !Array.isArray(p));
+}
+
+/** Le plus long préfixe d'un tableau tronqué qui s'analyse une fois refermé, ou `null`. */
+function refermer(texte) {
+  for (let i = texte.lastIndexOf('}'); i > 0; i = texte.lastIndexOf('}', i - 1)) {
+    try {
+      const tableau = JSON.parse(`${texte.slice(0, i + 1)}]`);
+      if (Array.isArray(tableau)) return tableau;
+    } catch {
+      // pas encore un objet complet : on remonte d'une accolade
+    }
+  }
+  return null;
 }
 
 /**

@@ -20,9 +20,9 @@ sortant. Le travail demande les deux. Voir docs/parution-sur-serveur.md.
 Le dépôt est cloné sur place, d'où un avantage décisif : **la session valide son
 brief avant de le déposer**, le schéma, les gardes et les tests sont sous sa
 main. La CI reste juge, mais elle ne découvre plus les fautes toute seule. Et
-entre la session et le commit, une **relecture** : Gemini rouvre chaque source
-et confronte le résumé à la page (`scripts/relecture.mjs`), puis le lanceur
-commite. La session ne pousse rien elle-même.
+entre la session et le commit, une **relecture** : Gemini, par rubrique, rouvre
+chaque source et confronte le résumé à la page (`scripts/relecture.mjs`), puis
+le lanceur commite. La session ne pousse rien elle-même.
 
 ---
 
@@ -562,8 +562,10 @@ pas de redire ce qui s'y trouve :
   doublons : c'est la garde du CMS qui rattrape, en aval.
 - La relecture du § 3 est `scripts/relecture.mjs`, lancée par
   `bin/brief-du-jour.sh` entre la session et le commit, avec
-  `prompts/relecture.md` pour consigne et le brief dans la consigne, pas
-  lu dans le dépôt. `scripts/lib/relecture.mjs` dit ce qu'elle n'a pas le
+  `prompts/relecture.md` pour consigne et le lot dans la consigne, pas lu
+  dans le dépôt : une session par rubrique pourvue et une pour les
+  événements, en parallèle, puis le brief est recomposé. Le titre et le
+  chapeau ne sont pas relus. `scripts/lib/relecture.mjs` dit ce qu'elle n'a pas le
   droit de faire et refuse en bloc ce qui le ferait ; le brief relu repasse
   le contrôle avant vol avant de remplacer celui d'inbox/. Le rapport,
   `veille/relecture/relecture-AAAA-MM-JJ.md`, met côte à côte ce que Gemini

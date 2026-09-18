@@ -1,23 +1,25 @@
 #!/usr/bin/env node
-// La relecture du brief du jour : Gemini relit contre les sources, le dépôt
-// vérifie, le contrôle juge, et le fichier d'inbox/ est remplacé par le brief
-// relu seulement si tout passe.
+// La relecture du brief du jour : Gemini relit contre les sources, par lots,
+// le dépôt vérifie, le contrôle juge, et le fichier d'inbox/ est remplacé par
+// le brief relu seulement si tout passe.
 //
 //   node scripts/relecture.mjs                  # inbox/brief-<jour à Séoul>.json
 //   node scripts/relecture.mjs --jour 2026-09-18
 //
 // Tourne APRÈS la session Claude, qui a déposé et contrôlé son brief sans le
-// commiter, et AVANT le commit, que le lanceur fait ensuite. Gemini est
-// interrogé par Antigravity CLI (`agy`), en headless, sur l'abonnement
-// Google, avec le brief dans la consigne et le seul droit d'ouvrir des pages
+// commiter, et AVANT le commit, que le lanceur fait ensuite. Un lot par
+// rubrique pourvue, un pour les événements, en parallèle, chacun sa session
+// Antigravity CLI (`agy`) en headless, sur l'abonnement Google, avec le lot
+// dans la consigne et le seul droit d'ouvrir des pages
 // (docs/parution-sur-serveur.md). lib/relecture.mjs dit pourquoi une
-// relecture, et ce qu'elle n'a pas le droit de faire.
+// relecture, pourquoi par lots, et ce qu'elle n'a pas le droit de faire.
 //
 // LE BRIEF DE LA SESSION EST L'ÉTAT SÛR. Tout ce qui ne passe pas, Gemini
 // muet, relecture qui ajoute ou change une adresse, brief relu que le
 // contrôle recale, laisse inbox/ tel quel : le lanceur commite alors le
-// brief de la session, qui a déjà passé le contrôle. Le rapport dans
-// veille/relecture/ dit ce qui s'est passé, dans tous les cas.
+// brief de la session, qui a déjà passé le contrôle. Un lot en panne est un
+// lot non relu, les autres comptent. Le rapport dans veille/relecture/ dit
+// ce qui s'est passé, dans tous les cas.
 //
 // Code de sortie : 0 si la relecture a été appliquée ou n'a rien trouvé à
 // changer, 1 sinon. Le lanceur le journalise, il ne s'arrête pas dessus.
@@ -32,19 +34,28 @@ import { promisify } from 'node:util';
 import path from 'node:path';
 import process from 'node:process';
 
-import { composerConsigneRelecture, extraireRelecture, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from './lib/relecture.mjs';
+import {
+  lotsDe, composerConsigneRelecture, extraireRelecture, recomposer,
+  rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport,
+} from './lib/relecture.mjs';
 import { interrogerGemini } from './lib/agy.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
-// Fixé et journalisé, comme les autres modèles du matin.
+// Fixé et journalisé, comme les autres modèles du matin. Le 3.8 en « high »
+// ici, quand la recherche et l'actualité se contentent du 3.6 en « medium » :
+// relire, c'est confronter un résumé à une page et y voir une joueuse
+// inventée d'après le nom d'une salle, et c'est là que la finesse paie. Le
+// quota, commun, le permet parce que chaque lot n'ouvre que trois ou
+// quatre pages.
 const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.8-flash-high';
-// Quinze minutes : une page par item et par événement, une trentaine, plus
-// la réécriture ; l'ombre, qui en ouvre autant, y met sept minutes. Le nôtre
-// dépasse d'une minute, pour le cas où `agy` ne s'arrêterait pas.
-const DELAI_CLI = '15m';
-const DELAI_MS = 16 * 60_000;
+// Huit minutes par lot : trois ou quatre pages, une dizaine pour les
+// événements, et la réécriture ; `agy` s'arrête à cinq par défaut en rendant
+// un tour à moitié fait. Le nôtre dépasse d'une minute. Les lots tournent
+// ensemble : c'est le plus lent qui fait attendre le commit.
+const DELAI_CLI = '8m';
+const DELAI_MS = 9 * 60_000;
 
 const exécuter = promisify(execFile);
 
@@ -79,50 +90,74 @@ async function conclure({ sort, raison, corrections = [], liste = [], session, v
   process.exit(code);
 }
 
-// --- La relecture ---------------------------------------------------------------
-const consigne = composerConsigneRelecture(gabarit, { jour, brief: original });
+// --- Les lots, ensemble ---------------------------------------------------------
+const lots = lotsDe(original);
 const début = Date.now();
-const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
-const durée = Math.round((Date.now() - début) / 1000);
-const session = { modèle: MODELE, durée, tours: gemini.tours, usage: gemini.usage };
+const résultats = await Promise.all(
+  lots.map(async (lot) => {
+    const consigne = composerConsigneRelecture(gabarit, { jour, lot });
+    const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
+    return { lot, gemini, durée: Math.round((Date.now() - début) / 1000) };
+  })
+);
 
-if (gemini.panne) {
-  console.log(`! ${étiquette('Gemini relecture')} ${gemini.panne} (${durée} s)`);
-  if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').map((l) => `    ${l}`).join('\n'));
-  await conclure({ sort: 'panne', raison: gemini.panne, session, code: 1 });
+const relus = new Map();
+const corrections = [];
+const pannes = [];
+let tours = 0;
+const usage = { input_tokens: 0, output_tokens: 0 };
+for (const { lot, gemini, durée } of résultats) {
+  if (gemini.panne) {
+    console.log(`! ${étiquette(`Gemini ${lot.nom}`)} ${gemini.panne} (${durée} s)`);
+    if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').map((l) => `    ${l}`).join('\n'));
+    pannes.push(`${lot.nom} : ${gemini.panne}`);
+    continue;
+  }
+  let relecture;
+  try {
+    relecture = extraireRelecture(gemini.réponse);
+  } catch (e) {
+    console.log(`! ${étiquette(`Gemini ${lot.nom}`)} ${e.message} (${durée} s)`);
+    const trace = [gemini.réponse.slice(0, 1500), gemini.stderr ?? ''].join('\n').trim();
+    if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
+    pannes.push(`${lot.nom} : ${e.message}`);
+    continue;
+  }
+  console.log(`✓ ${étiquette(`Gemini ${lot.nom}`)} relu en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}, ${relecture.corrections.length} correction(s) annoncée(s)`);
+  if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
+  relus.set(lot.nom, relecture.lot);
+  corrections.push(...relecture.corrections);
+  tours += gemini.tours ?? 0;
+  usage.input_tokens += gemini.usage?.input_tokens ?? 0;
+  usage.output_tokens += gemini.usage?.output_tokens ?? 0;
 }
+const session = { modèle: MODELE, durée: Math.round((Date.now() - début) / 1000), tours, usage, lots: lots.length, pannes };
 
-let relecture;
-try {
-  relecture = extraireRelecture(gemini.réponse);
-} catch (e) {
-  console.log(`! ${étiquette('Gemini relecture')} ${e.message} (${durée} s)`);
-  const trace = [gemini.réponse.slice(0, 2000), gemini.stderr ?? ''].join('\n').trim();
-  if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
-  await conclure({ sort: 'panne', raison: e.message, session, code: 1 });
+if (!relus.size) {
+  console.log(`! ${étiquette('relecture')} aucun lot relu : le brief de la session part tel quel`);
+  await conclure({ sort: 'panne', raison: pannes.join(' ; '), session, code: 1 });
 }
-console.log(`✓ ${étiquette('Gemini relecture')} brief relu en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}, ${relecture.corrections.length} correction(s) annoncée(s)`);
-if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
 
 // --- A-t-il seulement relu ? ----------------------------------------------------
-// Le brief rendu est déposé dans veille/relecture/ AVANT d'être jugé : une
-// relecture refusée se relit aussi, c'est même celle qu'on veut relire.
-rétablirAdresses(original, relecture.brief);
-rétablirHeures(original, relecture.brief);
-await writeFile(fichierRelu, `${JSON.stringify(relecture.brief, null, 2)}\n`);
-const raisons = vérifierRelecture(original, relecture);
-const liste = écarts(original, relecture.brief);
+// Le brief recomposé est déposé dans veille/relecture/ AVANT d'être jugé :
+// une relecture refusée se relit aussi, c'est même celle qu'on veut relire.
+const relu = recomposer(original, relus);
+rétablirAdresses(original, relu);
+rétablirHeures(original, relu);
+await writeFile(fichierRelu, `${JSON.stringify(relu, null, 2)}\n`);
+const raisons = vérifierRelecture(original, { corrections, brief: relu });
+const liste = écarts(original, relu);
 if (raisons.length) {
   console.log(`! ${étiquette('relecture')} refusée, le brief de la session part tel quel :`);
   for (const r of raisons) console.log(`    · ${r}`);
-  await conclure({ sort: 'refusée', raison: raisons.join(' ; '), corrections: relecture.corrections, liste, session, code: 1 });
+  await conclure({ sort: 'refusée', raison: raisons.join(' ; '), corrections, liste, session, code: 1 });
 }
 for (const e of liste) console.log(`  · ${e.cible} · ${e.champ}`);
-for (const c of relecture.corrections) console.log(`    ${c.cible ?? '?'} · ${c.champ ?? '?'} : ${c.pourquoi ?? ''}`);
+for (const c of corrections) console.log(`    ${c.cible ?? '?'} · ${c.champ ?? '?'} : ${c.pourquoi ?? ''}`);
 
 if (!liste.length) {
-  console.log(`✓ ${étiquette('relecture')} rien à changer`);
-  await conclure({ sort: 'sans changement', corrections: relecture.corrections, liste, session, code: 0 });
+  console.log(`✓ ${étiquette('relecture')} rien à changer${pannes.length ? ` (${pannes.length} lot(s) non relu(s))` : ''}`);
+  await conclure({ sort: 'sans changement', corrections, liste, session, code: pannes.length ? 1 : 0 });
 }
 
 // --- Le contrôle avant vol, sur le brief relu ------------------------------------
@@ -140,9 +175,9 @@ console.log(verdict.rapport.trim().split('\n').map((l) => `    ${l}`).join('\n')
 
 if (!verdict.passe) {
   console.log(`! ${étiquette('relecture')} le brief relu serait recalé : le brief de la session part tel quel`);
-  await conclure({ sort: 'recalée', raison: 'le contrôle avant vol recale le brief relu', corrections: relecture.corrections, liste, session, verdict: verdict.rapport, code: 1 });
+  await conclure({ sort: 'recalée', raison: 'le contrôle avant vol recale le brief relu', corrections, liste, session, verdict: verdict.rapport, code: 1 });
 }
 
-await writeFile(fichier, `${JSON.stringify(relecture.brief, null, 2)}\n`);
-console.log(`✓ ${étiquette('relecture')} appliquée : ${path.relative(RACINE, fichier)} (${liste.length} changement(s))`);
-await conclure({ sort: 'appliquée', corrections: relecture.corrections, liste, session, verdict: verdict.rapport, code: 0 });
+await writeFile(fichier, `${JSON.stringify(relu, null, 2)}\n`);
+console.log(`✓ ${étiquette('relecture')} appliquée : ${path.relative(RACINE, fichier)} (${liste.length} changement(s)${pannes.length ? `, ${pannes.length} lot(s) non relu(s)` : ''})`);
+await conclure({ sort: 'appliquée', corrections, liste, session, verdict: verdict.rapport, code: 0 });

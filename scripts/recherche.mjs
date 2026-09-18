@@ -38,9 +38,13 @@ const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // donne pour Claude : deux matins sur deux modèles différents sans que rien
 // ne le dise, c'est une baisse de qualité impossible à rattacher à sa cause.
 // Un Flash, parce que la recherche est bornée par le temps, pas par la
-// finesse ; « high » pour le raisonnement, il faut trier des dates et des
-// lieux. `agy models` liste ce qui existe.
-const MODELE = process.env.MATINALE_GEMINI_MODELE ?? 'gemini-3.8-flash-high';
+// finesse. Le 3.6 en « medium » et non le 3.8 en « high », depuis le
+// 18 septembre 2026 : le quota individuel, commun à tout ce que Gemini fait
+// le matin, s'est vidé en une matinée d'essais (429, RESOURCE_EXHAUSTED), et
+// chercher n'est pas juger, c'est la relecture qui garde le 3.8 en « high »
+// (scripts/relecture.mjs). Même réglage pour l'actualité et l'ombre. `agy
+// models` liste ce qui existe.
+const MODELE = process.env.MATINALE_GEMINI_MODELE ?? 'gemini-3.6-flash-medium';
 // Douze minutes : les quatre pages qui listent plus neuf recherches en coréen
 // prennent six à dix minutes, et `agy` s'arrête lui-même à cinq par défaut,
 // en rendant un tour à moitié fait, illisible. Le délai est donc passé au

@@ -33,10 +33,11 @@ import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
-// Fixé et journalisé, comme les deux autres modèles du matin. Le même Flash
-// que la recherche pour commencer : c'est lui qu'on compare à la session,
-// et le jour où il ne suffit pas, `agy models` en liste d'autres.
-const MODELE = process.env.MATINALE_OMBRE_MODELE ?? 'gemini-3.8-flash-high';
+// Fixé et journalisé, comme les autres modèles du matin. Le même Flash que
+// la recherche, en « medium » : l'ombre ne publie rien et le quota est
+// commun ; le jour où elle est en lice pour rédiger, on la juge au réglage
+// qu'elle aurait, et `agy models` en liste d'autres.
+const MODELE = process.env.MATINALE_OMBRE_MODELE ?? 'gemini-3.6-flash-medium';
 const CORRECTIONS = Number(process.env.MATINALE_OMBRE_CORRECTIONS ?? 1);
 // Vingt minutes : une trentaine de pages à ouvrir et quatorze résumés à
 // écrire, la session Claude y met neuf minutes. Le tour de correction, lui,
