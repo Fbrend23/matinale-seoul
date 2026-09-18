@@ -19,6 +19,8 @@
     "veille": "node scripts/veille.mjs",
     "ombre": "node scripts/ombre.mjs",
     "recherche": "node scripts/recherche.mjs",
+    "actualite": "node scripts/actualite.mjs",
+    "relecture": "node scripts/relecture.mjs",
     "rendu": "node scripts/rendu.mjs"
   },
   "dependencies": {

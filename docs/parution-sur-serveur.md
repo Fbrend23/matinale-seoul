@@ -2,10 +2,11 @@
 
 À faire une fois, sur une machine allumée en permanence. Ce que produit cette
 installation : chaque jour, la veille est relevée (flux RSS des rédactions,
-titres déjà publiés), les événements sont cherchés par Gemini, puis le brief
-est rédigé, vérifié et poussé dans
-`inbox/` pour être en ligne à 8 h, heure de Séoul, la suite appartient à GitHub
-Actions ; enfin Gemini rédige le même brief en ombre, pour comparaison.
+titres déjà publiés), les événements et la presse sans flux sont cherchés par
+Gemini, puis le brief est rédigé et vérifié par Claude, relu contre ses sources
+par Gemini, et poussé par le lanceur dans `inbox/` pour être en ligne à 8 h,
+heure de Séoul, la suite appartient à GitHub Actions ; enfin Gemini rédige le
+même brief en ombre, pour comparaison.
 
 ## Pourquoi un serveur, et pas le cloud
 
@@ -74,6 +75,36 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   # les deux sessions du matin, puis une ligne par piste, et la section
   # « Pistes événements » à la fin de veille/AAAA-MM-JJ.md.
   # Des lignes de refus de permission sous un « ✓ Gemini » : c'est le allow qui manque.
+  ```
+
+  **La veille actualité**, facultative de même : cinq sessions `agy`, une par
+  rubrique, cherchent en coréen dans la presse que les flux ne couvrent pas,
+  et leurs pistes, sondées et dédoublonnées, s'ajoutent à la veille
+  (`scripts/actualite.mjs`). Le lanceur la lance en même temps que la
+  recherche, sept sessions Gemini en parallèle : si l'abonnement refuse, le
+  journal dit `Gemini : ERROR` sur les volets refusés, et l'agent compose
+  avec les flux. Vérifier une fois :
+
+  ```bash
+  node scripts/actualite.mjs --jour "$(TZ=Asia/Seoul date +%F)"
+  # « ✓ Gemini tourisme  N pistes en … s », une ligne par rubrique, une par
+  # piste, et la section « Pistes actualité » à la fin de veille/AAAA-MM-JJ.md.
+  ```
+
+  **La relecture**, elle, n'est pas facultative dans l'esprit, mais le lanceur
+  ne s'arrête pas sur elle : après la session Claude, `agy` reçoit le brief
+  dans sa consigne, rouvre chaque source, corrige, et rend le brief entier ;
+  le dépôt vérifie qu'il n'a fait que relire, le contrôle avant vol le juge,
+  et le fichier d'inbox/ n'est remplacé que si tout passe
+  (`scripts/relecture.mjs`). Elle n'a besoin que de `read_url` : le brief est
+  dans la consigne, pas lu dans le dépôt. Le rapport est dans
+  `veille/relecture/`. Vérifier sur un brief de l'archive, copié dans un
+  dossier de la veille pour ne pas toucher inbox/ :
+
+  ```bash
+  mkdir -p veille/essai && cp archive/2026/brief-2026-09-17.json veille/essai/
+  node scripts/relecture.mjs --jour 2026-09-17 --fichier veille/essai/brief-2026-09-17.json --dossier veille/essai/relecture
+  cat veille/essai/relecture/relecture-2026-09-17.md
   ```
 
   **L'ombre**, facultative elle aussi : après la session Claude, `agy` rédige
@@ -174,10 +205,14 @@ travail automatique, pas un endroit où l'on garde des modifications.
 ## Programmer la parution
 
 **Le brief paraît à 8 h, heure de Séoul.** C'est le fuseau dont il parle, et
-celui où son lecteur le lira. Le déclenchement part donc à **7 h 30** là-bas : la
-rédaction prend une douzaine de minutes (mesurées), la chaîne GitHub trois de
-plus. Partir au plus tard rend l'actualité du brief d'autant plus fraîche, et
-laisse encore 18 minutes de marge, une fois et demie la durée observée.
+celui où son lecteur le lira. Le déclenchement partait à **7 h 30** là-bas
+quand la matinée tenait en une douzaine de minutes ; depuis la relecture
+(18 septembre 2026), elle en prend une vingtaine de plus : la recherche et la
+veille actualité, ensemble, jusqu'à treize minutes, la session dix, la
+relecture jusqu'à quinze, la chaîne GitHub trois. Le déclenchement part donc à
+**7 h 15**. Partir au plus tard rend l'actualité du brief d'autant plus
+fraîche ; partir trop tard fait paraître le brief après le lecteur. Mesurer
+une semaine, puis ajuster : le journal donne la durée de chaque étape.
 
 Le serveur vit à l'heure de Berne, mais **on ne convertit pas de tête** : une
 heure de Berne figée dériverait d'une heure deux fois l'an, précisément dans le
@@ -199,10 +234,10 @@ dans la ligne, systemd le convertit, et l'heure d'été de Berne se règle seule
 
 ```ini
 [Unit]
-Description=Déclenche la Matinale à 7 h 30, heure de Séoul (parution à 8 h)
+Description=Déclenche la Matinale à 7 h 15, heure de Séoul (parution à 8 h)
 
 [Timer]
-OnCalendar=*-*-* 07:30 Asia/Seoul
+OnCalendar=*-*-* 07:15 Asia/Seoul
 AccuracySec=30s
 Persistent=true
 
@@ -274,7 +309,7 @@ sur `Asia/Seoul`, jamais sur l'heure du rattrapage.
 systemctl --user list-timers matinale.timer
 # NEXT doit tomber sur 00:30 heure de Berne l'été, 23:30 la veille l'hiver.
 
-systemd-analyze calendar "*-*-* 07:30 Asia/Seoul"   # sans rien installer
+systemd-analyze calendar "*-*-* 07:15 Asia/Seoul"   # sans rien installer
 ```
 
 Cette vérification en une ligne est ce que le cron ne permettait pas : c'est elle

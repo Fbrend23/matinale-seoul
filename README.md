@@ -21,7 +21,9 @@ pas en français, l'item porte leur titre tel quel, sous le sien, pour que le
 lecteur qui remonte à l'article le reconnaisse.
 
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
-humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
+humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font,
+et une relecture par un second modèle, Gemini, qui rouvre chaque source avant
+le commit.
 
 | | |
 |---|---|
@@ -34,11 +36,15 @@ humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font.
 ## La chaîne, du fichier au site
 
 ```
-Timer systemd, 7 h 30 Asia/Seoul
+Timer systemd, 7 h 15 Asia/Seoul
         ├─ veille : flux RSS des rédactions + titres déjà publiés → veille/AAAA-MM-JJ.md
-        ├─ recherche : deux sessions Gemini (Antigravity CLI), pages qui listent + rédactions coréennes, les gardes trient → même fichier
-        ├─ session Claude Code : lit la veille, choisit, vérifie, rédige
-        │  commit  inbox/brief-AAAA-MM-JJ.json
+        ├─ en parallèle, sept sessions Gemini (Antigravity CLI), les gardes trient → même fichier
+        │    ├─ recherche : deux sessions, pages qui listent + rédactions coréennes → pistes événements
+        │    └─ actualité : cinq sessions, une par rubrique, la presse sans flux, coréenne surtout → pistes actualité
+        ├─ session Claude Code : lit la veille, choisit, vérifie, rédige, contrôle
+        │  dépose  inbox/brief-AAAA-MM-JJ.json, sans git
+        ├─ relecture : Gemini rouvre chaque source, confronte, corrige ; le dépôt vérifie, le contrôle juge → veille/relecture/
+        ├─ le lanceur contrôle une dernière fois, commite, pousse
         └─ ombre : Gemini rédige le même brief, contrôlé, comparé, jamais commité → veille/ombre/
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
@@ -92,6 +98,29 @@ est le rôle de la Veille, et deux alarmes pour un incident en valent zéro.
 
 Deux tentatives, pas une boucle. Un brief durablement recalé, une garde qui dit
 non, ce qui n'est pas un accident, enverrait sinon un mail d'échec par heure.
+
+## La relecture, avant le commit
+
+Les gardes ne lisent pas : elles voient un lien mort, un résumé de quarante et
+un mots, pas un chiffre faux ni un titre original tronqué. Entre la session et
+le commit, Gemini relit donc le brief **contre ses sources** : il rouvre chaque
+`source_url`, confronte le résumé à la page, chiffres, noms, dates, titre
+original, heure de publication, rubrique, et corrige le français. Il peut
+retirer un item dont la page ne dit pas ce que le résumé dit. Le brief relu
+repasse le contrôle avant vol, et remplace celui de la session seulement s'il
+le passe (`scripts/relecture.mjs`).
+
+Ce qu'il ne peut pas faire, le dépôt le vérifie et refuse en bloc
+(`scripts/lib/relecture.mjs`) : ajouter un item ou un événement, changer une
+adresse, même une billetterie, changer la date ou les sections, retirer plus de
+trois items, retirer sans dire pourquoi. Une relecture refusée, muette ou
+recalée laisse partir le brief de la session tel quel : il a déjà passé le
+contrôle, c'est l'état connu. Le rapport, `veille/relecture/relecture-AAAA-MM-JJ.md`,
+met côte à côte ce que Gemini dit avoir changé et ce que le dépôt constate.
+
+**C'est le lanceur qui commite**, pas la session : `bin/brief-du-jour.sh`
+rejoue le contrôle sur ce qu'il s'apprête à commiter, ajoute le seul fichier
+d'`inbox/`, pousse. L'agent qui rédige n'a pas git dans ses outils.
 
 ## Les cinq gardes
 
@@ -232,6 +261,8 @@ npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
+npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
+npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
 npm run ombre            # fait rédiger le brief du jour à Gemini (agy) en ombre, contrôlé et comparé dans veille/ombre/
 ```
 

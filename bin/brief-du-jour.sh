@@ -91,7 +91,23 @@ node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent ch
 # rend une liste que le script passe aux gardes du dépôt avant de l'ajouter à
 # la veille. Gemini absent, muet ou hors quota : la veille le dit, et l'agent
 # cherche lui-même, avec son budget.
+#
+# ET LA PRESSE QUE LES FLUX NE COUVRENT PAS, par Gemini aussi, en même temps :
+# Chosun, JoongAng, Hankyoreh, KBS, Inven, ZDNet Korea, Visit Korea n'ont pas
+# de flux dans config/flux.json, et la rubrique tourisme vivait sur les seules
+# pages voyage du Korea Herald. Cinq sessions, une par rubrique, cherchent en
+# coréen ce que l'anglais ne remonte pas, et leurs pistes, sondées et
+# dédoublonnées contre la veille, s'y ajoutent. Les deux scripts tournent
+# ensemble, l'abonnement le permet et la matinée n'attend pas ; le journal de
+# l'actualité est recopié après celui de la recherche, pour qu'ils ne se
+# mêlent pas. Chacun n'écrit dans la veille qu'une fois, à la fin.
+JOURNAL_ACTU=$(mktemp)
+node scripts/actualite.mjs --jour "$JOUR" > "$JOURNAL_ACTU" 2>&1 &
+PID_ACTU=$!
 node scripts/recherche.mjs --jour "$JOUR" || echo "recherche indisponible : l'agent cherchera les événements lui-même"
+wait "$PID_ACTU" || echo "veille actualité indisponible : l'agent composera avec les flux"
+cat "$JOURNAL_ACTU"
+rm -f "$JOURNAL_ACTU"
 # Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
 # vu le matin où un brief manque : une semaine, puis on jette. Les ombres
 # (veille/ombre/, voir plus bas) suivent le même sort : une semaine pour les
@@ -120,13 +136,52 @@ echo "modèle : $MODELE"
 # session au lieu de l'autoriser en silence, et « échouer » est ici le bon
 # comportement, puisque personne ne regarde.
 #
+# PAS DE GIT DANS LA LISTE. La session dépose le fichier dans inbox/ et le
+# contrôle ; c'est ce script qui commite et pousse, après la relecture
+# (ci-dessous). L'agent qui rédige n'a donc plus les moyens de publier, ni
+# de toucher au dépôt autrement que par ce fichier, ce qui est exactement
+# ce qu'on voulait dire en lui interdisant .github/.
+#
 # timeout : sans lui, une session qui s'enlise tiendrait la place jusqu'au
 # lendemain, et le cron suivant trouverait un dépôt à moitié modifié.
 timeout 25m claude -p "$CONSIGNE" \
   --model "$MODELE" \
   --permission-mode acceptEdits \
-  --allowedTools "Bash(git *)" "Bash(npm *)" "Bash(node *)" Read Write Edit Glob Grep WebSearch WebFetch \
+  --allowedTools "Bash(npm *)" "Bash(node *)" Read Write Edit Glob Grep WebSearch WebFetch \
   || echec "la session Claude Code s'est terminée en erreur (ou a dépassé 25 minutes)"
+
+# Rien déposé : l'agent a refusé de publier, et son compte rendu, plus haut,
+# dit pourquoi. Ce n'est pas forcément une panne.
+if [ ! -f "$ATTENDU" ]; then
+  echo "Rien n'a été déposé dans inbox/. Ce n'est pas forcément une panne :"
+  echo "  · l'agent refuse de publier un brief dont il n'a pu vérifier les sources ;"
+  echo "  · le contrôle avant vol a recalé son brouillon."
+  echo "La raison exacte est plus haut dans ce journal."
+  exit 1
+fi
+
+# LA RELECTURE, avant le commit : Gemini rouvre chaque source, confronte le
+# résumé à la page, corrige le français, et rend le brief entier ; le script
+# vérifie qu'il n'a fait que relire, ni item ajouté ni adresse changée, et
+# repasse le contrôle avant vol ; le fichier d'inbox/ n'est remplacé que si
+# tout passe (scripts/lib/relecture.mjs dit pourquoi et jusqu'où). Gemini
+# muet ou relecture refusée : le brief de la session part tel quel, il a
+# déjà passé le contrôle. Le rapport est dans veille/relecture/.
+node scripts/relecture.mjs --jour "$JOUR" || echo "relecture indisponible ou refusée : le brief de la session part tel quel"
+
+# LE CONTRÔLE, UNE DERNIÈRE FOIS, PAR CE SCRIPT. La session dit l'avoir
+# passé, la relecture le rejoue sur ce qu'elle rend ; mais c'est ce script
+# qui commite, et il ne commite que ce qu'il a vu passer. Un brief recalé
+# ici reste dans inbox/, non commité, et la matinée est sans brief plutôt
+# qu'avec un brief faux.
+node scripts/preflight.mjs "$ATTENDU" || echec "le contrôle avant vol recale $ATTENDU : rien n'est commité"
+
+# Le commit, et rien que ce fichier : le reste de la copie de travail, la
+# veille, les rapports, n'est pas versionné, et un fichier de plus dans le
+# commit serait un fichier que l'agent aurait écrit sans qu'on le lui demande.
+git add "$ATTENDU"
+git commit --quiet -m "feat(Brief) Brief du $JOUR" || echec "git commit"
+git push --quiet origin main || echec "git push : le brief est commité en local, pas sur origin"
 
 # L'OMBRE, après la session et sur la même veille : Gemini rédige le même
 # brief, le contrôle avant vol le juge, et il est déposé dans veille/ombre/
@@ -138,16 +193,13 @@ timeout 25m claude -p "$CONSIGNE" \
 node scripts/ombre.mjs --jour "$JOUR" || echo "ombre indisponible ou recalée : voir plus haut"
 
 # La seule preuve qui vaille : le fichier est-il sur origin ?
-# Un agent peut très bien avoir « terminé » sans rien pousser, c'est même ce
-# qu'on lui demande quand ses sources ne tiennent pas.
+# Le push a dit oui ; on le relit quand même, c'est ce que le matin sans
+# brief demandera en premier.
 git fetch --quiet origin main
 if git ls-tree --name-only origin/main inbox/ | grep -qx "$ATTENDU"; then
   echo "OK : $ATTENDU poussé ($(git rev-parse --short origin/main))"
   echo "La suite appartient à GitHub Actions : gardes, CMS, build, déploiement."
 else
-  echo "Rien n'a été poussé. Ce n'est pas forcément une panne :"
-  echo "  · l'agent refuse de publier un brief dont il n'a pu vérifier les sources ;"
-  echo "  · le contrôle avant vol a recalé son brouillon."
-  echo "La raison exacte est plus haut dans ce journal."
+  echo "Le push a répondu, mais $ATTENDU n'est pas sur origin/main."
   exit 1
 fi

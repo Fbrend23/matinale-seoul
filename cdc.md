@@ -44,7 +44,9 @@ Publier automatiquement, chaque matin, un brief d'actualité en français : tour
 Corée, actualités coréennes générales, tech et IA mondiales, jeu vidéo mondial. Contenu
 produit par une tâche planifiée Claude qui cherche sur le web et rend un JSON structuré.
 
-Aucune relecture humaine avant mise en ligne : la qualité repose sur les cinq gardes (section 6).
+Aucune relecture humaine avant mise en ligne : la qualité repose sur les cinq gardes (section 6),
+et, depuis le 18 septembre 2026, sur une relecture par un second modèle, Gemini, qui rouvre chaque
+source avant le commit (`scripts/relecture.mjs`), bornée par le dépôt : ni ajout, ni adresse changée.
 
 Volume : un brief par jour, week-end compris, cinq rubriques, 15 à 30 items. Charge négligeable, ne
 surdimensionne rien.

@@ -10,7 +10,7 @@ doit suivre, sans quoi l'agent produira consciencieusement des briefs que les
 gardes recaleront. Des tests tiennent les deux ensemble.
 
 **Réglages :** timer d'un serveur allumé en permanence, tous les jours,
-week-end compris, à **7 h 30 heure de Séoul**, pour que le brief soit en ligne à
+week-end compris, à **7 h 15 heure de Séoul**, pour que le brief soit en ligne à
 8 h, le fuseau dont il parle, et celui où son lecteur le lira.
 
 Ni tâche à connecteurs ni routine cloud : la première lit le web mais ne peut
@@ -18,8 +18,11 @@ rien pousser, faute de connecteur GitHub ; la seconde pousse mais n'a aucun acc�
 sortant. Le travail demande les deux. Voir docs/parution-sur-serveur.md.
 
 Le dépôt est cloné sur place, d'où un avantage décisif : **la session valide son
-brief avant de le pousser**, le schéma, les gardes et les tests sont sous sa
-main. La CI reste juge, mais elle ne découvre plus les fautes toute seule.
+brief avant de le déposer**, le schéma, les gardes et les tests sont sous sa
+main. La CI reste juge, mais elle ne découvre plus les fautes toute seule. Et
+entre la session et le commit, une **relecture** : Gemini rouvre chaque source
+et confronte le résumé à la page (`scripts/relecture.mjs`), puis le lanceur
+commite. La session ne pousse rien elle-même.
 
 ---
 
@@ -33,7 +36,7 @@ ils retirent les items douteux et rejettent le brief entier s'il est mal formé.
 ### 1. Avant de composer
 
 Le serveur a relevé la veille du matin avant ta session : **lis
-`veille/AAAA-MM-JJ.md`**, daté du jour à Séoul. Il tient en quatre listes :
+`veille/AAAA-MM-JJ.md`**, daté du jour à Séoul. Il tient en cinq listes :
 
 - ce que le site a déjà publié, les titres des quatorze derniers briefs.
   **Ne couvre pas une histoire qui y figure déjà**, sauf élément vraiment
@@ -44,9 +47,21 @@ Le serveur a relevé la veille du matin avant ta session : **lis
   un extrait. Chaque adresse est une adresse vue : elle peut servir de
   `source_url` telle quelle, et son heure de `published_at`. L'extrait sert à
   choisir ; pour résumer, ouvre l'article ;
+- les **pistes actualité**, cherchées par Gemini avant ta session dans la
+  presse que les flux ne couvrent pas, surtout coréenne (Chosun, JoongAng,
+  Hankyoreh, KBS, Inven, ZDNet Korea, Visit Korea…), par rubrique, puis
+  sondées : allowlist, lien vivant, doublons du site et des flux. Même forme
+  que les flux, adresse vue et heure quand la page la donne, avec en plus un
+  titre en français pour choisir. Elles **complètent** les flux : une
+  rubrique y trouve souvent l'angle coréen que l'anglais n'a pas, et
+  `tourisme` y trouve le plus. Une rubrique marquée « non cherchée » n'a pas
+  été cherchée, ce qui n'est pas « il n'y avait rien » ;
 - les **pistes événements**, cherchées par Gemini avant ta session et déjà
   passées au tri de l'ingestion, chacune sous la forme exacte d'un événement
   du § 7. Elles remplacent ta propre recherche : voir § 7.
+
+Les deux dernières listes viennent de deux scripts qui écrivent en même temps :
+leur ordre dans le fichier n'est pas fixe, cherche-les par leur titre.
 
 C'est ta matière première : la plupart des items du jour sont dans cette liste,
 il s'agit de les choisir, pas de les chercher. Avec le présent prompt, c'est
@@ -139,15 +154,18 @@ brief de même taille. D'où un budget, à tenir :
 
 ### 2. Ce que tu rends
 
-**Un unique fichier JSON**, déposé par commit dans le dépôt
-`Fbrend23/matinale-seoul`, sur la branche `main`, au chemin exact :
+**Un unique fichier JSON**, écrit dans la copie de travail du dépôt, au
+chemin exact :
 
 ```
 inbox/brief-AAAA-MM-JJ.json
 ```
 
 La date du nom de fichier est **le jour courant à Séoul**, et elle doit être
-identique au champ `date`. Message de commit : `feat(Brief) Brief du AAAA-MM-JJ`.
+identique au champ `date`. **Tu ne le commites pas et tu ne pousses rien** :
+tu n'as pas git, et c'est voulu. Le lanceur le fait relire (§ 3), le contrôle
+une dernière fois, puis le commite (`feat(Brief) Brief du AAAA-MM-JJ`) et le
+pousse sur `main`, où la chaîne GitHub le prend.
 
 N'écris nulle part ailleurs, et **ne touche jamais au dossier `.github/`** : il
 contient la chaîne qui vérifie ton travail. Techniquement tu en as les moyens,
@@ -260,20 +278,19 @@ moins **deux** sections pourvues.
 `events` est facultatif : un matin sans événement nouveau, omets la clé plutôt
 que d'écrire `[]`.
 
-### 3. Avant de committer : relis-toi
+### 3. Avant de t'arrêter : relis-toi
 
 Le dépôt est cloné chez toi, donc tu peux vérifier ton brief au lieu de laisser
 la CI le faire :
 
 ```bash
-npm ci
 npm run preflight -- inbox/brief-AAAA-MM-JJ.json
 ```
 
 Le contrôle applique **les cinq gardes** : schéma, liens vivants, allowlist,
 doublons, cohérence. Il dit aussi le sort de chaque événement proposé, en
 avertissement (`!`), jamais en faute : un événement écarté ne recale pas le
-brief, mais tu dois le savoir avant de pousser. Les doublons sont jugés sur
+brief, mais tu dois le savoir avant de t'arrêter. Les doublons sont jugés sur
 `recent.json`, celui dont la veille du § 1 t'a donné les titres, la CI, elle,
 interroge le CMS. Les deux disent la même
 chose à un cheveu près, et le contrôle penche du côté prudent : il peut signaler
@@ -284,8 +301,17 @@ trouve la vraie adresse, ne la devine pas. Un résumé trop long ? Coupe. Un
 brief qui part recalé, c'est un run rouge, un mail d'alerte, et une matinée sans
 brief.
 
-S'il ne passe toujours pas après correction, **ne pousse pas** : rapporte ce qui
-bloque. Un brief absent se rattrape, un brief faux se lit.
+S'il ne passe toujours pas après correction, dis-le et arrête-toi : le lanceur
+ne commite pas un brief que le contrôle recale. Un brief absent se rattrape, un
+brief faux se lit.
+
+**Puis un autre te relit.** Quand tu t'arrêtes, le lanceur passe ton fichier à
+Gemini, qui rouvre chaque source et chaque événement, confronte ton résumé à
+la page, chiffres, noms, dates, titre original, et corrige le français ; il
+peut retirer un item dont la page ne dit pas ce que tu as écrit. Il ne peut ni
+ajouter un item, ni changer une adresse, le dépôt le vérifie. Écris donc pour
+un relecteur qui aura la page sous les yeux : ce que tu n'as pas lu dans
+l'article n'y va pas.
 
 ### 4. Les règles qui font recaler un brief
 
@@ -491,6 +517,16 @@ pas de redire ce qui s'y trouve :
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
+- Les pistes actualité du § 1 sont produites par `scripts/actualite.mjs` :
+  cinq sessions Gemini en parallèle, une par rubrique (`VOLETS_ACTUALITE`
+  dans `scripts/lib/actualite.mjs`, qui nomme le terrain de chacune), dans
+  le cadre de `prompts/actualite-presse.md` ; chacune rend un tableau, le
+  script sonde chaque adresse, l'allowlist, les doublons du site (titres
+  français) et des flux (titres originaux), plafonne par rubrique et par
+  domaine, puis ajoute la section à la veille. Corriger ce que Gemini
+  cherche se fait dans le prompt et les volets ; ce qui l'écarte, dans le
+  tri. Une rubrique en panne est dite « non cherchée » ; les cinq, et la
+  section le dit, l'agent compose avec les flux.
 - Les pistes événements du § 7 sont produites par `scripts/recherche.mjs` :
   deux sessions Gemini en parallèle, par Antigravity CLI en headless et sans
   droit d'écriture, l'une sur les pages qui listent
@@ -524,7 +560,16 @@ pas de redire ce qui s'y trouve :
   prévoit son absence, mais tant qu'il manque, l'agent ne peut pas savoir ce qui
   a déjà été couvert, et le contrôle avant vol ne peut pas davantage juger les
   doublons : c'est la garde du CMS qui rattrape, en aval.
-- Si l'agent ne parvient pas à committer (connecteur absent, jeton expiré), rien
-  n'arrive dans `inbox/` et **le workflow ne se déclenche pas du tout** : il n'y
-  a donc aucune alerte. C'est le seul silence connu de la chaîne. Le repérer se
-  fait par l'absence de brief du jour sur le site.
+- La relecture du § 3 est `scripts/relecture.mjs`, lancée par
+  `bin/brief-du-jour.sh` entre la session et le commit, avec
+  `prompts/relecture.md` pour consigne et le brief dans la consigne, pas
+  lu dans le dépôt. `scripts/lib/relecture.mjs` dit ce qu'elle n'a pas le
+  droit de faire et refuse en bloc ce qui le ferait ; le brief relu repasse
+  le contrôle avant vol avant de remplacer celui d'inbox/. Le rapport,
+  `veille/relecture/relecture-AAAA-MM-JJ.md`, met côte à côte ce que Gemini
+  dit avoir changé et ce que le dépôt constate.
+- Si le lanceur ne parvient pas à pousser (clé de déploiement révoquée, origin
+  injoignable), rien n'arrive dans `inbox/` sur GitHub et **le workflow ne se
+  déclenche pas du tout** : il n'y a donc aucune alerte. C'est le seul silence
+  connu de la chaîne. Le repérer se fait par l'absence de brief du jour sur le
+  site, et le journal du serveur dit pourquoi.
