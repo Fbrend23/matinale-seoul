@@ -11,6 +11,7 @@ import assert from 'node:assert/strict';
 
 import {
   adressesDeFiches,
+  quartierRomanisé,
   événementDeFiche,
   thèmeProbable,
   genreProbable,
@@ -22,6 +23,8 @@ import {
   rendreRegistre,
   parProximité,
   REGISTRE,
+  REGISTRES,
+  NOL_WORLD,
 } from '../scripts/lib/popups.mjs';
 
 const JOUR = '2026-09-19';
@@ -33,6 +36,7 @@ const fiche = ({
   start = '2026-09-19',
   end = '2026-09-20',
   lieu = '서울 강남구 신사동 563-20 1층',
+  adresse = null,
 }) => `<!doctype html><html><head><title>${name}</title>
 <script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [] })}</script>
 <script type="application/ld+json">${JSON.stringify({
@@ -40,12 +44,12 @@ const fiche = ({
   '@type': 'Event',
   name,
   description,
-  startDate: `${start}T00:00:00.000Z`,
-  endDate: `${end}T00:00:00.000Z`,
+  startDate: start ? `${start}T00:00:00.000Z` : undefined,
+  endDate: end ? `${end}T00:00:00.000Z` : undefined,
   location: {
     '@type': 'Place',
-    name: lieu,
-    address: { '@type': 'PostalAddress', streetAddress: lieu, addressLocality: 'Seoul', addressCountry: 'KR' },
+    ...(lieu ? { name: lieu } : {}),
+    address: { '@type': 'PostalAddress', streetAddress: adresse ?? lieu, addressLocality: 'Seoul', addressCountry: 'KR' },
     geo: { '@type': 'GeoCoordinates', latitude: 37.52, longitude: 127.02 },
   },
 })}</script></head><body></body></html>`;
@@ -88,9 +92,50 @@ test('une fiche donne ses JOURS, son adresse en hangul et son quartier, et pas d
   assert.match(matière, /^Korean label DALSOM/);
 
   // Sans Event lisible, pas de fiche : mieux vaut une fiche en moins qu'un
-  // événement à moitié deviné.
-  assert.equal(événementDeFiche('<html></html>', { url }), null);
-  assert.equal(événementDeFiche(fiche({ name: '', start: '' }), { url }), null);
+  // événement à moitié deviné. Mais le refus DIT lequel — « pas de JSON-LD » et
+  // « pas de date de fin » ne se corrigent pas au même endroit, et vingt-deux
+  // fiches de NOL World rangées sous le même message disaient le contraire de
+  // la vérité.
+  assert.equal(événementDeFiche('<html></html>', { url }).raison, 'pas de JSON-LD Event');
+  assert.equal(événementDeFiche(fiche({ name: '' }), { url }).raison, 'fiche sans nom');
+  // Et la règle se distingue de la panne : vingt fiches de NOL World sans date
+  // de fin sont un fait du registre, que le journal compte, pas vingt pannes
+  // qu'il crie une par une.
+  const sansFin = événementDeFiche(fiche({ name: 'X', end: '' }), { url });
+  assert.equal(sansFin.raison, 'sans date de fin annoncée');
+  assert.equal(sansFin.règle, true);
+  assert.equal(événementDeFiche('<html></html>', { url }).règle, undefined);
+});
+
+test('NOL World romanise tout : la table donne le hangul, l adresse sert de secours', () => {
+  const url = 'https://world.nol.com/en/content/festas/019b8bbf-6a69-747b-84fe-249d219019ac';
+  // Un lieu que la table connaît : l'événement tient debout tout seul.
+  const connu = événementDeFiche(
+    fiche({ name: 'Seoul Outdoor Library', lieu: 'Seoul Plaza', adresse: '12, Eulji-ro, Jung-gu,' }),
+    { url, registre: NOL_WORLD }
+  );
+  assert.equal(connu.event.venue, '서울광장');
+  assert.equal(connu.event.area, 'Jung');
+
+  // Un lieu qu'elle ne connaît pas, ou pas de lieu du tout : l'adresse
+  // romanisée passe en `venue`, la garde l'écartera « lieu sans hangul », et
+  // c'est scripts/popups.mjs qui en fait une piste à compléter plutôt qu'une
+  // perte. Huit des vingt-deux fiches datées de NOL n'ont aucun nom de lieu.
+  const sansNom = événementDeFiche(
+    fiche({ name: 'Shin Ramyun 40th Anniversary POP-UP', lieu: '', adresse: '52, Seongsuil-ro 4-gil, Seongdong-gu,' }),
+    { url, registre: NOL_WORLD }
+  );
+  assert.equal(sansNom.event.venue, '52, Seongsuil-ro 4-gil, Seongdong-gu,');
+  assert.equal(sansNom.event.area, 'Seongdong');
+  assert.equal(sansNom.adresse, '52, Seongsuil-ro 4-gil, Seongdong-gu,');
+
+  assert.equal(quartierRomanisé('108, Yeoui-daero, Yeongdeungpo-gu,'), 'Yeongdeungpo');
+  assert.equal(quartierRomanisé(''), null);
+
+  // Les deux registres se lisent pareil, et c'est tout l'intérêt : même
+  // JSON-LD, deux listes qui ne se recouvrent pas.
+  assert.deepEqual(REGISTRES.map((r) => r.hôte), ['insideseoul.app', 'world.nol.com']);
+  assert.equal(REGISTRE, REGISTRES[0]);
 });
 
 test('le thème se propose des mots qui désignent, et l\'artiste ne compte que dans le titre', () => {
@@ -170,7 +215,7 @@ test('la récolte lit l\'index puis les fiches, et nomme celle qui ne se lit pas
   const { candidats, fiches, pannes, vues } = await récolter({ fetcher, concurrence: 2 });
   assert.equal(fiches, 3);
   assert.deepEqual(candidats.map(({ event }) => event.name), ['Pop-up BYREDO', 'Pop-up TENMONTH']);
-  assert.deepEqual(pannes.map(({ raison }) => raison), ['pas de JSON-LD Event lisible']);
+  assert.deepEqual(pannes.map(({ raison }) => raison), ['pas de JSON-LD Event']);
 
   // Le cache : les gardes sondent, et la page vient de la mémoire, pas du
   // réseau. Le verdict reste vrai, il est daté de la lecture.
@@ -193,8 +238,24 @@ test('la section met en avant les plus proches, garde le reste visible, et dit l
   ];
   assert.deepEqual(parProximité(candidats, JOUR).map(({ event }) => event.name), ['Ce matin', 'Dans un mois']);
 
-  const section = rendreRegistre({ candidats, fiches: 60, jour: JOUR, max: 1, écartées: [{ event: { name: 'Déjà là' }, raison: 'même fiche' }] });
-  assert.match(section, /^## Pop-ups du registre \(Inside Seoul\)/);
+  const section = rendreRegistre({
+    candidats,
+    fiches: 60,
+    jour: JOUR,
+    max: 1,
+    écartées: [{ event: { name: 'Déjà là' }, raison: 'même fiche' }],
+    àCompléter: [
+      {
+        event: { name: 'Shin Ramyun 40th', theme: 'food', start_date: '2026-09-19', end_date: '2026-11-30', venue: '52, Seongsuil-ro 4-gil, Seongdong-gu,', source_url: 'https://world.nol.com/en/content/festas/abc' },
+        adresse: '52, Seongsuil-ro 4-gil, Seongdong-gu,',
+      },
+    ],
+  });
+  assert.match(section, /^## Pop-ups des registres \(Inside Seoul\)/);
+  // Ce à quoi il ne manque que le lieu ne se perd pas en silence : il se
+  // complète, et la veille dit comment.
+  assert.match(section, /Il ne leur manque que le lieu en coréen/);
+  assert.match(section, /- Shin Ramyun 40th · food · 2026-09-19 → 2026-11-30 · lieu « 52, Seongsuil-ro 4-gil, Seongdong-gu, » · https/);
   // Ce qui est mis en avant porte son JSON, sans résumé, avec sa matière.
   assert.match(section, /### Ce matin/);
   assert.match(section, /```json\n\{\n {2}"name": "Ce matin"/);
@@ -206,5 +267,5 @@ test('la section met en avant les plus proches, garde le reste visible, et dit l
   assert.match(section, /Déjà là : même fiche/);
 
   // La panne ne se déguise pas en liste vide.
-  assert.match(rendreRegistre({ jour: JOUR, panne: 'HTTP 503' }), /n'a pas répondu \(HTTP 503\)/);
+  assert.match(rendreRegistre({ jour: JOUR, panne: 'HTTP 503' }), /n'ont rien rendu \(HTTP 503\)/);
 });
