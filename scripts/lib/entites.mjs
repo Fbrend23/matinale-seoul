@@ -75,8 +75,17 @@ const SORTIE_EN = /\bcomeback\b|\breturns? with\b|\bto return\b|\breleases?\b|\b
 /** Là où le nom s'arrête : le verbe de l'annonce. */
 const VERBE_EN = /\b(?:announces?|announced|confirms?|unveils?|reveals?|shares?|drops?|releases?|released|returns?|sets?|teases?|to\s+(?:return|release|hold|drop)|is|are|will|makes?|holds?|opens?)\b/i;
 
-/** Les mêmes, en coréen, tels que les rédactions les écrivent. */
-const SORTIE_KO = /컴백|신곡|발매|팬미팅|콘서트|앨범|내한|팝업|단독 공연/;
+/**
+ * Les mêmes, en coréen, tels que les rédactions les écrivent.
+ *
+ * 발매 (« mise en vente ») ne compte qu'accompagné d'un mot de musique : seul,
+ * il annonce autant un téléphone qu'un disque — « 삼성전자, 갤럭시 Z 폴드
+ * 신제품 발매 » —, et les flux coréens de la veille sont Yonhap et Donga, du
+ * général : Samsung, Hyundai et Nexon seraient entrés dans la liste, une
+ * requête Gemini chacun. 컴백, 신곡, 팬미팅, 콘서트, 내한, 단독 공연 ne parlent
+ * que de musique et restent seuls.
+ */
+const SORTIE_KO = /컴백|신곡|팬미팅|콘서트|앨범|내한|팝업|단독 공연|(?:싱글|음반|정규|미니|EP)\s*발매|발매.{0,8}(?:앨범|싱글|음반)/;
 
 /** Ce qu'on retire en tête d'un titre avant de lire le nom. */
 const PRÉFIXES = /^(?:update|watch|breaking|exclusive|photos?|video|listen|just in)\s*:\s*|^\[[^\]]{1,24}\]\s*/i;
@@ -120,7 +129,16 @@ export function nomDuTitre(titre) {
     nom = (verbe && verbe.index > 0 ? propre.slice(0, verbe.index) : propre.slice(0, sortie.index)).trim();
   }
 
-  nom = nom.replace(/['’]s\b/gi, '').replace(/[·,:;–—-]+$/, '').replace(/\s+/g, ' ').trim();
+  // Le possessif saute dans ses deux formes : « BLACKPINK’s Jisoo » et
+  // « NewJeans’ Hanni ». La seconde, l'apostrophe seule après un nom en -s,
+  // était prise pour un guillemet trois lignes plus bas, et tous les groupes
+  // en -s — NewJeans, Stray Kids, The Boyz — perdaient leurs solistes.
+  nom = nom
+    .replace(/['’]s\b/gi, '')
+    .replace(/(?<=s)['’](?=\s|$)/gi, '')
+    .replace(/[·,:;–—-]+$/, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   if (!nom || GUILLEMETS.test(nom)) return null;
   if (nom.length < 2 || nom.length > 40) return null;
   const mots = nom.split(' ');

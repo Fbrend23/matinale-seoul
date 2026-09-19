@@ -34,6 +34,11 @@ test('un titre qui annonce une sortie rend son nom, les autres ne rendent rien',
   assert.equal(nomDuTitre('Update: ZEROBASEONE Unveils Track List For Unit ZEROBASEONE EMP’s Mixtape').nom, 'ZEROBASEONE');
   // L'apostrophe saute : c'est une requête, pas une fiche d'état civil.
   assert.equal(nomDuTitre('BLACKPINK’s Jisoo Announces Comeback With New Single').nom, 'BLACKPINK Jisoo');
+  // Et dans sa seconde forme, l'apostrophe seule après un nom en -s : elle
+  // passait pour un guillemet, et NewJeans, Stray Kids, The Boyz perdaient
+  // leurs solistes.
+  assert.equal(nomDuTitre('NewJeans’ Hanni Releases Solo Single').nom, 'NewJeans Hanni');
+  assert.equal(nomDuTitre("Stray Kids' Felix Drops Solo Track").nom, 'Stray Kids Felix');
 
   // ET CE QUI N'EST PAS UNE SORTIE. « debut » seul et « unveils » seul ont été
   // écartés pour ces deux titres-là, qui auraient coûté deux requêtes par
@@ -47,6 +52,10 @@ test('un titre qui annonce une sortie rend son nom, les autres ne rendent rien',
   // Le coréen : le sujet est avant la virgule.
   assert.deepEqual(nomDuTitre('블랙핑크 지수, 9월 4일 솔로 컴백'), { nom: '블랙핑크 지수', signal: '컴백' });
   assert.equal(nomDuTitre('아이유, 데뷔 기념일 맞아 2억원 기부'), null);
+  // 발매 seul vend aussi des téléphones : Samsung n'a pas de comeback.
+  assert.equal(nomDuTitre('삼성전자, 갤럭시 Z 폴드 신제품 발매'), null);
+  assert.equal(nomDuTitre('[속보] 방탄소년단 컴백 앨범 발매일 확정').nom, '방탄소년단');
+  assert.equal(nomDuTitre('르세라핌, 두 번째 싱글 발매').nom, '르세라핌');
 });
 
 test('les titres viennent du flux et de la veille, pas des résumés français du site', () => {
