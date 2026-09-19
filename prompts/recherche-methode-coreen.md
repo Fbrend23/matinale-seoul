@@ -1,6 +1,12 @@
 **Les recherches en coréen, une par thème, toutes les dix.** Ne lis aucune page qui liste (insideseoul, nol, kpopofficial, festival.seoul.go.kr) : une autre session s'en occupe en même temps que toi, et ce que tu trouverais là, elle l'a déjà. Ton terrain, ce sont les rédactions coréennes, que l'anglais ne remonte pas : Inven, This Is Game, Korea JoongAng Daily, Korea Herald, Visit Seoul, Time Out, Soompi, les sites officiels (pokemonkorea.co.kr, coex.co.kr, ddp.or.kr, seoul.go.kr).
 
-Avec les mots des sites coréens, combinés au mois en cours et à `서울` :
+**Les noms sous surveillance, en premier.** Ceux-ci viennent de sortir quelque chose — comeback, single, album, tournée, fan meeting. Un pop-up suit presque toujours, une à trois semaines après, et il est annoncé là où aucune liste ne le reprend : par le lieu, par le label, sur les réseaux. Une recherche par nom, en coréen : `<nom> 팝업`, ou `<nom> 팝업스토어`. Écris le nom en coréen si tu le connais (지수, 르세라핌, 세븐틴) ; sinon garde-le tel quel, les rédactions coréennes citent aussi les noms latins.
+
+{{ENTITES}}
+
+Un nom sans pop-up est un nom fini : passe au suivant, n'insiste pas. **Ces requêtes passent avant les thèmes**, et si le budget ne suffit pas pour tout, ce sont elles qu'on garde : un thème ramène ce qui est déjà listé quelque part, un nom ramène ce qui ne l'est nulle part. Le pop-up du single « CLICK » de Jisoo, annoncé le 17 septembre 2026 sur Instagram, n'était le 19 dans aucun registre ni aucune rédaction — mais il portait un nom.
+
+Puis les thèmes. Avec les mots des sites coréens, combinés au mois en cours et à `서울` :
 
 - `anime` : `애니메이션 팝업스토어`, `애니 콜라보 카페`
 - `pokemon` : `포켓몬 팝업`, `포켓몬센터 이벤트`

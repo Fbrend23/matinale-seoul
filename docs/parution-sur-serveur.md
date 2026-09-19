@@ -82,6 +82,12 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   `--json` rend le lot sur la sortie standard, sans rien écrire, pour un
   remplissage de `mat_events` hors brief.
 
+  `scripts/recherche.mjs` lit aussi, au passage, le flux RSS de Soompi, pour
+  tenir la liste des noms sous surveillance (`veille/entites.json`, trois
+  semaines) qu'il donne ensuite à la session coréenne. C'est le seul réseau
+  qu'il touche en propre ; le flux muet est une ligne de journal, la liste de
+  la veille suffit à composer la consigne.
+
   **Facultatif** : sans `agy`, `scripts/recherche.mjs` échoue en quelques
   millisecondes, la veille le dit, et l'agent cherche les événements
   lui-même, comme avant. Vérifier une fois, dans le dépôt :

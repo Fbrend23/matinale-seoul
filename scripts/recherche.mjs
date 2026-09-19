@@ -31,6 +31,7 @@ import { composerConsigne, extraireTableau, trierPistes, rendrePistes, VOLETS } 
 import { interrogerGemini } from './lib/agy.mjs';
 import { connusDuSite } from './lib/onglet.mjs';
 import { rangsDeSources } from './lib/sources.mjs';
+import { relever, rendreSurveillées } from './lib/entites.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -93,6 +94,35 @@ try {
 }
 const connus = [...enLigne, ...duRegistre];
 
+// --- LES NOMS SOUS SURVEILLANCE ---------------------------------------------
+//
+// Un pop-up d'idol suit une sortie, et la sortie, elle, passe dans la presse :
+// c'est le seul fil qui relie « CLICK », sorti le 4 septembre 2026, au pop-up
+// annoncé le 17 sur Instagram et que ni les thèmes ni les registres n'ont vu
+// (scripts/lib/entites.mjs). La liste vit trois semaines dans veille/, qui
+// n'est pas versionné : perdue, elle se reconstitue en un matin, et ce n'est
+// pas une panne.
+const fichierEntités = path.join(dossier, 'entites.json');
+let anciennes = [];
+try {
+  anciennes = JSON.parse(readFileSync(fichierEntités, 'utf8'));
+} catch {
+  anciennes = [];
+}
+let veilleDuJour = '';
+try {
+  veilleDuJour = readFileSync(sortie, 'utf8');
+} catch {
+  veilleDuJour = '';
+}
+const { surveillées, pannes: pannesEntités } = await relever({ anciennes, veille: veilleDuJour, jour });
+for (const panne of pannesEntités) console.log(`! ${'sorties'.padEnd(18)} ${panne}`);
+console.log(
+  `${surveillées.length ? '✓' : '·'} ${'noms surveillés'.padEnd(18)} ${surveillées.length} sur trois semaines` +
+    (surveillées.length ? ` : ${surveillées.slice(0, 6).map((e) => e.nom).join(', ')}` : '')
+);
+await writeFile(fichierEntités, `${JSON.stringify(surveillées, null, 2)}\n`);
+
 console.log(`modèle : ${MODELE}`);
 
 // Les deux volets ensemble : chacun sa consigne, chacun sa session, chacun
@@ -110,6 +140,7 @@ const résultats = await Promise.all(
       officiels,
       agrégateurs,
       méthode,
+      entités: rendreSurveillées(surveillées),
     });
     const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
     return { volet: volet.nom, gemini, durée: Math.round((Date.now() - début) / 1000) };
