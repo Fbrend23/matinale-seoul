@@ -33,7 +33,7 @@ import {
   motsGénériques,
   fetcheurDeCache,
   rendreRegistre,
-  REGISTRE,
+  REGISTRES,
   MISES_EN_AVANT,
 } from './lib/popups.mjs';
 import { rangsDeSources } from './lib/sources.mjs';
@@ -87,19 +87,42 @@ if (panneSite) {
   process.exit(1);
 }
 
-// --- Le registre -------------------------------------------------------------
+// --- Les registres -----------------------------------------------------------
+//
+// Ensemble : ils tiennent des listes différentes (Inside Seoul les pop-ups de
+// quartier, NOL World les concerts, expositions à billet et pop-ups d'idols),
+// et l'un en panne est un registre en moins, pas une matinée sans section.
 const début = Date.now();
-let récolte;
-try {
-  récolte = await récolter({ max });
-} catch (e) {
-  journal(`! ${'registre'.padEnd(18)} ${e.message}`);
-  await déposer(rendreRegistre({ jour, panne: e.message }));
+const récoltes = [];
+const pannesDeRegistre = [];
+for (const registre of REGISTRES) {
+  try {
+    const récolte = await récolter({ registre, max });
+    const durée = Math.round((Date.now() - début) / 1000);
+    journal(`✓ ${registre.nom.padEnd(18)} ${récolte.candidats.length} fiches lues sur ${récolte.fiches} en ${durée} s`);
+    // Ce que la règle écarte se compte, ce qui ne se lit pas se nomme : vingt
+    // fiches sans date de fin sont un fait du registre, pas vingt pannes.
+    const parRaison = new Map();
+    for (const { raison } of récolte.écartées) parRaison.set(raison, (parRaison.get(raison) ?? 0) + 1);
+    for (const [raison, n] of parRaison) journal(`  · ${n} ${raison}`);
+    for (const { url, raison } of récolte.pannes) journal(`  ! ${url} : ${raison}`);
+    récoltes.push(récolte);
+  } catch (e) {
+    journal(`! ${registre.nom.padEnd(18)} ${e.message}`);
+    pannesDeRegistre.push(`${registre.nom} : ${e.message}`);
+  }
+}
+if (!récoltes.length) {
+  await déposer(rendreRegistre({ jour, registres: REGISTRES, panne: pannesDeRegistre.join(' ; ') }));
   process.exit(1);
 }
-const durée = Math.round((Date.now() - début) / 1000);
-journal(`✓ ${REGISTRE.nom.padEnd(18)} ${récolte.candidats.length} fiches lues sur ${récolte.fiches} en ${durée} s`);
-for (const { url, raison } of récolte.pannes) journal(`  ! ${url} : ${raison}`);
+const récolte = {
+  candidats: récoltes.flatMap((r) => r.candidats),
+  fiches: récoltes.reduce((n, r) => n + r.fiches, 0),
+  parRègle: récoltes.map((r) => ({ registre: r.registre.nom, n: r.écartées.length })).filter(({ n }) => n),
+  pannes: récoltes.flatMap((r) => r.pannes),
+  vues: new Map(récoltes.flatMap((r) => [...r.vues])),
+};
 
 // --- Le diff : ce que l'onglet tient déjà ------------------------------------
 const neuves = [];
@@ -110,8 +133,19 @@ const déjàVues = [];
 const génériques = motsGénériques(connus);
 for (const candidat of récolte.candidats) {
   const trouvé = déjàDansOnglet(candidat.event, connus, { génériques });
-  if (trouvé) déjàVues.push({ event: candidat.event, raison: `${trouvé.preuve} : « ${String(trouvé.connu.name).slice(0, 60)} »` });
-  else neuves.push(candidat);
+  if (trouvé) {
+    déjàVues.push({ event: candidat.event, raison: `${trouvé.preuve} : « ${String(trouvé.connu.name).slice(0, 60)} »` });
+    continue;
+  }
+  // Et le doublon ENTRE REGISTRES : le pop-up Pokémon de Seongsu est chez les
+  // deux, sous deux noms anglais différents. Le premier rendu reste, et
+  // REGISTRES est ordonné pour que ce soit celui qui donne le hangul.
+  const double = déjàDansOnglet(candidat.event, neuves.map(({ event }) => event), { génériques });
+  if (double) {
+    déjàVues.push({ event: candidat.event, raison: `déjà rendu par l'autre registre (${double.preuve})` });
+    continue;
+  }
+  neuves.push(candidat);
 }
 journal(`  ${neuves.length} neuves, ${déjàVues.length} déjà dans l'onglet`);
 
@@ -132,10 +166,26 @@ const tri = await trierPistes(neuves.map(({ event }) => event), {
 });
 
 const matièreDe = new Map(neuves.map(({ event, matière }) => [event.source_url, matière]));
+const adresseDe = new Map(neuves.map(({ event, adresse }) => [event.source_url, adresse]));
 const retenues = tri.retenues.map((event) => ({ event, matière: matièreDe.get(event.source_url) ?? '' }));
+
+// CE À QUOI IL NE MANQUE QUE LE LIEU. NOL World romanise ses lieux, et la
+// table des salles ne peut pas tout connaître : un concert écarté pour ce seul
+// motif est un concert perdu que personne d'autre n'annonce, alors que le nom
+// coréen se trouve en une recherche. Il sort donc à part, avec son adresse
+// romanisée, et la veille demande de le compléter. Les autres motifs — date
+// passée, pas de date de fin, doublon — restent des rejets, eux.
+const HANGUL_SEUL = /^lieu sans hangul/;
+const àCompléter = [];
+const écartéesVraies = [];
+for (const { event, raison } of tri.écartées) {
+  if (HANGUL_SEUL.test(raison)) àCompléter.push({ event, adresse: adresseDe.get(event.source_url) ?? null });
+  else écartéesVraies.push({ event, raison });
+}
 for (const { event } of retenues) journal(`  ✓ ${event.name} · ${event.theme ?? 'thème à trancher'} · ${event.start_date} → ${event.end_date}`);
 for (const { event, connu } of tri.prolongées) journal(`  ↻ ${connu.name} : ${event.start_date} → ${event.end_date}`);
-for (const { event, raison } of tri.écartées) journal(`  ! ${event.name ?? '(sans nom)'} : ${raison}`);
+for (const { event } of àCompléter) journal(`  ? ${event.name} : lieu à mettre en coréen (« ${event.venue} »)`);
+for (const { event, raison } of écartéesVraies) journal(`  ! ${event.name ?? '(sans nom)'} : ${raison}`);
 
 // --- Le dépôt ----------------------------------------------------------------
 if (versLaSortie) {
@@ -149,10 +199,13 @@ if (versLaSortie) {
 await déposer(
   rendreRegistre({
     candidats: retenues,
-    écartées: [...déjàVues, ...tri.écartées.map(({ event, raison }) => ({ event, raison }))],
-    pannes: récolte.pannes,
+    écartées: [...déjàVues, ...écartéesVraies],
+    àCompléter,
+    parRègle: récolte.parRègle,
+    pannes: [...récolte.pannes, ...pannesDeRegistre.map((panne) => ({ url: '', raison: panne }))],
     fiches: récolte.fiches,
     jour,
+    registres: REGISTRES,
     max: enAvant,
   })
 );

@@ -96,6 +96,27 @@ export const LIEUX_EN_COREEN = Object.fromEntries(
     'Seoul Forest': '서울숲',
     'Lotte World Tower': '롯데월드타워',
     'Seoul Station': '서울역',
+    // Les lieux que NOL World nomme, depuis que le dépôt l'énumère
+    // (scripts/lib/popups.mjs) : il romanise tout, y compris ce qu'aucune
+    // billetterie n'écrivait en latin jusqu'ici. Sans ces lignes, un festival
+    // au palais de Gyeongbokgung était écarté « lieu sans hangul » chaque
+    // matin, faute d'une traduction que personne ne peut deviner.
+    'Gyeongbokgung Palace': '경복궁',
+    'Gyeongbokgung': '경복궁',
+    'Changdeokgung Palace': '창덕궁',
+    'Deoksugung Palace': '덕수궁',
+    'Unhyeongung': '운현궁',
+    'Gwangwhamun': '광화문',
+    'Gwanghwamun': '광화문',
+    'HiKR Ground': '하이커그라운드',
+    'Banpo Bridge Moonlight Rainbow Fountain': '반포대교 달빛무지개분수',
+    'Myunghwa Live Hall': '명화라이브홀',
+    'Namsan Seoul Tower': 'N서울타워',
+    // Une succursale NOMMÉE, et non une enseigne : « 더현대 서울 » désigne un
+    // seul bâtiment, à Yeouido, ce que « Hyundai Department Store » tout court
+    // ne ferait pas — d'où la règle du paragraphe ci-dessus, qui tient.
+    'The Hyundai Seoul': '더현대 서울',
+    'Hyundai Department Store The Hyundai Seoul': '더현대 서울',
   }).map(([latin, coréen]) => [normaliserLieu(latin), coréen])
 );
 

@@ -31,25 +31,65 @@
 // pour la même raison : testable sans réseau.
 
 import { ENTÊTES } from './guards.mjs';
+import { lieuEnCoréen } from './recherche.mjs';
 import { périodesSeRecouvrent } from '../../shared/evenements.mjs';
 
 /**
- * Le registre, et la forme de ses adresses.
+ * Les registres, décrits en donnée et non en code.
  *
- * Un seul pour l'instant, décrit en donnée et non en code : le jour où une
- * deuxième liste publie du JSON-LD (world.nol.com en a sur ses fiches), elle
- * s'ajoute ici, et `récolter()` ne change pas.
+ * Ce qu'ils ont en commun, et qui fait tout : un index qui cite ses fiches
+ * dans son HTML, et une fiche qui porte un JSON-LD `Event`. Ce qui les
+ * distingue tient en quatre lignes chacun — la forme de leurs adresses, et où
+ * ils rangent le lieu.
  *
- * `fiche` : l'index mêle ses fiches à ses guides et à ses pages de quartier.
- * Une fiche, c'est un quartier, `popups`, un slug — trois segments, pas deux.
+ * `fiche` : l'index d'Inside Seoul mêle ses fiches à ses guides et à ses pages
+ * de quartier ; une fiche, c'est un quartier, `popups`, un slug, trois
+ * segments et pas deux.
+ *
+ * `lieu` et `quartier` : c'est là qu'ils diffèrent vraiment. Inside Seoul
+ * écrit son `location.name` EN HANGUL, adresse complète, ce que Naver Map
+ * géocode et ce que le schéma demande. NOL World romanise tout — « Seoul
+ * Plaza », « 108, Yeoui-daero, Yeongdeungpo-gu » —, et le hangul doit donc
+ * venir d'ailleurs : de la table des salles (lieuEnCoréen), qui existait déjà
+ * pour la même raison, les billetteries écrivant « KSPO DOME ». Ce qu'elle ne
+ * connaît pas ressort « à compléter » dans la veille, avec l'adresse
+ * romanisée : la garde du hangul l'écarterait, et l'écarter en silence serait
+ * perdre un concert que personne d'autre n'annonce.
  */
-export const REGISTRE = {
+export const INSIDE_SEOUL = {
   nom: 'Inside Seoul',
   hôte: 'insideseoul.app',
   index: 'https://insideseoul.app/popups',
   fiche: /^\/[a-z0-9-]+\/popups\/[a-z0-9-]+$/,
   lang: 'en',
+  lieu: (objet) => objet.location?.name ?? objet.location?.address?.streetAddress ?? '',
+  quartier: (objet, url) => quartierDeLAdresse(url),
 };
+
+export const NOL_WORLD = {
+  nom: 'NOL World',
+  hôte: 'world.nol.com',
+  index: 'https://world.nol.com/en/regions/seoul/festas',
+  fiche: /^\/en\/content\/festas\/[a-f0-9-]{20,}$/,
+  lang: 'en',
+  // Le nom du lieu quand il y en a un, passé par la table ; sinon l'adresse
+  // romanisée. Ni l'un ni l'autre ne garantit du hangul, et c'est voulu : la
+  // garde écarte, et scripts/popups.mjs range ce refus-là « à compléter »
+  // plutôt que de le perdre. Huit des vingt-deux fiches datées de NOL World
+  // n'ont pas de nom de lieu du tout, le 19 septembre 2026.
+  lieu: (objet) => lieuEnCoréen(objet.location?.name?.trim() || objet.location?.address?.streetAddress || ''),
+  quartier: (objet) => quartierRomanisé(objet.location?.address?.streetAddress ?? ''),
+};
+
+/**
+ * L'ordre compte un peu : le premier registre qui donne un événement le garde,
+ * et Inside Seoul rend le hangul sans intermédiaire. NOL World couvre ce qu'il
+ * ne couvre pas — les concerts, les expositions à billet, les pop-ups d'idols.
+ */
+export const REGISTRES = [INSIDE_SEOUL, NOL_WORLD];
+
+/** Le premier registre, pour les appels qui n'en nomment aucun. */
+export const REGISTRE = INSIDE_SEOUL;
 
 /** Au plus tant de fiches de front : elles partent toutes vers le même site. */
 export const CONCURRENCE = 4;
@@ -141,6 +181,21 @@ export function quartierDeLAdresse(url) {
 }
 
 /**
+ * Le quartier, tiré d'une adresse routière romanisée.
+ *
+ * « 108, Yeoui-daero, Yeongdeungpo-gu, » → « Yeongdeungpo ». `area` est
+ * AFFICHÉ et romanisé par contrat (schéma), donc rien à traduire ici : c'est
+ * le seul champ que l'adresse romanisée de NOL World remplit sans perte.
+ */
+export function quartierRomanisé(adresse) {
+  const segments = String(adresse ?? '').split(',').map((m) => m.trim()).filter(Boolean);
+  const arrondissement = segments.find((m) => /-(gu|si)$/i.test(m));
+  if (arrondissement) return arrondissement.replace(/-(gu|si)$/i, '');
+  const dernier = segments.at(-1);
+  return dernier && !/^\d/.test(dernier) ? dernier : null;
+}
+
+/**
  * L'événement d'une fiche, tel que son JSON-LD le donne.
  *
  * LES DATES SONT DES JOURS, PAS DES INSTANTS. Le registre écrit
@@ -154,27 +209,36 @@ export function quartierDeLAdresse(url) {
  * `matière`, et un résumé anglais recopié tel quel serait un résumé que
  * personne n'a écrit.
  *
+ * Rien à en tirer : `{ raison }`, en clair. « Pas de JSON-LD » et « pas de date
+ * de fin » ne se corrigent pas au même endroit, et vingt fiches de NOL World
+ * rangées sous le même message disaient le contraire de la vérité.
+ *
  * @param {string} html
  * @param {object} p
  * @param {string} p.url
  * @param {object} [p.registre]
- * @returns {{event: object, matière: string}|null}
+ * @returns {{event: object, matière: string, adresse: string}|{raison: string, règle?: boolean}}
  */
 export function événementDeFiche(html, { url, registre = REGISTRE }) {
   const objet = objetÉvénement(blocsLd(html));
-  if (!objet) return null;
+  if (!objet) return { raison: 'pas de JSON-LD Event' };
 
   const nom = typeof objet.name === 'string' ? objet.name.trim() : '';
   const début = typeof objet.startDate === 'string' ? objet.startDate.slice(0, 10) : '';
   const fin = typeof objet.endDate === 'string' ? objet.endDate.slice(0, 10) : '';
-  if (!nom || !début || !fin) return null;
+  if (!nom) return { raison: 'fiche sans nom' };
+  // Vingt des quarante-deux fiches de NOL World n'ont pas de date de fin, le
+  // 19 septembre 2026. C'est la règle du prompt, pas un accident de lecture :
+  // sans date de fin annoncée, il n'y a pas d'événement. `règle` le dit, pour
+  // que le journal compte ces fiches au lieu de les crier une par une.
+  if (!début || !fin) return { raison: 'sans date de fin annoncée', règle: true };
 
-  // Le lieu : `location.name` du registre EST l'adresse en hangul, parfois
-  // suivie du nom de l'enseigne (« … K-POP 스퀘어 홍대 »). C'est ce que Naver
-  // Map géocode, et c'est ce que le schéma demande.
-  const lieu = objet.location ?? {};
-  const venue = [lieu.name, lieu.address?.streetAddress].map((v) => (typeof v === 'string' ? v.trim() : '')).find(Boolean);
-  if (!venue) return null;
+  // Le lieu : chaque registre sait où il le range, et dans quelle langue (voir
+  // REGISTRES). Ce qui en sort n'est pas garanti en hangul — c'est la garde qui
+  // tranche, et scripts/popups.mjs range à part ce qu'elle refuse pour ce
+  // seul motif, au lieu de le perdre.
+  const venue = String(registre.lieu?.(objet, url) ?? '').trim();
+  if (!venue) return { raison: 'sans lieu ni adresse', règle: true };
 
   const matière = typeof objet.description === 'string' ? objet.description.trim() : '';
 
@@ -182,7 +246,7 @@ export function événementDeFiche(html, { url, registre = REGISTRE }) {
     name: nom,
     kind: genreProbable(nom),
     venue,
-    area: quartierDeLAdresse(url) ?? 'Seoul',
+    area: registre.quartier?.(objet, url) ?? 'Seoul',
     start_date: début,
     end_date: fin,
     source_name: registre.nom,
@@ -191,7 +255,11 @@ export function événementDeFiche(html, { url, registre = REGISTRE }) {
   };
   const theme = thèmeProbable(nom, matière);
   if (theme) event.theme = theme;
-  return { event, matière };
+  // L'adresse telle que le registre l'écrit, même romanisée : elle ne va pas
+  // dans l'événement (le champ `address` du schéma veut du hangul), mais c'est
+  // de quoi retrouver le lieu sur Naver Map quand le nom manque.
+  const adresse = String(objet.location?.address?.streetAddress ?? '').trim();
+  return { event, matière, adresse };
 }
 
 // --- Ce qu'un mot-clé peut dire, et ce qu'il ne peut pas ---------------------
@@ -443,7 +511,7 @@ async function lire(url, { fetcher, timeoutMs }) {
  * @param {number} [p.timeoutMs]
  * @param {number} [p.concurrence]
  * @param {number} [p.max]            plafond de fiches lues, pour les essais
- * @returns {Promise<{candidats: {event: object, matière: string}[], fiches: number, pannes: {url: string, raison: string}[], vues: Map<string, string>}>}
+ * @returns {Promise<{registre: object, candidats: {event: object, matière: string, adresse: string}[], fiches: number, écartées: {url: string, raison: string}[], pannes: {url: string, raison: string}[], vues: Map<string, string>}>}
  */
 export async function récolter({
   registre = REGISTRE,
@@ -458,6 +526,7 @@ export async function récolter({
 
   const adresses = adressesDeFiches(index, { base: registre.index, fiche: registre.fiche }).slice(0, max);
   const candidats = new Array(adresses.length);
+  const écartées = [];
   const pannes = [];
   let prochain = 0;
 
@@ -470,8 +539,9 @@ export async function récolter({
         const html = await lire(url, { fetcher, timeoutMs });
         vues.set(url, html);
         const trouvé = événementDeFiche(html, { url, registre });
-        if (trouvé) candidats[i] = trouvé;
-        else pannes.push({ url, raison: 'pas de JSON-LD Event lisible' });
+        if (trouvé.event) candidats[i] = trouvé;
+        else if (trouvé.règle) écartées.push({ url, raison: trouvé.raison });
+        else pannes.push({ url, raison: trouvé.raison });
       } catch (e) {
         pannes.push({ url, raison: e.message });
       }
@@ -479,7 +549,7 @@ export async function récolter({
   }
   await Promise.all(Array.from({ length: Math.min(concurrence, adresses.length) }, travailleur));
 
-  return { candidats: candidats.filter(Boolean), fiches: adresses.length, pannes, vues };
+  return { registre, candidats: candidats.filter(Boolean), fiches: adresses.length, écartées, pannes, vues };
 }
 
 // --- La section de la veille --------------------------------------------------
@@ -500,24 +570,27 @@ export function parProximité(candidats, jour) {
 export function rendreRegistre({
   candidats = [],
   écartées = [],
+  àCompléter = [],
+  parRègle = [],
   pannes = [],
   fiches = 0,
   jour,
-  registre = REGISTRE,
+  registres = [REGISTRE],
   max = MISES_EN_AVANT,
   panne = null,
 } = {}) {
-  const lignes = [`## Pop-ups du registre (${registre.nom})`, ''];
+  const noms = registres.map((r) => r.nom).join(' et ');
+  const lignes = [`## Pop-ups des registres (${noms})`, ''];
   if (panne) {
     lignes.push(
-      `Le registre n'a pas répondu (${panne}). Les pistes de Gemini, plus bas, sont tout ce qu'il y a ce matin.`,
+      `Les registres n'ont rien rendu (${panne}). Les pistes de Gemini, plus bas, sont tout ce qu'il y a ce matin.`,
       ''
     );
     return lignes.join('\n');
   }
 
   lignes.push(
-    `Énumérées, pas cherchées : les ${fiches} fiches de ${registre.index}, lues une par une, moins celles que l'onglet tient déjà.`,
+    `Énumérées, pas cherchées : les ${fiches} fiches de ${registres.map((r) => r.index).join(' et ')}, lues une par une, moins celles que l'onglet tient déjà.`,
     'Dates, adresse en hangul et quartier viennent du JSON-LD de la fiche, que le script a lu ce matin : **rien n\'est deviné, et rouvrir la source n\'apprendrait rien de plus**.',
     '',
     '**Deux champs sont à toi.** `name` : le registre écrit en anglais, donne-lui son nom français. `summary` : il MANQUE du JSON, écris-le en français, 35 mots au plus, de la matière donnée sous chaque fiche. `theme` est une proposition d\'après les mots du registre — tranche-la, c\'est le prompt qui dit où passent les frontières.',
@@ -546,10 +619,36 @@ export function rendreRegistre({
     }
     lignes.push('');
   }
+  // Le lieu manque, et rien d'autre. Les jeter serait perdre un concert que
+  // personne d'autre n'annonce, pour un champ qui se retrouve en une
+  // recherche : NOL World romanise ses lieux, et la table des salles ne peut
+  // pas tout connaître. L'adresse romanisée est donnée telle quelle, c'est de
+  // quoi trouver le nom coréen sur Naver Map.
+  if (àCompléter.length) {
+    lignes.push(
+      `**Il ne leur manque que le lieu en coréen**, que le registre écrit en lettres latines. Cherche le nom coréen du lieu sur Naver Map, mets-le dans \`venue\`, et l'événement tient debout — sinon, laisse-le :`,
+      ''
+    );
+    for (const { event, adresse } of àCompléter) {
+      // L'adresse n'est répétée que si elle dit autre chose que le lieu : quand
+      // le registre n'a pas nommé le lieu, c'est déjà elle qui en tient lieu.
+      const indice = adresse && adresse !== event.venue ? `, ${adresse}` : '';
+      lignes.push(
+        `- ${event.name} · ${event.theme ?? 'thème à trancher'} · ${event.start_date} → ${event.end_date} · lieu « ${event.venue} »${indice} · ${event.source_url}`
+      );
+    }
+    lignes.push('');
+  }
   if (écartées.length) {
-    lignes.push(`Déjà dans l'onglet, ne les repropose pas :`, '');
+    lignes.push(`Déjà dans l'onglet ou écartées au tri, ne les repropose pas :`, '');
     for (const { event, raison } of écartées) lignes.push(`- ${event.name ?? '(sans nom)'} : ${raison}`);
     lignes.push('');
+  }
+  if (parRègle.length) {
+    lignes.push(
+      `Écartées par la règle, sans date de fin annoncée ou sans lieu : ${parRègle.map(({ registre, n }) => `${n} fiches de ${registre}`).join(', ')}.`,
+      ''
+    );
   }
   if (pannes.length) {
     lignes.push(`Fiches illisibles ce matin : ${pannes.map(({ url, raison }) => `${url} (${raison})`).join(' ; ')}`, '');

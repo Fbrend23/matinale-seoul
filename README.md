@@ -226,6 +226,19 @@ d'atteinte par construction : le 19 septembre 2026, l'onglet ne tenait que
 quinzaine en permanence. Le rang `event_domains` les rend atteignables, sans
 toucher au contrat des items.
 
+**Deux registres**, décrits en donnée dans `scripts/lib/popups.mjs`
+(`REGISTRES`), lus par la même machinerie : Inside Seoul pour les pop-ups de
+quartier, NOL World (`world.nol.com/en/regions/seoul/festas`) pour les
+concerts, les expositions à billet et les pop-ups d'idols. Ils diffèrent sur
+un point qui compte : Inside Seoul écrit ses lieux en hangul, NOL World
+romanise tout — « Seoul Plaza », « 108, Yeoui-daero, Yeongdeungpo-gu ». Le
+hangul vient alors de la table des salles (`LIEUX_EN_COREEN`), qui existait
+déjà parce que les billetteries écrivent « KSPO DOME » ; ce qu'elle ne connaît
+pas ressort dans la veille sous « il ne leur manque que le lieu », avec
+l'adresse romanisée, plutôt que d'être écarté en silence pour un champ qui se
+trouve en une recherche. Les vingt fiches de NOL World sans date de fin sont
+écartées par la règle, et comptées, pas criées une par une.
+
 Ce que le registre ne fabrique pas : le `name` en français et le `summary`. Un
 résumé traduit mot à mot serait un résumé que personne n'a lu ; la matière
 anglaise de la fiche est donnée à côté, et c'est la rédaction qui écrit. Le
@@ -309,7 +322,7 @@ npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu 
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
-npm run popups           # énumère le registre des pop-ups (Inside Seoul), diffe contre l'onglet, ajoute la section à la veille
+npm run popups           # énumère les registres de pop-ups (Inside Seoul, NOL World), diffe contre l'onglet, ajoute la section à la veille
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
