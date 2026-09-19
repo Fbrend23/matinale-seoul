@@ -84,6 +84,28 @@ export const ENTÊTES = {
 // pas ». Voir le verdict « refusé » plus bas.
 const REFUS = new Set([401, 403, 406, 429]);
 
+// Échecs de POIGNÉE DE MAIN TLS, qui ne disent rien de la page non plus.
+//
+// ddp.or.kr sert sa chaîne de certificats INCOMPLÈTE, sans l'intermédiaire.
+// Un navigateur va le chercher tout seul (AIA), Node non : `fetch` échoue sur
+// UNABLE_TO_VERIFY_LEAF_SIGNATURE, la sonde n'avait pas de statut, et le
+// verdict tombait à « mort ». Résultat, du 15 au 19 septembre 2026, toutes les
+// expositions du DDP ont été écartées « source morte » chaque matin — Wayne
+// Thiebaud, Soban, DDP Spectrum, Maker Faire — alors que leurs pages
+// existaient, s'ouvraient dans un navigateur, et étaient les bonnes.
+//
+// C'est le cas même du troisième verdict : on ne nous a pas montré la page.
+// L'événement passe donc SANS date de vérification, ce qui est exactement ce
+// qu'on sait de lui. Et ça ne rouvre rien pour une adresse inventée : un
+// certificat ne se présente qu'une fois l'HÔTE joint, or l'hôte est dans
+// l'allowlist — ce qu'un modèle invente, c'est le chemin, et un chemin
+// inventé revient 404, sonde faite.
+//
+// Le code d'undici arrive dans `cause`, et le message en repli : une version
+// de Node qui renommerait ses codes ne doit pas faire retomber le verdict.
+const CERTIFICAT = /CERT|SELF_SIGNED|UNABLE_TO_(VERIFY|GET_ISSUER)|ERR_TLS/;
+const CERTIFICAT_EN_CLAIR = /certificate|certificat/i;
+
 // Codes par lesquels un serveur dit son désaccord avec la MÉTHODE, pas avec la
 // ressource : il faut redemander en GET avant de conclure quoi que ce soit.
 const REESSAYER_EN_GET = new Set([401, 403, 405, 406, 501]);
@@ -117,8 +139,9 @@ const CONCURRENCE = 6;
  * ce qui venait de la garde.
  *
  *   vivant  → 2xx, l'item passe et porte la date de sa vérification
- *   refusé  → 401/403/406/429, l'item passe SANS date : le champ dit alors
- *             exactement ce qu'il sait, c'est-à-dire rien
+ *   refusé  → 401/403/406/429, ou un certificat que Node ne valide pas,
+ *             l'item passe SANS date : le champ dit alors exactement ce
+ *             qu'il sait, c'est-à-dire rien
  *   mort    → 404, 5xx, pas de réponse : l'item est retiré
  *
  * C'est le raisonnement de la garde 3, qui ne jette rien non plus parce que
@@ -152,6 +175,7 @@ export async function checkLinks(
 async function sonder(item, { fetcher, timeoutMs }) {
   let statut = null;
   let raison = null;
+  let certificat = null;
 
   for (const method of ['HEAD', 'GET']) {
     const controller = new AbortController();
@@ -171,6 +195,9 @@ async function sonder(item, { fetcher, timeoutMs }) {
       raison = `HTTP ${res.status}`;
       break;
     } catch (e) {
+      const code = String(e.cause?.code ?? e.code ?? '');
+      const message = String(e.cause?.message ?? e.message ?? '');
+      if (CERTIFICAT.test(code) || CERTIFICAT_EN_CLAIR.test(message)) certificat = code || message;
       raison = e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message;
       // Un échec réseau sur HEAD peut venir de la méthode : on tente GET.
       if (method === 'HEAD') continue;
@@ -180,8 +207,11 @@ async function sonder(item, { fetcher, timeoutMs }) {
   }
 
   const vivant = statut !== null && statut >= 200 && statut < 300;
-  const refusé = !vivant && REFUS.has(statut);
+  // Un statut de refus, ou un certificat que Node n'a pas pu valider : deux
+  // façons de ne pas nous montrer une page qui existe.
+  const refusé = !vivant && (REFUS.has(statut) || certificat !== null);
   const verdict = vivant ? 'vivant' : refusé ? 'refusé' : 'mort';
+  if (!vivant && certificat !== null) raison = `certificat non validé par Node (${certificat})`;
 
   return {
     item,

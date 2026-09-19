@@ -179,7 +179,7 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
 | déjà connu par le lieu : même lieu, dates qui se recouvrent, et la même source ou le même thème avec un nom à moitié proche | événement écarté ; le nom seul en laissait passer, le lieu seul en écarterait trop, COEX accueille plusieurs pop-ups la même semaine |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour, prolongation, report, si la source répond |
-| source morte | événement écarté ; un accès refusé le garde, sans date |
+| source morte | événement écarté ; un accès refusé le garde, sans date — et un certificat que Node ne valide pas est un refus, pas une mort (ddp.or.kr sert sa chaîne sans l'intermédiaire, et ses expositions étaient écartées chaque matin) |
 | billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |
 | collection absente du CMS | avertissement au run, le brief paraît |
 

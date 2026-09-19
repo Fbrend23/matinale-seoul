@@ -117,6 +117,37 @@ test('un item refusé ne porte pas de date de vérification', async () => {
   );
 });
 
+test('un certificat que Node ne valide pas conserve l item, comme un 403', async () => {
+  // ddp.or.kr sert sa chaîne sans l'intermédiaire : le navigateur va le
+  // chercher, Node non. Du 15 au 19 septembre 2026, toutes les expositions du
+  // DDP ont été écartées « source morte » chaque matin, alors que leurs pages
+  // s'ouvraient. C'est le cas même du troisième verdict.
+  const tls = () => {
+    const e = new TypeError('fetch failed');
+    e.cause = Object.assign(new Error('unable to verify the first certificate'), {
+      code: 'UNABLE_TO_VERIFY_LEAF_SIGNATURE',
+    });
+    throw e;
+  };
+  const sondes = await checkLinks([item('https://exemple.test/chaine-incomplete')], { fetcher: tls });
+  assert.equal(sondes[0].verdict, 'refusé');
+  assert.equal(sondes[0].ok, true, 'une poignée de main ratée ne prouve pas une URL inventée');
+  assert.match(sondes[0].reason, /certificat non validé par Node \(UNABLE_TO_VERIFY_LEAF_SIGNATURE\)/);
+  assert.equal(sondes[0].checkedAt, null, "on n'a pas vu la page : rien à dater");
+});
+
+test('un échec réseau qui n est pas un certificat reste mort', async () => {
+  // La distinction tient au fait que l'HÔTE a répondu : un certificat ne se
+  // présente qu'après. Un nom qui ne résout pas, lui, ne dit rien de bon.
+  const dns = () => {
+    const e = new TypeError('fetch failed');
+    e.cause = Object.assign(new Error('getaddrinfo ENOTFOUND exemple.invalide'), { code: 'ENOTFOUND' });
+    throw e;
+  };
+  const sondes = await checkLinks([item('https://exemple.invalide/a')], { fetcher: dns });
+  assert.equal(sondes[0].verdict, 'mort');
+});
+
 test('un 404 reste mort, lui', async () => {
   const sondes = await checkLinks([item('https://exemple.test/inventé')], {
     fetcher: async () => ({ ok: false, status: 404 }),
