@@ -244,6 +244,21 @@ résumé traduit mot à mot serait un résumé que personne n'a lu ; la matière
 anglaise de la fiche est donnée à côté, et c'est la rédaction qui écrit. Le
 `theme` est proposé d'après les mots du registre, à trancher.
 
+**Et ce qui n'est sur aucune liste se cherche par son NOM.** Un pop-up d'idol
+ou de marque est annoncé une à trois semaines après une sortie, par le lieu ou
+le label, souvent sur les réseaux d'abord : aucun registre ne le tient encore,
+et les dix thèmes ne le trouvent pas, puisqu'ils ne remontent que ce qui est
+déjà listé quelque part. Le fil qui y mène est la sortie elle-même, qui, elle,
+passe dans la presse. `scripts/lib/entites.mjs` lit le flux de Soompi et les
+titres coréens déjà présents dans la veille, en tire les noms qui viennent de
+sortir quelque chose — comeback, single, tournée, fan meeting —, et les tient
+trois semaines dans `veille/entites.json`. La session de recherche en reçoit
+six au plus, et fait une requête par nom, `<nom> 팝업`, avant ses requêtes par
+thème. Le cas qui a motivé tout cela : le single « CLICK » de Jisoo est sorti le
+4 septembre 2026, son pop-up a été annoncé le 17 au soir, et le 19 il n'était
+ni chez une rédaction, ni dans un registre, ni chez un recenseur — mais il
+portait un nom, et ce nom était dans l'actualité depuis treize jours.
+
 Rien à mettre en file d'attente : une fiche non retenue ce matin sera
 réénumérée demain, tant qu'elle n'est pas dans l'onglet. C'est la propriété qui
 distingue une énumération d'une recherche, et le plafond par domaine ne

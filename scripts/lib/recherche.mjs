@@ -159,10 +159,11 @@ const CHAMPS = [
  * @param {string[]} [p.officiels]   lieux, enseignes, labels : citables pour un événement
  * @param {string[]} [p.agrégateurs] les recenseurs : pour chercher, jamais pour citer
  * @param {string} [p.méthode]       prompts/recherche-methode-*.md
+ * @param {string} [p.entités]       les noms sous surveillance (lib/entites.mjs)
  */
 export function composerConsigne(
   gabarit,
-  { jour, connus = [], domaines = [], officiels = [], agrégateurs = [], méthode = '' }
+  { jour, connus = [], domaines = [], officiels = [], agrégateurs = [], méthode = '', entités = '' }
 ) {
   const listeConnus = connus.length
     ? connus.map((e) => `- ${e.start_date} → ${e.end_date} · ${e.theme} · ${e.name} · ${e.venue ?? ''}`.trimEnd()).join('\n')
@@ -173,7 +174,11 @@ export function composerConsigne(
     .replaceAll('{{DOMAINES}}', domaines.join(', '))
     .replaceAll('{{OFFICIELS}}', officiels.join(', '))
     .replaceAll('{{AGREGATEURS}}', agrégateurs.join(', '))
-    .replaceAll('{{METHODE}}', méthode.trim());
+    .replaceAll('{{METHODE}}', méthode.trim())
+    // APRÈS {{METHODE}}, et c'est la seule raison de l'ordre : les noms sous
+    // surveillance sont demandés par le volet coréen, donc le gabarit qui les
+    // porte est le fichier de méthode, injecté juste au-dessus.
+    .replaceAll('{{ENTITES}}', entités.trim());
 }
 
 /**
