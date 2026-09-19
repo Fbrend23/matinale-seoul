@@ -472,12 +472,24 @@ pas de redire ce qui s'y trouve :
   COEX et DDP pour les salons. Une recherche `site:` sur l'une d'elles, pas
   une tournée.
 - **Les autres agrégateurs de pop-ups sont des pistes, pas des sources.**
-  popga, heypop, dealseoul, namu.wiki ne sont pas dans l'allowlist : un
-  événement sourcé chez eux serait écarté. Mais ils disent ce
-  qui existe. Quand tu y repères un événement à venir, cherche-le ensuite par
-  son nom pour trouver l'article d'une rédaction connue, et cite celui-là.
-  Un événement vu chez un agrégateur et introuvable ailleurs ne va pas dans
-  l'onglet.
+  popga, popply, dayforyou, heypop, dealseoul, namu.wiki, Instagram, X ne sont
+  dans aucune liste : un événement sourcé chez eux serait écarté. Mais ils
+  disent ce qui existe. Quand tu y repères un événement à venir, cherche-le
+  ensuite par son nom, et cite ce que tu trouves.
+- **Pour un ÉVÉNEMENT, celui qui l'organise est une source.** Un pop-up
+  d'idol ou de petite marque ne passe par aucune rédaction : il est annoncé par
+  le grand magasin qui l'héberge ou par le label, et sur la seule question qui
+  compte ici — cela existe-t-il, à ces dates, à cet endroit ? — cette page vaut
+  mieux qu'un article. `config/sources.json` en tient la liste sous
+  `event_domains` : grands magasins et enseignes (The Hyundai, Shinsegae,
+  Starfield, Musinsa, LCDC), salles (KINTEX, Seoul Arts Center, Sejong),
+  marques de personnages (LINE FRIENDS, Pop Mart), labels (YG, HYBE, SM, JYP,
+  Blissoo). Elle ne vaut QUE pour `events` : un item d'actualité sourcé là
+  retiendrait le brief en brouillon, comme n'importe quel domaine hors de la
+  liste du § 5. Et la page doit annoncer l'événement, avec ses dates : une
+  page d'accueil ou une fiche produit ne dit rien.
+- Un événement introuvable chez une rédaction ET chez celui qui l'organise ne va
+  pas dans l'onglet.
 - Le brief passe avant : compose-le d'abord, cherche les événements ensuite,
   avec le temps et les appels qui restent. Il reste en général plus de dix
   minutes sur les vingt-cinq de la session : le temps n'est pas ce qui
@@ -517,6 +529,11 @@ pas de redire ce qui s'y trouve :
 - La liste des sources citée au § 5 est un extrait de `config/sources.json`, pour
   que l'agent l'ait sous les yeux. Elle n'a pas besoin d'être exhaustive : c'est
   le fichier qui décide, pas le prompt.
+- `config/sources.json` tient TROIS rangs, et `scripts/lib/sources.mjs` dit
+  pourquoi : `domains`, les rédactions, citables partout ; `event_domains`, ceux
+  qui organisent, citables pour un événement seulement ; `aggregators`, les
+  recenseurs, jamais cités et nommés là pour que le journal du run dise
+  « agrégateur » plutôt que « domaine inconnu ».
 - Les pistes actualité du § 1 sont produites par `scripts/actualite.mjs` :
   cinq sessions Gemini en parallèle, une par rubrique (`VOLETS_ACTUALITE`
   dans `scripts/lib/actualite.mjs`, qui nomme le terrain de chacune), dans

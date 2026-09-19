@@ -148,7 +148,7 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé. Un lieu qui accueille au moins deux événements actifs a sa page, assemblée au build (`/lieux/…/`) |
 | `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
 | `summary` | text | 40 mots max |
-| `source_name`, `source_url`, `source_lang` | string | comme un item ; `source_url` vérifiée et soumise à l'allowlist |
+| `source_name`, `source_url`, `source_lang` | string | comme un item, à une différence près : l'allowlist d'un événement est `domains` **plus** `event_domains` (le lieu, l'enseigne, le label qui l'organise). Pour un événement, la question est « cela existe-t-il, à ces dates ? », et l'annonce de l'organisateur y répond mieux qu'un article ; sans ce rang, les pop-ups d'idols et de petites marques étaient hors d'atteinte |
 | `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |
 | `address` | string | nullable ; l'adresse routière coréenne vue par l'agent. La page Événements la géocode dans le navigateur (SDK Kakao Maps) pour poser un pin ; aucune coordonnée n'est stockée, les conditions de Naver comme de Kakao l'interdisent. Sans hangul, l'ingestion retire le champ |
 | `link_checked_at` | timestamp | rempli par la sonde de la source |
@@ -231,8 +231,12 @@ Elles remplacent la relecture humaine. Ordre d'exécution :
    adresse existe-t-elle ? » et non « ai-je pu la lire ? » : 2xx ⇒ l'item passe, daté ;
    401/403/406/429 ⇒ **l'item passe sans date**, un refus d'accès ne prouvant pas une invention ;
    404, 5xx ou silence ⇒ l'item saute.
-3. **Allowlist de domaines** : `config/sources.json`, éditable. Domaine inconnu ⇒ item conservé
-   mais brief laissé en `draft` (pas jeté : c'est ainsi que la liste s'enrichit).
+3. **Allowlist de domaines** : `config/sources.json`, éditable, en **trois rangs** —
+   `domains` (la presse, citable partout, et seule liste que voient les items), `event_domains`
+   (ceux qui organisent : citables dans `events` seulement), `aggregators` (les recenseurs :
+   jamais citables, nommés pour que le journal dise « agrégateur » et non « domaine inconnu »).
+   Domaine inconnu ⇒ item conservé mais brief laissé en `draft` (pas jeté : c'est ainsi que la
+   liste s'enrichit).
 4. **Doublons** : similarité du `headline` contre les 14 derniers jours, seuil 0,85.
 5. **Cohérence** : `date` = aujourd'hui à Séoul ; au moins deux sections non vides ;
    `summary` ≤ 40 mots ; `importance` sans doublon dans une section.

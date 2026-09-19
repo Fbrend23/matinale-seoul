@@ -83,6 +83,18 @@ fi
 # lui-même, avec un budget.
 node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent cherchera lui-même"
 
+# LE REGISTRE DES POP-UPS, avant tout le reste : énuméré, pas cherché. L'index
+# d'insideseoul.app liste ses fiches, chaque fiche porte un JSON-LD complet
+# (dates, adresse en hangul, géo), et le script en soustrait ce que l'onglet
+# tient déjà. Aucun modèle, dix secondes, et la couverture est entière là où une
+# session Gemini échantillonnait : le 19 septembre 2026, quinze pop-ups en cours
+# manquaient à l'onglet, tous de marques dont aucune rédaction ne parle.
+#
+# AVANT recherche.mjs, et pas en parallèle, pour deux raisons : les deux
+# écrivent dans le même fichier de veille, et recherche.mjs lit l'instantané du
+# registre pour ne pas faire reproposer à Gemini ce qui vient d'être énuméré.
+node scripts/popups.mjs --jour "$JOUR" || echo "registre des pop-ups indisponible : la recherche Gemini reste"
+
 # Les événements AUSSI avant la session, mais par Gemini : les pop-ups et
 # concerts de Séoul n'ont pas de flux, ils se cherchent, en coréen, et c'était
 # le morceau qui restait cher dans la session Claude, seize appels pour deux

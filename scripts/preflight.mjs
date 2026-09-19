@@ -36,6 +36,7 @@ import {
   seoulDate,
 } from './lib/guards.mjs';
 import { contrôlerÉvénements } from './lib/evenements.mjs';
+import { rangsDeSources } from './lib/sources.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 
@@ -173,8 +174,14 @@ if (!fautes.length) {
   const vivants = sondes.filter((s) => s.ok).map((s) => s.item);
 
   // --- Garde 3 : allowlist (avertissement, pas faute) ---
-  const { domains } = JSON.parse(await readFile(path.join(RACINE, 'config', 'sources.json'), 'utf8'));
-  const inconnus = checkAllowlist(vivants, domains);
+  // Trois rangs : les items ne voient que la presse, les événements plus bas
+  // voient aussi les officiels. Ce contrôle n'a de valeur que s'il prédit
+  // EXACTEMENT le verdict de l'ingestion, d'où le même assemblage, fait au même
+  // endroit (lib/sources.mjs).
+  const { presse, pourÉvénements, agrégateurs } = rangsDeSources(
+    JSON.parse(await readFile(path.join(RACINE, 'config', 'sources.json'), 'utf8'))
+  );
+  const inconnus = checkAllowlist(vivants, presse);
   if (inconnus.length) {
     const hôtes = [...new Set(inconnus.map((i) => i.host))];
     console.log(`! allowlist     ${hôtes.join(', ')}`);
@@ -226,7 +233,8 @@ if (!fautes.length) {
   if (événements.length) {
     const connus = await événementsDéjàConnus();
     const { retenus, écartés, liensRetirés, prolongés } = await contrôlerÉvénements(événements, {
-      domaines: domains,
+      domaines: pourÉvénements,
+      agrégateurs,
       connus: connus ?? [],
       today: seoulDate(),
     });

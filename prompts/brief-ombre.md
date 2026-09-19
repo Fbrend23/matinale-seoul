@@ -61,6 +61,10 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
 
 {{DOMAINES}}
 
+- **Pour un événement seulement**, celui qui l'organise est aussi une source — le lieu, l'enseigne, le label —, parce qu'une annonce de pop-up ne passe souvent par aucune rédaction. Ces domaines ne valent que dans `events` ; un item d'actualité sourcé là retiendrait le brief en brouillon :
+
+{{OFFICIELS}}
+
 - **Jamais le texte intégral d'un article, ni sa traduction complète.** Un résumé court, écrit par toi, et le lien.
 
 ## 5. Le ton

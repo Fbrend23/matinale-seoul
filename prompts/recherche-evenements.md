@@ -29,11 +29,23 @@ L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont chang�
 
 {{METHODE}}
 
-Puis, **pour chaque candidat, trouve sa source** : une page d'un de ces domaines, et d'aucun autre :
+Puis, **pour chaque candidat, trouve sa source**. Deux familles de domaines sont acceptées, et aucune autre.
+
+**Les rédactions**, pour tout :
 
 {{DOMAINES}}
 
-Les agrégateurs (popga, heypop, popply, dayforyou, dealseoul, namu.wiki, blogs Naver, Instagram, X) disent ce qui existe, mais un événement sourcé chez eux sera écarté. Quand tu y repères un événement, cherche-le par son nom pour trouver l'article d'un domaine de la liste. Introuvable chez eux : laisse-le.
+**Ceux qui l'organisent** — le lieu, l'enseigne, le label —, acceptés pour un événement parce qu'ils sont la décision elle-même, pas son compte rendu :
+
+{{OFFICIELS}}
+
+Un pop-up d'idol ou de petite marque ne passe souvent par AUCUNE rédaction : il est annoncé par le grand magasin qui l'héberge ou par le label. La page d'annonce du lieu ou du label est alors la bonne source, et elle vaut mieux qu'un article qui n'existe pas. Elle doit dire les dates et l'adresse ; une page d'accueil, un catalogue produit, une boutique en ligne ne sont pas une annonce.
+
+**Les recenseurs** disent ce qui existe, jamais d'où on le sait, et un événement sourcé chez eux sera écarté :
+
+{{AGREGATEURS}}
+
+Ils sont ton point de départ, pas ta source : tu y repères l'événement, puis tu le cherches par son nom — d'abord chez une rédaction, ensuite chez celui qui l'organise. Introuvable chez les deux : laisse-le.
 
 **Ouvre la source retenue** pour y lire les dates et le lieu. Ce que tu rends vient de cette page, pas de ta mémoire.
 

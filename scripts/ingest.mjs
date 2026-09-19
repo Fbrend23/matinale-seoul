@@ -20,6 +20,7 @@ import process from 'node:process';
 import { seoulDate } from './lib/guards.mjs';
 import { createClient } from './lib/directus.mjs';
 import { ingérer, tracerLÉchec } from './lib/ingestion.mjs';
+import { rangsDeSources } from './lib/sources.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const INBOX = path.join(RACINE, 'inbox');
@@ -52,7 +53,11 @@ if (!fichiers.length) {
 
 // Lus une fois pour tout le run : ils ne changent pas d'un brief à l'autre.
 const schéma = await lireJSON('schemas', 'brief.schema.json');
-const { domains: domaines } = await lireJSON('config', 'sources.json');
+// Trois rangs, une seule lecture : la presse pour les items, la presse ET les
+// officiels pour les événements, les agrégateurs pour nommer ce qu'on refuse.
+const { presse: domaines, pourÉvénements: domainesÉvénements, agrégateurs } = rangsDeSources(
+  await lireJSON('config', 'sources.json')
+);
 
 const client = createClient({
   url: process.env.DIRECTUS_URL,
@@ -73,6 +78,8 @@ for (const fichier of fichiers) {
       aujourdhui,
       schéma,
       domaines,
+      domainesÉvénements,
+      agrégateurs,
       dire,
       annoter: dire,
     });

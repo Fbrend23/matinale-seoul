@@ -18,6 +18,7 @@
     "preflight": "node scripts/preflight.mjs",
     "veille": "node scripts/veille.mjs",
     "ombre": "node scripts/ombre.mjs",
+    "popups": "node scripts/popups.mjs",
     "recherche": "node scripts/recherche.mjs",
     "actualite": "node scripts/actualite.mjs",
     "relecture": "node scripts/relecture.mjs",

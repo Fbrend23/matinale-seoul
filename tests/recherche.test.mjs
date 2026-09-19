@@ -176,6 +176,20 @@ test('au plus trois pistes par domaine, dans l\'ordre de Gemini, le reste écart
     tri.écartées.map(({ event, raison }) => `${event.name} : ${raison}`),
     ['Inside 4 : 4e de insideseoul.app ce matin, 3 par source', 'Inside 5 : 5e de insideseoul.app ce matin, 3 par source']
   );
+
+  // ET LE PLAFOND LEVÉ, pour une énumération : scripts/popups.mjs lit un
+  // registre entier, tout y vient du même domaine par construction, et un
+  // plafond qui n'en garderait que trois ferait exactement la panne qu'il
+  // devait empêcher — une couverture bornée sans que rien ne le dise.
+  const inventaire = await trierPistes(pistes, {
+    domaines: DOMAINES,
+    connus: [],
+    today: TODAY,
+    fetcher,
+    maxParSource: Infinity,
+  });
+  assert.deepEqual(inventaire.retenues.map((e) => e.name), ['Inside 1', 'Inside 2', 'Inside 3', 'Inside 4', 'Inside 5', 'Inven 1']);
+  assert.deepEqual(inventaire.écartées, []);
 });
 
 test('la section rend chaque piste retenue en JSON recopiable, nomme les écartées, et dit une panne', () => {
@@ -294,9 +308,14 @@ test('la consigne de Gemini demande la forme même du schéma, et nomme chaque t
   // budget serait le premier, dépensé deux fois.
   const méthodes = Object.fromEntries(await Promise.all(VOLETS.map(async (v) => [v.nom, await lire(v.méthode)])));
   assert.deepEqual(Object.keys(méthodes), ['pages', 'coréen']);
-  for (const page of ['insideseoul.app/popups', 'world.nol.com', 'kpopofficial.com', 'festival.seoul.go.kr']) {
+  for (const page of ['world.nol.com', 'kpopofficial.com', 'festival.seoul.go.kr']) {
     assert.ok(méthodes.pages.includes(page), `page « ${page} » absente du volet pages`);
   }
+  // Et insideseoul.app EN MOINS : le dépôt l'énumère lui-même
+  // (scripts/popups.mjs), et une session qui le relirait dépenserait son
+  // budget à refaire, moins bien, ce qui est déjà dans la veille.
+  assert.match(méthodes.pages, /Ne lis pas `insideseoul\.app`/);
+  assert.match(méthodes.pages, /trois pages qui listent/);
   assert.match(méthodes.pages, /ne fais pas de recherche par thème/i);
   assert.match(méthodes.coréen, /ne lis aucune page qui liste/i);
   for (const theme of THEMES) assert.ok(méthodes.coréen.includes(`\`${theme}\``), `thème « ${theme} » absent du volet coréen`);

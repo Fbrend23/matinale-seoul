@@ -44,14 +44,16 @@ export function exempleDuPrompt(promptMd) {
  * @param {object} p
  * @param {string} p.jour           AAAA-MM-JJ à Séoul
  * @param {string} p.veille         chemin de la veille, relatif au dépôt
- * @param {string[]} p.domaines     l'allowlist
+ * @param {string[]} p.domaines     la presse : les rédactions, citables partout
+ * @param {string[]} [p.officiels]  lieux, enseignes, labels : citables dans `events` seulement
  * @param {string} p.exemple        exempleDuPrompt()
  */
-export function composerConsigneOmbre(gabarit, { jour, veille, domaines = [], exemple }) {
+export function composerConsigneOmbre(gabarit, { jour, veille, domaines = [], officiels = [], exemple }) {
   return gabarit
     .replaceAll('{{JOUR}}', jour)
     .replaceAll('{{VEILLE}}', veille)
     .replaceAll('{{DOMAINES}}', domaines.join(', '))
+    .replaceAll('{{OFFICIELS}}', officiels.join(', '))
     .replaceAll('{{EXEMPLE}}', exemple);
 }
 

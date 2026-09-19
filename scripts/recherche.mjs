@@ -29,10 +29,11 @@ import process from 'node:process';
 
 import { composerConsigne, extraireTableau, trierPistes, rendrePistes, VOLETS } from './lib/recherche.mjs';
 import { interrogerGemini } from './lib/agy.mjs';
+import { connusDuSite } from './lib/onglet.mjs';
+import { rangsDeSources } from './lib/sources.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
-const SITE = (process.env.SITE_URL ?? 'https://matinale.brendanfleurdelys.ch').replace(/\/$/, '');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // Le modèle est FIXÉ ET JOURNALISÉ, pour la raison que bin/brief-du-jour.sh
 // donne pour Claude : deux matins sur deux modèles différents sans que rien
@@ -57,24 +58,10 @@ const option = (nom) => {
 const jour = option('--jour') ?? seoulToday();
 const dossier = path.resolve(RACINE, option('--dossier') ?? 'veille');
 
-const { domains } = JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'));
+const { presse, officiels, pourÉvénements, agrégateurs } = rangsDeSources(
+  JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'))
+);
 const gabarit = readFileSync(path.join(RACINE, 'prompts/recherche-evenements.md'), 'utf8');
-
-/** L'onglet tel qu'il est ; `[]` s'il est hors d'atteinte, et le journal le dit. */
-async function connusDuSite({ timeoutMs = 10_000 } = {}) {
-  const controller = new AbortController();
-  const minuteur = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const res = await fetch(`${SITE}/api/evenements.json`, { signal: controller.signal });
-    if (!res.ok) return { connus: [], panne: `HTTP ${res.status}` };
-    const { events } = await res.json();
-    return { connus: Array.isArray(events) ? events : [], panne: null };
-  } catch (e) {
-    return { connus: [], panne: e.name === 'AbortError' ? `délai de ${timeoutMs} ms dépassé` : e.message };
-  } finally {
-    clearTimeout(minuteur);
-  }
-}
 
 await mkdir(dossier, { recursive: true });
 const sortie = path.join(dossier, `${jour}.md`);
@@ -87,8 +74,24 @@ async function déposer(section) {
   else await writeFile(sortie, `# Veille du ${jour} (heure de Séoul), flux non relevés\n\n${section}`);
 }
 
-const { connus, panne: panneSite } = await connusDuSite();
-console.log(`${panneSite ? '!' : '✓'} ${'evenements.json'.padEnd(18)} ${panneSite ?? `${connus.length} événements connus`}`);
+const { connus: enLigne, panne: panneSite } = await connusDuSite();
+console.log(`${panneSite ? '!' : '✓'} ${'evenements.json'.padEnd(18)} ${panneSite ?? `${enLigne.length} événements connus`}`);
+
+// ET CE QUE LE REGISTRE VIENT DE RENDRE, s'il est passé avant (il est appelé
+// juste avant dans bin/brief-du-jour.sh). Ses fiches ne sont pas encore dans
+// l'onglet, mais elles sont DÉJÀ dans la veille que Gemini ignore et que
+// l'agent lira : sans ce fichier, le même pop-up serait proposé deux fois dans
+// le même document, une fois par le registre, une fois par la rédaction qui en
+// a parlé. Absent, ce n'est pas une panne : le registre n'a rien trouvé, ou
+// n'a pas tourné.
+let duRegistre = [];
+try {
+  duRegistre = JSON.parse(readFileSync(path.join(dossier, `popups-${jour}.json`), 'utf8'));
+  console.log(`✓ ${'registre du matin'.padEnd(18)} ${duRegistre.length} fiches déjà dans la veille`);
+} catch {
+  duRegistre = [];
+}
+const connus = [...enLigne, ...duRegistre];
 
 console.log(`modèle : ${MODELE}`);
 
@@ -100,7 +103,14 @@ const début = Date.now();
 const résultats = await Promise.all(
   VOLETS.map(async (volet) => {
     const méthode = readFileSync(path.join(RACINE, volet.méthode), 'utf8');
-    const consigne = composerConsigne(gabarit, { jour, connus, domaines: domains, méthode });
+    const consigne = composerConsigne(gabarit, {
+      jour,
+      connus,
+      domaines: presse,
+      officiels,
+      agrégateurs,
+      méthode,
+    });
     const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
     return { volet: volet.nom, gemini, durée: Math.round((Date.now() - début) / 1000) };
   })
@@ -142,7 +152,7 @@ if (pannes.length === résultats.length) {
   process.exit(1);
 }
 
-const tri = await trierPistes(pistes, { domaines: domains, connus, today: jour });
+const tri = await trierPistes(pistes, { domaines: pourÉvénements, agrégateurs, connus, today: jour });
 for (const e of tri.retenues) console.log(`  ✓ ${e.name} · ${e.theme} · ${e.start_date} → ${e.end_date}`);
 for (const { event, connu } of tri.prolongées) console.log(`  ↻ ${connu.name} : ${event.start_date} → ${event.end_date}`);
 for (const { event, raison } of tri.écartées) console.log(`  ! ${event.name ?? '(sans nom)'} : ${raison}`);

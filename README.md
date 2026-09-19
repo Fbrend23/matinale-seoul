@@ -131,7 +131,7 @@ fois les liens morts et les doublons retirés.
 |---|---|---|---|
 | 1 | schéma | brief mal formé, champ inventé, URL non HTTPS | brief recalé |
 | 2 | liens vivants | **URL inventée**, le mode de défaillance le plus probable | item retiré si l'adresse n'existe pas ; conservé sans date si l'accès est refusé |
-| 3 | allowlist | source hors de `config/sources.json` | brief retenu en brouillon |
+| 3 | allowlist | source hors de `config/sources.json` (rang `domains`, la presse) | brief retenu en brouillon |
 | 4 | doublons | histoire déjà couverte ces 14 derniers jours | item retiré |
 | 5 | cohérence | date d'hier, résumé bavard, rangs en double | brief recalé |
 
@@ -147,6 +147,23 @@ imputait alors à la source ce qui venait de la garde.
 
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
+
+**Trois rangs de sources**, et un seul s'applique aux items
+(`scripts/lib/sources.mjs` dit pourquoi) :
+
+| rang | dans `config/sources.json` | citable pour |
+|---|---|---|
+| la presse | `domains` | tout, items compris |
+| ceux qui organisent : lieu, enseigne, label | `event_domains` | un **événement** seulement |
+| les recenseurs : popply, popga, dayforyou, réseaux | `aggregators` | rien, jamais |
+
+Un item est toujours jugé sur la seule presse : la garde 3 ne change pas d'un
+iota. Pour un événement, la question n'est pas « qui le dit ? » mais « cela
+existe-t-il, à ces dates, à cet endroit ? », et la page de celui qui l'organise
+y répond mieux qu'un article — elle est la décision, pas son compte rendu. Le
+troisième rang n'autorise rien : il existe pour que le journal du matin dise
+« agrégateur, retrouve la page du lieu » au lieu de « domaine inconnu », qui se
+corrige, lui, en ajoutant le domaine — exactement ce qu'il ne faut pas faire.
 
 **Et après la parution, les liens qui meurent.** La garde 2 ne regarde une source
 qu'une fois, le matin où elle paraît. Le workflow `Liens`, le dimanche à midi
@@ -175,11 +192,12 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 | ce qui cloche | sanction |
 |---|---|
 | dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots, lieu sans hangul et sans fiche Naver Map | événement écarté |
-| domaine hors allowlist | événement écarté, **pas** de brief retenu en brouillon |
+| domaine hors allowlist des événements (presse + `event_domains`) | événement écarté, **pas** de brief retenu en brouillon |
+| domaine d'un recenseur (`aggregators`) | événement écarté, et le journal dit de retrouver la page du lieu ou du label plutôt que d'ajouter le domaine |
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
 | déjà connu par le lieu : même lieu, dates qui se recouvrent, et la même source ou le même thème avec un nom à moitié proche | événement écarté ; le nom seul en laissait passer, le lieu seul en écarterait trop, COEX accueille plusieurs pop-ups la même semaine |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour, prolongation, report, si la source répond |
-| source morte | événement écarté ; un accès refusé le garde, sans date |
+| source morte | événement écarté ; un accès refusé le garde, sans date — et un certificat que Node ne valide pas est un refus, pas une mort (ddp.or.kr sert sa chaîne sans l'intermédiaire, et ses expositions étaient écartées chaque matin) |
 | billetterie ou fiche Naver Map morte | le **champ** saute, l'événement reste |
 | collection absente du CMS | avertissement au run, le brief paraît |
 
@@ -187,6 +205,37 @@ Un accessoire, comme la météo : rien de tout cela ne recale jamais un brief.
 Seule une faute de schéma le fait, parce que le schéma juge le fichier entier.
 Les écartés sont dits au résumé du run, et le contrôle avant vol les annonce à
 l'agent en avertissement, jamais en faute.
+
+**Deux façons de les trouver, et elles ne se valent pas.** Une recherche
+ÉCHANTILLONNE : `scripts/recherche.mjs` donne à Gemini une dizaine de minutes et
+un plafond de trois pistes par domaine, et ce qui n'est pas remonté ce matin-là
+ne se sait pas. Une énumération COUVRE : `scripts/popups.mjs` lit l'index de
+`insideseoul.app/popups`, ouvre chacune de ses fiches, y prend le JSON-LD
+`Event` — nom, dates, adresse en hangul, géo — et soustrait ce que l'onglet
+tient déjà. Aucun modèle, dix secondes, cent pour cent du registre. Le 19
+septembre 2026, sur soixante fiches en cours, l'onglet en connaissait
+quarante-cinq : les quinze autres étaient des marques dont aucune rédaction ne
+parle, et c'est exactement ce qu'une recherche ne remonte pas.
+
+**Et l'autre moitié du problème : qui peut sourcer un événement.** Un pop-up
+d'idol ou de petite marque ne passe par aucune rédaction — il est annoncé par le
+grand magasin qui l'héberge ou par le label, et repris par les recenseurs
+coréens. Avec une seule allowlist de presse, ces événements étaient hors
+d'atteinte par construction : le 19 septembre 2026, l'onglet ne tenait que
+**deux** pop-ups K-pop sur quarante-six en cours, quand Séoul en a une
+quinzaine en permanence. Le rang `event_domains` les rend atteignables, sans
+toucher au contrat des items.
+
+Ce que le registre ne fabrique pas : le `name` en français et le `summary`. Un
+résumé traduit mot à mot serait un résumé que personne n'a lu ; la matière
+anglaise de la fiche est donnée à côté, et c'est la rédaction qui écrit. Le
+`theme` est proposé d'après les mots du registre, à trancher.
+
+Rien à mettre en file d'attente : une fiche non retenue ce matin sera
+réénumérée demain, tant qu'elle n'est pas dans l'onglet. C'est la propriété qui
+distingue une énumération d'une recherche, et le plafond par domaine ne
+s'applique donc pas à elle (`maxParSource: Infinity`) — il borne une session
+qui cherche, pas un inventaire.
 
 **La page liste tout l'ensemble actif**, pas le seul apport du jour : l'agent
 ajoute, la collection tient la liste. Il lit d'abord `/api/evenements.json`
@@ -260,6 +309,7 @@ npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu 
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
+npm run popups           # énumère le registre des pop-ups (Inside Seoul), diffe contre l'onglet, ajoute la section à la veille
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
