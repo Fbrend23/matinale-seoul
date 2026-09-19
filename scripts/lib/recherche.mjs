@@ -33,6 +33,14 @@ import { normaliserLieu } from '../../shared/evenements.mjs';
  * compte, et arrêté là. La consigne demande la variété, mais une consigne se
  * contourne ; le plafond, non. Le quatrième d'un même domaine est écarté, il
  * ne disparaît pas : il sera là demain, ou sous une autre source.
+ *
+ * IL BORNE UNE RECHERCHE, PAS UN INVENTAIRE. Le plafond existe parce qu'une
+ * session qui cherche s'arrête à la première page qui liste, et qu'on ne veut
+ * pas d'un matin entier tiré d'un seul site. Quand un script ÉNUMÈRE un
+ * registre (scripts/popups.mjs), tout vient du même domaine par construction
+ * et le plafond ne protège plus de rien : celui-là passe
+ * `maxParSource: Infinity`, et c'est la veille qui décide combien de fiches
+ * elle met en avant.
  */
 export const MAX_PAR_SOURCE = 3;
 
@@ -251,9 +259,13 @@ export async function résoudre(url, { fetcher = fetch, timeoutMs = 10_000 } = {
  * @param {string} p.today
  * @param {Function} [p.fetcher]
  * @param {number} [p.timeoutMs]
+ * @param {number} [p.maxParSource]  le plafond par domaine ; `Infinity` pour une énumération
  * @returns {Promise<{retenues: object[], écartées: {event: object, raison: string}[], prolongées: {event: object, connu: object}[]}>}
  */
-export async function trierPistes(pistes, { domaines, connus = [], today, fetcher = fetch, timeoutMs = 10_000 }) {
+export async function trierPistes(
+  pistes,
+  { domaines, connus = [], today, fetcher = fetch, timeoutMs = 10_000, maxParSource = MAX_PAR_SOURCE }
+) {
   // Le lieu en coréen quand la table le connaît, AVANT le tri : c'est le
   // test du hangul qui écartait KSPO DOME, et il ne sait pas traduire.
   const épurées = pistes.map(épurer).map((p) => (p.venue ? { ...p, venue: lieuEnCoréen(p.venue) } : p));
@@ -294,8 +306,8 @@ export async function trierPistes(pistes, { domaines, connus = [], today, fetche
     const hôte = hostOf(event.source_url);
     const n = (parDomaine.get(hôte) ?? 0) + 1;
     parDomaine.set(hôte, n);
-    if (n <= MAX_PAR_SOURCE) retenues.push(event);
-    else excédent.push({ event, raison: `${n}e de ${hôte} ce matin, ${MAX_PAR_SOURCE} par source` });
+    if (n <= maxParSource) retenues.push(event);
+    else excédent.push({ event, raison: `${n}e de ${hôte} ce matin, ${maxParSource} par source` });
   }
 
   // link_checked_at est une information de l'ingestion, pas un champ du

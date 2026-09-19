@@ -65,6 +65,23 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   répond un nombre ; une réponse vide et `denied_actions: read_file`, c'est
   le chemin qui ne correspond pas.
 
+  **Le registre des pop-ups ne demande RIEN de tout cela** : il n'y a pas de
+  modèle dedans. `scripts/popups.mjs` énumère `insideseoul.app/popups`, lit le
+  JSON-LD de chaque fiche et soustrait ce que l'onglet tient déjà. Il tourne
+  avant les deux sessions Gemini, sans quota, sans clé, sans permission :
+
+  ```bash
+  node scripts/popups.mjs --jour "$(TZ=Asia/Seoul date +%F)"
+  # « ✓ Inside Seoul  N fiches lues sur N en … s », « M neuves, K déjà dans
+  # l'onglet », une ligne par fiche retenue, puis la section « Pop-ups du
+  # registre » au bout de veille/AAAA-MM-JJ.md.
+  ```
+
+  Il a besoin du SITE, pas du CMS : sans `/api/evenements.json`, le diff serait
+  faux et il s'arrête en le disant, plutôt que de reproposer l'onglet entier.
+  `--json` rend le lot sur la sortie standard, sans rien écrire, pour un
+  remplissage de `mat_events` hors brief.
+
   **Facultatif** : sans `agy`, `scripts/recherche.mjs` échoue en quelques
   millisecondes, la veille le dit, et l'agent cherche les événements
   lui-même, comme avant. Vérifier une fois, dans le dépôt :

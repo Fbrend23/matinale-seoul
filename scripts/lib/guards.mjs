@@ -74,7 +74,7 @@ export function validateSchema(brief, schema) {
 const AGENT =
   'MatinaleDeSeoul/1.0 (vérificateur de liens ; +https://github.com/Fbrend23/matinale-seoul)';
 
-const ENTÊTES = {
+export const ENTÊTES = {
   'User-Agent': AGENT,
   'Accept-Language': 'fr,en;q=0.8,ko;q=0.6',
   Accept: 'text/html,application/xhtml+xml,*/*;q=0.8',
@@ -348,8 +348,13 @@ export function findDuplicates(items, recentHeadlines, seuil = DUPLICATE_THRESHO
 // ferait recaler un brief que le site daterait pourtant juste.
 export const seoulDate = seoulToday;
 
+// Un texte absent compte zéro mot, il ne fait pas tomber la garde. Le cas
+// existe depuis que le registre des pop-ups (scripts/lib/popups.mjs) rend des
+// événements SANS `summary` : le résumé s'écrit en français, à la rédaction, et
+// c'est le schéma du brief qui exige qu'il soit là — pas cette garde-ci, dont
+// le seul sujet est la longueur.
 export function wordCount(texte) {
-  return normalize(texte).split(/\s+/).filter(Boolean).length;
+  return normalize(texte ?? '').split(/\s+/).filter(Boolean).length;
 }
 
 /**

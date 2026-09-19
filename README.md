@@ -188,6 +188,28 @@ Seule une faute de schéma le fait, parce que le schéma juge le fichier entier.
 Les écartés sont dits au résumé du run, et le contrôle avant vol les annonce à
 l'agent en avertissement, jamais en faute.
 
+**Deux façons de les trouver, et elles ne se valent pas.** Une recherche
+ÉCHANTILLONNE : `scripts/recherche.mjs` donne à Gemini une dizaine de minutes et
+un plafond de trois pistes par domaine, et ce qui n'est pas remonté ce matin-là
+ne se sait pas. Une énumération COUVRE : `scripts/popups.mjs` lit l'index de
+`insideseoul.app/popups`, ouvre chacune de ses fiches, y prend le JSON-LD
+`Event` — nom, dates, adresse en hangul, géo — et soustrait ce que l'onglet
+tient déjà. Aucun modèle, dix secondes, cent pour cent du registre. Le 19
+septembre 2026, sur soixante fiches en cours, l'onglet en connaissait
+quarante-cinq : les quinze autres étaient des marques dont aucune rédaction ne
+parle, et c'est exactement ce qu'une recherche ne remonte pas.
+
+Ce que le registre ne fabrique pas : le `name` en français et le `summary`. Un
+résumé traduit mot à mot serait un résumé que personne n'a lu ; la matière
+anglaise de la fiche est donnée à côté, et c'est la rédaction qui écrit. Le
+`theme` est proposé d'après les mots du registre, à trancher.
+
+Rien à mettre en file d'attente : une fiche non retenue ce matin sera
+réénumérée demain, tant qu'elle n'est pas dans l'onglet. C'est la propriété qui
+distingue une énumération d'une recherche, et le plafond par domaine ne
+s'applique donc pas à elle (`maxParSource: Infinity`) — il borne une session
+qui cherche, pas un inventaire.
+
 **La page liste tout l'ensemble actif**, pas le seul apport du jour : l'agent
 ajoute, la collection tient la liste. Il lit d'abord `/api/evenements.json`
 pour ne pas reproposer ce qui s'y trouve. À chaque run, ce qui est fini passe à
@@ -260,6 +282,7 @@ npm run dev:faux         # le même, contre le faux CMS : pas de jeton, contenu 
 npm run ingest           # ingère inbox/, demande le jeton d'écriture
 npm run liens            # revisite les sources publiées et marque celles qui ont disparu, même jeton
 npm run veille           # relève les flux RSS et le site dans veille/, ce que l'agent lit avant de composer
+npm run popups           # énumère le registre des pop-ups (Inside Seoul), diffe contre l'onglet, ajoute la section à la veille
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
