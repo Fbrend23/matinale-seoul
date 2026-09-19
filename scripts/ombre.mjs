@@ -29,6 +29,7 @@ import process from 'node:process';
 
 import { exempleDuPrompt, composerConsigneOmbre, consigneDeCorrection, extraireObjet, comparer } from './lib/ombre.mjs';
 import { interrogerGemini } from './lib/agy.mjs';
+import { rangsDeSources } from './lib/sources.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -63,7 +64,9 @@ if (!existsSync(veille)) {
   process.exit(1);
 }
 
-const { domains } = JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'));
+const { presse, officiels } = rangsDeSources(
+  JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'))
+);
 const gabarit = readFileSync(path.join(RACINE, 'prompts/brief-ombre.md'), 'utf8');
 const exemple = exempleDuPrompt(readFileSync(path.join(RACINE, 'prompts/brief-quotidien.md'), 'utf8'));
 
@@ -74,7 +77,13 @@ const fichierComparaison = path.join(dossier, `ombre-${jour}.md`);
 console.log(`modèle ombre : ${MODELE}`);
 
 // --- La rédaction ---------------------------------------------------------------
-const consigne = composerConsigneOmbre(gabarit, { jour, veille: path.relative(RACINE, veille), domaines: domains, exemple });
+const consigne = composerConsigneOmbre(gabarit, {
+  jour,
+  veille: path.relative(RACINE, veille),
+  domaines: presse,
+  officiels,
+  exemple,
+});
 const début = Date.now();
 const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
 const durée = Math.round((Date.now() - début) / 1000);

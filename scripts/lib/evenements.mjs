@@ -11,12 +11,21 @@
 // écarte : retenir le brief ferait payer à toute l'actualité une boutique
 // éphémère, et le journal du run dit le domaine tout aussi bien.
 //
+// ET L'ALLOWLIST N'EST PAS LA MÊME LISTE. Un événement peut être sourcé chez
+// celui qui l'organise — le grand magasin, le label, l'enseigne —, ce qu'un
+// item ne peut pas : la question posée à un événement est « cela existe-t-il, à
+// ces dates ? », et l'annonce du lieu y répond mieux qu'un article. Les
+// appelants passent donc `pourÉvénements` (presse + officiels) de
+// scripts/lib/sources.mjs, qui dit pourquoi ; ce module ne fait qu'appliquer la
+// liste qu'on lui donne.
+//
 // Tout est pur, sauf les sondes de liens qui reçoivent leur `fetch`, comme
 // dans guards.mjs, et pour la même raison : testable sans réseau.
 
 import {
   checkLinks,
   checkAllowlist,
+  couvertPar,
   findDuplicates,
   similarity,
   hostOf,
@@ -190,7 +199,8 @@ export function cohérenceÉvénement(event, { today }) {
  *
  * @param {object[]} events         brief.events, tel que l'agent l'a écrit
  * @param {object} p
- * @param {string[]} p.domaines     l'allowlist
+ * @param {string[]} p.domaines     l'allowlist des ÉVÉNEMENTS : presse + officiels
+ * @param {string[]} [p.agrégateurs] les recenseurs, pour nommer le rejet sans détour
  * @param {{name: string, start_date?: string, end_date?: string, id?: any}[]} [p.connus]
  *   les événements actifs déjà connus, avec leurs dates pour reconnaître une
  *   prolongation
@@ -206,7 +216,7 @@ export function cohérenceÉvénement(event, { today }) {
  */
 export async function contrôlerÉvénements(
   events,
-  { domaines, connus = [], today, fetcher = fetch, timeoutMs = 10_000 }
+  { domaines, agrégateurs = [], connus = [], today, fetcher = fetch, timeoutMs = 10_000 }
 ) {
   const écartés = [];
   const liensRetirés = [];
@@ -227,7 +237,18 @@ export async function contrôlerÉvénements(
 
   // --- Allowlist : écarte, ne retient pas ---
   const inconnus = checkAllowlist(survivants, domaines);
-  for (const { item, host } of inconnus) écarter(item, `domaine inconnu : ${host}`);
+  for (const { item, host } of inconnus) {
+    // « Domaine inconnu » se corrige en ajoutant le domaine ; un agrégateur,
+    // non — il ne doit jamais entrer, et ce qu'il faut faire est autre chose :
+    // retrouver l'annonce du lieu ou de la marque. Le journal doit dire lequel
+    // des deux, sans quoi le matin suivant ajoute popga.co.kr à l'allowlist.
+    écarter(
+      item,
+      couvertPar(host, agrégateurs)
+        ? `agrégateur : ${host} recense, il ne source pas — retrouve la page du lieu, de la marque ou du label`
+        : `domaine inconnu : ${host}`
+    );
+  }
   survivants = survivants.filter((event) => !inconnus.some((i) => i.item === event));
 
   // --- Doublons, sur le nom ---

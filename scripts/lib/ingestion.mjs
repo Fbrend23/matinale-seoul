@@ -66,6 +66,8 @@ export async function ingérer({
   aujourdhui,
   schéma,
   domaines,
+  domainesÉvénements = domaines,
+  agrégateurs = [],
   relevé = relevéMétéo,
   air = relevéAir,
   cours = relevéChange,
@@ -274,8 +276,13 @@ export async function ingérer({
     // « Sauf ce brief » : ses événements d'un passage précédent vont être
     // archivés par saveEvents ; les compter comme connus écarterait le rejeu.
     const connus = await activeEvents(client, { today: aujourdhui, saufBrief: id });
+    // Pas la même liste que les items : un événement peut venir de celui qui
+    // l'organise (lib/sources.mjs). Par défaut, `domainesÉvénements` retombe sur
+    // `domaines`, pour qu'un appelant qui ne connaît qu'une liste se comporte
+    // comme avant.
     const { retenus: événements, écartés, liensRetirés, prolongés } = await contrôlerÉvénements(proposés, {
-      domaines,
+      domaines: domainesÉvénements,
+      agrégateurs,
       connus,
       today: aujourdhui,
     });

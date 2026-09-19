@@ -236,12 +236,32 @@ export function hostOf(url) {
 }
 
 /**
+ * Un hôte appartient-il à cette liste de domaines ?
+ *
+ * Un sous-domaine d'un domaine connu l'est aussi : « english.hani.co.kr » suit
+ * « hani.co.kr » sans qu'on ait à énumérer les rédactions. Hors de
+ * checkAllowlist() parce que les rangs de sources (scripts/lib/sources.mjs)
+ * posent la même question à d'autres listes : un agrégateur se reconnaît
+ * exactement comme une rédaction connue.
+ *
+ * @param {string|null} host      déjà passé par hostOf()
+ * @param {string[]} domains
+ * @returns {boolean}
+ */
+export function couvertPar(host, domains = []) {
+  if (!host) return false;
+  return domains.some((brut) => {
+    const d = String(brut).replace(/^www\./, '').toLowerCase();
+    return host === d || host.endsWith(`.${d}`);
+  });
+}
+
+/**
  * Un domaine inconnu ne fait pas sauter l'item : il retient le brief entier en
  * brouillon. Jeter l'item ferait disparaître la source sans que personne ne
  * l'apprenne, et la liste ne s'enrichirait jamais.
  */
 export function checkAllowlist(items, domains) {
-  const connus = new Set(domains.map((d) => d.replace(/^www\./, '').toLowerCase()));
   const inconnus = [];
 
   for (const item of items) {
@@ -250,10 +270,7 @@ export function checkAllowlist(items, domains) {
       inconnus.push({ item, host: item.source_url });
       continue;
     }
-    // Un sous-domaine d'un domaine connu l'est aussi : « english.hani.co.kr »
-    // suit « hani.co.kr » sans qu'on ait à énumérer les rédactions.
-    const couvert = [...connus].some((d) => host === d || host.endsWith(`.${d}`));
-    if (!couvert) inconnus.push({ item, host });
+    if (!couvertPar(host, domains)) inconnus.push({ item, host });
   }
 
   return inconnus;

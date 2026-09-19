@@ -1,5 +1,5 @@
 {
-  "note": "Domaines connus. Un item venant d'ailleurs n'est PAS jeté : il est gardé et le brief entier reste en brouillon, le temps qu'un humain regarde et, s'il y a lieu, ajoute le domaine ici. C'est ainsi que la liste s'enrichit. La jeter à la place ferait disparaître la source sans que personne ne l'apprenne. Un ÉVÉNEMENT venant d'ailleurs, lui, est écarté avec un avertissement : c'est un accessoire du brief, pas un item. Les liens Naver Map ne sont pas des sources et n'y sont pas soumis.",
+  "note": "Domaines connus, en TROIS RANGS (scripts/lib/sources.mjs dit pourquoi). « domains » : les rédactions, citables partout. Un item venant d'ailleurs n'est PAS jeté : il est gardé et le brief entier reste en brouillon, le temps qu'un humain regarde et, s'il y a lieu, ajoute le domaine ici. C'est ainsi que la liste s'enrichit. La jeter à la place ferait disparaître la source sans que personne ne l'apprenne. Un ÉVÉNEMENT venant d'ailleurs, lui, est écarté avec un avertissement : c'est un accessoire du brief, pas un item. Les liens Naver Map ne sont pas des sources et n'y sont pas soumis.",
   "domains": [
     "yna.co.kr",
     "en.yna.co.kr",
@@ -77,5 +77,50 @@
     "koreabaseball.com",
     "olympics.com",
     "fifa.com"
-  ]
+  ],
+  "event_domains": {
+    "note": "Sources OFFICIELLES : le lieu, l'enseigne, le label, l'organisateur. Citables pour un ÉVÉNEMENT, jamais pour un item — la garde 3 ne regarde que « domains ». Pour un événement la question n'est pas « qui le dit ? » mais « cela existe-t-il, à ces dates, à cet endroit ? », et sur ce point la page de celui qui l'organise vaut mieux qu'un article : elle est la décision, pas son compte rendu. C'est ce rang qui rend atteignables les pop-ups d'idols et de petites marques, dont aucune rédaction ne parle. Chaque domaine ici a été ouvert une fois à la main avant d'y entrer ; la liste grandit par un commit, comme l'autre. PAS de weverse.io : ses pages ne disent rien à qui les ouvre sans compte, et une source que le lecteur ne peut pas lire n'en est pas une. PAS d'Instagram ni de X, qui sont au rang d'en dessous.",
+    "domains": [
+      "thehyundai.com",
+      "ehyundai.com",
+      "shinsegae.com",
+      "starfield.co.kr",
+      "lwt.co.kr",
+      "musinsa.com",
+      "lcdc-seoul.com",
+      "kintex.com",
+      "sac.or.kr",
+      "sejongpac.or.kr",
+      "linefriends.com",
+      "popmart.com",
+      "ygfamily.com",
+      "hybecorp.com",
+      "smtown.com",
+      "jype.com",
+      "blissoo.com"
+    ]
+  },
+  "aggregators": {
+    "note": "Les RECENSEURS et les réseaux. Jamais cités, à aucun rang : ils disent ce qui existe, pas d'où on le sait, et leurs fiches se contredisent d'un site à l'autre. Le rang existe pour que le journal du matin dise « agrégateur, cherche la page officielle » au lieu de « domaine inconnu », et pour que la consigne puisse les nommer comme point de départ : y repérer l'événement, puis le chercher chez une source des deux rangs du dessus.",
+    "domains": [
+      "popply.co.kr",
+      "popga.co.kr",
+      "dayforyou.com",
+      "heypop.kr",
+      "dealseoul.com",
+      "k-gallery.com",
+      "seongsudonggorilla.com",
+      "namu.wiki",
+      "instagram.com",
+      "x.com",
+      "twitter.com",
+      "threads.net",
+      "facebook.com",
+      "tiktok.com",
+      "blog.naver.com",
+      "cafe.naver.com",
+      "tistory.com",
+      "brunch.co.kr"
+    ]
+  }
 }

@@ -131,7 +131,7 @@ fois les liens morts et les doublons retirés.
 |---|---|---|---|
 | 1 | schéma | brief mal formé, champ inventé, URL non HTTPS | brief recalé |
 | 2 | liens vivants | **URL inventée**, le mode de défaillance le plus probable | item retiré si l'adresse n'existe pas ; conservé sans date si l'accès est refusé |
-| 3 | allowlist | source hors de `config/sources.json` | brief retenu en brouillon |
+| 3 | allowlist | source hors de `config/sources.json` (rang `domains`, la presse) | brief retenu en brouillon |
 | 4 | doublons | histoire déjà couverte ces 14 derniers jours | item retiré |
 | 5 | cohérence | date d'hier, résumé bavard, rangs en double | brief recalé |
 
@@ -147,6 +147,23 @@ imputait alors à la source ce qui venait de la garde.
 
 La garde 3 ne jette rien : jeter l'item ferait disparaître la source sans que
 personne ne l'apprenne, et la liste ne s'enrichirait jamais.
+
+**Trois rangs de sources**, et un seul s'applique aux items
+(`scripts/lib/sources.mjs` dit pourquoi) :
+
+| rang | dans `config/sources.json` | citable pour |
+|---|---|---|
+| la presse | `domains` | tout, items compris |
+| ceux qui organisent : lieu, enseigne, label | `event_domains` | un **événement** seulement |
+| les recenseurs : popply, popga, dayforyou, réseaux | `aggregators` | rien, jamais |
+
+Un item est toujours jugé sur la seule presse : la garde 3 ne change pas d'un
+iota. Pour un événement, la question n'est pas « qui le dit ? » mais « cela
+existe-t-il, à ces dates, à cet endroit ? », et la page de celui qui l'organise
+y répond mieux qu'un article — elle est la décision, pas son compte rendu. Le
+troisième rang n'autorise rien : il existe pour que le journal du matin dise
+« agrégateur, retrouve la page du lieu » au lieu de « domaine inconnu », qui se
+corrige, lui, en ajoutant le domaine — exactement ce qu'il ne faut pas faire.
 
 **Et après la parution, les liens qui meurent.** La garde 2 ne regarde une source
 qu'une fois, le matin où elle paraît. Le workflow `Liens`, le dimanche à midi
@@ -175,7 +192,8 @@ soit le brief qui l'a repéré. Il a donc sa collection (`mat_events`), sa page
 | ce qui cloche | sanction |
 |---|---|
 | dates irréelles, fin avant début, déjà terminé, résumé de plus de 40 mots, lieu sans hangul et sans fiche Naver Map | événement écarté |
-| domaine hors allowlist | événement écarté, **pas** de brief retenu en brouillon |
+| domaine hors allowlist des événements (presse + `event_domains`) | événement écarté, **pas** de brief retenu en brouillon |
+| domaine d'un recenseur (`aggregators`) | événement écarté, et le journal dit de retrouver la page du lieu ou du label plutôt que d'ajouter le domaine |
 | déjà connu (nom proche d'un événement actif), mêmes dates | événement écarté |
 | déjà connu par le lieu : même lieu, dates qui se recouvrent, et la même source ou le même thème avec un nom à moitié proche | événement écarté ; le nom seul en laissait passer, le lieu seul en écarterait trop, COEX accueille plusieurs pop-ups la même semaine |
 | déjà connu, **dates nouvelles** | la fiche connue est mise à jour, prolongation, report, si la source répond |
@@ -198,6 +216,15 @@ tient déjà. Aucun modèle, dix secondes, cent pour cent du registre. Le 19
 septembre 2026, sur soixante fiches en cours, l'onglet en connaissait
 quarante-cinq : les quinze autres étaient des marques dont aucune rédaction ne
 parle, et c'est exactement ce qu'une recherche ne remonte pas.
+
+**Et l'autre moitié du problème : qui peut sourcer un événement.** Un pop-up
+d'idol ou de petite marque ne passe par aucune rédaction — il est annoncé par le
+grand magasin qui l'héberge ou par le label, et repris par les recenseurs
+coréens. Avec une seule allowlist de presse, ces événements étaient hors
+d'atteinte par construction : le 19 septembre 2026, l'onglet ne tenait que
+**deux** pop-ups K-pop sur quarante-six en cours, quand Séoul en a une
+quinzaine en permanence. Le rang `event_domains` les rend atteignables, sans
+toucher au contrat des items.
 
 Ce que le registre ne fabrique pas : le `name` en français et le `summary`. Un
 résumé traduit mot à mot serait un résumé que personne n'a lu ; la matière

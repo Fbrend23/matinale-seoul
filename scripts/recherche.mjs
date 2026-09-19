@@ -30,6 +30,7 @@ import process from 'node:process';
 import { composerConsigne, extraireTableau, trierPistes, rendrePistes, VOLETS } from './lib/recherche.mjs';
 import { interrogerGemini } from './lib/agy.mjs';
 import { connusDuSite } from './lib/onglet.mjs';
+import { rangsDeSources } from './lib/sources.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -57,7 +58,9 @@ const option = (nom) => {
 const jour = option('--jour') ?? seoulToday();
 const dossier = path.resolve(RACINE, option('--dossier') ?? 'veille');
 
-const { domains } = JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'));
+const { presse, officiels, pourÉvénements, agrégateurs } = rangsDeSources(
+  JSON.parse(readFileSync(path.join(RACINE, 'config/sources.json'), 'utf8'))
+);
 const gabarit = readFileSync(path.join(RACINE, 'prompts/recherche-evenements.md'), 'utf8');
 
 await mkdir(dossier, { recursive: true });
@@ -100,7 +103,14 @@ const début = Date.now();
 const résultats = await Promise.all(
   VOLETS.map(async (volet) => {
     const méthode = readFileSync(path.join(RACINE, volet.méthode), 'utf8');
-    const consigne = composerConsigne(gabarit, { jour, connus, domaines: domains, méthode });
+    const consigne = composerConsigne(gabarit, {
+      jour,
+      connus,
+      domaines: presse,
+      officiels,
+      agrégateurs,
+      méthode,
+    });
     const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
     return { volet: volet.nom, gemini, durée: Math.round((Date.now() - début) / 1000) };
   })
@@ -142,7 +152,7 @@ if (pannes.length === résultats.length) {
   process.exit(1);
 }
 
-const tri = await trierPistes(pistes, { domaines: domains, connus, today: jour });
+const tri = await trierPistes(pistes, { domaines: pourÉvénements, agrégateurs, connus, today: jour });
 for (const e of tri.retenues) console.log(`  ✓ ${e.name} · ${e.theme} · ${e.start_date} → ${e.end_date}`);
 for (const { event, connu } of tri.prolongées) console.log(`  ↻ ${connu.name} : ${event.start_date} → ${event.end_date}`);
 for (const { event, raison } of tri.écartées) console.log(`  ! ${event.name ?? '(sans nom)'} : ${raison}`);

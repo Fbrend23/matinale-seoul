@@ -134,10 +134,15 @@ const CHAMPS = [
  * @param {object} p
  * @param {string} p.jour            AAAA-MM-JJ à Séoul
  * @param {object[]} p.connus        les événements de l'onglet
- * @param {string[]} p.domaines      l'allowlist
+ * @param {string[]} p.domaines      la presse : les rédactions
+ * @param {string[]} [p.officiels]   lieux, enseignes, labels : citables pour un événement
+ * @param {string[]} [p.agrégateurs] les recenseurs : pour chercher, jamais pour citer
  * @param {string} [p.méthode]       prompts/recherche-methode-*.md
  */
-export function composerConsigne(gabarit, { jour, connus = [], domaines = [], méthode = '' }) {
+export function composerConsigne(
+  gabarit,
+  { jour, connus = [], domaines = [], officiels = [], agrégateurs = [], méthode = '' }
+) {
   const listeConnus = connus.length
     ? connus.map((e) => `- ${e.start_date} → ${e.end_date} · ${e.theme} · ${e.name} · ${e.venue ?? ''}`.trimEnd()).join('\n')
     : "(l'onglet est vide ou injoignable : rien n'est connu)";
@@ -145,6 +150,8 @@ export function composerConsigne(gabarit, { jour, connus = [], domaines = [], m�
     .replaceAll('{{JOUR}}', jour)
     .replaceAll('{{CONNUS}}', listeConnus)
     .replaceAll('{{DOMAINES}}', domaines.join(', '))
+    .replaceAll('{{OFFICIELS}}', officiels.join(', '))
+    .replaceAll('{{AGREGATEURS}}', agrégateurs.join(', '))
     .replaceAll('{{METHODE}}', méthode.trim());
 }
 
@@ -254,7 +261,8 @@ export async function résoudre(url, { fetcher = fetch, timeoutMs = 10_000 } = {
  *
  * @param {object[]} pistes
  * @param {object} p
- * @param {string[]} p.domaines
+ * @param {string[]} p.domaines        presse + officiels, voir lib/sources.mjs
+ * @param {string[]} [p.agrégateurs]
  * @param {object[]} [p.connus]
  * @param {string} p.today
  * @param {Function} [p.fetcher]
@@ -264,7 +272,15 @@ export async function résoudre(url, { fetcher = fetch, timeoutMs = 10_000 } = {
  */
 export async function trierPistes(
   pistes,
-  { domaines, connus = [], today, fetcher = fetch, timeoutMs = 10_000, maxParSource = MAX_PAR_SOURCE }
+  {
+    domaines,
+    agrégateurs = [],
+    connus = [],
+    today,
+    fetcher = fetch,
+    timeoutMs = 10_000,
+    maxParSource = MAX_PAR_SOURCE,
+  }
 ) {
   // Le lieu en coréen quand la table le connaît, AVANT le tri : c'est le
   // test du hangul qui écartait KSPO DOME, et il ne sait pas traduire.
@@ -280,7 +296,14 @@ export async function trierPistes(
     avecSource.map(async (p) => ({ ...p, source_url: await résoudre(p.source_url, { fetcher, timeoutMs }) }))
   );
 
-  const { retenus, écartés, prolongés } = await contrôlerÉvénements(résolues, { domaines, connus, today, fetcher, timeoutMs });
+  const { retenus, écartés, prolongés } = await contrôlerÉvénements(résolues, {
+    domaines,
+    agrégateurs,
+    connus,
+    today,
+    fetcher,
+    timeoutMs,
+  });
 
   // Les doublons du matin, entre pistes : contrôlerÉvénements() ne compare
   // qu'à l'onglet, pas les pistes entre elles, et deux volets peuvent tomber
