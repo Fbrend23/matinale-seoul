@@ -1,0 +1,376 @@
+{
+  "date": "2026-09-21",
+  "title": "Or coréen au basket, missiles nord-coréens et bras de fer sur la Constitution",
+  "standfirst": "La Corée du Sud renoue avec l'or au basketball masculin aux Jeux asiatiques, douze ans après sa dernière victoire, pendant que Pyongyang tire deux missiles à la veille du sommet Trump-Xi. À Séoul, le parti au pouvoir relance la révision constitutionnelle et la voie militaire s'ouvre de nouveau aux chercheurs en IA.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les billets KTX réservables deux mois à l'avance dès le 1er octobre",
+          "original_headline": "KTX 승차권 예매 두 달 전부터 가능…10월 1일부터",
+          "summary": "Korail avance l'ouverture des réservations KTX à deux mois avant le départ, contre un mois aujourd'hui, dès le 1er octobre. Le portail passe de sept à dix langues, dont le français, et accepte désormais Alipay et WeChat Pay.",
+          "analysis": "L'extension s'aligne sur les habitudes de réservation aérienne des visiteurs étrangers, jusqu'ici mal desservies par le rail.",
+          "importance": 1,
+          "tags": [
+            "ktx",
+            "train",
+            "langues",
+            "paiement-mobile"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008762124",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T12:00:18+09:00"
+        },
+        {
+          "headline": "Les musées et palais de Séoul restent ouverts jusqu'à 21 heures, cinq soirs par semaine",
+          "original_headline": "서울시 문화시설, 주 5일 밤 9시까지 문 연다…'서울 컬처나잇' 본격화",
+          "summary": "La municipalité élargit les ouvertures nocturnes de ses grands musées et palais jusqu'à 21 heures, cinq soirs par semaine. Ce dispositif automnal propose visites guidées et ateliers jusqu'au 30 novembre.",
+          "importance": 2,
+          "tags": [
+            "musees",
+            "culture-nocturne",
+            "palais"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://www.seoul.go.kr/news/news_report.do?bbsNo=158&nttNo=466865",
+          "source_lang": "ko"
+        },
+        {
+          "headline": "Séoul mise sur Magok pour attirer les séjours « workation » des entreprises étrangères",
+          "original_headline": "서울시, 해외기업 '워케이션' 수요 잡는다…마곡을 비즈니스 관광 거점으로",
+          "summary": "La mairie et l'Office du tourisme accueillent des cadres japonais à Magok, près de l'aéroport de Gimpo, pour un programme mêlant télétravail, séminaires et visites du jardin botanique ou de Hongdae.",
+          "importance": 3,
+          "tags": [
+            "magok",
+            "tourisme-affaires",
+            "workation"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1636494",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T15:43:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée du Nord tire deux missiles à courte portée, à la veille du sommet Trump-Xi",
+          "original_headline": "N. Korea launches SRBMs toward East Sea again, 2 weeks after last launch",
+          "summary": "Pyongyang a tiré deux missiles balistiques à courte portée depuis Wonsan dimanche, parcourant respectivement 450 et plus de 600 kilomètres. Séoul a réuni son conseil de sécurité, quatorzième tir nord-coréen de l'année.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "missiles",
+            "securite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10879664",
+          "source_lang": "en",
+          "published_at": "2026-09-20T17:11:30+09:00"
+        },
+        {
+          "headline": "Séoul rouvre après quatorze ans une dispense militaire pour les chercheurs en IA",
+          "original_headline": "Korea reopens military-service alternative for AI talent",
+          "summary": "Les jeunes chercheurs en intelligence artificielle pourront de nouveau remplacer leur service militaire par trois ans de recherche en entreprise, de 2027 à 2029. Sur 240 postes prévus, seuls 81 ont été demandés par Samsung, LG et Samsung Medison.",
+          "analysis": "Le faible taux de candidatures, 81 postes sur 240, illustre combien les grands groupes hésitent encore à s'engager sur trois ans dans un programme jugé contraignant.",
+          "importance": 2,
+          "tags": [
+            "intelligence-artificielle",
+            "service-militaire",
+            "samsung"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10879596",
+          "source_lang": "en",
+          "published_at": "2026-09-20T14:37:41+09:00"
+        },
+        {
+          "headline": "Le parti au pouvoir relance la révision constitutionnelle après le renoncement de Lee à un second mandat",
+          "original_headline": "Ruling party pushes to revise Constitution after Lee says not seeking 2nd term",
+          "summary": "Le Parti démocrate lance un groupe de travail pour porter à deux le nombre de mandats présidentiels de quatre ans, avec un référendum visé au premier semestre 2027. L'opposition juge la clarification de Lee Jae-myung encore ambiguë.",
+          "importance": 3,
+          "tags": [
+            "constitution",
+            "lee-jae-myung",
+            "politique"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10879623",
+          "source_lang": "en",
+          "published_at": "2026-09-20T15:15:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic, OpenAI, xAI et Google visés par une action antitrust sur le ralentissement de l'IA",
+          "original_headline": "\"AI 속도조절은 담합\"…앤트로픽·오픈AI 등 4곳 집단소송 당했다",
+          "summary": "Une action collective déposée en Californie accuse les patrons d'Anthropic, OpenAI, xAI et Google d'avoir convenu ensemble de ralentir le développement de l'IA, une entente illégale selon la loi antitrust américaine Sherman.",
+          "analysis": "La plainte teste une question inédite : la prudence affichée par les grands laboratoires sur la vitesse de l'IA peut-elle, en soi, constituer une entente entre concurrents ?",
+          "importance": 1,
+          "tags": [
+            "intelligence-artificielle",
+            "antitrust",
+            "anthropic",
+            "openai"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20260920000077",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T12:20:06+09:00"
+        },
+        {
+          "headline": "Trump veut renommer l'intelligence artificielle et crée une « AI Force »",
+          "original_headline": "Trump says it's time to rebrand AI with a new name — and he's also creating an AI Force",
+          "summary": "Le président propose de rebaptiser l'intelligence artificielle Superior, Extreme ou Supreme Intelligence, et annonce la création d'une AI Force calquée sur la Space Force. Il qualifie les craintes sur l'IA de mensonge démocrate.",
+          "importance": 2,
+          "tags": [
+            "intelligence-artificielle",
+            "trump",
+            "politique-americaine"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/19/trump-suggests-rebranding-ai-with-a-new-name-says-hes-also-creating-an-ai-force/",
+          "source_lang": "en",
+          "published_at": "2026-09-20T04:57:47+09:00"
+        },
+        {
+          "headline": "Un analyste infiltré de Google a percé le gang de piratage de chaînes d'approvisionnement TeamPCP",
+          "original_headline": "An undercover Google analyst infiltrated a notorious supply-chain hacking gang",
+          "summary": "Un analyste de Mandiant, filiale de Google, a infiltré pendant des mois le cercle du groupe TeamPCP, qui a piraté des développeurs et touché plus d'un millier d'entreprises. Deux Australiens ont été arrêtés après le signalement de Google.",
+          "importance": 3,
+          "tags": [
+            "cybersecurite",
+            "google",
+            "piratage"
+          ],
+          "source_name": "Ars Technica",
+          "source_url": "https://arstechnica.com/security/2026/09/an-undercover-google-analyst-infiltrated-a-notorious-supply-chain-hacking-gang/",
+          "source_lang": "en",
+          "published_at": "2026-09-20T20:07:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kojima Productions dément les rumeurs de crise malgré la rupture avec Sony sur Physint",
+          "original_headline": "Kojima Productions disputes reports the studio is in trouble",
+          "summary": "Après l'annonce du passage de Physint de PlayStation à Xbox, le studio dément être en difficulté. Kojima assure que sa relation avec Sony demeure forte malgré l'échec de l'accord d'édition.",
+          "analysis": "Le studio ne dément pas franchement les informations sur les frictions avec Sony, ce qui laisse penser que le passage à Xbox tient aussi à des raisons budgétaires.",
+          "importance": 1,
+          "tags": [
+            "kojima",
+            "physint",
+            "sony",
+            "xbox"
+          ],
+          "source_name": "The Verge",
+          "source_url": "https://www.theverge.com/games/997880/hideo-kojima-productions-physint-xbox-sony-playstation",
+          "source_lang": "en",
+          "published_at": "2026-09-21T03:15:10+09:00"
+        },
+        {
+          "headline": "Stellar Blade Complete Edition confirmé sur Switch 2 le 6 novembre",
+          "original_headline": "[인터뷰] 김형태 대표 \"다운그레이드된 경험은 주고 싶지 않아\"",
+          "summary": "Le PDG de Shift Up vise 60 images par seconde en mode docké et portable grâce au DLSS et au FSR, avec quatre costumes Bayonetta et des mini-jeux Joy-Con en bonus.",
+          "importance": 2,
+          "tags": [
+            "stellar-blade",
+            "switch-2",
+            "shift-up"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321201",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T14:30:02+09:00"
+        },
+        {
+          "headline": "Krafton annule la dernière journée des PUBG Asia Stars après le boycott sud-coréen",
+          "original_headline": "[이슈] 대회 접고 고개 숙인 크래프톤 \"여러 부분에서 부족했다\"",
+          "summary": "Après le départ de l'équipe sud-coréenne, qui dénonçait des excuses jugées incohérentes sur des irrégularités de joueurs vietnamiens, Krafton annule la finale et reconnaît l'absence de normes opérationnelles claires.",
+          "importance": 3,
+          "tags": [
+            "krafton",
+            "pubg",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321213",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T21:13:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le basket masculin coréen renoue avec l'or aux Jeux asiatiques après douze ans",
+          "original_headline": "S. Korea beats Japan for men's basketball gold",
+          "summary": "La Corée du Sud bat le Japon 67-57 en finale à Nagoya, achevant son parcours invaincu. L'ailier Lee Hyun-jung, ancien de Davidson, inscrit 27 points et prend 18 rebonds, dont 13 points décisifs au troisième quart-temps.",
+          "analysis": "Ce sacre met fin à douze ans de disette et confirme la profondeur du basket coréen à l'approche des qualifications olympiques.",
+          "importance": 1,
+          "tags": [
+            "jeux-asiatiques",
+            "basketball",
+            "asiad"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10879743",
+          "source_lang": "en",
+          "published_at": "2026-09-20T21:37:16+09:00"
+        },
+        {
+          "headline": "Lee Jun-suk devient le premier champion asiatique de teqball, ex-employé de LG",
+          "original_headline": "Inaugural men's teqball champion thanks mother for sacrifice",
+          "summary": "Ancien milieu de foot en quatrième division, Lee Jun-suk quitte LG Electronics pour le teqball et remporte l'or inaugural face à l'Irak. Il dédie sa victoire à sa mère, qui a financé sa table d'entraînement.",
+          "importance": 2,
+          "tags": [
+            "jeux-asiatiques",
+            "teqball",
+            "asiad"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10879730",
+          "source_lang": "en",
+          "published_at": "2026-09-20T20:48:18+09:00"
+        },
+        {
+          "headline": "Shin Ji-eun décroche la première médaille sud-coréenne des Jeux asiatiques, en cyclisme",
+          "original_headline": "사이클 신지은, 여자 도로 독주 '동메달'…한국 선수단 이번 대회 첫 메달 '쾌거'",
+          "summary": "Shin Ji-eun, 24 ans, prend le bronze du contre-la-montre féminin en 36'28. Cette médaille, la première de la délégation sud-coréenne à Nagoya, relance la dynamique de l'équipe de cyclisme.",
+          "importance": 3,
+          "tags": [
+            "jeux-asiatiques",
+            "cyclisme",
+            "asiad"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1636434",
+          "source_lang": "ko",
+          "published_at": "2026-09-20T11:18:23+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up du webtoon 양일우와 나 à AK Plaza Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "서울 마포구 동교동 190-1 AK PLAZA 홍대 1F",
+      "area": "Hongdae",
+      "start_date": "2026-09-21",
+      "end_date": "2026-10-01",
+      "summary": "Corner dédié au webtoon coréen 양일우와 나, avec des produits dérivés vendus uniquement sur place, faute d'édition officielle en anglais ou en coréen international.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/yang-ilwoo-and-me-webtoon-popup-ak-plaza-hongdae",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up de thé oolong The Jung à AK Plaza Hongdae",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "서울 마포구 양화로 188 AK플라자 홍대점 1층",
+      "area": "Hongdae",
+      "start_date": "2026-09-21",
+      "end_date": "2026-12-17",
+      "summary": "Un spécialiste coréen du thé oolong prend le rez-de-chaussée d'AK Plaza Hongdae pour trois mois, avec un coupon offert aux premiers visiteurs de la semaine d'ouverture.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/thejung-oolong-tea-project-popup-ak-plaza-hongdae",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up de céramiques Tteokguknuna à Hyundai Trade Center",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "서울 강남구 테헤란로 517 (삼성동, 현대백화점) 현대백화점 무역센터점 4F",
+      "area": "Gangnam",
+      "start_date": "2026-09-14",
+      "end_date": "2026-09-27",
+      "summary": "La marque coréenne de céramiques Tteokguknuna expose ses figurines artisanales au quatrième étage du grand magasin Hyundai Trade Center, avec des promotions d'achat sur place.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/gangnam/popups/tteokguknuna-ceramic-popup-hyundai-coex",
+      "source_lang": "en"
+    },
+    {
+      "name": "Ouverture du Faber-Castell Creative Centre à Mapo",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "서울 마포구 토정로 222 파버카스텔 크리에이티브 센터 1층",
+      "area": "Hongdae",
+      "start_date": "2026-09-14",
+      "end_date": "2026-09-24",
+      "summary": "La maison allemande Faber-Castell, fondée il y a 265 ans, ouvre sa première boutique officielle en Corée à Mapo, avec du matériel d'art et d'écriture à tester librement.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/faber-castell-creative-centre-opening-mapo",
+      "source_lang": "en"
+    },
+    {
+      "name": "Spectacle de drones lumineux de la rivière Han 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "뚝섬한강공원",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-09-12",
+      "end_date": "2026-10-31",
+      "summary": "Trois spectacles de drones lumineux au-dessus du fleuve Han, à Ttukseom, dont une édition spéciale Marvel avec 2 000 drones le 31 octobre.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/019ff858-a9ed-7571-bf2c-dd1808e711f9",
+      "source_lang": "en"
+    },
+    {
+      "name": "Lotte World Adventure Mystery Party : Strange World",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "롯데월드 어드벤처",
+      "area": "Songpa-gu",
+      "start_date": "2026-09-12",
+      "end_date": "2026-11-15",
+      "summary": "Fête d'automne mystérieuse à Lotte World avec parade sombre et collection de produits dérivés exclusifs en collaboration avec le mangaka Junji Ito. Entrée payante.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0a778-66d8-7ddd-8acc-a26b7c2a620c",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up Heineken Lounge Bar aux aéroports",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "인천국제공항",
+      "area": "Incheon",
+      "start_date": "2026-09-01",
+      "end_date": "2026-09-30",
+      "summary": "Bars éphémères Heineken dans les terminaux d'Incheon et de Gimhae. Tirage au sort digital pour remporter des enceintes Marshall ou un AirTag dès trois bières achetées.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0ac8b-fe9c-7307-9798-6ffef1943b64",
+      "source_lang": "en",
+      "map_url": "https://map.naver.com/p/favorite/sharedPlace/folder/758b36ee6b614905b2fe86bd84538f6d?c=14.00,0,0,0,dh"
+    },
+    {
+      "name": "Grande fête de Chuseok du musée Hanseong Baekje",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "한성백제박물관",
+      "area": "Songpa-gu",
+      "start_date": "2026-09-26",
+      "end_date": "2026-09-26",
+      "summary": "Célébration traditionnelle de Chuseok avec spectacles de musique percussive et danse du lion, ateliers de cerfs-volants et de gâteaux de riz, jeux traditionnels. Entrée gratuite.",
+      "source_name": "Fun Seoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=836",
+      "source_lang": "ko"
+    }
+  ]
+}
