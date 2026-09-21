@@ -46,7 +46,7 @@ Tu n'as besoin que d'une chose, ouvrir des pages. Tu n'écris aucun fichier, tu 
 ```
 
 - `corrections` : une entrée par changement, `cible` sous la forme `section/rang` (le rang d'`importance` de l'item **dans le brief reçu**), `events/index`, `title` ou `standfirst` ; `champ` le champ changé, ou `item` pour un retrait ; `pourquoi` en une ligne. Rien à changer : `[]`, et le brief tel que reçu.
-- `brief` : le brief **entier**, corrigé, de la même forme exacte que celui reçu. L'objet entier, pas un correctif : ce qui est rendu est ce qui est publié.
+- `brief` : le brief **entier**, corrigé, de la même forme exacte que celui reçu. L'objet entier, pas un correctif : ce qui est rendu est ce qui est publié. `sections`, `items` et `events` restent des **listes**, dans l'ordre reçu, jamais des objets indexés par clé : un brief d'une autre forme est rejeté en bloc, et aucune de tes corrections ne passe.
 
 ## Le brief à relire
 
