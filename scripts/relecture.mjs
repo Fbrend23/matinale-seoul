@@ -44,8 +44,8 @@ const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
 // dans le contexte), et le quota hebdomadaire ne tenait pas en « high ».
 const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.8-flash-medium';
 // Quinze minutes : une page par item et par événement, une trentaine, plus
-// la réécriture ; l'ombre, qui en ouvre autant, y met sept minutes. Le nôtre
-// dépasse d'une minute, pour le cas où `agy` ne s'arrêterait pas.
+// la réécriture, en cinq à huit minutes. Le nôtre dépasse d'une minute,
+// pour le cas où `agy` ne s'arrêterait pas.
 const DELAI_CLI = '15m';
 const DELAI_MS = 16 * 60_000;
 

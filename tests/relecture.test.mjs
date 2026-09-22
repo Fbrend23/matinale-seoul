@@ -13,7 +13,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
-import { MAX_RETRAITS, composerConsigneRelecture, extraireRelecture, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from '../scripts/lib/relecture.mjs';
+import { MAX_RETRAITS, composerConsigneRelecture, extraireObjet, extraireRelecture, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from '../scripts/lib/relecture.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
@@ -66,6 +66,12 @@ test('la consigne porte le jour et le brief entier, et nomme ce que le relecteur
   }
   const { MAX_SUMMARY_WORDS } = await import('../scripts/lib/guards.mjs');
   assert.ok(consigne.includes(`${MAX_SUMMARY_WORDS} mots`), 'la consigne doit annoncer la limite réelle');
+});
+
+test('l\'objet se lit malgré une phrase avant et une clôture de code, et une réponse sans objet est une panne', () => {
+  assert.deepEqual(extraireObjet('Voici :\n```json\n{"date": "2026-09-16", "sections": []}\n```\n'), { date: '2026-09-16', sections: [] });
+  assert.throws(() => extraireObjet('[1, 2]'), /aucun objet/);
+  assert.throws(() => extraireObjet('{"a": 1,}'), /illisible/);
 });
 
 test('la réponse se lit avec ou sans enveloppe, et une réponse sans brief est une panne', () => {
