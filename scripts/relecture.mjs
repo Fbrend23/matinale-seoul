@@ -33,7 +33,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { composerConsigneRelecture, extraireRelecture, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from './lib/relecture.mjs';
-import { interrogerGemini } from './lib/agy.mjs';
+import { décrireSession, interrogerGemini } from './lib/agy.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -109,7 +109,7 @@ try {
   console.log(`réponse       : ${path.relative(RACINE, fichierRéponse)}`);
   await conclure({ sort: 'panne', raison: e.message, session, code: 1 });
 }
-console.log(`✓ ${étiquette('Gemini relecture')} brief relu en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}, ${relecture.corrections.length} correction(s) annoncée(s)`);
+console.log(`✓ ${étiquette('Gemini relecture')} brief relu en ${durée} s${décrireSession(gemini)}, ${relecture.corrections.length} correction(s) annoncée(s)`);
 if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
 
 // --- A-t-il seulement relu ? ----------------------------------------------------

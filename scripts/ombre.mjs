@@ -28,7 +28,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { exempleDuPrompt, composerConsigneOmbre, consigneDeCorrection, extraireObjet, comparer } from './lib/ombre.mjs';
-import { interrogerGemini } from './lib/agy.mjs';
+import { décrireSession, interrogerGemini } from './lib/agy.mjs';
 import { rangsDeSources } from './lib/sources.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
@@ -103,7 +103,7 @@ try {
   if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
   process.exit(1);
 }
-console.log(`✓ ${'Gemini ombre'.padEnd(18)} brief rendu en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}`);
+console.log(`✓ ${'Gemini ombre'.padEnd(18)} brief rendu en ${durée} s${décrireSession(gemini)}`);
 if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
 
 // --- Le contrôle avant vol, et les corrections -----------------------------------
