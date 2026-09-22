@@ -43,7 +43,7 @@ Timer systemd, 7 h 15 Asia/Seoul
         │    └─ actualité : cinq sessions, une par rubrique, la presse sans flux, coréenne surtout → pistes actualité
         ├─ session Claude Code : lit la veille, choisit, vérifie, rédige, contrôle
         │  dépose  inbox/brief-AAAA-MM-JJ.json, sans git
-        ├─ relecture : Gemini rouvre chaque source, confronte, corrige ; le dépôt vérifie, le contrôle juge → veille/relecture/
+        ├─ relecture : six sessions Gemini, une par rubrique + événements, rouvrent les sources, corrigent ; le dépôt vérifie, le contrôle juge → veille/relecture/
         └─ le lanceur contrôle une dernière fois, commite, pousse
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
@@ -102,12 +102,16 @@ non, ce qui n'est pas un accident, enverrait sinon un mail d'échec par heure.
 
 Les gardes ne lisent pas : elles voient un lien mort, un résumé de quarante et
 un mots, pas un chiffre faux ni un titre original tronqué. Entre la session et
-le commit, Gemini relit donc le brief **contre ses sources** : il rouvre chaque
-`source_url`, confronte le résumé à la page, chiffres, noms, dates, titre
-original, heure de publication, rubrique, et corrige le français. Il peut
-retirer un item dont la page ne dit pas ce que le résumé dit. Le brief relu
-repasse le contrôle avant vol, et remplace celui de la session seulement s'il
-le passe (`scripts/relecture.mjs`).
+le commit, Gemini relit donc le brief **contre ses sources**, par lots, une
+session par rubrique pourvue et une pour les événements, en parallèle : chacune
+rouvre les `source_url` de son lot, confronte le résumé à la page, chiffres,
+noms, dates, titre original, heure de publication, et corrige le français. Elle
+peut retirer un item dont la page ne dit pas ce que le résumé dit. Le brief
+recomposé repasse le contrôle avant vol, et remplace celui de la session
+seulement s'il le passe (`scripts/relecture.mjs`). Par lots parce qu'une
+session qui ouvre vingt-sept pages les relit toutes à chaque appel, 2,4 millions
+de tokens au premier essai ; six sessions de trois ou quatre pages font le même
+travail pour une fraction, et le titre et le chapeau ne sont pas relus.
 
 Ce qu'il ne peut pas faire, le dépôt le vérifie et refuse en bloc
 (`scripts/lib/relecture.mjs`) : ajouter un item ou un événement, changer une
@@ -340,6 +344,7 @@ npm run popups           # énumère les registres de pop-ups (Inside Seoul, NOL
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
+npm run quota            # ce qu'il reste du quota Gemini, 5 h et semaine ; le lanceur le relève avant et après chaque matinée
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

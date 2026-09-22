@@ -99,6 +99,15 @@ test('le tableau se lit malgré une phrase avant et une clôture de code autour'
   assert.deepEqual(extraireTableau('[]'), []);
 });
 
+test('un tableau coupé au délai est refermé au dernier objet complet', () => {
+  // Le 18 septembre 2026 : « print timeout after 10m0s … returning partial output »,
+  // trois pistes entières et une quatrième à moitié.
+  const coupé = '[\n  {"name": "A", "tags": {"x": 1}},\n  {"name": "B"},\n  {"name": "C", "summary": "Le gouv';
+  assert.deepEqual(extraireTableau(coupé), [{ name: 'A', tags: { x: 1 } }, { name: 'B' }]);
+  // Pas un seul objet entier : une panne, pas une liste vide.
+  assert.throws(() => extraireTableau('[\n  {"name": "A"'), /aucun tableau/);
+});
+
 test('une réponse sans tableau, ou illisible, est une panne et non une liste vide', () => {
   assert.throws(() => extraireTableau('Je n\'ai rien trouvé.'), /aucun tableau/);
   assert.throws(() => extraireTableau('[{"name": "A",}]'), /illisible/);
