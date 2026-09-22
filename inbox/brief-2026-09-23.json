@@ -1,0 +1,350 @@
+{
+  "date": "2026-09-23",
+  "title": "À l'ONU, Lee mise sur un gel nucléaire nord-coréen, la Corée décroche son premier or en escrime",
+  "standfirst": "Le président propose d'échanger un arrêt du programme nucléaire nord-coréen contre un allègement des sanctions, pendant que la justice coréenne tranche sur Kim Keon Hee et la Cour suprême. Aux Jeux asiatiques, Song Se-ra offre à la Corée son premier or en escrime, et Xbox referme Ninja Theory en cédant Halo à Activision.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un million de voyageurs à Incheon pour les cinq jours de Chuseok",
+          "original_headline": "추석 연휴 첫날, 인천공항에서 해외로 13만명 떠난다",
+          "summary": "Incheon attend 1,14 million de passagers du 23 au 27 septembre, un pic de 130 000 départs le premier jour. L'aéroport avance l'ouverture des contrôles et renforce ses effectifs d'immigration jusqu'à 47 %.",
+          "importance": 1,
+          "tags": ["chuseok", "incheon", "aeroport", "transports"],
+          "source_name": "Chosun Biz",
+          "source_url": "https://biz.chosun.com/topics/law_firm/2026/09/22/75KMLEFI3RC7TOEWSCZAE5DRHA/",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T17:46:01+09:00"
+        },
+        {
+          "headline": "Séoul ouvrira ses bus aux cartes bancaires étrangères en 2027",
+          "summary": "Tmoney, Visa, Mastercard, UnionPay, JCB et Hana Card lanceront en 2027 un paiement sans contact direct par carte bancaire dans les bus de Séoul, puis d'Incheon et des navettes aéroport, sans carte de transport locale à acheter.",
+          "importance": 2,
+          "tags": ["transports", "tmoney", "cartes-bancaires", "tourisme"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10878189",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Lotte Duty Free ouvre une boutique Hazzys à Myeong-dong",
+          "original_headline": "롯데면세점, 명동 본점에 헤지스 단독 매장 열어",
+          "summary": "Lotte Duty Free a ouvert le 21 septembre une boutique autonome Hazzys à son magasin principal de Myeong-dong, avec LF Corp. Les ventes de mode coréenne aux touristes étrangers y ont bondi de 55 % sur huit mois.",
+          "importance": 3,
+          "tags": ["shopping", "mode-coreenne", "myeongdong", "tourisme"],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20260922034100030",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T09:08:15+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Jae-myung propose à l'ONU d'échanger un gel nucléaire nord-coréen contre un allègement des sanctions",
+          "summary": "Devant l'Assemblée générale, le président a jugé les sanctions actuelles peu efficaces et proposé de les alléger en échange d'un arrêt du programme nucléaire et des missiles intercontinentaux nord-coréens, avant une dénucléarisation par étapes.",
+          "analysis": "Le virage de Séoul, de la dénucléarisation immédiate vers une paix d'abord, vise à relancer un dialogue Washington-Pyongyang au point mort depuis des années.",
+          "importance": 1,
+          "tags": ["lee-jae-myung", "coree-du-nord", "onu", "denuclearisation", "diplomatie"],
+          "source_name": "SBS News",
+          "source_url": "https://news.sbs.co.kr/english/article.do?news_id=N1008766614",
+          "source_lang": "en"
+        },
+        {
+          "headline": "La peine de l'ex-première dame Kim Keon Hee réduite à cinq ans",
+          "summary": "La cour d'appel de Séoul a ramené sa peine de sept à cinq ans, écartant l'accusation liée à une montre de luxe faute de preuve qu'elle savait l'objet lié à un trafic d'influence.",
+          "importance": 2,
+          "tags": ["kim-keon-hee", "justice", "corruption"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10882477",
+          "source_lang": "en",
+          "published_at": "2026-09-22T16:51:03+09:00"
+        },
+        {
+          "headline": "Le juge en chef Jo Hee-de refuse de renommer un candidat à la Cour suprême, tension avec la présidence",
+          "summary": "Jo Hee-de a rejeté la demande du bureau présidentiel de proposer un nouveau candidat après le refus de Son Bong-gi, jugeant la requête sans fondement constitutionnel. Le siège vacant depuis mars n'est toujours pas pourvu.",
+          "importance": 3,
+          "tags": ["cour-supreme", "jo-hee-de", "justice", "executif"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10882304",
+          "source_lang": "en",
+          "published_at": "2026-09-22T15:23:11+09:00"
+        },
+        {
+          "headline": "Le premier KF-21 Boramae de série livré à l'armée de l'air",
+          "summary": "La Corée du Sud a livré son premier chasseur KF-21 produit en série, lancé en 2001 et volé pour la première fois en 2022. Plus de cent appareils sont attendus d'ici le début des années 2030.",
+          "importance": 4,
+          "tags": ["kf-21", "armee-de-lair", "defense", "industrie-militaire"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10882615",
+          "source_lang": "en",
+          "published_at": "2026-09-22T20:57:28+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic lance Opus 5.5, moins cher et plus performant",
+          "summary": "Le nouveau modèle, décrit par Anthropic comme le plus performant jamais testé en interne, dépasse Fable sur plusieurs bancs d'essai. Le prix des jetons de sortie baisse de 25 à 20 dollars le million, deux mois après Opus 5.",
+          "importance": 1,
+          "tags": ["anthropic", "opus-5-5", "intelligence-artificielle", "modeles-ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/",
+          "source_lang": "en",
+          "published_at": "2026-09-23T01:30:07+09:00"
+        },
+        {
+          "headline": "OpenAI lance GPT-6 Sol et Luna, moins chers et plus fiables",
+          "summary": "Sol vise les tâches complexes comme la programmation, Luna le travail administratif répétitif. OpenAI annonce deux fois moins d'erreurs que la génération précédente et des tarifs d'API réduits de moitié par rapport à la série 5.6.",
+          "importance": 2,
+          "tags": ["openai", "gpt-6", "intelligence-artificielle", "modeles-ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/",
+          "source_lang": "en",
+          "published_at": "2026-09-23T03:00:00+09:00"
+        },
+        {
+          "headline": "Meta reconnaît que son agent Muse s'est fortement inspiré d'OpenClaw",
+          "summary": "Un responsable produit de Meta a admis que Muse était « fortement inspiré » du projet OpenClaw, après que des utilisateurs ont trouvé un fichier de configuration SOUL.md quasi identique entre les deux assistants.",
+          "importance": 3,
+          "tags": ["meta", "muse", "openclaw", "agents-ia"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/22/meta-admits-muses-likeness-to-openclaw-isnt-a-coincidence/",
+          "source_lang": "en",
+          "published_at": "2026-09-23T04:09:11+09:00"
+        },
+        {
+          "headline": "Séoul lance un modèle d'IA souverain dédié à la cybersécurité",
+          "original_headline": "사이버보안 특화 AI 개발 착수...사업자 간담회 개최",
+          "summary": "Un consortium mené par Naver Cloud et LG CNS doit construire un modèle utilisable directement sur le terrain, combinant données opérationnelles d'entreprises locales et expertise défensive nationale pour protéger les infrastructures critiques.",
+          "importance": 4,
+          "tags": ["intelligence-artificielle", "cybersecurite", "naver", "lg", "coree-du-sud"],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260922143700",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T15:00:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Xbox transfère Halo à Activision, ferme Ninja Theory et supprime 268 postes",
+          "summary": "Microsoft confie Halo et Rare à Activision, fusionne Obsidian dans Bethesda et propose la fermeture de Ninja Theory, avec 268 licenciements supplémentaires. La marque poursuit son plan de 3 200 suppressions de postes annoncé en juillet.",
+          "analysis": "La franchise Halo change de mains pour la première fois depuis sa création, symbole d'un Xbox qui referme ses propres studios plus vite qu'il ne sort de jeux.",
+          "importance": 1,
+          "tags": ["xbox", "microsoft", "halo", "licenciements", "restructuration"],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/gaming-industry/xbox-lays-off-268-more-employees-merges-obsidian-into-bethesda-and-puts-activision-in-charge-of-halo/",
+          "source_lang": "en",
+          "published_at": "2026-09-23T00:05:28+09:00"
+        },
+        {
+          "headline": "Des licenciements chez Blizzard seraient imminents, juste après la BlizzCon",
+          "summary": "Le journaliste Jason Schreier rapporte que des suppressions de postes chez Blizzard sont imminentes, quelques jours après une BlizzCon très suivie et le lancement remarqué de la bêta de World of Warcraft: Forever.",
+          "importance": 2,
+          "tags": ["blizzard", "licenciements", "world-of-warcraft", "industrie-du-jeu-video"],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/blizzard-layoffs-xbox-cuts",
+          "source_lang": "en",
+          "published_at": "2026-09-22T21:10:29+09:00"
+        },
+        {
+          "headline": "Le concert du jeu DJMAX Respect V affiche complet en cinq minutes",
+          "original_headline": "네오위즈 '디제이맥스 리스펙트 V', 오프라인 단독 공연 전석 매진",
+          "summary": "Les 1 500 places du concert « Miracle 10.10 », prévu le 10 octobre au Yes24 Live Hall de Séoul, se sont vendues en cinq minutes. Le spectacle mêlera groupe live et sessions de 250 minutes.",
+          "importance": 3,
+          "tags": ["djmax", "neowiz", "concert", "jeu-video", "seoul"],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260922155721",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T16:00:02+09:00"
+        },
+        {
+          "headline": "Webzen dévoilera son RPG de défense tiré d'un webtoon au G-Star",
+          "original_headline": "웹젠, '디펜스 게임의 폭군이 되었다: 라스트 스테이지' 지스타서 첫선",
+          "summary": "Adapté d'un webtoon Naver, ce RPG stratégique sous Unreal Engine 5 sera testé en démo de quinze minutes au salon G-Star de novembre. Webzen Crevics vise une sortie en 2027.",
+          "importance": 4,
+          "tags": ["webzen", "g-star", "rpg", "webtoon", "jeu-video"],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260922110332",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T11:10:02+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Song Se-ra offre à la Corée son premier or en escrime aux Jeux asiatiques",
+          "summary": "L'épéiste a battu la Singapourienne Kiria Tikanah Abdul Rahman 15-8 en finale individuelle à Aichi-Nagoya, trois ans après une médaille d'argent à Hangzhou. Une première historique pour l'escrime sud-coréenne aux Jeux asiatiques.",
+          "importance": 1,
+          "tags": ["jeux-asiatiques", "escrime", "song-se-ra", "medaille-dor"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20260922/song-se-ra-wins-gold-in-womens-epee-individual-fencing-at-asian-games",
+          "source_lang": "en"
+        },
+        {
+          "headline": "An Se-young mène la Corée en demi-finale du badminton par équipes",
+          "summary": "La numéro un mondiale a battu la Malaisienne Letshanaa Karupathevan en seize minutes, la Corée l'emportant 3-1. Championne en titre, l'équipe affronte le Japon mercredi pour une place en finale.",
+          "importance": 2,
+          "tags": ["jeux-asiatiques", "badminton", "an-se-young"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10882397",
+          "source_lang": "en",
+          "published_at": "2026-09-22T16:06:55+09:00"
+        },
+        {
+          "headline": "Le tennis de table coréen assure le bronze par équipes, en attendant le Japon",
+          "summary": "Les équipes masculine et féminine ont dominé leurs quarts de finale 3-0, contre Hong Kong et Singapour, et affrontent toutes deux le Japon en demi-finale mercredi. Sans finale de bronze, les perdantes seront médaillées d'office.",
+          "importance": 3,
+          "tags": ["jeux-asiatiques", "tennis-de-table", "shin-yu-bin"],
+          "source_name": "SBS News",
+          "source_url": "https://news.sbs.co.kr/english/article.do?news_id=N1008766685",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Song Min-kyu retrouve la sélection coréenne après deux ans et demi, aidé par Lee Kang-in",
+          "original_headline": "‘유럽파’ 송민규의 대표팀 복귀 ‘도우미’는 이강인, “경유하는데 마드리드 더비 보러 가라고…냉온탕도 같이”[SS현장]",
+          "summary": "Transféré cet été au Nacional Madère, l'ailier a fait escale à Madrid où Lee Kang-in lui a offert une place en tribune pour le derby et l'a aidé à récupérer du décalage horaire.",
+          "importance": 4,
+          "tags": ["equipe-de-coree", "song-min-kyu", "lee-kang-in", "football"],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637118",
+          "source_lang": "ko",
+          "published_at": "2026-09-22T17:35:21+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up ANUA : douche PDRN à Seongsu",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "올리브영N 성수",
+      "area": "Seongsu",
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-29",
+      "summary": "Pop-up de soins Anua centré sur sa gamme PDRN à l'Olive Young N de Seongsu, à une minute de la station. Personnalisation de trousses, cabine photo et échantillons offerts, entrée libre, de 10h à 22h.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0c76a-8795-7ba3-a7c7-246f210a4edb",
+      "source_lang": "en"
+    },
+    {
+      "name": "Fête d'anniversaire de Key (SHINee) : KEYdult Club",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "명화 라이브홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-09-23",
+      "end_date": "2026-09-23",
+      "summary": "Key (SHINee) fête ses dix-huit ans de carrière avec ses fans au Myungwha Live Hall, autour d'un café d'anniversaire à thème. Prestations scéniques et échanges interactifs, entrée payante sur réservation.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a03203-0b07-7e36-9030-73a9a02a333f",
+      "source_lang": "en"
+    },
+    {
+      "name": "Vœux de pleine lune sous le ballon Seoul Dal",
+      "kind": "autre",
+      "theme": "seoul",
+      "venue": "여의도공원",
+      "area": "Yeouido",
+      "start_date": "2026-09-24",
+      "end_date": "2026-10-05",
+      "summary": "Animations de Chuseok au pied du ballon captif de Yeouido : deux lunes géantes illuminées, arbre à vœux et jeux traditionnels. Ouvert de 17h à 21h en semaine, dès 15h le week-end, accès libre.",
+      "source_name": "펀서울 (FUN SEOUL)",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=918",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Blue Lock à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-07",
+      "summary": "Boutique éphémère officielle du manga Blue Lock, autour de la Neo Egoist League, avec le pack collector Kick Off limité à 500 exemplaires et des produits exclusifs coréens. Entrée libre.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=321301",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Astomic à Hyundai Mia",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "현대백화점 미아점",
+      "area": "Gangbuk-gu",
+      "start_date": "2026-09-10",
+      "end_date": "2026-10-01",
+      "summary": "Vente éphémère de goodies sous licence mêlant Pokémon, Bob l'éponge, Crayon Shin-chan, Sanrio et Chiikawa, entre 7 000 et 22 000 wons pièce. Entrée libre, au huitième étage près des escalators.",
+      "source_name": "현대백화점",
+      "source_url": "https://www.ehyundai.com/newPortal/SN/SN_0201000.do?evntCrdCd=E1102609501158",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Descente Running à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "sport",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-09-10",
+      "end_date": "2026-09-30",
+      "summary": "Espace éphémère autour de la chaussure de course Delta Pro EXP V3, avec entretien premium pour les membres fidèles et un défi marathon sur tapis de course. Entrée libre.",
+      "source_name": "현대백화점",
+      "source_url": "https://www.ehyundai.com/newPortal/SN/SN_0201000.do?evntCrdCd=E4002608500258&category=event&page=1&branchCd=B00140000",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up 78UNDER à Musinsa Kicks Seongsu",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "무신사 킥스 성수",
+      "area": "Seongsu",
+      "start_date": "2026-09-21",
+      "end_date": "2026-10-15",
+      "summary": "La marque de sneakers 78UNDER présente une collection capsule signée de l'artiste Novo chez Musinsa, avec jusqu'à 20 % de remise et cadeaux selon le montant d'achat. Entrée libre, de 11h à 22h.",
+      "source_name": "무신사",
+      "source_url": "https://www.musinsa.com/content/1547824292203927041",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival Seoul Light Hangang Bitseom 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "노들섬",
+      "area": "Yongsan-gu",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-11",
+      "summary": "Dix jours de laser et d'art numérique sur l'île de Nodeul, autour du thème « Rhapsodie de lumière », avec l'artiste taïwanais AKA Chang et le duo italien Quiet Ensemble. De 18h30 à 22h30, entrée libre.",
+      "source_name": "동아일보",
+      "source_url": "https://www.donga.com/news/Economy/article/all/20260921/134711841/2",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Rétrospective Suh Do-ho au MMCA Seoul",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "국립현대미술관 서울",
+      "area": "Jongno-gu",
+      "start_date": "2026-08-29",
+      "end_date": "2027-02-09",
+      "summary": "Plus grande rétrospective jamais consacrée à l'artiste coréen, plus de 500 pièces de l'enfance à aujourd'hui, dont ses installations monumentales en polyester translucide. L'exposition voyagera ensuite à Tokyo puis Hong Kong. Entrée payante.",
+      "source_name": "The Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/10853220",
+      "source_lang": "en"
+    }
+  ]
+}
