@@ -106,7 +106,7 @@ test('un agrégateur est écarté, et le journal dit quoi faire', async () => {
   assert.match(sansRang.écartés[0].raison, /domaine inconnu/);
 });
 
-test('les consignes nomment les trois rangs, et l ombre aussi', async () => {
+test('la consigne de recherche nomme les trois rangs', async () => {
   const recherche = await lire('prompts/recherche-evenements.md');
   for (const gabarit of ['{{DOMAINES}}', '{{OFFICIELS}}', '{{AGREGATEURS}}']) {
     assert.ok(recherche.includes(gabarit), `${gabarit} absent de la consigne de recherche`);
@@ -120,13 +120,6 @@ test('les consignes nomment les trois rangs, et l ombre aussi', async () => {
   });
   assert.ok(!rempli.includes('{{'), 'un gabarit est resté vide');
   assert.ok(rempli.includes('thehyundai.com') && rempli.includes('popply.co.kr'));
-
-  // L'ombre rédige un brief entier : elle doit connaître la même frontière.
-  const ombre = await lire('prompts/brief-ombre.md');
-  for (const gabarit of ['{{DOMAINES}}', '{{OFFICIELS}}']) {
-    assert.ok(ombre.includes(gabarit), `${gabarit} absent de la consigne de l'ombre`);
-  }
-  assert.match(ombre, /Pour un événement seulement/);
 });
 
 test('les quatre scripts qui jugent un événement assemblent la liste au même endroit', async () => {

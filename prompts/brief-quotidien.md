@@ -556,12 +556,6 @@ pas de redire ce qui s'y trouve :
   cherche se fait dans ces prompts-là ; ce qui l'écarte, dans les gardes.
   Une session en panne est une session en moins ; les deux, la section le
   dit et l'agent retombe sur sa propre recherche, avec son budget.
-- L'exemple du § 2 sert aussi à `prompts/brief-ombre.md`, la consigne de
-  l'ombre : `scripts/ombre.mjs` fait rédiger le même brief à Gemini après la
-  session, sur la même veille, le passe au contrôle avant vol et le compare
-  au brief du jour dans `veille/ombre/`, sans jamais le commiter. Un seul
-  exemple pour deux rédactions, lu ici par `exempleDuPrompt()` : le changer
-  ici, c'est le changer pour les deux.
 - La veille du § 1 est produite par `scripts/veille.mjs` à partir de
   `config/flux.json`, lancé par `bin/brief-du-jour.sh` juste avant la session.
   Ajouter une rédaction, c'est ajouter son flux là, et son domaine dans

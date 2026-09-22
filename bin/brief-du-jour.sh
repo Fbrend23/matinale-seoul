@@ -121,9 +121,7 @@ wait "$PID_ACTU" || echo "veille actualité indisponible : l'agent composera ave
 cat "$JOURNAL_ACTU"
 rm -f "$JOURNAL_ACTU"
 # Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
-# vu le matin où un brief manque : une semaine, puis on jette. Les ombres
-# (veille/ombre/, voir plus bas) suivent le même sort : une semaine pour les
-# comparer, pas plus.
+# vu le matin où un brief manque : une semaine, puis on jette.
 find veille \( -name '*.md' -o -name '*.json' \) -mtime +7 -delete 2>/dev/null || true
 
 # La consigne est versionnée à côté : la modifier est un commit, relu, et non un
@@ -194,15 +192,6 @@ node scripts/preflight.mjs "$ATTENDU" || echec "le contrôle avant vol recale $A
 git add "$ATTENDU"
 git commit --quiet -m "feat(Brief) Brief du $JOUR" || echec "git commit"
 git push --quiet origin main || echec "git push : le brief est commité en local, pas sur origin"
-
-# L'OMBRE, après la session et sur la même veille : Gemini rédige le même
-# brief, le contrôle avant vol le juge, et il est déposé dans veille/ombre/
-# avec sa comparaison au brief de la session, jamais commité. Quelques
-# matins de cela disent si Gemini peut prendre la rédaction, ce qui se
-# mesure et ne se devine pas (scripts/lib/ombre.mjs). Rien ici n'attend
-# dessus : la publication est déjà partie, et un échec de l'ombre est une
-# ligne de journal, pas une matinée sans brief.
-node scripts/ombre.mjs --jour "$JOUR" || echo "ombre indisponible ou recalée : voir plus haut"
 
 # La seule preuve qui vaille : le fichier est-il sur origin ?
 # Le push a dit oui ; on le relit quand même, c'est ce que le matin sans

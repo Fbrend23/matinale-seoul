@@ -44,8 +44,7 @@ Timer systemd, 7 h 15 Asia/Seoul
         ├─ session Claude Code : lit la veille, choisit, vérifie, rédige, contrôle
         │  dépose  inbox/brief-AAAA-MM-JJ.json, sans git
         ├─ relecture : Gemini rouvre chaque source, confronte, corrige ; le dépôt vérifie, le contrôle juge → veille/relecture/
-        ├─ le lanceur contrôle une dernière fois, commite, pousse
-        └─ ombre : Gemini rédige le même brief, contrôlé, comparé, jamais commité → veille/ombre/
+        └─ le lanceur contrôle une dernière fois, commite, pousse
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
                                      ├─ nom du fichier + cinq gardes
@@ -341,7 +340,6 @@ npm run popups           # énumère les registres de pop-ups (Inside Seoul, NOL
 npm run recherche        # fait chercher les événements à Gemini (agy) et ajoute les pistes triées à la veille
 npm run actualite        # fait chercher à Gemini la presse sans flux, une session par rubrique, et ajoute les pistes triées à la veille
 npm run relecture        # fait relire inbox/brief-<jour>.json à Gemini contre ses sources ; remplace le fichier si tout passe
-npm run ombre            # fait rédiger le brief du jour à Gemini (agy) en ombre, contrôlé et comparé dans veille/ombre/
 ```
 
 Les tests tournent deux fois en CI, dans le fuseau de Séoul et en UTC : un brief

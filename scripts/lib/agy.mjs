@@ -1,7 +1,7 @@
 // Antigravity CLI (`agy`), en headless, pour les scripts qui font travailler
 // Gemini avant ou à côté de la session qui rédige : la recherche d'événements
 // (scripts/recherche.mjs), la veille actualité (scripts/actualite.mjs), la
-// relecture (scripts/relecture.mjs) et le brief en ombre (scripts/ombre.mjs).
+// relecture (scripts/relecture.mjs).
 //
 // AUCUN contournement des permissions. En headless, un outil que les réglages
 // n'autorisent pas est refusé en silence, la session continue, et le refus

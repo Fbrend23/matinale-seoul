@@ -25,7 +25,6 @@
 //
 // Le module ne lance rien : la commande vit dans scripts/relecture.mjs.
 
-import { extraireObjet } from './ombre.mjs';
 import { cléAdresse } from './actualite.mjs';
 import { similarity } from './guards.mjs';
 
@@ -44,11 +43,33 @@ const CHAMPS_ITEM = ['headline', 'original_headline', 'summary', 'analysis', 'im
 const CHAMPS_EVENT = ['name', 'kind', 'theme', 'venue', 'area', 'start_date', 'end_date', 'summary', 'source_name', 'source_lang', 'address'];
 
 /**
+ * L'objet JSON dans ce que Gemini a répondu : entre le premier `{` et le
+ * dernier `}`, comme extraireTableau() pour la recherche. Ce qui ne s'analyse
+ * pas est une panne, pas un brief vide.
+ *
+ * @param {string} texte
+ * @returns {object}
+ */
+export function extraireObjet(texte) {
+  const début = texte.indexOf('{');
+  const fin = texte.lastIndexOf('}');
+  if (début < 0 || fin < début) throw new Error('aucun objet JSON dans la réponse');
+  let objet;
+  try {
+    objet = JSON.parse(texte.slice(début, fin + 1));
+  } catch (e) {
+    throw new Error(`objet JSON illisible : ${e.message}`);
+  }
+  if (!objet || typeof objet !== 'object' || Array.isArray(objet)) throw new Error('la réponse n\'est pas un objet');
+  return objet;
+}
+
+/**
  * La consigne de relecture, remplie : le jour et le brief entier.
  *
  * Le brief est dans la consigne, et non lu dans le dépôt : Gemini n'a alors
- * besoin que d'ouvrir des pages, la permission `read_file` ne compte pas, et
- * c'est elle qui a fait rater l'ombre le 18 septembre 2026.
+ * besoin que d'ouvrir des pages, et la permission `read_file`, refusée en
+ * headless, ne compte pas.
  *
  * @param {string} gabarit      prompts/relecture.md
  * @param {object} p

@@ -5,8 +5,7 @@ installation : chaque jour, la veille est relevée (flux RSS des rédactions,
 titres déjà publiés), les événements et la presse sans flux sont cherchés par
 Gemini, puis le brief est rédigé et vérifié par Claude, relu contre ses sources
 par Gemini, et poussé par le lanceur dans `inbox/` pour être en ligne à 8 h,
-heure de Séoul, la suite appartient à GitHub Actions ; enfin Gemini rédige le
-même brief en ombre, pour comparaison.
+heure de Séoul ; la suite appartient à GitHub Actions.
 
 ## Pourquoi un serveur, et pas le cloud
 
@@ -42,8 +41,7 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   **Puis les permissions**, dans `~/.gemini/antigravity-cli/settings.json`.
   En headless, un outil non autorisé est refusé en silence : sans la ligne
   `read_url`, Gemini cherche mais ne peut ouvrir aucune page, et rend une
-  liste vide ou inventée ; sans la ligne `read_file`, l'ombre (ci-dessous)
-  ne peut pas lire la veille. Les `deny` sont ce qui permet de lancer une
+  liste vide ou inventée. Les `deny` sont ce qui permet de lancer une
   session sans personne devant : elle ne peut ni écrire, ni lancer une
   commande.
 
@@ -64,6 +62,9 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   `agy -p "Lis veille/AAAA-MM-JJ.md et dis combien de titres Korea Herald annonce"`
   répond un nombre ; une réponse vide et `denied_actions: read_file`, c'est
   le chemin qui ne correspond pas.
+  Depuis le 22 septembre 2026, aucun script du matin n'en a plus besoin :
+  recherche, actualité et relecture mettent tout dans la consigne, et Gemini
+  n'ouvre que des pages. La règle peut rester, ou tomber ; `read_url` suffit.
 
   **Le registre des pop-ups ne demande RIEN de tout cela** : il n'y a pas de
   modèle dedans. `scripts/popups.mjs` énumère `insideseoul.app/popups`, lit le
@@ -128,17 +129,6 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   mkdir -p veille/essai && cp archive/2026/brief-2026-09-17.json veille/essai/
   node scripts/relecture.mjs --jour 2026-09-17 --fichier veille/essai/brief-2026-09-17.json --dossier veille/essai/relecture
   cat veille/essai/relecture/relecture-2026-09-17.md
-  ```
-
-  **L'ombre**, facultative elle aussi : après la session Claude, `agy` rédige
-  le même brief sur la même veille, le contrôle avant vol le juge, et il est
-  déposé dans `veille/ombre/` avec sa comparaison au brief du jour, jamais
-  commité (`scripts/ombre.mjs`, qui dit pourquoi). Le lanceur la lance et
-  n'attend rien d'elle. À relire de temps en temps :
-
-  ```bash
-  ls veille/ombre/            # brief-AAAA-MM-JJ.json et ombre-AAAA-MM-JJ.md, une semaine
-  cat veille/ombre/ombre-"$(TZ=Asia/Seoul date +%F)".md
   ```
 - **Un git qui sait s'authentifier tout seul.** C'est le prérequis qu'on oublie :
   la session rédige, valide, commite, puis échoue sur
