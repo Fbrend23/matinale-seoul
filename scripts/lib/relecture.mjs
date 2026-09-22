@@ -77,10 +77,28 @@ export function extraireRelecture(texte) {
   const sansEventsVides = (brief) => (Array.isArray(brief.events) && brief.events.length === 0 ? (({ events, ...reste }) => reste)(brief) : brief);
   if (objet.brief && typeof objet.brief === 'object' && !Array.isArray(objet.brief)) {
     const corrections = Array.isArray(objet.corrections) ? objet.corrections.filter((c) => c && typeof c === 'object') : [];
-    return { corrections, brief: sansEventsVides(objet.brief) };
+    return { corrections, brief: sansEventsVides(vérifierListes(objet.brief)) };
   }
-  if (Array.isArray(objet.sections)) return { corrections: [], brief: sansEventsVides(objet) };
+  if (Array.isArray(objet.sections)) return { corrections: [], brief: sansEventsVides(vérifierListes(objet)) };
   throw new Error('la réponse ne porte ni `brief` ni `sections`');
+}
+
+// Le 21 septembre 2026, Gemini a rendu `sections` en objet, et non en
+// liste : tout ce qui suit parcourt des listes, et la première boucle a
+// fait tomber le script, sans rapport et sans dire ce qu'il avait reçu.
+// Une forme qui n'est pas celle du brief est une panne, dite ici, avant
+// que quiconque parcoure quoi que ce soit.
+function vérifierListes(brief) {
+  const liste = (v, nom) => {
+    if (v !== undefined && !Array.isArray(v)) throw new Error(`le brief rendu porte \`${nom}\` en ${v === null ? 'null' : typeof v}, pas en liste`);
+  };
+  liste(brief.sections, 'sections');
+  liste(brief.events, 'events');
+  for (const [n, s] of (brief.sections ?? []).entries()) {
+    if (!s || typeof s !== 'object' || Array.isArray(s)) throw new Error(`le brief rendu porte une section qui n'est pas un objet (${n})`);
+    liste(s.items, `sections[${n}].items`);
+  }
+  return brief;
 }
 
 const ADRESSES_EVENT = ['source_url', 'booking_url', 'map_url'];

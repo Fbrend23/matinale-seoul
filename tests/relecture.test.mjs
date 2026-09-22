@@ -79,6 +79,17 @@ test('la réponse se lit avec ou sans enveloppe, et une réponse sans brief est 
   assert.throws(() => extraireRelecture('rien'), /aucun objet/);
 });
 
+test('un brief rendu dont les sections, les items ou les événements ne sont pas des listes est une panne, pas une chute', () => {
+  // Le 21 septembre 2026 : `sections` rendu en objet, et la première
+  // boucle du script tombait sur « object is not iterable ».
+  const parClé = Object.fromEntries(ORIGINAL.sections.map((s) => [s.key, s]));
+  assert.throws(() => extraireRelecture(JSON.stringify({ corrections: [], brief: { ...ORIGINAL, sections: parClé } })), /`sections` en object, pas en liste/);
+  const itemsEnObjet = { ...ORIGINAL, sections: [{ ...ORIGINAL.sections[0], items: { 1: ORIGINAL.sections[0].items[0] } }] };
+  assert.throws(() => extraireRelecture(JSON.stringify(itemsEnObjet)), /`sections\[0\].items` en object/);
+  assert.throws(() => extraireRelecture(JSON.stringify({ ...ORIGINAL, events: null })), /`events` en null/);
+  assert.throws(() => extraireRelecture(JSON.stringify({ ...ORIGINAL, sections: ['coree'] })), /section qui n'est pas un objet \(0\)/);
+});
+
 test('une relecture qui ne fait que relire est acceptée, écarts compris', () => {
   const relu = clone(ORIGINAL);
   relu.title = 'Autre titre';

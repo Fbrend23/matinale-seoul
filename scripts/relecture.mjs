@@ -38,8 +38,11 @@ import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const COMMANDE = process.env.MATINALE_GEMINI ?? 'agy';
-// Fixé et journalisé, comme les autres modèles du matin.
-const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.8-flash-high';
+// Fixé et journalisé, comme les autres modèles du matin. « medium » depuis
+// le 21 septembre 2026 : c'est la session la plus lourde de la matinée, un
+// million à un million et demi de tokens lus (chaque page rouverte reste
+// dans le contexte), et le quota hebdomadaire ne tenait pas en « high ».
+const MODELE = process.env.MATINALE_RELECTURE_MODELE ?? 'gemini-3.8-flash-medium';
 // Quinze minutes : une page par item et par événement, une trentaine, plus
 // la réécriture ; l'ombre, qui en ouvre autant, y met sept minutes. Le nôtre
 // dépasse d'une minute, pour le cas où `agy` ne s'arrêterait pas.
@@ -99,6 +102,11 @@ try {
   console.log(`! ${étiquette('Gemini relecture')} ${e.message} (${durée} s)`);
   const trace = [gemini.réponse.slice(0, 2000), gemini.stderr ?? ''].join('\n').trim();
   if (trace) console.log(trace.split('\n').map((l) => `    ${l}`).join('\n'));
+  // La réponse entière à côté du rapport : deux mille caractères de journal
+  // ne disent pas où la forme a dévié, et c'est ce qu'on veut relire.
+  const fichierRéponse = path.join(dossier, `reponse-${jour}.txt`);
+  await writeFile(fichierRéponse, gemini.réponse);
+  console.log(`réponse       : ${path.relative(RACINE, fichierRéponse)}`);
   await conclure({ sort: 'panne', raison: e.message, session, code: 1 });
 }
 console.log(`✓ ${étiquette('Gemini relecture')} brief relu en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}, ${relecture.corrections.length} correction(s) annoncée(s)`);
