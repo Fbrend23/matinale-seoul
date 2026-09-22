@@ -1,6 +1,7 @@
 // Antigravity CLI (`agy`), en headless, pour les scripts qui font travailler
 // Gemini avant ou à côté de la session qui rédige : la recherche d'événements
-// (scripts/recherche.mjs) et le brief en ombre (scripts/ombre.mjs).
+// (scripts/recherche.mjs), la veille actualité (scripts/actualite.mjs), la
+// relecture (scripts/relecture.mjs) et le brief en ombre (scripts/ombre.mjs).
 //
 // AUCUN contournement des permissions. En headless, un outil que les réglages
 // n'autorisent pas est refusé en silence, la session continue, et le refus
@@ -68,4 +69,38 @@ export function interrogerGemini(consigne, { commande, modèle, délaiCli, déla
       return resolve({ réponse: sortie.response, stderr, tours: sortie.num_turns, durée: sortie.duration_seconds, usage: sortie.usage });
     });
   });
+}
+
+/**
+ * La session en fin de ligne de journal : « , 1 tours, 1700955 tokens lus,
+ * 98314 écrits ». Le quota de l'abonnement se compte en tokens et il est
+ * commun à toutes les sessions du matin ; une durée ne le dit pas, et une
+ * session de trois minutes peut avoir relu un million de tokens. Chaque
+ * ligne porte donc les siens, et chaque script fait le total des siennes.
+ *
+ * @param {{tours?: number, usage?: object}} session
+ * @returns {string}  vide si la session n'a rien dit
+ */
+export function décrireSession({ tours, usage } = {}) {
+  const parts = [];
+  if (tours) parts.push(`${tours} tours`);
+  if (usage?.input_tokens !== undefined) parts.push(`${usage.input_tokens} tokens lus`);
+  if (usage?.output_tokens !== undefined) parts.push(`${usage.output_tokens} écrits`);
+  return parts.length ? `, ${parts.join(', ')}` : '';
+}
+
+/**
+ * Le total des sessions d'un script, sur la même ligne que les autres :
+ * « ✓ Gemini total      1234567 tokens lus, 45678 écrits, 7 sessions ». Vide
+ * si aucune session n'a compté ses tokens.
+ *
+ * @param {Array<{usage?: object}>} sessions
+ * @returns {string}
+ */
+export function totalSessions(sessions) {
+  const comptées = sessions.filter((s) => s?.usage?.input_tokens !== undefined || s?.usage?.output_tokens !== undefined);
+  if (!comptées.length) return '';
+  const lus = comptées.reduce((n, s) => n + (s.usage.input_tokens ?? 0), 0);
+  const écrits = comptées.reduce((n, s) => n + (s.usage.output_tokens ?? 0), 0);
+  return `${lus} tokens lus, ${écrits} écrits, ${comptées.length} session(s)`;
 }

@@ -234,14 +234,16 @@ test('le script complète la veille avec ce qu\'un faux Gemini répond, et dit u
     `[{\\"name\\": \\"${nom}\\", \\"kind\\": \\"popup\\", \\"theme\\": \\"food\\", \\"venue\\": \\"성수\\", \\"area\\": \\"Seongsu\\", \\"start_date\\": \\"2026-09-20\\", \\"end_date\\": \\"2026-09-21\\", \\"summary\\": \\"Test.\\", \\"source_name\\": \\"Inven\\", \\"source_url\\": \\"https://www.inven.co.kr.invalid/${nom.replaceAll(' ', '-')}\\", \\"source_lang\\": \\"ko\\"}]`;
   await writeFile(
     faux,
-    `#!/bin/sh\ncase "$2" in *"pages qui listent"*) printf '%s' '{"status": "SUCCESS", "num_turns": 7, "response": "${piste('Pop-up pages')}"}' ;; *) printf '%s' '{"status": "SUCCESS", "num_turns": 9, "response": "${piste('Pop-up coréen')}"}' ;; esac\n`,
+    `#!/bin/sh\ncase "$2" in *"pages qui listent"*) printf '%s' '{"status": "SUCCESS", "num_turns": 7, "usage": {"input_tokens": 1200, "output_tokens": 30}, "response": "${piste('Pop-up pages')}"}' ;; *) printf '%s' '{"status": "SUCCESS", "num_turns": 9, "usage": {"input_tokens": 800, "output_tokens": 20}, "response": "${piste('Pop-up coréen')}"}' ;; esac\n`,
     { mode: 0o755 }
   );
 
   const env = { ...process.env, MATINALE_GEMINI: faux, SITE_URL: 'http://127.0.0.1:9' };
   const { stdout } = await exécuter('node', ['scripts/recherche.mjs', '--jour', TODAY, '--dossier', dossier], { cwd: RACINE, env });
-  assert.match(stdout, /✓ Gemini pages\s+1 pistes en \d+ s, 7 tours/);
-  assert.match(stdout, /✓ Gemini coréen\s+1 pistes en \d+ s, 9 tours/);
+  assert.match(stdout, /✓ Gemini pages\s+1 pistes en \d+ s, 7 tours, 1200 tokens lus, 30 écrits/);
+  assert.match(stdout, /✓ Gemini coréen\s+1 pistes en \d+ s, 9 tours, 800 tokens lus, 20 écrits/);
+  // Le total est celui du quota : ce que les deux sessions ont lu ensemble.
+  assert.match(stdout, /✓ Gemini total\s+2000 tokens lus, 50 écrits, 2 session\(s\)/);
   assert.match(stdout, /! Pop-up pages : (source morte|domaine inconnu)/);
   assert.match(stdout, /! Pop-up coréen : (source morte|domaine inconnu)/);
   const md = await readFile(veille, 'utf8');

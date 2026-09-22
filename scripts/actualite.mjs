@@ -30,7 +30,7 @@ import process from 'node:process';
 
 import { VOLETS_ACTUALITE, composerConsigneActualité, épurerPiste, lireVeille, trierPistesActualité, rendrePistesActualité } from './lib/actualite.mjs';
 import { extraireTableau } from './lib/recherche.mjs';
-import { interrogerGemini } from './lib/agy.mjs';
+import { décrireSession, interrogerGemini, totalSessions } from './lib/agy.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
@@ -105,10 +105,13 @@ for (const { section, gemini, durée } of résultats) {
     pannes.push({ section, panne: e.message });
     continue;
   }
-  console.log(`✓ ${étiquette(section)} ${tableau.length} pistes en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}`);
+  console.log(`✓ ${étiquette(section)} ${tableau.length} pistes en ${durée} s${décrireSession(gemini)}`);
   if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
   pistes.push(...tableau.map((p) => épurerPiste(p, section)));
 }
+
+const total = totalSessions(résultats.map((r) => r.gemini));
+if (total) console.log(`✓ ${étiquette('total')} ${total}`);
 
 if (pannes.length === résultats.length) {
   await déposer(rendrePistesActualité({ pannes }));

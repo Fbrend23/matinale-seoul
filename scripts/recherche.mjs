@@ -28,7 +28,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { composerConsigne, extraireTableau, trierPistes, rendrePistes, VOLETS } from './lib/recherche.mjs';
-import { interrogerGemini } from './lib/agy.mjs';
+import { décrireSession, interrogerGemini, totalSessions } from './lib/agy.mjs';
 import { connusDuSite } from './lib/onglet.mjs';
 import { rangsDeSources } from './lib/sources.mjs';
 import { relever, rendreSurveillées } from './lib/entites.mjs';
@@ -170,13 +170,18 @@ for (const { volet, gemini, durée } of résultats) {
     pannes.push({ volet, panne: e.message });
     continue;
   }
-  console.log(`✓ ${étiquette(volet)} ${tableau.length} pistes en ${durée} s${gemini.tours ? `, ${gemini.tours} tours` : ''}`);
+  console.log(`✓ ${étiquette(volet)} ${tableau.length} pistes en ${durée} s${décrireSession(gemini)}`);
   // Les refus de permission arrivent ici : un « read_url refusé » à chaque
   // ligne, et c'est le réglage du serveur qui manque, pas Gemini qui n'a rien
   // trouvé. Le journal doit pouvoir faire la différence.
   if (gemini.stderr?.trim()) console.log(gemini.stderr.trim().split('\n').slice(0, 20).map((l) => `    ${l}`).join('\n'));
   pistes.push(...tableau);
 }
+
+// Le total du script, pour lire d'un coup d'œil ce que la matinée a coûté
+// au quota : les lignes par volet disent où, celle-ci dit combien.
+const total = totalSessions(résultats.map((r) => r.gemini));
+if (total) console.log(`✓ ${étiquette('total')} ${total}`);
 
 // Les deux en panne : une seule raison si c'est la même, agy absent ou un
 // réglage qui manque, sinon chacune avec son volet.
