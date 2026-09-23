@@ -1,0 +1,379 @@
+{
+  "date": "2026-09-24",
+  "title": "Entre Jeux asiatiques et sommet Trump-Xi, Séoul boucle sa semaine de Chuseok",
+  "standfirst": "Les Jeux asiatiques de Nagoya continuent de sourire à la Corée, avec une première médaille d'e-sport et deux ors supplémentaires. À New York, Lee Jae-myung a évoqué avec Trump le transfert du contrôle militaire, à la veille du sommet Trump-Xi. Séoul, elle, prépare le retour de Chuseok.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul prolonge bus et métro pour le retour de Chuseok",
+          "original_headline": "추석 연휴 전 꼭 확인! 막차·쓰레기 배출 등 알짜정보",
+          "summary": "Les 26 et 27 septembre, métro et bus vers gares et terminaux circuleront jusqu'à 1h du matin. La ville ajoute 751 départs quotidiens de bus interurbains et des navettes gratuites vers les cimetières municipaux de Yongmiri.",
+          "importance": 1,
+          "tags": [
+            "chuseok",
+            "transports",
+            "metro",
+            "bus"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://mediahub.seoul.go.kr/archives/2019414",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T16:58:00+09:00"
+        },
+        {
+          "headline": "Séoul ouvre une seizième halte fluviale face au Bukhansan",
+          "original_headline": "북한산 품은 구파발천 풍경에 반할 수밖에! ‘서울물빛나루 16호’",
+          "summary": "La municipalité inaugure à Eunpyeong son seizième pôle fluvial sur le ruisseau Gupabal : café tenu par des jeunes en insertion, terrasse panoramique sur le mont Bukhansan et boucle de promenade sans pente raide.",
+          "importance": 2,
+          "tags": [
+            "seoul",
+            "fleuve",
+            "tourisme-urbain",
+            "eunpyeong"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://mediahub.seoul.go.kr/archives/2019467",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T11:56:00+09:00"
+        },
+        {
+          "headline": "Karina, Winter et Riize incarnent des immortels modernes pour vanter Séoul",
+          "original_headline": "Karina, Winter of Aespa, Riize play modern-day immortals in new Seoul tourism campaign",
+          "summary": "La nouvelle campagne « Absolutely in Seoul » met en scène les stars d'Aespa et de Riize, ambassadeurs touristiques 2026, dans des scénarios fantastiques mêlant gastronomie, beauté et vie nocturne. Diffusion internationale dès octobre.",
+          "analysis": "Après les k-dramas et les palais illuminés, Séoul mise sur ses propres idoles pour vendre la ville : une manière de faire de l'exportation culturelle un argument touristique direct, plutôt qu'un simple décor.",
+          "importance": 3,
+          "tags": [
+            "k-pop",
+            "tourisme",
+            "aespa",
+            "riize",
+            "campagne"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883366",
+          "source_lang": "en",
+          "published_at": "2026-09-23T12:41:48+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee et Trump évoquent le transfert du contrôle militaire opérationnel",
+          "summary": "Lors d'un sommet de trente minutes à New York, les deux présidents ont discuté du transfert du contrôle opérationnel en temps de guerre, des sous-marins nucléaires et de la construction navale, sans fixer de calendrier ferme.",
+          "analysis": "Séoul a repoussé cette échéance à 2030 depuis l'arrivée de Lee au pouvoir ; la formule « dès que possible » laisse le dossier ouvert, alors que d'autres chantiers, sous-marins et retraitement nucléaire, avancent plus vite.",
+          "importance": 1,
+          "tags": [
+            "diplomatie",
+            "opcon",
+            "lee-jae-myung",
+            "trump",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883348",
+          "source_lang": "en",
+          "published_at": "2026-09-23T12:14:33+09:00"
+        },
+        {
+          "headline": "Séoul veut ramener sa dépendance au pétrole du Moyen-Orient sous les 50%",
+          "original_headline": "중동 원유 의존도 70%→50% 이하로…비축 2천만 배럴 확충",
+          "summary": "Le gouvernement adopte son premier plan de sécurité des ressources : faire passer sa dépendance au pétrole moyen-oriental de 70% à moins de 50% d'ici 2035, avec 20 millions de barils de réserves supplémentaires.",
+          "importance": 2,
+          "tags": [
+            "energie",
+            "petrole",
+            "securite-energetique",
+            "moyen-orient"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008767230",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T09:42:41+09:00"
+        },
+        {
+          "headline": "Les dossiers de violence scolaire examinés ont bondi de 88% depuis 2021",
+          "summary": "Les dossiers examinés par les comités de discipline sont passés de 15 653 à 29 405 cas entre 2021 et 2025. De moins en moins de cas sont désormais réglés directement par les établissements.",
+          "importance": 3,
+          "tags": [
+            "education",
+            "violence-scolaire",
+            "societe"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883338",
+          "source_lang": "en",
+          "published_at": "2026-09-23T11:57:15+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Qualcomm, Samsung et Google s'allient pour l'après-smartphone",
+          "original_headline": "\"스마트폰 다음은 XR\"…퀄컴·삼성·구글, 차세대 폼팩터 3자 연합 구축",
+          "summary": "Les trois groupes scellent une alliance sur la réalité étendue et l'IA personnalisée : Qualcomm fournit les puces, Google la plateforme Android XR avec Gemini, Samsung fabrique casques et lunettes intelligentes.",
+          "analysis": "Une répartition des rôles calquée sur celle qui a fait le smartphone Android, appliquée cette fois aux lunettes et casques : le pari est que l'IA générative rende enfin ce format grand public.",
+          "importance": 1,
+          "tags": [
+            "xr",
+            "ia",
+            "samsung",
+            "qualcomm",
+            "google"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260924053226",
+          "source_lang": "ko",
+          "published_at": "2026-09-24T05:32:26+09:00"
+        },
+        {
+          "headline": "ChatGPT mobile gagne des fonctions vocales pour agir à la place de l'utilisateur",
+          "summary": "Les abonnés Plus et Pro peuvent désormais rédiger un e-mail, un document ou un site depuis l'onglet Work en dictant leur demande à voix haute, avec bascule fluide entre mobile et ordinateur.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "chatgpt",
+            "ia",
+            "assistant-vocal"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/23/chatgpt-mobile-app-gets-voice-based-agentic-features/",
+          "source_lang": "en",
+          "published_at": "2026-09-24T02:00:00+09:00"
+        },
+        {
+          "headline": "Un robot quadrupède coréen boucle un marathon sans recharge",
+          "summary": "RAIBO2, développé par le laboratoire du KAIST à l'origine de Raion Robotics, a parcouru 42 kilomètres en 4h19 sur une seule charge, une première mondiale pour un robot à quatre pattes.",
+          "importance": 3,
+          "tags": [
+            "robotique",
+            "kaist",
+            "recherche"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20260924/4-legged-korean-robot-runs-full-marathon-on-single-charge",
+          "source_lang": "en",
+          "published_at": "2026-09-24T00:00:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Young-chan offre à la Corée sa première médaille d'e-sport aux Jeux asiatiques de 2026",
+          "original_headline": "e스포츠 ‘첫 메달’ 나왔다! 그란투리스모7 김영찬, 레이스1 부진 딛고 값진 ‘동메달’ [SS나고야in]",
+          "summary": "Après une sixième place décevante en première course, le pilote de 26 ans a repris la main pour terminer troisième au général de Gran Turismo 7, décrochant la médaille de bronze.",
+          "analysis": "L'e-sport, discipline officielle des Jeux asiatiques depuis 2022, offre ici à la Corée sa première médaille dans cette édition 2026 : un symbole pour un pays qui domine par ailleurs le circuit professionnel mondial.",
+          "importance": 1,
+          "tags": [
+            "esport",
+            "jeux-asiatiques",
+            "gran-turismo"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637251",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T13:38:21+09:00"
+        },
+        {
+          "headline": "Kakao Games clôture en une heure la réservation de pseudonymes de Dokkaebi World",
+          "original_headline": "카카오게임즈 '도깨비의 세계', 1차 캐릭터명 선점 1시간 만에 조기 마감",
+          "summary": "La première vague de réservation de noms pour ce MMORPG 2.5D en développement, prévue sur quatre heures, s'est achevée en une heure faute de places. Une deuxième session a suivi dès le lendemain.",
+          "importance": 2,
+          "tags": [
+            "kakao-games",
+            "mmorpg",
+            "coree"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260923101801",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T10:18:01+09:00"
+        },
+        {
+          "headline": "Sans autorisation officielle au Vietnam, PUBG PC voit son circuit e-sport menacé",
+          "original_headline": "[이슈] 베트남서 사라지는 PUBG, 흔들리는 e스포츠 리그",
+          "summary": "Jamais autorisé officiellement sur PC au Vietnam contrairement à sa version mobile, PUBG voit la deuxième phase de ses Vietnam Series retirée du calendrier par Krafton, alors que les autorités locales envisagent un blocage plus large.",
+          "importance": 3,
+          "tags": [
+            "pubg",
+            "esport",
+            "vietnam",
+            "krafton"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321432",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T21:01:14+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Oh Sang-uk conserve son titre en sabre aux Jeux asiatiques",
+          "summary": "Le champion olympique a battu le Chinois Shen Chenpeng 15-13 malgré une blessure à la cheville, décrochant son deuxième or continental d'affilée. Il juge l'escrime asiatique de plus en plus relevée, citant Chine, Iran et Kazakhstan.",
+          "importance": 1,
+          "tags": [
+            "escrime",
+            "jeux-asiatiques",
+            "oh-sang-uk"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883891",
+          "source_lang": "en",
+          "published_at": "2026-09-23T21:08:49+09:00"
+        },
+        {
+          "headline": "Choo Ga-eun décroche l'or au pistolet à air comprimé, une première coréenne depuis 2010",
+          "summary": "Avec 246,3 points, la tireuse a battu le record des Jeux asiatiques, à 0,7 point du record du monde. Elle devient la première Sud-Coréenne à remporter cette épreuve individuelle depuis 2010.",
+          "importance": 2,
+          "tags": [
+            "tir-sportif",
+            "jeux-asiatiques",
+            "choo-ga-eun"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883597",
+          "source_lang": "en",
+          "published_at": "2026-09-23T14:43:12+09:00"
+        },
+        {
+          "headline": "La Corée bat l'Arabie saoudite 2-0 grâce à l'ouverture du score de Shin Min-ha",
+          "original_headline": "답답한 흐름 깬 ‘헤더’ 선제 득점…이민성호 조 1위 이끈 수비수 신민하 “팀으로 싸워야, 하나로 뭉치는 계기 됐다”[SS나고야in]",
+          "summary": "Le défenseur a débloqué un match jusque-là fermé d'une tête sur coup franc, en seconde période, contre l'Arabie saoudite. Il salue une équipe qui a su se resserrer après un début de match difficile.",
+          "importance": 3,
+          "tags": [
+            "football",
+            "jeux-asiatiques",
+            "shin-min-ha"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637151",
+          "source_lang": "ko",
+          "published_at": "2026-09-23T11:10:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Beauty Survival Murders : Murder Mystery immersif",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "아모레성수",
+      "area": "Seongsu",
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-31",
+      "summary": "Jeu d'enquête immersif d'une heure dix dans le concept-store Amore Seongsu, mêlant énigme façon murder mystery et univers cosmétique. Accès dès 10 ans, billet à 15 000 wons en tarif de lancement.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001144/products/26013642",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26001144/products/26013642"
+    },
+    {
+      "name": "ano LIVE in SEOUL, KOREA 2026",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "블루스퀘어 우리WON뱅킹홀",
+      "area": "Yongsan-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "summary": "Concert solo à Séoul de la chanteuse et musicienne japonaise ano, sur la scène du Bluesquare à Yongsan.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000166/products/26010474",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26000166/products/26010474"
+    },
+    {
+      "name": "Festival des arts de la scène GAF 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "구로창의아트홀",
+      "area": "Guro-gu",
+      "start_date": "2026-09-27",
+      "end_date": "2026-10-25",
+      "summary": "14e édition du Glocal Acting Festival : sept compagnies scéniques de Séoul se produisent au Guro Creative Art Hall, entre théâtre contemporain et danse. Ouverture le 27 septembre à Maronie Park.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=840",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival Créatif x Seongsu 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "에스팩토리",
+      "area": "Seongsu",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-11",
+      "summary": "Festival de design et de culture urbaine à Seongsu : expositions, conférences, marché artisanal et défilés de mode répartis entre S-Factory, le Pub G Seongsu et la forêt de Séoul.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=577",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival d'échange Corée-Japon 2026 à Coex",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "코엑스 Hall D",
+      "area": "Gangnam",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "Plus grand rassemblement d'échanges culturels nippo-coréens, avec spectacles traditionnels et pop, stands régionaux et ateliers immersifs. Entrée libre au Hall D de Coex.",
+      "source_name": "Coex",
+      "source_url": "https://www.coex.co.kr/exhibitions/%ed%95%9c%ec%9d%bc%ec%b6%95%ec%a0%9c%ed%95%9c%eb%a7%88%eb%8b%b9-2026-in-seoul/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon Smart Life Week 2026 à Coex",
+      "kind": "salon",
+      "theme": "seoul",
+      "venue": "코엑스 Hall A, B",
+      "area": "Gangnam",
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-08",
+      "summary": "Salon international des villes intelligentes organisé par la ville de Séoul, avec remise du prix des villes intelligentes de Séoul et de l'innovation citoyenne. Entrée gratuite, Halls A et B de Coex.",
+      "source_name": "Coex",
+      "source_url": "https://www.coex.co.kr/exhibitions/%ec%8a%a4%eb%a7%88%ed%8a%b8%eb%9d%bc%ec%9d%b4%ed%94%84%ec%9c%84%ed%81%acslw/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "37e Salon international de la papeterie de Séoul (SISOFAIR)",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스 Hall B1",
+      "area": "Gangnam",
+      "start_date": "2026-10-22",
+      "end_date": "2026-10-24",
+      "summary": "Salon annuel de la papeterie, du design créatif et des produits dérivés sous licence, au Hall B1 de Coex. Entrée à 5 000 wons, gratuite pour les étudiants.",
+      "source_name": "Coex",
+      "source_url": "https://www.coex.co.kr/exhibitions/%ec%a0%9c37%ed%9a%8c-%ec%84%9c%ec%9a%b8%ea%b5%ad%ec%a0%9c%eb%ac%b8%ea%b5%ac%ec%82%ac%eb%ac%b4%ec%9a%a9%ed%92%88%ec%a0%84%ec%8b%9c%ed%9a%8c/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Match amical international Corée du Sud vs Uruguay",
+      "kind": "autre",
+      "theme": "sport",
+      "venue": "서울월드컵경기장",
+      "area": "Mapo-gu",
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-28",
+      "summary": "Match amical de la sélection sud-coréenne, dirigée par l'intérimaire Roberto Moreno, face à l'Uruguay au Stade de la Coupe du monde de Séoul. Animations d'avant-match et QR codes pour suivre les compositions.",
+      "source_name": "스포츠서울",
+      "source_url": "https://www.sportsseoul.com/news/read/1637275",
+      "source_lang": "ko"
+    }
+  ]
+}
