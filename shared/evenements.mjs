@@ -10,9 +10,15 @@
 // que soit le brief qui l'a repéré. Il a donc sa collection, sa page, et ses
 // propres contrôles, dont aucun ne recale jamais le brief.
 
-// Ce qu'on peut aller voir. « autre » existe ici parce qu'un lancement de jeu
-// en boutique ou une projection ne sont ni un pop-up ni un concert.
-export const KINDS = ['popup', 'concert', 'exposition', 'festival', 'salon', 'autre'];
+// Ce qu'on peut aller voir. « autre » existe ici parce qu'une projection ou
+// une séance de dédicaces ne sont ni un pop-up ni un concert.
+//
+// « lancement » est à part : une collaboration vendue au comptoir de toute une
+// chaîne, McDonald's × G-Dragon et ses trois objets Peaceminusone au
+// 28 septembre 2026. Ni lieu unique ni fin annoncée, « jusqu'à épuisement » :
+// c'est ce qui l'excluait de l'onglet, et c'est pourtant ce qu'on va chercher
+// en magasin. Il a ses règles, voir FENÊTRE_LANCEMENT.
+export const KINDS = ['popup', 'concert', 'exposition', 'festival', 'salon', 'lancement', 'autre'];
 
 export const KIND_LABELS = {
   popup: 'Pop-up',
@@ -20,6 +26,7 @@ export const KIND_LABELS = {
   exposition: 'Exposition',
   festival: 'Festival',
   salon: 'Salon',
+  lancement: 'En magasin',
   autre: 'Événement',
 };
 
@@ -46,7 +53,39 @@ export const THEME_LABELS = {
 
 export const THEMES_EN_PROSE = THEMES.map((clé) => THEME_LABELS[clé]).join(', ');
 
-import { joursEntre } from './date.mjs';
+import { joursEntre, jourPlus } from './date.mjs';
+
+/**
+ * Combien de jours un lancement reste dans l'onglet quand sa source ne dit pas
+ * quand il finit. Deux semaines, jour du lancement compris.
+ *
+ * Ce n'est PAS une date de fin, et le site ne l'affiche jamais comme telle :
+ * une carte « En magasin » dit « dès le 28 sept. », sans décompte. C'est la
+ * durée pendant laquelle l'annonce vaut d'être vue ; au-delà, un « jusqu'à
+ * épuisement » est le plus souvent épuisé. Posée par le code et pas par
+ * l'agent, pour qu'une fin devinée n'entre jamais par le prompt, et qu'un
+ * même lancement reproposé le lendemain retombe sur les mêmes dates, donc sur
+ * son doublon.
+ */
+export const FENÊTRE_LANCEMENT = 14;
+
+/** Un lancement en magasin : pas de lieu unique, pas de décompte, pas de pin. */
+export function estLancement(event) {
+  return event?.kind === 'lancement';
+}
+
+/**
+ * L'événement, avec sa fin posée s'il est un lancement qui n'en annonce pas.
+ * Une copie ; tout autre événement revient tel quel.
+ *
+ * @template {{kind?: string, start_date?: string, end_date?: string}} E
+ * @param {E} event
+ * @returns {E}
+ */
+export function compléterFin(event) {
+  if (!estLancement(event) || event.end_date || !event.start_date) return event;
+  return { ...event, end_date: jourPlus(event.start_date, FENÊTRE_LANCEMENT - 1) };
+}
 
 /**
  * Le lien de recherche Naver Map, construit du lieu.
@@ -189,6 +228,10 @@ export const JOURS_URGENTS = 7;
  */
 export function badgeDélai(event, today) {
   if (event.end_date < today) return null;
+
+  // Sa fin n'est pas un fait, seulement la fenêtre de l'onglet : on ne la
+  // décompte pas. « En vente » suffit, c'est un comptoir, pas un rendez-vous.
+  if (estLancement(event) && event.start_date <= today) return { texte: 'En vente', urgent: false };
 
   if (event.start_date > today) {
     const dans = joursEntre(today, event.start_date);

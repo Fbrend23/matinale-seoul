@@ -32,7 +32,7 @@ import {
   wordCount,
   MAX_SUMMARY_WORDS,
 } from './guards.mjs';
-import { enCoréen, normaliserLieu, périodesSeRecouvrent } from '../../shared/evenements.mjs';
+import { compléterFin, enCoréen, normaliserLieu, périodesSeRecouvrent } from '../../shared/evenements.mjs';
 
 /** Les liens facultatifs d'un événement : vérifiés, jamais décisifs. */
 const LIENS_FACULTATIFS = ['booking_url', 'map_url'];
@@ -224,7 +224,10 @@ export async function contrôlerÉvénements(
 
   // Des copies : l'agent a écrit ces objets, on ne les retouche pas, les
   // champs qu'on retire ici ne doivent pas disparaître du fichier qu'il relit.
-  let survivants = events.map((event) => ({ ...event }));
+  // Un lancement sans fin annoncée reçoit la sienne ici, avant tout le reste :
+  // la cohérence, les doublons et le CMS ne connaissent que des événements
+  // qui finissent (FENÊTRE_LANCEMENT).
+  let survivants = events.map((event) => ({ ...compléterFin(event) }));
 
   const écarter = (event, raison) => écartés.push({ event, raison });
 

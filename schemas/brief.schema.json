@@ -248,11 +248,16 @@
         "venue",
         "area",
         "start_date",
-        "end_date",
         "summary",
         "source_name",
         "source_url"
       ],
+      "if": {
+        "properties": { "kind": { "const": "lancement" } }
+      },
+      "else": {
+        "required": ["end_date"]
+      },
       "properties": {
         "name": {
           "type": "string",
@@ -266,8 +271,10 @@
             "exposition",
             "festival",
             "salon",
+            "lancement",
             "autre"
-          ]
+          ],
+          "description": "« lancement » : une collaboration ou une édition limitée vendue en magasin, souvent dans toute une chaîne (McDonald's × G-Dragon, goodies au comptoir). venue est alors le nom de la chaîne en coréen, tel qu'on le tape dans Naver Map (« 맥도날드 »), ou la boutique si la vente n'a lieu que là ; end_date seulement si la source l'annonce. Une sortie en ligne seule n'en est pas un."
         },
         "theme": {
           "enum": [
@@ -303,7 +310,7 @@
         "end_date": {
           "type": "string",
           "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-          "description": "Dernier jour, inclus. Égal à start_date pour un événement d'un jour. Obligatoire : c'est lui qui fait sortir l'événement de la page, puis l'archive."
+          "description": "Dernier jour, inclus. Égal à start_date pour un événement d'un jour. Obligatoire, sauf pour un lancement dont la source ne dit pas quand il finit (« jusqu'à épuisement ») : l'ingestion lui donne alors deux semaines d'onglet, jamais affichées comme une date de fin. C'est lui qui fait sortir l'événement de la page, puis l'archive."
         },
         "summary": {
           "type": "string",

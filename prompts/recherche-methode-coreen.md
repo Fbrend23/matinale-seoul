@@ -17,6 +17,7 @@ Puis les thèmes. Avec les mots des sites coréens, combinés au mois en cours e
 - `seoul` : `서울 축제`, `한강 축제`, `서울시 행사`
 - `culture` : `전시회 서울`, `기획전 개막`
 - `food` : `푸드 팝업`, `팝업 카페 서울`
+- lancements : `콜라보 굿즈 출시`, `한정판 굿즈 매장 판매` — les collaborations vendues au comptoir d'une chaîne (`kind` `lancement`), que les rédactions économiques annoncent une à deux semaines avant ; le thème est celui de ce qui fait venir, `kpop` avec un idol, sinon `food` ou `mode`
 - `sport` : `서울 마라톤`, `야구 직관`, `K리그 서울`
 
 Une recherche par thème, deux si la première ne rend que des agrégateurs. Vise six à dix événements, venant d'au moins trois rédactions. Un thème sans rien de neuf est un thème fini : passe au suivant, ne cherche pas pour le principe.

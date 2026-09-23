@@ -4,7 +4,7 @@
 // Une carte et non un item de brief : on parcourt l'onglet des yeux pour
 // trouver ce qui se passe ce week-end, pas pour lire de haut en bas. D'où le
 // thème en couleur, les dates et le lieu avant le texte, et les liens en pied.
-import { dateRange } from '../lib/date.js';
+import { périodeÉvénement } from '../lib/date.js';
 import { lieuxPages } from '../lib/content.js';
 import { slugLieu } from '../lib/lieux.js';
 import { KIND_LABELS, THEME_LABELS, lienNaverMap, badgeDélai } from '../../shared/evenements.mjs';
@@ -41,6 +41,7 @@ const carte = event.map_url ?? lienNaverMap(event);
   data-fin={event.end_date}
   data-repere={event.date_created ?? ''}
   data-theme={event.theme}
+  data-genre={event.kind}
   data-adresse={event.address ?? ''}
 >
   <p class="evenement-theme">
@@ -56,7 +57,7 @@ const carte = event.map_url ?? lienNaverMap(event);
       tranche. Le lieu est en coréen, tel que Naver Map l'écrit : lang="ko"
       pour que les lecteurs d'écran et la typographie le traitent comme tel. */}
   <p class="evenement-infos">
-    <time class="evenement-quand" datetime={event.start_date}>{dateRange(event.start_date, event.end_date)}</time>
+    <time class="evenement-quand" datetime={event.start_date}>{périodeÉvénement(event)}</time>
     <span class="evenement-ou">
       {/* Lien ou simple texte, toujours lang="ko" : c'est cet attribut que
           la carte Kakao lit pour retrouver le nom du lieu. */}

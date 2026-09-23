@@ -46,6 +46,19 @@ export function dateRange(début, fin) {
   return `du ${shortDate(début)} au ${shortDate(fin)}`;
 }
 
+/**
+ * Les dates d'un événement telles qu'on les affiche : « dès le 28 sept. »
+ * pour un lancement en magasin, dont la fin n'est que la fenêtre de l'onglet
+ * (shared/evenements.mjs, FENÊTRE_LANCEMENT) et ne doit pas se lire comme
+ * annoncée ; dateRange() pour tout le reste.
+ *
+ * @param {{kind?: string, start_date: string, end_date: string}} event
+ */
+export function périodeÉvénement(event) {
+  if (event.kind === 'lancement') return `dès le ${shortDate(event.start_date)}`;
+  return dateRange(event.start_date, event.end_date);
+}
+
 /** L'heure de publication d'une source, dite à Séoul puisque c'est là qu'on lit. */
 export function sourceTime(iso) {
   if (!iso) return null;

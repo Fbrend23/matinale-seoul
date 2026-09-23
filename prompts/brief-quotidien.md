@@ -335,8 +335,8 @@ Elles ne sont pas indicatives : chacune correspond à un contrôle automatique.
   langue. Omets-le pour une source en français : un titre original sans langue,
   ou en français, fait recaler le brief.
 - **`date`** : le jour courant à Séoul. Un brief daté d'hier est rejeté en bloc.
-- **`events`** : chaque événement porte `start_date` **et** `end_date`, des
-  dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
+- **`events`** : chaque événement porte `start_date` **et** `end_date`
+  (un `lancement` peut omettre `end_date`, voir le § 7), des dates réelles, fin ≥ début et fin ≥ aujourd'hui ; un `theme` parmi `anime`,
   `pokemon`, `kpop`, `gaming`, `personnages`, `mode`, `seoul`, `culture`,
   `food`, `sport` ; un `summary` de 40 mots au plus ; un `venue` en coréen, sauf si `map_url` est donné. Un
   événement fautif est écarté, le brief passe, mais un champ inventé dans un
@@ -388,6 +388,15 @@ personnages, mode et marques, festivals de Séoul, culture et expos, food et
 boissons, sport**. Séoul et sa proche banlieue (Goyang, Seongnam, Incheon), rien
 au-delà. Ce qui n'est pas un événement n'y va pas : une boutique permanente
 qui ouvre, une promotion en ligne, une sortie de produit sans lieu ni dates.
+
+**Un lancement en magasin y va**, avec `kind` `lancement` : une collaboration
+ou une édition limitée qu'on achète au comptoir, à partir d'une date
+annoncée, souvent dans toute une chaîne. McDonald's × G-Dragon, trois objets
+Peaceminusone dans tous les McDonald's à partir du 28 septembre 2026, jusqu'à
+épuisement : le Korea Herald l'a annoncé, la veille du 20 l'avait, et l'onglet
+ne pouvait pas le prendre. Un nouveau menu seul, sans objet ni idol, ne vaut
+pas une carte ; une vente seulement en ligne non plus. Le thème reste celui
+de ce qui fait venir : `kpop` avec un idol en tête d'affiche.
 
 Le thème, c'est ce qui fait venir les gens. Six d'entre eux demandent une
 précision :
@@ -498,14 +507,19 @@ pas de redire ce qui s'y trouve :
 - **Dates annoncées ou rien.** `start_date` et `end_date` sont celles que la
   source donne ; `end_date` est le dernier jour, inclus, et vaut `start_date`
   pour un événement d'un jour. Un événement sans date de fin annoncée ne va
-  pas dans l'onglet.
+  pas dans l'onglet, **sauf un `lancement`** : « jusqu'à épuisement », omets
+  `end_date`, l'ingestion lui donne deux semaines d'onglet et le site écrit
+  « dès le … », sans décompte. Si la source annonce une fin, mets-la.
 - **`venue` est le lieu en coréen, tel que Naver Map l'écrit**, `하이커그라운드`,
   `아라아트센터`, `포켓몬센터 성수`, pas « Hiker Ground ». Le site en fait un
   lien de recherche Naver Map, c'est l'épingle par défaut, et une recherche
   en anglais n'y trouve rien : un lieu sans hangul fait écarter l'événement,
   sauf s'il porte un `map_url`. Pour une enseigne à plusieurs adresses, mets
   la succursale dans le lieu (`포켓몬센터 성수`). `area` est le quartier,
-  romanisé pour le lecteur : `Seongsu`, `Jung-gu`.
+  romanisé pour le lecteur : `Seongsu`, `Jung-gu`. Un `lancement` dans toute
+  une chaîne a pour lieu la chaîne, `맥도날드`, et pour quartier
+  `Toute la Corée` : le bouton Naver Map trouve alors la plus proche, et la
+  carte de l'onglet ne pose pas de pin.
 - `map_url` **seulement si tu as vu** la fiche Naver Map du lieu
   (`map.naver.com` ou `naver.me`). Sinon, omets le champ. Même règle pour
   `booking_url` : la billetterie si tu l'as vue, rien sinon.

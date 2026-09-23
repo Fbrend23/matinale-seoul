@@ -19,6 +19,8 @@ Tout ce qui se passe à Séoul et sa proche banlieue (Goyang, Seongnam, Incheon)
 
 Ce qui n'est pas un événement n'y va pas : boutique permanente qui ouvre, promotion en ligne, sortie de produit sans lieu ni dates.
 
+**Les lancements en magasin, eux, y vont.** Une collaboration ou une édition limitée qu'on achète au comptoir, avec une date de début annoncée : McDonald's × G-Dragon, trois objets Peaceminusone vendus dans tous les McDonald's à partir du 28 septembre 2026, jusqu'à épuisement. Aucune rédaction ne l'appelle « pop-up », aucune liste ne la recense, et c'est pourtant ce que les gens vont chercher. `kind` vaut alors `lancement`, et deux règles changent, dites plus bas pour `venue` et `end_date`. Un nouveau menu seul, sans objet ni idol, ne vaut pas le détour ; un produit vendu seulement en ligne non plus.
+
 ## Déjà connu, à ne pas reproposer
 
 L'onglet du site tient ceci. Ne le repropose pas, **sauf si ses dates ont changé** (prolongation, report) : repropose-le alors avec le même nom et les dates nouvelles. Un événement de cette liste trouvé sous un autre nom, au même lieu, aux mêmes dates et du même thème, est le même : ne le repropose pas.
@@ -76,11 +78,11 @@ Ce qui te borne, c'est le temps, une dizaine de minutes, soit une cinquantaine d
 ```
 
 - `name` : en français, court, le nom sous lequel on le reconnaît.
-- `kind` : `popup`, `concert`, `exposition`, `festival`, `salon` ou `autre`.
+- `kind` : `popup`, `concert`, `exposition`, `festival`, `salon`, `lancement` ou `autre`.
 - `theme` : l'un des neuf ci-dessus, en minuscules.
-- `venue` : **le lieu en coréen, tel que Naver Map l'écrit** (`하이커그라운드`, `아라아트센터`), pas en anglais. Pour une enseigne à plusieurs adresses, la succursale : `포켓몬센터 성수`. Les salles de concert ont un nom coréen même quand la billetterie l'écrit en latin : `KSPO돔`, pas « KSPO DOME » ; `고척스카이돔`, `인스파이어 아레나`, `킨텍스`. Sans nom de lieu, l'adresse en coréen (`서울 성동구 연무장3길 8-9`).
-- `area` : le quartier, romanisé : `Seongsu`, `Jung-gu`, `Goyang`.
-- `start_date`, `end_date` : AAAA-MM-JJ, telles que la source les donne. `end_date` est le dernier jour inclus, égal à `start_date` pour un jour unique. **Sans date de fin annoncée, pas d'événement.** Une date devinée est pire qu'un événement en moins.
+- `venue` : **le lieu en coréen, tel que Naver Map l'écrit** (`하이커그라운드`, `아라아트센터`), pas en anglais. Pour une enseigne à plusieurs adresses, la succursale : `포켓몬센터 성수`. Les salles de concert ont un nom coréen même quand la billetterie l'écrit en latin : `KSPO돔`, pas « KSPO DOME » ; `고척스카이돔`, `인스파이어 아레나`, `킨텍스`. Sans nom de lieu, l'adresse en coréen (`서울 성동구 연무장3길 8-9`). Pour un `lancement` dans toute une chaîne, le nom de la chaîne en coréen, tel qu'on le tape dans Naver Map pour trouver la plus proche : `맥도날드`, `스타벅스`, `CU`.
+- `area` : le quartier, romanisé : `Seongsu`, `Jung-gu`, `Goyang`. Pour un lancement dans toute une chaîne : `Toute la Corée`.
+- `start_date`, `end_date` : AAAA-MM-JJ, telles que la source les donne. `end_date` est le dernier jour inclus, égal à `start_date` pour un jour unique. **Sans date de fin annoncée, pas d'événement**, sauf un `lancement` : sa source dit souvent « jusqu'à épuisement », et tu omets alors `end_date`, le script lui donne sa place dans l'onglet. Une date devinée est pire qu'un événement en moins.
 - `summary` : en français, 35 mots au plus, factuel, sans superlatif : ce qu'on y trouve, si c'est gratuit ou sur billet.
 - `source_name` : la rédaction ; `source_url` : **l'adresse exacte de la page que tu as ouverte**, en `https://`, complète, jamais reconstruite ni raccourcie ; `source_lang` : `ko`, `en` ou `fr`.
 - `booking_url` : la billetterie, **seulement si tu l'as vue** ; `map_url` : la fiche Naver Map (`map.naver.com` ou `naver.me`), **seulement si tu l'as vue**. Sinon, omets le champ, ne mets pas `null`.

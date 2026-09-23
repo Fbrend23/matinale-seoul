@@ -25,6 +25,8 @@ import {
   TRI_PAR_DEFAUT,
   badgeDélai,
   JOURS_URGENTS,
+  FENÊTRE_LANCEMENT,
+  compléterFin,
 } from '../shared/evenements.mjs';
 import { correspond } from '../shared/texte.mjs';
 
@@ -508,4 +510,71 @@ test('une prolongation annoncée par un lien mort est écartée', async () => {
   const { écartés, prolongés } = await contrôler([event], { connus: [connuAvecDates], fetcher });
   assert.equal(prolongés.length, 0);
   assert.match(écartés[0].raison, /source morte/);
+});
+
+// --- Les lancements en magasin -----------------------------------------------
+//
+// McDonald's × G-Dragon, 28 septembre 2026 : trois objets Peaceminusone au
+// comptoir de tous les McDonald's, « jusqu'à épuisement ». Ni lieu unique ni
+// fin annoncée ; la fin est la fenêtre de l'onglet, posée par le code.
+
+const lancement = (retouche = {}) => {
+  const { end_date, ...sansFin } = sain({
+    name: 'McDonald’s × G-Dragon : les objets Peaceminusone',
+    kind: 'lancement',
+    theme: 'kpop',
+    venue: '맥도날드',
+    area: 'Toute la Corée',
+    start_date: '2026-09-28',
+    source_name: 'The Korea Herald',
+    source_url: 'https://www.koreaherald.com/article/10878648',
+  });
+  return { ...sansFin, ...retouche };
+};
+
+test('un lancement peut omettre sa fin, aucun autre événement', () => {
+  const brief = structuredClone(exempleDeBrief);
+  assert.deepEqual(validateSchema({ ...brief, events: [lancement()] }, schéma), []);
+  const { end_date, ...popupSansFin } = sain();
+  assert.notDeepEqual(validateSchema({ ...brief, events: [popupSansFin] }, schéma), []);
+});
+
+test('un lancement sans fin reçoit la fenêtre de l onglet, jour du lancement compris', async () => {
+  assert.equal(FENÊTRE_LANCEMENT, 14);
+  const { retenus, écartés } = await contrôler([lancement()]);
+  assert.deepEqual(écartés, []);
+  assert.equal(retenus[0].end_date, '2026-10-11');
+});
+
+test('un lancement qui annonce sa fin la garde', async () => {
+  const { retenus } = await contrôler([lancement({ end_date: '2026-10-31' })]);
+  assert.equal(retenus[0].end_date, '2026-10-31');
+});
+
+test('reproposé le lendemain, un lancement retombe sur les mêmes dates : doublon', async () => {
+  const hier = compléterFin(lancement());
+  const { retenus, écartés, prolongés } = await contrôler([lancement()], { connus: [hier] });
+  assert.deepEqual(retenus, []);
+  assert.deepEqual(prolongés, []);
+  assert.match(écartés[0].raison, /déjà connu/);
+});
+
+test('un lancement lancé depuis plus de deux semaines est terminé', () => {
+  const vieux = compléterFin(lancement({ start_date: '2026-08-01' }));
+  assert.match(cohérenceÉvénement(vieux, { today: AUJOURDHUI })[0], /terminé le 2026-08-14/);
+});
+
+test('compléterFin ne touche ni un autre genre, ni l objet reçu', () => {
+  const { end_date, ...popupSansFin } = sain();
+  assert.equal(compléterFin(popupSansFin), popupSansFin);
+  const reçu = lancement();
+  compléterFin(reçu);
+  assert.equal(reçu.end_date, undefined);
+});
+
+test('le badge d un lancement ne décompte pas sa fenêtre', () => {
+  const l = compléterFin(lancement());
+  assert.deepEqual(badgeDélai(l, '2026-10-10'), { texte: 'En vente', urgent: false });
+  assert.deepEqual(badgeDélai(l, '2026-09-27'), { texte: 'Demain', urgent: false });
+  assert.equal(badgeDélai(l, '2026-10-12'), null);
 });
