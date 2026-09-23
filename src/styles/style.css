@@ -16,6 +16,14 @@
   --cote: 15rem;          /* la colonne latérale */
   --mesure-page: var(--mesure);   /* la page entière, et l'en-tête : réglée par le nombre de colonnes */
 
+  /* La hauteur de l'en-tête collant. Repli seulement : c'est la barre d'un
+     grand écran sur une ligne, 1,25 + 1,1 × 1,6 + 0,7. Elle ne vaut pas
+     partout — dix onglets passent sur une ou deux lignes selon la largeur et
+     le nombre de colonnes — donc le script de BaseLayout la mesure et la
+     réécrit. Sans script, cette valeur sert, et une ancre tombe un peu haut
+     sur une page de lecture : c'est le pire qui arrive. */
+  --hauteur-entete: 3.71rem;
+
   /* Une couleur par thème d'événement, pour la carte. Sobres : c'est un repère
      à la lecture, pas une identité de marque. */
   --theme-anime: #7c3aed;
@@ -69,6 +77,11 @@
    en flex ou la barre de filtres en flex restent visibles une fois masquées. */
 [hidden] { display: none !important; }
 
+/* L'en-tête étant collant, une ancre visée depuis le sommaire de l'archive ou
+   par le lien d'évitement arriverait DERRIÈRE lui. Posé sur le défilement
+   lui-même, cela vaut pour toutes les ancres du site, présentes et à venir. */
+html { scroll-padding-top: var(--hauteur-entete); }
+
 body {
   margin: 0;
   background: var(--fond);
@@ -114,7 +127,9 @@ body[data-largeur="large"] { --mesure-page: calc(var(--mesure) + 2 * (3rem + var
 
 main { min-width: 0; }
 
-.cote, .gauche { align-self: start; position: sticky; top: 1.5rem; padding-top: 2.5rem; }
+/* Les deux colonnes collent sous l'en-tête, qui colle lui-même : leur 1,5 rem
+   d'air se compte à partir du bas de la barre, et non du haut de l'écran. */
+.cote, .gauche { align-self: start; position: sticky; top: calc(var(--hauteur-entete) + 1.5rem); padding-top: 2.5rem; }
 
 @media (max-width: 80rem) {
   /* Plus la place pour trois colonnes : les deux latérales passent au-dessus
@@ -186,6 +201,16 @@ a:hover { text-decoration-thickness: 2px; }
    un fondu qui dit qu'il y en a d'autres à droite. */
 
 .entete {
+  /* Collant : les onglets restent atteignables au milieu d'un brief, qui fait
+     plusieurs écrans de haut. Un fond opaque, sinon le texte défilerait au
+     travers ; c'est celui du corps, donc la barre ne se voit pas comme une
+     pièce rapportée. L'en-tête a exactement la largeur et les marges de la
+     page, il couvre donc précisément la colonne qui passe dessous. Le z-index
+     reste sous les 10 du lien d'évitement, qui doit pouvoir passer devant. */
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--fond);
   max-width: var(--mesure-page);
   margin: 0 auto;
   padding: 1.25rem 1.25rem 0;
@@ -280,6 +305,13 @@ a:hover { text-decoration-thickness: 2px; }
     padding: 0.6rem 1rem 0;
     border-top: 1px solid var(--trait);
     font-size: 1rem;
+    /* Dix onglets dans un téléphone couché dépassent le bas de l'écran. Avant,
+       la page défilait et on les atteignait ; maintenant que la barre est
+       collante, la liste doit défiler pour eux. overscroll-behavior : arrivé
+       au bout, c'est fini, la page derrière ne part pas avec le doigt. */
+    max-height: calc(100dvh - var(--hauteur-entete) - 1.2rem);
+    overflow: hidden auto;
+    overscroll-behavior: contain;
   }
   .entete[data-menu="ouvert"] nav a {
     padding: 0.6rem 0.75rem;
