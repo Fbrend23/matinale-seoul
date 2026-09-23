@@ -121,6 +121,26 @@ const image = new URL('/og.png', Astro.site).toString();
           if (entete.dataset.menu === 'ouvert' && !entete.contains(e.target as Node)) ouvrir(false);
         });
       }
+
+      // La hauteur de l'en-tête, publiée en --hauteur-entete. La barre étant
+      // collante, deux choses en dépendent : les colonnes latérales, qui
+      // collent sous elle, et les ancres, qui ne doivent pas atterrir derrière.
+      // Elle n'est pas constante — dix onglets tiennent sur une ligne à côté de
+      // la marque sur une page à trois colonnes, sur deux lignes en dessous sur
+      // une page de lecture — donc on la mesure au lieu de l'écrire. style.css
+      // porte un repli pour le lecteur sans script, qui n'a d'ailleurs pas de
+      // barre collante non plus.
+      //
+      // Pas pendant que le menu du téléphone est déplié : la liste ouverte
+      // ferait bondir la valeur, et c'est elle qui plafonne sa propre hauteur.
+      if (entete && 'ResizeObserver' in window) {
+        const mesurer = () => {
+          if (entete.dataset.menu === 'ouvert') return;
+          document.documentElement.style.setProperty('--hauteur-entete', `${entete.offsetHeight}px`);
+        };
+        new ResizeObserver(mesurer).observe(entete);
+        mesurer();
+      }
     </script>
 
     <div
