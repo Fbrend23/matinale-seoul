@@ -249,11 +249,43 @@ jobs:
           # Le marqueur est exclu du --delete : il ne vient pas de dist/, donc le
           # mirror l'effacerait, et le déploiement SUIVANT échouerait faute de le
           # trouver. Une panne à retardement, deux jours après le changement.
-          publier "mirror -R --delete --parallel=4 --verbose $DRY_RUN --exclude-glob $DEPLOY_MARKER --exclude-glob .user.ini --exclude-glob .infomaniak-maintenance.html --exclude-glob build.json dist/ ./"
+          publier "mirror -R --delete --parallel=4 --verbose $DRY_RUN --exclude-glob $DEPLOY_MARKER --exclude-glob .user.ini --exclude-glob .infomaniak-maintenance.html --exclude-glob .htaccess --exclude-glob build.json dist/ ./"
 
+          # .htaccess, désormais exclu comme ses trois voisins, et pour la même
+          # raison : ce n'est pas du contenu. Il a changé deux fois depuis la
+          # création du dépôt, mais il dort dans public/, donc astro build le
+          # recopie dans dist/ et le mirror le réécrivait chaque matin.
+          #
+          # VU LE 23 SEPTEMBRE 2026. Deux déploiements à quatre minutes d'écart,
+          # même commande : le premier a déposé le bon fichier, le second a écrit
+          # dans .htaccess le contenu de 404.html, 3852 octets au lieu de 2204.
+          # Apache a refusé la configuration et rendu 500 sur TOUT le site, y
+          # compris robots.txt et la page 404 elle-même. Deux transferts du
+          # mirror parallèle avaient croisé leur destination.
+          #
+          # Un fichier qu'on n'écrit pas ne peut pas être corrompu en l'écrivant.
+          # Et comme le laisser dériver en silence serait pire, on le compare :
+          # s'il diffère, il part SEUL, hors du mirror, donc hors de la course.
+          # La comparaison est aussi le détecteur qui a manqué ce matin-là.
           if [ -n "$DRY_RUN" ]; then
-            echo "dry-run : build.json n'est pas envoyé."
+            echo "dry-run : .htaccess et build.json ne sont pas envoyés."
           else
+            # Première mise en ligne : rien à comparer, le get échoue, et le
+            # || true laisse le fichier absent jouer le rôle de « différent ».
+            # Hors de la copie de travail : l'étape d'archivage commite juste
+            # après, et un témoin oublié à la racine n'a rien à y faire.
+            temoin="$RUNNER_TEMP/serveur.htaccess"
+            rm -f "$temoin"
+            publier "get .htaccess -o $temoin" || true
+
+            if cmp -s "$temoin" dist/.htaccess; then
+              echo ".htaccess : identique sur le serveur, rien à envoyer."
+            else
+              echo "::warning::.htaccess diffère de dist/, envoi à part."
+              publier "put dist/.htaccess -o .htaccess"
+            fi
+            rm -f "$temoin"
+
             publier "put dist/build.json -o build.json"
           fi
 
