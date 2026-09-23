@@ -71,7 +71,16 @@ jobs:
       FTP_USER: ${{ secrets.FTP_USER }}
       FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
     steps:
+      # Une clé de déploiement, et non le GITHUB_TOKEN, parce que l'étape 6
+      # pousse sur main. Depuis le ruleset posé le 22 septembre 2026, le jeton
+      # du bot s'y fait refuser l'archivage, et un dépôt personnel ne peut pas
+      # accorder de dérogation à une intégration : GitHub ne connaît d'acteurs
+      # « Integration » que dans une organisation. Les clés de déploiement, si.
+      # Le checkout bascule alors tout le job sur SSH, ce qui ne change rien au
+      # reste : aucune autre étape ne parle à git.
       - uses: actions/checkout@v7
+        with:
+          ssh-key: ${{ secrets.ARCHIVAGE_SSH_KEY }}
 
       - uses: actions/setup-node@v7
         with:
