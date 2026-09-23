@@ -143,10 +143,10 @@ au-delà du brief qui l'a repéré : il ne peut pas vivre dans `mat_news_items`.
 | `status` | système | idem ; l'ingestion archive ce dont `end_date` est passée, à chaque run |
 | `brief` | m2o → `mat_briefs` | **non requis** : un événement survit à son brief |
 | `name` | string | |
-| `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `autre` |
+| `kind` | string + `meta.options` | `popup` \| `concert` \| `exposition` \| `festival` \| `salon` \| `lancement` \| `autre`. `lancement` : une vente en magasin, souvent dans toute une chaîne ; `venue` est la chaîne, pas de page de lieu ni de pin |
 | `theme` | string + `meta.options` | `anime` \| `pokemon` \| `kpop` \| `gaming` \| `personnages` \| `mode` \| `seoul` \| `culture` \| `food` \| `sport`, pas de « autre » |
 | `venue`, `area` | string | le lieu en coréen, tel que Naver Map l'écrit, c'est la requête du bouton, et le quartier, romanisé. Un lieu qui accueille au moins deux événements actifs a sa page, assemblée au build (`/lieux/…/`) |
-| `start_date`, `end_date` | date | fin incluse, obligatoire : c'est elle qui sort l'événement de la page |
+| `start_date`, `end_date` | date | fin incluse, obligatoire en base : c'est elle qui sort l'événement de la page. Un `lancement` sans fin annoncée reçoit de l'ingestion `start_date` + 13 jours, que le site n'affiche pas comme une fin |
 | `summary` | text | 40 mots max |
 | `source_name`, `source_url`, `source_lang` | string | comme un item, à une différence près : l'allowlist d'un événement est `domains` **plus** `event_domains` (le lieu, l'enseigne, le label qui l'organise). Pour un événement, la question est « cela existe-t-il, à ces dates ? », et l'annonce de l'organisateur y répond mieux qu'un article ; sans ce rang, les pop-ups d'idols et de petites marques étaient hors d'atteinte |
 | `booking_url`, `map_url` | string | nullables ; vérifiés, un lien mort retire le champ, pas l'événement. `map_url` n'est pas une source : hors allowlist |

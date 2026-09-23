@@ -251,6 +251,11 @@ test('un lieu à un seul événement n a pas de page', () => {
   assert.equal(grouperParLieu([évt('A', 'seul')], { minEvents: 1 }).size, 1);
 });
 
+test('un lancement n a pas de page de lieu : son lieu est une chaîne', () => {
+  const lancement = (name) => ({ ...évt('맥도날드', name), kind: 'lancement' });
+  assert.equal(grouperParLieu([lancement('GD'), lancement('autre')]).size, 0);
+});
+
 test('la page prend le nom du plus pressé, et range par date de fin', () => {
   const lieux = grouperParLieu([évt('KSPO돔', 'tard', '2026-10-01'), évt('KSPO 돔', 'tôt', '2026-09-10')]);
   const lieu = lieux.get(slugLieu('KSPO돔'));
@@ -331,6 +336,12 @@ test('une plage de dates se lit « du … au … », et un seul jour « le … �
   assert.equal(dateRange('2026-09-05', '2026-09-05'), 'le 5 sept.');
   // Le 1er du mois, encore lui : minuit à Séoul, c est la veille en UTC.
   assert.equal(dateRange('2026-01-01', '2026-01-03'), 'du 1 janv. au 3 janv.');
+});
+
+test('un lancement se lit « dès le … », sa fenêtre ne s affiche pas', async () => {
+  const { périodeÉvénement } = await import('../src/lib/date.js');
+  assert.equal(périodeÉvénement({ kind: 'lancement', start_date: '2026-09-28', end_date: '2026-10-11' }), 'dès le 28 sept.');
+  assert.equal(périodeÉvénement({ kind: 'popup', start_date: '2026-09-05', end_date: '2026-10-12' }), 'du 5 sept. au 12 oct.');
 });
 
 // --- L'échappement des flux --------------------------------------------------

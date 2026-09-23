@@ -269,7 +269,9 @@ export function préparerLaCarte({ bloc, cartes, surTéléphone }) {
 
     // Tous les lieux d'un coup, une réponse à la fois : chaque pin se pose
     // quand il arrive, et le cadrage suit le dernier.
-    const àPlacer = cartes.filter((c) => c.dataset.termine !== 'oui');
+    // Pas de pin pour un lancement : son lieu est une chaîne, et Kakao
+    // poserait le pin sur la première succursale venue.
+    const àPlacer = cartes.filter((c) => c.dataset.termine !== 'oui' && c.dataset.genre !== 'lancement');
     let restants = àPlacer.length;
     if (restants === 0) synchroniser();
     for (const article of àPlacer) {

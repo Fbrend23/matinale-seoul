@@ -9,7 +9,7 @@
 
 import rss from '@astrojs/rss';
 import { listEvents } from '../lib/content.js';
-import { dateRange } from '../lib/date.js';
+import { périodeÉvénement } from '../lib/date.js';
 import { escapeHtml } from '../lib/html.js';
 import { KIND_LABELS, THEME_LABELS, THEMES_EN_PROSE, lienNaverMap } from '../../shared/evenements.mjs';
 
@@ -33,7 +33,7 @@ export async function GET(context) {
       const lieu = `${event.venue}, ${event.area}`;
       const carte = event.map_url ?? lienNaverMap(event);
       return {
-        title: `${event.name}, ${dateRange(event.start_date, event.end_date)}`,
+        title: `${event.name}, ${périodeÉvénement(event)}`,
         link: `/evenements/#evenement-${event.id}`,
         // Quand l'ingestion l'a écrit, pas quand il commence : un lecteur veut
         // savoir qu'un pop-up est annoncé, pas attendre son premier jour.
@@ -41,7 +41,7 @@ export async function GET(context) {
         description: `${lieu}. ${event.summary}`,
         categories: [THEME_LABELS[event.theme] ?? event.theme, KIND_LABELS[event.kind] ?? event.kind],
         content: [
-          `<p><strong>${escapeHtml(dateRange(event.start_date, event.end_date))}</strong>, ${escapeHtml(lieu)}</p>`,
+          `<p><strong>${escapeHtml(périodeÉvénement(event))}</strong>, ${escapeHtml(lieu)}</p>`,
           // L'adresse vue par l'agent, quand il y en a une : le lecteur de
           // flux n'a pas la carte, il a de quoi la coller dans la sienne.
           event.address ? `<p lang="ko">${escapeHtml(event.address)}</p>` : '',

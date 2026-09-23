@@ -8,7 +8,7 @@
 // d'ici, et la carte d'événement décide d'ici si le lieu porte un lien. Deux
 // règles qui divergeraient sèmeraient des liens vers des pages inexistantes.
 
-import { normaliserLieu, trierEvents } from '../../shared/evenements.mjs';
+import { estLancement, normaliserLieu, trierEvents } from '../../shared/evenements.mjs';
 
 export { normaliserLieu };
 
@@ -63,6 +63,9 @@ export function grouperParLieu(events, { minEvents = MIN_EVENTS_PAR_LIEU } = {})
   const parLieu = new Map();
 
   for (const event of trierEvents(events, 'fin')) {
+    // Un lancement a pour lieu une chaîne, « 맥도날드 » : pas un endroit où
+    // se rendre, et deux lancements chez elle n'en feraient pas un.
+    if (estLancement(event)) continue;
     const slug = slugLieu(event.venue);
     if (!parLieu.has(slug)) parLieu.set(slug, { venue: event.venue, area: event.area, events: [] });
     parLieu.get(slug).events.push(event);
