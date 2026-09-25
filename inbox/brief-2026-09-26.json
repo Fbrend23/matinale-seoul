@@ -1,0 +1,289 @@
+{
+  "date": "2026-09-26",
+  "title": "Chuseok s'achève, la Corée multiplie les médailles à Nagoya",
+  "standfirst": "Dernier jour du pont de Chuseok, une enquête s'ouvre sur les explosions à la DMZ pendant que la Corée engrange les médailles aux Jeux asiatiques. Côté tech, Anthropic scelle un contrat cloud à 11,6 milliards de dollars avec Akamai, tandis qu'un piratage nord-coréen frappe la cryptomonnaie.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un feu de batterie externe retarde un vol Air Seoul à Incheon",
+          "original_headline": "Suspected power bank fire breaks out on Da Nang-bound flight before departure",
+          "summary": "Un incendie provoqué par une batterie externe s'est déclaré jeudi soir sur un vol Air Seoul pour Da Nang, avant décollage à Incheon. L'équipage a maîtrisé les flammes, sans blessé parmi les passagers.",
+          "importance": 1,
+          "tags": ["aeroport", "incheon", "securite-aerienne"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884499",
+          "source_lang": "en",
+          "published_at": "2026-09-25T10:17:00+09:00"
+        },
+        {
+          "headline": "Le Korean Folk Village de Yongin joue les fantômes pour l'automne",
+          "original_headline": "Team spirit: Meet the crew haunting Korean Folk Village",
+          "summary": "Le Korean Folk Village de Yongin propose jusqu'à l'automne « Gwisinsaba Ghost Play », une troupe de douze acteurs incarnant fantômes et esprits de l'époque Joseon, avec un parcours immersif réservé aux plus de treize ans.",
+          "importance": 2,
+          "tags": ["yongin", "korean-folk-village", "halloween"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10883212",
+          "source_lang": "en",
+          "published_at": "2026-09-25T16:00:00+09:00"
+        },
+        {
+          "headline": "Un requin échoué à Busan attire cent mille visiteurs pour Chuseok",
+          "original_headline": "Over 100,000 flock to see shark on first day of Chuseok holiday",
+          "summary": "Plus de cent mille personnes se sont pressées vendredi, premier jour de Chuseok, au parc portuaire nord de Busan pour voir un requin de 3,5 mètres, aperçu depuis le 18 septembre dans un canal artificiel.",
+          "importance": 3,
+          "tags": ["busan", "chuseok", "insolite"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884513",
+          "source_lang": "en",
+          "published_at": "2026-09-25T10:42:48+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul promet une enquête rapide sur les explosions à la DMZ",
+          "original_headline": "Presidential official pledges prompt, thorough probe into DMZ explosions",
+          "summary": "Un responsable présidentiel a promis depuis le Mexique une enquête « rapide et approfondie » sur les explosions qui ont blessé trois soldats à la DMZ lundi, en coordination avec le commandement de l'ONU, pour déterminer l'origine des mines.",
+          "importance": 1,
+          "tags": ["dmz", "securite", "enquete"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884621",
+          "source_lang": "en",
+          "published_at": "2026-09-25T16:26:01+09:00"
+        },
+        {
+          "headline": "Lee Jae-myung regrette la divulgation par Kyiv du transfert de deux prisonniers nord-coréens",
+          "original_headline": "Lee says Ukraine disclosed transfer of 2 North Korean soldiers in breach of non-disclosure agreement",
+          "summary": "Le président Lee Jae-myung a regretté que Volodymyr Zelensky ait révélé à l'ONU le transfert vers la Corée du Sud de deux prisonniers nord-coréens, en violation d'un accord de confidentialité conclu entre Séoul et Kyiv.",
+          "importance": 2,
+          "tags": ["coree-du-nord", "ukraine", "diplomatie"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884614",
+          "source_lang": "en",
+          "published_at": "2026-09-25T16:01:14+09:00"
+        },
+        {
+          "headline": "Park Ji-hyun, première actrice coréenne nommée aux International Emmy Awards",
+          "original_headline": "Actor Park Ji-hyun nominated for International Emmy",
+          "summary": "Park Ji-hyun devient la première actrice sud-coréenne nommée dans une catégorie d'interprétation aux International Emmy Awards, pour son rôle dans la série Netflix « You and Everything Else ». Le palmarès sera annoncé le 23 novembre à New York.",
+          "importance": 3,
+          "tags": ["cinema", "netflix", "emmy-awards"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884558",
+          "source_lang": "en",
+          "published_at": "2026-09-25T13:44:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic engage 11,6 milliards de dollars auprès d'Akamai pour ses serveurs",
+          "original_headline": "Anthropic to pay Akamai $11.6 billion over seven years in cloud deal",
+          "summary": "Anthropic s'engage à verser 11,6 milliards de dollars sur sept ans à Akamai pour une infrastructure cloud fondée sur des processeurs plutôt que des puces graphiques, misant sur la demande croissante des agents IA en calcul.",
+          "analysis": "Fait notable : Akamai reçoit en échange jusqu'à 5 % du capital d'Anthropic sous forme de bons de souscription, inversant le schéma habituel où les fournisseurs de cloud investissent dans les start-up d'IA plutôt que l'inverse.",
+          "importance": 1,
+          "tags": ["anthropic", "akamai", "cloud", "intelligence-artificielle"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/25/anthropic-to-pay-akamai-11-6-billion-over-seven-years-in-cloud-deal/",
+          "source_lang": "en",
+          "published_at": "2026-09-26T04:13:38+09:00"
+        },
+        {
+          "headline": "Oracle invoque la force majeure sur son mégacentre de données Stargate",
+          "original_headline": "오라클, 스타게이트 데이터센터에 '불가항력' 통지…전력 확보 차질",
+          "summary": "Oracle a notifié une clause de force majeure sur son datacenter « Project Jupiter », pilier du programme Stargate avec OpenAI, au Nouveau-Mexique. Un gazoduc retardé de six mois menace le calendrier d'une installation prévue pour consommer 2,45 gigawatts.",
+          "importance": 2,
+          "tags": ["oracle", "stargate", "openai", "datacenter"],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260925070133",
+          "source_lang": "ko",
+          "published_at": "2026-09-25T14:44:23+09:00"
+        },
+        {
+          "headline": "Un piratage nord-coréen présumé vole 351 millions de dollars à l'échange Bitget",
+          "original_headline": "North Korean hackers suspected in $351M crypto theft, the largest so far this year",
+          "summary": "L'échange de cryptomonnaies Bitget a perdu plus de 351 millions de dollars jeudi dans un piratage aux méthodes nord-coréennes, le plus important vol de cryptomonnaies de l'année 2026.",
+          "importance": 3,
+          "tags": ["coree-du-nord", "cybersecurite", "cryptomonnaie"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/25/north-korean-hackers-suspected-in-351m-crypto-theft-the-largest-so-far-this-year/",
+          "source_lang": "en",
+          "published_at": "2026-09-25T22:24:34+09:00"
+        },
+        {
+          "headline": "L'essor des agents IA déplace les investissements des puces graphiques vers la mémoire",
+          "original_headline": "AI 투자축 GPU서 CPU·메모리로 확장…판 뒤집힌다 \"삼전닉스 가치 재평가\"",
+          "summary": "Selon KB Securities, la montée des agents IA, plus gourmands en calcul d'inférence répété, déplace les investissements des puces graphiques vers la mémoire HBM, DDR5 et eSSD, au profit de Samsung Electronics et SK hynix.",
+          "importance": 4,
+          "tags": ["samsung", "sk-hynix", "semi-conducteurs", "intelligence-artificielle"],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20260925000044",
+          "source_lang": "ko",
+          "published_at": "2026-09-25T19:15:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Nintendo obtient 4,5 millions de dollars contre un modérateur pirate de la Switch",
+          "original_headline": "Court orders Reddit moderator who widely pirated Switch games to pay Nintendo $4.5 million in damages",
+          "summary": "Un tribunal fédéral américain a condamné par défaut James Williams, modérateur du forum SwitchPirates (190 000 membres), à verser 4,5 millions de dollars à Nintendo pour avoir distribué des milliers de jeux Switch piratés depuis 2019, sous injonction permanente.",
+          "importance": 1,
+          "tags": ["nintendo", "switch", "piratage", "justice"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/court-orders-reddit-moderator-who-widely-pirated-switch-games-to-pay-nintendo-4-5-million-in-damages/",
+          "source_lang": "en",
+          "published_at": "2026-09-25T19:02:21+09:00"
+        },
+        {
+          "headline": "Bethesda assure à Obsidian qu'il gardera son identité créative",
+          "original_headline": "Bethesda president tells Obsidian staff that the studio will keep its 'creative identity' after its move",
+          "summary": "La présidente de Bethesda, Jill Braff, a assuré au personnel d'Obsidian que son rattachement n'est « qu'un changement de structure hiérarchique ». Le studio, qui travaille sur Grounded et un nouveau Fallout, garde sa direction, désormais sous son autorité.",
+          "importance": 2,
+          "tags": ["obsidian", "bethesda", "xbox", "restructuration"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/bethesda-president-tells-obsidian-staff-that-the-studio-will-keep-its-creative-identity-after-its-move/",
+          "source_lang": "en",
+          "published_at": "2026-09-25T18:21:48+09:00"
+        },
+        {
+          "headline": "Castlevania fête ses quarante ans avec un jeu gratuit et de grosses soldes",
+          "original_headline": "Konami is celebrating the 40th anniversary of Castlevania with a big retro sale and a free game",
+          "summary": "Pour les quarante ans de Castlevania, sorti le 26 septembre 1986, Konami offre le jeu original gratuitement sur iOS et Android jusqu'au 24 octobre, et solde jusqu'à 80 % ses compilations sur PlayStation Store et Steam.",
+          "importance": 3,
+          "tags": ["castlevania", "konami", "retrogaming"],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/konami-is-celebrating-the-40th-anniversary-of-castlevania-with-a-big-retro-sale-and-a-free-game/",
+          "source_lang": "en",
+          "published_at": "2026-09-25T21:01:57+09:00"
+        },
+        {
+          "headline": "Un prodige japonais de onze ans domine le Puyo Puyo aux Jeux asiatiques",
+          "original_headline": "“정말 말이 안 된다”, ‘11세 초딩 고수’ 아시안게임 e스포츠 뒤흔들다, 최연소 金 정조준 [SS도코나메in]",
+          "summary": "Kurihara Yuki, joueur japonais de onze ans, a remporté ses quatre matchs de poule d'e-sport Puyo Puyo aux Jeux asiatiques, battant le Sud-Coréen Kang Dong-sin. Favori pour l'or, il viserait un record de précocité.",
+          "importance": 4,
+          "tags": ["esport", "jeux-asiatiques", "puyo-puyo"],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637432",
+          "source_lang": "ko",
+          "published_at": "2026-09-25T07:17:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Hwang Seo-hyun offre à la Corée l'or à la poutre aux Jeux asiatiques",
+          "original_headline": "South Korea's Hwang Seo-hyun wins gold in women's balance beam at Asian Games",
+          "summary": "La gymnaste sud-coréenne Hwang Seo-hyun a remporté l'or à la poutre aux Jeux asiatiques d'Aichi-Nagoya avec 14,700 points, devançant la Chinoise Qiu Qiyuan et la Japonaise Mana Okamura.",
+          "importance": 1,
+          "tags": ["jeux-asiatiques", "gymnastique", "medaille-or"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10884636",
+          "source_lang": "en",
+          "published_at": "2026-09-25T16:59:26+09:00"
+        },
+        {
+          "headline": "An Se-young vise un doublé individuel inédit en badminton aux Jeux asiatiques",
+          "original_headline": "‘日에 패해 ‘2관왕’은 무산, 안세영 단식 사상 첫 ‘2연패’ 시동…첫 상대 카자흐스탄 카밀라 스마굴로바[SS나고야in]",
+          "summary": "Après l'élimination de la Corée en demi-finale par équipes, An Se-young entame le tournoi individuel de badminton à Nagoya face à la Kazakhe Kamila Smagulova, en quête d'un titre inédit après son sacre de 2023.",
+          "analysis": "An Se-young affiche un taux de victoire de 94,8 % en simple cette saison et détient déjà le record du nombre de victoires sur une année ; aucune joueuse n'a remporté l'or individuel aux Jeux asiatiques deux fois de suite.",
+          "importance": 2,
+          "tags": ["jeux-asiatiques", "badminton", "an-se-young"],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637541",
+          "source_lang": "ko",
+          "published_at": "2026-09-26T05:10:00+09:00"
+        },
+        {
+          "headline": "Le fleuret masculin coréen cède face à Hong Kong et prend le bronze",
+          "original_headline": "‘이럴 수가’ 남자 플뢰레 단체전, 3회 연속 금메달 좌절…준결승서 홍콩에 패배 [SS나고야in]",
+          "summary": "L'équipe coréenne de fleuret masculin s'est inclinée 45-41 face à Hong Kong en demi-finale des Jeux asiatiques, manquant un troisième titre consécutif après ses sacres de 2018 et 2022. Elle se contentera du bronze.",
+          "importance": 3,
+          "tags": ["jeux-asiatiques", "escrime"],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637501",
+          "source_lang": "ko",
+          "published_at": "2026-09-25T16:51:01+09:00"
+        },
+        {
+          "headline": "Namadi Joel-jin échoue au pied du podium du 100 m aux Jeux asiatiques",
+          "original_headline": "조엘진, 육상 남자 100m에서 10초17로 4위",
+          "summary": "Le sprinteur sud-coréen Namadi Joel-jin a terminé quatrième de la finale du 100 m à Nagoya en 10\"17, à 0,06 seconde du podium, pour sa première finale aux Jeux asiatiques.",
+          "importance": 4,
+          "tags": ["jeux-asiatiques", "athletisme"],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008770237",
+          "source_lang": "ko",
+          "published_at": "2026-09-26T00:07:52+09:00"
+        },
+        {
+          "headline": "La Corée décroche une troisième médaille d'argent d'affilée en sepak takraw",
+          "original_headline": "세팍타크로 여자 팀 레구, 3회 연속 은메달…최강 태국에 완패",
+          "summary": "L'équipe féminine coréenne de sepak takraw s'est inclinée en finale face à la Thaïlande, quintuple championne depuis 2010, décrochant sa troisième médaille d'argent consécutive aux Jeux asiatiques après 2018 et 2022.",
+          "importance": 5,
+          "tags": ["jeux-asiatiques", "sepak-takraw"],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008769874",
+          "source_lang": "ko",
+          "published_at": "2026-09-25T11:28:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Sanrio : fête des sirènes au Lotte World Aquarium",
+      "kind": "autre",
+      "theme": "personnages",
+      "venue": "롯데월드 아쿠아리움",
+      "area": "Songpa-gu",
+      "start_date": "2026-09-04",
+      "end_date": "2026-11-29",
+      "summary": "My Melody, Kuromi et Cinnamoroll se transforment en sirènes au Lotte World Aquarium. Zones photo thématiques, appareil photo spécial Pompon Purin et jeu en réalité augmentée pour toute la famille.",
+      "source_name": "Sports Seoul",
+      "source_url": "https://www.sportsseoul.com/news/read/1635625",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon de l'électronique de Corée 2026 (KES)",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam",
+      "start_date": "2026-10-13",
+      "end_date": "2026-10-16",
+      "summary": "57e édition du grand salon tech coréen, sous le thème « AI in Motion » au COEX. Lancement de CES Asia Unveiled Seoul, vitrine des entreprises coréennes avant le CES 2027 de Las Vegas.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20260820101003",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Disney Run 2026 à Incheon",
+      "kind": "festival",
+      "theme": "sport",
+      "venue": "상상플랫폼",
+      "area": "Incheon",
+      "start_date": "2026-10-31",
+      "end_date": "2026-10-31",
+      "summary": "Course costumée de 5 et 10 km au départ de Sangsang Platform, avec Mickey, Minnie, Donald et Daisy, un concert d'ILLIT et des boutiques éphémères Disney le long du port d'Incheon.",
+      "source_name": "Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/10872756",
+      "source_lang": "en"
+    }
+  ]
+}
