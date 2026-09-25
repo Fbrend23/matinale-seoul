@@ -227,7 +227,7 @@ export const CONCURRENCE = 4;
 export const MISES_EN_AVANT = 5;
 
 /** Et combien de fiches « à sourcer » : chacune coûte une recherche. */
-export const À_SOURCER_MAX = 12;
+export const À_SOURCER_MAX = 8;
 
 // --- Lecture du registre -----------------------------------------------------
 
@@ -872,7 +872,12 @@ export function rendreRegistre({
   // travail est celui des agrégateurs dans la consigne — trouver qui
   // l'annonce.
   if (àSourcer.length) {
-    const triées = parProximité(àSourcer, jour);
+    // Celles qu'un thème reconnaît d'abord, puis la proximité : NEMONE en rend
+    // cent cinquante, et la proximité seule reléguait pour toujours ce qui
+    // est ouvert depuis longtemps — Play in the Box, ouvert le 11 septembre
+    // pour quatre mois, n'aurait jamais passé les « autres ».
+    const proches = parProximité(àSourcer, jour);
+    const triées = [...proches.filter(({ event }) => event.theme), ...proches.filter(({ event }) => !event.theme)];
     const montrées = triées.slice(0, À_SOURCER_MAX);
     const nom = montrées[0].registre ?? 'un agrégateur';
     lignes.push(
@@ -885,7 +890,7 @@ export function rendreRegistre({
       );
     }
     if (triées.length > montrées.length) {
-      lignes.push(`- et ${triées.length - montrées.length} autres, plus lointaines, qui reviendront`);
+      lignes.push(`- et ${triées.length - montrées.length} autres, qui reviendront`);
     }
     lignes.push('');
   }

@@ -439,6 +439,19 @@ test('la section donne l à sourcer en une ligne, sans JSON, et dit pourquoi', (
     /- Play in the Box Seongsu Pop-up · pokemon · 2026-09-11 → 2026-12-31 · 연무장길 27 \(Seongsu\) · https:\/\/now\.nemoneai\.com\/posts\/11572\?lang=en/
   );
   assert.ok(!section.includes('"name": "Play in the Box'));
+
+  // Un thème reconnu passe devant la proximité, et le reste se compte.
+  const sansThème = Array.from({ length: 9 }, (_, i) => ({
+    registre: 'NEMONE PACE',
+    event: { name: `Marque ${i}`, start_date: JOUR, end_date: '2026-09-30', venue: '성수', area: 'Seongsu', source_url: `https://now.nemoneai.com/posts/${i}` },
+  }));
+  const longue = {
+    registre: 'NEMONE PACE',
+    event: { name: 'Pokémon au long cours', theme: 'pokemon', start_date: '2026-06-01', end_date: '2026-12-31', venue: '성수', area: 'Seongsu', source_url: 'https://now.nemoneai.com/posts/99' },
+  };
+  const pleine = rendreRegistre({ jour: JOUR, registres: REGISTRES, àSourcer: [...sansThème, longue] });
+  assert.match(pleine, /à sourcer\.[^\n]*\n\n- Pokémon au long cours/);
+  assert.match(pleine, /- et 2 autres/);
 });
 
 test('un 429 se patiente et se redemande, un 404 non', async () => {
