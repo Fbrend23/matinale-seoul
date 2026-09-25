@@ -25,6 +25,12 @@ import {
   REGISTRE,
   REGISTRES,
   NOL_WORLD,
+  NEMONE,
+  faqNemone,
+  fichesDuPlan,
+  àSauter,
+  retenirÉcartées,
+  OUBLI_JOURS,
 } from '../scripts/lib/popups.mjs';
 
 const JOUR = '2026-09-19';
@@ -132,9 +138,11 @@ test('NOL World romanise tout : la table donne le hangul, l adresse sert de seco
   assert.equal(quartierRomanisé('108, Yeoui-daero, Yeongdeungpo-gu,'), 'Yeongdeungpo');
   assert.equal(quartierRomanisé(''), null);
 
-  // Les deux registres se lisent pareil, et c'est tout l'intérêt : même
-  // JSON-LD, deux listes qui ne se recouvrent pas.
-  assert.deepEqual(REGISTRES.map((r) => r.hôte), ['insideseoul.app', 'world.nol.com']);
+  // Les registres se lisent pareil, et c'est tout l'intérêt : même JSON-LD,
+  // des listes qui ne se recouvrent pas. Le seul qu'on ne cite pas vient en
+  // dernier.
+  assert.deepEqual(REGISTRES.map((r) => r.hôte), ['insideseoul.app', 'world.nol.com', 'now.nemoneai.com']);
+  assert.equal(REGISTRES.at(-1).citable, false);
   assert.equal(REGISTRE, REGISTRES[0]);
 });
 
@@ -268,4 +276,188 @@ test('la section met en avant les plus proches, garde le reste visible, et dit l
 
   // La panne ne se déguise pas en liste vide.
   assert.match(rendreRegistre({ jour: JOUR, panne: 'HTTP 503' }), /n'ont rien rendu \(HTTP 503\)/);
+});
+
+// --- NEMONE PACE ---------------------------------------------------------------
+
+/** Une fiche NEMONE : le JSON-LD Event, et la FAQ qui dit ce qu'elle est. */
+const ficheNemone = ({
+  name,
+  réponse = "It's a Pop-up in SEONGSU.",
+  durée = 'It runs 2026.09.11. ~ 2026.12.31., and is currently Active.',
+  start = '2026-09-11',
+  end = '2026-12-31',
+  lieu = '연무장길 27',
+}) => `<!doctype html><html><head>
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name,
+  description: 'A merchandise shop full of Pokémon goods.',
+  startDate: start,
+  endDate: end,
+  location: { '@type': 'Place', name: lieu, address: { '@type': 'PostalAddress', streetAddress: lieu, addressLocality: 'Seoul' } },
+})}</script>
+<script type="application/ld+json">${JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [durée, `It's located at ${lieu}.`, réponse].map((text) => ({
+    '@type': 'Question',
+    acceptedAnswer: { '@type': 'Answer', text },
+  })),
+})}</script></head><body></body></html>`;
+
+test('NEMONE : le sitemap donne la version anglaise, sinon l adresse, et rien d autre', () => {
+  const xml = `<urlset>
+<url><loc>https://now.nemoneai.com</loc></url>
+<url><loc>https://now.nemoneai.com/ranking/place/seongsu</loc></url>
+<url><loc>https://now.nemoneai.com/posts/11572</loc>
+<xhtml:link rel="alternate" hreflang="ko" href="https://now.nemoneai.com/posts/11572" />
+<xhtml:link rel="alternate" hreflang="en" href="https://now.nemoneai.com/posts/11572?lang=en" /></url>
+<url><loc>https://now.nemoneai.com/posts/11941</loc>
+<xhtml:link rel="alternate" hreflang="ko" href="https://now.nemoneai.com/posts/11941" /></url>
+</urlset>`;
+  // Les plus récentes d'abord : c'est l'ordre dans lequel le plafond coupe.
+  assert.deepEqual(NEMONE.adresses(xml), [
+    'https://now.nemoneai.com/posts/11941',
+    'https://now.nemoneai.com/posts/11572?lang=en',
+  ]);
+  assert.deepEqual(fichesDuPlan(xml, { hôte: 'autre.com', fiche: /^\/posts\/\d+$/ }), []);
+});
+
+test('NEMONE : la FAQ trie, en anglais comme en coréen', () => {
+  assert.deepEqual(faqNemone(ficheNemone({ name: 'x' })), { genre: 'pop-up', zone: 'seongsu', permanent: false });
+  assert.deepEqual(faqNemone(ficheNemone({ name: 'x', réponse: '성수 지역의 팝업입니다.' })), {
+    genre: '팝업',
+    zone: 'seongsu',
+    permanent: false,
+  });
+  assert.equal(faqNemone(ficheNemone({ name: 'x', durée: "It's open year-round with no set end date." })).permanent, true);
+});
+
+test('NEMONE : garde les pop-ups de Séoul, écarte boutiques, ateliers, Jeju et le permanent', () => {
+  const url = 'https://now.nemoneai.com/posts/11572?lang=en';
+  const lu = (html) => événementDeFiche(html, { url, registre: NEMONE });
+
+  const { event } = lu(ficheNemone({ name: 'Play in the Box Seongsu Pop-up' }));
+  assert.equal(event.venue, '연무장길 27');
+  assert.equal(event.area, 'Seongsu');
+  assert.equal(event.theme, 'pokemon');
+  assert.equal(event.source_name, 'NEMONE PACE');
+  assert.deepEqual([event.start_date, event.end_date], ['2026-09-11', '2026-12-31']);
+
+  assert.equal(lu(ficheNemone({ name: 'Expo', réponse: "It's an Exhibit in GANGNAM." })).event.area, 'Gangnam');
+  assert.deepEqual(lu(ficheNemone({ name: 'Magasin', réponse: "It's a Shopping in SEONGSU." })), {
+    raison: 'ni pop-up ni exposition',
+    règle: true,
+  });
+  assert.equal(lu(ficheNemone({ name: 'Atelier', réponse: "It's a Class in HONGDAE." })).raison, 'ni pop-up ni exposition');
+  assert.equal(lu(ficheNemone({ name: 'Miel', réponse: "It's a Pop-up in JEJU." })).raison, 'hors de Séoul');
+  assert.equal(lu(ficheNemone({ name: 'Concert', réponse: "It's a CONCERT." })).raison, 'fiche sans catégorie');
+  // La boutique permanente a des dates, fausses : c'est la FAQ qui la trahit.
+  assert.equal(
+    lu(ficheNemone({ name: 'Boutique', durée: "It's open year-round with no set end date.", start: '2026-09-25', end: '2026-09-25' })).raison,
+    'sans date de fin annoncée'
+  );
+});
+
+test('NEMONE : la récolte saute ce que la mémoire a déjà écarté', async () => {
+  const xml = ['1', '2', '3'].map((n) => `<url><loc>https://now.nemoneai.com/posts/${n}</loc></url>`).join('');
+  const pages = new Map([
+    [NEMONE.index, xml],
+    ['https://now.nemoneai.com/posts/1', ficheNemone({ name: 'Pop-up Un' })],
+    ['https://now.nemoneai.com/posts/2', ficheNemone({ name: 'Boutique', réponse: "It's a Shopping in SEONGSU." })],
+  ]);
+  let lues = 0;
+  const fetcher = async (url) => {
+    lues += 1;
+    const html = pages.get(String(url));
+    return { ok: true, status: 200, url: String(url), text: async () => html };
+  };
+  const récolte = await récolter({ registre: NEMONE, fetcher, sauter: new Set(['https://now.nemoneai.com/posts/3']) });
+  assert.equal(lues, 3); // l'index et deux fiches, pas la troisième
+  assert.equal(récolte.sautées, 1);
+  assert.deepEqual(récolte.candidats.map(({ event }) => event.name), ['Pop-up Un']);
+  assert.deepEqual(récolte.écartées, [{ url: 'https://now.nemoneai.com/posts/2', raison: 'ni pop-up ni exposition' }]);
+  assert.equal(NEMONE.concurrence, 1);
+  const plafonnée = await récolter({ registre: { ...NEMONE, plafond: 1 }, fetcher });
+  assert.equal(plafonnée.fiches, 1);
+  // Seule la fiche retenue reste en cache pour les gardes.
+  assert.deepEqual([...récolte.vues.keys()], [NEMONE.index, 'https://now.nemoneai.com/posts/1']);
+});
+
+test('la mémoire retient l écarté et le fini, et oublie, étalé', () => {
+  const mémoire = retenirÉcartées(
+    {},
+    {
+      écartées: [{ url: 'a', raison: 'hors de Séoul' }],
+      candidats: [
+        { event: { source_url: 'fini', end_date: '2026-09-18' } },
+        { event: { source_url: 'ouvert', end_date: '2026-09-30' } },
+      ],
+    },
+    JOUR
+  );
+  assert.deepEqual(Object.keys(mémoire).sort(), ['a', 'fini']);
+  assert.deepEqual(mémoire.a, { raison: 'hors de Séoul', le: JOUR });
+  assert.deepEqual([...àSauter(mémoire, JOUR)].sort(), ['a', 'fini']);
+
+  // Au bout de deux périodes, tout est oublié ; entre les deux, une partie.
+  const loin = new Date(Date.parse(`${JOUR}T00:00:00Z`) + 2 * OUBLI_JOURS * 86_400_000).toISOString().slice(0, 10);
+  assert.equal(àSauter(mémoire, loin).size, 0);
+  assert.deepEqual(retenirÉcartées(mémoire, {}, loin), {});
+  const nombreux = Object.fromEntries(Array.from({ length: 200 }, (_, i) => [`u${i}`, { raison: 'x', le: JOUR }]));
+  const mi = new Date(Date.parse(`${JOUR}T00:00:00Z`) + 1.5 * OUBLI_JOURS * 86_400_000).toISOString().slice(0, 10);
+  const restent = àSauter(nombreux, mi).size;
+  assert.ok(restent > 50 && restent < 150, `${restent} sur 200 : l'oubli n'est pas étalé`);
+});
+
+test('la section donne l à sourcer en une ligne, sans JSON, et dit pourquoi', () => {
+  const section = rendreRegistre({
+    jour: JOUR,
+    fiches: 10,
+    registres: REGISTRES,
+    àSourcer: [
+      {
+        registre: 'NEMONE PACE',
+        event: {
+          name: 'Play in the Box Seongsu Pop-up',
+          theme: 'pokemon',
+          start_date: '2026-09-11',
+          end_date: '2026-12-31',
+          venue: '연무장길 27',
+          area: 'Seongsu',
+          source_url: 'https://now.nemoneai.com/posts/11572?lang=en',
+        },
+      },
+    ],
+  });
+  assert.match(section, /^## Pop-ups des registres \(Inside Seoul, NOL World et NEMONE PACE\)/);
+  assert.match(section, /Vues chez NEMONE PACE seulement, à sourcer/);
+  assert.match(
+    section,
+    /- Play in the Box Seongsu Pop-up · pokemon · 2026-09-11 → 2026-12-31 · 연무장길 27 \(Seongsu\) · https:\/\/now\.nemoneai\.com\/posts\/11572\?lang=en/
+  );
+  assert.ok(!section.includes('"name": "Play in the Box'));
+});
+
+test('un 429 se patiente et se redemande, un 404 non', async () => {
+  const xml = ['1', '2'].map((n) => `<url><loc>https://now.nemoneai.com/posts/${n}</loc></url>`).join('');
+  const refus = new Map([['https://now.nemoneai.com/posts/1', 2]]);
+  const pauses = [];
+  const fetcher = async (url) => {
+    const u = String(url);
+    if (u === NEMONE.index) return { ok: true, status: 200, text: async () => xml };
+    if (u.endsWith('/2')) return { ok: false, status: 404, text: async () => '' };
+    const reste = refus.get(u) ?? 0;
+    if (reste) {
+      refus.set(u, reste - 1);
+      return { ok: false, status: 429, headers: new Headers(reste === 2 ? { 'retry-after': '5' } : {}), text: async () => '' };
+    }
+    return { ok: true, status: 200, text: async () => ficheNemone({ name: 'Pop-up Un' }) };
+  };
+  const récolte = await récolter({ registre: NEMONE, fetcher, attendre: async (ms) => pauses.push(ms) });
+  assert.deepEqual(pauses, [5000, 30_000]);
+  assert.deepEqual(récolte.candidats.map(({ event }) => event.name), ['Pop-up Un']);
+  assert.deepEqual(récolte.pannes, [{ url: 'https://now.nemoneai.com/posts/2', raison: 'HTTP 404' }]);
 });
