@@ -21,7 +21,7 @@
 // dit, et les pistes de Gemini restent.
 
 import { readFileSync } from 'node:fs';
-import { appendFile, mkdir, writeFile, access } from 'node:fs/promises';
+import { appendFile, mkdir, writeFile, readFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -35,6 +35,8 @@ import {
   rendreRegistre,
   REGISTRES,
   MISES_EN_AVANT,
+  àSauter,
+  retenirÉcartées,
 } from './lib/popups.mjs';
 import { rangsDeSources } from './lib/sources.mjs';
 import { seoulToday } from '../shared/date.mjs';
@@ -65,6 +67,10 @@ const journal = (...m) => {
 await mkdir(dossier, { recursive: true });
 const sortie = path.join(dossier, `${jour}.md`);
 const instantané = path.join(dossier, `popups-${jour}.json`);
+// Ce que les registres à mémoire ont écarté les matins précédents, par hôte
+// (NEMONE.mémoire). Perdue, elle se refait : un matin plus long, rien de faux.
+const cheminMémoire = path.join(dossier, 'registres-lus.json');
+const mémoire = await readFile(cheminMémoire, 'utf8').then(JSON.parse, () => ({}));
 
 // La veille est censée être là. Sinon, la section fait un fichier à elle seule,
 // avec un titre : l'agent lit le même chemin dans les deux cas.
@@ -97,9 +103,12 @@ const récoltes = [];
 const pannesDeRegistre = [];
 for (const registre of REGISTRES) {
   try {
-    const récolte = await récolter({ registre, max });
+    const sauter = registre.mémoire ? àSauter(mémoire[registre.hôte], jour) : new Set();
+    const récolte = await récolter({ registre, max, sauter });
     const durée = Math.round((Date.now() - début) / 1000);
-    journal(`✓ ${registre.nom.padEnd(18)} ${récolte.candidats.length} fiches lues sur ${récolte.fiches} en ${durée} s`);
+    const passées = récolte.sautées ? `, ${récolte.sautées} déjà écartées un autre matin` : '';
+    journal(`✓ ${registre.nom.padEnd(18)} ${récolte.candidats.length} fiches lues sur ${récolte.fiches} en ${durée} s${passées}`);
+    if (registre.mémoire) mémoire[registre.hôte] = retenirÉcartées(mémoire[registre.hôte], récolte, jour);
     // Ce que la règle écarte se compte, ce qui ne se lit pas se nomme : vingt
     // fiches sans date de fin sont un fait du registre, pas vingt pannes.
     const parRaison = new Map();
@@ -112,6 +121,7 @@ for (const registre of REGISTRES) {
     pannesDeRegistre.push(`${registre.nom} : ${e.message}`);
   }
 }
+await writeFile(cheminMémoire, `${JSON.stringify(mémoire)}\n`);
 if (!récoltes.length) {
   await déposer(rendreRegistre({ jour, registres: REGISTRES, panne: pannesDeRegistre.join(' ; ') }));
   process.exit(1);
@@ -177,14 +187,27 @@ const retenues = tri.retenues.map((event) => ({ event, matière: matièreDe.get(
 // passée, pas de date de fin, doublon — restent des rejets, eux.
 const HANGUL_SEUL = /^lieu sans hangul/;
 const àCompléter = [];
+// CE QUE SEUL UN REGISTRE NON CITABLE A VU (NEMONE). L'allowlist l'écarte
+// comme agrégateur, et c'est juste ; mais le jeter perdrait la seule trace
+// d'un pop-up que personne d'autre ne tient. Il sort « à sourcer ».
+const nonCitables = new Map(
+  récoltes
+    .filter((r) => r.registre.citable === false)
+    .flatMap((r) => r.candidats.map(({ event }) => [event.source_url, r.registre.nom]))
+);
+const AGRÉGATEUR = /^agrégateur/;
+const àSourcer = [];
 const écartéesVraies = [];
 for (const { event, raison } of tri.écartées) {
   if (HANGUL_SEUL.test(raison)) àCompléter.push({ event, adresse: adresseDe.get(event.source_url) ?? null });
-  else écartéesVraies.push({ event, raison });
+  else if (AGRÉGATEUR.test(raison) && nonCitables.has(event.source_url)) {
+    àSourcer.push({ event, registre: nonCitables.get(event.source_url) });
+  } else écartéesVraies.push({ event, raison });
 }
 for (const { event } of retenues) journal(`  ✓ ${event.name} · ${event.theme ?? 'thème à trancher'} · ${event.start_date} → ${event.end_date}`);
 for (const { event, connu } of tri.prolongées) journal(`  ↻ ${connu.name} : ${event.start_date} → ${event.end_date}`);
 for (const { event } of àCompléter) journal(`  ? ${event.name} : lieu à mettre en coréen (« ${event.venue} »)`);
+for (const { event } of àSourcer) journal(`  ~ ${event.name} : à sourcer (${event.start_date} → ${event.end_date})`);
 for (const { event, raison } of écartéesVraies) journal(`  ! ${event.name ?? '(sans nom)'} : ${raison}`);
 
 // --- Le dépôt ----------------------------------------------------------------
@@ -199,8 +222,12 @@ if (versLaSortie) {
 await déposer(
   rendreRegistre({
     candidats: retenues,
-    écartées: [...déjàVues, ...écartéesVraies],
+    // Ce que NEMONE rend de connu, de fini ou d'incohérent ne se liste pas :
+    // des dizaines de lignes sur des fiches que personne ne proposera, qu'on
+    // ne cite pas. Le journal les nomme.
+    écartées: [...déjàVues, ...écartéesVraies].filter(({ event }) => !nonCitables.has(event.source_url)),
     àCompléter,
+    àSourcer,
     parRègle: récolte.parRègle,
     pannes: [...récolte.pannes, ...pannesDeRegistre.map((panne) => ({ url: '', raison: panne }))],
     fiches: récolte.fiches,
