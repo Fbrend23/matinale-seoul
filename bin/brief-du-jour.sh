@@ -86,9 +86,15 @@ node scripts/veille.mjs --jour "$JOUR" || echo "veille indisponible : l'agent ch
 # LE REGISTRE DES POP-UPS, avant tout le reste : énuméré, pas cherché. L'index
 # d'insideseoul.app liste ses fiches, chaque fiche porte un JSON-LD complet
 # (dates, adresse en hangul, géo), et le script en soustrait ce que l'onglet
-# tient déjà. Aucun modèle, dix secondes, et la couverture est entière là où une
+# tient déjà. Aucun modèle, et la couverture est entière là où une
 # session Gemini échantillonnait : le 19 septembre 2026, quinze pop-ups en cours
 # manquaient à l'onglet, tous de marques dont aucune rédaction ne parle.
+#
+# Trois ou quatre minutes depuis NEMONE PACE (25 septembre 2026) : ses fiches se
+# lisent une à une, faute de quoi il répond 429, et seules les neuves et celles
+# que veille/registres-lus.json a oubliées sont relues. Ce fichier perdu, les
+# matins suivants en relisent trois cents chacun (NEMONE.plafond), sept minutes,
+# jusqu'à l'avoir refait.
 #
 # AVANT recherche.mjs, et pas en parallèle, pour deux raisons : les deux
 # écrivent dans le même fichier de veille, et recherche.mjs lit l'instantané du

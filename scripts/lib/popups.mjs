@@ -82,11 +82,133 @@ export const NOL_WORLD = {
 };
 
 /**
+ * NEMONE PACE, le troisième, et le seul qu'on ne CITE PAS.
+ *
+ * Il tient ce que les deux autres ne tiennent pas : les boutiques éphémères
+ * de petites enseignes, que personne n'annonce. Le 25 septembre 2026, le
+ * magasin de goodies Pokémon de Play in the Box au 연무장길 27, ouvert depuis
+ * le 11 et jusqu'au 31 décembre, n'était ni chez Inside Seoul ni chez NOL
+ * World, ni dans aucune rédaction — il était chez NEMONE.
+ *
+ * Mais ses fiches sont écrites par un modèle (« This content is AI-generated
+ * from public information and may differ from actual facts », dit chacune) :
+ * il est donc au rang des agrégateurs dans config/sources.json, et ce qu'il
+ * rend sort dans la veille « à sourcer », jamais en JSON prêt à recopier.
+ * `citable: false` le dit à scripts/popups.mjs.
+ *
+ * TROIS DIFFÉRENCES DE FORME. L'index est le sitemap, deux mille sept cents
+ * fiches où les boutiques permanentes, les ateliers, les concerts et Jeju
+ * côtoient les pop-ups : `écarter` ne garde que ce que la fiche dit elle-même
+ * être un pop-up ou une exposition à Séoul (la troisième réponse de sa FAQ,
+ * « It's a Pop-up in SEONGSU. »). Une boutique permanente y porte des dates
+ * fictives, aujourd'hui → aujourd'hui, et la FAQ le trahit (« open
+ * year-round »). Et relire deux mille sept cents fiches chaque matin serait
+ * vingt minutes : `mémoire` dit au script de se souvenir de ce qu'il a écarté.
+ *
+ * La version anglaise d'abord, quand le sitemap en donne une : le diff contre
+ * l'onglet compare des mots, et l'onglet ne parle pas coréen. Le lieu reste
+ * en hangul dans les deux langues.
+ */
+export const NEMONE = {
+  nom: 'NEMONE PACE',
+  hôte: 'now.nemoneai.com',
+  index: 'https://now.nemoneai.com/sitemap.xml',
+  fiche: /^\/posts\/\d+$/,
+  lang: 'en',
+  citable: false,
+  mémoire: true,
+  // Une fiche à la fois : à quatre de front, il répond 429 après quatre cents
+  // fiches (le 25 septembre 2026) ; seul, cent cinquante passent d'affilée.
+  concurrence: 1,
+  // Au plus tant de fiches par matin, les plus récentes d'abord : un matin
+  // normal en relit cent cinquante, mais la mémoire perdue en ferait relire
+  // deux mille sept cents, une heure de retard pour le brief. Plafonnée, elle
+  // se refait en dix matins de sept minutes.
+  plafond: 300,
+  adresses: (xml) =>
+    fichesDuPlan(xml, { hôte: 'now.nemoneai.com', fiche: /^\/posts\/\d+$/ }).sort(
+      (a, b) => Number(b.match(/\/posts\/(\d+)/)[1]) - Number(a.match(/\/posts\/(\d+)/)[1])
+    ),
+  écarter: (html) => {
+    const { genre, zone, permanent } = faqNemone(html);
+    if (permanent) return 'sans date de fin annoncée';
+    if (!genre || !zone) return 'fiche sans catégorie';
+    if (!ZONES_NEMONE[zone]) return 'hors de Séoul';
+    if (!GENRES_NEMONE.has(genre)) return 'ni pop-up ni exposition';
+    return null;
+  },
+  lieu: (objet) => objet.location?.name ?? objet.location?.address?.streetAddress ?? '',
+  quartier: (objet, url, html) => ZONES_NEMONE[faqNemone(html).zone] ?? 'Seoul',
+};
+
+/** Les zones de NEMONE, et ce qu'on affiche : Busan et Jeju n'y sont pas. */
+const ZONES_NEMONE = { seongsu: 'Seongsu', hongdae: 'Hongdae', gangbuk: 'Gangbuk', gangnam: 'Gangnam' };
+const ZONES_CORÉENNES = { 성수: 'seongsu', 홍대: 'hongdae', 강북: 'gangbuk', 강남: 'gangnam', 부산: 'busan', 제주: 'jeju' };
+/** Ses catégories (Pop-up, Class, Shopping, Exhibit, Event) : les deux qui en sont. */
+const GENRES_NEMONE = new Set(['pop-up', 'exhibit', '팝업', '전시']);
+
+/**
+ * Ce que la FAQ d'une fiche NEMONE dit d'elle : sa catégorie, sa zone, et si
+ * elle est permanente. Rien d'autre sur la page ne le dit en clair — le
+ * JSON-LD donne aux boutiques permanentes des dates du jour.
+ *
+ * @param {string} html
+ * @returns {{genre: string|null, zone: string|null, permanent: boolean}}
+ */
+export function faqNemone(html) {
+  const réponses = [];
+  for (const bloc of blocsLd(html)) {
+    if (bloc?.['@type'] !== 'FAQPage') continue;
+    for (const q of bloc.mainEntity ?? []) réponses.push(String(q?.acceptedAnswer?.text ?? ''));
+  }
+  const permanent = réponses.some((r) => /year-round|상시 운영/i.test(r));
+  for (const r of réponses) {
+    const en = r.match(/^It's an? (.+?) in ([A-Za-z]+)\.$/);
+    if (en) return { genre: en[1].toLowerCase(), zone: en[2].toLowerCase(), permanent };
+    const ko = r.match(/^(\S+) 지역의 (\S+)입니다\.?$/);
+    if (ko) return { genre: ko[2], zone: ZONES_CORÉENNES[ko[1]] ?? ko[1], permanent };
+  }
+  return { genre: null, zone: null, permanent };
+}
+
+/**
+ * Les fiches d'un sitemap : la version anglaise quand il la déclare, sinon
+ * l'adresse elle-même (les fiches les plus récentes n'ont pas encore la leur).
+ *
+ * @param {string} xml
+ * @param {{hôte: string, fiche: RegExp}} p
+ * @returns {string[]}
+ */
+export function fichesDuPlan(xml, { hôte, fiche }) {
+  const vues = new Set();
+  const adresses = [];
+  for (const [, bloc] of String(xml).matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+    const loc = bloc.match(/<loc>\s*([^<\s]+)\s*<\/loc>/)?.[1];
+    if (!loc) continue;
+    let u;
+    try {
+      u = new URL(loc);
+    } catch {
+      continue;
+    }
+    if (u.host !== hôte || !fiche.test(u.pathname)) continue;
+    const anglaise = bloc.match(/hreflang=["']en["'][^>]*href=["']([^"']+)["']/)?.[1];
+    const adresse = anglaise ?? loc;
+    if (vues.has(adresse)) continue;
+    vues.add(adresse);
+    adresses.push(adresse);
+  }
+  return adresses;
+}
+
+/**
  * L'ordre compte un peu : le premier registre qui donne un événement le garde,
  * et Inside Seoul rend le hangul sans intermédiaire. NOL World couvre ce qu'il
  * ne couvre pas — les concerts, les expositions à billet, les pop-ups d'idols.
+ * NEMONE vient en dernier : ce qu'un registre citable rend, on ne le lui
+ * demande pas.
  */
-export const REGISTRES = [INSIDE_SEOUL, NOL_WORLD];
+export const REGISTRES = [INSIDE_SEOUL, NOL_WORLD, NEMONE];
 
 /** Le premier registre, pour les appels qui n'en nomment aucun. */
 export const REGISTRE = INSIDE_SEOUL;
@@ -103,6 +225,9 @@ export const CONCURRENCE = 4;
  * le reste est listé d'une ligne chacun — visible, et pas au travers.
  */
 export const MISES_EN_AVANT = 5;
+
+/** Et combien de fiches « à sourcer » : chacune coûte une recherche. */
+export const À_SOURCER_MAX = 8;
 
 // --- Lecture du registre -----------------------------------------------------
 
@@ -223,6 +348,11 @@ export function événementDeFiche(html, { url, registre = REGISTRE }) {
   const objet = objetÉvénement(blocsLd(html));
   if (!objet) return { raison: 'pas de JSON-LD Event' };
 
+  // Ce que le registre sait écarter de lui-même, avant les dates : les
+  // boutiques permanentes de NEMONE portent des dates, fausses.
+  const refus = registre.écarter?.(html, objet);
+  if (refus) return { raison: refus, règle: true };
+
   const nom = typeof objet.name === 'string' ? objet.name.trim() : '';
   const début = typeof objet.startDate === 'string' ? objet.startDate.slice(0, 10) : '';
   const fin = typeof objet.endDate === 'string' ? objet.endDate.slice(0, 10) : '';
@@ -246,7 +376,7 @@ export function événementDeFiche(html, { url, registre = REGISTRE }) {
     name: nom,
     kind: genreProbable(nom),
     venue,
-    area: registre.quartier?.(objet, url) ?? 'Seoul',
+    area: registre.quartier?.(objet, url, html) ?? 'Seoul',
     start_date: début,
     end_date: fin,
     source_name: registre.nom,
@@ -484,15 +614,41 @@ export function fetcheurDeCache(vues, fetcher = fetch) {
   };
 }
 
-/** Une page, lue, ou l'erreur en clair. */
-async function lire(url, { fetcher, timeoutMs }) {
+/** Combien de fois une fiche se redemande après un 429, et après combien de temps. */
+export const REPRISES_429 = 3;
+export const PAUSE_429_MS = 30_000;
+
+const dormir = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/**
+ * Une page, lue, ou l'erreur en clair. Un 429 n'est pas une panne de la
+ * fiche mais un « pas si vite » : on attend (Retry-After s'il le dit) et on
+ * redemande, sans quoi une rafale coûte deux mille fiches d'un coup.
+ */
+async function lire(url, { fetcher, timeoutMs, attendre = dormir }) {
+  for (let essai = 0; ; essai++) {
+    try {
+      return await lireUneFois(url, { fetcher, timeoutMs });
+    } catch (e) {
+      if (!e.retryAfterMs || essai >= REPRISES_429) throw e;
+      await attendre(e.retryAfterMs);
+    }
+  }
+}
+
+async function lireUneFois(url, { fetcher, timeoutMs }) {
   const controller = new AbortController();
   const minuteur = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetcher(url, { headers: ENTÊTES, redirect: 'follow', signal: controller.signal });
+    if (res.status === 429) {
+      const dit = Number(res.headers?.get?.('retry-after'));
+      throw Object.assign(new Error('HTTP 429'), { retryAfterMs: dit > 0 ? dit * 1000 : PAUSE_429_MS });
+    }
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return await res.text();
   } catch (e) {
+    if (e.retryAfterMs) throw e;
     throw new Error(e.name === 'AbortError' ? `pas de réponse en ${timeoutMs / 1000} s` : e.message);
   } finally {
     clearTimeout(minuteur);
@@ -511,20 +667,24 @@ async function lire(url, { fetcher, timeoutMs }) {
  * @param {number} [p.timeoutMs]
  * @param {number} [p.concurrence]
  * @param {number} [p.max]            plafond de fiches lues, pour les essais
+ * @param {Set<string>} [p.sauter]    fiches déjà écartées un matin précédent (NEMONE.mémoire)
  * @returns {Promise<{registre: object, candidats: {event: object, matière: string, adresse: string}[], fiches: number, écartées: {url: string, raison: string}[], pannes: {url: string, raison: string}[], vues: Map<string, string>}>}
  */
 export async function récolter({
   registre = REGISTRE,
   fetcher = fetch,
   timeoutMs = 15_000,
-  concurrence = CONCURRENCE,
+  concurrence = registre.concurrence ?? CONCURRENCE,
   max = Infinity,
+  sauter = new Set(),
+  attendre = dormir,
 } = {}) {
   const vues = new Map();
   const index = await lire(registre.index, { fetcher, timeoutMs });
   vues.set(registre.index, index);
 
-  const adresses = adressesDeFiches(index, { base: registre.index, fiche: registre.fiche }).slice(0, max);
+  const toutes = registre.adresses?.(index) ?? adressesDeFiches(index, { base: registre.index, fiche: registre.fiche });
+  const adresses = toutes.filter((url) => !sauter.has(url)).slice(0, Math.min(max, registre.plafond ?? Infinity));
   const candidats = new Array(adresses.length);
   const écartées = [];
   const pannes = [];
@@ -536,10 +696,14 @@ export async function récolter({
     for (let i = prochain++; i < adresses.length; i = prochain++) {
       const url = adresses[i];
       try {
-        const html = await lire(url, { fetcher, timeoutMs });
-        vues.set(url, html);
+        const html = await lire(url, { fetcher, timeoutMs, attendre });
         const trouvé = événementDeFiche(html, { url, registre });
-        if (trouvé.event) candidats[i] = trouvé;
+        // Seules les fiches retenues serviront de cache aux gardes : garder
+        // les deux mille pages écartées de NEMONE, ce serait trois cents Mo.
+        if (trouvé.event) {
+          vues.set(url, html);
+          candidats[i] = trouvé;
+        }
         else if (trouvé.règle) écartées.push({ url, raison: trouvé.raison });
         else pannes.push({ url, raison: trouvé.raison });
       } catch (e) {
@@ -549,7 +713,70 @@ export async function récolter({
   }
   await Promise.all(Array.from({ length: Math.min(concurrence, adresses.length) }, travailleur));
 
-  return { registre, candidats: candidats.filter(Boolean), fiches: adresses.length, écartées, pannes, vues };
+  return {
+    registre,
+    candidats: candidats.filter(Boolean),
+    fiches: adresses.length,
+    sautées: toutes.length - adresses.length,
+    écartées,
+    pannes,
+    vues,
+  };
+}
+
+// --- La mémoire des fiches écartées -------------------------------------------
+
+/**
+ * Combien de jours une fiche écartée ne se relit pas.
+ *
+ * Une boutique permanente le reste, un atelier aussi : les relire chaque matin
+ * serait deux mille six cents requêtes pour apprendre la même chose. Mais une
+ * fiche peut changer — des dates annoncées après coup —, donc l'oubli vient,
+ * ÉTALÉ sur une seconde période : sans quoi les fiches écartées le même jour
+ * reviendraient toutes le même matin, et ce matin-là durerait vingt minutes.
+ */
+export const OUBLI_JOURS = 30;
+
+/** Un décalage stable de 0 à OUBLI_JOURS - 1 jours, tiré de l'adresse. */
+function étalement(url) {
+  let h = 0;
+  for (const c of String(url)) h = (h * 31 + c.codePointAt(0)) >>> 0;
+  return h % OUBLI_JOURS;
+}
+
+const jourPlus = (jour, n) => new Date(Date.parse(`${jour}T00:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
+
+/**
+ * Les fiches à ne pas relire ce matin.
+ *
+ * @param {Record<string, {raison: string, le: string}>} mémoire
+ * @param {string} jour
+ * @returns {Set<string>}
+ */
+export function àSauter(mémoire = {}, jour) {
+  return new Set(
+    Object.entries(mémoire)
+      .filter(([url, { le }]) => jourPlus(le, OUBLI_JOURS + étalement(url)) > jour)
+      .map(([url]) => url)
+  );
+}
+
+/**
+ * La mémoire, après la récolte du matin : ce que la règle a écarté, et ce qui
+ * est fini — un pop-up terminé ne rouvre pas. Les entrées oubliées tombent.
+ *
+ * @param {Record<string, {raison: string, le: string}>} mémoire
+ * @param {{écartées: {url: string, raison: string}[], candidats: {event: object}[]}} récolte
+ * @param {string} jour
+ */
+export function retenirÉcartées(mémoire = {}, { écartées = [], candidats = [] }, jour) {
+  const gardées = àSauter(mémoire, jour);
+  const suite = Object.fromEntries(Object.entries(mémoire).filter(([url]) => gardées.has(url)));
+  for (const { url, raison } of écartées) suite[url] = { raison, le: jour };
+  for (const { event } of candidats) {
+    if (event.end_date < jour) suite[event.source_url] = { raison: 'terminé', le: jour };
+  }
+  return suite;
 }
 
 // --- La section de la veille --------------------------------------------------
@@ -571,6 +798,7 @@ export function rendreRegistre({
   candidats = [],
   écartées = [],
   àCompléter = [],
+  àSourcer = [],
   parRègle = [],
   pannes = [],
   fiches = 0,
@@ -579,7 +807,7 @@ export function rendreRegistre({
   max = MISES_EN_AVANT,
   panne = null,
 } = {}) {
-  const noms = registres.map((r) => r.nom).join(' et ');
+  const noms = registres.map((r) => r.nom).join(', ').replace(/, ([^,]+)$/, ' et $1');
   const lignes = [`## Pop-ups des registres (${noms})`, ''];
   if (panne) {
     lignes.push(
@@ -636,6 +864,33 @@ export function rendreRegistre({
       lignes.push(
         `- ${event.name} · ${event.theme ?? 'thème à trancher'} · ${event.start_date} → ${event.end_date} · lieu « ${event.venue} »${indice} · ${event.source_url}`
       );
+    }
+    lignes.push('');
+  }
+  // Ce qu'un registre qu'on ne cite pas a vu, et qu'aucun autre n'a vu. Pas
+  // de JSON : il inviterait à recopier une fiche écrite par un modèle. Le
+  // travail est celui des agrégateurs dans la consigne — trouver qui
+  // l'annonce.
+  if (àSourcer.length) {
+    // Celles qu'un thème reconnaît d'abord, puis la proximité : NEMONE en rend
+    // cent cinquante, et la proximité seule reléguait pour toujours ce qui
+    // est ouvert depuis longtemps — Play in the Box, ouvert le 11 septembre
+    // pour quatre mois, n'aurait jamais passé les « autres ».
+    const proches = parProximité(àSourcer, jour);
+    const triées = [...proches.filter(({ event }) => event.theme), ...proches.filter(({ event }) => !event.theme)];
+    const montrées = triées.slice(0, À_SOURCER_MAX);
+    const nom = montrées[0].registre ?? 'un agrégateur';
+    lignes.push(
+      `**Vues chez ${nom} seulement, à sourcer.** ${nom} écrit ses fiches par un modèle et ne se cite pas : pour en garder une, trouve la page du lieu, de la marque ou une rédaction qui donne ces dates et ce lieu, et cite-la — le nom coréen se trouve sur la fiche. Rien de tel : laisse-la, elle reviendra demain.`,
+      ''
+    );
+    for (const { event } of montrées) {
+      lignes.push(
+        `- ${event.name} · ${event.theme ?? 'thème à trancher'} · ${event.start_date} → ${event.end_date} · ${event.venue} (${event.area}) · ${event.source_url}`
+      );
+    }
+    if (triées.length > montrées.length) {
+      lignes.push(`- et ${triées.length - montrées.length} autres, qui reviendront`);
     }
     lignes.push('');
   }
