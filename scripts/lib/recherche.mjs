@@ -263,6 +263,10 @@ export function épurer(piste) {
     const t = v.trim();
     if (t) propre[champ] = t;
   }
+  // `title` pour `name` : le 27 septembre 2026, le volet des pages a rendu
+  // ses six pistes ainsi, et le tri a planté sur la première, emportant les
+  // dix du volet coréen. Le titre EST le nom ; on le reprend, on ne le jette pas.
+  if (!propre.name && typeof piste.title === 'string' && piste.title.trim()) propre.name = piste.title.trim();
   return propre;
 }
 
@@ -340,7 +344,10 @@ export async function trierPistes(
   // pas (elle ne regarde pas la source), l'allowlist rendrait « domaine
   // inconnu : undefined ». On le dit en clair.
   const sansSource = épurées.filter((p) => !p.source_url);
-  const avecSource = épurées.filter((p) => p.source_url);
+  // Sans nom non plus : les doublons se cherchent sur le nom, et une seule
+  // piste sans nom faisait planter le tri de toutes les autres.
+  const sansNom = épurées.filter((p) => p.source_url && !p.name);
+  const avecSource = épurées.filter((p) => p.source_url && p.name);
 
   const résolues = await Promise.all(
     avecSource.map(async (p) => ({ ...p, source_url: await résoudre(p.source_url, { fetcher, timeoutMs }) }))
@@ -391,6 +398,7 @@ export async function trierPistes(
     retenues: retenues.map(sansTampon),
     écartées: [
       ...sansSource.map((event) => ({ event, raison: 'sans adresse source' })),
+      ...sansNom.map((event) => ({ event, raison: 'sans nom' })),
       ...écartés,
       ...doublonsDuMatin.map(({ event, raison }) => ({ event: sansTampon(event), raison })),
       ...excédent.map(({ event, raison }) => ({ event: sansTampon(event), raison })),

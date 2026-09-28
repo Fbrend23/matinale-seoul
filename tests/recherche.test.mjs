@@ -130,6 +130,25 @@ test('résoudre suit la redirection et rend l\'adresse d\'arrivée, ou l\'adress
   assert.equal(await résoudre('https://a.example/x', { fetcher: muet }), 'https://a.example/x');
 });
 
+test('une piste rendue avec `title` au lieu de `name` garde son titre pour nom', () => {
+  const { name, ...sansName } = PISTE;
+  assert.equal(épurer({ ...sansName, title: '  Pop-up Sanrio  ' }).name, 'Pop-up Sanrio');
+  assert.equal(épurer({ ...PISTE, title: 'autre chose' }).name, PISTE.name, 'name présent, title ignoré');
+  assert.ok(!('title' in épurer({ ...PISTE, title: 'x' })), 'title n\'est pas un champ du schéma');
+});
+
+test('une piste sans nom est écartée et nommée, le tri des autres continue (27 septembre 2026)', async () => {
+  const { name, ...sansName } = PISTE;
+  const tri = await trierPistes([sansName, { ...PISTE, name: 'Pop-up Sanrio à Hongdae' }], {
+    domaines: DOMAINES,
+    connus: [],
+    today: TODAY,
+    fetcher,
+  });
+  assert.deepEqual(tri.retenues.map((e) => e.name), ['Pop-up Sanrio à Hongdae']);
+  assert.deepEqual(tri.écartées.map(({ raison }) => raison), ['sans nom']);
+});
+
 test('une piste passe le tri même de l\'ingestion : ce qui atteint l\'agent serait retenu', async () => {
   const pistes = [
     PISTE,
