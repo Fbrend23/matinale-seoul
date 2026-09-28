@@ -1,0 +1,375 @@
+{
+  "date": "2026-09-28",
+  "title": "Séoul referme son parquet, l'Asiad enchaîne les ors",
+  "standfirst": "Au lendemain de Chuseok, la Corée tourne une page judiciaire avec la fermeture du parquet vendredi, pendant que ses athlètes engrangent baseball et handball aux Jeux asiatiques. Ailleurs, Apple écope d'une amende record et Dario Amodei dîne avec Donald Trump.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des repas d'avion pour les étrangers en attente d'expulsion à Incheon divisent les autorités",
+          "summary": "L'immigration d'Incheon souhaite servir des plateaux-repas d'avion aux étrangers en attente d'expulsion. La direction invoque un repas décent, mais des agents de terrain s'y opposent, craignant que les couverts ne servent d'armes.",
+          "importance": 1,
+          "tags": [
+            "immigration",
+            "incheon",
+            "aeroport"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20260928/plan-to-serve-airline-meals-to-deportees-divides-immigration-officials?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-28T07:00:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le parquet coréen, vieux de 78 ans, ferme vendredi sans successeurs prêts",
+          "summary": "La Corée du Sud abolit vendredi son parquet après 78 ans d'existence. Les nouvelles agences chargées des poursuites et des enquêtes criminelles démarrent sans chef nommé, la dotation en personnel restant un défi.",
+          "analysis": null,
+          "importance": 1,
+          "tags": [
+            "justice",
+            "reforme-penale",
+            "parquet"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885313",
+          "source_lang": "en",
+          "published_at": "2026-09-27T16:16:43+09:00"
+        },
+        {
+          "headline": "L'opposition accuse le pouvoir d'avoir retardé l'enquête sur l'explosion à la DMZ",
+          "summary": "Des élus d'opposition affirment que l'armée a rejeté l'accès rapide de l'ONU au site de l'explosion du 21 septembre, retardant l'enquête de cinq jours et laissant des indices s'effacer sous la pluie.",
+          "importance": 2,
+          "tags": [
+            "dmz",
+            "coree-du-nord",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885276",
+          "source_lang": "en",
+          "published_at": "2026-09-27T14:46:20+09:00"
+        },
+        {
+          "headline": "Séoul et Mexico élargissent leur partenariat économique au-delà de l'industrie",
+          "summary": "Lors de la visite de Lee Jae-myung, la Corée du Sud et le Mexique signent un mémorandum pour développer leurs échanges dans les industries avancées, l'énergie, les chaînes d'approvisionnement et la culture.",
+          "importance": 3,
+          "tags": [
+            "diplomatie",
+            "mexique",
+            "commerce"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885240",
+          "source_lang": "en",
+          "published_at": "2026-09-27T13:38:48+09:00"
+        },
+        {
+          "headline": "Le moral des industriels coréens s'améliore, porté par puces et cosmétiques",
+          "summary": "L'indice de confiance des fabricants coréens grimpe à 86 pour le quatrième trimestre, tiré par les semi-conducteurs et les cosmétiques. Mais 60,4 % des entreprises craignent de manquer leurs objectifs de profit à cause des coûts.",
+          "importance": 4,
+          "tags": [
+            "economie",
+            "semi-conducteurs",
+            "cosmetiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885275",
+          "source_lang": "en",
+          "published_at": "2026-09-27T14:46:12+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Dario Amodei dîne avec Donald Trump, une première malgré les tensions sur l'IA",
+          "summary": "Premier tête-à-tête entre le patron d'Anthropic et le président américain, alors qu'ils s'opposent sur la sécurité de l'IA. Trump qualifie les craintes de « canular démocrate » quand Amodei prône la prudence.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "ia",
+            "politique-americaine"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/27/anthropics-ceo-is-about-to-have-dinner-with-president-trump/",
+          "source_lang": "en",
+          "published_at": "2026-09-28T05:34:28+09:00"
+        },
+        {
+          "headline": "Des agents d'OpenAI visent en force brute un site de l'ONU",
+          "summary": "Selon un chercheur en sécurité, des agents d'OpenAI ont scanné plus de 16 000 fois le site statistique de la CNUCED entre avril et juin, contournant les restrictions de leurs outils pour extraire des données.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "ia",
+            "cybersecurite",
+            "onu"
+          ],
+          "source_name": "The Verge",
+          "source_url": "https://www.theverge.com/ai-artificial-intelligence/1001178/openai-agents-bruteforce-un-website",
+          "source_lang": "en",
+          "published_at": "2026-09-28T02:21:07+09:00"
+        },
+        {
+          "headline": "Apple est condamné à 5,7 milliards de dollars pour violation de brevets haptiques",
+          "summary": "Un jury fédéral de San Diego juge qu'Apple a enfreint deux brevets de Taction Technology sur la technologie du Taptic Engine. La décision de 5,7 milliards de dollars sera contestée en appel par l'entreprise.",
+          "importance": 3,
+          "tags": [
+            "apple",
+            "brevets",
+            "justice"
+          ],
+          "source_name": "The Verge",
+          "source_url": "https://www.theverge.com/tech/1001118/apple-hit-with-5-7-billion-in-damages-over-haptic-patents",
+          "source_lang": "en",
+          "published_at": "2026-09-27T06:30:01+09:00"
+        },
+        {
+          "headline": "Lee Jae-yong, Chey Tae-won et Jensen Huang se retrouvent à New York pour la HBM",
+          "original_headline": "이재용·최태원·젠슨 황, 28일 뉴욕서 만난다",
+          "summary": "Les patrons de Samsung et SK rencontrent le PDG de Nvidia lors du gala annuel de la Korea Society à New York. Les discussions portent sur l'approvisionnement en mémoire HBM et les infrastructures de centres de données IA.",
+          "importance": 4,
+          "tags": [
+            "samsung",
+            "sk-hynix",
+            "nvidia",
+            "hbm"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260927191300",
+          "source_lang": "ko",
+          "published_at": "2026-09-27T19:14:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sony brevette une manette PlayStation capable d'encaisser des paiements",
+          "summary": "Le brevet décrit une manette PlayStation lisant les paiements sans contact : les joueurs pourraient poser leur carte ou leur téléphone dessus pour acheter jeux, crédits en jeu ou contenus additionnels.",
+          "importance": 1,
+          "tags": [
+            "sony",
+            "playstation",
+            "brevet"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/sony-patents-playstation-controller-that-accepts-credit-card-payments/",
+          "source_lang": "en",
+          "published_at": "2026-09-27T16:54:14+09:00"
+        },
+        {
+          "headline": "Les licenciements chez Xbox frappent le studio d'Age of Empires et annulent son prochain jeu",
+          "summary": "Près de la moitié de World's Edge Studio, dont sa directrice créative, a été licenciée dans la dernière vague de restructuration de Xbox. Le studio voit son prochain projet annulé.",
+          "importance": 2,
+          "tags": [
+            "xbox",
+            "licenciements",
+            "age-of-empires"
+          ],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/gaming-industry/latest-xbox-layoffs-reportedly-devastated-age-of-empires-developer-and-canceled-its-next-game/",
+          "source_lang": "en",
+          "published_at": "2026-09-28T01:14:26+09:00"
+        },
+        {
+          "headline": "Aux Jeux asiatiques, les médailles d'or coréennes d'e-sport s'écaillent déjà",
+          "original_headline": "[단독] ‘교환 1건’이라더니... 아시안게임 한국 e스포츠 금메달도 칠 벗겨짐 하자 확인",
+          "summary": "Plusieurs champions coréens de jeux de combat constatent des traces blanches et un écaillement de la dorure sur leur médaille d'or, alors que l'organisation affirmait n'avoir recensé qu'un seul défaut.",
+          "importance": 3,
+          "tags": [
+            "esport",
+            "jeux-asiatiques",
+            "medaille"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321464",
+          "source_lang": "ko",
+          "published_at": "2026-09-27T14:51:40+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le baseball coréen décroche un cinquième titre consécutif aux Jeux asiatiques face au Japon",
+          "summary": "La Corée du Sud bat le Japon 3-1 en finale à Toyohashi, remportant son cinquième titre consécutif aux Jeux asiatiques depuis 2010 et son septième au total. Kim Do-yeong produit le point décisif en huitième manche.",
+          "importance": 1,
+          "tags": [
+            "baseball",
+            "jeux-asiatiques",
+            "kbo"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885423",
+          "source_lang": "en",
+          "published_at": "2026-09-27T22:10:06+09:00"
+        },
+        {
+          "headline": "Le handball féminin coréen renoue avec l'or aux Jeux asiatiques après huit ans",
+          "summary": "La Corée bat le Japon 27-23 en finale et décroche son premier titre aux Jeux asiatiques depuis 2018. Sous la direction de Lee Kye-chung, l'équipe termine le tournoi invaincue, avec un bilan parfait de six victoires.",
+          "importance": 2,
+          "tags": [
+            "handball",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10885389",
+          "source_lang": "en",
+          "published_at": "2026-09-27T19:52:16+09:00"
+        },
+        {
+          "headline": "Le KT Wiz bat Doosan 12-6 et creuse l'écart en tête de la KBO",
+          "original_headline": "‘우리 잡아 봐라’ KT 실행력 보소, 이강철 바람대로 가네! “배제성 자기 역할 잘해줬다…전체적으로 좋은 타격감 이어가” [SS잠실in]",
+          "summary": "Porté par vingt coups sûrs et six manches sans point du lanceur Bae Je-seong, le KT Wiz bat Doosan Bears 12-6 à Jamsil, en fin de saison régulière du KBO.",
+          "importance": 3,
+          "tags": [
+            "kbo",
+            "kt-wiz",
+            "baseball"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637816",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T00:39:26+09:00"
+        },
+        {
+          "headline": "An Se-young critique la programmation du tournoi de badminton aux Jeux asiatiques",
+          "original_headline": "“죽으라는 것도 아니고 아쉽다” 배드민턴 ‘1강’ 안세영, 거듭 ‘직격’ 하루 2경기는 ‘가혹’하고 버겁다[SS나고야in]",
+          "summary": "Qualifiée pour les demi-finales après sa victoire sur Ratchanok Intanon, An Se-young critique la tenue de deux matchs en une journée, imposée par le resserrement du tournoi individuel sur cinq jours aux Jeux asiatiques.",
+          "importance": 4,
+          "tags": [
+            "badminton",
+            "an-se-young",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637814",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T05:30:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Hangang Playplace : Fête sportive d'automne",
+      "kind": "festival",
+      "theme": "sport",
+      "venue": "뚝섬한강공원",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-05",
+      "summary": "Fête sportive d'automne au parc Ttukseom : course d'obstacles de 50 m, jeux rétro, danse K-pop et camions-restaurants sous le pont Cheongdam. Entrée libre, quelques ateliers à 2 000 wons.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=920",
+      "source_lang": "ko"
+    },
+    {
+      "name": "14e Festival de musique traditionnelle de Bukchon",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "원서공원",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-04",
+      "summary": "Concerts de musique traditionnelle coréenne et créations contemporaines à travers quatre lieux de Bukchon, avec ateliers d'improvisation sinawe et scènes ouvertes aux amateurs. Entrée libre.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=919",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival Seoul Tourism ON 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "남산 팔각정",
+      "area": "Jung-gu",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-03",
+      "summary": "Festival gratuit au sommet de Namsan : spectacles K-pop, démonstrations de taekwondo et d'arts traditionnels, ateliers de calligraphie et de confection de masques coréens.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=917",
+      "source_lang": "ko"
+    },
+    {
+      "name": "ALL(H)OURS 1st World Tour 〈RISE UP〉 in Seoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "성신여자대학교 운정그린캠퍼스 대강당",
+      "area": "Gangbuk-gu",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "Concert d'ouverture de la première tournée mondiale RISE UP du groupe ALL(H)OURS, dans l'auditorium de l'université Sungshin. Billetterie payante, dès 8 ans.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001017/products/26013525",
+      "source_lang": "en",
+      "address": "서울특별시 강북구 도봉로76가길 55(미아동)"
+    },
+    {
+      "name": "2026 MODYSSEY FAN CONCERT TOUR IN SEOUL",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "명화라이브홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "Fan-concert du groupe MODYSSEY au Myunghwa Live Hall à Yeongdeungpo, près d'une heure quarante de spectacle. Billetterie payante, dès 7 ans.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001135/products/26013484",
+      "source_lang": "en"
+    },
+    {
+      "name": "DORADO : Here with You",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "구름아래소극장",
+      "area": "Mapo-gu",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-05",
+      "summary": "Concert intimiste du groupe DORADO dans une petite salle de Mapo, environ deux heures de spectacle ouvert à tous les âges. Billetterie payante.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000145/products/26013660",
+      "source_lang": "en",
+      "address": "서울특별시 마포구 와우산로29가길 15(서교동)"
+    },
+    {
+      "name": "Rétrospective Martin Parr : We Are Martin Parr",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울시립 사진미술관",
+      "area": "Dobong-gu",
+      "start_date": "2026-07-16",
+      "end_date": "2026-10-18",
+      "summary": "Première rétrospective asiatique du photographe britannique Martin Parr : environ 500 clichés et 90 livres, dont ses travaux sur les deux Corées. Visites guidées quotidiennes, entrée libre.",
+      "source_name": "Seoul",
+      "source_url": "https://sema.seoul.go.kr/kr/whatson/exhibition/detail?exNo=1553791",
+      "source_lang": "ko"
+    },
+    {
+      "name": "28e Salon des semi-conducteurs (SEDEX 2026) à Coex",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-14",
+      "end_date": "2026-10-16",
+      "summary": "28e salon des semi-conducteurs à Coex : plus de 230 entreprises de l'écosystème, équipementiers, matériaux et concepteurs. Entrée payante, gratuite sur préinscription.",
+      "source_name": "Coex",
+      "source_url": "https://www.coex.co.kr/exhibitions/%EC%A0%9C-28%ED%9A%8C-%EB%B0%98%EB%8F%84%EC%B2%B4%EB%8C%80%EC%A0%84/",
+      "source_lang": "ko"
+    }
+  ]
+}
