@@ -1,0 +1,354 @@
+{
+  "date": "2026-09-29",
+  "title": "Une mine nord-coréenne derrière l'explosion de la DMZ, tandis qu'An Se-young vise un doublé historique aux Jeux asiatiques",
+  "standfirst": "L'armée conclut que des mines nord-coréennes ont très probablement provoqué l'explosion à la DMZ, tandis que Séoul et Kyiv s'affrontent sur la divulgation d'un transfert de prisonniers nord-coréens. Anthropic et AMD accélèrent la course à l'IA, à quelques jours du lancement contesté de l'Agence des crimes graves. Aux Jeux asiatiques, An Se-young peut entrer dans l'histoire du badminton.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul veut faire payer plus cher le bus fluvial du Hangang le week-end",
+          "original_headline": "서울시, 내년 한강버스 차등요금제 도입 추진… 주말·사전예약시 더 받는다",
+          "summary": "La ville de Séoul étudie une tarification différenciée pour le bus fluvial du Hangang : le tarif de base de 3 000 wons resterait la référence en semaine, mais week-ends, jours fériés et réservations seraient surtaxés.",
+          "analysis": "Le bus fluvial est devenu un symbole du renouveau du Hangang, mais son succès inattendu, avec plus de 7 000 passagers en un jour, oblige déjà la ville à revoir un modèle pensé pour une fréquentation plus modeste.",
+          "importance": 1,
+          "tags": ["hangang-bus", "transports"],
+          "source_name": "Chosun Biz",
+          "source_url": "https://biz.chosun.com/topics/topics_social/2026/09/28/NNYNS7CTYZHX5EF5AF3ULUPLHA/",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T08:55:02+09:00"
+        },
+        {
+          "headline": "La Corée ouvre à l'essai les 512 premiers kilomètres du sentier Dongseo",
+          "original_headline": "[포토타임] 국내 최초 백패킹 장거리 숲길…‘동서트레일’ 512㎞ 시범개통",
+          "summary": "Le service des forêts lance dès le 1er octobre un essai de deux mois sur 512 km du futur sentier Dongseo, qui reliera 849 km entre Taean et Uljin. Les abris de bivouac se réservent dès le 29 septembre.",
+          "importance": 2,
+          "tags": ["randonnee", "dongseo-trail"],
+          "source_name": "JoongAng Ilbo",
+          "source_url": "https://www.joongang.co.kr/article/25465271",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T16:31:06+09:00"
+        },
+        {
+          "headline": "Un investissement de 680 milliards de wons pour un complexe hôtelier à Hwajinpo",
+          "original_headline": "고성, 해솔리아 5천억 이어, 화진포 6800억 투자유치",
+          "summary": "Le Gangwon et le district de Goseong signent avec le groupe Hoban un accord pour bâtir à Hwajinpo un ensemble hôtelier international de 450 chambres, livré d'ici 2035.",
+          "importance": 3,
+          "tags": ["hebergement", "gangwon"],
+          "source_name": "Herald Corp",
+          "source_url": "https://biz.heraldcorp.com/article/10886591",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T17:03:25+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'armée conclut que des mines nord-coréennes ont provoqué l'explosion à la DMZ",
+          "summary": "L'état-major sud-coréen juge très probable que des mines nord-coréennes ont causé l'explosion du 21 septembre à la DMZ, qui a blessé trois soldats. Résidus de TNT et absence de fragments métalliques appuient cette thèse.",
+          "analysis": "Si la responsabilité nord-coréenne est confirmée, l'incident s'ajoute aux tensions déjà vives sur la frontière, en pleine crise diplomatique avec Kyiv sur les prisonniers nord-coréens transférés au Sud.",
+          "importance": 1,
+          "tags": ["dmz", "armee", "coree-du-nord"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10886756",
+          "source_lang": "en",
+          "published_at": "2026-09-28T22:30:33+09:00"
+        },
+        {
+          "headline": "Séoul convoque l'ambassadeur ukrainien et exige des excuses sur les prisonniers nord-coréens",
+          "summary": "Séoul a convoqué l'ambassadeur ukrainien après la divulgation par Zelensky, à l'ONU, du transfert de deux prisonniers nord-coréens vers la Corée du Sud, sans consultation préalable. Kyiv nie tout accord de confidentialité ; Séoul exige des excuses officielles.",
+          "importance": 2,
+          "tags": ["diplomatie", "coree-du-nord", "ukraine"],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10886684",
+          "source_lang": "en",
+          "published_at": "2026-09-28T19:19:24+09:00"
+        },
+        {
+          "headline": "L'opposition interne au camp présidentiel grandit contre le futur chef de l'Agence des crimes graves",
+          "original_headline": "여권 내 커지는 ‘김지용 불가론’…지지층 결집시킬 李 묘책",
+          "summary": "À trois jours du lancement de l'Agence des crimes graves, qui remplace le parquet, des voix du camp présidentiel réclament le retrait de Kim Ji-yong, ex-procureur jugé trop proche de l'ancien système.",
+          "importance": 3,
+          "tags": ["justice", "reforme-penale"],
+          "source_name": "JoongAng Ilbo",
+          "source_url": "https://www.joongang.co.kr/article/25465449",
+          "source_lang": "ko",
+          "published_at": "2026-09-29T05:00:01+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "AMD rachète World Labs, la startup d'IA de Fei-Fei Li, pour 8,2 milliards de dollars",
+          "summary": "AMD rachète World Labs, le laboratoire d'IA de Fei-Fei Li spécialisé dans la compréhension du monde physique, pour 8,2 milliards de dollars. Fei-Fei Li devient vice-présidente exécutive et scientifique en chef d'AMD.",
+          "analysis": "L'opération illustre la course aux modèles de monde physique, où Nvidia, Google et Meta investissent aussi massivement pour préparer l'IA générative appliquée à la robotique.",
+          "importance": 1,
+          "tags": ["ia", "fusions-acquisitions", "semi-conducteurs"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/",
+          "source_lang": "en",
+          "published_at": "2026-09-29T05:39:33+09:00"
+        },
+        {
+          "headline": "Anthropic lance Sonnet 5.5, un modèle intermédiaire plus rapide et moins coûteux",
+          "summary": "Anthropic dévoile Sonnet 5.5, 30% plus rapide et plus économe en tokens que Sonnet 5. Le modèle hérite des protections de sécurité d'Opus 5 et dépasse Opus 5.5 sur le codage multi-agents.",
+          "importance": 2,
+          "tags": ["ia", "anthropic"],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/28/anthropic-releases-sonnet-5-5-which-it-calls-a-significantly-cheaper-faster-work-partner/",
+          "source_lang": "en",
+          "published_at": "2026-09-29T03:00:00+09:00"
+        },
+        {
+          "headline": "Samsung Electro-Mechanics investit 4 270 milliards de wons dans les substrats pour serveurs IA",
+          "original_headline": "삼성전기, 세종에 4.2조 투자… AI 서버용 반도체 기판 증설",
+          "summary": "La filiale de composants de Samsung annonce à Sejong son plus gros investissement consacré à un seul produit : des substrats FC-BGA pour serveurs et accélérateurs IA. Construction de septembre 2026 à mai 2028, production en série dès septembre 2028.",
+          "importance": 3,
+          "tags": ["semi-conducteurs", "samsung", "ia"],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20260928000389",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T18:08:07+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sony sonderait les studios sur l'abandon des disques PlayStation",
+          "summary": "Sony aurait envoyé aux développeurs un vaste questionnaire sur la vente physique de jeux, après l'annonce en juillet d'un arrêt total des disques PS5 début 2028. Des studios s'inquiètent pour leurs revenus physiques.",
+          "importance": 1,
+          "tags": ["playstation", "industrie-du-jeu"],
+          "source_name": "GamesIndustry.biz",
+          "source_url": "https://www.gamesindustry.biz/report-sony-surveying-developers-about-dropping-playstation-disc-support",
+          "source_lang": "en",
+          "published_at": "2026-09-29T00:23:57+09:00"
+        },
+        {
+          "headline": "The Witcher 3 sort aujourd'hui en version remasterisée, gratuite pour les propriétaires",
+          "summary": "CD Projekt Red publie ce 29 septembre The Witcher 3 : Wild Hunt Remastered sur PC, PS5, Xbox Series et Switch 2, avec les extensions Hearts of Stone et Blood and Wine. Gratuite pour les possesseurs du jeu original.",
+          "importance": 2,
+          "tags": ["the-witcher-3", "cd-projekt"],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/witcher-3-wild-hunt-remastered-generous-upgrade-makes-it-new-again",
+          "source_lang": "en",
+          "published_at": "2026-09-29T00:14:11+09:00"
+        },
+        {
+          "headline": "L'e-sport sera exclu des Jeux asiatiques après 2026, une perte pour l'exemption militaire coréenne",
+          "original_headline": "[이슈] e스포츠, 2026년 끝으로 아시안게임서 제외",
+          "summary": "Le Comité olympique asiatique retirera l'e-sport des Jeux asiatiques après l'édition 2026 pour créer, dès 2027 au Koweït, une compétition distincte réunissant environ 4 000 athlètes. Les joueurs coréens médaillés y perdraient leur exemption militaire.",
+          "analysis": "Pour les joueurs coréens, la mesure referme une voie d'exemption ouverte par la médaille d'or aux Jeux asiatiques, sauf si le service militaire choisit de reconnaître la nouvelle compétition.",
+          "importance": 3,
+          "tags": ["esport", "jeux-asiatiques", "service-militaire"],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321472",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T09:18:53+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "An Se-young dispute ce mardi la finale pour un doublé historique en simple aux Jeux asiatiques",
+          "summary": "An Se-young affronte Akane Yamaguchi en finale du simple dames de badminton aux Jeux asiatiques, après sa victoire en demi-finale sur Chen Yufei. Une victoire en ferait la première à garder ce titre deux fois de suite.",
+          "analysis": "Une victoire ferait d'elle la première joueuse, toutes nations confondues, à remporter deux titres individuels consécutifs en simple dames de badminton aux Jeux asiatiques.",
+          "importance": 1,
+          "tags": ["badminton", "jeux-asiatiques", "an-se-young"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260928011400315",
+          "source_lang": "en",
+          "published_at": "2026-09-29T06:00:02+09:00"
+        },
+        {
+          "headline": "La Corée du Sud s'incline 4-1 face à l'Uruguay, Son Heung-min rejoint Cha Bum-kun au record de buts",
+          "summary": "Pour son deuxième match à la tête de la sélection, Robert Moreno subit une première défaite 4-1 contre l'Uruguay à Séoul. Son Heung-min marque son 58e but international, égalant le record de Cha Bum-kun.",
+          "importance": 2,
+          "tags": ["football", "son-heung-min", "equipe-nationale"],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20260928012500315",
+          "source_lang": "en",
+          "published_at": "2026-09-28T22:27:00+09:00"
+        },
+        {
+          "headline": "Kim Hyo-bin dédie son doublé en or au canoë à ses parents nourriciers",
+          "summary": "Premier Coréen à décrocher deux ors à ces Jeux asiatiques, en canoë-kayak, Kim Hyo-bin, 25 ans, dédie ses titres au couple qui l'a élevé à l'orphelinat de Buyeo depuis ses neuf mois.",
+          "importance": 3,
+          "tags": ["canoe-kayak", "jeux-asiatiques"],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20260929/kim-hyo-bin-dedicates-canoeing-double-gold-to-his-foster-parents?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-29T07:12:04+09:00"
+        },
+        {
+          "headline": "Doosan et LG lancent leurs souvenirs d'adieu au stade de Jamsil",
+          "original_headline": "‘한 지붕 두 가족’ 두산-LG, 29일 ‘굿바이 잠실’ 기념상품 출시→합동 전시…그라운드 흙·잔디까지 담았다",
+          "summary": "À partir du 29 septembre, les deux clubs de KBO ouvrent au stade l'exposition commune « Goodbye Jamsil », avec des maquettes garnies de vrai gazon et des bouteilles remplies de terre du terrain.",
+          "importance": 4,
+          "tags": ["kbo", "jamsil", "doosan-lg"],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1637958",
+          "source_lang": "ko",
+          "published_at": "2026-09-28T15:30:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Lancement Crayon Shin-chan × Kakao Friends Patate douce",
+      "kind": "lancement",
+      "theme": "personnages",
+      "venue": "카카오프렌즈",
+      "area": "Toute la Corée",
+      "start_date": "2026-09-22",
+      "end_date": "2026-10-05",
+      "summary": "Collection collaborative exclusive d'accessoires d'automne sur le thème de la patate douce, en boutiques Kakao Friends, sur KakaoTalk Gifting et chez Musinsa et W Concept.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0c774-29ab-78e5-8df8-480206ded22b",
+      "source_lang": "en"
+    },
+    {
+      "name": "LIBER INTO THE CLOUDS Pop-up (Musinsa Beauty Space 1)",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "서울 성동구 연무장길 81 무신사 뷰티 스페이스1",
+      "area": "Seongsu",
+      "start_date": "2026-09-23",
+      "end_date": "2026-10-05",
+      "summary": "LIBER, marque coréenne de parfums, installe avec Musinsa Beauty un espace nuage à Musinsa Beauty Space 1, Seongsu : parfums et senteurs textiles à tester, offre et cadeau exclusifs, du 23 septembre au 5 octobre, 11h-20h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/liber-into-the-clouds-popup-musinsa-beauty-seongsu",
+      "source_lang": "en"
+    },
+    {
+      "name": "JUMP SHOP Pop-up — Shinsegae Gangnam Central Open Stage",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "서울 서초구 신반포로 176 (반포동, 센트럴시티) 신세계백화점 강남점 센트럴 1층 오픈 스테이지",
+      "area": "Gangnam",
+      "start_date": "2026-09-23",
+      "end_date": "2026-10-06",
+      "summary": "JUMP SHOP, boutique du Weekly Shonen Jump, revient à Séoul en pop-up sur la scène ouverte de Shinsegae Gangnam : goodies One Piece, Haikyu!!, Jujutsu Kaisen et Naruto, du 23 septembre au 6 octobre, 10h-21h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/gangnam/popups/jump-shop-popup-shinsegae-gangnam",
+      "source_lang": "en"
+    },
+    {
+      "name": "NOTCOMMONMOVE Pop-up (The Climb Yangjae)",
+      "kind": "popup",
+      "theme": "sport",
+      "venue": "서울 강남구 남부순환로 2615 (도곡동, 극동스타클래스) 더클라임 양재",
+      "area": "Gangnam",
+      "start_date": "2026-09-24",
+      "end_date": "2026-10-05",
+      "summary": "La marque d'escalade NOTCOMMONMOVE s'installe dans la salle de bloc The Climb Yangjae : équipement à essayer et acheter entre les voies, du 24 septembre au 5 octobre, de 13h à 20h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/gangnam/popups/notcommonmove-popup-the-climb-yangjae",
+      "source_lang": "en"
+    },
+    {
+      "name": "TWS TWIMI : 42 Forest Pop-up (Seongsu)",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "서울 성동구 서울숲2길 42 (성수동1가)",
+      "area": "Seongsu",
+      "start_date": "2026-09-28",
+      "end_date": "2026-10-04",
+      "summary": "Pop-up d'une semaine à Seongsu lançant TWIMI, les personnages officiels du boy group TWS. Salles à thème forestier, zone goodies et photo booth, du 28 septembre au 4 octobre, réservation sur Weverse.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/tws-twimi-42-forest-popup-seongsu",
+      "source_lang": "en"
+    },
+    {
+      "name": "HAPPY AIBB DAY! Exhibition (BBIA in Seongsu Flagship)",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울 성동구 연무장3길 17 (성수동2가) 삐아 in 성수 플래그십 1층",
+      "area": "Seongsu",
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-01",
+      "summary": "AIBB, marque sœur du label de maquillage BBIA, célèbre son premier anniversaire au flagship BBIA in Seongsu avec les huit créations gagnantes du concours de design IA BBIA × AIBB. Trois jours, entrée libre, 11h-20h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/aibb-happy-aibb-day-exhibition-bbia-in-seongsu",
+      "source_lang": "en"
+    },
+    {
+      "name": "Concert &TEAM 'BLAZE THE WAY' Encore",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "KSPO돔",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-04",
+      "summary": "Concert de clôture de la tournée asiatique du boy group de HYBE Japan &TEAM au KSPO Dome, avec deux dates consécutives en salle omnisports.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/articles/5c238bea-c186-41ae-843d-bafde5727cd1",
+      "source_lang": "en"
+    },
+    {
+      "name": "Salon de l'IA et de la robotique de Séoul 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스 1층 B홀",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-06",
+      "end_date": "2026-10-08",
+      "summary": "Salon professionnel et grand public consacré aux innovations en intelligence artificielle et en robotique de service, accueilli au centre de congrès COEX.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=328",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert JX 2026 Tour 'CORE' à Incheon",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "인스파이어 아레나",
+      "area": "Incheon",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-11",
+      "summary": "Concert événement réunissant Kim Jaejoong et Kim Junsu à l'Inspire Arena pour inaugurer leur tournée asiatique commune célébrant leur parcours musical.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a041ba-d6e9-769d-958b-20fc3f131f15",
+      "source_lang": "en"
+    },
+    {
+      "name": "Célébration citoyenne du jour du Hangeul 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "광화문광장",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-09",
+      "summary": "Festivités commémorant l'invention de l'alphabet coréen sur la place Gwanghwamun avec ateliers calligraphiques, spectacles traditionnels et animations interactives.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=444",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival des Seoul Drama Awards 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "KBS홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-10",
+      "summary": "Rendez-vous international récompensant les meilleures séries télévisées mondiales au KBS Hall, accompagné de rencontres avec des équipes de tournage et d'animations.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=335",
+      "source_lang": "ko"
+    }
+  ]
+}
