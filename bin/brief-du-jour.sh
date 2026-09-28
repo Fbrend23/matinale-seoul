@@ -74,6 +74,24 @@ else
   echo "$ATTENDUE" > "$EMPREINTE"
 fi
 
+# LA REPRISE. Une session Claude qui échoue (le 28 septembre 2026 : jeton
+# OAuth expiré) laisse une veille complète derrière elle, pistes Gemini
+# comprises. Relancer le service refaisait tout, et veille.mjs RÉÉCRIT le
+# fichier : les pistes de sept sessions Gemini, un quart d'heure et une part
+# du quota, partaient à la poubelle avant d'être refaites. Les deux scripts
+# Gemini déposent leur section même en panne ; les deux titres présents,
+# la veille du jour est allée au bout, et on passe directement à la session.
+# Pour la refaire malgré tout : effacer veille/AAAA-MM-JJ.md.
+VEILLE_DU_JOUR="veille/${JOUR}.md"
+if grep -qx "## Pistes événements" "$VEILLE_DU_JOUR" 2>/dev/null \
+  && grep -qx "## Pistes actualité" "$VEILLE_DU_JOUR" 2>/dev/null; then
+  echo "reprise : $VEILLE_DU_JOUR est complète, veille et sessions Gemini sautées"
+  REPRISE=1
+else
+  REPRISE=0
+fi
+
+if [ "$REPRISE" = 0 ]; then
 # La veille AVANT la session : les flux RSS des rédactions connues et ce que le
 # site a déjà publié, déposés dans veille/AAAA-MM-JJ.md pour que l'agent lise
 # des titres au lieu de les chercher. C'est la recherche qui coûtait : chaque
@@ -134,6 +152,7 @@ node scripts/recherche.mjs --jour "$JOUR" || echo "recherche indisponible : l'ag
 wait "$PID_ACTU" || echo "veille actualité indisponible : l'agent composera avec les flux"
 cat "$JOURNAL_ACTU"
 rm -f "$JOURNAL_ACTU"
+fi # REPRISE
 # Les veilles passées ne servent à rien, mais elles diraient ce que l'agent a
 # vu le matin où un brief manque : une semaine, puis on jette.
 find veille \( -name '*.md' -o -name '*.json' \) -mtime +7 -delete 2>/dev/null || true
