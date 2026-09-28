@@ -171,7 +171,7 @@ CONSIGNE=$(cat prompts/consigne-serveur.txt)
 # seul, sans commit, sans ligne de journal, exactement ce que le paragraphe
 # ci-dessus dit vouloir empêcher. Le relever se fait ici, par un commit.
 #   MATINALE_MODELE=claude-opus-5 bin/brief-du-jour.sh   pour en essayer un autre
-MODELE="${MATINALE_MODELE:-claude-sonnet-5}"
+MODELE="${MATINALE_MODELE:-claude-sonnet-5-5}"
 echo "modèle : $MODELE"
 
 # --allowedTools plutôt que --dangerously-skip-permissions : la liste dit
