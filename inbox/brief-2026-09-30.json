@@ -1,0 +1,296 @@
+{
+  "date": "2026-09-30",
+  "title": "Un record de visiteurs étrangers, une double médaille d'or asiatique et OpenAI qui lève encore",
+  "standfirst": "La Corée a accueilli plus de 15 millions de visiteurs étrangers en huit mois, An Se-young signe un doublé historique aux Jeux asiatiques et OpenAI présente GPT-6.1 Sol tout en préparant une nouvelle levée de fonds.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Plus de 15 millions de visiteurs étrangers en huit mois, un record",
+          "original_headline": "외국인 관광객, 8월까지 1500만명 와서 14조 썼다",
+          "summary": "La Corée a reçu 15,05 millions de visiteurs étrangers de janvier à août, 21,6 % de plus qu'un an plus tôt. Ils ont dépensé 14 000 milliards de wons par carte.",
+          "importance": 1,
+          "tags": [
+            "tourisme-receptif",
+            "statistiques"
+          ],
+          "source_name": "Herald Business",
+          "source_url": "https://biz.heraldcorp.com/article/10887479",
+          "source_lang": "ko",
+          "published_at": "2026-09-29T11:36:33+09:00"
+        },
+        {
+          "headline": "Séoul teste en novembre un pass nocturne pour les séjours courts des Japonais",
+          "original_headline": "日 관광객, 서울을 ‘짧고 굵게’ 즐긴다",
+          "summary": "Séoul testera en novembre un pass nocturne offrant des réductions à Myeongdong et Dongdaemun. Il vise les Japonais, aux séjours courts mais qui reviennent souvent : environ 70 % ont déjà visité la ville.",
+          "importance": 2,
+          "tags": [
+            "pass-touristique",
+            "japon",
+            "shopping"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Society/article/all/20260930/134755889/2",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T04:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Huit Sud-Coréens sur dix voient le Nord comme un pays distinct",
+          "original_headline": "8 out of 10 S. Koreans view NK as separate state: survey",
+          "summary": "Selon un sondage Gallup Korea commandé par l'Institut de la paix de l'université nationale de Séoul, 81,8 % des Sud-Coréens voient les deux Corées comme deux pays distincts. 86,4 % jugent l'arme nucléaire du Nord menaçante.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "sondage"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10888096",
+          "source_lang": "en",
+          "published_at": "2026-09-29T20:15:28+09:00"
+        },
+        {
+          "headline": "Lee veut avancer le départ des militaires de la base aérienne de Gwangju",
+          "original_headline": "Lee orders earlier Gwangju Air Base relocation, calls 2028 ‘too late’",
+          "summary": "Lee Jae-myung demande d'avancer le transfert des activités militaires de la base aérienne de Gwangju, dont l'échéance de mi-2028 est « trop tardive ». Le site doit accueillir le pôle de semi-conducteurs du Honam.",
+          "importance": 2,
+          "tags": [
+            "gwangju",
+            "semi-conducteurs",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10888092",
+          "source_lang": "en",
+          "published_at": "2026-09-29T19:28:20+09:00"
+        },
+        {
+          "headline": "Un ouvrier kazakh meurt sur un chantier de Seocho",
+          "original_headline": "Kazakh worker killed as concrete ceiling collapses at Seoul construction site",
+          "summary": "Un ouvrier kazakh d'une trentaine d'années est mort mardi : une partie d'un plafond en béton lui est tombée dessus au 23e étage d'un chantier d'immeuble. Le ministère du Travail a suspendu le chantier et enquête.",
+          "importance": 3,
+          "tags": [
+            "securite-au-travail",
+            "chantier",
+            "seocho"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20260930/kazakh-worker-killed-as-concrete-ceiling-collapses-at-seoul-construction-site?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-09-30T00:37:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI lance GPT-6.1 Sol, presque aussi capable que GPT-6 Astra pour bien moins cher",
+          "original_headline": "OpenAI launches GPT-6.1 Sol, says it nearly matches GPT-6 Astra and costs less",
+          "summary": "Au DevDay, OpenAI lance GPT-6.1 Sol : il approche l'intelligence de GPT-6 Astra pour un cinquième des prix standard des jetons, affirme l'entreprise. Il est réservé aux abonnés payants, via ChatGPT Work et Codex.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "modeles-ia",
+            "devday"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/",
+          "source_lang": "en",
+          "published_at": "2026-09-30T02:15:00+09:00"
+        },
+        {
+          "headline": "OpenAI viserait 30 milliards de dollars pour une valorisation de 1 400 milliards",
+          "original_headline": "OpenAI repotedly in talks to raise $30B round at $1.4T valuation",
+          "summary": "OpenAI serait en discussions pour lever au moins 30 milliards de dollars, pour une valorisation d'environ 1 400 milliards, selon Bloomberg. Ce serait le dernier tour avant son entrée en bourse, repoussée à 2027.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "levee-de-fonds",
+            "valorisation"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/29/openai-repotedly-in-talks-to-raise-30b-round-at-1-4t-valuation/",
+          "source_lang": "en",
+          "published_at": "2026-09-30T04:52:37+09:00"
+        },
+        {
+          "headline": "Samsung Electro-Mechanics décroche un contrat de 290 milliards de wons pour serveurs d'IA",
+          "original_headline": "삼성전기, 2900억원 규모 MLCC·인덕터 공급 계약",
+          "summary": "Samsung Electro-Mechanics a signé un contrat de 290 milliards de wons pour fournir des condensateurs MLCC et des inducteurs destinés aux serveurs d'IA, sur l'année 2027. Ses contrats de 2026 totalisent 3 600 milliards de wons.",
+          "importance": 3,
+          "tags": [
+            "samsung",
+            "mlcc",
+            "serveurs-ia"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20260929134915",
+          "source_lang": "ko",
+          "published_at": "2026-09-29T14:12:29+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La carte de GTA 6 est deux fois plus grande que celle de GTA 5",
+          "original_headline": "GTA 6 map officially twice as large as GTA 5, features hurricanes and tropical storms",
+          "summary": "Selon Game Informer, la carte de Leonida, l'État fictif de GTA 6, fait le double de celle de GTA 5. Rockstar annonce six régions, une météo refondue avec ouragans et orages, et plus de 170 espèces animales.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "rockstar"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/gta-6-map-is-officially-twice-as-large-as-gta-5-features-hurricanes-and-tropical-storms/",
+          "source_lang": "en",
+          "published_at": "2026-09-30T02:15:33+09:00"
+        },
+        {
+          "headline": "G-Star 2026 ouvre sa billetterie pour le salon de Busan en novembre",
+          "original_headline": "지스타 2026, 전시장 도면 및 핵심 콘텐츠 공개",
+          "summary": "G-Star se tiendra du 19 au 22 novembre au BEXCO de Busan, billetterie en ligne ouverte le 29 septembre. Krafton, Hoyoverse et CD Projekt Red y exposeront ; la finale OWCS Asia d'Overwatch se joue du 20 au 22.",
+          "importance": 2,
+          "tags": [
+            "g-star",
+            "busan",
+            "salon"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321535",
+          "source_lang": "ko",
+          "published_at": "2026-09-29T13:12:14+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "An Se-young s'offre un deuxième titre consécutif aux Jeux asiatiques",
+          "original_headline": "Shuttlecock queen An Se-young reigns at Asian Games",
+          "summary": "An Se-young remporte un deuxième titre consécutif en simple aux Jeux asiatiques, en battant la Japonaise Akane Yamaguchi 21-17, 21-9. C'est la première joueuse à réussir ce doublé depuis l'introduction du badminton en 1962.",
+          "importance": 1,
+          "tags": [
+            "badminton",
+            "jeux-asiatiques",
+            "an-se-young"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10888037",
+          "source_lang": "en",
+          "published_at": "2026-09-29T17:48:02+09:00"
+        },
+        {
+          "headline": "Kim Min-young offre à la Corée son premier or en kurash",
+          "original_headline": "S. Korea's Kim Min-young wins 1st kurash gold at Asian Games",
+          "summary": "Kim Min-young, 21 ans, offre à la Corée sa première médaille d'or en kurash aux Jeux asiatiques, chez les femmes de plus de 87 kg, en battant la Taïwanaise Shih Liu Li-ling 5-0.",
+          "importance": 2,
+          "tags": [
+            "kurash",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10888095",
+          "source_lang": "en",
+          "published_at": "2026-09-29T20:13:59+09:00"
+        },
+        {
+          "headline": "Le KT Wiz signe un record de franchise avec sa 82e victoire",
+          "original_headline": "‘82승 구단 최다승 신기록’ 이강철 감독 “선수들 끝까지 포기 안 했다”…미친 뒷심으로 웃다 [SS광주in]",
+          "summary": "Le KT Wiz bat KIA 8-5 en dix manches et signe sa 82e victoire de la saison, un record pour le club, qui détenait 81 victoires depuis 2020. Menés 4-5 en huitième manche, ils ont égalisé en neuvième.",
+          "importance": 3,
+          "tags": [
+            "kbo",
+            "kt-wiz"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1638439",
+          "source_lang": "ko",
+          "published_at": "2026-09-29T23:10:54+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Cinéma silencieux de Gwanghwamun",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "한국프레스센터 서울마당",
+      "area": "Jung-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-04",
+      "summary": "Projections en plein air à 18 h, à suivre au casque sans fil devant le Korea Press Center. Gratuit, sur tirage au sort de 200 personnes par jour ; l'inscription a fermé le 28 septembre.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=922",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival artistique Sayuksin de Dongjak 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "사육신역사관",
+      "area": "Dongjak-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-11-28",
+      "summary": "Concerts de musique coréenne fusion et de chanteurs-compositeurs les 3 et 4 octobre au parc Sayuksin, puis exposition de photos et d'art sur le passé du quartier jusqu'au 28 novembre. Entrée libre.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=923",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert de Choi Yu-ree à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "장충체육관",
+      "area": "Jung-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-04",
+      "summary": "Concert solo de Choi Yu-ree au gymnase Jangchung. Billets à 143 000 ou 154 000 wons selon la catégorie de place.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001048/products/26012515",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26001048/products/26012515"
+    },
+    {
+      "name": "Concert de NEXZ à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "올림픽홀",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "summary": "Première tournée asiatique « Saucin' the World » de NEXZ à l'Olympic Hall. Places debout et assises à 154 000 wons, billet mobile uniquement.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001096/products/26012968",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26001096/products/26012968"
+    },
+    {
+      "name": "Pop-up Go Gil-dong × Kangwon Land à Hongdae",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "스타스퀘어",
+      "area": "Mapo-gu",
+      "start_date": "2026-10-03",
+      "end_date": "2026-10-11",
+      "summary": "Boutique éphémère sur deux étages autour du personnage Go Gil-dong et de Kangwon Land : huit zones de jeux, quiz et livre d'or. Ouvert de 14 h à 21 h ; les missions donnent droit à des cadeaux.",
+      "source_name": "Herald Business",
+      "source_url": "https://biz.heraldcorp.com/article/10886448",
+      "source_lang": "ko"
+    }
+  ]
+}
