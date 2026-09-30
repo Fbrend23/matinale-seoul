@@ -1,0 +1,315 @@
+{
+  "date": "2026-10-01",
+  "title": "Trump détaille les projets américains de Séoul, les Coréens visent la finale de football aux Jeux asiatiques",
+  "standfirst": "Trump a dévoilé trois projets sous l'engagement d'investissement de 200 milliards de dollars de la Corée. À Nagoya, les footballeurs atteignent la finale. Côté voyage, Yanggu rembourse la moitié des séjours d'automne.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Yanggu rembourse jusqu'à 100 000 wons aux visiteurs d'octobre et novembre",
+          "original_headline": "양구 10~11월 ‘반값 여행’ 파격적인 공공마케팅",
+          "summary": "Du 1er octobre au 30 novembre, les visiteurs venus d'ailleurs reçoivent 50 000 à 100 000 wons en chèques locaux selon leurs dépenses. Une nuit en hébergement partenaire et une inscription préalable sont requises.",
+          "importance": 1,
+          "tags": [
+            "gangwon",
+            "promotion",
+            "hebergement"
+          ],
+          "source_name": "Herald Corp",
+          "source_url": "https://biz.heraldcorp.com/article/10889271",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T15:36:45+09:00"
+        },
+        {
+          "headline": "Jeju Air arrive en tête de la satisfaction client sur les vols intérieurs",
+          "original_headline": "제주항공, 고객만족도 국내선 1위…예약·탑승수속 높은 평가",
+          "summary": "Dans l'enquête KCSI 2026, Jeju Air obtient 84 points, meilleur score des vols intérieurs. Réservation, enregistrement et service à bord sont salués. Le classement distingue désormais lignes nationales et internationales.",
+          "importance": 2,
+          "tags": [
+            "jeju-air",
+            "aerien",
+            "vols-interieurs"
+          ],
+          "source_name": "Herald Corp",
+          "source_url": "https://biz.heraldcorp.com/article/10889518",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T18:16:54+09:00"
+        },
+        {
+          "headline": "Le Sofitel Ambassador Seoul fête ses cinq ans avec une version virtuelle de l'hôtel",
+          "original_headline": "Five years, reimagined: Sofitel combines AI, art and dining",
+          "summary": "Jusqu'au 5 octobre, un pop-up au Hyundai Seoul recrée l'hôtel en version virtuelle. Dans le hall de l'établissement, une installation interactive d'art numérique se tient du 1er au 29 octobre.",
+          "importance": 3,
+          "tags": [
+            "hotel",
+            "yeouido",
+            "anniversaire"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889410",
+          "source_lang": "en",
+          "published_at": "2026-09-30T17:01:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trump détaille trois projets du plan d'investissement sud-coréen de 200 milliards de dollars",
+          "original_headline": "Trump unveils 3 projects under Korea's $200b US investment plan",
+          "summary": "Une centrale à gaz de 22,3 milliards au Texas, huit réacteurs nucléaires jusqu'à 120 milliards et un gazoduc en Alaska, encore en examen commercial. Le tout relève de l'engagement de 200 milliards de dollars de Séoul.",
+          "importance": 1,
+          "tags": [
+            "investissement",
+            "etats-unis",
+            "energie",
+            "nucleaire"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889661",
+          "source_lang": "en",
+          "published_at": "2026-10-01T06:07:56+09:00"
+        },
+        {
+          "headline": "Une cinquantaine d'incursions de soldats nord-coréens en deux mois, selon un député",
+          "original_headline": "N. Korean soldiers intrude across MDL around 50 times in Aug.-Sept. period: lawmaker",
+          "summary": "Selon l'état-major interarmées cité par le député Yu Yong-weon, environ 50 franchissements de la ligne de démarcation en août et septembre, dont 30 en septembre. L'armée a répondu par des avertissements et des tirs de semonce.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "frontiere",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889593",
+          "source_lang": "en",
+          "published_at": "2026-09-30T21:06:32+09:00"
+        },
+        {
+          "headline": "Les prix des appartements de Séoul montent pour la 85e semaine de suite",
+          "original_headline": "서울 집값 역대 최장 상승 목전…정부 ‘공급’ 시험대",
+          "summary": "Hausse de 0,13 % la troisième semaine de septembre, soit 17,5 % cumulés depuis février 2025. Le président Lee réclame des mesures d'offre audacieuses au ministère du Logement.",
+          "importance": 3,
+          "tags": [
+            "immobilier",
+            "logement",
+            "seoul"
+          ],
+          "source_name": "Kukmin Ilbo",
+          "source_url": "https://www.kmib.co.kr/article/view.asp?arcid=9000018607",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T15:15:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trump et les patrons de l'IA signent un engagement volontaire sur la sécurité, avec une faute à « United States »",
+          "original_headline": "Pledge signed by President Trump and top AI leaders misspells the United States",
+          "summary": "Le « Joint Commitment on Frontier Responsibilities » demande de veiller au comportement des modèles et de corriger vite les problèmes, sous contrôle d'un conseil indépendant. Il est volontaire. Zuckerberg, Huang et Amodei ont signé.",
+          "importance": 1,
+          "tags": [
+            "securite-ia",
+            "etats-unis",
+            "regulation"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/30/pledge-signed-by-president-trump-and-top-ai-leaders-misspells-the-united-states/",
+          "source_lang": "en",
+          "published_at": "2026-09-30T23:50:55+09:00"
+        },
+        {
+          "headline": "Reddit supprime ses flux RSS en novembre et son API publique en mars 2027",
+          "original_headline": "Reddit is killing RSS feeds and ending public API access because of AI bots",
+          "summary": "Reddit dit lutter contre le moissonnage par des robots d'IA. Les flux RSS disparaîtront le 13 novembre, l'API publique en mars 2027, et Old Reddit sera réservé à ceux l'ayant utilisé ces six derniers mois.",
+          "importance": 2,
+          "tags": [
+            "reddit",
+            "api",
+            "scraping"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/09/30/reddit-is-killing-rss-feeds-ending-public-api-access-because-of-ai-bots/",
+          "source_lang": "en",
+          "published_at": "2026-10-01T02:45:00+09:00"
+        },
+        {
+          "headline": "Le co-PDG de Samsung voit les agents d'IA changer le travail et la culture d'entreprise",
+          "original_headline": "AI agents will rewrite rules of work: Samsung CEO",
+          "summary": "Au Samsung AI Forum, dixième édition, tenu à Séoul, Jun Young-hyun a dit que l'IA agentique apportera des changements fondamentaux au travail. Le responsable matériel d'OpenAI, Richard Ho, a prononcé le discours d'ouverture.",
+          "importance": 3,
+          "tags": [
+            "samsung",
+            "agents-ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889440",
+          "source_lang": "en",
+          "published_at": "2026-09-30T17:26:57+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La dirigeante de Xbox affirme que l'activité n'est pas à vendre",
+          "original_headline": "Xbox CEO Asha Sharma insists Microsoft’s gaming business is ‘not for sale’",
+          "summary": "Dans le New York Times, Asha Sharma dément tout projet de cession évoqué par The Information. « Xbox n'est pas à vendre », assure-t-elle, alors que Microsoft prévoit 3 200 suppressions de postes cette année.",
+          "importance": 1,
+          "tags": [
+            "xbox",
+            "microsoft",
+            "industrie"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/xbox-ceo-asha-sharma-insists-microsofts-gaming-business-is-not-for-sale/",
+          "source_lang": "en",
+          "published_at": "2026-10-01T01:44:37+09:00"
+        },
+        {
+          "headline": "NCSoft ouvre l'accès anticipé mondial d'Aion 2 avant la sortie du 5 octobre",
+          "original_headline": "'아이온2' 글로벌 얼리액세스 개시... 엔씨, 국내 흥행 공식 해외서도 통할까",
+          "summary": "L'accès anticipé a débuté le 30 septembre pour les acheteurs du pack fondateur, sur PC, avec serveurs régionaux et dix langues. La sortie officielle suivra le 5 octobre sur Steam et Purple en Amérique, Europe et Asie.",
+          "importance": 2,
+          "tags": [
+            "ncsoft",
+            "aion-2",
+            "mmorpg"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20260930000321",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T14:48:50+09:00"
+        },
+        {
+          "headline": "L'équipe coréenne de League of Legends, Faker compris, file en demi-finale des Jeux asiatiques",
+          "original_headline": "“아침 6시30분 기상 쉽지 않아” 그래도 ‘페이커’는 웃었다…3전 전승 韓, 金까지 ‘2승’ [나고야AG]",
+          "summary": "Invaincue en trois matchs de poule face à Taïwan, l'Inde et Hong Kong, la Corée affronte l'Arabie saoudite en demi-finale, à deux victoires de l'or.",
+          "importance": 3,
+          "tags": [
+            "e-sport",
+            "league-of-legends",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1638657",
+          "source_lang": "ko",
+          "published_at": "2026-09-30T18:15:00+09:00"
+        },
+        {
+          "headline": "Grasshopper Manufacture, le studio de Suda 51, redevient indépendant de NetEase",
+          "original_headline": "Suda 51’s Grasshopper officially regains independence from NetEase, avoiding studio cull",
+          "summary": "Le studio de No More Heroes se sépare de NetEase Games, qui l'avait racheté en 2021, après la sortie de Romeo Is A Dead Man en février.",
+          "importance": 4,
+          "tags": [
+            "studios",
+            "netease",
+            "independance"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/suda-51s-grasshopper-officially-regains-independence-from-netease-avoiding-studio-cull/",
+          "source_lang": "en",
+          "published_at": "2026-09-30T22:13:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les footballeurs coréens battent la Chine 2-1 et rejoignent la finale des Jeux asiatiques",
+          "original_headline": "S. Korea reach men's football final",
+          "summary": "Buts de Lee Young-jun et Bae Jun-ho face à la Chine. La Corée vise un quatrième titre asiatique consécutif et retrouvera en finale le Japon ou l'Ouzbékistan.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889592",
+          "source_lang": "en",
+          "published_at": "2026-09-30T21:06:21+09:00"
+        },
+        {
+          "headline": "Lee Do-hyun offre à la Corée sa première médaille d'escalade à ces Jeux asiatiques",
+          "original_headline": "Sport climber Lee Do-hyun grabs silver in men's boulder",
+          "summary": "Argent au bloc avec 49,7 points, derrière le Japonais Sorato Anraku, sacré avec 74,5. Lee participera aussi à l'épreuve de difficulté : demi-finales vendredi, finale samedi.",
+          "importance": 2,
+          "tags": [
+            "escalade",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889588",
+          "source_lang": "en",
+          "published_at": "2026-09-30T21:05:51+09:00"
+        },
+        {
+          "headline": "Jang Se-yun décroche l'argent au judo, première médaille coréenne de la discipline à ces Jeux",
+          "original_headline": "S. Korea's Jang Se-yun wins silver in women's judo at Asian Games",
+          "summary": "Jang Se-yun perd la finale des -52 kg par disqualification, après un troisième carton jaune en prolongation, face à l'Ouzbèke Sita Kadamboeva. Première médaille coréenne en judo à ces Jeux.",
+          "importance": 3,
+          "tags": [
+            "judo",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10889591",
+          "source_lang": "en",
+          "published_at": "2026-09-30T21:06:11+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up BOYNEXTDOOR × Olive Young à Hongdae",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "올리브영 홍대놀이터점",
+      "area": "Hongdae",
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-07",
+      "summary": "Boutique éphémère pour l'album de BOYNEXTDOOR : cartes photo aléatoires offertes pour l'achat d'une des trois versions. Entrée libre, de 10 h à 23 h. La succursale de Myeongdong dure jusqu'au 12 octobre.",
+      "source_name": "Nol",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f0be-be67-74d5-b2d5-8c8f2cd7e7e9",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up BTS Dalmajung 2026 chez HYBE",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "하이브 용산",
+      "area": "Yongsan-gu",
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-11",
+      "summary": "Quatrième collection Dalmajung de BTS avec la fondation du Musée national de Corée, inspirée du munjado de la période Joseon. Entrée libre, de 11 h à 20 h. La boutique du musée poursuit jusqu'au 30 novembre.",
+      "source_name": "Nol",
+      "source_url": "https://world.nol.com/en/content/festas/01a0ea58-1ff4-7e20-8fc1-37a78b9bdc3d",
+      "source_lang": "en"
+    },
+    {
+      "name": "24e Festival Heojun au jardin botanique de Séoul",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "서울식물원",
+      "area": "Gangseo-gu",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-11",
+      "summary": "Festival consacré à Heo Jun autour du jardin botanique et de la place de Magok, de 11 h à 21 h. Concert d'ouverture avec EPEX et Ahn So-mi, danse K-pop, artistes locaux et spectacles de rue.",
+      "source_name": "Festival Seoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=480",
+      "source_lang": "ko"
+    }
+  ]
+}
