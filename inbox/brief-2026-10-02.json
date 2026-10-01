@@ -1,0 +1,289 @@
+{
+  "date": "2026-10-02",
+  "title": "Le parquet disparaît, une banque piratée par des agents d'IA, et un pass pour Busan",
+  "standfirst": "La Corée abolit son Parquet suprême après 78 ans et lance deux nouvelles agences d'enquête. Shinhan Bank perd les données de 25 000 clients dans une attaque assistée par IA. Pour les voyageurs, un pass K-Tour à l'essai à Busan.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un K-Tour Pass à l'essai pour les visiteurs étrangers à Busan",
+          "original_headline": "Pilot K-Tour Pass to stimulate trips to Busan by int'l visitors",
+          "summary": "Le pass coûte 15 000 wons : 40 % de remise sur les transports interurbains vers Busan, entrée gratuite dans l'une des 35 attractions partenaires. Vendu sur Klook et HopnHop, et en carte dans les aéroports.",
+          "importance": 1,
+          "tags": [
+            "k-tour-pass",
+            "busan",
+            "transports"
+          ],
+          "source_name": "Korea.net",
+          "source_url": "https://www.korea.net/NewsFocus/FoodTravel/view?articleId=300427",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Les palais royaux saturés : les touristes abîment les fenêtres de Gyeongbokgung",
+          "original_headline": "뚫린 구멍에 \"매일 종이 덧댄다\"…막장 관광객에 속앓이",
+          "summary": "Les palais et tombeaux royaux sont passés de 6,7 à 17,8 millions de visiteurs entre 2021 et 2025, pour environ 400 agents de sécurité. À Gyeongbokgung, 60 % des trous dans les fenêtres en papier viennent des visiteurs.",
+          "importance": 2,
+          "tags": [
+            "palais",
+            "gyeongbokgung",
+            "patrimoine"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008779125",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T15:57:47+09:00"
+        },
+        {
+          "headline": "Trinity Airways vend l'eSIM en même temps que le billet",
+          "original_headline": "항공권 살 때 eSIM도 한 번에…트리니티항공, 국적사 최초 동시 구매 서비스 도입",
+          "summary": "L'ancienne T'way Air permet d'ajouter une eSIM à la réservation, activée la veille du départ. Première compagnie coréenne à le faire. En octobre, 20 % de remise sur l'eSIM achetée avec le billet.",
+          "importance": 3,
+          "tags": [
+            "esim",
+            "trinity-airways",
+            "transports"
+          ],
+          "source_name": "Herald Corp",
+          "source_url": "https://biz.heraldcorp.com/article/10890409",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T11:44:28+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Parquet suprême est aboli après 78 ans, deux agences prennent le relais",
+          "original_headline": "Korea abolishes Prosecutors' Office after 78 years, putting new criminal justice system to test",
+          "summary": "La réforme entre en vigueur ce vendredi : l'agence des crimes graves et le bureau anticorruption enquêtent, le nouveau parquet poursuit sans enquêter. Le candidat à la tête de l'agence n'a pas encore été auditionné.",
+          "importance": 1,
+          "tags": [
+            "parquet",
+            "reforme-penale",
+            "justice"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/law-crime/20261002/korea-abolishes-prosecutors-office-after-78-years-putting-new-criminal-justice-system-to-test?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-10-02T07:12:04+09:00"
+        },
+        {
+          "headline": "Shinhan Bank perd les données de 25 000 clients dans une attaque assistée par IA",
+          "original_headline": "Some 25,000 customers' info leaked from Shinhan Bank in apparent AI agent-assisted hacking",
+          "summary": "Noms, numéros de téléphone, revenus annuels et informations de prêt sont concernés. Des pirates probablement étrangers auraient utilisé des agents d'IA. Le régulateur financier inspecte la banque sur place ; l'enquête prendra des mois.",
+          "importance": 2,
+          "tags": [
+            "cybersecurite",
+            "banques",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10891104",
+          "source_lang": "en",
+          "published_at": "2026-10-01T21:31:11+09:00"
+        },
+        {
+          "headline": "Séoul perd de nouveau l'arbitrage d'Elliott sur la fusion Samsung",
+          "original_headline": "Korea loses Elliott arbitration again over Samsung merger",
+          "summary": "Le tribunal arbitral maintient 48,49 millions de dollars de dommages. Avec intérêts et frais, Elliott compte environ 113 millions. Le ministère de la Justice dit examiner la décision sans dire s'il la contestera.",
+          "importance": 3,
+          "tags": [
+            "elliott",
+            "samsung",
+            "arbitrage"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10890713",
+          "source_lang": "en",
+          "published_at": "2026-10-01T15:09:50+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Procès Samsung-CXMT : « vérifiez toujours si Samsung et les services secrets sont près de vous »",
+          "original_headline": "\"항상 주변에 삼성·국정원이 있는지 확인하라\"",
+          "summary": "En appel, l'ancien cadre de Samsung passé chez CXMT reconnaît ces consignes de sécurité et des fichiers « D18 » (DRAM 18 nm) sur sa clé USB. Sept ans en première instance ; verdict attendu ce mois-ci.",
+          "importance": 1,
+          "tags": [
+            "samsung",
+            "cxmt",
+            "dram",
+            "secrets-industriels"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261002004931",
+          "source_lang": "ko",
+          "published_at": "2026-10-02T01:07:41+09:00"
+        },
+        {
+          "headline": "OpenAI se sépare de trois chercheurs en sécurité",
+          "original_headline": "OpenAI cuts ties with 3 safety researchers, WSJ reports",
+          "summary": "Selon le Wall Street Journal, une enquête interne a conclu qu'ils avaient mal géré des informations sensibles, partagées avec une organisation tierce. OpenAI confirme avoir rompu avec trois personnes ; ni noms ni données ne sont précisés.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "securite-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/01/openai-cuts-ties-with-three-safety-researchers-wsj-reports/",
+          "source_lang": "en",
+          "published_at": "2026-10-02T03:14:42+09:00"
+        },
+        {
+          "headline": "Naver ajoute un agent conversationnel au navigateur Whale",
+          "original_headline": "웹페이지 보면서 AI에 질문…네이버 웨일, 'AI 챗' 기능 출시",
+          "summary": "« AI Chat » répond dans la barre latérale à partir de la page ouverte ou des onglets choisis : résumés, traductions, et gestion de l'agenda Naver. Whale fête ses dix ans avec un nouveau logo.",
+          "importance": 3,
+          "tags": [
+            "naver",
+            "navigateur",
+            "ia"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261001142040",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T15:36:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sony étend son upscaler IA aux PS5 standard avec le QSSR",
+          "original_headline": "‘Remarkable’: Sony reveals new PS5 upscaler tech, QSSR",
+          "summary": "Le Quick Spectral Super Resolution, cousin du PSSR de la PS5 Pro, fonctionne sur la PS5 de base. Marvel's Wolverine et Ghost of Yōtei reçoivent un patch dès aujourd'hui ; Sony veut l'ouvrir à tous les développeurs.",
+          "importance": 1,
+          "tags": [
+            "playstation",
+            "ps5",
+            "upscaling"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/remarkable-sony-reveals-new-ps5-upscaler-tech-qssr/",
+          "source_lang": "en",
+          "published_at": "2026-10-02T02:34:12+09:00"
+        },
+        {
+          "headline": "Pearl Abyss repousse au 30 octobre le premier DLC de Crimson Desert",
+          "original_headline": "[이기자의 게임픽] 펄어비스, 붉은사막 첫 DLC 출시일 10월 30일로 조정...이유는",
+          "summary": "L'extension « Enhanced : Un voyage vers l'inconnu », prévue le 16 octobre, est décalée de deux semaines pour peaufiner la finition, dit le studio. Le jeu a dépassé six millions d'exemplaires vendus depuis mars.",
+          "importance": 2,
+          "tags": [
+            "crimson-desert",
+            "pearl-abyss",
+            "dlc"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261001093254",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T09:33:33+09:00"
+        },
+        {
+          "headline": "Kena: Scars of Kosmora est repoussé à 2027",
+          "original_headline": "Kena: Scars of Kosmora has been delayed until next year, Ember Lab announces",
+          "summary": "Ember Lab annonce que la suite de Kena: Bridge of Spirits, prévue en 2026 sur PS5 et PC, sort en 2027. Le studio dit avoir besoin d'un peu plus de temps pour peaufiner le jeu.",
+          "importance": 3,
+          "tags": [
+            "kena",
+            "report",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/kena-scars-of-kosmora-has-been-delayed-until-next-year-ember-lab-announces/",
+          "source_lang": "en",
+          "published_at": "2026-10-01T21:57:21+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Yun Kyu-sung décroche l'or en poomsae aux Jeux asiatiques",
+          "original_headline": "South Korea's Yun Kyu-sung wins gold in taekwondo poomsae at Asian Games",
+          "summary": "Le Coréen de 24 ans l'emporte avec 9,380 points, 0,1 devant le Thaïlandais Navin Pinthasute. C'est le deuxième or coréen de poomsae de la journée. Militaire depuis juin 2025, il obtient une libération anticipée.",
+          "importance": 1,
+          "tags": [
+            "jeux-asiatiques",
+            "taekwondo",
+            "poomsae"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10891092",
+          "source_lang": "en",
+          "published_at": "2026-10-01T20:40:45+09:00"
+        },
+        {
+          "headline": "KBO : les cinq qualifiés sont connus, la première place reste ouverte",
+          "original_headline": "드디어 정해진 ‘5강’→남은 건 ‘순위’뿐…이제 ‘고춧가루’ 맞으면 그냥 ‘치명타’다 [SS포커스]",
+          "summary": "Doosan a validé le 30 septembre la cinquième place qualificative. KT mène la saison régulière avec trois matchs d'avance sur Samsung. LG devance KIA de deux matchs pour la troisième place.",
+          "importance": 2,
+          "tags": [
+            "kbo",
+            "baseball",
+            "series-eliminatoires"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1638801",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T12:05:13+09:00"
+        },
+        {
+          "headline": "Hwang In-beom reprend l'entraînement avant le match contre le Venezuela",
+          "original_headline": "두 경기 빠졌던 ‘중원 핵심’ 황인범, 이틀 연속 정상 훈련 소화 베네수엘라전 출격 대기…새 중원 조합 기대[SS현장]",
+          "summary": "Absent contre l'Équateur et l'Uruguay pour fatigue, le milieu de Porto s'entraîne normalement depuis deux jours à Ulsan. La Corée affronte le Venezuela ce vendredi 2 octobre au stade de Munsu.",
+          "importance": 3,
+          "tags": [
+            "football",
+            "equipe-nationale",
+            "hwang-in-beom"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1638909",
+          "source_lang": "ko",
+          "published_at": "2026-10-01T17:45:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert 2026 Cho Yong-pil & The Great Birth",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "KSPO돔",
+      "area": "Songpa-gu",
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-29",
+      "summary": "Trois soirées au KSPO Dome pour Cho Yong-pil et son groupe The Great Birth : des classiques aux titres qui montrent l'évolution de sa musique. Billets vendus sur Yes24.",
+      "source_name": "Sports Seoul",
+      "source_url": "https://www.sportsseoul.com/news/read/1635516",
+      "source_lang": "ko"
+    },
+    {
+      "name": "DJMAX MIRACLE 2026 : lancement de l'artbook de DJMAX Respect V",
+      "kind": "autre",
+      "theme": "gaming",
+      "venue": "예스24 라이브홀",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-10",
+      "summary": "Lancement de l'artbook de DJMAX Respect V au YES24 Live Hall. Sac en édition limitée pour les précommandes vérifiées sur place, séances de dédicace annoncées ensuite.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=321564",
+      "source_lang": "ko"
+    }
+  ]
+}
