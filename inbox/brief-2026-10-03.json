@@ -1,0 +1,355 @@
+{
+  "date": "2026-10-03",
+  "title": "Un tir nord-coréen au matin du long week-end, des banques piratées de plus, et l'or du LoL",
+  "standfirst": "La Corée du Nord a tiré un projectile vers la mer de l'Est ce samedi. Trump précise le volet pétrolier de l'accord avec Séoul, et deux banques de plus déclarent des fuites. Journée plus maigre côté tourisme et sport : peu de sources ont répondu.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les tombes Joseon ouvrent leurs sentiers d'automne et Suwon prépare son festival",
+          "original_headline": "When autumn meets royal heritage",
+          "summary": "Neuf sentiers forestiers ouvrent aux tombes royales Joseon du 1er octobre au 29 novembre. Le festival de Suwon Hwaseong se tient du 4 au 11 octobre, avec une navette depuis Séoul.",
+          "importance": 1,
+          "tags": [
+            "patrimoine",
+            "automne",
+            "suwon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10890180",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Pyongyang tire un projectile non identifié vers la mer de l'Est",
+          "original_headline": "[Breaking] North Korea fires unidentified projectile toward East Sea: JCS",
+          "summary": "L'état-major sud-coréen a détecté le tir samedi matin. Nombre, type et portée restent inconnus. Si c'est un missile balistique, ce serait le quinzième de l'année, moins de deux semaines après le précédent, le 20 septembre.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892386",
+          "source_lang": "en",
+          "published_at": "2026-10-03T06:49:22+09:00"
+        },
+        {
+          "headline": "Trump affirme qu'un projet pétrolier de 8,4 milliards de dollars fait partie de l'accord avec Séoul",
+          "original_headline": "Trump says $8.4 billion oil project included in Korea deal",
+          "summary": "Le président américain annonce un projet de récupération assistée du pétrole de 8,4 milliards de dollars dans l'accord avec la Corée du Sud, au nom de la domination énergétique des États-Unis.",
+          "importance": 2,
+          "tags": [
+            "etats-unis",
+            "investissement",
+            "energie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892345",
+          "source_lang": "en",
+          "published_at": "2026-10-02T22:24:08+09:00"
+        },
+        {
+          "headline": "Hana Bank et BNK déclarent à leur tour des fuites de données",
+          "original_headline": "Hana, BNK report data breaches as hacking hits Korean banks",
+          "summary": "Hana Bank compte 89 clients touchés, BNK onze dossiers d'employés de sous-traitants. Après Shinhan et KB Kookmin, le régulateur a convoqué une réunion d'urgence et ordonné des contrôles des systèmes accessibles de l'extérieur.",
+          "importance": 3,
+          "tags": [
+            "banques",
+            "cybersecurite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892290",
+          "source_lang": "en",
+          "published_at": "2026-10-02T19:03:46+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Apple durcit l'accès complet au disque de macOS face aux agents d'IA",
+          "original_headline": "Apple says it’s tightening macOS ‘Full Disk Access’ controls due to new risks from AI agents",
+          "summary": "Apple exigera une action explicite de l'utilisateur pour accorder l'accès complet au disque, jugeant que les agents d'IA aggravent le risque. L'annonce suit des cas touchant l'application Muse de Meta et celle de ChatGPT.",
+          "importance": 1,
+          "tags": [
+            "apple",
+            "macos",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/",
+          "source_lang": "en",
+          "published_at": "2026-10-03T03:11:27+09:00"
+        },
+        {
+          "headline": "Paramount et Warner Bros. Discovery fusionnent sous le nom Skydance",
+          "original_headline": "Paramount and Warner Bros. Discovery to become Skydance",
+          "summary": "La fusion, d'environ 110 milliards de dollars, doit se conclure le 6 octobre sous le nom Skydance, avec David Ellison à la tête. Elle réunit Paramount+, HBO Max, CBS et CNN.",
+          "importance": 2,
+          "tags": [
+            "streaming",
+            "fusion"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/02/paramount-and-warner-bros-discovery-to-become-skydance/",
+          "source_lang": "en",
+          "published_at": "2026-10-03T00:53:50+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Faker, médaillé d'or sans avoir joué la finale, appelle les enfants à jouer avec modération",
+          "original_headline": "Esports legend Faker tells children to play games in moderation",
+          "summary": "La Corée bat Taïwan 3-0 en finale de League of Legends et décroche un second or consécutif aux Jeux asiatiques. Faker, resté hors de la finale, conseille aux jeunes de jouer avec mesure.",
+          "importance": 1,
+          "tags": [
+            "e-sport",
+            "jeux-asiatiques",
+            "league-of-legends"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892321",
+          "source_lang": "en",
+          "published_at": "2026-10-02T21:03:54+09:00"
+        },
+        {
+          "headline": "Micron prévoit une pénurie de mémoire jusqu'en 2028 et des prix « bien plus élevés » en 2027",
+          "original_headline": "Memory maker warns shortages will get worse in 2027, as CEO celebrates ‘much higher prices’",
+          "summary": "Le PDG de Micron voit la demande dépasser l'offre jusqu'en 2028, en raison de l'IA. Des analystes jugent que les prochaines consoles pourraient dépasser 1 000 dollars.",
+          "importance": 2,
+          "tags": [
+            "memoire",
+            "consoles",
+            "prix"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/memory-maker-warns-shortages-will-get-worse-in-2027-as-ceo-celebrates-much-higher-prices/",
+          "source_lang": "en",
+          "published_at": "2026-10-02T21:27:20+09:00"
+        },
+        {
+          "headline": "Le Miami Heat joue sous le nom de Vice City la veille de la sortie de GTA 6",
+          "original_headline": "Miami Heat NBA team to rebrand as ‘Vice City’ in GTA 6 marketing stunt",
+          "summary": "Le 18 novembre, face aux Bucks, l'équipe jouera en « Vice City » sur un parquet spécial. GTA 6 sort le 19 novembre.",
+          "importance": 3,
+          "tags": [
+            "gta-6",
+            "marketing"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/miami-heat-nba-team-to-rebrand-as-vice-city-in-gta-6-marketing-stunt/",
+          "source_lang": "en",
+          "published_at": "2026-10-03T00:52:16+09:00"
+        },
+        {
+          "headline": "Epic offre System Shock 2 remasterisé et trois autres jeux en octobre",
+          "original_headline": "Epic’s October free games include System Shock 2’s 25th anniversary remaster",
+          "summary": "Du 2 au 8 octobre : System Shock 2 remasterisé et Buried Stars. Du 8 au 15 : Out of Sight et TerraScape. Les jeux réclamés restent acquis.",
+          "importance": 4,
+          "tags": [
+            "epic-games",
+            "jeux-gratuits"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/epics-october-free-games-include-system-shock-2s-25th-anniversary-remaster/",
+          "source_lang": "en",
+          "published_at": "2026-10-03T01:49:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée tient le Venezuela en échec 0-0 pour le troisième match de Moreno",
+          "original_headline": "Korea play Venezuela to goalless draw in 3rd match under Moreno",
+          "summary": "À Ulsan, Lee Dong-gyeong a failli ouvrir le score dans les arrêts de jeu. Moreno compte une victoire, un nul et une défaite. Prochain match : l'Ouzbékistan mardi à Yongin.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261003/korea-play-venezuela-to-goalless-draw-in-3rd-match-under-moreno?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-10-03T01:34:03+09:00"
+        },
+        {
+          "headline": "Kim Joo-hyung prend la tête du golf aux Jeux asiatiques avant le dernier tour",
+          "original_headline": "PGA Tour winner Kim Joo-hyung seizes 54-hole lead in men's golf",
+          "summary": "Avec une carte de 65, Kim Joo-hyung compte 12 sous le par et un coup d'avance sur Wang Wei-Hsuan et Kazuki Higa. L'équipe coréenne mène aussi le classement par équipes.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892319",
+          "source_lang": "en",
+          "published_at": "2026-10-02T21:01:35+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up SEVENTEEN × Les Schtroumpfs",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-18",
+      "summary": "Pop-up mêlant l'univers de SEVENTEEN et des Schtroumpfs. Entrée réservée aux personnes ayant réservé.",
+      "source_name": "NOL",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f9cb-e955-773d-a1fc-935dbf59d088",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up The Weeknd : After Hours Til Dawn",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "무신사 스탠다드 한남",
+      "area": "Hannam-dong",
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-13",
+      "summary": "Boutique éphémère de la tournée avec produits dérivés officiels et collections en collaboration. Entrée libre, de 11 h à 21 h.",
+      "source_name": "NOL",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f4da-2ba8-7da9-8585-18fa184031bf",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up beauté LUNA Cloud Layer",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "무신사 메가스토어 성수",
+      "area": "Seongsu",
+      "start_date": "2026-09-30",
+      "end_date": "2026-10-14",
+      "summary": "Pop-up de la marque de beauté LUNA pour sa collection d'automne : essais de produits, cabines photo, jeux et cadeaux. Entrée libre, de 11 h à 20 h.",
+      "source_name": "NOL",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f9d6-9204-7680-9982-197e3f0fee38",
+      "source_lang": "en"
+    },
+    {
+      "name": "Festival Hip-Hop de Seongdong 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "살곶이체육공원 축구장",
+      "area": "Seongdong-gu",
+      "start_date": "2026-10-09",
+      "end_date": "2026-10-09",
+      "summary": "Concert hip-hop gratuit de 16 h à 20 h avec Dynamicduo, SINCE et Fleeky Bang, entre autres. Inscription préalable en ligne.",
+      "source_name": "Festival de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=930",
+      "source_lang": "ko",
+      "booking_url": "https://form.naver.com/response/47qKi641Gp"
+    },
+    {
+      "name": "19e Festival de la crevette saumurée de Maponaru",
+      "kind": "festival",
+      "theme": "food",
+      "venue": "월드컵공원 평화의광장",
+      "area": "Mapo-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "summary": "Trois jours de concerts, jeux traditionnels, stands gourmands et concours de chant, avec feu d'artifice et laser le dimanche. Entrée libre.",
+      "source_name": "Festival de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=556",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival de l'opéra pour enfants de Séoul 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "소월아트홀",
+      "area": "Seongdong-gu",
+      "start_date": "2026-10-11",
+      "end_date": "2026-10-11",
+      "summary": "Deux représentations, à 14 h et 18 h 30, et des ateliers gratuits de 15 h à 18 h. Spectacles à 10 000 wons.",
+      "source_name": "Festival de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=921",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Festival du gimbap de Gimcheon à Jamsil",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "롯데백화점 잠실점",
+      "area": "Jamsil",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-08",
+      "summary": "Avant-première du festival de Gimcheon : gimbap régionaux, boulangerie, cuisine de rue et photos avec la mascotte Kkodali. Entrée libre.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20260930090221",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival culturel des palais royaux d'automne 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "경복궁",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-11",
+      "summary": "Cinq jours dans quatre palais et au Jongmyo : expositions, reconstitutions, jeux de palais et parcours de tampons. La plupart des programmes se font sans réservation.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20260930155206",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Beer Fest Coex 2026",
+      "kind": "festival",
+      "theme": "food",
+      "venue": "코엑스 광장",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-11",
+      "summary": "Bières artisanales coréennes et étrangères, accords mets-bières et concerts, sur la place du Coex avant sa rénovation.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/exhibitions/%eb%b9%84%ec%96%b4%ed%8e%98%ec%8a%a4%ed%8a%b8-%ec%bd%94%ec%97%91%ec%8a%a4-2026/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "HoYoLAND 2026 à KINTEX",
+      "kind": "festival",
+      "theme": "gaming",
+      "venue": "킨텍스 제2전시장",
+      "area": "Goyang",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-05",
+      "summary": "Festival HoYoverse avec stands Genshin Impact, Honkai: Star Rail et Zenless Zone Zero, spectacles sur scène, produits dérivés en édition limitée et animations.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=321755",
+      "source_lang": "ko"
+    },
+    {
+      "name": "SBS Gayo Daejeon 2026",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "킨텍스",
+      "area": "Goyang",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-25",
+      "summary": "30e édition du grand concert de fin d'année de SBS à Ilsan. Programmation et billetterie pas encore annoncées.",
+      "source_name": "Kpop Official",
+      "source_url": "https://kpopofficial.com/event/sbs-gayo-daejeon-2026/",
+      "source_lang": "en"
+    }
+  ]
+}
