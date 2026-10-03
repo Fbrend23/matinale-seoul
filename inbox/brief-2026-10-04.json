@@ -1,0 +1,355 @@
+{
+  "date": "2026-10-04",
+  "title": "Quatrième or d'affilée au football aux Jeux asiatiques, Pyongyang parle de missile à portée intermédiaire",
+  "standfirst": "La Corée du Sud ferme les Jeux asiatiques sur six or en une journée, dont le football face au Japon. Pyongyang revendique un missile à portée intermédiaire, Trump presse Séoul sur le GNL d'Alaska. Côté tech, un cadre de sécurité d'OpenAI démissionne.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le requin de Busan franchit le filet et revient, plus de 700 000 visiteurs au parc",
+          "original_headline": "Shark returns to Busan waterway after second rescue bid fails",
+          "summary": "Le requin de 3,5 mètres a franchi un filet de 50 mètres et regagné son poste au parc de Bukhang, à Busan. Plus de 700 000 visiteurs sont venus en dix jours. Les autorités l'observent jusqu'à lundi.",
+          "importance": 1,
+          "tags": [
+            "busan",
+            "requin",
+            "parc-bukhang"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892553",
+          "source_lang": "en",
+          "published_at": "2026-10-03T15:08:49+09:00"
+        },
+        {
+          "headline": "Au parc national du Gayasan, des nuits en pleine forêt et six kilomètres vers Haeinsa",
+          "original_headline": "Under the stars, among the sounds of the Gayasan forest",
+          "summary": "Le centre nature du Gayasan, à Seongju, propose des programmes d'écoute de la forêt et des hébergements du dortoir à la maison en A. Un sentier de 6,2 km mène au temple de Haeinsa.",
+          "importance": 2,
+          "tags": [
+            "gayasan",
+            "hebergement",
+            "randonnee"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10890636",
+          "source_lang": "en",
+          "published_at": "2026-10-03T16:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Yo-jong dit que le tir de samedi était un missile stratégique à portée intermédiaire",
+          "original_headline": "NK leader's sister says intermediate-range strategic missile was launched during firing drill",
+          "summary": "La sœur de Kim Jong-un affirme qu'un missile à portée intermédiaire a été tiré à l'aube, sous la supervision de son frère. L'armée sud-coréenne avait mesuré plus de 700 km de vol.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "missile",
+            "kim-yo-jong"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/foreignaffairs/northkorea/20261003/nk-leaders-sister-says-intermediate-range-strategic-missile-was-launched-during-firing-drill",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Trump menace de « doubler » la facture si Séoul tarde à s'engager sur le GNL d'Alaska",
+          "original_headline": "Trump pressures South Korea to commit to Alaska LNG project",
+          "summary": "Trump prévient Séoul qu'il « doublera » la mise si elle ne signe pas vite pour le projet de GNL d'Alaska. Séoul répond qu'aucune décision finale n'est prise sur le niveau d'investissement.",
+          "importance": 2,
+          "tags": [
+            "etats-unis",
+            "gnl",
+            "investissement"
+          ],
+          "analysis": "Nouveau par rapport à la veille : la menace porte sur le seul GNL d'Alaska, présenté comme plus de 50 milliards de dollars d'un paquet de 350 milliards, et Séoul conteste que l'engagement soit acquis.",
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892475",
+          "source_lang": "en",
+          "published_at": "2026-10-03T11:35:28+09:00"
+        },
+        {
+          "headline": "Deux banques publiques nient toute pression dans leur investissement dans le film « Assassin(s) »",
+          "original_headline": "State-run banks deny outside pressure over ‘Assassin(s)’ investment",
+          "summary": "La Banque industrielle de Corée et la Banque de développement disent n'avoir subi aucune pression pour leur mise de plus de 30 milliards de wons dans le film sur l'attentat de 1974 contre Park Chung-hee.",
+          "importance": 3,
+          "tags": [
+            "cinema",
+            "banques-publiques",
+            "polemique"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892627",
+          "source_lang": "en",
+          "published_at": "2026-10-03T17:04:58+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un responsable des rapports de sécurité d'OpenAI démissionne et dénonce une culture « brisée »",
+          "original_headline": "OpenAI safety employee resigns, claiming the company’s ‘culture is broken’",
+          "summary": "David Robinson, trois ans et demi chez OpenAI, a rédigé les rapports de sécurité des lancements. Il démissionne et publie une tribune dans The Atlantic : selon lui, seule une pression extérieure fera évoluer l'entreprise.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "securite-ia",
+            "demission"
+          ],
+          "analysis": "Ce n'est pas le départ des trois chercheurs évoqué le 2 octobre : Robinson parle publiquement et réclame des règles de sécurité de type nucléaire pour les laboratoires de pointe.",
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/",
+          "source_lang": "en",
+          "published_at": "2026-10-04T01:30:01+09:00"
+        },
+        {
+          "headline": "Amazon renonce aux accords de confidentialité pour ses centres de données",
+          "original_headline": "Amazon responds to data center backlash, says it no longer uses NDAs",
+          "summary": "Le patron d'AWS, Matt Garman, dit que le groupe n'utilise plus de NDA dans ses accords publics sur les centres de données, et cite un milliard de dollars versés aux communautés en trois ans.",
+          "importance": 2,
+          "tags": [
+            "amazon",
+            "centres-de-donnees",
+            "aws"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/03/amazon-responds-to-data-center-backlash-says-it-no-longer-uses-ndas/",
+          "source_lang": "en",
+          "published_at": "2026-10-04T03:43:57+09:00"
+        },
+        {
+          "headline": "Les modèles d'IA chinois gagnent les entreprises coréennes, et la dépendance inquiète",
+          "original_headline": "한국 기업 파고드는 중국산 AI…'모델 종속' 경고등",
+          "summary": "Des entreprises coréennes adoptent des modèles ouverts chinois comme Qwen, pour le coût et le coréen. Les experts redoutent l'enfermement, d'autant que la licence de Qwen 3.8 Max change au-delà de 50 millions de dollars.",
+          "importance": 3,
+          "tags": [
+            "ia",
+            "qwen",
+            "dependance"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261003004306",
+          "source_lang": "ko",
+          "published_at": "2026-10-03T10:20:38+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Capcom veut faire du RE Engine un moteur « de génération par IA »",
+          "original_headline": "Capcom details plans to evolve RE Engine into an ‘AI-generation game engine’",
+          "summary": "À sa conférence RE: 2026, Capcom présente l'initiative REX : des langages de programmation plus accessibles pour que l'IA génère du code et teste les bugs. Capcom précise que l'IA doit assister les créateurs, pas les remplacer.",
+          "importance": 1,
+          "tags": [
+            "capcom",
+            "re-engine",
+            "ia"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/capcom-details-plans-to-evolve-re-engine-into-an-ai-generation-game-engine/",
+          "source_lang": "en",
+          "published_at": "2026-10-03T19:47:45+09:00"
+        },
+        {
+          "headline": "Au Vietnam, Steam est quasi bloqué : téléchargements, mises à jour et sauvegardes cloud touchés",
+          "original_headline": "스팀, 베트남서 사실상 봉쇄? 다운로드·업데이트까지 장애",
+          "summary": "Depuis le 2 octobre, les joueurs vietnamiens signalent un blocage qui dépasse la boutique et les paiements. Un VPN rétablit l'accès. Le décret 147/2024 impose une licence aux jeux en ligne, que Valve aurait refusé de demander.",
+          "importance": 2,
+          "tags": [
+            "steam",
+            "vietnam",
+            "valve"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321764",
+          "source_lang": "ko",
+          "published_at": "2026-10-03T23:41:37+09:00"
+        },
+        {
+          "headline": "Aion 2 dépasse 170 000 joueurs simultanés sur Steam, l'action NCSoft rebondit",
+          "original_headline": "'아이온2', 글로벌 스팀 동접 17만 돌파…엔씨 주가 반등",
+          "summary": "En accès anticipé payant, Aion 2 a atteint 171 530 joueurs simultanés sur Steam le 1er octobre. L'action NCSoft a gagné environ 8 % le jour du lancement, puis atteint 244 500 wons le lendemain.",
+          "importance": 3,
+          "tags": [
+            "aion-2",
+            "ncsoft",
+            "steam"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261003121508",
+          "source_lang": "ko",
+          "published_at": "2026-10-03T14:30:34+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Quatrième or d'affilée pour le football masculin coréen, 1-0 face au Japon",
+          "original_headline": "S. Korea beat Japan for 4th straight men's football gold",
+          "summary": "La Corée bat le Japon 1-0 à Toyota grâce à un but d'Eom Ji-sung, de Swansea, en seconde période. Elle réussit un quatrième titre asiatique de suite, après 2014, 2018 et 2022.",
+          "importance": 1,
+          "tags": [
+            "jeux-asiatiques",
+            "football",
+            "eom-ji-sung"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261003/asian-games-s-korea-beat-japan-for-4th-straight-mens-football-gold",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Kim Joo-hyung décroche l'or au golf, la Corée prend l'argent par équipes",
+          "original_headline": "PGA Tour winner Kim Joo-hyung captures men's golf gold medal, helps S. Korea win team silver",
+          "summary": "Kim Joo-hyung gagne l'or à 18 sous le par (262) après une dernière carte de 64 à Kasugai. Cette victoire lui vaut l'exemption du service militaire. La Corée finit deuxième par équipes, derrière la Chine.",
+          "importance": 2,
+          "tags": [
+            "jeux-asiatiques",
+            "golf",
+            "kim-joo-hyung"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892604",
+          "source_lang": "en",
+          "published_at": "2026-10-03T16:26:51+09:00"
+        },
+        {
+          "headline": "Lee Woo-seok remporte l'or individuel au tir à l'arc, son deuxième de ces Jeux",
+          "original_headline": "Lee Woo-seok wins gold in men's individual recurve, his 2nd gold at Asian Games",
+          "summary": "Lee Woo-seok bat le Japonais Junya Nakanishi 6-2 en finale de l'arc classique à Okazaki. Il ajoute cet or individuel à celui de l'épreuve par équipes.",
+          "importance": 3,
+          "tags": [
+            "jeux-asiatiques",
+            "tir-a-l-arc",
+            "lee-woo-seok"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892561",
+          "source_lang": "en",
+          "published_at": "2026-10-03T15:22:11+09:00"
+        },
+        {
+          "headline": "À 15 ans, Choi Ji-un est le plus jeune champion de la délégation coréenne, en voile",
+          "original_headline": "S. Korea's Choi Ji-un wins gold in boy's dinghy sailing at Asian Games",
+          "summary": "Quatrième après dix manches, Choi Ji-un gagne la onzième et finit deuxième de la dernière. Il égale Singapour à 25 points et l'emporte au départage, à Gamagori.",
+          "importance": 4,
+          "tags": [
+            "jeux-asiatiques",
+            "voile",
+            "choi-ji-un"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892541",
+          "source_lang": "en",
+          "published_at": "2026-10-03T14:34:35+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up THE AGE20’S HOUSE à Seongsu",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "렉트 성수",
+      "area": "Seongsu",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-11",
+      "summary": "Pop-up de la marque de cosmétiques AGE20'S : diagnostic couleur par IA, atelier de porte-clés et réductions jusqu'à 30 %. Ouvert de 11 h à 19 h 30.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f9e9-0b3f-7fbe-9b5c-3295a6b38cb4",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up K-POP DEMON HUNTERS × ohora à Seongsu",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "올리브영 N 성수",
+      "area": "Seongsu",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-12",
+      "summary": "La marque de soins des ongles ohora s'associe à K-Pop Demon Hunters dans un décor inspiré du salon de Huntrix, au flagship Olive Young N Seongsu. Ouvert de 10 h à 22 h.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f9f1-2c06-7910-8a74-07e95ac7169f",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up papeterie Sanrio à Hongdae",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "AK플라자 홍대",
+      "area": "Hongdae",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-11",
+      "summary": "Papeterie rétro et objets Sanrio en édition limitée au deuxième étage d'AK Plaza Hongdae : classeurs, autocollants, pochettes matelassées et porte-clés photocard.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f0e0-28c1-7117-aaf3-9140fe326f5f",
+      "source_lang": "en"
+    },
+    {
+      "name": "18e Festival international de musique de Séoul",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "예술의전당",
+      "area": "Seocho-gu",
+      "start_date": "2026-10-08",
+      "end_date": "2026-10-16",
+      "summary": "18e édition, « Bravo! My Life » : concerts de chambre, orchestre et récitals de solistes coréens et étrangers au Seoul Arts Center et au Lotte Concert Hall. Tarif selon le concert.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=857",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert tripleS World Tour 2026 ANDLESS à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "장충체육관",
+      "area": "Jung-gu",
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-11",
+      "summary": "Deux soirs de la tournée mondiale ANDLESS de tripleS à l'arène Jangchung. Billets en vente sur Ticketlink depuis le 21 août.",
+      "source_name": "KPOP OFFICIAL",
+      "source_url": "https://kpopofficial.com/event/triples-world-tour-2026-seoul/",
+      "source_lang": "en"
+    },
+    {
+      "name": "Festival Gwanak Ganggamchan 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "낙성대공원",
+      "area": "Gwanak-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "summary": "Seul festival de Séoul dédié à la culture Goryeo, en l'honneur du général Gang Gam-chan : spectacle « Naksung Yeonhui », Gwanak Parade 21, marché traditionnel et ateliers pour enfants.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=623",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Promenade au clair de lune de Nowon 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "당현천",
+      "area": "Nowon-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-11-08",
+      "summary": "Sculptures lumineuses de 24 artistes le long du Danghyeoncheon, de la station Junggye au pont Yangjae. Entrée libre chaque soir de 17 h 30 à 22 h, ouverture le 16 octobre à 18 h 30.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=535",
+      "source_lang": "ko"
+    }
+  ]
+}
