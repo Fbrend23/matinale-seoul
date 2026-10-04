@@ -1,0 +1,313 @@
+{
+  "date": "2026-10-05",
+  "title": "Les touristes chinois choisissent Séoul, les banques se font pirater, la Corée termine sous son objectif aux Jeux asiatiques",
+  "standfirst": "Pendant les congés chinois, Séoul gagne les voyageurs que Tokyo perd. Côté Corée, des fuites de données touchent plusieurs banques. Les Jeux asiatiques se referment sur 39 titres, en dessous de l'objectif.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les touristes chinois délaissent Tokyo pour Séoul pendant les congés d'automne",
+          "original_headline": "中 관광객, 도쿄 버리고 서울 가는데…日 “우리 인기 여전해”",
+          "summary": "Séoul figure parmi les trois destinations étrangères les plus réservées pour les congés chinois, quand Tokyo sort des dix premières. Pour répondre à la demande, la desserte Incheon-Pékin passe de 38 à 52 vols hebdomadaires.",
+          "importance": 1,
+          "tags": [
+            "tourisme-chinois",
+            "vols",
+            "incheon"
+          ],
+          "source_name": "Herald Corp",
+          "source_url": "https://biz.heraldcorp.com/article/10892738",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T06:31:00+09:00"
+        },
+        {
+          "headline": "Les supérettes GS25 vendent de plus en plus aux visiteurs nord-américains",
+          "summary": "Les ventes de GS25 aux clients nord-américains ont bondi de 131 % sur les huit premiers mois de 2026. Ils pèsent environ 30 % des ventes aux étrangers, derrière la Grande Chine (environ 40 %).",
+          "importance": 2,
+          "tags": [
+            "commerce",
+            "visiteurs-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10890647",
+          "source_lang": "en",
+          "published_at": "2026-10-04T16:00:00+09:00"
+        },
+        {
+          "headline": "Gyeongbokgung accueille son premier mariage en plein air",
+          "original_headline": "첫 '경복궁 결혼식' 찾은 김혜경 여사…유튜버 '김치귀신 마이'에 축하",
+          "summary": "Le palais a reçu le 2 octobre sa première cérémonie de mariage en plein air, sous le ginkgo du musée national du palais. L'administration du patrimoine prévoit d'accueillir 80 couples l'an prochain.",
+          "importance": 3,
+          "tags": [
+            "gyeongbokgung",
+            "patrimoine"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008782516",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T11:55:32+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee réclame une enquête approfondie sur les fuites de données bancaires",
+          "summary": "Chez Shinhan, environ 25 000 clients sont touchés ; chez Hana, 89. Woori et NH ont bloqué les accès. Les pirates auraient utilisé des outils d'IA avancés, et le régulateur redoute l'hameçonnage vocal.",
+          "importance": 1,
+          "tags": [
+            "cybersecurite",
+            "banques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892927",
+          "source_lang": "en",
+          "published_at": "2026-10-04T14:26:36+09:00"
+        },
+        {
+          "headline": "Un policier de Séoul détenu pour des deepfakes sexuels générés par IA",
+          "summary": "Un policier de la circulation de Dongdaemun est détenu depuis septembre. Environ 5 600 fichiers illégaux ont été trouvés sur ses appareils. L'enquête est partie d'une infiltration de la police de Busan dans un salon Telegram.",
+          "importance": 2,
+          "tags": [
+            "deepfakes",
+            "police"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892869",
+          "source_lang": "en",
+          "published_at": "2026-10-04T11:45:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sony cède 418 brevets de réalité étendue à Meta",
+          "original_headline": "소니, 메타에 XR 특허 418건 양도...하드웨어 사업 축소 수순",
+          "summary": "Le transfert comprend 118 brevets américains et 300 brevets familiaux dans d'autres régions. Le contrat date de décembre 2025, les transferts s'étalent depuis juin. Le journal y voit un recul de Sony dans le matériel XR.",
+          "importance": 1,
+          "tags": [
+            "xr",
+            "brevets",
+            "meta"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261005032140",
+          "source_lang": "ko",
+          "published_at": "2026-10-05T03:41:33+09:00"
+        },
+        {
+          "headline": "Google gèle son programme de primes pour les failles open source, noyé sous les rapports générés par IA",
+          "original_headline": "Google froze its open source bug bounty program due to a ‘significant rise’ in AI submissions",
+          "summary": "Le programme de récompenses pour vulnérabilités des logiciels open source de Google est suspendu depuis le 1er octobre. Google invoque une hausse nette de soumissions automatisées, en grande majorité invalides. Une mise à jour est attendue au premier trimestre 2027.",
+          "importance": 2,
+          "tags": [
+            "securite",
+            "open-source",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/",
+          "source_lang": "en",
+          "published_at": "2026-10-05T05:31:07+09:00"
+        },
+        {
+          "headline": "Samsung avance d'un an le démarrage de sa première usine à Yongin",
+          "original_headline": "삼성전자 '2026 용인 사이버 과학축제' 참가…용인 국가산단 청사진 제시",
+          "summary": "La mise en service du premier site est avancée à octobre 2029, contre 2030 au calendrier initial. Samsung prévoit 360 000 milliards de wons d'investissement dans le complexe, qui doit réunir 70 entreprises.",
+          "importance": 3,
+          "tags": [
+            "semi-conducteurs",
+            "samsung",
+            "yongin"
+          ],
+          "source_name": "Electronic Times",
+          "source_url": "https://www.etnews.com/20261004000009",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T10:23:25+09:00"
+        },
+        {
+          "headline": "AWS publie en open source un petit modèle qui encadre les agents d'IA",
+          "original_headline": "\"답변 생성·판단 나눠\"…아마존, AI 에이전트 행동 점검 모델 공개",
+          "summary": "Le modèle compte 2 milliards de paramètres, repose sur Qwen d'Alibaba et sort sous licence Apache 2.0 sur Hugging Face. Il vérifie qu'un agent dispose des informations nécessaires avant d'agir, en moins de 100 millisecondes.",
+          "importance": 4,
+          "tags": [
+            "agents-ia",
+            "open-source",
+            "aws"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261004102956",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T10:32:48+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Jagex annonce RuneScape 4, sous Unreal Engine",
+          "summary": "Annoncé au RuneFest de Birmingham, ce quatrième RuneScape est en développement précoce et reste à plusieurs années de sa sortie. Jagex dit ne pas vouloir remplacer les jeux existants mais agrandir l'univers.",
+          "importance": 1,
+          "tags": [
+            "runescape",
+            "mmo",
+            "unreal-engine"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/jagex-has-officially-announced-runescape-4/",
+          "source_lang": "en",
+          "published_at": "2026-10-04T18:36:48+09:00"
+        },
+        {
+          "headline": "BNK FearX et KT Rolster gagnent à la Demacia Cup, Hanjin Brion s'incline",
+          "original_headline": "[데마시아 컵] 연승 이어간 BFX-KT, 한진 브리온은 WE에게 패배",
+          "summary": "Au deuxième tour, BNK FearX bat LGD 2-1 et KT Rolster écarte RED Canids 2-0. Hanjin Brion perd 1-2 contre Team WE.",
+          "importance": 2,
+          "tags": [
+            "esport",
+            "league-of-legends"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321765",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T22:32:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée finit troisième des Jeux asiatiques avec 39 titres, sous son objectif",
+          "summary": "La Chine compte 169 titres, le Japon hôte 83, son meilleur total aux Jeux. Le président du comité olympique coréen demande de tirer les leçons de Nagoya, étape avant Los Angeles 2028.",
+          "importance": 1,
+          "tags": [
+            "jeux-asiatiques",
+            "bilan"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892891",
+          "source_lang": "en",
+          "published_at": "2026-10-04T12:35:48+09:00"
+        },
+        {
+          "headline": "Yoo Hae-ran remporte le championnat Hite Jinro, son premier majeur coréen",
+          "original_headline": "유해란, 하이트진로 우승…LPGA 이어 한국 메이저도 제패",
+          "summary": "La numéro 3 mondiale s'impose avec quatre coups d'avance. Déjà titrée cette année sur deux majeurs du LPGA, elle signe son premier majeur du circuit coréen et sa sixième victoire sur ce circuit.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "klpga"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008782809",
+          "source_lang": "ko",
+          "published_at": "2026-10-04T19:37:00+09:00"
+        },
+        {
+          "headline": "Le sabreur Oh Sang-uk élu meilleur athlète de la délégation coréenne",
+          "summary": "Double champion au sabre, il reçoit 30 millions de wons. Il avait inscrit quatre points d'affilée en finale par équipes face au Japon, alors que la Corée était menée 44-41.",
+          "importance": 3,
+          "tags": [
+            "escrime",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10892853",
+          "source_lang": "en",
+          "published_at": "2026-10-04T11:00:56+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Seoul Design Week 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "동대문디자인플라자",
+      "area": "Jung-gu",
+      "start_date": "2026-10-14",
+      "end_date": "2026-10-25",
+      "summary": "Thème « The Design Recipe » : cent designers contemporains et des expositions de studios internationaux au DDP, ainsi qu'à Seongsu et Hongdae.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=449",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival de la rivière Han d'automne 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "잠원한강공원",
+      "area": "Seocho-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-25",
+      "summary": "Neuf jours de programmes dans les parcs du fleuve, surtout à Jamwon et Gangseo : sport, cuisine, spectacles, activités nautiques et yoga.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=400",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival d'automne Sagak Sagak",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "사각사각플레이스",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-17",
+      "summary": "Fête d'automne d'une journée au Sagak Sagak Place, dans le parc Hangang de Jamsil.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=413",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Installation interactive « Garden of Light » au Sofitel",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "소피텔 앰배서더 서울",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-29",
+      "summary": "Installation d'art numérique interactif mêlant planches botaniques françaises et peinture coréenne d'oiseaux et de fleurs, dans le hall de l'hôtel. Elle réagit aux gestes des visiteurs.",
+      "source_name": "Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/10889410",
+      "source_lang": "en"
+    },
+    {
+      "name": "Concert de Yesung (Super Junior) : 10e anniversaire à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "KBS아레나",
+      "area": "Gangseo-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "summary": "Deux concerts à la KBS Arena pour ouvrir la tournée marquant les dix ans de carrière solo de Yesung, avant Kuala Lumpur, Macao, Kaohsiung, Singapour, Hong Kong et Yokohama.",
+      "source_name": "Soompi",
+      "source_url": "https://www.soompi.com/article/1857776wpp/super-juniors-yesung-announces-stops-for-10th-anniversary-tour-about-the-things-we-called-ordinary",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up BOYNEXTDOOR × Olive Young à Myeongdong",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "올리브영 명동역점",
+      "area": "Jung-gu",
+      "start_date": "2026-09-29",
+      "end_date": "2026-10-12",
+      "summary": "Pop-up du groupe au Olive Young de la station Myeongdong, du 29 septembre au 12 octobre, pour la sortie de l'album. Photocards exclusives à l'achat d'un album.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0f0be-be67-74d5-b2d5-8c8f2cd7e7e9",
+      "source_lang": "en"
+    }
+  ]
+}
