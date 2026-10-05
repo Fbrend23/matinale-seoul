@@ -1,0 +1,314 @@
+{
+  "date": "2026-10-06",
+  "title": "Séoul bat ses records de visiteurs, KT Wiz décroche le fanion de la KBO",
+  "standfirst": "Le tourisme à Séoul progresse de 22 % sur huit mois et le festival de Busan s'ouvre avec le label A. Washington nuance le dossier du gaz d'Alaska, l'Assemblée lance son audit annuel. Côté jeu vidéo, Ninja Theory licencie.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul reçoit 11,56 millions d'étrangers en huit mois, leurs dépenses par carte bondissent de 60 %",
+          "original_headline": "서울 방문 외국인, 작년보다 22% 증가…카드 소비는 60%↑",
+          "summary": "De janvier à août, 11,56 millions d'étrangers ont visité Séoul (+21,6 %). Leurs dépenses par carte atteignent 7 781 milliards de wons, avec une hausse qui s'étend aux marchés traditionnels et aux ruelles commerçantes.",
+          "importance": 1,
+          "tags": [
+            "tourisme-entrant",
+            "seoul",
+            "depenses"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261005025500004?section=culture/travel-leisure",
+          "source_lang": "ko",
+          "published_at": "2026-10-06T06:00:00+09:00"
+        },
+        {
+          "headline": "Le festival de Busan s'ouvre, le premier depuis son classement en catégorie A",
+          "summary": "La 31e édition court jusqu'au 15 octobre avec 247 films de 59 pays, dont 95 premières mondiales. Le festival est l'un des 17 classés A par la FIAPF. Zhang Yimou préside le jury.",
+          "importance": 2,
+          "tags": [
+            "busan",
+            "cinema",
+            "festival"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/entertainment/films/20261006/busan-film-fest-kicks-off-with-a-list-status-for-1st-time",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Washington et Séoul doivent encore régler les détails du projet gazier en Alaska",
+          "summary": "Le vice-président américain JD Vance assure que le projet gazier en Alaska aboutira malgré des détails à régler. Séoul précise que rien n'est finalisé et que la viabilité commerciale doit encore être examinée.",
+          "importance": 1,
+          "tags": [
+            "gnl",
+            "alaska",
+            "etats-unis"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/world/20261006/vance-says-us-s-korea-still-need-to-work-out-details-of-alaska-gas-project",
+          "source_lang": "en"
+        },
+        {
+          "headline": "La nomination de Kim Ji-yong à la tête de l'agence des crimes graves divise le Parti démocrate",
+          "summary": "L'ancien procureur, 24 ans de carrière, est contesté par l'aile dure de la majorité, qui redoute un pouvoir à la Yoon Suk Yeol. Le président Lee le soutient. L'audition aura lieu dans les semaines à venir.",
+          "importance": 2,
+          "tags": [
+            "politique",
+            "justice",
+            "parti-democrate"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/law-crime/20261006/yoon-trauma-shapes-battle-over-new-investigative-chief?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-10-06T07:00:03+09:00"
+        },
+        {
+          "headline": "L'audit parlementaire annuel convoque Google, Meta, Apple, TikTok, Coupang, X et Telegram",
+          "summary": "L'audit de l'Assemblée dure près d'un mois. Les dirigeants coréens des géants étrangers sont cités comme témoins : pratiques anticoncurrentielles, fuites de données et évasion fiscale présumée pour Google, violences de rue pour Meta.",
+          "importance": 3,
+          "tags": [
+            "assemblee-nationale",
+            "plateformes",
+            "donnees-personnelles"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10893342",
+          "source_lang": "en",
+          "published_at": "2026-10-05T15:19:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI va filigraner les textes de ChatGPT et Codex dans l'Union européenne",
+          "summary": "Pour se conformer à la loi européenne sur l'IA, OpenAI marque ses textes d'un motif invisible. Remplacer 10 % des mots par des synonymes ramène la détection de 92 % à 66 %. Le détecteur sera réservé à des chercheurs agréés.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "filigrane",
+            "reglementation"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/05/openai-will-start-watermarking-chatgpts-text-in-the-eu/",
+          "source_lang": "en",
+          "published_at": "2026-10-06T05:36:48+09:00"
+        },
+        {
+          "headline": "LG décroche un contrat de refroidissement pour plus de 5 GW de centres de données nord-américains",
+          "summary": "Accord pluriannuel de refroidisseurs avec AIR Control Concepts, aux États-Unis et au Canada. Termes financiers non divulgués. LG compte atteindre son objectif de 1 000 milliards de wons de ventes de refroidisseurs avant son échéance de fin 2027.",
+          "importance": 2,
+          "tags": [
+            "lg-electronics",
+            "centres-de-donnees",
+            "refroidissement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10893397",
+          "source_lang": "en",
+          "published_at": "2026-10-05T22:10:00+09:00"
+        },
+        {
+          "headline": "Séoul scinde son programme d'IA nationale en deux voies, avec 4 700 milliards de wons pour les modèles de pointe",
+          "summary": "Le concours actuel entre LG, SK Telecom et Upstage garde deux finalistes en février 2027, sans soutien automatique ensuite. Un nouvel appel, ouvert aux start-up, financera les modèles de pointe. Environ 29 000 GPU publics seront distribués.",
+          "importance": 3,
+          "tags": [
+            "ia-souveraine",
+            "gpu",
+            "politique-industrielle"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10893306",
+          "source_lang": "en",
+          "published_at": "2026-10-05T14:06:51+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ninja Theory commence à licencier, après l'échec des deux ventes du studio",
+          "original_headline": "Hellblade studio Ninja Theory has started laying off staff, following Xbox’s announcement that it faces closure",
+          "summary": "Le studio de Hellblade subit ses premiers départs, confirmés par des employés sur LinkedIn, après l'annonce par Xbox que deux accords de cession ont échoué. L'avenir du troisième Hellblade, Senua, annoncé pour 2027, est incertain.",
+          "importance": 1,
+          "tags": [
+            "xbox",
+            "licenciements",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/hellblade-studio-ninja-theory-has-started-laying-off-staff-following-xboxs-announcement-that-it-faces-closure/",
+          "source_lang": "en",
+          "published_at": "2026-10-05T22:20:46+09:00"
+        },
+        {
+          "headline": "Yoo Young-jin retrouve une finale d'ASL sur StarCraft après huit saisons",
+          "original_headline": "[ASL] 집념의 유영진, 8시즌 만에 결승 진출",
+          "summary": "En demi-finale de la saison 22 à Séoul, Yoo Young-jin bat Lee Jae-ho 4-2. Il revient en finale après huit saisons, lui qui avait perdu celles des saisons 12 et 14.",
+          "importance": 2,
+          "tags": [
+            "starcraft",
+            "asl",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321779",
+          "source_lang": "ko",
+          "published_at": "2026-10-05T21:20:33+09:00"
+        },
+        {
+          "headline": "Gears of War: E-Day tient sur Xbox Series S en utilisant le SSD comme mémoire d'appoint",
+          "original_headline": "The Coalition used the SSD on Xbox Series S as makeshift RAM to help Gears of War E-Day run smoothly on it",
+          "summary": "Pour pallier les 10 Go de RAM de la Series S, The Coalition déporte environ 2 Go de données de ville sur le SSD, pour environ 1 Go gagné. Le jeu tient 60 images par seconde, sans reflets Lumen.",
+          "importance": 3,
+          "tags": [
+            "xbox",
+            "gears-of-war",
+            "optimisation"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/the-coalition-used-the-ssd-on-xbox-series-s-as-makeshift-ram-to-help-gears-of-war-e-day-run-smoothly-on-it/",
+          "source_lang": "en",
+          "published_at": "2026-10-06T00:51:41+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "KT Wiz remporte le fanion de la KBO et file droit en Korean Series",
+          "summary": "Victoire 9-0 contre Lotte à Suwon, doublée de la défaite de Samsung face à Doosan : KT s'assure la première place de la saison régulière. C'est son deuxième fanion, après 2021.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "kt-wiz",
+            "baseball"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261005/kt-wiz-clinch-kbo-pennant-direct-ticket-to-korean-series",
+          "source_lang": "en"
+        },
+        {
+          "headline": "La KBO bat son record d'affluence sur une saison avec six jours de saison régulière à jouer",
+          "summary": "Avec 12 362 000 spectateurs après cinq matchs lundi, la ligue dépasse les 12 312 519 de l'an dernier. La moyenne est de 17 685 par match. KT devient le huitième club à franchir le million.",
+          "importance": 2,
+          "tags": [
+            "kbo",
+            "affluence",
+            "baseball"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261005/kbo-breaks-single-season-attendance-record",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Après l'or du football aux Jeux asiatiques, le débat sur l'exemption militaire repart",
+          "summary": "Les U-23 coréens ont battu le Japon 1-0 pour un quatrième or d'affilée. Des propos de quatre joueurs évoquant l'exemption militaire ont provoqué des critiques, et des élus des deux camps réclament une réforme.",
+          "importance": 3,
+          "tags": [
+            "jeux-asiatiques",
+            "football",
+            "service-militaire"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10893316",
+          "source_lang": "en",
+          "published_at": "2026-10-05T14:21:05+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Exposition de photographies de Brad Walls",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "그라운드시소 용산",
+      "area": "Yongsan-gu",
+      "start_date": "2026-09-11",
+      "end_date": "2027-03-01",
+      "summary": "Exposition de photographies de Brad Walls, ouverte à tous les âges. Billet d'entrée à 20 000 wons.",
+      "source_name": "Nol World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000839/products/26010389",
+      "source_lang": "en"
+    },
+    {
+      "name": "Exposition du 25e anniversaire de PEACH-PIT",
+      "kind": "exposition",
+      "theme": "anime",
+      "venue": "팝콘D스퀘어",
+      "area": "Yongsan-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-11-29",
+      "summary": "Exposition pour les 25 ans du collectif de mangaka PEACH-PIT, au 6e étage de l'I'Park Mall de Yongsan. Billets simples ou formules avec affiches, sous-verres et cartes.",
+      "source_name": "Nol World",
+      "source_url": "https://world.nol.com/en/ticket/places/22001789/products/26011993",
+      "source_lang": "en"
+    },
+    {
+      "name": "Festival de l'opéra de Séoul 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "강동아트센터",
+      "area": "Gangdong-gu",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-24",
+      "summary": "Masterclass gratuite le 21, gala Verdi le 22, répétition ouverte le 23, puis présentation gratuite et représentation de La Flûte enchantée le 24.",
+      "source_name": "Festival Seoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=858",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Guitar Show Nakwon 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "낙원악기상가",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-31",
+      "end_date": "2026-11-01",
+      "summary": "Salon de la guitare au complexe d'instruments de Nakwon, de 10 h à 19 h : marques comme Gibson et Cort, concours de groupes, concerts et ateliers.",
+      "source_name": "Festival Seoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=850",
+      "source_lang": "ko",
+      "address": "서울 종로구 삼일대로 428"
+    },
+    {
+      "name": "Festival de la mer en ville à Noryangjin 2026",
+      "kind": "festival",
+      "theme": "food",
+      "venue": "노량진축구장",
+      "area": "Dongjak-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-25",
+      "summary": "Fête de la mer autour du marché aux poissons de Noryangjin : vente de produits de la mer, démonstrations de cuisine et de découpe de thon, concerts et vingt animations.",
+      "source_name": "Festival Seoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=670",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up BTS Dalmajung 2026 chez HYBE",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "하이브 용산",
+      "area": "Yongsan-gu",
+      "start_date": "2026-09-29",
+      "end_date": "2026-11-30",
+      "summary": "Boutique éphémère BTS de HYBE Yongsan, ouverte jusqu'au 30 novembre.",
+      "source_name": "Nol World",
+      "source_url": "https://world.nol.com/en/regions/seoul/festas",
+      "source_lang": "en"
+    }
+  ]
+}
