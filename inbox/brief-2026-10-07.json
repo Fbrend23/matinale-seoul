@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-07",
+  "title": "Nuri vers son cinquième vol, Lee rouvre le dossier CPTPP, Son Heung-min dépasse Cha Bum-kun",
+  "standfirst": "La fusée Nuri doit décoller aujourd'hui avec quinze satellites. Le président Lee ordonne de reprendre à zéro la discussion sur le CPTPP, et l'armée dit avoir été prête à riposter après les explosions de mines dans la DMZ. Côté sport, Son Heung-min devient le meilleur buteur de l'histoire des Sud-Coréens. Journée creuse côté tourisme.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": "Rien de neuf et de vérifiable côté voyage ce matin : les pistes du jour n'ont pu être confirmées à la source.",
+      "items": []
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee ordonne de reprendre à zéro la discussion sur l'adhésion au CPTPP",
+          "original_headline": "Lee orders fresh review of CPTPP bid from scratch",
+          "summary": "Face aux craintes des agriculteurs et des pêcheurs, le président veut rouvrir le dialogue. Les projections donnent +0,38 point de PIB en dix ans, mais environ 850 milliards de wons de production en moins par an.",
+          "importance": 1,
+          "tags": [
+            "cptpp",
+            "commerce",
+            "agriculture"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10894695",
+          "source_lang": "en",
+          "published_at": "2026-10-06T18:17:37+09:00"
+        },
+        {
+          "headline": "Séoul avait mis ses forces en alerte avant de retirer un champ de mines nord-coréen dans la DMZ",
+          "original_headline": "[Exclusive] Seoul readied forces to return fire after Sept. 21 DMZ mine explosions: sources",
+          "summary": "Après deux explosions de mines le 21 septembre, qui ont blessé trois militaires, l'armée a relevé sa posture pour riposter à une réaction du Nord, puis retiré un champ de mines au sud de la ligne.",
+          "importance": 2,
+          "tags": [
+            "dmz",
+            "defense",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10894627",
+          "source_lang": "en",
+          "published_at": "2026-10-06T17:21:31+09:00"
+        },
+        {
+          "headline": "La fusée Nuri dressée sur son pas de tir pour un cinquième lancement",
+          "original_headline": "Nuri rocket erected on launchpad on eve of fifth launch",
+          "summary": "Nuri a été érigée au centre spatial de Naro, à Goheung, pour un lancement prévu mercredi. Elle emporte cinq satellites NEONSAT et dix CubeSats, premiers éléments d'une constellation de microsatellites de surveillance.",
+          "importance": 3,
+          "tags": [
+            "nuri",
+            "espace",
+            "satellites"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10894778",
+          "source_lang": "en",
+          "published_at": "2026-10-06T21:50:30+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Mistral présente un modèle d'un trillion de paramètres",
+          "original_headline": "Mistral’s new 1T model aims to leapfrog closed and open rivals",
+          "summary": "Mistral Large 4, multimodal, est d'abord accessible via un endpoint à garde-fous, ses poids seront publiés dans trois semaines. Mistral l'a entraîné sur 4 000 GPU Nvidia, deux à trois fois moins que ses rivaux chinois.",
+          "importance": 1,
+          "tags": [
+            "mistral",
+            "modeles-ia",
+            "open-weights"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/06/mistrals-new-1t-model-aims-to-leapfrog-closed-and-open-rivals/",
+          "source_lang": "en",
+          "published_at": "2026-10-06T23:33:16+09:00"
+        },
+        {
+          "headline": "Micron paie 600 millions de dollars à Netlist pour clore leur litige de brevets",
+          "original_headline": "마이크론, 넷리스트와 특허소송 합의…8000억원 라이선스 계약",
+          "summary": "Micron versera 30 millions de dollars par trimestre de fin 2026 à 2031, pour une licence non exclusive sur les modules mémoire serveur et la mémoire à haute bande passante. Il prend aussi 10 millions d'actions Netlist.",
+          "importance": 2,
+          "tags": [
+            "micron",
+            "brevets",
+            "memoire"
+          ],
+          "source_name": "Electronic Times",
+          "source_url": "https://www.etnews.com/20261007000002",
+          "source_lang": "ko",
+          "published_at": "2026-10-07T06:15:37+09:00"
+        },
+        {
+          "headline": "L'université de Séoul, LG et KT s'allient sur l'IA physique pour la robotique",
+          "original_headline": "서울대-LG전자·KT, '피지컬AI' 핵심기술 개발한다",
+          "summary": "Le projet, dirigé par LG Electronics et financé par le ministère des Sciences, vise un modèle fondationnel multimodal du monde réel pour aider la décision des robots. Les résultats concrets sont attendus vers la mi-2027.",
+          "importance": 3,
+          "tags": [
+            "ia-physique",
+            "robotique",
+            "lg"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261006181215",
+          "source_lang": "ko",
+          "published_at": "2026-10-07T07:00:02+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Worlds 2026 de League of Legends s'ouvrent le 16 octobre à Los Angeles",
+          "original_headline": "2026 LoL 월드 챔피언십 16일 개막",
+          "summary": "Dix-neuf équipes joueront en trois phases : play-in, ronde suisse, élimination directe. Le tournoi commence à Los Angeles et se termine par la finale du 15 novembre à New York.",
+          "importance": 1,
+          "tags": [
+            "league-of-legends",
+            "worlds",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321796",
+          "source_lang": "ko",
+          "published_at": "2026-10-06T10:28:33+09:00"
+        },
+        {
+          "headline": "Supermassive Games a licencié plus de 70 personnes, deux mois après l'annonce",
+          "original_headline": "Two months after announcing layoff plans, Supermassive Games has laid off ‘more than 70’ staff",
+          "summary": "Le studio avait annoncé son plan en août. Il invoque la nécessité d'assurer sa pérennité. C'est une deuxième vague importante, après plus de 30 départs en juillet 2025.",
+          "importance": 2,
+          "tags": [
+            "licenciements",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/two-months-after-announcing-layoff-plans-supermassive-games-has-laid-off-more-than-70-staff/",
+          "source_lang": "en",
+          "published_at": "2026-10-06T22:42:37+09:00"
+        },
+        {
+          "headline": "Kakao Games ouvre le pré-téléchargement de son MMORPG Dokkaebi World",
+          "original_headline": "카카오게임즈, 신작 MMORPG '도깨비의세계' 사전 다운로드",
+          "summary": "Le jeu, développé par SuperCat et tiré d'une web-série, mêle personnages en pixel art 2D et décors 3D. Il sort le 8 octobre à 11 heures sur PC et mobile.",
+          "importance": 3,
+          "tags": [
+            "kakao-games",
+            "mmorpg",
+            "sorties"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261006135022",
+          "source_lang": "ko",
+          "published_at": "2026-10-06T14:09:01+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Son Heung-min devient le meilleur buteur de l'histoire des Sud-Coréens",
+          "original_headline": "Son Heung-min becomes all-time S. Korean men's goals leader",
+          "summary": "Son a ouvert le score sur coup franc dès la 6e minute du match amical contre l'Ouzbékistan, à Yongin. Avec ce 59e but, il dépasse Cha Bum-kun.",
+          "importance": 1,
+          "tags": [
+            "son-heung-min",
+            "football",
+            "equipe-nationale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10894773",
+          "source_lang": "en",
+          "published_at": "2026-10-06T21:42:45+09:00"
+        },
+        {
+          "headline": "Le volley féminin coréen décroche sa place à la Coupe du monde 2027",
+          "original_headline": "S. Korea women's volleyball team qualifies for 2027 World Cup",
+          "summary": "Éliminée par la Thaïlande en quarts du championnat d'Asie en août, l'équipe se qualifie grâce à son 27e rang mondial. Le tournoi se tient aux États-Unis et au Canada du 20 août au 5 septembre 2027.",
+          "importance": 2,
+          "tags": [
+            "volley-ball",
+            "coupe-du-monde"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10894263",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Kim Hyo-joo vise un troisième titre d'affilée à l'Aramco Korea Championship, à Goyang",
+          "original_headline": "Kim Hyo-joo eyes third straight Aramco Korea title",
+          "summary": "Le tournoi du Ladies European Tour, doté de 2 millions de dollars, se joue cette semaine au New Korea Country Club. Park Sung-hyun et Lee Jeong-eun y affrontent aussi des joueuses du circuit LPGA.",
+          "importance": 3,
+          "tags": [
+            "golf",
+            "kim-hyo-joo",
+            "goyang"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10893819",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Festival d'automne de Misadangil 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "미아사거리 먹자골목",
+      "area": "Gangbuk-gu",
+      "start_date": "2026-10-11",
+      "end_date": "2026-10-11",
+      "summary": "Fête de quartier de 12 h à 18 h dans l'allée gourmande de Mia Sageori : concert de jeunes artistes, concours de karaoké, stands de restauration et d'artisanat. Entrée libre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=931",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Comédie musicale MIDNIGHT : ANTLERS",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "유니플렉스 1관",
+      "area": "Daehangno",
+      "start_date": "2026-10-04",
+      "end_date": "2026-11-15",
+      "summary": "Comédie musicale d'1 h 30 au NOL Uniplex, dans le quartier des théâtres de Daehangno. Réservée aux plus de 14 ans, places de 55 000 à 88 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/25001547/products/26012145",
+      "source_lang": "en"
+    },
+    {
+      "name": "Exposition K-pop D'FESTA THE ORIGIN",
+      "kind": "exposition",
+      "theme": "kpop",
+      "venue": "MPX 갤러리",
+      "area": "Yeouido",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-30",
+      "summary": "Exposition consacrée à la K-pop à la galerie MPX de l'IFC Mall, à Yeouido. Billet d'entrée à 32 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001250/products/26014524",
+      "source_lang": "en",
+      "address": "서울 영등포구 국제금융로 10"
+    },
+    {
+      "name": "Seoul AI Learning Ground 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "더서울라이티움",
+      "area": "Seongsu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-24",
+      "summary": "Six espaces d'expériences et de démonstrations autour de l'IA et de l'apprentissage, à Seoul Forest et au Seoul Laitium, avec conférences et activités interactives. Entrée gratuite, inscription préalable possible.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=928",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert Benson Boone : Wanted Man Tour à Goyang",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "킨텍스",
+      "area": "Goyang",
+      "start_date": "2026-10-26",
+      "end_date": "2026-10-26",
+      "summary": "Le chanteur américain Benson Boone joue au hall 10 du Kintex 2, à Goyang, dans le cadre de sa tournée Wanted Man. Places de 145 000 wons (debout) à 178 000 wons (assises).",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000813/products/26010154",
+      "source_lang": "en"
+    },
+    {
+      "name": "10e Exposition des centres culturels de Séoul",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "광화문광장 놀이마당",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-28",
+      "end_date": "2026-10-28",
+      "summary": "De 12 h à 17 h 30 à Gwanghwamun : musique traditionnelle, ateliers d'artisanat et de calligraphie, jeux folkloriques et expositions des 25 arrondissements. Entrée libre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=927",
+      "source_lang": "ko"
+    }
+  ]
+}
