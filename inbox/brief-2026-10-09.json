@@ -1,0 +1,304 @@
+{
+  "date": "2026-10-09",
+  "title": "Séoul teste un planeur hypersonique et rappelle son ambassadeur à Kyiv",
+  "standfirst": "La Corée du Sud a réussi le premier essai d'un planeur hypersonique et rappelle son ambassadeur en Ukraine. Samsung annonce un bénéfice trimestriel inédit, Coupang subit une panne nocturne, et le pont Jamsu sera réservé aux piétons dès le 26 octobre.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le pont Jamsu interdit aux voitures dès le 26 octobre",
+          "summary": "Les voitures seront interdites sur le pont Jamsu à partir du 26 octobre. Il devient une zone culturelle piétonne avec 22 points de vue ; les bus 740 et 405 passent par Banpo. Travaux jusqu'en août 2027.",
+          "importance": 1,
+          "tags": [
+            "pont-jamsu",
+            "fleuve-han",
+            "amenagement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897310",
+          "source_lang": "en",
+          "published_at": "2026-10-08T16:44:47+09:00"
+        },
+        {
+          "headline": "Le festival de lumières de Nodeulseom attire près de 300 000 visiteurs en quatre jours",
+          "original_headline": "노들섬 서울라이트 한강 빛섬축제 4일 만에 약30만 명 방문",
+          "summary": "Le festival Seoul Light Hangang Bitseom a réuni environ 299 000 visiteurs en quatre jours. La fréquentation des transports en commun vers le site a augmenté de 167 %. Il se poursuit jusqu'au 11 octobre.",
+          "importance": 2,
+          "tags": [
+            "festival",
+            "nodeulseom",
+            "fleuve-han"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://www.seoul.go.kr/news/news_report.do?nttNo=467813",
+          "source_lang": "ko"
+        },
+        {
+          "headline": "Posco inaugure Panorama Walk, une sculpture d'acier sur le mont Gubongsan",
+          "summary": "Posco et la ville de Gwangyang ont inauguré jeudi Panorama Walk, une sculpture d'acier de 27 mètres au sommet du mont Gubongsan. Un chemin de 365 mètres à sept virages offre une vue sur la baie de Gwangyang.",
+          "importance": 3,
+          "tags": [
+            "gwangyang",
+            "posco",
+            "site-touristique"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897136",
+          "source_lang": "en",
+          "published_at": "2026-10-08T17:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul réussit le premier essai de son planeur hypersonique, en présence de Lee",
+          "summary": "La Corée du Sud a testé jeudi son premier planeur hypersonique de conception nationale, observé par le président Lee Jae Myung. Le véhicule a manœuvré en vol puis touché sa cible. Le lieu du tir n'est pas divulgué.",
+          "importance": 1,
+          "tags": [
+            "defense",
+            "hypersonique",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897437",
+          "source_lang": "en",
+          "published_at": "2026-10-08T18:24:51+09:00"
+        },
+        {
+          "headline": "Séoul rappelle son ambassadeur en Ukraine, une première depuis 2008",
+          "summary": "Le ministère des Affaires étrangères rappelle l'ambassadeur à Kyiv. Le différend porte sur le transfert de deux prisonniers nord-coréens, que Kyiv a rendu public, et sur des accusations d'expéditions de carburant vers la Russie, rejetées par Séoul.",
+          "importance": 2,
+          "tags": [
+            "ukraine",
+            "diplomatie",
+            "prisonniers-nord-coreens"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897424",
+          "source_lang": "en",
+          "published_at": "2026-10-08T18:08:00+09:00"
+        },
+        {
+          "headline": "Une panne nocturne de Coupang ravive les craintes d'un nouveau piratage",
+          "summary": "Coupang, Coupang Eats et Coupang Play ont été inaccessibles environ deux heures vendredi vers 1 h. Une « erreur interne du système » est avancée, sans déclaration de l'entreprise. Coupang conteste en justice une amende de 620 milliards de wons.",
+          "importance": 3,
+          "tags": [
+            "coupang",
+            "panne",
+            "cybersecurite"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20261009/overnight-coupang-outage-causes-widespread-disruptions-sparks-fresh-hacking-fears?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-10-09T02:06:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Samsung signe un bénéfice trimestriel record de 107 400 milliards de wons, mais ses Galaxy souffrent",
+          "summary": "Samsung affiche un bénéfice d'exploitation de 107 400 milliards de wons au troisième trimestre, porté par la mémoire. Des courtiers estiment que la division mobile a perdu entre 900 milliards et 1 900 milliards de wons.",
+          "importance": 1,
+          "tags": [
+            "samsung",
+            "memoire",
+            "resultats"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897124",
+          "source_lang": "en",
+          "published_at": "2026-10-08T15:14:58+09:00"
+        },
+        {
+          "headline": "Google fait de Gemini un agent capable de planifier et d'agir, d'abord pour les entreprises",
+          "summary": "Gemini planifie et exécute des tâches, délègue à des sous-agents et accède à Workspace, Microsoft 365, Slack ou Jira. Il peut utiliser Claude. Lancé pour les entreprises, il viendra ensuite au grand public.",
+          "importance": 2,
+          "tags": [
+            "google",
+            "gemini",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/08/google-brings-agentic-ai-to-gemini-starting-with-businesses/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T03:18:00+09:00"
+        },
+        {
+          "headline": "OpenAI ramène son revenu annualisé à environ 50 milliards de dollars, loin des 70 milliards avancés",
+          "summary": "OpenAI dit à ses investisseurs que son revenu annualisé avoisine 50 milliards de dollars, non 70. Selon le Financial Times, l'écart vient d'une comparaison avec la méthode de calcul d'Anthropic.",
+          "importance": 3,
+          "tags": [
+            "openai",
+            "revenus",
+            "investisseurs"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/08/openais-revenue-is-reportedly-20-billion-less-than-previously-projected/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T03:19:42+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Paramount prépare un film en prises de vues réelles tiré de Cyberpunk 2077",
+          "summary": "Paramount développe avec CD Projekt Red une adaptation cinéma de Cyberpunk 2077, produite par Lorenzo di Bonaventura. Ni réalisateur ni date de sortie ne sont annoncés.",
+          "importance": 1,
+          "tags": [
+            "cyberpunk-2077",
+            "cinema",
+            "cd-projekt-red"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/cyberpunk-2077-is-getting-a-live-action-movie-from-paramount/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T03:36:52+09:00"
+        },
+        {
+          "headline": "Forza Horizon 6 sort sur PS5 le 26 janvier 2027",
+          "summary": "Xbox confirme Forza Horizon 6 sur PS5 le 26 janvier 2027, alors que Playground Games visait encore 2026 en septembre. L'édition Premium ouvre l'accès cinq jours plus tôt, avec une première extension le 21 janvier.",
+          "importance": 2,
+          "tags": [
+            "forza-horizon-6",
+            "ps5",
+            "xbox"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/forza-horizon-6-officially-dated-for-ps5-alongside-an-expansion/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T02:59:50+09:00"
+        },
+        {
+          "headline": "Nexon réunit douze équipes à Séoul pour la FC Pro Champions Cup, avec quatre formations coréennes",
+          "original_headline": "넥슨 'FC 온라인', 글로벌 대회 'FC 프로 챔피언스 컵 2026' 한국 대표팀 출전",
+          "summary": "La FC Pro Champions Cup se tient du 13 au 18 octobre au DDP, à Séoul, avec 300 000 dollars de dotation. T1, GEN City, DNSoopers et kt Rolster représentent la Corée parmi douze équipes.",
+          "importance": 3,
+          "tags": [
+            "esport",
+            "fc-online",
+            "nexon"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261008145957",
+          "source_lang": "ko",
+          "published_at": "2026-10-08T15:02:01+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "KIA et LG se disputent la troisième place de la KBO, synonyme de repos avant les séries",
+          "summary": "Les Twins de LG et les Tigers de KIA se disputent la troisième place. Elle offre quatre jours de repos avant les séries, contre un pour le quatrième. KIA a quatre matches à jouer, LG trois.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "baseball",
+            "series"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261008/1-postseason-spot-up-for-grabs-as-kbo-regular-season-winds-down",
+          "source_lang": "en"
+        },
+        {
+          "headline": "La KBO avance d'une semaine la période d'activité des joueurs dès 2027",
+          "original_headline": "프로야구 선수 참가활동기간 2월 1일서 1월 25일로 1주일 앞당겨",
+          "summary": "La période d'activité des joueurs passera du 1er février au 30 novembre à du 25 janvier au 23 novembre dès 2027. Hors période, l'accord du club est requis sept jours avant de disputer un match.",
+          "importance": 2,
+          "tags": [
+            "kbo",
+            "baseball",
+            "reglement"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008789625",
+          "source_lang": "ko",
+          "published_at": "2026-10-08T17:46:59+09:00"
+        },
+        {
+          "headline": "La Corée reste 32e au classement FIFA après quatre amicaux sous Moreno",
+          "summary": "La Corée reste 32e, quatrième d'Asie derrière le Japon, l'Iran et l'Australie. Sous Robert Moreno : deux victoires, un nul et une défaite en quatre amicaux. Prochaine mise à jour après la fenêtre du 9 au 17 novembre.",
+          "importance": 3,
+          "tags": [
+            "football",
+            "classement-fifa",
+            "robert-moreno"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261008/korea-stay-at-no-32-in-fifa-rankings-after-4-friendlies-under-moreno",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Comédie musicale Gwanghwamun Love Song",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "디큐브 링크아트센터",
+      "area": "Guro-gu",
+      "start_date": "2026-09-06",
+      "end_date": "2026-11-15",
+      "summary": "Comédie musicale avec Lee Seok-hoon et Cha Ji-yeon au D-Cube Link Art Center. Places de 80 000 à 160 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/24001018/products/26009625",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/24001018/products/26009625"
+    },
+    {
+      "name": "Exposition Lee Kang So : Emergence and Dissolution",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "롯데뮤지엄",
+      "area": "Songpa-gu",
+      "start_date": "2026-08-21",
+      "end_date": "2026-11-01",
+      "summary": "Exposition de Lee Kang So au Lotte Museum of Art, dans le Lotte World Mall. Entrée à 20 000 wons pour les adultes, 13 000 pour les 3 à 18 ans.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/17001346/products/26011837",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/17001346/products/26011837"
+    },
+    {
+      "name": "Comédie musicale Dear Evan Hansen",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "충무아트센터",
+      "area": "Jung-gu",
+      "start_date": "2026-08-01",
+      "end_date": "2026-11-01",
+      "summary": "Comédie musicale au Grand Theater du Chungmu Arts Center. Dès 14 ans, places de 63 000 à 160 000 wons, avec 10 % de remise pour les visiteurs étrangers.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/25000361/products/26007442",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/25000361/products/26007442"
+    },
+    {
+      "name": "Marche Namsan Donghaeng des résidents de Jung-gu 2026",
+      "kind": "festival",
+      "theme": "sport",
+      "venue": "남산골한옥마을",
+      "area": "Jung-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-16",
+      "summary": "Marche de 2,5 km sur le sentier nord du mont Namsan, de 17 h à 19 h, avec stands, danse, concerts et tirage au sort. Transports en commun conseillés.",
+      "source_name": "FUN SEOUL",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=603",
+      "source_lang": "ko"
+    }
+  ]
+}
