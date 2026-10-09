@@ -1,0 +1,234 @@
+{
+  "date": "2026-10-10",
+  "title": "Une mine nord-coréenne sur une plage d'Incheon, le retour de Lee Soo-man et la fin de Rainbow Six Mobile",
+  "standfirst": "Journée de Hangeul et de reprise après le pont : une mine dérivée du Nord échoue à Ganghwa, Lee Soo-man lance deux groupes, Ubisoft ferme un jeu mobile sorti en février. Une veille un peu mince côté tourisme, gaming et sport, faute de sources lisibles ce matin.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Hangeul Run réunit 15 000 personnes à Sejong pour les 580 ans de l'alphabet coréen",
+          "summary": "Treize mille coureurs ont choisi entre 10,9 et 5,15 kilomètres, par le pont Ieung et l'arboretum national, lors de la course coorganisée par Herald Media Group et la ville de Sejong.",
+          "importance": 1,
+          "tags": [
+            "hangeul",
+            "sejong",
+            "course"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897965",
+          "source_lang": "en",
+          "published_at": "2026-10-09T20:16:05+09:00"
+        },
+        {
+          "headline": "Quatre adresses de Séoul où dîner en terrasse à l'automne",
+          "summary": "Jongno 3-ga, Seosulla-gil, Euljiro et la terrasse du terminal de bus express accueillent des tables dehors : tteokbokki, kimchi jjigae, samgyeopsal et soju. À Jongno, le service commence vers 17 heures.",
+          "importance": 2,
+          "tags": [
+            "gastronomie",
+            "jongno",
+            "euljiro"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897787",
+          "source_lang": "en",
+          "published_at": "2026-10-09T13:28:13+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une mine présumée nord-coréenne retrouvée sur une plage de Ganghwa",
+          "summary": "Une mine antipersonnel venue sans doute du Nord a été découverte jeudi sur la plage de Daebinchang, à Ganghwa. Les fusiliers marins l'ont détruite. C'est le premier cas dans la zone depuis août.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "mine",
+            "incheon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897836",
+          "source_lang": "en",
+          "published_at": "2026-10-09T15:16:34+09:00"
+        },
+        {
+          "headline": "Lee Soo-man revient avec deux groupes lancés en même temps",
+          "summary": "Le fondateur de SM Entertainment lance A2O Soul et A2O Lite sous son nouveau label A2O Entertainment. Présentation lundi, titres mardi à 18 heures. Premier projet en Corée depuis sa clause de non-concurrence avec Hybe.",
+          "importance": 2,
+          "tags": [
+            "k-pop",
+            "lee-soo-man",
+            "industrie-musicale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897924",
+          "source_lang": "en",
+          "published_at": "2026-10-09T18:19:52+09:00"
+        },
+        {
+          "headline": "Plus de 1 100 étrangers pris à livrer sans autorisation en huit mois",
+          "summary": "Entre janvier et août, 1 132 étrangers ont été contrôlés pour livraison sans autorisation, selon des données du ministère de la Justice, sur plus de 10 000 estimés. Des annonces en ligne ciblent notamment des étudiants étrangers.",
+          "importance": 3,
+          "tags": [
+            "immigration",
+            "livraison",
+            "travail-illegal"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897771",
+          "source_lang": "en",
+          "published_at": "2026-10-09T13:01:06+09:00"
+        },
+        {
+          "headline": "Le premier film d'animation de Bong Joon-ho, « Ally », sort en juillet 2027",
+          "summary": "Produit par Barunson C&C, le film suit une pieuvre nommée Ally et des créatures des profondeurs après un accident d'avion. En développement depuis 2018, il succédera à « Mickey 17 », sorti en 2025.",
+          "importance": 4,
+          "tags": [
+            "cinema",
+            "bong-joon-ho",
+            "animation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897950",
+          "source_lang": "en",
+          "published_at": "2026-10-09T19:46:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "SK hynix et Samsung poussent la HBM4 à 16 couches, Nvidia en reste à 12",
+          "summary": "La plateforme Vera Rubin de Nvidia adoptera surtout la version à 12 couches. SK hynix a montré en janvier un modèle de 48 Go à 16 couches. Samsung le dit prêt, la demande restant limitée.",
+          "importance": 1,
+          "tags": [
+            "hbm4",
+            "semi-conducteurs",
+            "nvidia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10897751",
+          "source_lang": "en",
+          "published_at": "2026-10-09T11:51:45+09:00"
+        },
+        {
+          "headline": "TypeSafe AI, éditeur du modèle non textuel Jev, lève 870 millions de dollars",
+          "summary": "Le tour, mené par a16z avec Sequoia et DCVC, valorise la start-up 7,5 milliards de dollars, trois semaines après le lancement de Jev le 15 septembre. Le modèle produit des décisions calibrées plutôt que du texte.",
+          "importance": 2,
+          "tags": [
+            "ia",
+            "levee-de-fonds",
+            "a16z"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/09/the-maker-of-non-text-ai-model-jev-valued-at-7-5b-just-weeks-after-launch/",
+          "source_lang": "en",
+          "published_at": "2026-10-10T06:41:29+09:00"
+        },
+        {
+          "headline": "Tesla rebaptise « Full Self-Driving » en « Tesla Assisted Driving » en Europe",
+          "summary": "Le nom précédent était jugé trompeur par le ministre allemand des Transports, qui défend maintenant une approbation à l'échelle européenne, avec un vote prévu plus tard dans l'année. Les Pays-Bas ont été les premiers à l'autoriser.",
+          "importance": 3,
+          "tags": [
+            "tesla",
+            "conduite-assistee",
+            "europe"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/09/tesla-renames-full-self-driving-to-tesla-assisted-driving-in-europe/",
+          "source_lang": "en",
+          "published_at": "2026-10-10T01:07:26+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ubisoft ferme Rainbow Six Mobile le 15 janvier 2027, moins d'un an après sa sortie",
+          "summary": "Lancé dans le monde en février 2026 après un lancement progressif en 2023, le jeu reste disponible jusqu'au 15 janvier 2027. L'équipe passe à d'autres projets à long terme.",
+          "importance": 1,
+          "tags": [
+            "ubisoft",
+            "rainbow-six",
+            "mobile"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-is-shutting-down-rainbow-six-mobile-dev-team-releases-message/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T19:45:58+09:00"
+        },
+        {
+          "headline": "Ace Combat 8 passe le million de ventes en une semaine, un record pour la série",
+          "summary": "Édité par Bandai Namco sur PC, PS5 et Xbox Series, Ace Combat 8: Wings of Theve atteint un million d'exemplaires en un peu plus d'une semaine, le démarrage le plus rapide de la série.",
+          "importance": 2,
+          "tags": [
+            "ace-combat",
+            "bandai-namco",
+            "ventes"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ace-combat-8-is-the-fastest-selling-entry-in-the-series-after-hitting-1-million-sales/",
+          "source_lang": "en",
+          "published_at": "2026-10-09T19:02:42+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "KIA bat NC 7-2 et garde la troisième place de la KBO",
+          "original_headline": "“오늘이 최종전” 이범호의 절박함 통했다…네일 역투·카스트로 3점포, KIA 7-2 승리 ‘3위 사수’ [SS창원in]",
+          "summary": "James Naile a lancé sept manches pour deux points concédés, et Castro a signé un circuit de trois points. Cette victoire laisse KIA devant LG dans la course à la troisième place.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "kia-tigers",
+            "baseball"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1640401",
+          "source_lang": "ko",
+          "published_at": "2026-10-09T16:56:50+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Fan meeting DAY6 : EVERY DAY6, EVERY My Day",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "인스파이어 아레나",
+      "area": "Incheon",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-25",
+      "summary": "Cinquième rencontre avec les fans du groupe DAY6 sur trois soirs à l'Inspire Arena, avec une diffusion en ligne payante. Billetterie payante.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a08367-99ab-7455-b0df-43dfe7e7d6e0",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up beauté ZEROID × Nureongi à Hongdae",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "올리브영 홍대타운",
+      "area": "Mapo-gu",
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-31",
+      "summary": "Boutique éphémère de la marque dermo-cosmétique Zeroid avec le personnage Nureongi, à Olive Young Hongdae Town : essais de produits, photomaton et tirage au sort. Ouvert de 12 h à 21 h.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a118cc-7bbd-7602-8686-4873556a4468",
+      "source_lang": "en"
+    }
+  ]
+}
