@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-11",
+  "title": "Un faux départ à Cheongju, un plafond effondré à Daegu et des consoles hors de prix",
+  "standfirst": "Dimanche calme. Un incendie de batterie externe évacue 168 passagers de Jeju Air, un plafond s'effondre dans un supermarché de Daegu. Côté tech, Satya Nadella réclame un « frein d'urgence » pour l'IA ; côté jeu, les consoles n'ont jamais été aussi chères aux États-Unis.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une batterie externe prend feu avant le décollage à Cheongju, 168 passagers évacués",
+          "original_headline": "청주공항서 이륙 직전 보조배터리 불…168명 전원 대피",
+          "summary": "Samedi vers 19 h 30, la batterie d'un passager du vol Jeju Air Cheongju-Jeju s'enflamme avant le départ. Un voisin la couvre, l'équipage l'éteint. Les 168 passagers quittent l'appareil, sans blessé signalé.",
+          "importance": 1,
+          "tags": [
+            "jeju-air",
+            "securite-aerienne",
+            "batterie"
+          ],
+          "source_name": "SBS",
+          "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008791346",
+          "source_lang": "ko",
+          "published_at": "2026-10-10T21:08:00+09:00"
+        },
+        {
+          "headline": "Incheon étudie un terminal de remplacement avant la rénovation du terminal 1",
+          "original_headline": "1터미널 리뉴얼 앞둔 인천공항, 대체 터미널 조성 방안 검토",
+          "summary": "L'aéroport d'Incheon examine la création d'un terminal alternatif en prévision de la rénovation du terminal 1, afin de maintenir l'activité pendant les travaux.",
+          "importance": 2,
+          "tags": [
+            "incheon",
+            "aeroports"
+          ],
+          "source_name": "SBS Biz",
+          "source_url": "https://biz.sbs.co.kr/article/20000339162",
+          "source_lang": "ko",
+          "published_at": "2026-10-10T10:13:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'effondrement d'un plafond dans un supermarché de Daegu fait 38 blessés légers",
+          "summary": "Samedi matin, à Buk-gu, des pans de plafond tombent dans un supermarché au deuxième étage. Neuf personnes sont hospitalisées, aucune en danger. Les 66 personnes présentes sont évacuées ; la cause reste à établir.",
+          "importance": 1,
+          "tags": [
+            "daegu",
+            "accident"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898201",
+          "source_lang": "en",
+          "published_at": "2026-10-10T13:18:39+09:00"
+        },
+        {
+          "headline": "Washington attend de Séoul qu'elle « respecte » les normes de l'alliance en matière de renseignement",
+          "summary": "Un haut responsable américain attend de la Corée qu'elle respecte les standards de l'alliance, surtout en renseignement et contre-espionnage, après plusieurs frictions : NIS exclu d'une réunion, dossier de Kusong, visa retardé.",
+          "importance": 2,
+          "tags": [
+            "etats-unis",
+            "renseignement",
+            "alliance"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898092",
+          "source_lang": "en",
+          "published_at": "2026-10-10T08:49:48+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Satya Nadella veut un « frein d'urgence » pour les modèles d'IA",
+          "summary": "Dans un message sur X, le patron de Microsoft propose de séparer le modèle de son orchestration, de placer les garde-fous hors du modèle, de garder des preuves lisibles et de pouvoir l'arrêter en cours de tâche.",
+          "importance": 1,
+          "tags": [
+            "ia",
+            "securite",
+            "microsoft"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/",
+          "source_lang": "en",
+          "published_at": "2026-10-11T06:47:51+09:00"
+        },
+        {
+          "headline": "La plateforme d'IA des fonctionnaires coréens embarque dix modèles, dont six étrangers",
+          "original_headline": "공무원 AI 플랫폼 탑재 LLM, 국산 4종·외산 6종…삼성SDS·네이버 구축",
+          "summary": "Bâtie par Samsung SDS et Naver Cloud, la plateforme réunit quatre modèles coréens et six étrangers. Le député Kim Jang-gyeom y voit une incohérence avec l'IA souveraine ; un modèle chinois y figure aussi.",
+          "importance": 2,
+          "tags": [
+            "ia",
+            "ia-souveraine",
+            "administration"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261010121050",
+          "source_lang": "ko",
+          "published_at": "2026-10-10T12:29:58+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les ventes de consoles chutent aux États-Unis, selon Circana",
+          "summary": "Les ventes de matériel Xbox reculent de 33 % sur un an, celles de PlayStation de 25 %. Le prix moyen atteint 529 dollars pour Xbox et 597 pour PlayStation, la pénurie de composants liée à l'IA pesant sur l'offre.",
+          "importance": 1,
+          "tags": [
+            "consoles",
+            "marche",
+            "prix"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/us-console-hardware-market-at-its-most-precarious-position-since-the-80s-says-circana/",
+          "source_lang": "en",
+          "published_at": "2026-10-10T21:53:54+09:00"
+        },
+        {
+          "headline": "Glen Schofield accuse Krafton d'avoir imposé la sortie de The Callisto Protocol",
+          "original_headline": "글렌 스코필드 \"칼리스토 프로토콜, 크래프톤에 출시를 강요당했다\"",
+          "summary": "Schofield affirme que Krafton a fixé la sortie à décembre 2022 malgré une promesse de mars 2023. Le jeu s'est vendu à environ deux millions d'exemplaires, contre cinq millions espérés.",
+          "importance": 2,
+          "tags": [
+            "krafton",
+            "studios"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321944",
+          "source_lang": "ko",
+          "published_at": "2026-10-11T06:44:31+09:00"
+        },
+        {
+          "headline": "Des timbres à l'effigie de Faker sortent le 23 octobre",
+          "summary": "Korea Post émet 140 000 feuilles de timbres à l'effigie de Lee Sang-hyeok, 30 ans, star de T1. Une exposition qui lui est consacrée est ouverte au musée du timbre, à la poste centrale de Séoul.",
+          "importance": 3,
+          "tags": [
+            "faker",
+            "e-sport",
+            "t1"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898251",
+          "source_lang": "en",
+          "published_at": "2026-10-10T16:31:35+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le FC Séoul bat Jeju 2-1 et n'est plus qu'à sept points du titre",
+          "original_headline": "‘클리말라 14호골+문선민 1골1도움’ 서울, ‘이건희 환상 바이시클 킥’ 제주에 2-1 신승…우승까지 ‘7점 남았다’ [SS현장리뷰]",
+          "summary": "Moon Seon-min et Klimala, 14e but de la saison, offrent la victoire au leader malgré un retourné acrobatique de Lee Gun-hee pour Jeju. Séoul compte 65 points ; Ulsan, deuxième, en a 47.",
+          "importance": 1,
+          "tags": [
+            "k-league",
+            "fc-seoul"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1640479",
+          "source_lang": "ko",
+          "published_at": "2026-10-10T16:00:36+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Semaine gastronomique de Séoul 2026 (Taste of Seoul)",
+      "kind": "festival",
+      "theme": "food",
+      "venue": "동대문디자인플라자",
+      "area": "Jung-gu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-29",
+      "summary": "Restaurants des « 100 adresses gastronomiques de Séoul » aux menus spéciaux, marché gourmand au DDP, visites de marchés, cours de cuisine et atelier avec la cheffe Jo Hee-suk.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=353",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Lancement Honkai: Star Rail × Mega MGC Coffee",
+      "kind": "lancement",
+      "theme": "gaming",
+      "venue": "메가MGC커피",
+      "area": "Toute la Corée",
+      "start_date": "2026-10-15",
+      "end_date": "2026-11-18",
+      "summary": "Deux boissons inspirées de Blade et Silver Wolf, défi de tampons sur l'application et café thématique à la succursale Yeoksam GFC.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=321480",
+      "source_lang": "ko"
+    }
+  ]
+}
