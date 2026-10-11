@@ -1,0 +1,303 @@
+{
+  "date": "2026-10-12",
+  "title": "Une inspection interne ouvre l'agence anticrime, les pandas roux débutent mercredi",
+  "standfirst": "La nouvelle agence d'enquête sur les crimes graves lance un premier contrôle interne neuf jours après sa création. À Séoul, les jumeaux pandas roux sont présentés le 14 octobre et le salon des semi-conducteurs ouvre le même jour. Le sport se joue ce soir à Gwangju pour la troisième place de la KBO.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les jumeaux pandas roux de Séoul Grand Park font leurs débuts le 14 octobre",
+          "original_headline": "Seoul Grand Park to unveil twin baby red pandas",
+          "summary": "Maru et Marong, nés le 19 juin au parc zoologique de Séoul, sont présentés au public le 14 octobre. L'accès sera contrôlé progressivement, ces animaux nocturnes étant sensibles au bruit.",
+          "importance": 1,
+          "tags": [
+            "seoul-grand-park",
+            "zoo",
+            "pandas-roux"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20261012/seoul-grand-park-to-unveil-twin-baby-red-pandas",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Le temple Bongeunsa connaît un succès viral avec ses mini-moktak à cliquer",
+          "original_headline": "A 1,232-year-old temple in Seoul finds viral fame with 'moktak clickers'",
+          "summary": "Des répliques miniatures de moktak, à cliquer, se vendent à Bongeunsa, temple de 1 232 ans, et partent sans cesse en rupture. Le temple prépare aussi des versions aux animaux du zodiaque.",
+          "importance": 2,
+          "tags": [
+            "bongeunsa",
+            "temple",
+            "souvenirs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898686",
+          "source_lang": "en",
+          "published_at": "2026-10-11T17:55:36+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La nouvelle agence anticrime lance sa première inspection interne, contre une critique de son futur chef",
+          "original_headline": "New crime agency’s first internal probe targets critic of its would-be chief",
+          "summary": "Le ministre de l'Intérieur a ordonné le contrôle d'Im Eun-jeong, directrice du bureau de Gwangju, qui avait critiqué le candidat à la direction de l'agence. L'opposition s'inquiète de son indépendance.",
+          "importance": 1,
+          "tags": [
+            "justice",
+            "agence-anticrime",
+            "reforme-penale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898746",
+          "source_lang": "en",
+          "published_at": "2026-10-11T21:31:38+09:00"
+        },
+        {
+          "headline": "La participation étrangère dans Samsung tombe à son plus bas depuis 2008",
+          "original_headline": "Foreign ownership of Samsung falls to 18-year low",
+          "summary": "Les étrangers détiennent 46,38 % de Samsung Electronics, contre 52,40 % au pic de 2026, malgré un bénéfice trimestriel record. SK hynix passe sous 50 %. Les ventes nettes étrangères sur le Kospi dépassent 197 000 milliards de wons cette année.",
+          "importance": 2,
+          "tags": [
+            "samsung",
+            "bourse",
+            "investisseurs-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898606",
+          "source_lang": "en",
+          "published_at": "2026-10-11T14:55:34+09:00"
+        },
+        {
+          "headline": "Lee s'oppose à un accès préférentiel au nucléaire bon marché pour les grands industriels",
+          "original_headline": "Lee cautions against preferential nuclear power access for big firms",
+          "summary": "Le président Lee craint qu'un tel accès ne profite à quelques grands groupes. Le ministère de l'Énergie a rejeté les contrats d'achat d'électricité nucléaire demandés par les industries gourmandes en énergie.",
+          "importance": 3,
+          "tags": [
+            "energie",
+            "nucleaire",
+            "industrie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898724",
+          "source_lang": "en",
+          "published_at": "2026-10-11T19:49:27+09:00"
+        },
+        {
+          "headline": "Le nombre de crèches recule de 41 % en douze ans",
+          "original_headline": "Korea’s daycare center count falls 41% over a decade",
+          "summary": "Les crèches sont passées de 43 770 en 2013 à 26 064 en 2025, douzième baisse consécutive. Elles accueillent 887 764 enfants. L'État vise l'intégration éducation-accueil d'ici 2030.",
+          "importance": 4,
+          "tags": [
+            "natalite",
+            "petite-enfance",
+            "societe"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898687",
+          "source_lang": "en",
+          "published_at": "2026-10-11T17:59:44+09:00"
+        },
+        {
+          "headline": "Le marché électronique de Yongsan entame sa reconversion en pôle d'IA",
+          "original_headline": "Yongsan Electronics Market begins reinvention as AI hub",
+          "summary": "Ouvert en 1987, le marché, dont la vacance a dépassé 60 %, entre en travaux ce mois-ci. Une passerelle de 570 mètres et onze ponts relieront les zones réaménagées. La ville espère 247 milliards de wons de contributions privées.",
+          "importance": 5,
+          "tags": [
+            "yongsan",
+            "urbanisme",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898624",
+          "source_lang": "en",
+          "published_at": "2026-10-11T15:27:20+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le salon des semi-conducteurs SEDEX ouvre le 14 octobre à Séoul",
+          "original_headline": "반도체대전 역대 최대 규모로 14일 개막…“실리콘 지능 시대 연다”",
+          "summary": "La 28e édition réunit 300 entreprises sur 888 stands du 14 au 16 octobre à Séoul. Samsung et SK hynix y présentent leurs mémoires à haute bande passante et leurs solutions pour l'IA.",
+          "importance": 1,
+          "tags": [
+            "semi-conducteurs",
+            "sedex",
+            "salon"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261011000036",
+          "source_lang": "ko",
+          "published_at": "2026-10-11T16:00:00+09:00"
+        },
+        {
+          "headline": "La demande de DRAM des robots humanoïdes devrait être multipliée par vingt d'ici 2030",
+          "original_headline": "“로봇 D램 수요, 2030년까지 20배 증가”",
+          "summary": "Selon Counterpoint Research, la demande passerait de 8 300 à 172 000 térabits entre 2026 et 2030, avec 19 à 39 gigaoctets par robot. Un débouché nouveau pour Samsung et SK hynix.",
+          "importance": 2,
+          "tags": [
+            "dram",
+            "robots",
+            "memoire"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261011000072",
+          "source_lang": "ko",
+          "published_at": "2026-10-11T12:44:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un groupe menace de diffuser une version complète de GTA 6 si Rockstar ne propose pas de copies physiques",
+          "original_headline": "Group threatens to leak ‘full’ GTA 6 build if physical plans aren’t reversed",
+          "summary": "Cyberleek, qui diffuse depuis deux mois des extraits non autorisés, réclame des disques physiques et des excuses publiques. Take-Two enquête et a adressé des assignations à Discord.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "fuite",
+            "rockstar"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/group-threatens-to-leak-full-gta-6-build-if-physical-plans-arent-reversed/",
+          "source_lang": "en",
+          "published_at": "2026-10-11T19:35:55+09:00"
+        },
+        {
+          "headline": "Le créateur de Dragon Quest publie un jeu d'enquête réalisé avec une IA en trente minutes",
+          "original_headline": "드퀘 아버지 호리이 유지 'AI로 30분 만에 뚝딱', 추리 게임 무료 공개",
+          "summary": "Yuji Horii a mis en ligne gratuitement un jeu d'enquête dans le navigateur, créé en une trentaine de minutes avec l'IA. Il faut interroger un suspect de 72 ans et repérer les contradictions de ses déclarations.",
+          "importance": 2,
+          "tags": [
+            "dragon-quest",
+            "ia",
+            "jeu-gratuit"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=321951",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T03:56:37+09:00"
+        },
+        {
+          "headline": "Dokkaebi World de Kakao Games prend la tête des téléchargements en Corée",
+          "original_headline": "인기 1위에 매출 톱10 진입…카카오게임즈 '도깨비의세계', 초반 흥행 청신호",
+          "summary": "Lancé le 8 octobre, le MMORPG est premier des classements de popularité sur Google Play et l'App Store, sixième en revenus sur Google, deuxième sur Apple. Une feuille de route est annoncée pour le 13 octobre.",
+          "importance": 3,
+          "tags": [
+            "kakao-games",
+            "mmorpg",
+            "mobile"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261011122232",
+          "source_lang": "ko",
+          "published_at": "2026-10-11T20:00:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "KIA et LG se disputent la troisième place de la KBO ce soir à Gwangju",
+          "original_headline": "Battle for 3rd seed in KBO postseason comes down to regular-season finale",
+          "summary": "KIA (78-63-2) a perdu 4-1 contre Lotte et reste devant LG (78-64-1). Le dernier match de la saison régulière, à 18 h 30 à Gwangju, décide de la troisième place des séries.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "kia-tigers",
+            "lg-twins"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10898717",
+          "source_lang": "en",
+          "published_at": "2026-10-11T19:23:03+09:00"
+        },
+        {
+          "headline": "Seol Young-woo titulaire pour la première fois, Augsbourg tient le Bayern en échec 2-2",
+          "original_headline": "‘설영우 첫 선발’ 아우크스, ‘김민재 결장’ 뮌헨 상대 분데스리가 새 역사 ‘킥오프 8초 골’→사투 끝 2-2 무승부",
+          "summary": "Le défenseur coréen a été titularisé pour la première fois en Bundesliga face à un Bayern sans Kim Min-jae. Augsbourg a marqué après huit secondes, nouveau record du championnat, sur une erreur de contrôle de Neuer.",
+          "importance": 2,
+          "tags": [
+            "bundesliga",
+            "seol-young-woo",
+            "augsbourg"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1640510",
+          "source_lang": "ko",
+          "published_at": "2026-10-11T05:46:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Comédie musicale Dracula",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "LG아트센터 서울 LG SIGNATURE 홀",
+      "area": "Gangseo-gu",
+      "start_date": "2026-07-10",
+      "end_date": "2026-10-18",
+      "summary": "Comédie musicale gothique au LG Arts Center de Séoul, jusqu'au 18 octobre. Durée 2 h 45 avec entracte. Dès 14 ans, places de 80 000 à 180 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/L0000001/products/L0000142",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/L0000001/products/L0000142"
+    },
+    {
+      "name": "Comédie musicale Elisabeth",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "블루스퀘어 우리WON뱅킹홀",
+      "area": "Yongsan-gu",
+      "start_date": "2026-08-16",
+      "end_date": "2026-11-15",
+      "summary": "Comédie musicale sur l'impératrice Sissi au Blue Square, jusqu'au 15 novembre. Durée 2 h 45 avec entracte. Dès 8 ans, places de 90 000 à 180 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000011/products/26009314",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26000011/products/26009314"
+    },
+    {
+      "name": "Visite de la maison de Yun Hyong-keun",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "윤형근 가옥",
+      "area": "Mapo-gu",
+      "start_date": "2026-09-01",
+      "end_date": "2026-10-17",
+      "summary": "Ouverture au public de la maison de l'artiste Yun Hyong-keun à Mapo. Visite d'environ une heure, entrée à 20 000 wons, dès le collège.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000996/products/26012184",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26000996/products/26012184"
+    },
+    {
+      "name": "17e Prix et Festival de la culture de l'imprimerie de Séoul",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "청계광장",
+      "area": "Jung-gu",
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-15",
+      "summary": "Remise des prix, expositions et ateliers de 10 h 30 à 18 h place Cheonggye : sérigraphie, gravure et calligraphie.",
+      "source_name": "펀서울",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=684",
+      "source_lang": "ko"
+    }
+  ]
+}
