@@ -1,0 +1,234 @@
+{
+  "date": "2026-10-13",
+  "title": "Le Kospi décroche, Meta sort ses modèles Wonder, Epic passe à l'IA d'abord",
+  "standfirst": "Séoul a perdu plus de 3 % lundi dans une séance dominée par la tech. Meta lance ses premiers modèles de pointe, SK Telecom vise 5 GW de centres de données à l'étranger et Epic ordonne le développement « AI first ». Journée mince côté tourisme et sport.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kakao Bank ouvre ses services complets aux résidents étrangers",
+          "summary": "Les étrangers de plus de 19 ans, titulaires d'une carte de résident et d'un mobile à leur nom, ouvrent un compte en cinq minutes dans l'appli. Virements vers plus de 200 pays via Hanpass.",
+          "importance": 1,
+          "tags": [
+            "banque",
+            "residents-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10899769",
+          "source_lang": "en",
+          "published_at": "2026-10-12T14:56:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi perd 3,65 % et passe sous 6 400 points",
+          "summary": "Quatrième séance de baisse : l'indice clôt à 6 384,24. Samsung Electronics cède 4,39 %, SK hynix 4,52 %. Les étrangers vendent pour 2 020 milliards de wons nets, sur fond de pétrole cher et d'inflation.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10899910",
+          "source_lang": "en",
+          "published_at": "2026-10-12T15:58:44+09:00"
+        },
+        {
+          "headline": "Un candidat pris avec des lunettes d'IA à l'examen d'entrée de Yonsei",
+          "summary": "Samedi 10 octobre, un surveillant a confisqué les lunettes d'un étudiant pendant l'épreuve de mathématiques. Le candidat a reconnu les faits. Premier cas connu de ce type dans l'admission universitaire coréenne.",
+          "importance": 2,
+          "tags": [
+            "yonsei",
+            "triche",
+            "intelligence-artificielle"
+          ],
+          "source_name": "Korea JoongAng Daily",
+          "source_url": "https://www.koreajoongangdaily.com/korea/student-caught-using-ai-smart-glasses-in-yonsei-entrance-exam/12916279",
+          "source_lang": "en",
+          "published_at": "2026-10-13T07:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Meta lance Muse Wonder, son premier modèle de pointe",
+          "summary": "Muse Wonder est proposé par API à 4 dollars le million de jetons en entrée. La version Full est réservée aux abonnés Muse Code. Meta revendique un niveau proche de GPT-6 Astra et de Fable 5.1.",
+          "importance": 1,
+          "tags": [
+            "meta",
+            "modeles-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/",
+          "source_lang": "en",
+          "published_at": "2026-10-13T02:56:56+09:00"
+        },
+        {
+          "headline": "SK Telecom veut 5 GW de centres de données d'IA à l'étranger",
+          "original_headline": "SK텔레콤, 해외 5GW AIDC 추가 확보 나선다…아시아 AI 인프라 허브로",
+          "summary": "L'opérateur vise 20 GW en 2035, dont 5 GW hors de Corée. Le Japon serait le premier site, avec Nvidia, dès 2028. Côté coréen, le déploiement commence en 2029.",
+          "importance": 2,
+          "tags": [
+            "sk-telecom",
+            "centres-de-donnees"
+          ],
+          "source_name": "etnews",
+          "source_url": "https://www.etnews.com/20261012000272",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T16:30:00+09:00"
+        },
+        {
+          "headline": "Google et Apple : le régulateur votera sur les sanctions avant fin octobre",
+          "original_headline": "\"구글·애플 인앱결제 제재 10월 내 결정\"",
+          "summary": "Devant le Parlement, le président de la commission des médias et télécoms promet un vote sur les paiements intégrés obligatoires. Les amendes sont notifiées depuis trois ans. Les deux groupes ont été auditionnés en août.",
+          "importance": 3,
+          "tags": [
+            "google",
+            "apple",
+            "paiement-in-app",
+            "regulation"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261012214622",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T21:46:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Epic imposerait le développement « AI first » sur son jeu Marvel et Star Wars",
+          "summary": "Selon Bloomberg, le tir en équipe tiré de Disney, en retard, devrait recourir à l'IA générative pour l'art et plus de code écrit à la main. Epic assume une accélération par l'IA.",
+          "importance": 1,
+          "tags": [
+            "epic-games",
+            "ia-generative",
+            "disney"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/epic-games-reportedly-orders-staff-to-implement-ai-first-development/",
+          "source_lang": "en",
+          "published_at": "2026-10-13T04:43:02+09:00"
+        },
+        {
+          "headline": "Devsisters prépare un long-métrage d'animation Cookie Run pour 2029",
+          "original_headline": "데브시스터즈, '쿠키런' 장편 애니메이션 영화 만든다... 2029년 글로벌 개봉 목표",
+          "summary": "L'éditeur s'associe à Big Shot Pictures, le studio de Brian Robbins, pour une sortie mondiale en 2029, vingt ans après la licence. Big Shot produit, Devsisters participe à la conception.",
+          "importance": 2,
+          "tags": [
+            "cookie-run",
+            "devsisters",
+            "cinema"
+          ],
+          "source_name": "etnews",
+          "source_url": "https://www.etnews.com/20261012000031",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T09:36:21+09:00"
+        },
+        {
+          "headline": "Une loi viserait les achats de streameurs payés par les éditeurs",
+          "original_headline": "게임업계 '프로모션 BJ' 고액 결제 논란... 김재원 \"게임도 '사재기 방지' 법개정 추진\"",
+          "summary": "La députée Kim Jae-won veut interdire aux éditeurs de gonfler leurs classements par des achats intégrés. Elle cite Sol: Enchant de Netmarble, premier de l'App Store en huit heures, avec environ 300 millions de wons dépensés.",
+          "importance": 3,
+          "tags": [
+            "regulation",
+            "netmarble",
+            "microtransactions"
+          ],
+          "source_name": "etnews",
+          "source_url": "https://www.etnews.com/20261012000279",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T15:01:20+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Billetterie du barrage de la KBO ouverte à 14 h sur NOL",
+          "original_headline": "그래서 두산 상대는 누구죠, KIA? LG?…KBO, 13일 와일드카드 결정전 입장권 예매 시작",
+          "summary": "Les places du match de barrage de Doosan se vendent à partir de 14 h, en ligne, quatre par personne. Une vente sur place existe pour les plus de 65 ans, les personnes handicapées et les visiteurs étrangers.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "doosan",
+            "billetterie"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1640844",
+          "source_lang": "ko",
+          "published_at": "2026-10-12T18:33:00+09:00"
+        },
+        {
+          "headline": "Une coureuse de 20 ans meurt au semi-marathon Seoul Race",
+          "summary": "Une femme d'une vingtaine d'années s'est effondrée à environ 500 mètres de l'arrivée, au 20,6e kilomètre, dimanche à 8 h 49. Réanimée, puis transportée à l'hôpital, elle y est morte. Cause à établir.",
+          "importance": 2,
+          "tags": [
+            "course-a-pied",
+            "seoul-race"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10900181",
+          "source_lang": "en",
+          "published_at": "2026-10-12T22:32:03+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Grand Mint Festival 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "올림픽공원 88잔디마당",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "summary": "Festival de musique d'automne en plein air au parc olympique. Pass une journée à 132 000 wons sur NOL World, tous âges.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26000864/products/26010721",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up Shin Ramyun 40e anniversaire",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "성수동2가 52",
+      "area": "Seongsu",
+      "start_date": "2026-06-16",
+      "end_date": "2026-11-30",
+      "summary": "Nongshim fête les 40 ans de ses nouilles avec des ramyeon préparés sur place, un emballage à personnaliser et des produits dérivés. Ouvert de 11 h à 20 h, à quatre minutes de la station Seongsu.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/019ed2c4-05d1-7323-85ca-408b202ce52f",
+      "source_lang": "en"
+    },
+    {
+      "name": "Curtain Call Garden au Centre Sejong",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "세종문화회관 예술의 정원",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-15",
+      "end_date": "2026-11-08",
+      "summary": "Le jardin du Centre Sejong prolonge les soirées de 17 h à 23 h, entrée libre. Concerts de jazz du mercredi au samedi, fermé le lundi.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=940",
+      "source_lang": "ko"
+    }
+  ]
+}
