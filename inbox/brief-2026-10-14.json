@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-14",
+  "title": "Le mont Bugak s'ouvre en entier, Séoul déménage ses ministères à Sejong",
+  "standfirst": "Journée plus calme côté voyage : le dernier tronçon du mont Bugak ouvre le 17 octobre. Le gouvernement fixe à 2031 le transfert de 44 organismes vers Sejong, et Kakao présente son assistant d'IA.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le mont Bugak s'ouvre en entier au public le 17 octobre, après 59 ans",
+          "original_headline": "청와대 뒷산 59년만에 모두 열린다",
+          "summary": "Le dernier tronçon fermé du mont Bugak, 1,32 km entre Baegakmaru et Dolgorae-swimteo, ouvre le 17 octobre à 9 h. Il achève la troisième phase d'ouverture, après 2020 et 2022.",
+          "importance": 1,
+          "tags": [
+            "bugaksan",
+            "randonnee",
+            "cheongwadae"
+          ],
+          "source_name": "Kukmin Ilbo",
+          "source_url": "https://www.kmib.co.kr/article/view.asp?arcid=9000022332",
+          "source_lang": "ko",
+          "published_at": "2026-10-14T01:23:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Huit personnes poignardées dans un Homeplus d'Incheon par un homme sous bracelet électronique",
+          "summary": "Un homme de 59 ans, sous surveillance électronique depuis 2019, a attaqué huit personnes dans un Homeplus d'Incheon le 13 octobre. Il a été arrêté sur place ; une femme est en arrêt cardiaque, sept autres sont soignées.",
+          "importance": 1,
+          "tags": [
+            "incheon",
+            "securite",
+            "faits-divers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10901137",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Quarante-quatre organismes publics, dont les ministères de la Défense et des Affaires étrangères, iront à Sejong d'ici 2031",
+          "summary": "Le plan vise 9 929 agents et coûterait 3 100 milliards de wons. Une première vague de 43 organismes avait déménagé en 2012-2014. Un bureau présidentiel est prévu à Sejong en 2029, l'Assemblée nationale en 2033.",
+          "importance": 2,
+          "tags": [
+            "sejong",
+            "decentralisation",
+            "administration"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10901464",
+          "source_lang": "en",
+          "published_at": "2026-10-13T18:07:29+09:00"
+        },
+        {
+          "headline": "Shinhan rachète Lotte Insurance pour 693,3 milliards de wons",
+          "summary": "Shinhan Financial acquiert 77,04 % de Lotte Insurance auprès du fonds JKL Partners. La vente, ouverte en 2023, s'achève ; l'assureur sera fusionné avec Shinhan EZ General Insurance et apporte 3,34 millions de clients.",
+          "importance": 3,
+          "tags": [
+            "shinhan",
+            "assurance",
+            "finance"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10901164",
+          "source_lang": "en",
+          "published_at": "2026-10-13T15:14:47+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kakao présente Kanana Space, un assistant d'IA intégré à KakaoTalk",
+          "original_headline": "\"지난주 아내가 뭐라 했더라?\"…카카오, 새 AI 비서 '카나나 스페이스' 공개",
+          "summary": "Activé d'un geste à deux doigts, l'assistant résume les messages, gère l'agenda, les achats et les paiements, avec la voix de la mascotte Ryan. Des utilisateurs présélectionnés y auront accès dès décembre.",
+          "importance": 1,
+          "tags": [
+            "kakao",
+            "assistant-ia",
+            "kakaotalk"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261013111445",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T11:29:47+09:00"
+        },
+        {
+          "headline": "Samsung envisage de confier une partie de ses puces d'écran Galaxy à GlobalFoundries",
+          "original_headline": "삼성전자, 갤럭시 DDI 위탁생산 UMC·글로벌파운드리스 이원화 검토",
+          "summary": "Les capacités d'UMC, seul fondeur des contrôleurs d'affichage OLED Galaxy, sont saturées. Samsung étudie un double approvisionnement avec GlobalFoundries, possible dès fin 2027, selon une source du secteur.",
+          "importance": 2,
+          "tags": [
+            "samsung",
+            "semi-conducteurs",
+            "oled"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261013173046",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T18:07:49+09:00"
+        },
+        {
+          "headline": "Le ministère de l'Industrie crée une direction pour les mégaprojets de semi-conducteurs",
+          "original_headline": "산업부, 반도체 메가프로젝트 전담국 ‘반도체혁신성장지원단’ 출범",
+          "summary": "La nouvelle unité, effective le 20 octobre, suivra les grands investissements de puces. Une division de coopération commerciale avec l'Inde voit aussi le jour. Les puces pèsent environ la moitié des exportations, selon le ministre.",
+          "importance": 3,
+          "tags": [
+            "semi-conducteurs",
+            "politique-industrielle"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261013231255",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T23:12:55+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trois clubs de la LCK accèdent aux demi-finales de la Demacia Cup",
+          "original_headline": "[데마시아 컵] 한진 브리온, LGD 3:1 격파...4강은 '3LCK·1LPL'",
+          "summary": "Hanjin Brion a battu LGD 3-1 en quart de finale à Pékin. Team WE a éliminé Flyquest 3-2. Les demies : kt Rolster contre BNK FearX le 14, Hanjin Brion contre Team WE le 15.",
+          "importance": 1,
+          "tags": [
+            "esport",
+            "league-of-legends",
+            "lck"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322050",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T23:32:49+09:00"
+        },
+        {
+          "headline": "NCSoft devient sponsor principal de l'AGF 2026 à Kintex",
+          "original_headline": "엔씨 '아스오라', 'AGF 2026' 메인 스폰서 참가…150부스 규모 전시",
+          "summary": "Le salon se tient du 4 au 6 décembre à Ilsan. NCSoft y occupera 150 stands pour son RPG Astrae Oratio : démonstrations jouables, artbook et produits dérivés.",
+          "importance": 2,
+          "tags": [
+            "ncsoft",
+            "salon",
+            "agf"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261013152036",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T15:30:01+09:00"
+        },
+        {
+          "headline": "Krafton recrute plus de cent jeunes diplômés formés à l'IA",
+          "original_headline": "크래프톤, AI 신입 100명 이상 공개채용",
+          "summary": "Candidatures du 13 au 23 octobre, pour six filières dont la recherche en IA et le développement de jeux. Prise de poste en février 2027, stage de cinq mois, décision de titularisation en juillet.",
+          "importance": 3,
+          "tags": [
+            "krafton",
+            "recrutement",
+            "ia"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322023",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T12:05:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "LG dispute le barrage contre Doosan sans son lanceur de relève Son Joo-young",
+          "original_headline": "‘초비상’ LG, ‘담 증세’ 손주영 전력 이탈…LG·두산 WC 결정전 엔트리 발표 [SS시선집중]",
+          "summary": "Touché au cou, Son Joo-young ne figure pas dans l'effectif des LG Twins. Le premier match du barrage oppose LG, quatrièmes, aux Doosan Bears, cinquièmes, le 14 octobre au stade de Jamsil à Séoul.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "lg-twins",
+            "doosan-bears"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1641087",
+          "source_lang": "ko",
+          "published_at": "2026-10-13T17:02:12+09:00"
+        },
+        {
+          "headline": "La fédération de football demande l'arrêt des attaques contre les joueurs de la sélection",
+          "summary": "Face aux rumeurs de conflit interne, la KFA dénonce des informations non vérifiées et des deepfakes. Trois joueurs nés en 1996 auraient menacé de se retirer après l'amical contre l'Ouzbékistan.",
+          "importance": 2,
+          "tags": [
+            "football",
+            "kfa",
+            "equipe-nationale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10901456",
+          "source_lang": "en",
+          "published_at": "2026-10-13T17:59:27+09:00"
+        },
+        {
+          "headline": "Cha Jun-hwan suspend sa carrière de patineur pour la saison 2026-2027",
+          "summary": "Le patineur artistique renonce à la sélection nationale et aux compétitions de la saison. Il a signé en avril avec l'agence Fantagio et a joué en août dans le spectacle sur glace « Solo Leveling on Ice ».",
+          "importance": 3,
+          "tags": [
+            "patinage-artistique",
+            "cha-jun-hwan"
+          ],
+          "source_name": "Korea JoongAng Daily",
+          "source_url": "https://www.koreajoongangdaily.com/sports/cha-junhwan-puts-skating-career-on-hold-focuses-on-showbiz/12917071",
+          "source_lang": "en",
+          "published_at": "2026-10-13T11:08:42+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert JEONGHAN X JOSHUA : JOURNEY INTO [DREAMING] à Incheon",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "인스파이어 아레나",
+      "area": "Incheon",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "summary": "Concert des membres de SEVENTEEN Jeonghan et Joshua à l'Inspire Arena. La fiche NOL World propose un forfait place assise et deux nuits d'hôtel, de 930 000 à 1 750 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/places/26001167/products/26013792",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/places/26001167/products/26013792"
+    },
+    {
+      "name": "Fête des animaux de compagnie et grand pique-nique au parc Dangsan",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "당산공원",
+      "area": "Yeongdeungpo",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-23",
+      "summary": "De 10 h à 17 h : marché aux puces pour animaux, espace de jeu pour chiens, cours de promenade en groupe et consultations vétérinaires gratuites. Une trentaine de stands.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=938",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Fête des récoltes d'automne au parc familial de Yongsan 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "용산가족공원",
+      "area": "Yongsan",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-24",
+      "summary": "De 13 h à 17 h : battage du riz, pilage de galettes de riz et yutnori en accès libre. Ateliers de paille et de teinture en quatre sessions, sur inscription préalable en ligne.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=935",
+      "source_lang": "ko"
+    },
+    {
+      "name": "2e Marche du fleuve Han à Séoul 2026",
+      "kind": "autre",
+      "theme": "sport",
+      "venue": "반포한강공원",
+      "area": "Seocho",
+      "start_date": "2026-10-31",
+      "end_date": "2026-10-31",
+      "summary": "Marche de 5 km au parc Banpo, de 9 h à 13 h. Gratuit, inscription individuelle par ordre d'arrivée ; coupe-vent, badge et collation remis aux participants.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=929",
+      "source_lang": "ko"
+    }
+  ]
+}
