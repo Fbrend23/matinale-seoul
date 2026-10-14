@@ -1,0 +1,239 @@
+{
+  "date": "2026-10-15",
+  "title": "Séoul dévoile sa stratégie démographique, Trump compte sur la Corée pour l'Alaska",
+  "standfirst": "Le président Lee présente un plan démographique sans objectif de natalité. Trump réaffirme un investissement coréen de 50 milliards de dollars dans le GNL d'Alaska. Côté puces, SK hynix et Samsung dévoilent leurs feuilles de route au salon SEDEX. Tourisme et sport : rien de vérifié ce matin.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": "Aucune information touristique n'a pu être vérifiée ce matin : les sources pressenties n'étaient pas consultables.",
+      "items": []
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee présente un plan démographique sans objectif de natalité",
+          "summary": "Le premier plan quinquennal vise l'emploi des jeunes à 50 % et la pauvreté des seniors à 30 % d'ici 2030. Il prévoit 571 000 logements publics et 10 millions de wons à la naissance du premier enfant.",
+          "importance": 1,
+          "tags": [
+            "demographie",
+            "natalite",
+            "politique-sociale"
+          ],
+          "source_name": "Korea JoongAng Daily",
+          "source_url": "https://www.koreajoongangdaily.com/korea/lee-shifts-focus-from-birthrate-to-quality-of-life-with-koreas-new-population-strategy/12920259",
+          "source_lang": "en",
+          "original_headline": "Lee shifts focus from birthrate to quality of life with Korea's new population strategy",
+          "published_at": "2026-10-14T18:15:48+09:00"
+        },
+        {
+          "headline": "Trump répète que la Corée investira 50 milliards de dollars dans le GNL d'Alaska",
+          "summary": "Donald Trump l'affirme au titre de l'accord commercial. Séoul maintient que sa participation reste soumise à une étude de viabilité commerciale. La Maison-Blanche évoque, elle, 54 milliards de dollars liés au projet.",
+          "importance": 2,
+          "tags": [
+            "accord-commercial",
+            "gnl",
+            "etats-unis"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10902966",
+          "source_lang": "en",
+          "original_headline": "Trump claims again S. Korea to invest in Alaska LNG project under trade deal",
+          "published_at": "2026-10-15T07:08:24+09:00"
+        },
+        {
+          "headline": "Le chef des forces américaines en Corée juge que « les conditions ont changé » pour le contrôle opérationnel",
+          "summary": "Le général Brunson se dit favorable au transfert du commandement en temps de guerre, mais pas sans les capacités requises. Il cite les tirs nord-coréens de la semaine. Séoul vise un transfert avant 2030.",
+          "importance": 3,
+          "tags": [
+            "defense",
+            "opcon",
+            "usfk"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10902964",
+          "source_lang": "en",
+          "original_headline": "USFK chief says 'conditions have changed' while stressing requirements for OPCON transfer to S. Korea",
+          "published_at": "2026-10-15T07:06:40+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "SK hynix vise janvier 2027 pour la norme finale de sa mémoire HBF",
+          "summary": "Au salon SEDEX, un dirigeant de SK hynix annonce la version 1.0 de la High Bandwidth Flash pour janvier. Cible : environ la moitié de la bande passante de la HBM, avec dix fois plus de capacité.",
+          "importance": 1,
+          "tags": [
+            "memoire",
+            "hbf",
+            "sk-hynix"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261014132033",
+          "source_lang": "ko",
+          "original_headline": "SK하이닉스, 내년 1월 HBF 최종 표준 제정 목표…차세대 AI 메모리 선점 시동",
+          "published_at": "2026-10-14T14:05:06+09:00"
+        },
+        {
+          "headline": "Samsung confirme travailler sur une DRAM 4F² à canal vertical face au chinois CXMT",
+          "summary": "Interrogé au salon SEDEX, le directeur technologique de Samsung répond « oui » et dit y travailler « dur », sans détail. CXMT avait annoncé des DRAM serveur en 4F².",
+          "importance": 2,
+          "tags": [
+            "dram",
+            "samsung",
+            "semi-conducteurs"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261014162447",
+          "source_lang": "ko",
+          "original_headline": "삼성전자, 차세대 '4F² VCT D램' 개발 재확인…CXMT 메모리 추격 대응",
+          "published_at": "2026-10-14T16:36:17+09:00"
+        },
+        {
+          "headline": "Mastern et Digital Edge préparent un centre de données de mille milliards de wons à Paju",
+          "summary": "Le projet occupe près de 30 000 m². Les travaux pourraient débuter début 2027, pour deux ans de développement. Le contrat d'électricité prévoit un raccordement d'ici janvier 2029.",
+          "importance": 3,
+          "tags": [
+            "centres-de-donnees",
+            "paju",
+            "investissement"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261014000339",
+          "source_lang": "ko",
+          "original_headline": "[단독]마스턴투자운용·디지털엣지, 1조원대 '파주 데이터센터' 짓는다",
+          "published_at": "2026-10-14T16:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ubisoft envisagerait de fermer RedLynx, le studio de Trials, et de licencier 70 personnes à Singapour",
+          "summary": "Selon VGC, qui ne cite pas d'annonce officielle, la fermeture toucherait environ 52 personnes en Finlande, faute de nouveau projet. La fermeture serait soumise à des négociations légales.",
+          "importance": 1,
+          "tags": [
+            "ubisoft",
+            "licenciements",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-is-planning-to-shut-down-trials-studio-redlynx-and-lay-off-70-ubisoft-singapore-staff/",
+          "source_lang": "en",
+          "original_headline": "Ubisoft is planning to shut down Trials studio RedLynx and lay off 70 Ubisoft Singapore staff",
+          "published_at": "2026-10-14T18:04:52+09:00"
+        },
+        {
+          "headline": "Xbox crée « Xbox Labs » pour expérimenter les technologies émergentes",
+          "summary": "La nouvelle équipe, dirigée par le directeur technologique Scott Van Vliet, répond à l'essor des mods, portages et recompilations assistés par IA. La patronne Asha Sharma promet un travail public.",
+          "importance": 2,
+          "tags": [
+            "xbox",
+            "ia",
+            "microsoft"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/asha-sharma-forms-xbox-labs-in-response-to-explosion-of-ai-powered-mods-and-ports/",
+          "source_lang": "en",
+          "original_headline": "Asha Sharma forms 'Xbox Labs' in response to explosion of AI-powered mods and ports",
+          "published_at": "2026-10-14T04:53:17+09:00"
+        },
+        {
+          "headline": "La LCK 2026 dépasse 714 000 spectateurs moyens par minute",
+          "summary": "Hausse de 13 % sur un an, selon Riot Games, pour la période du 1er avril au 13 septembre. Les diffusions hors de Corée font 504 000 spectateurs, soit plus de 70 % du total.",
+          "importance": 3,
+          "tags": [
+            "lck",
+            "esport",
+            "audience"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261014175541",
+          "source_lang": "ko",
+          "original_headline": "라이엇게임즈, 2026 LCK 시청 지표 발표…평균 분당 시청자 수 70만 돌파",
+          "published_at": "2026-10-14T18:30:01+09:00"
+        },
+        {
+          "headline": "Le festival des 5 ans de Blue Archive vend 8 000 billets en trois minutes",
+          "summary": "La première phase de billetterie, réservée aux joueurs de niveau 70 et plus, est complète. Le festival se tient les 7 et 8 novembre à Kintex ; une seconde vente de 4 000 billets ouvre le 16 octobre.",
+          "importance": 4,
+          "tags": [
+            "blue-archive",
+            "nexon",
+            "festival"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322105",
+          "source_lang": "ko",
+          "original_headline": "1차 예매 3분 만에 매진, 블루 아카이브 5주년 페스티벌 11월 7일 개최",
+          "published_at": "2026-10-14T20:48:26+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Aucun article sportif n'a pu être ouvert ce matin : les sources pressenties n'étaient pas consultables, rien n'est donc avancé.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up PEACEMINUSONE × Frédéric Malle",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "파운드리 서울",
+      "area": "Hannam-dong",
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-21",
+      "summary": "Le label de G-Dragon et la maison Frédéric Malle présentent le parfum Musc Ravageur en plusieurs chapitres. Ouvert de 10 h à 18 h, du mardi au dimanche ; fermé le lundi.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a118de-9f84-7a52-b0ed-7aa096ec4317",
+      "source_lang": "en"
+    },
+    {
+      "name": "25e Festival de l'herbe argentée de Séoul",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "월드컵공원 하늘공원",
+      "area": "Mapo-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-23",
+      "summary": "Au parc Haneul : cérémonie d'ouverture, spectacle de lumières, ateliers de bouquets d'eulalies, musiciens de rue et marché de produits recyclés. Accès à pied environ 40 minutes depuis la station Stade de la Coupe du monde.",
+      "source_name": "펀서울 (FUN SEOUL)",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=683",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Événement de lancement NVIDIA RTX Spark à Coex",
+      "kind": "autre",
+      "theme": "gaming",
+      "venue": "코엑스 동문 로비",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-16",
+      "summary": "Soirée de lancement avec table ronde d'influenceurs IA, zone d'essai des technologies Spark, spectacle du doubleur Nam Do-hyung et tirage au sort. Réservation en ligne ; début à 19 h 30.",
+      "source_name": "Coex",
+      "source_url": "https://www.coex.co.kr/exhibitions/nvidia-rtx-spark-%eb%9f%b0%ec%b9%ad-%ec%9d%b4%eb%b2%a4%ed%8a%b8/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert WOODZ World Tour Archive. 1 à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "KSPO돔",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-31",
+      "end_date": "2026-11-01",
+      "summary": "Deux concerts de rappel de Woodz, intitulés « Archive. 1: Completed », au KSPO Dome, les 31 octobre et 1er novembre.",
+      "source_name": "Korea JoongAng Daily",
+      "source_url": "https://www.koreajoongangdaily.com/entertainment/woodz-to-return-with-new-single-ahead-of-seoul-encore-concerts/12915655",
+      "source_lang": "en"
+    }
+  ]
+}
