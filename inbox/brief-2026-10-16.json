@@ -1,0 +1,427 @@
+{
+  "date": "2026-10-16",
+  "title": "Le Kospi s'effondre de 7,6 % sur les puces, GTA 6 dévoile sa bande-annonce de lancement",
+  "standfirst": "La Bourse de Séoul subit sa plus forte séance de baisse récente, entraînée par SK hynix et Samsung. Dans le jeu vidéo, Rockstar montre GTA 6 pour le 19 novembre. Journée courte côté tourisme et sport, faute de sources lisibles.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "The Hyundai Seoul livre les bagages des visiteurs étrangers à l'aéroport ou à l'hôtel",
+          "original_headline": "“짐 걱정 끝” 더현대 서울, 외국인 컨시어지 서비스 도입",
+          "summary": "The Hyundai Seoul livre les bagages des visiteurs étrangers à l'aéroport ou à l'hôtel, avec la jeune pousse GoodLuck Company. Compter 24 500 wons la valise ; dépôt avant 15 h à Séoul pour une livraison avant 19 h.",
+          "importance": 1,
+          "tags": [
+            "bagages",
+            "grands-magasins",
+            "visiteurs-etrangers"
+          ],
+          "source_name": "Herald Business",
+          "source_url": "https://biz.heraldcorp.com/article/10903604",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T11:26:43+09:00"
+        },
+        {
+          "headline": "Korean Air réalise un chiffre d'affaires record de 5 040 milliards de wons au troisième trimestre",
+          "original_headline": "Korean Air posts record quarterly revenue in Q3",
+          "summary": "Le chiffre d'affaires atteint 5 040 milliards de wons (+26 %), porté par la hausse des visiteurs entrants et des passagers en transit à Incheon. Le bénéfice net dépasse 929 milliards de wons. Le carburant restera cher.",
+          "importance": 2,
+          "tags": [
+            "korean-air",
+            "aviation",
+            "incheon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10904173",
+          "source_lang": "en",
+          "published_at": "2026-10-15T17:45:19+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi s'effondre de 7,57 % et clôture à 5 554 points",
+          "original_headline": "Kospi slides over 7% as chip stocks sink",
+          "summary": "SK hynix perd 11 %, Samsung Electronics 9,5 %, et un coupe-circuit s'est déclenché. Le Korea Herald évoque la crainte d'une hausse des taux de la Fed après des prix américains en hausse de 0,6 % en septembre.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10904070",
+          "source_lang": "en",
+          "published_at": "2026-10-15T16:23:57+09:00"
+        },
+        {
+          "headline": "Lee écarte toute révision constitutionnelle pour briguer un nouveau mandat",
+          "original_headline": "Lee rejects reelection bid speculation, vows to continue reforms",
+          "summary": "Le président dit sur X qu'une révision exige au moins 200 députés, opposition comprise. Il affirme que ses méthodes sont devenues plus pragmatiques, mais que ses objectifs restent les mêmes.",
+          "importance": 2,
+          "tags": [
+            "lee-jae-myung",
+            "constitution",
+            "reformes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10904258",
+          "source_lang": "en",
+          "published_at": "2026-10-15T21:54:18+09:00"
+        },
+        {
+          "headline": "Des données de participation falsifiées dans 30 commissions électorales aux locales du 3 juin",
+          "original_headline": "Data manipulation found at 30 election commissions",
+          "summary": "Selon l'équipe du procureur spécial Lee Tae-hwan, de fausses données de participation ont été saisies lors des locales du 3 juin. Elle a perquisitionné la Commission électorale nationale à Gwacheon et six bureaux locaux.",
+          "importance": 3,
+          "tags": [
+            "elections",
+            "procureur-special",
+            "commission-electorale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10903864",
+          "source_lang": "en",
+          "published_at": "2026-10-15T14:33:53+09:00"
+        },
+        {
+          "headline": "Séoul réfute les doutes de Pyongyang sur son essai de planeur hypersonique",
+          "original_headline": "Defense ministry refutes Pyongyang's claim questioning Seoul's test of hypersonic glide vehicle",
+          "summary": "Le chef de l'administration nord-coréenne des missiles juge l'engin sans suie, donc peut-être pas hypersonique. Le ministère de la Défense répond qu'une protection thermique avancée rend toute trace de suie impossible en vol hypersonique.",
+          "importance": 4,
+          "tags": [
+            "coree-du-nord",
+            "defense",
+            "hypersonique"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20261016/defense-ministry-refutes-pyongyangs-claim-questioning-seouls-test-of-hypersonic-glide-vehicle?utm_source=rss",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Le festival de Busan dépasse 200 000 entrées, son plus haut niveau depuis 2015",
+          "original_headline": "Busan film fest draws biggest crowds in 11 years amid political storm",
+          "summary": "Le festival compte 200 043 entrées en projection, son plus haut niveau depuis 2015, sur fond de polémique autour du thriller « The Assassin(s) » dont l'équipe s'est retirée pour des raisons de sécurité.",
+          "importance": 5,
+          "tags": [
+            "cinema",
+            "busan",
+            "biff"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10903872",
+          "source_lang": "en",
+          "published_at": "2026-10-15T14:39:39+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Solidigm demande l'aval de Washington pour équiper son usine de Dalian en échange d'une usine américaine",
+          "original_headline": "SK Hynix bargains for chip equipment exports to its China facility in return for building a factory in US",
+          "summary": "Selon Reuters, la filiale de SK hynix voudrait envoyer davantage d'équipements américains à Dalian, en Chine, et étudie une usine NAND aux États-Unis. SK hynix dit agir avec l'accord de Washington.",
+          "importance": 1,
+          "tags": [
+            "sk-hynix",
+            "solidigm",
+            "semi-conducteurs",
+            "exportations"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/15/sk-hynix-bargains-for-chip-equipment-exports-to-its-china-facility-in-return-for-building-a-factory-in-us/",
+          "source_lang": "en",
+          "published_at": "2026-10-16T01:45:37+09:00"
+        },
+        {
+          "headline": "Meta lance Muse Spark Open, un modèle à poids ouverts de 816 milliards de paramètres",
+          "original_headline": "Meta launches an open-weight AI model that runs on Macs",
+          "summary": "Meta le présente comme le modèle à poids ouverts le plus performant des États-Unis. Contexte d'un million de jetons, conçu pour tourner en local sur puces Apple ; Engadget cite au moins 1 To de RAM.",
+          "importance": 2,
+          "tags": [
+            "meta",
+            "modeles-ouverts",
+            "apple"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
+          "source_lang": "en",
+          "published_at": "2026-10-16T05:04:53+09:00"
+        },
+        {
+          "headline": "Des publicités en ligne servent à livrer des logiciels espions sans clic selon Citizen Lab",
+          "original_headline": "Governments are hacking people with ‘zero-click’ spyware by showing them online ads",
+          "summary": "Le rapport vise la société israélienne Discover-Tech et sa plateforme Controlium, utilisée par Candiru et Bindecy. Au moins 45 ordinateurs d'Al Jazeera ont été piratés. Les gouvernements commanditaires restent inconnus.",
+          "importance": 3,
+          "tags": [
+            "logiciels-espions",
+            "cybersecurite",
+            "citizen-lab"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/15/citizen-lab-says-governments-are-abusing-online-ads-to-hack-people-with-zero-click-spyware/",
+          "source_lang": "en",
+          "published_at": "2026-10-15T19:00:00+09:00"
+        },
+        {
+          "headline": "Kakao publie sa charte d'éthique « Spirit » et son guide « Norma » pour les agents d'IA",
+          "original_headline": "\"AI 에이전트 확산 대응\"…카카오, 윤리 원칙·이행 가이드 공개",
+          "summary": "La charte compte six principes, dont sécurité, vie privée et transparence. Les risques des agents sont classés en cinq domaines : contrôle, objectif, permissions, ressources référencées et interactions. Une liste de contrôle s'appliquera d'ici la fin de l'année.",
+          "importance": 4,
+          "tags": [
+            "kakao",
+            "ethique",
+            "agents-ia"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261015094808",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T11:21:03+09:00"
+        },
+        {
+          "headline": "Samsung démontre des technologies 6G intégrant l'IA dans la Silicon Valley",
+          "original_headline": "삼성전자, 실리콘밸리서 'AI 내재 6G 기술' 공개",
+          "summary": "Lors d'un sommet à Mountain View les 14 et 15 octobre, Samsung a réuni une centaine d'experts et fait des démonstrations d'AI RAN, de X-MIMO, de D-MIMO et d'ISAC.",
+          "importance": 5,
+          "tags": [
+            "samsung",
+            "6g",
+            "telecoms"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261015092103",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T09:38:20+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Rockstar publie la bande-annonce de lancement de GTA 6, attendu le 19 novembre",
+          "original_headline": "Rockstar has revealed the official launch trailer for Grand Theft Auto 6",
+          "summary": "La vidéo de 90 secondes, sur une musique de Justice, présente Jason et Lucia à Vice City. Le jeu sort sur PS5 et Xbox Series le 19 novembre. Rockstar dit l'avoir capturée entièrement sur PlayStation 5.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "rockstar",
+            "bande-annonce"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/rockstar-has-revealed-the-official-launch-trailer-for-grand-theft-auto-6/",
+          "source_lang": "en",
+          "published_at": "2026-10-15T22:06:51+09:00"
+        },
+        {
+          "headline": "Sega retire Total War: Shogun 2 – Complete Edition de la vente",
+          "original_headline": "Sega pulls Total War: Shogun 2 – Complete Edition from stores over bugs and AI art",
+          "summary": "Sorti le 13 octobre, le jeu affichait 19 % d'avis positifs sur Steam. Les joueurs dénonçaient des bugs et des visuels qui semblent retouchés par IA. Sega dit travailler à réintégrer l'original à la vente.",
+          "importance": 2,
+          "tags": [
+            "sega",
+            "total-war",
+            "ia-generative"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/sega-pulls-total-war-shogun-2-complete-edition-from-stores-over-bugs-and-ai-art/",
+          "source_lang": "en",
+          "published_at": "2026-10-15T23:15:33+09:00"
+        },
+        {
+          "headline": "Nexon accueille la finale mondiale de FC Pro Mobile au DDP du 21 au 25 octobre",
+          "original_headline": "넥슨, 'FC 프로 모바일 월드 챔피언십 2026' 한국 대표 유창호·권민석 출전",
+          "summary": "Trente-deux joueurs se disputent 250 000 dollars, dont 60 000 pour le vainqueur. Deux Coréens, Yu Chang-ho et Kwon Min-seok, sont qualifiés. La finale accueille 230 spectateurs tirés au sort parmi les inscrits.",
+          "importance": 3,
+          "tags": [
+            "e-sport",
+            "fc-pro-mobile",
+            "nexon"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261015171504",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T17:35:02+09:00"
+        },
+        {
+          "headline": "La FIFA reporte les FIFAe Finals 2026 à la veille de leur ouverture",
+          "original_headline": "'FIFAe 파이널스 2026' 개막 하루 전 연기",
+          "summary": "Prévues du 16 au 25 octobre à Djeddah, les finales sont ajournées. Le Japon et le Brésil s'étaient retirés après l'attaque du 10 octobre contre l'aéroport de Riyad. Ni nouvelle date ni nouveau lieu.",
+          "importance": 4,
+          "tags": [
+            "e-sport",
+            "fifae",
+            "arabie-saoudite"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322177",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T22:29:20+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'AFC n'exclut pas de reporter d'un an la Coupe d'Asie 2027 en Arabie saoudite",
+          "original_headline": "사우디 공항도 직접 ‘타격’…내년 아시안컵 개최 ‘불투명’ AFC 회장 “11월까지 지켜봐야”, 1년 ‘연기’ 가능성도 거론",
+          "summary": "Son président dit que l'avenir du tournoi se jouera d'ici fin novembre, après l'attaque du 10 octobre contre l'aéroport de Riyad. Les matches amicaux de la Corée au Moyen-Orient en novembre sont à revoir.",
+          "importance": 1,
+          "tags": [
+            "coupe-d-asie",
+            "afc",
+            "football"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1641711",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T06:30:00+09:00"
+        },
+        {
+          "headline": "Le 107e Championnat national des sports s'ouvre à Jeju",
+          "original_headline": "오상욱·김영남·허미미·성승민…‘나고야의 영웅들’ 제주에 모인다! 제107회 전국체육대회 16일 개막",
+          "summary": "Du 16 au 22 octobre, 30 599 personnes dont 19 576 athlètes y participent, douze ans après la dernière édition à Jeju. Oh Sang-uk et d'autres médaillés des Jeux asiatiques sont attendus.",
+          "importance": 2,
+          "tags": [
+            "jeju",
+            "sport-amateur",
+            "jeux-asiatiques"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1641700",
+          "source_lang": "ko",
+          "published_at": "2026-10-15T20:48:45+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert des reçus et Nuit des arts mondiaux de Séoul 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "서울광장",
+      "area": "Jung-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-17",
+      "summary": "Soirée d'art et concert des reçus sur une scène spéciale de Seoul Plaza, dès 18 h les 16 et 17 octobre.",
+      "source_name": "Seoul Festival (서울축제)",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=943",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival international des arts K 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "서원마을회관",
+      "area": "Gangdong-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-25",
+      "summary": "Exposition et festival d'art dans le village de Seowon à Gangdong, de 13 h à 19 h, avec une projection de lumière sur la façade du 16 au 18 octobre.",
+      "source_name": "Seoul Festival (서울축제)",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=942",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up NCT WISH : WISH LAND",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "올리브영N 성수",
+      "area": "Seongsu",
+      "start_date": "2026-10-14",
+      "end_date": "2026-10-24",
+      "summary": "Pop-up pour le retour du groupe avec « I SPY », ouvert tous les jours de 10 h à 22 h à Seongsu.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a13280-d413-734f-9c7c-f9fd38e679da",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up rom&nd : 10th Birthday Party",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "핑크오피스 성수",
+      "area": "Seongsu",
+      "start_date": "2026-10-12",
+      "end_date": "2026-11-10",
+      "summary": "Pop-up pour les dix ans de la marque de cosmétiques, ouvert tous les jours de 11 h à 21 h à Seongsu Pink Office.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a1329e-48d7-7ba2-bf22-189216775a99",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up Danawa × Ohouse Deskterior",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "오늘의집 북촌",
+      "area": "Bukchon",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-18",
+      "summary": "Pop-up Danawa et Ohouse consacré à l'aménagement de bureau, au rez-de-chaussée du Connect Lounge d'Ohouse à Bukchon.",
+      "source_name": "인벤",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=322122",
+      "source_lang": "ko",
+      "address": "서울 종로구 북촌로5길 11"
+    },
+    {
+      "name": "Festival Starlight 2026 au Musée des sciences",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "서울시립과학관",
+      "area": "Nowon-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-25",
+      "summary": "Fête des étoiles du Musée des sciences de Séoul et du Centre d'astronomie de Nowon, de 9 h 30 à 21 h le samedi et jusqu'à 17 h 30 le dimanche.",
+      "source_name": "Seoul Festival (서울축제)",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=939",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon de l'environnement de Corée 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스 Hall A",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-23",
+      "summary": "Salon de l'économie verte et de l'écologie (ESG-ECO EXPO KOREA 2026) au Hall A de Coex, de 10 h à 17 h.",
+      "source_name": "코엑스",
+      "source_url": "https://www.coex.co.kr/exhibitions/2026-%eb%8c%80%ed%95%9c%eb%af%bc%ea%b5%ad-%ec%b9%9c%ed%99%98%ea%b2%bd%eb%8c%80%ec%a0%84/?var_page=1&search_start_date=2026.10.16&search_end_date=2026.11.16&list_type=LIST",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon Reha·Homecare 2026 à Coex",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스 Hall D",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-21",
+      "end_date": "2026-10-23",
+      "summary": "Salon des équipements de soins à domicile, de réhabilitation et de protection sociale au Hall D de Coex, de 10 h à 17 h.",
+      "source_name": "코엑스",
+      "source_url": "https://www.coex.co.kr/exhibitions/2026-%ed%99%88%ec%bc%80%ec%96%b4%c2%b7%ec%9e%ac%ed%99%9c%c2%b7%eb%b3%b5%ec%a7%80-%ec%a0%84%ec%8b%9c%ed%9a%8c/?var_page=1&search_start_date=2026.10.16&search_end_date=2026.11.16&list_type=LIST",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert Coex On Stage × ifeye",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "코엑스 밀레니엄 광장",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-24",
+      "summary": "Concert en plein air de la série Coex On Stage avec ifeye, sur la place du Millénaire de Coex, à partir de 15 h.",
+      "source_name": "코엑스",
+      "source_url": "https://www.coex.co.kr/exhibitions/coex-on-stage-x-ifeye/?var_page=2&search_start_date=2026.10.16&search_end_date=2026.11.16&list_type=LIST",
+      "source_lang": "ko"
+    }
+  ]
+}
