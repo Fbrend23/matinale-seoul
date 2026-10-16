@@ -1,0 +1,330 @@
+{
+  "date": "2026-10-17",
+  "title": "Pluie attendue dimanche à Séoul, prix des carburants plafonnés et GTA 6 classé adulte en Corée",
+  "standfirst": "Beau samedi, puis jusqu'à 80 mm de pluie dimanche à Séoul. Le gouvernement maintient les plafonds de prix des carburants, la cote de Lee remonte à 39 %, et l'emploi industriel progresse pour la première fois en 27 mois. Côté jeu vidéo, GTA 6 reçoit sa classification coréenne.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Beau samedi, puis jusqu'à 80 mm de pluie dimanche sur Séoul",
+          "summary": "Samedi reste dégagé, 21 à 27 °C l'après-midi. Dimanche, la pluie gagne Séoul dès le matin, 30 à 80 mm attendus, avec des rafales jusqu'à 90 km/h en montagne. Les feuilles mortes peuvent boucher les évacuations.",
+          "importance": 1,
+          "tags": [
+            "meteo",
+            "seoul"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905461",
+          "source_lang": "en",
+          "published_at": "2026-10-16T17:42:45+09:00"
+        },
+        {
+          "headline": "Un Thaïlandais expulsé revient en Corée sous un autre nom et écope d'un sursis",
+          "summary": "Interdit de séjour à vie après son expulsion en avril, il a changé de nom, obtenu un nouveau passeport et débarqué à Busan d'un navire de croisière le 29 juillet. Un an de prison avec sursis.",
+          "importance": 2,
+          "tags": [
+            "immigration",
+            "croisiere"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905294",
+          "source_lang": "en",
+          "published_at": "2026-10-16T15:48:13+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul maintient ses plafonds de prix des carburants pour la quatrième période",
+          "summary": "L'essence reste plafonnée à 1 784 wons le litre, le diesel à 1 773 wons, pour quatre semaines dès samedi. Le ministère invoque un baril au-dessus de 100 dollars.",
+          "importance": 1,
+          "tags": [
+            "carburants",
+            "energie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905499",
+          "source_lang": "en",
+          "published_at": "2026-10-16T18:51:21+09:00"
+        },
+        {
+          "headline": "La cote de Lee remonte à 39 % après des semaines de baisse",
+          "summary": "Selon Gallup Korea, l'approbation gagne deux points, la désapprobation un point, à 52 %. Le Parti démocrate est à 36 %, le Parti du pouvoir du peuple à 27 %.",
+          "importance": 2,
+          "tags": [
+            "sondage",
+            "presidence"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10904970",
+          "source_lang": "en",
+          "published_at": "2026-10-16T11:44:59+09:00"
+        },
+        {
+          "headline": "L'emploi industriel progresse pour la première fois en 27 mois",
+          "summary": "L'emploi manufacturier gagne 16 000 postes en septembre, à 4,36 millions. L'emploi total progresse de 113 000, mais les 15-29 ans reculent de 147 000, 47e mois de baisse consécutif.",
+          "importance": 3,
+          "tags": [
+            "emploi",
+            "industrie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905069",
+          "source_lang": "en",
+          "published_at": "2026-10-16T13:42:37+09:00"
+        },
+        {
+          "headline": "Après les fuites de données, Shinhan et Woori reviennent sur leurs coupes de sécurité",
+          "summary": "Les deux banques avaient réduit ces budgets de plus de 10 % cette année. Les cinq grandes banques consacrent environ 332 milliards de wons à la sécurité, en hausse de 3,8 %. KB prévoit plus de 100 milliards l'an prochain.",
+          "importance": 4,
+          "tags": [
+            "banques",
+            "fuites-de-donnees"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905336",
+          "source_lang": "en",
+          "published_at": "2026-10-16T16:21:10+09:00"
+        },
+        {
+          "headline": "Mino, du groupe Winner, doit reprendre son service militaire",
+          "summary": "L'Administration des effectifs militaires lui notifiera la reprise de son service, après un an de prison avec sursis pour 102 jours d'absence sur 430. Durée restante et affectation restent à fixer.",
+          "importance": 5,
+          "tags": [
+            "service-militaire",
+            "k-pop"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905484",
+          "source_lang": "en",
+          "published_at": "2026-10-16T18:05:26+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'iPhone Duo pliable d'Apple pourrait manquer de fibre de verre Nittobo",
+          "original_headline": "'출시 코앞' 아이폰 듀오, 닛토보 'T-글래스' 확보 변수 부상",
+          "summary": "Selon ZDNet Korea, Nittobo livre d'abord les puces d'IA, et Foxconn peine sur l'assemblage. L'objectif serait d'environ 6 millions d'unités d'ici fin 2026. Précommandes ouvertes le 16 octobre, sortie le 23.",
+          "importance": 1,
+          "tags": [
+            "apple",
+            "pliable"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261016163400",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T16:52:28+09:00"
+        },
+        {
+          "headline": "Replit ne travaille plus avec Anthropic, dit son directeur général",
+          "summary": "Amjad Masad cite le coût et la performance, et juge ChatGPT meilleur. Une source proche du dossier affirme que le partenariat tient toujours. Replit avait annoncé un accord avec OpenAI en août.",
+          "importance": 2,
+          "tags": [
+            "replit",
+            "anthropic"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/16/replit-is-no-longer-working-with-anthropic-ceo-says/",
+          "source_lang": "en",
+          "published_at": "2026-10-17T06:22:28+09:00"
+        },
+        {
+          "headline": "L'Inde signale à son tour des agents d'IA entrés dans des systèmes d'organisations",
+          "summary": "Le CERT-In indique que des agents de plusieurs fournisseurs ont accédé à des données personnelles lors de tests, via des identifiants laissés exposés. Ni fournisseurs ni organisations ne sont nommés.",
+          "importance": 3,
+          "tags": [
+            "agents-ia",
+            "cybersecurite"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
+          "source_lang": "en",
+          "published_at": "2026-10-17T02:52:24+09:00"
+        },
+        {
+          "headline": "Time retient trois produits Samsung parmi les meilleures inventions de 2026",
+          "original_headline": "삼성 '갤S26 울트라' 등 3개 제품, 美 타임 '올해 최고의 발명품' 선정",
+          "summary": "Le Galaxy S26 Ultra, pour son écran de confidentialité, le réfrigérateur Bespoke AI Family Hub et le moniteur Odyssey G8, premier moniteur de jeu 6K, figurent dans la liste de Time.",
+          "importance": 4,
+          "tags": [
+            "samsung",
+            "distinctions"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261016000203",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T14:02:51+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "GTA 6 est classé interdit aux mineurs en Corée du Sud",
+          "original_headline": "'GTA 6' 국내 청불 확정, 민간 심의 거쳤다",
+          "summary": "Le comité privé GCRB a classé le jeu interdit aux mineurs, ce qui permet sa distribution en Corée. Sortie mondiale le 19 novembre sur PS5 et Xbox Series.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "classification"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322232",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T18:07:14+09:00"
+        },
+        {
+          "headline": "Le premier Masters Valorant de 2027 se tiendra à Séoul",
+          "original_headline": "라이엇 게임즈 '발로란트 챔피언스 투어' 올해 첫 마스터스, 서울서 개최",
+          "summary": "Riot Games annonce le premier Masters du VCT 2027 à Séoul du 20 février au 3 mars. Lieu et billets viendront plus tard. Premier grand événement Valorant en Corée depuis 2024.",
+          "importance": 2,
+          "tags": [
+            "valorant",
+            "e-sport"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261016000152",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T11:55:12+09:00"
+        },
+        {
+          "headline": "Le concert des 30 ans de Pokémon à Séoul affiche complet en quatre minutes",
+          "original_headline": "포켓몬 30주년 오케스트라, 약 4분 만에 매진",
+          "summary": "Environ 6 000 places sont parties en quatre minutes. Quatre représentations sont prévues les 28 et 29 novembre au KBS Hall de Yeouido, à 14 h et 19 h.",
+          "importance": 3,
+          "tags": [
+            "pokemon",
+            "concert"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322220",
+          "source_lang": "ko",
+          "published_at": "2026-10-16T14:24:21+09:00"
+        },
+        {
+          "headline": "Steam crée les « Achievement Sets » pour regrouper et archiver les succès",
+          "summary": "En bêta, le dispositif sépare les succès en ensembles, chacun avec sa barre de progression. Les développeurs peuvent archiver des succès devenus impossibles. Dix-sept jeux l'ont déjà adopté.",
+          "importance": 4,
+          "tags": [
+            "steam",
+            "succes"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/steam-is-introducing-achievement-sets-designed-to-improve-the-achievement-earning-experience/",
+          "source_lang": "en",
+          "published_at": "2026-10-16T19:42:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Choi Hye-jin garde deux coups d'avance après deux tours au LPGA de Shanghai",
+          "summary": "Malgré une carte de 74, Choi totalise 138 (-6) et devance Amy Yang et Grace Kim de deux coups. Elle cherche sa première victoire sur le circuit LPGA. La tenante Jeeno Thitikul est à quatre coups.",
+          "importance": 1,
+          "tags": [
+            "golf",
+            "lpga"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905510",
+          "source_lang": "en",
+          "published_at": "2026-10-16T19:23:57+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up TWICE 11e anniversaire : TWICE THE THRILL",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "플라츠2",
+      "area": "Seongsu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-10-25",
+      "summary": "Pop-up pour les onze ans de carrière de TWICE à Seongsu, ouvert de 11 h à 20 h tous les jours.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a132ef-1e47-78d6-83fc-390eeb2231b2",
+      "source_lang": "en"
+    },
+    {
+      "name": "Exposition interactive Crayon Shin-chan : Aventure spatio-temporelle",
+      "kind": "exposition",
+      "theme": "anime",
+      "venue": "서울 성동구 연무장5길 9-29",
+      "area": "Seongsu",
+      "start_date": "2026-10-17",
+      "end_date": "2027-01-24",
+      "summary": "Exposition interactive consacrée à Crayon Shin-chan, à cinq minutes à pied de la sortie 4 de la station Seongsu.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a08dd6-cd9f-7066-9b75-cc23fb5da943",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up Riot Games : Music & Worlds 26",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "롯데월드몰",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-01",
+      "summary": "Espace consacré aux Worlds 2026 de League of Legends au Lotte World Mall. Une seconde étape suit à Olive Young N Seongsu, du 29 octobre au 8 novembre.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=322213",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Google Gemini × Jeongwaja à Seongsu",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "성수동 한서빌딩",
+      "area": "Seongsu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "summary": "Campus éphémère de Google Gemini avec l'émission Jeongwaja. Visite ouverte à tous sans inscription ; les conférences en direct demandent une inscription. Les recettes financent des étudiants à faibles revenus.",
+      "source_name": "Google",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/gemini-seongsu-meetup-oct-kr/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Crunchyroll Festival Korea 2026 à Hongdae",
+      "kind": "festival",
+      "theme": "anime",
+      "venue": "AK플라자 홍대",
+      "area": "Hongdae",
+      "start_date": "2026-10-24",
+      "end_date": "2026-11-08",
+      "summary": "Pop-up à AK Plaza du 24 octobre au 8 novembre, concert Crunchyroll Live au Musinsa Garage le 25, projection au CGV Hongdae le 31, gratuite sur tirage au sort.",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=322149",
+      "source_lang": "ko"
+    },
+    {
+      "name": "25e Salon international du café de Séoul",
+      "kind": "salon",
+      "theme": "food",
+      "venue": "코엑스",
+      "area": "Samseong",
+      "start_date": "2026-11-11",
+      "end_date": "2026-11-14",
+      "summary": "Salon du café à Coex. Journées professionnelles les 11 et 12 novembre, journées grand public les 13 et 14. Billet d'un jour 25 000 wons, multi-jours 50 000 wons.",
+      "source_name": "코엑스",
+      "source_url": "https://www.coex.co.kr/exhibitions/%ec%a0%9c25%ed%9a%8c-%ec%84%9c%ec%9a%b8%ec%b9%b4%ed%8e%98%ec%87%bc/",
+      "source_lang": "ko"
+    }
+  ]
+}
