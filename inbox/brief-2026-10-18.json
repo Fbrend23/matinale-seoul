@@ -1,0 +1,309 @@
+{
+  "date": "2026-10-18",
+  "title": "Un pompier meurt à Bucheon, Séoul proteste contre l'offrande de Takaichi à Yasukuni",
+  "standfirst": "L'incendie de Bucheon, dont les enquêteurs pointent des vapeurs de diluant, et l'offrande japonaise à Yasukuni dominent la Corée. Pyongyang annonce une torpille guidée par l'IA. Côté tech, Meta retire une clause de scraping et le CXMT chinois affiche des ventes en hausse de 600 %.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les bains enzymatiques s'imposent comme nouvelle tendance bien-être en Corée",
+          "original_headline": "Bury yourself in enzyme baths, Korea’s latest wellness trend",
+          "summary": "On reste vingt à trente minutes enterré dans du son de riz ou de la sciure chauffés à 60-70 °C par fermentation naturelle. Sans équipement thermique, cette pratique bien-être gagne en popularité en Corée.",
+          "importance": 1,
+          "tags": [
+            "bien-etre"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905282",
+          "source_lang": "en",
+          "published_at": "2026-10-17T16:00:02+09:00"
+        },
+        {
+          "headline": "Seochon, le quartier à parcourir cet automne",
+          "original_headline": "Seochon, the season’s most stylish stroll",
+          "summary": "À l'ouest de Gyeongbokgung, Seochon aligne bistro, photomaton, parfumerie et boutiques de mode. Le café Tailor Coffee, rue Hyoja-ro, torréfie plus de cent tonnes de grains par an.",
+          "importance": 2,
+          "tags": [
+            "seochon",
+            "promenade"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10903849",
+          "source_lang": "en",
+          "published_at": "2026-10-17T16:00:01+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les enquêteurs mettent en cause des vapeurs de diluant dans l'incendie de Bucheon",
+          "original_headline": "Factory fire in Bucheon likely caused by oil vapor ignited by frictional heat: officials",
+          "summary": "Les vapeurs de diluant utilisées pour nettoyer des pièces métalliques se seraient enflammées. L'incendie a tué un pompier et fait sept blessés. La zone n'avait pas d'équipement antidéflagrant.",
+          "importance": 1,
+          "tags": [
+            "incendie",
+            "bucheon",
+            "securite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905830",
+          "source_lang": "en",
+          "published_at": "2026-10-17T17:03:57+09:00"
+        },
+        {
+          "headline": "Séoul regrette l'offrande de Takaichi au sanctuaire Yasukuni",
+          "original_headline": "Seoul expresses regret over Takaichi's offering to controversial war shrine",
+          "summary": "La Première ministre japonaise a envoyé une offrande rituelle à Yasukuni pour la fête d'automne. Séoul s'est dit « de nouveau » profondément déçu. Selon Kyodo, Takaichi ne s'y rendra pas.",
+          "importance": 2,
+          "tags": [
+            "japon",
+            "yasukuni",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905808",
+          "source_lang": "en",
+          "published_at": "2026-10-17T15:25:47+09:00"
+        },
+        {
+          "headline": "Pyongyang annonce l'essai d'une torpille guidée par l'IA",
+          "original_headline": "N. Korea conducts underwater test of new precision-guided torpedo using AI: KCNA",
+          "summary": "La KCNA dit avoir testé jeudi la torpille « Zam-2.0 », dont l'IA assurerait la détection et le guidage. Mercredi, la Corée du Nord aurait tiré deux missiles de croisière depuis un sous-marin.",
+          "importance": 3,
+          "tags": [
+            "coree-du-nord",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905699",
+          "source_lang": "en",
+          "published_at": "2026-10-17T10:28:31+09:00"
+        },
+        {
+          "headline": "Premier « 2+2 » finances et politique monétaire entre Séoul et Washington",
+          "original_headline": "S. Korea, US hold first 2+2 meeting of finance, monetary",
+          "summary": "À Bangkok, en marge du G20, le ministre Lee Hyoung-il et le gouverneur Shin Hyun-song ont rencontré le président de la Fed Kevin Warsh et un sous-secrétaire au Trésor américain. Scott Bessent était absent.",
+          "importance": 4,
+          "tags": [
+            "g20",
+            "etats-unis",
+            "finance"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905718",
+          "source_lang": "en",
+          "published_at": "2026-10-17T11:11:50+09:00"
+        },
+        {
+          "headline": "Les vidéos pornographiques truquées à examiner dépassent déjà le total de 2025",
+          "original_headline": "No. of deepfake sex videos up for review exceeds last year's figure in 8 months",
+          "summary": "Le régulateur KCSC a reçu 17 378 vidéos sexuelles truquées à examiner de janvier à août, contre 15 808 pour toute l'année 2025. Le sommet reste 2024, avec 23 109 cas.",
+          "importance": 5,
+          "tags": [
+            "deepfake",
+            "regulation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10905807",
+          "source_lang": "en",
+          "published_at": "2026-10-17T15:25:39+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le chinois CXMT prévoit des ventes en hausse de 600 % au troisième trimestre",
+          "original_headline": "CXMT, 3분기 매출 23조 전망...전년비 600% '껑충'",
+          "summary": "Le fabricant de DRAM vise 114,7 à 119,7 milliards de yuans de ventes, soit environ 23 000 milliards de wons. Son bénéfice net cumulé sur neuf mois dépasserait 131 milliards de yuans, porté par l'IA.",
+          "importance": 1,
+          "tags": [
+            "dram",
+            "cxmt",
+            "semi-conducteurs"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261017151149",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T19:42:59+09:00"
+        },
+        {
+          "headline": "Les opérateurs coréens activent l'iPhone Duo par vagues",
+          "original_headline": "공급량 허덕이는 아이폰듀오...이통사, 차수별 순차 개통 불가피",
+          "summary": "Le stock initial du pliable d'Apple serait d'environ un dixième de celui des précédents modèles phares. SK Telecom, KT et LG U+ devraient donc activer les appareils par lots, avec des attentes de plusieurs mois.",
+          "importance": 2,
+          "tags": [
+            "apple",
+            "operateurs"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261016192820",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T07:00:01+09:00"
+        },
+        {
+          "headline": "Meta retire la clause qui laissait craindre un scraping des sites d'éditeurs",
+          "original_headline": "Meta removes language that raised scraping and AI training concerns",
+          "summary": "Des conditions commerciales de Meta permettaient d'utiliser le contenu des sites liés à un compte professionnel pour entraîner ses produits. La clause a été retirée ; Meta dit qu'elle ne changeait pas sa façon d'explorer le web.",
+          "importance": 3,
+          "tags": [
+            "meta",
+            "ia",
+            "droit-d-auteur"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/",
+          "source_lang": "en",
+          "published_at": "2026-10-18T06:31:32+09:00"
+        },
+        {
+          "headline": "LG Electronics cède 110 brevets vidéo à une filiale de MediaTek",
+          "original_headline": "LG전자, '미디어텍 자회사'에 미국 표준특허 110건 매각...670억원",
+          "summary": "LG a vendu 110 brevets américains, surtout de codage vidéo, à HFI Innovation pour 50 millions de dollars. Le transfert date du 29 mai. Quatre-vingt-un titres sont délivrés, vingt-neuf en cours de demande.",
+          "importance": 4,
+          "tags": [
+            "lg",
+            "brevets",
+            "mediatek"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261017091254",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T09:22:13+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "BNK FearX remporte la Demacia Cup en battant Team WE 3-1",
+          "original_headline": "[데마시아 컵] 대회를 집어 삼킨 '랩터'...BFX, WE 꺾고 우승",
+          "summary": "En finale à Pékin, l'équipe coréenne s'impose 3-1 face au chinois Team WE. Le jungler Raptor, Jeon Eo-jin, est élu meilleur joueur du tournoi.",
+          "importance": 1,
+          "tags": [
+            "league-of-legends",
+            "e-sport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322252",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T21:40:54+09:00"
+        },
+        {
+          "headline": "Kim Min-chul gagne l'ASL de StarCraft pour la cinquième fois",
+          "original_headline": "[ASL] 계속되는 저그의 시대, 김민철 개인 통산 5회 우승",
+          "summary": "Kim Min-chul bat Yoo Young-jin 4-3 en finale de la saison 22. Il décroche un cinquième titre individuel, une première dans l'ASL selon l'article, et un septième sacre consécutif pour un Zerg.",
+          "importance": 2,
+          "tags": [
+            "starcraft",
+            "asl",
+            "e-sport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322245",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T18:00:08+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ulsan renverse Bucheon 2-1 et retarde le titre du FC Séoul",
+          "original_headline": "모레노가 지켜봤다! ‘야고 16호골+이동경 12호 도움’ 울산, 부천에 2-1 역전승 ‘2위 사수’…서울 32R 우승 확정도 저지 [K리그1]",
+          "summary": "Mené dès la 15e minute, Ulsan l'emporte 2-1 grâce à Yago, 16e but. Il garde la deuxième place avec 50 points ; le FC Séoul, premier avec 65 points, doit attendre pour être titré.",
+          "importance": 1,
+          "tags": [
+            "k-league",
+            "fc-seoul",
+            "ulsan"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642009",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T18:35:58+09:00"
+        },
+        {
+          "headline": "Suwon FC enchaîne un quinzième match sans défaite en K League 2",
+          "original_headline": "‘15G 연속 무패’ 수원FC, 성남 2-1 잡고 ‘선두’ 수원 삼성 2점 차 추격…대구는 충북 청주 3-1 완파 [K리그2]",
+          "summary": "Suwon FC bat Seongnam 2-1 grâce à un but dans le temps additionnel. Avec 54 points, il revient à deux longueurs de Suwon Samsung, qui compte un match en moins.",
+          "importance": 2,
+          "tags": [
+            "k-league-2",
+            "suwon"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642011",
+          "source_lang": "ko",
+          "published_at": "2026-10-17T18:51:40+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "CASK CARNIVAL 2026",
+      "kind": "salon",
+      "theme": "food",
+      "venue": "SETEC",
+      "area": "Gangnam",
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-22",
+      "summary": "Salon de dégustation d'alcool au SETEC. Réservé aux plus de 19 ans, pass d'un jour à 60 000 wons, pass de deux jours à 110 000 wons.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/products/26012544",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/products/26012544"
+    },
+    {
+      "name": "Prix de l'artiste coréen 2026 (Korea Artist Prize)",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "국립현대미술관 서울",
+      "area": "Jongno-gu",
+      "start_date": "2026-07-24",
+      "end_date": "2026-12-06",
+      "summary": "Exposition des quatre artistes finalistes du prix, Lee Jung-woo, Lee Hai Min Sun, Jeon Hyun-sun et Hong Jin-hwon, au musée national d'art moderne et contemporain. Le lauréat doit être annoncé en octobre.",
+      "source_name": "Korea JoongAng Daily",
+      "source_url": "https://www.koreajoongangdaily.com/lifestyle/mmca-selects-featured-artists-for-2026s-korea-artist-prize/12111745",
+      "source_lang": "en"
+    },
+    {
+      "name": "Rétrospective Lee Dai-won : Rien ici ne rend triste",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "국립현대미술관 덕수궁",
+      "area": "Jung-gu",
+      "start_date": "2026-08-06",
+      "end_date": "2026-11-08",
+      "summary": "Rétrospective du peintre Lee Dai-won : cent vingt huiles et cent documents d'archives. Entrée à 2 000 wons, plus 1 000 wons pour le palais Deoksugung.",
+      "source_name": "Korea JoongAng Daily",
+      "source_url": "https://www.koreajoongangdaily.com/lifestyle/at-mmca-deoksugung-lee-daiwons-luminous-orchards-reveal-korean-modernism-decades-ahead-of-its-time/12809532",
+      "source_lang": "en"
+    },
+    {
+      "name": "Lynn Hershman Leeson : First Person Plural",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울시립미술관 서소문본관",
+      "area": "Jung-gu",
+      "start_date": "2026-10-21",
+      "end_date": "2027-02-21",
+      "summary": "Première exposition personnelle de l'artiste américaine dans un musée en Asie, environ deux cents œuvres. Entrée gratuite ; fermé le lundi. Réservation à l'avance possible sur la page du musée.",
+      "source_name": "Seoul Museum of Art",
+      "source_url": "https://sema.seoul.go.kr/en/whatson/exhibition/detail?exNo=1569995",
+      "source_lang": "en"
+    }
+  ]
+}
