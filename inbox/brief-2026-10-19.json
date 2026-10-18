@@ -1,0 +1,304 @@
+{
+  "date": "2026-10-19",
+  "title": "Pluies sur Séoul, Anthropic dote un fonds public et le tirage des Worlds",
+  "standfirst": "De fortes pluies ont inondé des routes de Séoul dimanche. Le FC Séoul laisse filer deux points à Gimcheon, les Tigers mènent 2-0 en playoffs, et le tirage de la ronde suisse des Worlds oppose deux fois la Corée à la Chine.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Plus de 6 000 plaintes d'étrangers contre les taxis de Séoul en cinq ans",
+          "original_headline": "Foreign passengers file 6,000 complaints for taxi overcharging in 5 years",
+          "summary": "De 2021 à août 2026, 6 481 plaintes ont été déposées, mais seules 204 ont donné lieu à une sanction. Depuis le 4 septembre, la première infraction vaut 30 jours de suspension.",
+          "importance": 1,
+          "tags": [
+            "taxis",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10906188",
+          "source_lang": "en",
+          "published_at": "2026-10-18T14:33:37+09:00"
+        },
+        {
+          "headline": "Marche nocturne au mont Namsan les 21 octobre et 21 novembre",
+          "original_headline": "700개의 빛이 남산의 가을밤 수놓는다… 서울시, ‘반짝반짝 남산밤길’ 운영",
+          "summary": "La Ville organise deux soirées de 19 h à 21 h, 700 marcheurs chacune, sur trois kilomètres depuis Namsangol. Bracelet LED au poignet, inscription sur place dès 18 h, sans réservation.",
+          "importance": 2,
+          "tags": [
+            "namsan",
+            "balade"
+          ],
+          "source_name": "Ville de Séoul",
+          "source_url": "https://www.seoul.go.kr/news/news_report.do?nttNo=468296",
+          "source_lang": "ko"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "De fortes pluies inondent des routes de Séoul",
+          "original_headline": "Heavy rain floods roads, topples trees across Seoul",
+          "summary": "Dimanche, le passage sous le pont de Jeungsan a été fermé plus d'une heure et un arbre a bloqué une route à Yeoksam. La pluie devait persister dans le sud jusqu'à lundi matin.",
+          "importance": 1,
+          "tags": [
+            "meteo",
+            "inondations"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10906334",
+          "source_lang": "en",
+          "published_at": "2026-10-18T19:55:18+09:00"
+        },
+        {
+          "headline": "La nouvelle agence d'enquête criminelle procède à sa première arrestation",
+          "original_headline": "New investigation agency makes 1st arrest since launch",
+          "summary": "Seize jours après son lancement, l'agence a arrêté un ressortissant d'Asie du Sud-Est soupçonné d'avoir introduit 2,5 kg de marijuana. Le mandat a été demandé au tribunal d'Incheon.",
+          "importance": 2,
+          "tags": [
+            "justice",
+            "enquetes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10906357",
+          "source_lang": "en",
+          "published_at": "2026-10-18T21:14:37+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic consacre 5 % de ses actions à un fonds d'intérêt public",
+          "original_headline": "Anthropic says it’s committing 5% of its shares to a ‘public benefit fund’",
+          "summary": "L'entreprise crée une entité qu'elle détient entièrement et y verse 5 % de ses actions, avec 2 % de plus à chaque hausse de 50 % de sa valeur. Gouvernance à préciser dans les mois à venir.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/",
+          "source_lang": "en",
+          "published_at": "2026-10-19T05:37:40+09:00"
+        },
+        {
+          "headline": "Pékin prépare des contrôles à l'export sur 23 technologies d'IA",
+          "original_headline": "중국, AI 핵심 기술 수출 제한 추진…'독자 AI' 중요성 커졌다",
+          "summary": "Un projet publié le 16 octobre ajoute 40 technologies aux listes d'export, dont 23 d'IA, notamment les modèles de plus de 2 000 milliards de paramètres. Un responsable coréen appelle à moins dépendre des modèles chinois ouverts.",
+          "importance": 2,
+          "tags": [
+            "chine",
+            "ia",
+            "export"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261018095644",
+          "source_lang": "ko",
+          "published_at": "2026-10-18T16:00:04+09:00"
+        },
+        {
+          "headline": "Disney embauche l'essentiel des équipes de Character.AI",
+          "original_headline": "Disney agrees to hire the majority of Character.AI’s workforce",
+          "summary": "Character.AI a déposé le bilan le 13 octobre. Disney proposerait un poste à au moins 60 salariés, pour environ 60 millions de dollars de rémunération annuelle. Un autre acquéreur peut encore surenchérir.",
+          "importance": 3,
+          "tags": [
+            "disney",
+            "character-ai"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/",
+          "source_lang": "en",
+          "published_at": "2026-10-19T01:30:00+09:00"
+        },
+        {
+          "headline": "Les fonderies de puces matures tournent à 91 % et visent des hausses de prix",
+          "original_headline": "\"4분기 성숙 공정 파운드리 가동률 91%… 내년 1분기 가격 인상\"",
+          "summary": "Selon un cabinet d'analyse, l'utilisation des fonderies en procédés matures atteint 91 % au quatrième trimestre. Les prix des plaquettes de 12 pouces pourraient monter de 5 à 8 % au premier trimestre 2027.",
+          "importance": 4,
+          "tags": [
+            "semi-conducteurs",
+            "fonderies"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261018152447",
+          "source_lang": "ko",
+          "published_at": "2026-10-18T16:03:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Deux chocs Corée-Chine ouvrent la ronde suisse des Worlds 2026",
+          "original_headline": "[롤드컵] 스위스 1R 대진 완성...두 번의 한중전, DK는 G2 상대",
+          "summary": "Le tirage place Gen.G face à IG et Hanwha Life face à TES. T1 affronte LOS, Dplus KIA affronte G2. Aucune équipe d'une même région ne se rencontre au premier tour.",
+          "importance": 1,
+          "tags": [
+            "league-of-legends",
+            "worlds",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322263",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T05:41:13+09:00"
+        },
+        {
+          "headline": "Nintendo relève les tarifs de réparation de la Switch 2 au Japon",
+          "original_headline": "이젠 관리도 잘해야...일본 닌텐도, '스위치2' 수리비 최대 9,900엔 올린다",
+          "summary": "Dès le 16 novembre, la réparation de la carte CPU passe de 27 500 à 37 400 yens. Nintendo invoque le prix des pièces. La Switch d'origine subit les mêmes hausses.",
+          "importance": 2,
+          "tags": [
+            "nintendo",
+            "switch-2"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322256",
+          "source_lang": "ko",
+          "published_at": "2026-10-18T16:14:15+09:00"
+        },
+        {
+          "headline": "Le patron de Konami juge que l'IA ne remplace pas l'alchimie des équipes",
+          "original_headline": "Konami boss says AI can’t replace the human chemistry behind great games",
+          "summary": "Dans le rapport d'activité de Konami, Hideki Hayakawa estime que l'IA générative changera peu le marché et que les créateurs restent l'essentiel. La réaction entre équipes ne se remplace pas facilement, dit-il.",
+          "importance": 3,
+          "tags": [
+            "konami",
+            "ia",
+            "industrie"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/konami-boss-says-ai-cant-replace-the-human-chemistry-behind-great-games/",
+          "source_lang": "en",
+          "published_at": "2026-10-18T21:46:39+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le FC Séoul tenu en échec 2-2 par Gimcheon, le titre attendra",
+          "original_headline": "서울 ‘김천 징크스’ 못 깼다, 클리말라 15~16호 골에도 2-2 무승부…자력 우승까진 ‘승점 3’ [SS현장리뷰]",
+          "summary": "Malgré un doublé de Klimala, Séoul a concédé deux penalties. Il compte 66 points, 16 de plus qu'Ulsan, et une victoire à Gangwon le 24 octobre lui garantirait le titre.",
+          "importance": 1,
+          "tags": [
+            "k-league",
+            "fc-seoul"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642261",
+          "source_lang": "ko",
+          "published_at": "2026-10-18T18:29:22+09:00"
+        },
+        {
+          "headline": "Les Tigers mènent 2-0 face aux Twins en playoffs du KBO",
+          "original_headline": "Tigers beat Twins to take stranglehold in KBO postseason series",
+          "summary": "Cinq points dès la première manche ont suffi aux Kia Tigers, vainqueurs 6-3 à Gwangju. Match 3 mardi à 18 h 30 au Jamsil. Depuis 1989, seuls les Bears de 2010 et 2013 ont remonté un 0-2.",
+          "importance": 2,
+          "tags": [
+            "kbo",
+            "playoffs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10906341",
+          "source_lang": "en",
+          "published_at": "2026-10-18T20:06:57+09:00"
+        },
+        {
+          "headline": "Kim Min-jae titulaire dans la victoire 6-1 du Bayern sur Leipzig",
+          "original_headline": "Kim Min-jae starts as Bayern thrash Leipzig 6-1, stay unbeaten",
+          "summary": "Le défenseur a joué 77 minutes à l'Allianz Arena, où Luis Diaz a inscrit un triplé. Le Bayern reste invaincu après six journées, avec quatre victoires et deux nuls.",
+          "importance": 3,
+          "tags": [
+            "bundesliga",
+            "kim-min-jae"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10906186",
+          "source_lang": "en",
+          "published_at": "2026-10-18T14:26:19+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up PEACEMINUSONE × ZO&FRIENDS à Hongdae",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "K-POP 스퀘어 홍대점",
+      "area": "Hongdae",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-25",
+      "summary": "Pop-up de la marque de G-Dragon en collaboration avec ZO&FRIENDS, ouvert de 11 h à 22 h tous les jours. À une minute de la sortie 8 de la station Hongik Univ.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a14353-2680-7263-8fdf-3972f6df936e",
+      "source_lang": "en"
+    },
+    {
+      "name": "Fan meeting BOYNEXTDOOR : HOME Party",
+      "kind": "autre",
+      "theme": "kpop",
+      "venue": "블루스퀘어 마스터카드홀",
+      "area": "Itaewon",
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-19",
+      "summary": "Soirée à 20 h pour la sortie de HOME: DELUXE. L'accès se fait par tirage au sort en deux tours, réservé aux membres ONEDOOR et aux acheteurs de l'album sur Weverse Shop.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0a763-119e-73da-94d0-cb67ff2629c5",
+      "source_lang": "en"
+    },
+    {
+      "name": "Festival nocturne de Namsan 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "남산백범광장",
+      "area": "Jung-gu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-14",
+      "summary": "Festival d'automne sur trois sites de Namsan, avec le camp de pique-nique en soirée, une promenade parmi les érables et le Palgak Club. Programme détaillé sur le site du festival.",
+      "source_name": "서울시 축제",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=948",
+      "source_lang": "ko"
+    },
+    {
+      "name": "7e Salon des archives de Séoul",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "서울기록원",
+      "area": "Eunpyeong-gu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-10-24",
+      "summary": "Salon consacré à la mémoire de la ville, ouvert de 10 h à 17 h. Des projections en soirée sont sur réservation.",
+      "source_name": "서울시 축제",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=946",
+      "source_lang": "ko",
+      "address": "서울특별시 은평구 통일로62길 7"
+    },
+    {
+      "name": "Festival de village du campus de Gangbuk 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "한신대학교 서울캠퍼스",
+      "area": "Gangbuk-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-10-24",
+      "summary": "Pique-nique de quartier sur la pelouse du campus Hanshin, de 11 h à 18 h.",
+      "source_name": "서울시 축제",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=941",
+      "source_lang": "ko",
+      "address": "서울 강북구 인수봉로 159"
+    }
+  ]
+}
