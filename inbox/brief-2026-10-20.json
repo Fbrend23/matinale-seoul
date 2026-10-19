@@ -1,0 +1,389 @@
+{
+  "date": "2026-10-20",
+  "title": "Kim Yo-jong menace de rallumer les haut-parleurs, l'excédent avec les États-Unis frôle les 100 milliards",
+  "standfirst": "Pyongyang durcit le ton à la frontière pendant que Séoul s'inquiète de son excédent commercial record avec Washington. Côté tech, Microsoft range les agents IA parmi les menaces internes et Amazon finance douze petits réacteurs. Journée courte en gaming.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des sculptures de missiles retirées du festival Moonlight Walk de Nowon",
+          "summary": "Une installation de quarante sculptures de missiles aux drapeaux de sept pays, dont la Corée du Nord, a été retirée du festival Nowon Moonlight Walk après des critiques. Sa sixième édition se poursuit jusqu'au 8 novembre.",
+          "importance": 1,
+          "tags": [
+            "festival",
+            "nowon",
+            "seoul"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10907673",
+          "source_lang": "en",
+          "published_at": "2026-10-19T17:40:05+09:00"
+        },
+        {
+          "headline": "Daegu étend ses aides aux compagnies pour relancer son aéroport international",
+          "original_headline": "대구시, 국제노선 확대 등 대구국제공항 활성화 본격 추진",
+          "summary": "Daegu prépare pour 2027 un plan d'aide aux compagnies aériennes : le soutien aux nouvelles lignes régulières passe de un à deux ans et le minimum de vols des lignes non régulières de huit à six.",
+          "importance": 2,
+          "tags": [
+            "aeroports",
+            "daegu",
+            "vols-internationaux"
+          ],
+          "source_name": "Herald Business",
+          "source_url": "https://biz.heraldcorp.com/article/10907893",
+          "source_lang": "ko",
+          "published_at": "2026-10-20T06:43:09+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Yo-jong menace de reprendre les émissions de haut-parleurs à la frontière",
+          "original_headline": "Kim Yo-jong threatens loudspeaker broadcast resumption, more tactical weapons along border",
+          "summary": "La sœur de Kim Jong-un menace de reprendre les haut-parleurs et d'ajouter des armes tactiques à la frontière. Le ministère de la Défense répond que les grands haut-parleurs, suspendus le 11 juin, ne servent plus.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "frontiere",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10907760",
+          "source_lang": "en",
+          "published_at": "2026-10-19T19:31:52+09:00"
+        },
+        {
+          "headline": "L'excédent commercial avec les États-Unis approche les 100 milliards de dollars",
+          "summary": "L'excédent commercial avec les États-Unis atteint 84,7 milliards de dollars sur neuf mois et devrait dépasser 100 milliards sur l'année, contre 49,5 milliards en 2025. Séoul craint de nouvelles mesures tarifaires de Washington.",
+          "importance": 2,
+          "tags": [
+            "commerce",
+            "etats-unis",
+            "droits-de-douane"
+          ],
+          "source_name": "Korea JoongAng Daily",
+          "source_url": "https://www.koreajoongangdaily.com/business/korea-is-on-track-to-post-a-record-trade-surplus-with-the-us-thats-a-problem-for-seoul/12926059",
+          "source_lang": "en",
+          "published_at": "2026-10-20T07:00:00+09:00"
+        },
+        {
+          "headline": "Lee Jae Myung veut plus de contact direct avec les citoyens et admet des lacunes dans ses réformes",
+          "summary": "Le président Lee Jae Myung promet d'élargir la communication directe avec les citoyens et reconnaît des lacunes dans les réformes, notamment fiscales sur l'immobilier. Il dit pouvoir en ralentir le rythme.",
+          "importance": 3,
+          "tags": [
+            "presidence",
+            "reformes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10907781",
+          "source_lang": "en",
+          "published_at": "2026-10-19T20:25:58+09:00"
+        },
+        {
+          "headline": "Les étrangers affiliés à une retraite à cotisations définies en hausse de 67,5 %",
+          "summary": "Le nombre d'étrangers inscrits à une retraite à cotisations définies a bondi de 67,5 % en trois ans et demi, à 46 872 fin juin 2026. Des experts évoquent des barrières linguistiques.",
+          "importance": 4,
+          "tags": [
+            "retraite",
+            "etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10907456",
+          "source_lang": "en",
+          "published_at": "2026-10-19T15:29:11+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Microsoft range les agents IA parmi les menaces internes",
+          "original_headline": "Microsoft says AI agents are like insider threats as ‘frontier models can’t be trusted’",
+          "summary": "Microsoft présente des protections contre les agents IA, dont Guardian Agents, et compare ces agents à des menaces internes. Defender peut détecter jusqu'à 60 types d'agents. Un cadre juge les modèles frontière peu dignes de confiance.",
+          "importance": 1,
+          "tags": [
+            "agents-ia",
+            "securite",
+            "microsoft"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/19/microsoft-says-ai-agents-are-like-insider-threats-as-frontier-models-cant-be-trusted/",
+          "source_lang": "en",
+          "published_at": "2026-10-20T07:04:28+09:00"
+        },
+        {
+          "headline": "Amazon finance douze petits réacteurs nucléaires dans l'Indiana",
+          "original_headline": "Amazon to fund 12 small nuclear reactors at former Indiana coal plant",
+          "summary": "Amazon finance une centrale de 960 mégawatts dans l'Indiana : douze réacteurs Xe-100 de X-energy, exploités par AEP, sur un ancien site à charbon. Le projet est trois fois plus grand que l'accord de 2024.",
+          "importance": 2,
+          "tags": [
+            "nucleaire",
+            "energie",
+            "amazon"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/19/amazon-to-fund-12-small-nuclear-reactors-at-former-indiana-coal-plant/",
+          "source_lang": "en",
+          "published_at": "2026-10-20T01:55:56+09:00"
+        },
+        {
+          "headline": "Samsung Display étudie une ligne pilote d'OLED sans masque FMM",
+          "original_headline": "삼성디스플레이, 비FMM OLED 경쟁 가세",
+          "summary": "Samsung Display discute avec ses partenaires d'une ligne pilote d'OLED à jet d'encre sans masque métallique FMM. Le procédé pourrait réduire les coûts de plus de 30 % si le rendement est stable.",
+          "importance": 3,
+          "tags": [
+            "oled",
+            "samsung-display",
+            "ecrans"
+          ],
+          "source_name": "ETNews",
+          "source_url": "https://www.etnews.com/20261019000267",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T16:00:00+09:00"
+        },
+        {
+          "headline": "L'outil REA, qui rétro-conçoit des logiciels avec l'IA, s'envole sur GitHub",
+          "original_headline": "[AI는 지금] 만드는 법 몰라도 AI가 프로그램 재현…'REA' 뭐길래",
+          "summary": "L'outil open source REA, qui analyse des logiciels sans code source avec Codex ou Claude Code, a dépassé 320 000 étoiles sur GitHub le 19 octobre. L'article rappelle les risques liés au droit d'auteur.",
+          "importance": 4,
+          "tags": [
+            "open-source",
+            "github",
+            "retro-ingenierie"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261019165618",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T16:58:14+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Festival culturel du jeu se tient à Busan pendant le G-Star",
+          "original_headline": "콘진원, 지스타 벡스코 2전시관에서 ‘2026 게임문화축제’ 개최",
+          "summary": "Le ministère de la Culture et la KOCCA organisent le Festival culturel du jeu du 19 au 22 novembre au BEXCO de Busan, pendant G-Star. Un tournoi amateur Valorant offre 5 millions de wons ; inscriptions dès le 22 octobre.",
+          "importance": 1,
+          "tags": [
+            "g-star",
+            "busan",
+            "esport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322282",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T14:49:10+09:00"
+        },
+        {
+          "headline": "Un grand site de suivi de décompilations de jeux ferme à cause de l'IA",
+          "original_headline": "One of the biggest game decompilation sites is closing because AI has ‘broken the community aspect’",
+          "summary": "Decomp.dev, un grand index de projets de décompilation de jeux, ferme. Son créateur estime que l'IA a « brisé l'aspect communautaire » et que des acteurs malveillants s'emparent de projets ouverts pour les finir avec l'IA.",
+          "importance": 2,
+          "tags": [
+            "ia",
+            "decompilation",
+            "communaute"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/one-of-the-biggest-game-decompilation-sites-is-closing-because-ai-has-broken-the-community-aspect/",
+          "source_lang": "en",
+          "published_at": "2026-10-19T22:47:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ma Seo-yeong remporte l'Iceberg Golf Seoul Shinmun Open après un barrage",
+          "original_headline": "4년5개월, 83번째 도전 끝에 따낸 우승, 마서영 “꿈 같은 일, 쫓기듯 경기할 일 없어졌어요”",
+          "summary": "Ma Seo-yeong, 23 ans, remporte l'Iceberg Golf Seoul Shinmun Open au H1 Club d'Icheon après un barrage, avec 212 coups (-4). Première victoire après 83 tournois depuis ses débuts pro en 2022.",
+          "importance": 1,
+          "tags": [
+            "klpga",
+            "golf"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642293",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T06:25:00+09:00"
+        },
+        {
+          "headline": "Korean Air bat Samsung Fire en ouverture de la Coupe de volley de Yeosu",
+          "original_headline": "‘케트진스키·정지석 46득점’ 대한항공, 토미 감독과 확 달라져 돌아온 삼성화재 꺾고 ‘첫 승’[현장리뷰]",
+          "summary": "Korean Air bat Samsung Fire 3-1 (25-21, 28-26, 16-25, 25-20) en ouverture de la Coupe de volley de Yeosu. Kethjinsky marque 28 points et Jung Ji-seok 18.",
+          "importance": 2,
+          "tags": [
+            "volley-ball",
+            "coupe-de-yeosu"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642521",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T21:13:53+09:00"
+        },
+        {
+          "headline": "Le cécifoot coréen battu 1-0 par le Japon aux Jeux para-asiatiques",
+          "original_headline": "Korea's blind football team presses on after 1-0 defeat to Japan",
+          "summary": "L'équipe masculine de cécifoot perd 1-0 face au Japon à Nagoya, sur un but à la 3e minute. Elle doit battre la Chine mardi et la Thaïlande mercredi pour espérer une médaille.",
+          "importance": 3,
+          "tags": [
+            "jeux-para-asiatiques",
+            "cecifoot"
+          ],
+          "source_name": "Korea JoongAng Daily",
+          "source_url": "https://www.koreajoongangdaily.com/sports/koreas-blind-football-team-presses-on-after-10-defeat-to-japan/12927290",
+          "source_lang": "en",
+          "published_at": "2026-10-19T16:19:41+09:00"
+        },
+        {
+          "headline": "Le Seoul SK Knights perd son premier match de la saison de KBL",
+          "original_headline": "‘우여곡절’ 서울 SK, 드디어 경기 시작→정규리그 10구단 경쟁 ‘진짜’ 시작 [SS포커스]",
+          "summary": "Le Seoul SK joue son premier match de la saison à Jamsil et s'incline 81-87 face à Goyang Sono, après l'annulation de la BCL Asie qui avait retardé son entrée en lice.",
+          "importance": 4,
+          "tags": [
+            "kbl",
+            "basket-ball"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1642419",
+          "source_lang": "ko",
+          "published_at": "2026-10-19T14:21:56+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "3e Festival de rue de la famille de Yangcheon",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "신정네거리역 일대",
+      "area": "Yangcheon-gu",
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-25",
+      "summary": "Fête de rue d'une journée autour de la station Sinjeongnegeori, de 10 h 30 à 21 h. Gratuit.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=584",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival d'ouverture Jangmyeon Chulgo au Centre de création théâtrale de Séoul",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "서울연극창작센터",
+      "area": "Seongbuk-gu",
+      "start_date": "2026-10-02",
+      "end_date": "2026-10-24",
+      "summary": "Festival de portes ouvertes du Centre de création théâtrale de Séoul. Gratuit ; réservation en ligne via Naver, deux places par personne.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=854",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon du livre d'art de Séoul 2026 (Unlimited Edition 18)",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "서울시립 북서울미술관",
+      "area": "Nowon-gu",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "summary": "18e édition du salon du livre d'artiste au Musée d'art Buk-Seoul, réunissant 254 équipes de créateurs indépendants autour de nouvelles publications et d'ateliers.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=853",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Jeonghan x Joshua : DREAMSCAPE chez HYBE",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "하이브 용산",
+      "area": "Yongsan-gu",
+      "start_date": "2026-10-20",
+      "end_date": "2026-10-25",
+      "summary": "Pop-up Jeonghan x Joshua (Seventeen) DREAMSCAPE à HYBE Yongsan, de 11 h à 20 h. Réservation préalable via Weverse.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a132f3-5128-7b1e-94f0-e6254a166862",
+      "source_lang": "en"
+    },
+    {
+      "name": "Fan meeting Giselle (aespa) : 2026 GISELLE B-day PARTY",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "명화라이브홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-10-30",
+      "summary": "Soirée d'anniversaire de Giselle (aespa) au Myunghwa Live Hall, dès 7 ans. Place assise à 77 000 wons sur la billetterie NOL.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/products/26013805",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/products/26013805"
+    },
+    {
+      "name": "Festival musical ASEAN-Corée : ROUND in Korea 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "인천남동체육관",
+      "area": "Incheon",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "summary": "Festival musical ASEAN-Corée au gymnase Namdong d'Incheon. Gratuit sur réservation NOL, pièce d'identité avec passeport requise.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/ticket/products/26013510",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/products/26013510"
+    },
+    {
+      "name": "Festival WEFESTA 2026 à Pie Factory",
+      "kind": "festival",
+      "theme": "anime",
+      "venue": "파이팩토리",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "summary": "Festival des webtoons Lezhin et Bomtoon à Pie Factory, entièrement payant pour les adultes. Billetterie via TicketLink, dates de vente à annoncer.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20261015102010",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up webtoon Special Civil Servant à Yongsan",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "용산 아이파크몰",
+      "area": "Yongsan-gu",
+      "start_date": "2026-10-16",
+      "end_date": "2026-11-11",
+      "summary": "Pop-up du webtoon de Naver à I'Park Mall Yongsan, 27 produits dérivés en vente. Réservation obligatoire jusqu'au 18 octobre, puis entrée sur place.",
+      "source_name": "Sports Seoul",
+      "source_url": "https://www.sportsseoul.com/news/read/1641813",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Canon « Canon Photo Hanbangdang » à Seochon",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "유스퀘이크",
+      "area": "Jongno-gu",
+      "start_date": "2026-10-23",
+      "end_date": "2026-11-01",
+      "summary": "Pop-up photo de Canon Korea à Seochon, ouvert de 11 h à 19 h en semaine et de 10 h à 20 h le week-end. Réservation prioritaire via Naver Map.",
+      "source_name": "ETNews",
+      "source_url": "https://www.etnews.com/20261016000187",
+      "source_lang": "ko",
+      "address": "서울특별시 종로구 효자로 25"
+    }
+  ]
+}
