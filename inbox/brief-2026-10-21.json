@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-21",
+  "title": "Le Kospi chute de près de 4 %, Séoul réduit son ambassade à Kiev",
+  "standfirst": "La Bourse de Séoul recule de 3,73 % sur les doutes autour de l'IA, et le ministère des Affaires étrangères retire la moitié du personnel de son ambassade en Ukraine. Washington interdit DeepSeek aux agences civiles. Rien de vérifiable côté tourisme ce matin.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": "Rien de vérifiable côté tourisme ce matin : les rubriques voyage consultées n'ont rien publié depuis le 18 octobre.",
+      "items": []
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul retire environ la moitié du personnel de son ambassade en Ukraine",
+          "summary": "Le ministère des Affaires étrangères réduit ses effectifs à Kiev, après le retour de l'ambassadeur le 10 octobre. Le différend porte sur la révélation par Zelensky du transfert de deux prisonniers de guerre nord-coréens vers le Sud.",
+          "importance": 1,
+          "tags": [
+            "ukraine",
+            "diplomatie",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10909026",
+          "source_lang": "en",
+          "original_headline": "Seoul to withdraw half of embassy staff from Ukraine as POW disclosure dispute deepens",
+          "published_at": "2026-10-20T17:31:54+09:00"
+        },
+        {
+          "headline": "Le Kospi perd 3,73 % sur les doutes autour de l'IA et les troubles en France",
+          "summary": "L'indice clôture à 5 552,74 points. SK hynix cède 4,23 %, Samsung Electronics 2,98 %. Les étrangers vendent pour 535,4 milliards de wons. Le won s'échange à 1 328,1 pour un dollar.",
+          "importance": 2,
+          "tags": [
+            "kospi",
+            "bourse",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10908892",
+          "source_lang": "en",
+          "original_headline": "Seoul stocks slide nearly 4% on AI jitters, unrest in France",
+          "published_at": "2026-10-20T16:08:29+09:00"
+        },
+        {
+          "headline": "Le suspect des incendies de Gangnam invoque une fraude au brevet",
+          "summary": "Deux immeubles de cabinets de brevets de Yeoksam-dong ont brûlé à sept minutes d'intervalle, faisant 19 blessés dont cinq graves. Arrêté, le suspect dit avoir été floué ; il avait déjà tenté une attaque similaire en 2022.",
+          "importance": 3,
+          "tags": [
+            "gangnam",
+            "incendie",
+            "police"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10909100",
+          "source_lang": "en",
+          "original_headline": "Gangnam arson suspect claims patent fraud, had attempted similar attack in 2022",
+          "published_at": "2026-10-20T19:43:09+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Washington ordonne aux agences civiles de retirer DeepSeek",
+          "summary": "Le DHS interdit aux agences fédérales civiles d'acheter les produits de DeepSeek et leur ordonne de les retirer, y compris les services tiers qui en dépendent, pour des raisons de sécurité nationale. Des dérogations restent possibles. Pékin proteste.",
+          "importance": 1,
+          "tags": [
+            "deepseek",
+            "etats-unis",
+            "securite"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
+          "source_lang": "en",
+          "original_headline": "US orders federal agencies to remove China’s DeepSeek AI from their systems",
+          "published_at": "2026-10-20T22:07:24+09:00"
+        },
+        {
+          "headline": "Google rend open source TorchTPU pour faire tourner PyTorch sur ses puces",
+          "summary": "Après Amazon et son TorchNeuron, Google ouvre TorchTPU, qui exécute PyTorch nativement sur ses TPU. Les deux géants attaquent ainsi l'emprise de Nvidia sur les développeurs, sans que l'article voie de départ massif.",
+          "importance": 2,
+          "tags": [
+            "pytorch",
+            "nvidia",
+            "google"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/20/google-has-joined-amazon-in-attacking-nvidias-stronghold-with-ai-app-developers/",
+          "source_lang": "en",
+          "original_headline": "Google has joined Amazon in attacking Nvidia’s stronghold with AI app developers",
+          "published_at": "2026-10-21T03:38:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Krafton présente cinq jeux au G-Star 2026 à Busan",
+          "summary": "L'éditeur emmène PUBG, l'action-RPG Tarae: The Unbound, Age Twisters, Waltz and Jam et Overgeared Hero. Waltz and Jam sort dans le monde entier le 3 décembre 2026. C'est sa dixième participation consécutive au salon.",
+          "importance": 1,
+          "tags": [
+            "krafton",
+            "g-star",
+            "busan"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=322305",
+          "source_lang": "ko",
+          "original_headline": "크래프톤, 지스타 2026 출품작 5종 공개",
+          "published_at": "2026-10-20T10:14:00+09:00"
+        },
+        {
+          "headline": "EA annonce le retour de la série de boxe Fight Night",
+          "summary": "EA Sports confirme sur les réseaux sociaux que Fight Night revient, quinze ans après Fight Night Champion (2011). L'annonce coïncide avec la fin du rachat d'EA par le fonds saoudien PIF.",
+          "importance": 2,
+          "tags": [
+            "ea-sports",
+            "fight-night",
+            "boxe"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ea-sports-is-officially-reviving-its-fight-night-boxing-series/",
+          "source_lang": "en",
+          "published_at": "2026-10-21T04:58:57+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Kia Tigers balaient les LG Twins et ferment le stade de Jamsil",
+          "original_headline": "Ugly loss by KBO champions closes book on iconic stadium",
+          "summary": "Les Tigers l'emportent 13-1 au match 3 et gagnent la série 3-0. Jamsil, ouvert en 1982, sera démoli après la saison pour un nouveau dôme. Les Twins, tenants du titre, perdent la série 24-5.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "jamsil",
+            "baseball"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261021/ugly-loss-by-kbo-champions-closes-book-on-iconic-stadium",
+          "source_lang": "en",
+          "published_at": "2026-10-21T00:21:00+09:00"
+        },
+        {
+          "headline": "Le FC Séoul à un pas du titre en K League, l'Asie lui échappe",
+          "original_headline": "Seoul's title wait almost over, but Asia still elusive",
+          "summary": "Séoul compte 16 points d'avance avec six matchs à jouer et 60 buts en 32 rencontres. Le club a pourtant perdu ses deux premiers matchs de la Ligue des champions d'Asie 2.",
+          "importance": 2,
+          "tags": [
+            "k-league",
+            "fc-seoul"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261020/seouls-title-wait-almost-over-but-asia-still-elusive",
+          "source_lang": "en",
+          "published_at": "2026-10-20T10:27:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Salon international de la franchise IFS Automne 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-22",
+      "end_date": "2026-10-24",
+      "summary": "Salon coréen de la franchise et de la création d'entreprise au hall C du Coex, du 22 au 24 octobre.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Semaine du voyage bien-être de Séoul 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "봉은사",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-29",
+      "end_date": "2026-11-04",
+      "summary": "Semaine de voyage bien-être organisée par la ville de Séoul autour du temple Bongeunsa et du quartier de Gangnam.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalMain.do",
+      "source_lang": "ko"
+    }
+  ]
+}
