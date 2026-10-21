@@ -1,0 +1,228 @@
+{
+  "date": "2026-10-22",
+  "title": "Pyongyang annonce ses haut-parleurs, EA ferme BioWare et Meta est condamné à 25 milliards",
+  "standfirst": "Kim Yo-jong promet des haut-parleurs opérationnels d'ici la fin du mois à la frontière. À Séoul, la Cour constitutionnelle tranche un conflit d'audit parlementaire. Côté tech, une faille PHP inquiette le web ; côté jeu, EA ferme BioWare.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": "Rien de saillant côté voyage : aucune annonce vérifiable ce matin, et la rubrique Travel du Korea Herald n'a rien publié depuis le 18 octobre.",
+      "items": []
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Yo-jong promet des haut-parleurs « pleinement opérationnels » d'ici la fin du mois",
+          "original_headline": "Kim Yo-jong vows to resume loudspeaker broadcasts this month",
+          "summary": "La sœur de Kim Jong-un annonce la reprise des émissions à la frontière ce mois-ci, après une visite de sites avec un maréchal. Elle accuse Séoul de provocations, tirs de sommation compris.",
+          "analysis": "Les deux explosions de mines du 21 septembre, qui ont blessé trois soldats sud-coréens dans la DMZ, servent de toile de fond.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "frontiere",
+            "haut-parleurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10910513",
+          "source_lang": "en",
+          "published_at": "2026-10-21T20:57:15+09:00"
+        },
+        {
+          "headline": "La Cour constitutionnelle autorise une députée d'opposition à siéger à l'audit parlementaire",
+          "original_headline": "Constitutional Court allows Rep. Lee Jin-sook to attend parliamentary audit",
+          "summary": "La Cour suspend en partie l'exclusion de Lee Jin-sook décidée par le Parti démocrate. Elle pourra assister à l'audit de jeudi, sans parler des sujets qui la concernent. C'est une première.",
+          "importance": 2,
+          "tags": [
+            "cour-constitutionnelle",
+            "assemblee-nationale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10910541",
+          "source_lang": "en",
+          "published_at": "2026-10-21T22:04:39+09:00"
+        },
+        {
+          "headline": "Le boom des étudiants étrangers met les universités à l'épreuve",
+          "original_headline": "Korea's int'l student boom puts universities to new test",
+          "summary": "La Corée compte 307 464 étudiants étrangers, objectif de 300 000 atteint d'avance. Mais 42,9 % des diplômés partent et moins de 5 000 trouvent un emploi sur place. Un assouplissement du visa de travail est proposé.",
+          "importance": 3,
+          "tags": [
+            "etudiants-etrangers",
+            "universites",
+            "visa"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/education/20261022/koreas-intl-student-boom-puts-universities-to-new-test?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-10-22T07:12:04+09:00"
+        },
+        {
+          "headline": "CGV Yongsan retire « The Odyssey » de son écran Imax pour respecter le quota de films coréens",
+          "original_headline": "Why Seoul's biggest Imax screen pulled 'The Odyssey' while it was still selling out",
+          "summary": "CGV Yongsan remplace le film de Nolan, rempli à 80 %, par un thriller coréen. Le quota d'écran impose 73 jours de films coréens par an ; la salle n'en a fait que 35.",
+          "importance": 4,
+          "tags": [
+            "cinema",
+            "quota-d-ecran",
+            "imax"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10910210",
+          "source_lang": "en",
+          "published_at": "2026-10-21T15:23:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Meta condamné à 25 milliards de dollars au Nouveau-Mexique",
+          "original_headline": "Meta ordered to pay $25 billion in case related to Cambridge Analytica scandal",
+          "summary": "Un juge fait payer 25 milliards de dollars à Meta pour avoir trompé les utilisateurs de l'État sur la confidentialité, retenant 43 millions d'infractions. Meta fera appel.",
+          "importance": 1,
+          "tags": [
+            "meta",
+            "vie-privee",
+            "justice"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/21/meta-ordered-to-pay-25-billion-in-case-related-to-cambridge-analytica-scandal/",
+          "source_lang": "en",
+          "published_at": "2026-10-22T04:42:32+09:00"
+        },
+        {
+          "headline": "Deux failles critiques dans PHP, trouvées avec l'aide de l'IA, inquiètent le web",
+          "original_headline": "PHP armageddon: OpenAI, Google’s Wiz find ancient holes, panicking the internet",
+          "summary": "La NSA recommande de couper tout site PHP non corrigé. Les failles datent de PHP 5 (2004) ; les correctifs sont publiés. OpenAI ne signale aucune exploitation. PHP équiperait environ 70 % des sites.",
+          "importance": 2,
+          "tags": [
+            "php",
+            "cybersecurite",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/21/php-armageddon-openai-googles-wiz-find-ancient-holes-panicking-the-internet/",
+          "source_lang": "en",
+          "published_at": "2026-10-22T02:59:12+09:00"
+        },
+        {
+          "headline": "Tesla lance la production d'Optimus en Californie, bénéfice en baisse de 43 %",
+          "original_headline": "Tesla starts Optimus robot production in California as profit falls 43%",
+          "summary": "Le robot humanoïde entre en « production précoce » à Fremont ; Musk vise 20 000 par semaine fin 2027. Chiffre d'affaires stable à 28,04 milliards de dollars, bénéfice net de 787 millions.",
+          "importance": 3,
+          "tags": [
+            "tesla",
+            "robots-humanoides"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/21/tesla-stars-optimus-robot-production-in-california-as-profit-falls-43/",
+          "source_lang": "en",
+          "published_at": "2026-10-22T05:33:09+09:00"
+        },
+        {
+          "headline": "Recursive publie Flint, un modèle de code libre, conçu en grande partie par une IA",
+          "original_headline": "Recursive launches Flint, a laptop coding model it says was largely built by AI",
+          "summary": "Modèle gratuit sous licence Apache 2.0, 40 milliards de paramètres dont 2,5 milliards actifs. Recursive annonce environ 131 tokens par seconde sur un MacBook Pro M4 Pro.",
+          "importance": 4,
+          "tags": [
+            "modeles-ia",
+            "open-source",
+            "code"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/",
+          "source_lang": "en",
+          "published_at": "2026-10-22T05:27:41+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "EA ferme BioWare et annule le prochain Mass Effect",
+          "original_headline": "EA is closing BioWare and cancelling the next Mass Effect",
+          "summary": "EA annonce la fermeture du studio, deux mois après son rachat par le fonds saoudien PIF. Selon Bloomberg, environ 400 postes sont supprimés au sein du groupe.",
+          "importance": 1,
+          "tags": [
+            "ea",
+            "bioware",
+            "licenciements"
+          ],
+          "source_name": "Video Games Chronicle",
+          "source_url": "https://www.videogameschronicle.com/news/ea-is-closing-bioware-and-cancelling-the-next-mass-effect/",
+          "source_lang": "en",
+          "published_at": "2026-10-22T02:10:48+09:00"
+        },
+        {
+          "headline": "Le PEGI relève à 16 ans la classification des jeux à loot boxes, dont EA Sports FC et Pokémon Go",
+          "original_headline": "EA Sports FC and Pokémon Go age ratings bumped to 16 in PEGI loot box crackdown",
+          "summary": "Les jeux numériques classés PEGI 3, 7 ou 12 avec objets aléatoires payants passent à PEGI 16. Le déploiement court jusqu'à fin octobre, dans le sillage de l'USK allemand.",
+          "importance": 2,
+          "tags": [
+            "pegi",
+            "loot-boxes",
+            "classification"
+          ],
+          "source_name": "Video Games Chronicle",
+          "source_url": "https://www.videogameschronicle.com/news/ea-sports-fc-and-pokemon-go-age-ratings-bumped-to-16-in-pegi-loot-box-crackdown/",
+          "source_lang": "en",
+          "published_at": "2026-10-21T19:44:00+09:00"
+        },
+        {
+          "headline": "Un magasin Pokémon permanent ouvre à Londres d'ici 2029",
+          "original_headline": "A permanent Pokémon retail store is coming to London, the first of several planned to open outside Asia",
+          "summary": "The Pokémon Company annonce son premier magasin permanent hors d'Asie d'ici 2029, à Londres, sans emplacement précis. Il s'agit du premier d'une série prévue à l'international.",
+          "importance": 3,
+          "tags": [
+            "pokemon",
+            "commerce"
+          ],
+          "source_name": "Video Games Chronicle",
+          "source_url": "https://www.videogameschronicle.com/news/a-permanent-pokemon-retail-store-is-coming-to-london-the-first-of-several-outside-asia/",
+          "source_lang": "en",
+          "published_at": "2026-10-21T22:23:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Coréennes à la 17e place du classement FIFA, leur meilleur rang en 40 mois",
+          "original_headline": "South Korea rises to No. 17 in FIFA women's rankings",
+          "summary": "Gagnant deux places grâce au bronze des Jeux asiatiques d'Aichi-Nagoya, la Corée est quatrième de l'AFC et devance la Chine (18e). Prochain classement le 7 décembre.",
+          "importance": 1,
+          "tags": [
+            "football-feminin",
+            "classement-fifa"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10910203",
+          "source_lang": "en",
+          "published_at": "2026-10-21T15:19:57+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up Heendy et Kkumdori à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-09-23",
+      "end_date": "2026-11-01",
+      "summary": "Papeterie éphémère réunissant les mascottes Heendy et Kkumdori, au programme des pop-ups d'octobre de The Hyundai.",
+      "source_name": "The Hyundai",
+      "source_url": "https://www.ehyundai.com/newPortal/NS/NS000001_V.do?seq=2093124&bbsCd=201",
+      "source_lang": "ko"
+    }
+  ]
+}
