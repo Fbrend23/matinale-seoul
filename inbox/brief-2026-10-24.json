@@ -1,0 +1,179 @@
+{
+  "date": "2026-10-24",
+  "title": "Oh Se-hoon acquitté, Séoul propose des pourparlers militaires au Nord",
+  "standfirst": "Le maire de Séoul est acquitté en appel et Séoul propose au Nord des pourparlers sur la frontière. Merz sera à Séoul les 29 et 30 octobre. Pour les voyageurs, un dispositif policier renforcé pour Halloween. Journée limitée côté tech, jeu vidéo et sport : plusieurs sources étaient inaccessibles.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "4 594 policiers pour encadrer les foules d'Halloween à Séoul",
+          "summary": "Une période de gestion spéciale court jusqu'au 1er novembre à Itaewon, Hongdae, Seongsu, Myeong-dong et Ikseon-dong. La circulation sera strictement contrôlée du 30 octobre au 1er novembre à Itaewon.",
+          "analysis": "Les cinq quartiers visés sont ceux où se concentrent les soirées : prévoir plus de temps d'accès et respecter les consignes d'évacuation.",
+          "importance": 1,
+          "tags": [
+            "halloween",
+            "securite",
+            "itaewon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913042",
+          "source_lang": "en",
+          "published_at": "2026-10-23T15:40:55+09:00"
+        },
+        {
+          "headline": "Les pharmacies, nouvelle étape beauté des touristes étrangers",
+          "summary": "Les pharmacies ont représenté 13,88 % des dépenses médicales des visiteurs étrangers en septembre, soit 31,8 milliards de wons. À Namdaemun, une pharmacienne dit que les touristes font 40 à 50 % de ses ventes.",
+          "importance": 2,
+          "tags": [
+            "k-beauty",
+            "shopping",
+            "pharmacies"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20261024/pharmacies-emerge-as-new-k-beauty-stops-for-foreign-tourists",
+          "source_lang": "en",
+          "published_at": "2026-10-24T07:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le maire de Séoul Oh Se-hoon acquitté en appel",
+          "summary": "La Haute Cour de Séoul annule la condamnation à 10 millions de wons d'amende pour violation de la loi sur les fonds politiques. Elle juge les preuves insuffisantes ; le procureur spécial annonce un pourvoi en cassation.",
+          "importance": 1,
+          "tags": [
+            "oh-se-hoon",
+            "justice",
+            "fonds-politiques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10912901",
+          "source_lang": "en",
+          "published_at": "2026-10-23T14:19:45+09:00"
+        },
+        {
+          "headline": "Séoul propose des pourparlers militaires à Pyongyang sur la frontière",
+          "summary": "Après l'explosion d'une mine qui a blessé des soldats sud-coréens dans la DMZ, Séoul veut discuter de la ligne de démarcation et rétablir les lignes de communication militaires. Pyongyang nie toute responsabilité.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "defense",
+            "dmz"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913000",
+          "source_lang": "en",
+          "published_at": "2026-10-23T15:11:57+09:00"
+        },
+        {
+          "headline": "Le chancelier Merz en visite à Séoul les 29 et 30 octobre",
+          "summary": "Friedrich Merz rencontrera le président Lee Jae Myung le 29 et ouvrira la conférence des entreprises allemandes d'Asie-Pacifique. Au menu : commerce, batteries, semi-conducteurs, IA et défense. C'est sa première visite en Corée.",
+          "importance": 3,
+          "tags": [
+            "allemagne",
+            "diplomatie",
+            "sommet"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913322",
+          "source_lang": "en",
+          "published_at": "2026-10-23T21:41:54+09:00"
+        },
+        {
+          "headline": "Plus de 31 000 étudiants étrangers en séjour irrégulier",
+          "summary": "En août, 31 665 titulaires de visas D-2 ou D-4 étaient en situation irrégulière, dont 82,8 % de Vietnamiens. Le taux atteint 29,2 % pour les visas de langue D-4, contre 3,6 % pour les D-2.",
+          "importance": 4,
+          "tags": [
+            "visas",
+            "etudiants-etrangers",
+            "immigration"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10912950",
+          "source_lang": "en",
+          "published_at": "2026-10-23T14:46:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "SK hynix renonce à la cotation américaine de Solidigm",
+          "summary": "SK hynix abandonne le projet, évoqué le 5 août, d'introduire en bourse aux États-Unis sa filiale NAND, valorisée jusqu'à 150 milliards de dollars selon Reuters. L'action SK hynix a perdu 35 % en un mois.",
+          "importance": 1,
+          "tags": [
+            "sk-hynix",
+            "solidigm",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10912968",
+          "source_lang": "en",
+          "published_at": "2026-10-23T14:57:57+09:00"
+        },
+        {
+          "headline": "L'iPhone Duo arrive en Corée à 3,29 millions de wons",
+          "summary": "Le pliable d'Apple, sorti vendredi dans plus de 70 pays, coûte plus d'un million de wons de plus que le Galaxy Z Fold8. IDC ne lui prévoit que 5 % des livraisons de pliables en Corée en 2027.",
+          "importance": 2,
+          "tags": [
+            "apple",
+            "iphone-duo",
+            "smartphones"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10912978",
+          "source_lang": "en",
+          "published_at": "2026-10-23T15:00:26+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Worlds de League of Legends se prolongent en boutique à Séoul",
+          "summary": "Le groupe virtuel K/DA revient après six ans. 7-Eleven sort sept produits dérivés avant le Pepero Day, Uniqlo propose des motifs K/DA, et un pop-up Riot Games ouvre au Lotte World Mall jusqu'au 1er novembre.",
+          "importance": 1,
+          "tags": [
+            "league-of-legends",
+            "e-sport",
+            "k-da"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10912879",
+          "source_lang": "en",
+          "published_at": "2026-10-23T14:01:06+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Pas d'item vérifiable ce matin : les pages sportives du jour n'étaient pas accessibles à la lecture.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert Park Jinyoung [CODE#] à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "장충체육관",
+      "area": "Jung-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "summary": "Deux concerts solo de Park Jinyoung au gymnase Jangchung, samedi à 18 h et dimanche à 16 h, pour le coup d'envoi de sa tournée. Places de 154 000 à 176 000 wons.",
+      "source_name": "Melon Ticket",
+      "source_url": "https://ticket.melon.com/performance/index.htm?prodId=213880",
+      "source_lang": "ko",
+      "booking_url": "https://ticket.melon.com/performance/index.htm?prodId=213880"
+    }
+  ]
+}
