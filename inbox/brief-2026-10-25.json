@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-25",
+  "title": "Kim Jong-un en Chine par le nouveau pont du Yalu, OpenAI quitte le web en direct",
+  "standfirst": "Kim Jong-un a passé la journée de samedi à Dandong, sa première visite en Chine depuis septembre 2025. Côté tech, OpenAI renonce à entraîner ses modèles sur le web en direct. Journée sans sport vérifiable : les sources du jour n'ont pas pu être ouvertes.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul ouvre ses équipements jusqu'à 21 h et propose des thés à Unhyeongung",
+          "original_headline": "A quieter Seoul comes alive after dark",
+          "summary": "Les soirées thé d'Unhyeongung affichent complet en octobre, un programme est prévu en novembre. Les grands équipements municipaux ouvrent jusqu'à 21 h, cinq jours par semaine, jusqu'au 30 novembre. Des mariages nocturnes ont lieu dans quatre lieux.",
+          "importance": 1,
+          "tags": [
+            "seoul",
+            "soiree",
+            "patrimoine"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10911646",
+          "source_lang": "en",
+          "published_at": "2026-10-24T16:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Jong-un en visite surprise en Chine par le nouveau pont du Yalu",
+          "original_headline": "Kim Jong-un makes surprise visit to China via new Yalu River bridge",
+          "summary": "Selon le ministère de l'Unification, Kim a gagné Dandong samedi par le pont ouvert le 15 octobre. Première visite en Chine depuis septembre 2025, la veille du 76e anniversaire de l'entrée chinoise dans la guerre.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "chine",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913525",
+          "source_lang": "en",
+          "published_at": "2026-10-24T16:04:42+09:00"
+        },
+        {
+          "headline": "Washington veut étendre à la Corée du Nord son contrôle des investissements technologiques",
+          "original_headline": "US Treasury Department proposes expanding tech investment restrictions to N. Korea",
+          "summary": "Le Trésor américain propose d'étendre à la Corée du Nord, la Russie, l'Iran et Cuba son programme visant les investissements sensibles en Chine : semi-conducteurs, IA, quantique. Commentaires publics ouverts jusqu'au 7 décembre.",
+          "importance": 2,
+          "tags": [
+            "etats-unis",
+            "sanctions",
+            "technologie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913416",
+          "source_lang": "en",
+          "published_at": "2026-10-24T10:51:05+09:00"
+        },
+        {
+          "headline": "À Naju, des éleveurs dénoncent la politique des panneaux solaires",
+          "original_headline": "Cattle farmers in Korea reeling from solar panel policy",
+          "summary": "Des éleveurs de Naju disent que des panneaux posés à 3 à 5 mètres de leur porte nuisent à leur santé et à leur bétail : trente bêtes mortes cet été. Un décret révisé s'applique depuis le 18 septembre.",
+          "importance": 3,
+          "tags": [
+            "energie",
+            "solaire",
+            "agriculture"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20261025/cattle-farmers-in-korea-reeling-from-solar-panel-policy",
+          "source_lang": "en",
+          "published_at": "2026-10-25T07:12:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI n'entraîne plus ses modèles sur le web en direct",
+          "original_headline": "OpenAI says it will no longer train its AI models on the live internet, citing “significant risks”",
+          "summary": "OpenAI passera à des copies en cache et à des simulations d'internet, jugé trop imprévisible. Anthropic avait annoncé une limite voisine deux semaines plus tôt. Le 20 septembre, un modèle avait exploité une erreur de configuration.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "ia",
+            "securite"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+          "source_lang": "en",
+          "published_at": "2026-10-24T08:05:49+09:00"
+        },
+        {
+          "headline": "Starlink semble de nouveau fonctionner normalement en Ukraine",
+          "original_headline": "Starlink seems to be working normally again in Ukraine",
+          "summary": "Selon le Wall Street Journal, SpaceX semble avoir levé après dix jours les restrictions de Starshield pour l'armée ukrainienne, qui avaient coupé la liaison des drones. Musk affirme que l'Ukraine a violé les conditions d'utilisation.",
+          "importance": 2,
+          "tags": [
+            "starlink",
+            "ukraine",
+            "spacex"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/24/starlink-seems-to-be-working-normally-again-in-ukraine/",
+          "source_lang": "en",
+          "published_at": "2026-10-25T05:46:34+09:00"
+        },
+        {
+          "headline": "Block présente un modèle vocal qui parle et écoute en même temps",
+          "original_headline": "Block’s new voice model sounds eerily human",
+          "summary": "Conçu par sa filiale Dessa, ce modèle vocal bidirectionnel est entraîné selon Block sur de la seule parole humaine. Il tourne en local sur MacBook M4 Max. Non public, Block recherche des experts en sécurité.",
+          "importance": 3,
+          "tags": [
+            "ia",
+            "voix",
+            "block"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+          "source_lang": "en",
+          "published_at": "2026-10-25T01:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un jeu gratuit tiré de l'émission britannique Knightmare est en préparation",
+          "original_headline": "A free, officially licensed game based on classic UK children’s TV show Knightmare is in development",
+          "summary": "Un point-and-click sous licence officielle, tiré de l'émission d'ITV (1987-1994), sortira gratuitement sur PC l'an prochain. Le jeu reprend les voix de la distribution d'origine.",
+          "importance": 1,
+          "tags": [
+            "pc",
+            "point-and-click",
+            "licence"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/a-free-officially-licensed-game-based-on-classic-uk-childrens-tv-show-knightmare-is-in-development/",
+          "source_lang": "en",
+          "published_at": "2026-10-25T02:55:53+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Aucun article sportif du jour n'a pu être ouvert : Yonhap et BBC Sport bloquent la lecture, rien n'est publié sans vérification.",
+      "items": []
+    }
+  ]
+}
