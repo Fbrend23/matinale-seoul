@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-26",
+  "title": "Un excédent courant record, des appels au 112 en langues étrangères qui doublent, et le pont Jamsu fermé aux voitures",
+  "standfirst": "Séoul met en avant un excédent courant de 116,6 milliards de dollars au deuxième trimestre. Côté vie pratique, le pont Jamsu ferme aux voitures dès minuit et la police peine à suivre les appels d'étrangers. Journée sans source lisible côté jeu vidéo : la rubrique reste vide.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le pont Jamsu ferme à la circulation pour devenir piéton",
+          "original_headline": "Jamsu Bridge readies for pedestrian makeover",
+          "summary": "Le pont Jamsu ferme à la circulation à minuit lundi. Il doit devenir un pont réservé aux piétons et aux cyclistes d'ici août de l'an prochain, précise la légende d'une photo Yonhap.",
+          "importance": 1,
+          "tags": [
+            "pont-jamsu",
+            "transports",
+            "seoul"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913950",
+          "source_lang": "en",
+          "published_at": "2026-10-25T15:42:19+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee met en avant un excédent courant record, deuxième du monde",
+          "original_headline": "Lee says S. Korea emerging as global economic leader on record current account surplus",
+          "summary": "Le président Lee Jae Myung cite des données du FMI : l'excédent courant coréen du deuxième trimestre atteint 116,63 milliards de dollars, deuxième rang mondial derrière la Chine (193,72 milliards), plus que l'Allemagne et le Japon réunis.",
+          "importance": 1,
+          "tags": [
+            "economie",
+            "excedent-courant",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10914020",
+          "source_lang": "en",
+          "published_at": "2026-10-25T19:45:45+09:00"
+        },
+        {
+          "headline": "Les appels au 112 en langue étrangère doublent en un an",
+          "original_headline": "Police interpretation gaps leave foreigners lost in translation",
+          "summary": "Les appels au 112 dans une langue étrangère passent de 10 348 en 2024 à 21 252 en 2025, et 21 012 sont déjà comptés sur huit mois de 2026. La police prépare un 112 doté d'IA, fin 2027.",
+          "analysis": "L'interprétation reste le point faible des étrangers face à la police : les experts recommandent une vérification humaine des traductions automatiques.",
+          "importance": 2,
+          "tags": [
+            "police",
+            "etrangers",
+            "interpretation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913898",
+          "source_lang": "en",
+          "published_at": "2026-10-25T14:13:22+09:00"
+        },
+        {
+          "headline": "Les étrangers cotisent près de 1 000 milliards de wons de plus qu'ils ne reçoivent",
+          "original_headline": "Foreign health insurance surplus nears W1tr",
+          "summary": "Les assurés étrangers ont versé 2,51 billions de wons de cotisations à l'assurance maladie en 2025, pour 1,52 billion de prestations : un excédent de 989,1 milliards de wons, selon le NHIS. Les Chinois sont en déficit.",
+          "importance": 3,
+          "tags": [
+            "assurance-maladie",
+            "etrangers",
+            "nhis"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913873",
+          "source_lang": "en",
+          "published_at": "2026-10-25T13:40:47+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'IA n'a rien rapporté à la plupart des entreprises américaines, selon Apollo",
+          "original_headline": "AI delivers ‘zero financial payoff’ to most companies, Apollo economist says",
+          "summary": "Dans une note, l'économiste en chef d'Apollo Torsten Slok juge que l'IA n'a rapporté aucun gain financier aux entreprises américaines hors géants technologiques : marges et chiffre d'affaires par salarié stagnent dans le « S&P 493 ».",
+          "importance": 1,
+          "tags": [
+            "ia",
+            "productivite",
+            "entreprises"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/25/ai-delivers-zero-financial-payoff-to-most-companies-according-to-apollo-economist/",
+          "source_lang": "en",
+          "published_at": "2026-10-26T01:57:32+09:00"
+        },
+        {
+          "headline": "Grok publie sept minutes de son « Odyssée » générée par IA",
+          "original_headline": "Grok releases the first seven minutes of its AI-generated ‘Odyssey’",
+          "summary": "Trois mois après l'annonce par Elon Musk d'un long métrage sur L'Odyssée, Grok publie sept minutes d'un « épisode 1 », crédité à Wonder Studios. L'auteur de TechCrunch juge les images sans souffle artistique.",
+          "importance": 2,
+          "tags": [
+            "grok",
+            "ia-generative",
+            "video"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/25/grok-releases-the-first-seven-minutes-of-its-ai-generated-odyssey/",
+          "source_lang": "en",
+          "published_at": "2026-10-26T06:31:16+09:00"
+        },
+        {
+          "headline": "Instacart aurait discuté de sa vente avec DoorDash et Uber",
+          "original_headline": "Instacart reportedly discussed selling itself with DoorDash and Uber",
+          "summary": "Selon The Information et Bloomberg, Instacart a sondé DoorDash sur une vente et parlé à Uber, qui s'est retiré. Les discussions sont préliminaires. L'action a gagné plus de 9 % vendredi ; la capitalisation dépasse 13 milliards de dollars.",
+          "importance": 3,
+          "tags": [
+            "instacart",
+            "rachat",
+            "livraison"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/24/instacart-reportedly-discussed-selling-itself-with-doordash-and-uber/",
+          "source_lang": "en",
+          "published_at": "2026-10-25T01:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Rien à vérifier ce matin côté jeu vidéo : les rédactions du secteur n'ont pas pu être ouvertes, et la clôture de BioWare a déjà été couverte.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Yoshida gagne le BMW Ladies Championship devant deux Coréennes",
+          "original_headline": "2 S. Koreans finish as runners-up at LPGA event on home soil",
+          "summary": "La Japonaise Yuri Yoshida remporte le BMW Ladies Championship à Haenam, un coup devant Ryu Hae-ran et Choi Hye-jin. Ryu, qui menait de quatre coups avant le dernier tour, rend un 73.",
+          "importance": 1,
+          "tags": [
+            "lpga",
+            "golf",
+            "ryu-hae-ran"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10914021",
+          "source_lang": "en",
+          "published_at": "2026-10-25T20:02:06+09:00"
+        },
+        {
+          "headline": "La Corée finit cinquième des Jeux para-asiatiques avec 29 ors",
+          "original_headline": "South Korea exceeds Asian Para Games target with 29 golds",
+          "summary": "La Corée du Sud finit cinquième des Jeux para-asiatiques d'Aichi-Nagoya avec 29 ors, 38 argents et 33 bronzes, au-dessus de son objectif de 21 ors. Le tennis de table en apporte 12, un record national.",
+          "importance": 2,
+          "tags": [
+            "jeux-para-asiatiques",
+            "tennis-de-table",
+            "medailles"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913986",
+          "source_lang": "en",
+          "published_at": "2026-10-25T17:23:37+09:00"
+        },
+        {
+          "headline": "Infantino revendique le soutien de la « grande majorité » du football",
+          "original_headline": "Infantino says he has support of 'vast, vast majority'",
+          "summary": "Gianni Infantino dit avoir le soutien de la grande majorité du football malgré l'échec de son projet de vente de parts de la Coupe du monde. L'AFC l'a soutenu vendredi ; candidatures contre lui jusqu'au 18 novembre.",
+          "importance": 3,
+          "tags": [
+            "fifa",
+            "infantino",
+            "afc"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10913969",
+          "source_lang": "en",
+          "published_at": "2026-10-25T16:38:46+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Exposition d'art inclusif Dali : Differently",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "예술의전당 한가람미술관",
+      "area": "Seocho-gu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-15",
+      "summary": "Exposition d'art et de handicap au Centre des arts de Séoul, salle 7 du musée Hangaram. Dispositifs tactiles et vidéos en langue des signes. Ouvert de 10 h à 19 h, fermé le lundi, entrée gratuite.",
+      "source_name": "Seoul Arts Center",
+      "source_url": "https://www.sac.or.kr/site/main/show/show_view?SN=76434",
+      "source_lang": "ko",
+      "address": "서울 서초구 남부순환로 2406"
+    }
+  ]
+}
