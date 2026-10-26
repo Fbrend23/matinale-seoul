@@ -16,8 +16,7 @@
 // Code de sortie : 0 si tout sort, 1 sinon.
 
 import { spawn } from 'node:child_process';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
+import { mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -28,7 +27,11 @@ const RACINE = path.join(import.meta.dirname, '..');
 const FIXTURE = path.join(RACINE, 'tests', 'fixtures', 'brief-avec-evenements.json');
 
 const faux = await démarrerLeFauxCms(await donnéesDeDémonstration(FIXTURE));
-const dist = await mkdtemp(path.join(tmpdir(), 'matinale-rendu-'));
+// Dans le dépôt et non dans /tmp : astro déplace des fichiers de .astro/ vers la
+// sortie, ce qui échoue (EXDEV) si les deux sont sur des disques différents.
+const CACHE = path.join(RACINE, '.cache');
+await mkdir(CACHE, { recursive: true });
+const dist = await mkdtemp(path.join(CACHE, 'rendu-'));
 
 console.log(`Contrôle de rendu : faux CMS sur ${faux.url}, sortie dans ${dist}\n`);
 

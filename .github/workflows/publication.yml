@@ -324,7 +324,13 @@ jobs:
           # [skip ci] : ce commit touche inbox/, donc il rentrerait dans le
           # filtre « paths » du déclencheur et relancerait le job en boucle.
           git commit -m "chore(Archive) Ranger $deplaces brief(s) publié(s) [skip ci]"
-          git push
+          # Un commit peut atterrir sur main pendant le job : on rebase
+          # (l'archive ne touche qu'un renommage) et on retente.
+          for essai in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            sleep $((essai * 5))
+          done
+          exit 1
 
       # 7 · Dater la publication dans le CMS, une fois le site vraiment en ligne.
       #     Un échec ici ne casse pas le run : le site EST publié, et laisser la
