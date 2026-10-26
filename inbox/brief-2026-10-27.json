@@ -1,0 +1,287 @@
+{
+  "date": "2026-10-27",
+  "title": "Hyundai réduit son transfert aux États-Unis, Anthropic entre en bourse, Arkane sursis",
+  "standfirst": "Hyundai et son syndicat limitent à 74 000 unités la production d'Ulsan transférée aux États-Unis. Anthropic dépose son dossier de cotation. À Séoul, dernier spectacle de drones de l'année samedi. Plusieurs sources n'ont pu être ouvertes ce matin : les sections sport et tourisme sont courtes.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Dernier spectacle de drones de l'année au-dessus du fleuve Han, aux couleurs de Marvel",
+          "original_headline": "Marvel heroes to light up Han River in Seoul’s final drone show of year",
+          "summary": "Deux mille drones illumineront samedi le ciel du parc Hangang de Ttukseom pour le dernier spectacle de l'année, sur le thème Marvel : quinze minutes dès 20 h 30. Les sept séances précédentes ont attiré 197 000 spectateurs.",
+          "importance": 1,
+          "tags": [
+            "drones",
+            "fleuve-han",
+            "halloween"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915395",
+          "source_lang": "en",
+          "published_at": "2026-10-26T21:32:00+09:00"
+        },
+        {
+          "headline": "Le bus touristique de Séoul passe en version zombie pour Halloween",
+          "original_headline": "Seoul’s zombie-themed bus tour sparks online buzz",
+          "summary": "Depuis le 20 octobre, un bus à impériale en version zombie part de Gwanghwamun les mardis, jeudis et samedis, à 18 h 40 et 19 h. Des figurants montent à bord ; la visite dure 90 à 100 minutes.",
+          "importance": 2,
+          "tags": [
+            "halloween",
+            "bus-touristique",
+            "gwanghwamun"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915233",
+          "source_lang": "en",
+          "published_at": "2026-10-26T16:46:55+09:00"
+        },
+        {
+          "headline": "Un festival des animaux de compagnie, avec adoptions, le 31 octobre à Mapo",
+          "original_headline": "Seoul pet festival brings adoption, play and conversations on loss",
+          "summary": "Le premier Seoul Daengnyang Days se tient le 31 octobre à l'Oil Tank Culture Park, à Mapo : adoption d'animaux sur tapis rouge, conférence sur le deuil animal, projection en plein air et concerts.",
+          "importance": 3,
+          "tags": [
+            "festival",
+            "animaux",
+            "mapo"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915379",
+          "source_lang": "en",
+          "published_at": "2026-10-26T20:49:50+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Hyundai réduit son transfert de production vers les États-Unis après un accord avec le syndicat",
+          "original_headline": "Hyundai Motor scales back US production shift after union talks",
+          "summary": "Hyundai Motor et son syndicat ramènent à 74 000 unités la production d'Ulsan transférée aux États-Unis, afin de protéger l'emploi en Corée. Le Palisade Hybrid, prévu à 200 000 unités, voit son transfert réduit de 63 %.",
+          "importance": 1,
+          "tags": [
+            "hyundai",
+            "automobile",
+            "emploi"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915113",
+          "source_lang": "en",
+          "published_at": "2026-10-26T15:32:40+09:00"
+        },
+        {
+          "headline": "À Goseong, un jeune sur trois a un passé migratoire",
+          "original_headline": "In one Korean county, 1 in 3 young people have migrant backgrounds",
+          "summary": "À Goseong, dans le Gangwon, 1 402 des 4 429 résidents de 24 ans ou moins ont un passé migratoire, soit 31,7 % contre 7,7 % en moyenne nationale, selon le rapport 2025 du ministère des Données et Statistiques.",
+          "importance": 2,
+          "tags": [
+            "immigration",
+            "demographie",
+            "gangwon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915303",
+          "source_lang": "en",
+          "published_at": "2026-10-26T17:48:10+09:00"
+        },
+        {
+          "headline": "KB Kookmin Bank compte 2 091 victimes de plus dans la fuite de données",
+          "original_headline": "KB Kookmin Bank finds 2,091 more people affected by data leak",
+          "summary": "KB Kookmin Bank recense 2 091 personnes de plus touchées par la fuite de données du début octobre, soit 2 210 au total. Noms, numéros de téléphone et adresses sont concernés.",
+          "importance": 3,
+          "tags": [
+            "cybersecurite",
+            "banques",
+            "donnees-personnelles"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915394",
+          "source_lang": "en",
+          "published_at": "2026-10-26T21:20:15+09:00"
+        },
+        {
+          "headline": "Le taux de refus des visas américains pour les Coréens approche 25 %",
+          "original_headline": "US visitor visa refusal rate for Koreans jumps to nearly 25%",
+          "summary": "Le taux de refus des visas de visiteur américains pour les Sud-Coréens atteint 24,73 % sur un an jusqu'en septembre 2025, soit 9,76 points de plus. Les visas délivrés passent de 15 508 à 12 226.",
+          "importance": 4,
+          "tags": [
+            "visas",
+            "etats-unis"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10915315",
+          "source_lang": "en",
+          "published_at": "2026-10-26T17:58:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic dépose officiellement son dossier d'introduction en bourse",
+          "original_headline": "Anthropic officially files for its public debut",
+          "summary": "Anthropic a déposé lundi son dossier d'introduction en bourse, sous le ticker ANT. Revenu de 16,3 milliards de dollars au premier semestre 2026, contre 1,2 milliard un an plus tôt ; perte opérationnelle de 693 millions.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "introduction-en-bourse",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
+          "source_lang": "en",
+          "published_at": "2026-10-26T23:35:22+09:00"
+        },
+        {
+          "headline": "Microsoft propose des départs volontaires à environ 60 000 salariés",
+          "original_headline": "Microsoft offers buyouts to around 60,000 employees",
+          "summary": "Microsoft propose des départs volontaires indemnisés à environ 60 000 salariés, confirme-t-il à TechCrunch. L'offre vise les vice-présidents et en dessous, aux États-Unis, au Canada, en Inde et au Royaume-Uni.",
+          "importance": 2,
+          "tags": [
+            "microsoft",
+            "emploi"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/26/microsoft-offers-buyouts-to-around-60000-employees-reports-say/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T00:58:25+09:00"
+        },
+        {
+          "headline": "Des écrans d'iPhone Duo se fissurent, Apple reconnaît un problème",
+          "original_headline": "Uh-oh, it sounds like the iPhone Duo keeps cracking and users aren’t happy about it",
+          "summary": "Des acheteurs de l'iPhone Duo, premier pliant d'Apple, signalent des écrans qui se fissurent après quelques heures ou jours d'usage. Apple dit avoir connaissance d'un problème touchant l'écran intérieur d'un petit nombre d'appareils.",
+          "importance": 3,
+          "tags": [
+            "apple",
+            "iphone-duo",
+            "pliable"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/26/uh-oh-it-sounds-like-the-iphone-duo-keeps-cracking-and-users-arent-happy-about-it/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T04:22:40+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La pétition « Save Mass Effect » dépasse 200 000 signatures",
+          "original_headline": "‘Save Mass Effect’ petition cracks 200,000 signatures as fans plead for the series to continue",
+          "summary": "La pétition « Save Mass Effect » dépasse 200 000 signatures après l'annonce par EA de la fermeture de BioWare et de l'annulation du prochain Mass Effect. Elle demande de poursuivre la série ou de céder la licence.",
+          "importance": 1,
+          "tags": [
+            "mass-effect",
+            "bioware",
+            "ea"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/save-mass-effect-petition-cracks-200000-signatures-as-fans-plead-for-the-series-to-continue/",
+          "source_lang": "en",
+          "published_at": "2026-10-26T19:28:31+09:00"
+        },
+        {
+          "headline": "Microsoft donne un mois de plus à Arkane pour trouver un repreneur",
+          "original_headline": "Arkane now has until mid-December to find a buyer as Microsoft extends its deadline",
+          "summary": "Microsoft prolonge d'un mois, jusqu'à la mi-décembre, le délai laissé à Arkane pour trouver un repreneur ; l'échéance initiale était le 13 novembre, selon Le Monde. Plus de 200 emplois sont menacés.",
+          "importance": 2,
+          "tags": [
+            "arkane",
+            "microsoft",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/arkane-now-has-until-mid-december-to-find-a-buyer-as-microsoft-extends-its-deadline/",
+          "source_lang": "en",
+          "published_at": "2026-10-26T22:58:23+09:00"
+        },
+        {
+          "headline": "Sucker Punch, le studio de Ghost of Yotei, licencierait 26 personnes",
+          "original_headline": "Ghost of Yotei studio Sucker Punch reportedly lays off more than two dozen staff as it prepares for its next project",
+          "summary": "Sucker Punch, studio de Ghost of Yotei, aurait licencié 26 personnes, selon un rapport d'Aftermath repris par VGC. Un courriel de la direction annonce la suppression de plusieurs postes et promet des détails la semaine prochaine.",
+          "importance": 3,
+          "tags": [
+            "sucker-punch",
+            "licenciements",
+            "playstation"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ghost-of-yotei-studio-sucker-punch-reportedly-lays-off-more-than-two-dozen-staff-as-it-prepares-for-its-next-project/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T01:48:55+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La phase finale de la K League 1 s'ouvre le 31 octobre avec Daejeon–Jeonbuk",
+          "original_headline": "亞무대 향한 최후의 5경기…K리그1 파이널라운드 일정 확정, '1점 차' 3위 대전vs 4위 전북 닻 올린다",
+          "summary": "Le calendrier de la phase finale de K League 1 est fixé : elle s'ouvre le 31 octobre à 14 h à Jeonju, Daejeon (3e, 49 points) contre Jeonbuk (4e, 48). Dernière journée : 5 et 6 décembre.",
+          "importance": 1,
+          "tags": [
+            "k-league",
+            "football"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1644097",
+          "source_lang": "ko",
+          "published_at": "2026-10-26T14:03:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up Riot Games : Music & Worlds 26",
+      "kind": "popup",
+      "theme": "gaming",
+      "venue": "트렌드팟 바이 올리브영N 성수",
+      "area": "Seongsu",
+      "start_date": "2026-10-29",
+      "end_date": "2026-11-08",
+      "summary": "Second site du pop-up Music & Worlds 26 à Seongsu, du 29 octobre au 8 novembre, après celui de Lotte World Mall (23 octobre au 1er novembre).",
+      "source_name": "Inven",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=322430",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition d'art public : Rémanence de la paix à Seoul Iris Garden",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울창포원",
+      "area": "Dobong-gu",
+      "start_date": "2026-10-24",
+      "end_date": "2026-12-13",
+      "summary": "Première partie de l'exposition « Rémanence de la paix » au Seoul Iris Garden, jusqu'au 13 décembre ; la seconde partie suivra au premier semestre 2027. Accès : ligne 7, gare de Dobongsan, sortie 2.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://mediahub.seoul.go.kr/archives/2019841",
+      "source_lang": "ko",
+      "address": "서울 도봉구 마들로 916"
+    },
+    {
+      "name": "Concert PARK JINYOUNG 1st Concert Tour [CODE#] in Seoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "장충체육관",
+      "area": "Jung-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "summary": "Concerts de Jinyoung (GOT7) à Séoul, le 7 novembre à 18 h et le 8 novembre à 16 h. Billets payants.",
+      "source_name": "Melon Ticket",
+      "source_url": "https://ticket.melon.com/performance/index.htm?prodId=213880",
+      "source_lang": "ko",
+      "booking_url": "https://ticket.melon.com/performance/index.htm?prodId=213880"
+    }
+  ]
+}
