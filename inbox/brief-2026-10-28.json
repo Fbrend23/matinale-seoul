@@ -1,0 +1,283 @@
+{
+  "date": "2026-10-28",
+  "title": "Un record de touristes, un mandat pour Kim Keon Hee et une enquête visant la Cour suprême",
+  "standfirst": "La Corée dépasse son record annuel d'arrivées étrangères. À Séoul, la Cour suprême prolonge la détention de Kim Keon Hee et la majorité veut enquêter sur son président. Côté tech, Google dévoile Genie 4 et Apple un MacBook Pro M6.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée bat son record annuel de visiteurs étrangers",
+          "summary": "Avec 18,94 millions d'arrivées, provisoires jusqu'à lundi, le total dépasse le record de l'an dernier, 18,91 millions. Le cap des 20 millions pourrait être franchi la troisième semaine de novembre.",
+          "importance": 1,
+          "tags": [
+            "arrivees",
+            "record",
+            "tourisme"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916624",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:15:20+09:00"
+        },
+        {
+          "headline": "La petite panda Shu Bao fait ses débuts publics à Everland vendredi",
+          "summary": "Née le 3 juin, Shu Bao sera visible dès vendredi au Panda World d'Everland, à Yongin. Ses aînées Rui Bao et Hui Bao entrent en quarantaine le 13 novembre avant leur départ pour la Chine.",
+          "importance": 2,
+          "tags": [
+            "everland",
+            "panda"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916750",
+          "source_lang": "en",
+          "published_at": "2026-10-27T19:34:34+09:00"
+        },
+        {
+          "headline": "Un hôtel hanok de Yeongwol primé aux Tatler Best Asia Pacific Awards",
+          "summary": "The Hanok Heritage, ouvert il y a un an dans le Gangwon, est le seul hôtel coréen primé. Il compte 25 hébergements ; son espace bien-être doit ouvrir en novembre.",
+          "importance": 3,
+          "tags": [
+            "hanok",
+            "hotel",
+            "gangwon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916769",
+          "source_lang": "en",
+          "published_at": "2026-10-27T20:04:51+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Cour suprême émet un nouveau mandat de détention contre Kim Keon Hee",
+          "summary": "Le mandat, de deux mois, intervient avant l'expiration de la détention actuelle samedi. La Cour suprême n'a pas encore tranché l'autre affaire de l'ex-première dame, manipulation boursière et corruption. La défense conteste le mandat.",
+          "importance": 1,
+          "tags": [
+            "kim-keon-hee",
+            "justice"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916760",
+          "source_lang": "en",
+          "published_at": "2026-10-27T19:43:25+09:00"
+        },
+        {
+          "headline": "Le parti au pouvoir veut une enquête parlementaire sur le président de la Cour suprême",
+          "summary": "Le Parti démocrate demande une enquête visant Cho Hee-dae, certains élus réclamant sa destitution. Il veut faire voter la motion en séance plénière jeudi prochain, selon son porte-parole.",
+          "importance": 2,
+          "tags": [
+            "cour-supreme",
+            "parlement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916653",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:39:34+09:00"
+        },
+        {
+          "headline": "Kori 3 et 4 autorisés à fonctionner dix ans de plus",
+          "summary": "L'autorité de sûreté nucléaire prolonge de dix ans les deux réacteurs, arrêtés après quarante ans d'exploitation. Kori 3 pourra tourner jusqu'en septembre 2034, Kori 4 jusqu'en août 2035.",
+          "importance": 3,
+          "tags": [
+            "nucleaire",
+            "kori"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916620",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:10:27+09:00"
+        },
+        {
+          "headline": "Incendie au village de Guryong, à Gangnam",
+          "summary": "Le feu a pris mardi vers 15 h 50, apparemment sur un site de collecte d'ordures. Plus de 200 pompiers sont mobilisés, la mairie envoie des SMS demandant de fermer les fenêtres.",
+          "importance": 4,
+          "tags": [
+            "incendie",
+            "gangnam"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916627",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:17:32+09:00"
+        },
+        {
+          "headline": "Six magasins Homeplus menacés de coupure d'électricité",
+          "summary": "Pour factures impayées, des avis de coupure visent six magasins ; quatre, à Pocheon, Goyang, Namyangju et Paju, seraient coupés entre le 27 et le 30 octobre, celui de Songdo en novembre.",
+          "importance": 5,
+          "tags": [
+            "homeplus",
+            "distribution"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916644",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:26:43+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Google DeepMind dévoile Genie 4, avec son et pilotage en temps réel",
+          "summary": "Le modèle de monde génère de l'audio et des scènes plus réalistes, cohérentes jusqu'à deux minutes. Ouvert aux testeurs de confiance, il arrivera aux abonnés Google AI Ultra dans les semaines à venir.",
+          "importance": 1,
+          "tags": [
+            "google",
+            "ia",
+            "genie"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
+          "source_lang": "en",
+          "published_at": "2026-10-28T01:30:57+09:00"
+        },
+        {
+          "headline": "Apple lance un MacBook Pro 14 pouces avec la puce M6",
+          "summary": "Prix de départ : 1 999 dollars, 24 heures d'autonomie, Wi-Fi 7. Apple annonce jusqu'à 25 % de plus que la M5 sur l'IA. Précommandes dès le 28 octobre, ventes le 6 novembre.",
+          "importance": 2,
+          "tags": [
+            "apple",
+            "macbook-pro"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/27/apple-unveils-new-14-inch-macbook-pro-with-m6-chip/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T23:25:11+09:00"
+        },
+        {
+          "headline": "Discord rend certains serveurs publics consultables sur le web",
+          "summary": "Dès le 16 novembre, chaque serveur découvrable aura une page web ; des messages publics pourraient apparaître dans les moteurs de recherche mi-décembre. L'option est désactivée par défaut en Corée du Sud.",
+          "importance": 3,
+          "tags": [
+            "discord",
+            "vie-privee"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/27/discord-is-making-its-public-communities-more-searchable-and-people-have-concerns/",
+          "source_lang": "en",
+          "published_at": "2026-10-28T06:22:35+09:00"
+        },
+        {
+          "headline": "Ford annonce le Fathom, pick-up électrique capable d'alimenter une maison",
+          "summary": "Le Fathom démarre à 28 350 dollars et pourra fournir plus de 10 kW à un domicile. Les chargeurs bidirectionnels coûtent environ 650 dollars, hors installation, qui peut être coûteuse.",
+          "importance": 4,
+          "tags": [
+            "ford",
+            "vehicule-electrique"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/27/ford-fathom-will-be-the-cheapest-american-ev-capable-of-powering-a-house/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T23:51:33+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Capcom retire Street Fighter 5 de la vente et coupe ses serveurs",
+          "original_headline": "Capcom has temporarily delisted Street Fighter 5 and turned off its servers as it works on PHP security issue",
+          "summary": "Capcom invoque des correctifs de sécurité liés à PHP. Le contenu en ligne est indisponible, le hors ligne reste accessible. Aucune date de retour n'est annoncée pour les serveurs ni les boutiques.",
+          "importance": 1,
+          "tags": [
+            "capcom",
+            "securite"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/capcom-has-temporarily-delisted-street-fighter-5-and-turned-off-its-servers-as-it-works-on-php-security-issue/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T22:09:51+09:00"
+        },
+        {
+          "headline": "Com2uS annonce Destiny Child: Assemble pour le premier semestre 2027",
+          "original_headline": "컴투스, ‘데스티니 차일드: 어셈블’ 공개…2027년 상반기 출시",
+          "summary": "Ce RPG inactif sur iOS et Android, développé par Tikitaka Studio, reprend la licence de Shift Up pour les dix ans de Destiny Child. Com2uS assure le service mondial.",
+          "importance": 2,
+          "tags": [
+            "com2us",
+            "mobile",
+            "rpg"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261027161125",
+          "source_lang": "ko",
+          "published_at": "2026-10-27T16:11:25+09:00"
+        },
+        {
+          "headline": "Nintendo programme un Indie World de quinze minutes mercredi",
+          "original_headline": "Nintendo’s next Indie World showcase will take place this week",
+          "summary": "La diffusion est prévue le 28 octobre à 7 h PT, soit 23 h à Séoul. Nintendo annonce environ quinze minutes en Occident, le compte japonais évoquant vingt-cinq minutes.",
+          "importance": 3,
+          "tags": [
+            "nintendo",
+            "indie-world"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/nintendos-next-indie-world-showcase-will-take-place-this-week/",
+          "source_lang": "en",
+          "published_at": "2026-10-27T22:52:52+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Lions égalisent face aux Tigers en série éliminatoire du KBO",
+          "summary": "À Daegu, les Samsung Lions ont frappé deux coups de circuit pour battre les Tigers et égaliser dans la série. Leur lanceur Jurado a signé sa première victoire en phase finale du KBO.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "lions",
+            "tigers"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20261027012651315",
+          "source_lang": "en",
+          "published_at": "2026-10-27T22:20:20+09:00"
+        },
+        {
+          "headline": "Tom Kim reprend le PGA Tour au Mexico Open après son or aux Jeux asiatiques",
+          "summary": "Tom Kim joue de jeudi à dimanche au Mexique, sa première épreuve du PGA Tour depuis fin août. Il revient après sa médaille d'or individuelle aux Jeux asiatiques d'Aichi-Nagoya.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "pga-tour",
+            "tom-kim"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10916652",
+          "source_lang": "en",
+          "published_at": "2026-10-27T17:38:18+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Salon Food Week Korea 2026 au COEX",
+      "kind": "salon",
+      "theme": "food",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-07",
+      "summary": "Salon de l'alimentation au COEX, dans les halls A, B, C et à The Platz, quatre jours en novembre.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/",
+      "source_lang": "ko",
+      "address": "서울특별시 강남구 영동대로 513"
+    }
+  ]
+}
