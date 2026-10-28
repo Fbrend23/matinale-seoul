@@ -1,0 +1,257 @@
+{
+  "date": "2026-10-29",
+  "title": "Amende record pour Google et Apple, vague de piratages dans la finance et premier gel de l'automne",
+  "standfirst": "Séoul sanctionne Google et Apple pour leurs commissions d'applications et accepte de payer Elliott. Les piratages visent de nouveau les maisons de titres. Côté voyage, un visa de groupe pour la Mongolie et la température la plus basse de l'automne à Séoul.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un visa de groupe pour les touristes mongols à l'essai dès vendredi",
+          "original_headline": "Korea to pilot group tourist visas for Mongolian nationals",
+          "summary": "Programme pilote d'un an : visa C-3-2 pour des groupes d'au moins cinq personnes, via sept agences désignées par l'ambassade à Oulan-Bator, quinze jours de séjour au plus. La Mongolie devient le septième pays concerné.",
+          "importance": 1,
+          "tags": [
+            "visa",
+            "mongolie",
+            "groupes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918072",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:20:22+09:00"
+        },
+        {
+          "headline": "Le mercure descend à 4,3 °C à Séoul avec le premier gel de l'automne",
+          "original_headline": "Early winter chill grips Korea",
+          "summary": "Minimales de -3,6 °C à Daegwallyeong et -2,5 °C à Paju. De la pluie est attendue jeudi après-midi, et Séoul pourrait descendre à 1 °C mardi prochain.",
+          "importance": 2,
+          "tags": [
+            "meteo",
+            "froid"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918059",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:10:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Google et Apple condamnés à 63,7 milliards de wons pour leurs paiements d'applications",
+          "original_headline": "Google, Apple hit with W63.7b fine in Korea's app store crackdown",
+          "summary": "Première sanction au titre de la loi de 2021 : 42,9 milliards de wons pour Google, 20,81 pour Apple. Les décisions écrites sont attendues le mois prochain.",
+          "importance": 1,
+          "tags": [
+            "google",
+            "apple",
+            "amende",
+            "applications"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918101",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:40:52+09:00"
+        },
+        {
+          "headline": "Séoul ne contestera pas la sentence arbitrale en faveur d'Elliott",
+          "original_headline": "S. Korea accepts int'l arbitration in favor of Elliott in Samsung merger case",
+          "summary": "Le ministère de la Justice renonce à contester : la Corée devra verser environ 153 milliards de wons, intérêts compris, au fonds américain, pour la fusion Samsung C&T de 2015.",
+          "analysis": "L'affaire dure depuis 2018 ; Londres avait été saisie par Séoul avant que le dossier ne revienne devant le tribunal arbitral en mars.",
+          "importance": 2,
+          "tags": [
+            "elliott",
+            "samsung",
+            "arbitrage"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918105",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:49:19+09:00"
+        },
+        {
+          "headline": "Nouvelle vague de cyberattaques contre la finance sud-coréenne",
+          "original_headline": "South Korea's financial industry hit by fresh wave of cyberattacks",
+          "summary": "Daishin Securities signale l'exposition des données de 38 490 clients. Mirae Asset Global Investments et Bithumb font état d'incidents sans fuite confirmée. CrowdStrike reliait la vague de septembre à un pirate présumé basé en Chine.",
+          "importance": 3,
+          "tags": [
+            "cyberattaque",
+            "finance",
+            "donnees-personnelles"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/28/south-koreas-financial-industry-hit-by-fresh-wave-of-cyberattacks/",
+          "source_lang": "en",
+          "published_at": "2026-10-29T00:41:18+09:00"
+        },
+        {
+          "headline": "Des images truquées par IA montrent de l'artillerie nord-coréenne près d'un Starbucks",
+          "original_headline": "North Korean artillery spotted from Starbucks? Viral images suspected to be fakes",
+          "summary": "Selon NK News, les images montrant le Starbucks de Gimpo ont été fabriquées à partir de photos réelles d'artillerie près de Kaepung, prises le 21 octobre. Le café d'Aegibong se trouve à 1,4 km.",
+          "importance": 4,
+          "tags": [
+            "desinformation",
+            "ia",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918104",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:42:49+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Microsoft dévoile un chiffre d'affaires de 33,2 milliards de dollars pour Azure",
+          "original_headline": "Microsoft just shared Azure's actual revenue in dollars: $33.2 billion",
+          "summary": "Azure progresse de 48 % sur un an au trimestre juillet-septembre, soit environ 36 % des 92,3 milliards de dollars de revenus du groupe. Google Cloud est cité à 30,7 milliards.",
+          "importance": 1,
+          "tags": [
+            "microsoft",
+            "azure",
+            "cloud"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/28/microsoft-just-shared-azures-actual-revenue-in-dollars-33-2-billion/",
+          "source_lang": "en",
+          "published_at": "2026-10-29T06:58:32+09:00"
+        },
+        {
+          "headline": "Anthropic lance des outils pour mesurer ce que rapportent les dépenses en IA",
+          "original_headline": "Anthropic just launched tools to show companies what their AI spending is buying",
+          "summary": "Les responsables voient ce qu'une équipe a produit, son coût et où le travail a bloqué. Anthropic dit que ces données ne servent pas à l'entraînement par défaut.",
+          "importance": 2,
+          "tags": [
+            "anthropic",
+            "entreprises",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/",
+          "source_lang": "en",
+          "published_at": "2026-10-29T04:19:58+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des images de la bousculade d'Itaewon dans Call of Duty: Modern Warfare 4",
+          "original_headline": "COD Modern Warfare 4 uses real news footage from South Korean tragedy, is urged by families to remove it",
+          "summary": "L'intro du jeu contient un plan de réanimation attribué à la bousculade de 2022 (159 morts). Les familles et la Korea Game Users Association demandent son retrait. Activision dit n'avoir eu aucune intention d'y faire référence.",
+          "importance": 1,
+          "tags": [
+            "call-of-duty",
+            "itaewon",
+            "activision"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/cod-modern-warfare-4-uses-real-news-footage-from-south-korean-tragedy-is-urged-by-families-to-remove-it/",
+          "source_lang": "en",
+          "published_at": "2026-10-28T20:05:00+09:00"
+        },
+        {
+          "headline": "Valve ne filtrera pas les jeux faits avec l'IA malgré le problème de visibilité de Steam",
+          "original_headline": "Valve has ‘a significant number’ working on Steam’s visibility dilemma but says it won’t gatekeep games made with AI",
+          "summary": "Lors d'un événement en Corée du Sud, Valve dit mobiliser de nombreuses personnes sur la visibilité de Steam, mais refuse de filtrer l'IA. Elle demande de lui signaler les menaces d'extorsion au clonage.",
+          "importance": 2,
+          "tags": [
+            "steam",
+            "valve",
+            "ia"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/valve-has-a-significant-number-working-on-steams-visibility-dilemma-but-says-it-wont-gatekeep-games-made-with-ai/",
+          "source_lang": "en",
+          "published_at": "2026-10-28T21:58:11+09:00"
+        },
+        {
+          "headline": "La Corée prépare un musée national du jeu vidéo",
+          "original_headline": "Korea plans national games museum",
+          "summary": "Le ministère de la Culture et le KOCCA reçoivent les candidatures de villes et d'associations pour un « Museum of Korean Games » de plus de 1 652 mètres carrés, nom provisoire.",
+          "importance": 3,
+          "tags": [
+            "musee",
+            "kocca",
+            "patrimoine"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918081",
+          "source_lang": "en",
+          "published_at": "2026-10-28T17:27:11+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Aucun article sportif coréen n'a pu être ouvert ce matin : Yonhap et BBC Sport bloquent la lecture, rien n'est donc rapporté.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Salon Seoul Classic Car Show 2026",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스 광장",
+      "area": "Gangnam-gu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "summary": "Salon de voitures de collection sur le parvis de COEX et dans ses espaces intérieurs, avec animations autour de véhicules d'époque.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/exhibitions/2026-%EC%84%9C%EC%9A%B8%ED%81%B4%EB%9E%98%EC%8B%9D%EC%B9%B4%EC%87%BC/",
+      "source_lang": "ko",
+      "address": "서울특별시 강남구 영동대로 513"
+    },
+    {
+      "name": "Marathon JTBC de Séoul 2026",
+      "kind": "autre",
+      "theme": "sport",
+      "venue": "광화문광장",
+      "area": "Jongno-gu",
+      "start_date": "2026-11-01",
+      "end_date": "2026-11-01",
+      "summary": "Départ à 7 h 30 de la place Gwanghwamun, arrivée au Parc olympique. Le 10 km part du parc de la Coupe du monde de Sangam et finit au parc de Yeouido. Circulation restreinte.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://news.seoul.go.kr/culture/archives/535099",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition Koo Jeong A : Ousssmos au Leeum",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "리움미술관",
+      "area": "Yongsan-gu",
+      "start_date": "2026-09-05",
+      "end_date": "2026-12-27",
+      "summary": "Exposition de l'artiste contemporaine Koo Jeong A au musée Leeum, jusqu'au 27 décembre. Entrée à 18 000 wons.",
+      "source_name": "Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/10857554",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up Dole « 과일은 라벨로 말한다 » au COEX",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "코엑스 라이브플라자",
+      "area": "Gangnam",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "summary": "Pop-up de Dole Korea au sous-sol du COEX, avec un marché où acheter des fruits et des cadeaux à partir de 10 000 wons.",
+      "source_name": "ETNews",
+      "source_url": "https://www.etnews.com/20261028000272",
+      "source_lang": "ko"
+    }
+  ]
+}
