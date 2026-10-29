@@ -1,0 +1,272 @@
+{
+  "date": "2026-10-30",
+  "title": "Halloween sous haute surveillance à Séoul, haut-parleurs nord-coréens et pari de Reddit",
+  "standfirst": "Séoul déploie caméras IA et fermetures de rues pour le week-end d'Halloween. Au nord, les haut-parleurs de propagande ont émis près de Paju. Berlin et Séoul renforcent leur partenariat. Journée plus mince côté jeu vidéo.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Caméras IA, Itaewon-ro fermée et trains sans arrêt pour Halloween à Séoul",
+          "original_headline": "Halloween in Seoul: What to know before heading out",
+          "summary": "Surveillance renforcée du vendredi au dimanche dans 14 zones, dont Itaewon, Hongdae, Myeong-dong et Gangnam. Samedi, Itaewon-ro est fermée aux véhicules ; certains trains peuvent ne pas s'arrêter à Itaewon, Hongik, Seongsu ou Konkuk.",
+          "importance": 1,
+          "tags": [
+            "halloween",
+            "securite",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919610",
+          "source_lang": "en",
+          "published_at": "2026-10-29T17:10:00+09:00"
+        },
+        {
+          "headline": "Premières neiges sur les hauts sommets du Seoraksan",
+          "original_headline": "Seoraksan sees first snow",
+          "summary": "La neige est tombée jeudi vers 11 h 40 sur Daecheongbong, sans accumulation relevée. Le refuge de Jungcheong affichait −2,5 °C. Les premières neiges arrivent neuf jours plus tard qu'en 2025 ; le parc appelle à la prudence.",
+          "importance": 2,
+          "tags": [
+            "seoraksan",
+            "meteo",
+            "randonnee"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919559",
+          "source_lang": "en",
+          "published_at": "2026-10-29T16:35:38+09:00"
+        },
+        {
+          "headline": "Katseye annonce son premier concert solo en Corée, le 4 février au Kspo Dome",
+          "original_headline": "Katseye to hold first solo concert in Korea",
+          "summary": "Le groupe se produira au Kspo Dome de Séoul, environ 15 000 places, dans une tournée de onze villes en Asie et Océanie. Yoonchae, membre coréenne, y donnera son premier concert complet dans son pays.",
+          "importance": 3,
+          "tags": [
+            "katseye",
+            "concert",
+            "k-pop"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919592",
+          "source_lang": "en",
+          "published_at": "2026-10-29T16:55:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul et Berlin élèvent leurs relations au rang de partenariat stratégique renforcé",
+          "original_headline": "Korea, Germany forge ‘enhanced strategic partnership’ as global risks mount",
+          "summary": "Lee Jae Myung et le chancelier Merz ont acté jeudi ce nouveau cadre : accord sur les informations militaires classifiées, partenariat économique et technologique, énergie, double imposition. Merz doit visiter la DMZ vendredi.",
+          "importance": 1,
+          "tags": [
+            "allemagne",
+            "diplomatie",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919705",
+          "source_lang": "en",
+          "published_at": "2026-10-29T18:46:00+09:00"
+        },
+        {
+          "headline": "Pyongyang semble avoir testé ses haut-parleurs de propagande à la frontière",
+          "original_headline": "N. Korea appears to test propaganda loudspeakers along border",
+          "summary": "Les habitants de Paju ont entendu des émissions dès 6 h jeudi, pendant quatre à cinq heures selon Yonhap. Kim Yo-jong avait annoncé le 22 octobre des haut-parleurs opérationnels avant la fin du mois.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "frontiere",
+            "propagande"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919523",
+          "source_lang": "en",
+          "published_at": "2026-10-29T16:28:04+09:00"
+        },
+        {
+          "headline": "Le renseignement voit en Kim Ju-ae une héritière présentée en chef militaire",
+          "original_headline": "N. Korea builds ‘military leader' narrative around Kim Ju-ae: spy agency",
+          "summary": "Le NIS dit que la fille de Kim Jong-un consolide son statut de successeure désignée ; l'armée occupe près de 60 % de ses apparitions publiques. Il a confirmé en audition à huis clos son nom, Kim Ju-ae.",
+          "importance": 3,
+          "tags": [
+            "coree-du-nord",
+            "kim-ju-ae",
+            "renseignement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919791",
+          "source_lang": "en",
+          "published_at": "2026-10-29T21:31:40+09:00"
+        },
+        {
+          "headline": "Le chef du renseignement défend le renvoi de deux pêcheurs nord-coréens en 2019",
+          "original_headline": "Spy chief upholds Seoul's controversial repatriation of North Korean fishermen",
+          "summary": "Lors de l'audit parlementaire, Lee Jong-seok a estimé à titre personnel que les deux hommes, accusés d'avoir tué 16 membres d'équipage, devaient être renvoyés. En octobre, la Haute Cour a confirmé des condamnations d'anciens responsables.",
+          "importance": 4,
+          "tags": [
+            "renseignement",
+            "audit-parlementaire",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919805",
+          "source_lang": "en",
+          "published_at": "2026-10-29T22:15:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Amazon manque ses prévisions, mais AWS grimpe de 39 %",
+          "original_headline": "Amazon reported booming cloud revenue but otherwise missed expectations",
+          "summary": "Chiffre d'affaires de 201,9 milliards de dollars, sous les 202,2 attendus ; bénéfice par action de 1,89 dollar contre 1,97 prévu. AWS atteint 45,98 milliards. Le flux de trésorerie libre passe à −2,4 milliards.",
+          "importance": 1,
+          "tags": [
+            "amazon",
+            "aws",
+            "resultats"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/29/amazon-reported-booming-cloud-revenue-but-otherwise-missed-expectations/",
+          "source_lang": "en",
+          "published_at": "2026-10-30T06:20:47+09:00"
+        },
+        {
+          "headline": "Reddit réserve l'essentiel de son contenu aux utilisateurs connectés",
+          "original_headline": "As search traffic dries up, Reddit announces it’s shifting to a logged-in experience",
+          "summary": "Reddit veut protéger ses données du moissonnage par l'IA et négocier des licences. Ses utilisateurs actifs quotidiens américains passent de 53,2 à 50,7 millions. Les premiers tests hors des États-Unis démarrent au quatrième trimestre.",
+          "importance": 2,
+          "tags": [
+            "reddit",
+            "scraping",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/29/as-search-traffic-dries-up-reddit-announces-its-shifting-to-a-logged-in-experience/",
+          "source_lang": "en",
+          "published_at": "2026-10-30T05:08:31+09:00"
+        },
+        {
+          "headline": "GM versera 220 millions de dollars pour avoir vendu des données de conduite",
+          "original_headline": "GM reaches $220M settlement over selling drivers’ private data",
+          "summary": "Le constructeur règle une plainte de 36 États : ses données de conduite et de localisation revenaient aux assureurs via des courtiers. Il devra obtenir le consentement exprès des conducteurs ; un tiers évaluera sa conformité.",
+          "importance": 3,
+          "tags": [
+            "gm",
+            "donnees-personnelles",
+            "vie-privee"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/29/gm-reaches-220m-settlement-over-selling-drivers-private-data/",
+          "source_lang": "en",
+          "published_at": "2026-10-30T06:01:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "FromSoftware repousse The Duskbloods, exclusivité Switch 2, à 2027",
+          "original_headline": "FromSoftware’s Switch 2 exclusive The Duskbloods has been delayed to 2027",
+          "summary": "Le jeu visait 2026 sans date précise. Le studio dit être au stade des derniers ajustements, après les retours du test réseau d'août, et veut revoir règles et équilibrage. Il s'excuse auprès des joueurs.",
+          "importance": 1,
+          "tags": [
+            "fromsoftware",
+            "switch-2",
+            "report"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/fromsoftwares-switch-2-exclusive-the-duskbloods-has-been-delayed-to-2027/",
+          "source_lang": "en",
+          "published_at": "2026-10-29T23:15:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Moreno rappelle les joueurs en froid avec Son pour les amicaux de novembre",
+          "original_headline": "Temporary men's football coach stresses need to focus on controllables amid controversy",
+          "summary": "L'entraîneur intérimaire Robert Moreno a retenu 26 joueurs pour affronter l'Arabie saoudite et le Qatar. Kim Min-jae, Hwang Hee-chan et Hwang In-beom, qui auraient voulu quitter la sélection, sont rappelés sur leur niveau.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale",
+            "son-heung-min"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919467",
+          "source_lang": "en",
+          "published_at": "2026-10-29T16:08:24+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert ONEW THE LIVE : Q à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "올림픽홀",
+      "area": "Songpa-gu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-01",
+      "summary": "Trois concerts solo d'Onew, membre de SHINee, à l'Olympic Hall du parc olympique. Billetterie payante sur Melon Ticket.",
+      "source_name": "Melon Ticket",
+      "source_url": "https://ticket.melon.com/performance/index.htm?prodId=213873",
+      "source_lang": "ko",
+      "booking_url": "https://ticket.melon.com/performance/index.htm?prodId=213873"
+    },
+    {
+      "name": "Pièce de théâtre La Ménagerie de verre",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "예술의전당 CJ 토월극장",
+      "area": "Seocho-gu",
+      "start_date": "2026-10-17",
+      "end_date": "2026-11-22",
+      "summary": "Mise en scène au Seoul Arts Center de la pièce de Tennessee Williams, présentée sous le titre coréen « 유리동물원 ». Réservation par téléphone au 1668-1352.",
+      "source_name": "Seoul Arts Center",
+      "source_url": "https://www.sac.or.kr/site/main/show/show_view?SN=83392",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition d'architecture BIG : MATERIALISM",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울도시건축전시관",
+      "area": "Jung-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2027-02-28",
+      "summary": "Exposition consacrée au studio d'architecture BIG au Seoul Hall of Urbanism and Architecture. Entrée gratuite.",
+      "source_name": "Seoul City",
+      "source_url": "https://sca.seoul.go.kr/seoulhour/site/urbanArch/exhibition/exhibitPre/1329",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon Design Korea 2026 au COEX",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam",
+      "start_date": "2026-11-25",
+      "end_date": "2026-11-29",
+      "summary": "Salon du design au COEX, hall B. Le site officiel de l'événement est designkorea.kidp.or.kr.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/en/exhibitions/design-korea-2026/",
+      "source_lang": "en"
+    }
+  ]
+}
