@@ -1,0 +1,231 @@
+{
+  "date": "2026-10-31",
+  "title": "Le Kospi chute de 3,5 %, la Suisse rouvre à Pyongyang et Halloween approche",
+  "standfirst": "La Bourse de Séoul décroche avec les valeurs de l'IA, tandis que Berne rouvre son bureau diplomatique à Pyongyang. À Incheon, une panne a retardé des dizaines de vols. Côté jeu, Activision promet de retirer les images d'Itaewon.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une panne d'enregistrement retarde 35 vols à l'aéroport d'Incheon",
+          "original_headline": "Incheon Airport check-in systems resume after 35 flights delayed",
+          "summary": "La panne du réseau du fournisseur ARINC a touché treize compagnies des deux terminaux, surtout chinoises. Au moins 35 vols ont été retardés ; l'enregistrement a repris vers 17 h 20.",
+          "importance": 1,
+          "tags": [
+            "aeroport",
+            "incheon",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920732",
+          "source_lang": "en",
+          "published_at": "2026-10-30T15:25:29+09:00"
+        },
+        {
+          "headline": "Une exposition de voyance à l'aT Center de Yangjae jusqu'à dimanche",
+          "original_headline": "Curious about your future? This exhibition offers a buffet of fortune readings",
+          "summary": "La deuxième édition de « Fortune Adventure » réunit plus de 200 stands de divination : saju, lecture du visage, tarot. Une consultation de dix minutes coûte 12 000 wons.",
+          "importance": 2,
+          "tags": [
+            "divination",
+            "yangjae",
+            "exposition"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921072",
+          "source_lang": "en",
+          "published_at": "2026-10-30T21:16:22+09:00"
+        },
+        {
+          "headline": "Le marché des plantes médicinales de Yangnyeongsi accueille un festival",
+          "original_headline": "What’s brewing in Seoul's herbal medicine market?",
+          "summary": "Le World K-Medicine Culture Festival 2026 s'est ouvert vendredi à Dongdaemun-gu, autour du plus grand marché de plantes médicinales de Corée. Une cinquantaine de vendeurs proposent consultations et traitements gratuits.",
+          "importance": 3,
+          "tags": [
+            "festival",
+            "medecine-traditionnelle",
+            "dongdaemun"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920969",
+          "source_lang": "en",
+          "published_at": "2026-10-30T17:33:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi perd 3,48 % sur la baisse des valeurs de l'IA",
+          "original_headline": "Seoul shares dip over 3% on tech sell-off amid AI concerns",
+          "summary": "L'indice clôture à 5 730,74 points, après la chute d'Alphabet à Wall Street. SK hynix recule de 7,08 %, Samsung Electronics de 3,02 %. Les investisseurs étrangers vendent 1 620 milliards de wons net.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920828",
+          "source_lang": "en",
+          "published_at": "2026-10-30T16:16:52+09:00"
+        },
+        {
+          "headline": "Le chef de la diplomatie suisse rouvre le bureau de Berne à Pyongyang",
+          "original_headline": "Swiss foreign minister arrives in Pyongyang as Bern reopens diplomatic office",
+          "summary": "Ignazio Cassis inaugure le bureau diplomatique suisse, premier poste politique de la Suisse à Pyongyang depuis 1974. Il dépend de l'ambassade de Suisse à Pékin. Le ministre poursuit ensuite vers Séoul.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "suisse",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920831",
+          "source_lang": "en",
+          "published_at": "2026-10-30T16:18:39+09:00"
+        },
+        {
+          "headline": "Séoul et Washington proches d'un accord sur le déménagement de bases américaines",
+          "original_headline": "Korea, US near deal on military facility relocations, including Gwangju: Cheong Wa Dae",
+          "summary": "Le conseiller à la sécurité nationale Wi Sung-lac évoque cinq bases : Gwangju, Daegu, Cheongju, Gimhae et Suwon. Reste à régler les installations de remplacement, côté coréen.",
+          "importance": 3,
+          "tags": [
+            "bases-americaines",
+            "defense",
+            "gwangju"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920931",
+          "source_lang": "en",
+          "published_at": "2026-10-30T17:08:30+09:00"
+        },
+        {
+          "headline": "Le procureur spécial veut garder 420 urnes du scrutin local du 3 juin",
+          "original_headline": "Special counsel asks election watchdog to keep ballot boxes intact for possible review",
+          "summary": "Ces 420 urnes n'ont suscité aucune objection lors de l'inspection. Treize autres sont retenues pour un examen approfondi, certaines pour le National Forensic Service. L'enquête porte sur les pénuries de bulletins le jour du vote.",
+          "importance": 4,
+          "tags": [
+            "elections",
+            "procureur-special",
+            "urnes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921068",
+          "source_lang": "en",
+          "published_at": "2026-10-30T20:38:49+09:00"
+        },
+        {
+          "headline": "Mort de l'acteur Choi Bul-am, figure de la télévision coréenne",
+          "original_headline": "For half a century, Choi Bul-am was the everyman of Korean television",
+          "summary": "Il est mort à 87 ans. Il a incarné l'inspecteur Park dans « Chief Inspector » (880 épisodes) et tenu le patriarche de « Country Diaries », 1 088 épisodes entre 1980 et 2002.",
+          "importance": 5,
+          "tags": [
+            "television",
+            "deces",
+            "culture"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10920855",
+          "source_lang": "en",
+          "published_at": "2026-10-30T16:28:12+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Intel chute de 28 % sur des prévisions décevantes",
+          "original_headline": "Intel’s stock crashes, knocking $12B from government’s stake",
+          "summary": "Intel prévoit 15 à 16 milliards de dollars de chiffre d'affaires au quatrième trimestre, contre 17 attendus. L'IA absorbe la mémoire, ce qui renchérit les PC. La participation de l'État américain perd 12 milliards.",
+          "importance": 1,
+          "tags": [
+            "intel",
+            "memoire",
+            "pc"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/30/intels-stock-crashes-knocking-12b-from-governments-stake/",
+          "source_lang": "en",
+          "published_at": "2026-10-31T06:54:34+09:00"
+        },
+        {
+          "headline": "Des pirates nord-coréens soupçonnés du vol de 6,3 milliards de dollars chez Binance",
+          "original_headline": "North Korean hackers blamed for stealing record $6.3B in Binance breach",
+          "summary": "Selon TRM Labs et Elliptic, le groupe TraderTraitor serait en cause. Le vol, parti d'un ordinateur d'ingénieur compromis, aurait duré vingt minutes. Binance a suspendu dépôts et retraits ; environ 3 milliards sont gelés.",
+          "importance": 2,
+          "tags": [
+            "binance",
+            "cryptomonnaies",
+            "coree-du-nord"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/30/north-korean-hackers-blamed-for-stealing-record-6-3b-in-binance-breach/",
+          "source_lang": "en",
+          "published_at": "2026-10-30T23:00:25+09:00"
+        },
+        {
+          "headline": "Le premier satellite-centre de données de Google est en ligne",
+          "original_headline": "Google’s first data center satellite is online and writing poetry",
+          "summary": "Le prototype Suncatcher embarque quatre TPU et produit jusqu'à 1 kW. Une seule puce fonctionne à la fois, une vingtaine de minutes. Sa première invite a fait écrire un haïku à Gemma 4.",
+          "importance": 3,
+          "tags": [
+            "google",
+            "satellites",
+            "tpu"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
+          "source_lang": "en",
+          "published_at": "2026-10-31T02:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Activision s'excuse et promet de retirer les images d'Itaewon de Modern Warfare 4",
+          "original_headline": "Activision apologizes and says it will remove South Korean crush footage from Modern Warfare 4 after victims’ families speak out",
+          "summary": "L'éditeur s'excuse auprès des familles et retirera la séquence du prologue dans la mise à jour du 12 novembre. Il affirme n'avoir jamais voulu banaliser la tragédie.",
+          "importance": 1,
+          "tags": [
+            "call-of-duty",
+            "activision",
+            "itaewon"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/activision-apologizes-and-says-it-will-remove-south-korean-crush-footage-from-modern-warfare-4-after-victims-families-speak-out/",
+          "source_lang": "en",
+          "published_at": "2026-10-31T01:18:03+09:00"
+        },
+        {
+          "headline": "Ubisoft ne prévoit plus aucun remake d'Assassin's Creed",
+          "original_headline": "Ubisoft says no more Assassin’s Creed remakes are planned, as it gives updates on Invictus and Hexe",
+          "summary": "Black Flag Resynced reste le seul remake. Le multijoueur Invictus a été testé par des centaines de joueurs, avec un retour « très positif » ; la prochaine grande mise à jour de Hexe est annoncée pour 2027.",
+          "importance": 2,
+          "tags": [
+            "ubisoft",
+            "assassins-creed",
+            "remakes"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-says-no-more-assassins-creed-remakes-are-planned-as-it-gives-updates-on-invictus-and-hexe/",
+          "source_lang": "en",
+          "published_at": "2026-10-30T21:18:44+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Aucun article sportif n'a pu être ouvert et vérifié ce matin : Yonhap, BBC Sport et Dong-A bloquent la lecture.",
+      "items": []
+    }
+  ]
+}
