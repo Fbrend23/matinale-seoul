@@ -1,0 +1,223 @@
+{
+  "date": "2026-11-01",
+  "title": "Un revenu de base à l'essai, l'IA d'OpenAI à Yongin et l'automne sur le Bukhansan",
+  "standfirst": "Le président Lee inspecte le revenu de base pilote dans deux comtés ruraux et veut revoir certaines aides aux familles multiculturelles. Samsung reçoit Sam Altman, OpenAI revoit sa levée de fonds à la baisse. Journée courte côté gaming et sport.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Baegundae, sommet de Séoul, attend le pic des couleurs d'automne",
+          "original_headline": "Chasing fall colors to the top of Seoul",
+          "summary": "Le Baegundae, point culminant de Séoul à 836 mètres, se gravit par un sentier de 4,1 km en environ 130 minutes. Un responsable du parc situe le pic des couleurs au tournant du mois.",
+          "importance": 1,
+          "tags": [
+            "randonnee",
+            "bukhansan",
+            "automne"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10919315",
+          "source_lang": "en",
+          "published_at": "2026-10-31T16:00:08+09:00"
+        },
+        {
+          "headline": "La papeterie Artbox séduit les touristes étrangers",
+          "original_headline": "A box full of K-cuteness: Artbox takes on the world",
+          "summary": "La chaîne Artbox compte 236 magasins en Corée et 57 dans sept pays. En juillet, ses achats détaxés ont progressé d'environ 40 % sur un an, à 62 082 transactions.",
+          "importance": 2,
+          "tags": [
+            "papeterie",
+            "detaxe",
+            "souvenirs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10918895",
+          "source_lang": "en",
+          "published_at": "2026-10-31T16:00:04+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee inspecte le revenu de base pilote dans le Gyeongsang du Nord",
+          "original_headline": "Lee visits southeastern province to inspect pilot basic income scheme",
+          "summary": "Le président Lee a visité les comtés de Cheongsong et Yeongyang. Le programme verse 150 000 wons par mois en bons d'achat ; 17 des 69 comtés en déclin démographique l'appliquent.",
+          "importance": 1,
+          "tags": [
+            "revenu-de-base",
+            "lee-jae-myung",
+            "depeuplement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921315",
+          "source_lang": "en",
+          "published_at": "2026-10-31T15:21:08+09:00"
+        },
+        {
+          "headline": "Lee veut revoir les aides aux familles multiculturelles jugées inéquitables",
+          "original_headline": "Lee calls for review of multicultural family benefits over reverse discrimination concerns",
+          "summary": "Lee juge que le soutien aux familles multiculturelles doit continuer, mais que les mesures produisant une « discrimination à rebours » doivent être corrigées. Le débat porte sur l'accès prioritaire aux centres post-partum et des points en crèche.",
+          "importance": 2,
+          "tags": [
+            "familles-multiculturelles",
+            "politique-sociale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921290",
+          "source_lang": "en",
+          "published_at": "2026-10-31T14:06:25+09:00"
+        },
+        {
+          "headline": "Hanwha décroche sa première commande de navire neuf pour la marine américaine",
+          "original_headline": "Hanwha wins first US Navy shipbuilding contract in $269 million deal",
+          "summary": "Hanwha Defense USA obtient 269 millions de dollars pour un navire de débarquement moyen, construit au chantier Philly Shipyard. Trois navires supplémentaires sont en option ; la construction débute au quatrième trimestre 2027.",
+          "importance": 3,
+          "tags": [
+            "hanwha",
+            "defense",
+            "construction-navale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921252",
+          "source_lang": "en",
+          "published_at": "2026-10-31T12:03:19+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une cinquantaine de dirigeants de Samsung rencontrent Sam Altman",
+          "original_headline": "Samsung executives meet OpenAI's Altman to discuss AI strategy",
+          "summary": "La rencontre à Yongin était la deuxième session de formation à l'IA des cadres après celle de juin. Samsung a formé environ 2 300 cadres et vise tous ses employés d'ici février 2027.",
+          "importance": 1,
+          "tags": [
+            "samsung",
+            "openai",
+            "formation-ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921312",
+          "source_lang": "en",
+          "published_at": "2026-10-31T15:13:35+09:00"
+        },
+        {
+          "headline": "OpenAI abaisserait l'objectif de sa nouvelle levée de fonds",
+          "original_headline": "OpenAI reportedly lowers funding target for new round",
+          "summary": "Selon le Financial Times, OpenAI viserait désormais 20 milliards de dollars, contre 30 milliards annoncés plus tôt. Le Wall Street Journal indique que 11 milliards sont acquis et que de gros investisseurs réagissent avec tiédeur.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "levee-de-fonds"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/31/openai-reportedly-lowers-funding-target-for-new-round/",
+          "source_lang": "en",
+          "published_at": "2026-11-01T01:12:55+09:00"
+        },
+        {
+          "headline": "Le patron d'Apple ne veut pas « livrer de l'IA pour l'IA »",
+          "original_headline": "Apple CEO says the company doesn’t ‘want to ship AI for AI’s sake’",
+          "summary": "Interrogé par Wired, John Ternus, PDG d'Apple depuis septembre, dit que l'IA bien faite ne doit pas se remarquer. Apple compte l'utiliser dans ses nouveaux produits.",
+          "importance": 3,
+          "tags": [
+            "apple",
+            "intelligence-artificielle"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/10/31/apple-ceo-says-the-company-doesnt-want-to-ship-ai-for-ais-sake/",
+          "source_lang": "en",
+          "published_at": "2026-11-01T06:41:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Rien de vérifiable ce matin : les pages des rédactions du secteur n'ont pu être lues, et rien n'est retenu sur la foi d'un simple titre.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La KBO demande à la MLB de proposer Roh Si-hwan aux clubs américains",
+          "original_headline": "KBO asks MLB to post All-Star slugger Roh Si-hwan",
+          "summary": "La KBO a demandé à la MLB de proposer Roh Si-hwan (Hanwha Eagles) à ses 30 clubs, pour 30 jours de négociation. Il a frappé 29 coups de circuit et totalisé 96 points produits en 2026.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "mlb",
+            "baseball"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261101/kbo-asks-mlb-to-post-all-star-slugger-roh-si-hwan",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert Park Jinyoung [CODE#] à Séoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "장충체육관",
+      "area": "Jung-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "summary": "Premier concert solo à Séoul de Park Jinyoung, de GOT7, dans le cadre de sa tournée [CODE#]. Séances le samedi à 18 h et le dimanche à 16 h. Entrée payante sur réservation.",
+      "source_name": "Melon Ticket",
+      "source_url": "https://ticket.melon.com/performance/index.htm?prodId=213880",
+      "source_lang": "ko",
+      "booking_url": "https://ticket.melon.com/performance/index.htm?prodId=213880"
+    },
+    {
+      "name": "Festival animalier Happy Together de Jung-gu 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "손기정 체육공원 축구장",
+      "area": "Jung-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-07",
+      "summary": "Fête de quartier dédiée aux animaux de compagnie, de 12 h à 16 h au parc Son Kee-chung. Les inscriptions aux programmes sont ouvertes depuis le 1er octobre, par ordre d'arrivée.",
+      "source_name": "Ville de Séoul",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=602",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Village de Noël du Hyundai Seoul",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-11-10",
+      "end_date": "2026-12-31",
+      "summary": "Village de Noël au 5e étage du grand magasin, ouvert de 10 h 30 à 19 h 30, sauf les 26 novembre et 18 décembre. Entrée gratuite, quatre billets au maximum par compte ; réservation dès le 5 novembre.",
+      "source_name": "The Hyundai",
+      "source_url": "https://hi.thehyundai.com/contents/780956",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon K-Rice Festa 2026 à KINTEX",
+      "kind": "salon",
+      "theme": "food",
+      "venue": "킨텍스 제1전시장",
+      "area": "Goyang",
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-29",
+      "summary": "Salon national autour du riz coréen, au hall 2 du hall d'exposition 1. Ouvert de 10 h à 18 h les 27 et 28 novembre, jusqu'à 17 h le 29. Entrée gratuite.",
+      "source_name": "Visit Korea",
+      "source_url": "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=204942",
+      "source_lang": "en",
+      "address": "경기도 고양시 일산서구 킨텍스로 217-60"
+    }
+  ]
+}
