@@ -1,0 +1,325 @@
+{
+  "date": "2026-11-02",
+  "title": "Erdogan attendu à Séoul, le FBI désigne Pyongyang et les Lions filent en finale",
+  "standfirst": "Deux chefs d'État en visite cette semaine, le FBI qui attribue à la Corée du Nord le vol chez Binance, et des Lions de Samsung qualifiés pour la Korean Series. Journée plus calme côté tourisme et jeu vidéo.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le café du père de Jimin, à Busan, annonce sa fermeture dans un an",
+          "original_headline": "BTS Jimin's father's cafe announces closure in one year",
+          "summary": "Le ZM-illennial, café de Busan tenu par le père de Jimin, de BTS, a annoncé sur Instagram sa fermeture dans 365 jours, sans en donner la raison. Les fans de BTS y font étape.",
+          "importance": 1,
+          "tags": [
+            "bts",
+            "busan",
+            "cafe"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921962",
+          "source_lang": "en",
+          "published_at": "2026-11-02T06:45:12+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Erdogan et le président est-timorais en visite à Séoul cette semaine",
+          "original_headline": "Turkish, East Timorese presidents to visit S. Korea this week for talks with Lee",
+          "summary": "Recep Tayyip Erdogan est en visite d'État de lundi à mercredi, avec sommet mardi, sa première depuis 2018. José Ramos-Horta suit de jeudi à samedi, sommet vendredi.",
+          "importance": 1,
+          "tags": [
+            "diplomatie",
+            "turquie",
+            "timor-oriental"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921878",
+          "source_lang": "en",
+          "published_at": "2026-11-01T19:35:22+09:00"
+        },
+        {
+          "headline": "Les arrestations de livreurs étrangers en situation irrégulière ont été multipliées par 17",
+          "original_headline": "Gov't tightens grip on illegal foreign delivery riders amid nearly 17-fold surge in cases",
+          "summary": "1 132 étrangers ont été arrêtés pour travail illégal dans la livraison de janvier à août, contre 67 sur tout 2025. Le gouvernement prépare des opérations conjointes et une vérification d'identité des livreurs.",
+          "importance": 2,
+          "tags": [
+            "immigration",
+            "livraison",
+            "travail-illegal"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/society/20261102/govt-tightens-grip-on-illegal-foreign-delivery-riders-amid-nearly-17-fold-surge-in-cases?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-02T07:12:04+09:00"
+        },
+        {
+          "headline": "Près de quatre Coréens sur dix de la classe moyenne ont vu leur revenu baisser en 2024",
+          "original_headline": "Middle-class hit hardest in 2024 after COVID-19: data",
+          "summary": "Selon les données officielles, 38,9 % des ménages du troisième quintile ont perdu des revenus en 2024, contre 35,2 % en 2023. C'est le taux le plus élevé depuis 2020.",
+          "importance": 3,
+          "tags": [
+            "revenus",
+            "classe-moyenne",
+            "economie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921744",
+          "source_lang": "en",
+          "published_at": "2026-11-01T14:31:28+09:00"
+        },
+        {
+          "headline": "La polémique sur les réseaux sociaux du président Lee s'intensifie",
+          "original_headline": "Spat over president's social media activities intensifies",
+          "summary": "Lee Jae Myung a défendu sur X ses voyages à l'étranger. L'opposition relève que leur budget 2027 atteint 65,32 milliards de wons, plus du double de cette année. Le Parti démocrate dénonce des critiques excessives.",
+          "importance": 4,
+          "tags": [
+            "presidence",
+            "budget"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921790",
+          "source_lang": "en",
+          "published_at": "2026-11-01T15:53:46+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le FBI attribue le vol chez Binance au groupe nord-coréen TraderTraitor",
+          "original_headline": "North Korean cyberterrorism gains renewed scrutiny after record Binance heist",
+          "summary": "Le FBI affirme que la Corée du Nord est responsable du vol de plus de 6 milliards de dollars chez Binance. Trump dit ne pas savoir si Pyongyang est en cause.",
+          "analysis": "L'attribution est nouvelle par rapport au vol lui-même, signalé le 31 octobre : elle fait de l'affaire un dossier diplomatique entre Washington et Pyongyang.",
+          "importance": 1,
+          "tags": [
+            "binance",
+            "cybercriminalite",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921777",
+          "source_lang": "en",
+          "published_at": "2026-11-01T15:23:56+09:00"
+        },
+        {
+          "headline": "Le patron de Samsung visite le laboratoire d'emballage de puces de Yokohama",
+          "original_headline": "Samsung chief Lee visits Japan chip packaging lab",
+          "summary": "Lee Jae-yong a visité dimanche l'Advanced Package Lab de Yokohama, ouvert le 8 septembre. Samsung prévoit d'y investir 350 milliards de wons sur cinq ans, jusqu'en 2028.",
+          "importance": 2,
+          "tags": [
+            "samsung",
+            "semi-conducteurs",
+            "japon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921887",
+          "source_lang": "en",
+          "published_at": "2026-11-01T20:32:52+09:00"
+        },
+        {
+          "headline": "HD Hyundai Robotics réduit de 63 % ses délais de dépannage avec l'IA de Palantir",
+          "original_headline": "HD Hyundai Robotics cuts troubleshooting time 63% with Palantir AI",
+          "summary": "Depuis août, des agents IA développés avec Palantir ont ramené le traitement des pannes de robots de 21,5 à 7,9 jours. L'entreprise attend plus de 50 % d'économies de programmation.",
+          "importance": 3,
+          "tags": [
+            "robotique",
+            "palantir",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921723",
+          "source_lang": "en",
+          "published_at": "2026-11-01T13:49:36+09:00"
+        },
+        {
+          "headline": "OpenAI songerait à rebaptiser ses centres de données « campus de calcul IA »",
+          "original_headline": "OpenAI might rebrand its data centers as ‘AI compute campuses’",
+          "summary": "Selon Axios, OpenAI prépare une campagne de communication après les élections de mi-mandat. Son responsable des affaires publiques propose ce nouveau nom, alors que les centres de données sont impopulaires.",
+          "importance": 4,
+          "tags": [
+            "openai",
+            "centres-de-donnees"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/01/openai-might-rebrand-its-data-centers-as-ai-compute-campuses/",
+          "source_lang": "en",
+          "published_at": "2026-11-02T06:55:23+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Hanwha Life, champion du MSI, éliminé dès le tour suisse des Worlds",
+          "original_headline": "‘MSI 우승·파워랭킹 1위’ 한화생명의 몰락…롤드컵 8강도 못 갔다 ‘충격 탈락’ [SS포커스]",
+          "summary": "Battu 0-2 par Bilibili Gaming lors de la dernière manche du tour suisse, Hanwha Life finit à deux victoires et trois défaites. Gen.G, DK et T1 se qualifient pour les quarts.",
+          "importance": 1,
+          "tags": [
+            "league-of-legends",
+            "worlds",
+            "e-sport"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1645767",
+          "source_lang": "ko",
+          "published_at": "2026-11-01T10:07:33+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Choi Min-jeong gagne un deuxième 1 000 m consécutif sur le circuit mondial",
+          "original_headline": "Choi Min-jeong wins second straight 1,000-meter gold",
+          "summary": "À Montréal, Choi Min-jeong s'impose en 1 min 30,273 s devant Courtney Sarault. Elle ajoute l'argent au relais 3 000 m. Elle prendra sa retraite de l'équipe nationale à l'issue de la saison.",
+          "importance": 1,
+          "tags": [
+            "short-track",
+            "choi-min-jeong"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921770",
+          "source_lang": "en",
+          "published_at": "2026-11-01T15:07:24+09:00"
+        },
+        {
+          "headline": "Kim Min-jae joue tout le match dans le nul 2-2 du Bayern contre Dortmund",
+          "original_headline": "Kim Min-jae plays full match as Bayern draws Dortmund 2-2",
+          "summary": "Titulaire pour la première fois en trois matches officiels, Kim Min-jae a joué les 90 minutes. Upamecano a marqué pour le Bayern, avant l'égalisation de Silva pour Dortmund. Les Bavarois restent invaincus en Bundesliga.",
+          "importance": 2,
+          "tags": [
+            "kim-min-jae",
+            "bundesliga",
+            "football"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921779",
+          "source_lang": "en",
+          "published_at": "2026-11-01T15:28:11+09:00"
+        },
+        {
+          "headline": "L'Atlético de Lee Kang-in prend la tête de la Liga",
+          "original_headline": "Lee Kang-in hits post as Atletico Madrid wins seventh straight to go top",
+          "summary": "Titulaire et auteur d'un poteau à la 55e minute, Lee Kang-in a joué 67 minutes dans la victoire 2-0 de l'Atlético contre Levante, son septième succès d'affilée. Le club mène avec 28 points.",
+          "importance": 3,
+          "tags": [
+            "lee-kang-in",
+            "liga",
+            "football"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10921781",
+          "source_lang": "en",
+          "published_at": "2026-11-01T15:34:07+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Salon AIoT Korea Exhibition 2026 au COEX",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-03",
+      "end_date": "2026-11-05",
+      "summary": "Salon consacré à l'intelligence artificielle et à l'Internet des objets, au hall D du COEX, de 10 h à 17 h. Entrée à 10 000 wons.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/en/exhibitions/aiot-korea-exhibition-2026/",
+      "source_lang": "en"
+    },
+    {
+      "name": "Concert CRAVITY : SONOROUS in Seoul",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "올림픽홀",
+      "area": "Songpa-gu",
+      "start_date": "2026-11-14",
+      "end_date": "2026-11-15",
+      "summary": "Deux concerts de CRAVITY à l'Olympic Hall : samedi à 18 h, dimanche à 16 h. Places à 154 000 wons, 198 000 wons en VIP, via Melon Ticket.",
+      "source_name": "Melon",
+      "source_url": "https://ticket.melon.com/performance/index.htm?prodId=213892",
+      "source_lang": "ko",
+      "booking_url": "https://ticket.melon.com/performance/index.htm?prodId=213892"
+    },
+    {
+      "name": "Pop-up Robot Taekwon V 50e anniversaire à Seoul Station",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "제타플렉스 서울역점",
+      "area": "Jung-gu",
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-27",
+      "summary": "Boutique éphémère pour les 50 ans de Robot Taekwon V, à la Zeta Plex de Seoul Station, du 21 au 27 novembre.",
+      "source_name": "ETNews",
+      "source_url": "https://www.etnews.com/20261101000018",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon Robotworld 2026 à KINTEX",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "킨텍스",
+      "area": "Goyang",
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-07",
+      "summary": "Salon de la robotique à KINTEX, à Goyang, du 4 au 7 novembre.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20261026161754",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Concert solo de Kim Feel à Blue Square",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "블루스퀘어 우리WON뱅킹홀",
+      "area": "Yongsan-gu",
+      "start_date": "2026-11-14",
+      "end_date": "2026-11-15",
+      "summary": "Concert solo de Kim Feel les 14 et 15 novembre, après la sortie de son deuxième album studio, JOURNEY, le 29 octobre.",
+      "source_name": "SBS",
+      "source_url": "https://ent.sbs.co.kr/news/article.do?article_id=E10010324007",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Lancement Starbucks × SSG Day dans toute la Corée",
+      "kind": "lancement",
+      "theme": "food",
+      "venue": "스타벅스",
+      "area": "Toute la Corée",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-08",
+      "summary": "Opération SSG Day du 30 octobre au 8 novembre dans les magasins Starbucks du pays et en ligne, avec un porte-clés Bearista Hobby Club.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20261030093951",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition photo « Regard mécanique : voir par contact » au SeMA",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울시립 사진미술관",
+      "area": "Dobong-gu",
+      "start_date": "2026-10-28",
+      "end_date": "2026-12-20",
+      "summary": "Projet Photo Discovery du musée de la photographie de Séoul, à Changdong, du 28 octobre au 20 décembre. Entrée gratuite.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://sema.seoul.go.kr/kr/visit/photosema",
+      "source_lang": "ko",
+      "address": "서울 도봉구 마들로13길 68"
+    }
+  ]
+}
