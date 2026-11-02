@@ -1,0 +1,326 @@
+{
+  "date": "2026-11-03",
+  "title": "Budget 2027 devant l'Assemblée, nouvelle agence des drones et début de la finale du baseball",
+  "standfirst": "Le président Lee défend son budget 2027 devant une opposition qui quitte l'hémicycle, et l'armée remplace son commandement des drones. Côté sport, la finale du baseball coréen s'ouvre à Suwon. Peu de sources lisibles ce matin pour le sport et le tourisme.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le feu d'artifice de Busan, samedi à Gwangalli, réserve plus de places aux touristes étrangers",
+          "summary": "Spectacle d'une heure à 19 h sur la plage de Gwangalli, samedi 7 novembre. Environ 17 000 places payantes, dont 3 000 de plus qu'en 2025 pour les touristes étrangers. Le pont de Gwangan sera fermé.",
+          "importance": 1,
+          "tags": [
+            "busan",
+            "feu-d-artifice",
+            "festival"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/lifestyle/people-events/20261102/busan-fireworks-festival-to-light-up-gwangalli-beach-saturday",
+          "source_lang": "en",
+          "published_at": "2026-11-02T16:13:00+09:00"
+        },
+        {
+          "headline": "La panne à Incheon met en cause un prestataire américain et interroge les réseaux de secours",
+          "summary": "La panne d'enregistrement de vendredi, liée à des problèmes de connexion d'ARINC, a touché 13 compagnies, retardé 38 vols et fait attendre 1 200 passagers. L'article réclame des réseaux de secours.",
+          "importance": 2,
+          "tags": [
+            "aeroport",
+            "incheon",
+            "panne"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/business/companies/20261102/incheon-airports-network-fiasco-raises-questions-over-crisis-readiness",
+          "source_lang": "en",
+          "published_at": "2026-11-02T14:31:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee défend un budget 2027 de 820,9 billions de wons, l'opposition quitte l'hémicycle",
+          "summary": "Devant l'Assemblée, Lee juge la hausse nette de la dette « proche de zéro ». Le Parti du pouvoir du peuple la chiffre à 96,3 billions de wons, et la plupart de ses députés quittent la salle après le discours.",
+          "importance": 1,
+          "tags": [
+            "budget",
+            "assemblee-nationale",
+            "lee-jae-myung"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10922958",
+          "source_lang": "en",
+          "published_at": "2026-11-02T15:21:57+09:00"
+        },
+        {
+          "headline": "L'armée crée l'Agence des drones de défense",
+          "summary": "Le ministère de la Défense remplace le commandement des drones de 2023 par une agence d'une centaine de personnes, contre 280. Séoul veut plus de 20 000 drones bon marché ; des experts doutent de la production.",
+          "importance": 2,
+          "tags": [
+            "defense",
+            "drones"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10922947",
+          "source_lang": "en",
+          "published_at": "2026-11-02T15:17:03+09:00"
+        },
+        {
+          "headline": "La chaîne Genesis de l'usine Hyundai d'Ulsan à l'arrêt après un différend syndical",
+          "summary": "Les délégués syndicaux ont empêché un véhicule d'essai de la G80 hybride d'entrer sur la chaîne. Hyundai applique « pas de travail, pas de salaire » à environ 800 salariés, et la date de reprise reste incertaine.",
+          "importance": 3,
+          "tags": [
+            "hyundai",
+            "syndicat",
+            "automobile"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10923226",
+          "source_lang": "en",
+          "published_at": "2026-11-02T19:26:13+09:00"
+        },
+        {
+          "headline": "La Cour suprême confirme l'amende de 18,6 milliards de wons contre Broadcom",
+          "summary": "La plus haute juridiction rejette le recours de Broadcom, sanctionné pour avoir imposé à Samsung un contrat de composants défavorable : au moins 760 millions de dollars d'achats par an à partir de 2021, pendant trois ans.",
+          "importance": 4,
+          "tags": [
+            "broadcom",
+            "samsung",
+            "concurrence"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10923234",
+          "source_lang": "en",
+          "published_at": "2026-11-02T20:02:41+09:00"
+        },
+        {
+          "headline": "Séoul reconnaît trois pêcheurs enlevés par le Nord en 1973",
+          "summary": "Le ministère de l'Unification reconnaît officiellement trois marins du Daeyeong, enlevés près de Yeonpyeong. Il versera 81 millions de wons à la famille de Jo Gi-won et cherche celles des deux autres.",
+          "importance": 5,
+          "tags": [
+            "coree-du-nord",
+            "enlevements"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10922932",
+          "source_lang": "en",
+          "published_at": "2026-11-02T15:10:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Marvell rachète Lumentum pour 115 milliards de dollars",
+          "summary": "L'opération se fait en actions : 4,5 titres Marvell par titre Lumentum. Nvidia est actionnaire des deux groupes. La clôture est attendue au premier semestre 2028, sous réserve des actionnaires et des régulateurs.",
+          "importance": 1,
+          "tags": [
+            "semi-conducteurs",
+            "acquisition",
+            "nvidia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/02/in-one-of-the-largest-deals-in-tech-history-marvell-buys-lumentum-for-115b/",
+          "source_lang": "en",
+          "published_at": "2026-11-03T02:54:11+09:00"
+        },
+        {
+          "headline": "Anthropic juge possible une accélération imminente du développement de l'IA par l'IA",
+          "summary": "Dans la version révisée de son dossier de Bourse, Anthropic écrit que ses estimations internes pourraient atteindre « imminemment » son seuil d'accélération. Aucun modèle n'a été classé au-delà, précise-t-elle.",
+          "importance": 2,
+          "tags": [
+            "ia",
+            "anthropic",
+            "bourse"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
+          "source_lang": "en",
+          "published_at": "2026-11-03T07:14:50+09:00"
+        },
+        {
+          "headline": "Des iPhone de députés allemands peut-être piratés par un logiciel espion",
+          "summary": "L'office allemand de cybersécurité indique que des membres du Bundestag ont reçu des alertes d'Apple. Berlin prend l'incident « très au sérieux » ; l'auteur reste inconnu. Apple dit que cette vague touche 99 pays.",
+          "importance": 3,
+          "tags": [
+            "cybersecurite",
+            "apple",
+            "logiciel-espion"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/02/germany-says-lawmakers-iphones-may-have-been-hacked-with-spyware/",
+          "source_lang": "en",
+          "published_at": "2026-11-03T04:45:54+09:00"
+        },
+        {
+          "headline": "Le New York Times poursuit le navigateur Brave pour aspiration de contenus",
+          "summary": "Le journal accuse Brave d'avoir copié ses articles et de les fournir à des clients dont Anthropic et Perplexity. Brave aurait indexé plus de 30 milliards de pages. Trois quotidiens déposent une plainte semblable.",
+          "importance": 4,
+          "tags": [
+            "droit-d-auteur",
+            "ia",
+            "presse"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/02/new-york-times-and-other-outlets-sue-web-browser-brave-over-alleged-content-scraping/",
+          "source_lang": "en",
+          "published_at": "2026-11-03T04:19:17+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Nagoshi Studio, créé par le père de Yakuza, est officiellement dissous",
+          "summary": "Le Journal officiel japonais confirme la dissolution. Le premier jeu du studio, Gang of Dragon, avec Ma Dong-seok, avait perdu le financement de NetEase ; selon Bloomberg en mars, il demandait 7 milliards de yens de plus.",
+          "importance": 1,
+          "tags": [
+            "studios",
+            "netease",
+            "fermeture"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/nagoshi-studio-officially-closes-after-netease-cuts-funding/",
+          "source_lang": "en",
+          "published_at": "2026-11-02T17:01:35+09:00"
+        },
+        {
+          "headline": "Une bande-annonce d'un remake du premier Persona aurait fuité",
+          "summary": "Une vidéo postée par un nouveau compte YouTube montre combat et dialogues, avec une interface modifiée et la musique d'origine remixée. Sega et Atlus ne confirment rien ; elle pourrait être générée par IA.",
+          "importance": 2,
+          "tags": [
+            "persona",
+            "remake",
+            "fuite"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/a-trailer-for-a-remake-of-the-original-persona-appears-to-have-leaked/",
+          "source_lang": "en",
+          "published_at": "2026-11-02T20:57:11+09:00"
+        },
+        {
+          "headline": "Le prochain jeu de Bend Studio serait dévoilé et sorti en 2027",
+          "summary": "Selon un rapport de MP1st relayé par VGC, le jeu ne serait ni une suite de Days Gone ni un jeu service. À la troisième personne, avec coopération, il serait plus avancé qu'on ne le croit.",
+          "importance": 3,
+          "tags": [
+            "sony",
+            "bend-studio",
+            "rumeur"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/days-gone-developer-bend-studios-next-game-will-be-revealed-and-released-next-year-report-claims/",
+          "source_lang": "en",
+          "published_at": "2026-11-02T18:49:37+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La finale du baseball coréen s'ouvre à Suwon entre KT Wiz et Samsung Lions",
+          "summary": "Série au meilleur des sept, premier match mardi à 18 h 30 au KT Wiz Park. Les managers Lee Kang-chul (KT) et Park Jin-man (Samsung) ont tous deux été MVP de la série comme joueurs.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "baseball",
+            "korean-series"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10922928",
+          "source_lang": "en",
+          "published_at": "2026-11-02T15:07:43+09:00"
+        },
+        {
+          "headline": "Séoul réexamine « à zéro » ses marathons de 2027 après les embouteillages",
+          "summary": "Le maire Oh Se-hoon promet de revoir parcours et calendrier. La ville a ramené de 15 à 7 ses courses parrainées, celles de l'État sont passées de 1 à 23.",
+          "importance": 2,
+          "tags": [
+            "marathon",
+            "seoul",
+            "circulation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10922938",
+          "source_lang": "en",
+          "published_at": "2026-11-02T15:11:47+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Festival culturel Corée - Asie centrale 2026",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "서울어린이대공원 열린무대",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-11-08",
+      "end_date": "2026-11-08",
+      "summary": "Fête du 34e anniversaire des relations diplomatiques avec l'Asie centrale, le 8 novembre à la scène ouverte du Grand Parc pour enfants, station Children's Grand Park, ligne 7, sortie 1.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalMain.do",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival de la jeunesse Seoripul 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "서초문화예술공원",
+      "area": "Seocho-gu",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-07",
+      "summary": "Festival des jeunes de Seocho au parc culturel et artistique de Seocho, le 7 novembre de 11 h à 16 h.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalMain.do",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival d'automne du Grand Parc de Séoul",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "서울대공원",
+      "area": "Gwacheon",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-30",
+      "summary": "Programme les 7 et 8 novembre autour de la forêt de Pinocchio ; l'exposition en plein air devant Seoul Land reste ouverte jusqu'au 30 novembre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=465",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up Blanc l'odeur à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-11-04",
+      "end_date": "2026-11-11",
+      "summary": "Boutique éphémère de la marque coréenne de cosmétiques Blanc l'odeur, au niveau B1 du grand magasin, du 4 au 11 novembre.",
+      "source_name": "Sports Seoul",
+      "source_url": "https://www.sportsseoul.com/news/read/1646089",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Ballet Casse-Noisette au Centre des arts de Séoul",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "예술의전당 오페라극장",
+      "area": "Seocho-gu",
+      "start_date": "2026-12-11",
+      "end_date": "2026-12-27",
+      "summary": "Casse-Noisette par le Centre des arts de Séoul et le Ballet national de Corée, du 11 au 27 décembre, au Théâtre de l'Opéra. Places de 10 000 à 120 000 wons.",
+      "source_name": "Seoul Arts Center",
+      "source_url": "https://www.sac.or.kr/site/eng/show/show_view?SN=86292",
+      "source_lang": "en"
+    }
+  ]
+}
