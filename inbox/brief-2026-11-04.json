@@ -1,0 +1,230 @@
+{
+  "date": "2026-11-04",
+  "title": "Erdogan à Séoul, Hybe au record, et une série de rachats dans l'IA",
+  "standfirst": "Lee et Erdogan s'entendent sur le nucléaire et la défense, Kim Yo-jong dément le vol chez Binance et Hybe publie un trimestre record. Côté tech, l'IA attire les rachats ; côté sport, la Corée se porte candidate aux JO de 2036 et la Coupe d'Asie est repoussée. Rien de vérifiable en tourisme ce matin.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": "Rien de saillant côté tourisme : aucun article vérifiable dans les dernières 24 heures.",
+      "items": []
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee et Erdogan s'accordent sur le nucléaire et la défense",
+          "original_headline": "Korea, Turkey pledge deeper cooperation on nuclear energy, defense",
+          "summary": "En visite d'État à Séoul, Erdogan a signé avec Lee un protocole sur le financement de projets nucléaires, dont la centrale turque de Sinop. Un forum sur la transition énergétique est aussi prévu.",
+          "importance": 1,
+          "tags": [
+            "turquie",
+            "nucleaire",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924530",
+          "source_lang": "en",
+          "published_at": "2026-11-03T18:15:59+09:00"
+        },
+        {
+          "headline": "Kim Yo-jong rejette l'accusation de vol de cryptomonnaies chez Binance",
+          "original_headline": "[Key Points] Kim Yo-jong rejects crypto theft claims, keeps diplomatic door ajar",
+          "summary": "Kim Yo-jong qualifie de « grave provocation politique » les conclusions du FBI sur le vol de 6,3 milliards de dollars. Elle ne menace pas de représailles et laisse la porte ouverte au dialogue.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "binance",
+            "cybercriminalite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924492",
+          "source_lang": "en",
+          "published_at": "2026-11-03T17:40:45+09:00"
+        },
+        {
+          "headline": "La justice révoque la caution de la dirigeante de l'Église de l'Unification",
+          "original_headline": "Court revokes bail of Unification Church leader after unauthorized hospital departure",
+          "summary": "La Haute Cour de Séoul annule la caution de Han Hak-ja, 83 ans, accordée le 19 octobre à condition de rester à l'hôpital. Selon JTBC, elle s'est rendue à Gapyeong. Les 200 millions de wons sont saisis.",
+          "importance": 3,
+          "tags": [
+            "justice",
+            "eglise-de-l-unification"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924566",
+          "source_lang": "en",
+          "published_at": "2026-11-03T19:25:16+09:00"
+        },
+        {
+          "headline": "Hybe publie un trimestre record grâce à la tournée de BTS",
+          "original_headline": "Hybe posts record quarterly results as BTS tour lifts revenue",
+          "summary": "Chiffres préliminaires : 1 530 milliards de wons de revenus au troisième trimestre (+109,8 %), 188,5 milliards de bénéfice d'exploitation contre une perte un an plus tôt. Les concerts rapportent 726,8 milliards.",
+          "importance": 4,
+          "tags": [
+            "hybe",
+            "bts",
+            "resultats"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924563",
+          "source_lang": "en",
+          "published_at": "2026-11-03T19:02:22+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Fal double sa valorisation à 16 milliards de dollars",
+          "original_headline": "AI inference startup Fal doubles its valuation to $16B as demand surges",
+          "summary": "La plateforme d'inférence IA lève 1,3 milliard de dollars, menée par Bessemer, avec Nvidia au tour de table. Sa valorisation passe de 8 à 16 milliards depuis avril ; son chiffre d'affaires annualisé dépasse 800 millions, selon Bloomberg.",
+          "importance": 1,
+          "tags": [
+            "ia",
+            "levee-de-fonds",
+            "inference"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/03/ai-inference-startup-fal-doubles-its-valuation-to-16b-as-demand-surges/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T04:34:43+09:00"
+        },
+        {
+          "headline": "CrowdStrike rachète deux jeunes pousses de sécurité des agents IA",
+          "original_headline": "CrowdStrike to shell out nearly $500M for 2 AI security startups as the market for securing agents takes off",
+          "summary": "Fiddler AI, observabilité des agents, pour environ 400 millions de dollars, et Dreadnode, tests de sécurité automatisés, pour environ 95 millions, selon le Wall Street Journal. Les deux rejoignent la plateforme Falcon.",
+          "importance": 2,
+          "tags": [
+            "crowdstrike",
+            "cybersecurite",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/03/crowdstrike-to-shell-out-nearly-500m-for-2-ai-security-startups-as-the-market-for-securing-agents-takes-off/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T02:56:52+09:00"
+        },
+        {
+          "headline": "Apple réserve aux 18 ans et plus les applications de rencontre et de compagnons IA",
+          "original_headline": "Apple restricts dating apps and AI companions to users 18 and up",
+          "summary": "Les applications aux contenus romantiques ou sexuels, rencontres ou compagnons IA, devront porter une classification 18+. Dès le 16 novembre, les développeurs ajoutent de nouveaux descripteurs de contenu et déclarent le partage de localisation.",
+          "importance": 3,
+          "tags": [
+            "apple",
+            "app-store",
+            "protection-des-mineurs"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T00:38:27+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Ubisoft aurait proposé de racheter Arkane Lyon à Xbox",
+          "original_headline": "Ubisoft has reportedly offered to buy Arkane Lyon from Xbox",
+          "summary": "Selon Bloomberg, Ubisoft et au moins deux autres sociétés ont fait une offre. Xbox envisagerait aussi de céder le studio à sa propre direction, comme Double Fine. Arkane pourrait encore sortir Marvel's Blade.",
+          "importance": 1,
+          "tags": [
+            "xbox",
+            "ubisoft",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-has-reportedly-offered-to-buy-arkane-lyon-from-xbox/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T06:15:26+09:00"
+        },
+        {
+          "headline": "Itch supprime des téraoctets de contenu IA et ajoute un filtre",
+          "original_headline": "Itch mass deletes ‘AI slop’, lets users filter out any AI assisted games",
+          "summary": "Un nouveau filtre permet aux utilisateurs d'exclure de leurs résultats tout jeu qui déclare de l'IA générative. La plateforme a supprimé « quelques téraoctets » d'envois en masse, surtout des modèles 3D IA mal optimisés.",
+          "importance": 2,
+          "tags": [
+            "itch",
+            "ia-generative",
+            "plateformes"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/itch-mass-deletes-ai-slop-lets-users-filter-out-any-ai-assisted-games/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T03:18:37+09:00"
+        },
+        {
+          "headline": "Nexus Mods exige de déclarer l'IA dans les mods mais refuse de l'interdire",
+          "original_headline": "Nexus Mods rules out full AI ban despite community backlash",
+          "summary": "Les auteurs de mods devront expliquer publiquement où ils ont employé l'IA générative, avec 60 jours de délai pour les mods existants. La modération reste manuelle, et les balises IA permettent de filtrer l'accueil.",
+          "importance": 3,
+          "tags": [
+            "nexus-mods",
+            "ia-generative",
+            "mods"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/nexus-mods-rules-out-full-ai-ban-despite-community-backlash/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T07:12:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée soutient sa candidature aux JO d'été de 2036",
+          "original_headline": "Nat'l Olympic body, sports ministry vow support for S. Korean Summer Games bid",
+          "summary": "Le CIO a arrêté sept candidats : Corée du Sud, Allemagne, Hongrie, Inde, Qatar, Afrique du Sud et Turquie. Le Nord-Jeolla l'a emporté sur Séoul en 2025 ; les deux se tournent vers une organisation conjointe.",
+          "importance": 1,
+          "tags": [
+            "jo-2036",
+            "cio",
+            "candidature"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924584",
+          "source_lang": "en",
+          "published_at": "2026-11-03T20:57:44+09:00"
+        },
+        {
+          "headline": "La Coupe d'Asie de football, en Arabie saoudite, est repoussée",
+          "original_headline": "Asian Cup football tournament postponed due to attacks on Saudi Arabia",
+          "summary": "L'AFC décale le tournoi, prévu du 7 janvier au 5 février 2027, au 23 décembre 2027–21 janvier 2028, à cause des attaques houthistes. La FIFA doit approuver.",
+          "importance": 2,
+          "tags": [
+            "coupe-d-asie",
+            "football",
+            "afc"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10924561",
+          "source_lang": "en",
+          "published_at": "2026-11-03T19:01:57+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert solo de Max Changmin : RESONANCE",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "예스24 라이브홀",
+      "area": "Gwangjin-gu",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "summary": "Premier concert solo en Corée de Max Changmin, trois jours au Yes24 Live Hall, sous le titre MAX CHANGMIN LIVE SESSION : RESONANCE.",
+      "source_name": "Sports Seoul",
+      "source_url": "https://m.sportsseoul.com/news/read/1646101",
+      "source_lang": "ko"
+    }
+  ]
+}
