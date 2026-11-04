@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-05",
+  "title": "Yoon confirmé en appel, sanctions record contre les banques, Google et l'IA à l'école",
+  "standfirst": "Journée courte et vérifiée : la justice confirme la peine de Yoon Suk Yeol pour fausses déclarations, le régulateur frappe sept banques, et le rachat du JoongAng Ilbo se signe jeudi. Côté tech, Google et Canva. Le sport est laissé de côté, faute de source lisible.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des toilettes de l'aéroport d'Incheon reçoivent le prix présidentiel de la propreté",
+          "summary": "Les toilettes de la porte 225 du terminal 2, en zone hors taxes, remportent le prix présidentiel des Beautiful Restroom Awards. Leurs baies vitrées donnent sur les avions. La gare de Séoul avait gagné l'an dernier.",
+          "importance": 1,
+          "tags": [
+            "incheon",
+            "aeroport"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10926083",
+          "source_lang": "en",
+          "published_at": "2026-11-04T17:58:37+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La condamnation de Yoon pour fausses déclarations de campagne est confirmée en appel",
+          "summary": "La cour d'appel de Séoul confirme 18 mois de prison avec sursis de trois ans contre Yoon Suk Yeol pour fausses déclarations en 2022. Définitive, la peine obligerait le PPP à rendre environ 39,7 milliards de wons.",
+          "importance": 1,
+          "tags": [
+            "yoon-suk-yeol",
+            "justice"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10925845",
+          "source_lang": "en",
+          "published_at": "2026-11-04T15:27:57+09:00"
+        },
+        {
+          "headline": "Sanctions record de 374,6 milliards de wons contre sept banques et six courtiers",
+          "summary": "Le régulateur financier sanctionne sept banques et six courtiers pour la vente abusive de produits indexés sur l'indice H de Hong Kong. KB Kookmin paie 172,3 milliards. Les banques peuvent contester devant le tribunal administratif.",
+          "importance": 2,
+          "tags": [
+            "banques",
+            "regulation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10926075",
+          "source_lang": "en",
+          "published_at": "2026-11-04T17:54:46+09:00"
+        },
+        {
+          "headline": "Un consortium signe jeudi le rachat du quotidien JoongAng Ilbo",
+          "summary": "Un consortium mené par Daou et CJ, avec Shinsegae et Saramin, signe jeudi le rachat du quotidien endetté JoongAng Ilbo, par une souscription de 520 milliards de wons. Il promet de garder tous les salariés.",
+          "importance": 3,
+          "tags": [
+            "presse",
+            "rachat"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10926142",
+          "source_lang": "en",
+          "published_at": "2026-11-04T19:44:53+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Google lie Search à l'IA dans les écoles et recule face aux critiques",
+          "summary": "Google annonçait que les écoles de ses logiciels K-12 devraient activer l'IA pour garder Search. Après les critiques de Bernie Sanders, Lina Khan et du maire Mamdani, Gemini et Search seraient désactivés par défaut, école par école.",
+          "importance": 1,
+          "tags": [
+            "google",
+            "education",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/04/google-faces-backlash-for-plan-that-would-turn-off-search-for-schools-that-restrict-ai/",
+          "source_lang": "en",
+          "published_at": "2026-11-05T01:17:22+09:00"
+        },
+        {
+          "headline": "Canva supprime 1 271 postes, soit 22 % de ses effectifs",
+          "summary": "La PDG Melanie Perkins écrit que la croissance a ralenti pour la première fois en dix ans. Canva abaisse sa prévision de croissance du chiffre d'affaires à 20 %, contre 30 % auparavant, et réorganise ses équipes.",
+          "importance": 2,
+          "tags": [
+            "canva",
+            "licenciements"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/04/canva-lays-off-over-1200-people-amid-slowing-growth/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T20:59:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Pokémon Pokopia aura sa deuxième extension payante le 9 décembre",
+          "summary": "Cette extension, surtout consacrée aux cosmétiques, ajoute aussi de nouveaux Pokémon, objets et villes. Le jeu s'est vendu à cinq millions d'exemplaires en cinq mois. Une troisième extension est prévue en 2027.",
+          "importance": 1,
+          "tags": [
+            "pokemon",
+            "switch-2",
+            "dlc"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/pokemon-pokopias-second-expansion-announced-for-december/",
+          "source_lang": "en",
+          "published_at": "2026-11-04T23:36:24+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Aucun sujet sport n'a pu être vérifié ce matin : les sources de la Korean Series, de l'ACL2 et du golf n'ont pas pu être ouvertes.",
+      "items": []
+    }
+  ]
+}
