@@ -1,0 +1,227 @@
+{
+  "date": "2026-11-06",
+  "title": "La Bourse de Séoul chute de plus de 5 % après les élections américaines",
+  "standfirst": "Le Kospi cède 5,28 % sur la crainte d'une régulation de l'IA après la victoire démocrate aux élections de mi-mandat. Coupang perd en justice sur son amende, la marine réduit ses patrouilles Aegis, et Meta comme OpenAI parlent d'un climat politique qui change.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "À Myeong-dong, des vendeurs de rue reprennent les déchets des visiteurs",
+          "original_headline": "In Myeong-dong, street vendors take your trash",
+          "summary": "Dans ce quartier, les visiteurs peuvent confier leurs déchets à 364 vendeurs de rue volontaires, signalés par des panneaux en anglais, japonais et chinois. Séoul comptait 7 142 poubelles publiques en septembre.",
+          "importance": 1,
+          "tags": [
+            "myeong-dong",
+            "dechets",
+            "touristes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927437",
+          "source_lang": "en",
+          "published_at": "2026-11-05T16:18:52+09:00"
+        },
+        {
+          "headline": "Quatre cafés primés pour leur architecture à Séoul",
+          "original_headline": "Seoul’s most architectural cafes are made for more than coffee",
+          "summary": "Quatre cafés distingués par les Seoul Architecture Awards attirent pour leur bâtiment : Tank6, ancien dépôt pétrolier de Mapo, Jmcoffee à Sinsa, 9ro Pyeongsang à Guro et Comfort Seoul à Yongsan.",
+          "importance": 2,
+          "tags": [
+            "cafes",
+            "architecture"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927612",
+          "source_lang": "en",
+          "published_at": "2026-11-05T17:58:12+09:00"
+        },
+        {
+          "headline": "307,6 milliards de wons d'achats hors taxes jamais retirés depuis 2022",
+          "original_headline": "Uncollected duty-free goods amount to W307b since 2022",
+          "summary": "Des achats hors taxes non retirés aux comptoirs des aéroports et ports ont atteint 307,6 milliards de wons de 2022 à septembre 2026. Incheon pèse 82,8 % des 1,13 million de cas, dit la douane.",
+          "importance": 3,
+          "tags": [
+            "duty-free",
+            "aeroports",
+            "douane"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927615",
+          "source_lang": "en",
+          "published_at": "2026-11-05T18:00:11+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi s'effondre de 5,28 % après la victoire démocrate aux États-Unis",
+          "original_headline": "Seoul shares plunge over 5% on AI regulation concerns after US midterms",
+          "summary": "L'indice perd 300 points et clôt à 5 383,80, par crainte d'une régulation plus dure de l'IA. Les étrangers vendent 3,39 billions de wons nets. Samsung recule de 7,57 %, SK hynix de 9,46 %.",
+          "analysis": "La séance dit à quel point l'indice dépend des valeurs de l'IA et des puces, déjà en recul le 31 octobre.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927473",
+          "source_lang": "en",
+          "published_at": "2026-11-05T16:30:25+09:00"
+        },
+        {
+          "headline": "Coupang déboutée sur la suspension de sa pénalité de 423,58 milliards de wons",
+          "original_headline": "Court rejects Coupang's request to suspend execution of breach-related penalty",
+          "summary": "Le tribunal administratif de Séoul refuse de suspendre la pénalité liée à la fuite de données touchant 33,7 millions de clients. Il suspend en revanche les mesures correctives jusqu'à trente jours après le jugement sur le fond.",
+          "importance": 2,
+          "tags": [
+            "coupang",
+            "donnees-personnelles",
+            "justice"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927677",
+          "source_lang": "en",
+          "published_at": "2026-11-05T19:29:48+09:00"
+        },
+        {
+          "headline": "La marine a cessé de maintenir un destroyer Aegis en permanence en mer de l'Est",
+          "original_headline": "[Exclusive] S. Korea scales back Aegis patrols in East Sea, raising concerns over North Korean missile analysis",
+          "summary": "Depuis septembre 2025, faute de personnel, aucun destroyer Aegis n'est déployé en permanence en mer de l'Est. L'état-major nie toute faille ; certains jugent la collecte sur les missiles nord-coréens limitée.",
+          "importance": 3,
+          "tags": [
+            "defense",
+            "aegis",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927357",
+          "source_lang": "en",
+          "published_at": "2026-11-05T15:30:21+09:00"
+        },
+        {
+          "headline": "Séoul veut repousser de deux ans l'impôt sur les cryptomonnaies, à 2029",
+          "original_headline": "Korea seeks another delay to crypto tax until 2029",
+          "summary": "Le gouvernement veut reporter à 2029 l'imposition des gains en cryptomonnaies, due en janvier, soit un quatrième report. Il propose aussi un report des pertes sur trois ans. Le taux prévu est de 22 %.",
+          "importance": 4,
+          "tags": [
+            "cryptomonnaies",
+            "fiscalite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927485",
+          "source_lang": "en",
+          "published_at": "2026-11-05T16:36:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Meta craint que le rejet des centres de données après les élections freine l'IA",
+          "original_headline": "Meta warns that election backlash against data centers could make AI expansion harder",
+          "summary": "Dina Powell McCormick, administratrice de Meta, estime que les victoires démocrates rendront les centres de données beaucoup plus difficiles à construire. Meta en compte dans 23 États, dont cinq prévus à un gigawatt ou plus.",
+          "importance": 1,
+          "tags": [
+            "meta",
+            "centres-de-donnees",
+            "elections"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/05/metas-warns-that-election-backlash-against-data-centers-could-make-ai-expansion-harder/",
+          "source_lang": "en",
+          "published_at": "2026-11-06T04:12:39+09:00"
+        },
+        {
+          "headline": "OpenAI pourrait être prête à entrer en Bourse en 2027, dit Greg Brockman",
+          "original_headline": "OpenAI president Greg Brockman says company could be IPO ready in 2027",
+          "summary": "Le président d'OpenAI dit que l'entreprise pourrait être prête pour une introduction en Bourse en 2027. Il juge les deux premiers trimestres de 2026 « assez rudes » et cite une hausse de 70 % du revenu annualisé au troisième.",
+          "importance": 2,
+          "tags": [
+            "openai",
+            "introduction-en-bourse"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/",
+          "source_lang": "en",
+          "published_at": "2026-11-06T03:02:27+09:00"
+        },
+        {
+          "headline": "Onze jeunes pousses de Séoul exposent leurs outils urbains en IA à Barcelone",
+          "original_headline": "[SCEWC 2026] 도시 문제 해결사로 나선 서울 스타트업…혁신 기술로 유럽 문 두드린다",
+          "summary": "La Seoul AI Foundation tient un pavillon de 180 m² au salon SCEWC de Barcelone, du 3 au 5 novembre, pour onze entreprises. L'une dit avoir réduit de 35 % la pointe de consommation d'une usine japonaise.",
+          "importance": 3,
+          "tags": [
+            "startups",
+            "ia",
+            "smart-city"
+          ],
+          "source_name": "etnews",
+          "source_url": "https://www.etnews.com/20261104000213",
+          "source_lang": "ko"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les ventes de Switch 2 ont chuté de 37 % cet été, Nintendo prévoit un recul de 16,9 %",
+          "original_headline": "Switch 2 sales dropped 37% this summer, mostly before the price hike hit; Nintendo now expects sales to slump 16.9% in console's second year",
+          "summary": "Selon PC Gamer, les ventes de la Switch 2 ont reculé de 37 % cet été, surtout avant la hausse de prix. Nintendo s'attend à un repli de 16,9 % pour la deuxième année de la console.",
+          "importance": 1,
+          "tags": [
+            "nintendo",
+            "switch-2",
+            "resultats"
+          ],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/hardware/handheld-gaming-pcs/switch-2-sales-dropped-37-percent-this-summer-mostly-before-the-price-hike-hit-nintendo-now-expects-sales-to-slump-16-9-percent-in-consoles-second-year/",
+          "source_lang": "en",
+          "published_at": "2026-11-05T20:53:38+09:00"
+        },
+        {
+          "headline": "God of War Laufey est repoussé au 20 mai 2027",
+          "original_headline": "God of War Laufey delayed three months to May 2027, as Sony Santa Monica escapes a packed February",
+          "summary": "Le jeu de Sony Santa Monica, exclusif à la PS5, quitte un mois de février très chargé et sortira le 20 mai 2027, soit trois mois plus tard que prévu.",
+          "importance": 2,
+          "tags": [
+            "report",
+            "playstation"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/god-of-war-laufey-delayed-may-three-months",
+          "source_lang": "en",
+          "published_at": "2026-11-05T02:32:10+09:00"
+        },
+        {
+          "headline": "EA publie 25 jeux classiques sur PC, dont sept restaurés",
+          "original_headline": "EA has released classic ‘restored’ games on PC, including Ultima and Road Rash",
+          "summary": "EA propose sur Steam 25 jeux classiques, dont les séries Ultima et Wing Commander. Sept sont des restaurations pour les PC actuels. Les titres sont à moitié prix jusqu'au 19 novembre.",
+          "importance": 3,
+          "tags": [
+            "ea",
+            "steam",
+            "classiques"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ea-has-released-25-classic-restored-games-on-pc-including-ultima-and-road-rash/",
+          "source_lang": "en",
+          "published_at": "2026-11-06T03:59:21+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Journée creuse côté sport : les sites de référence sur le baseball coréen n'ont pas pu être lus ce matin, rien de vérifiable à ajouter.",
+      "items": []
+    }
+  ]
+}
