@@ -1,0 +1,227 @@
+{
+  "date": "2026-11-07",
+  "title": "L'Assemblée vote une enquête sur les inculpations fabriquées sous Yoon",
+  "standfirst": "Le Parlement adopte, le PPP ayant boycotté, un procureur spécial sur des poursuites jugées politiques. Lee Yong-cheol est proposé à la Justice, GOPAX gèle ses retraits, et le plus fort El Niño jamais mesuré annonce un hiver doux. Journée courte côté sport : les Lions mènent la Korean Series.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'aéroport d'Incheon renforce la sécurité après des alertes à la bombe en Europe",
+          "original_headline": "Incheon Airport steps up security amid bomb threats in Europe",
+          "summary": "La police de l'aéroport dit avoir renforcé la sécurité après des menaces à la bombe visant une douzaine de vols en Europe. Les autorités écartent toute menace terroriste et suivent les cas à l'étranger.",
+          "importance": 1,
+          "tags": [
+            "aeroport-incheon",
+            "securite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928889",
+          "source_lang": "en",
+          "published_at": "2026-11-06T17:18:12+09:00"
+        },
+        {
+          "headline": "Mingles et Onjium gagnent des rangs au classement World's 50 Best",
+          "original_headline": "Mingles, Onjium climb World's 50 Best ranks as Korean dining gains ground",
+          "summary": "Mingles passe du 29e au 17e rang, le meilleur résultat d'un restaurant coréen. Onjium, à Jongno, entre au 41e rang, contre le 57e l'an dernier. Le classement repose sur les votes de plus de 1 100 experts.",
+          "importance": 2,
+          "tags": [
+            "gastronomie",
+            "restaurants",
+            "classement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928648",
+          "source_lang": "en",
+          "published_at": "2026-11-06T14:44:42+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'Assemblée vote une enquête sur des inculpations fabriquées sous Yoon",
+          "original_headline": "Assembly passes bill to probe alleged fabricated indictments by prosecutors under Yoon",
+          "summary": "Le texte passe par 167 voix contre 1, le PPP ayant boycotté. Un procureur spécial pourra employer 309 personnes et enquêter 200 jours sur 12 affaires, dont six visant Lee Jae Myung.",
+          "analysis": "Le PPP y voit un moyen d'abandonner les poursuites contre Lee ; le parti au pouvoir parle d'examiner les abus des procureurs sous Yoon.",
+          "importance": 1,
+          "tags": [
+            "assemblee-nationale",
+            "procureur-special",
+            "yoon-suk-yeol"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928951",
+          "source_lang": "en",
+          "published_at": "2026-11-06T18:20:45+09:00"
+        },
+        {
+          "headline": "Le patron de l'agence d'armement proposé comme ministre de la Justice",
+          "original_headline": "DAPA chief tapped as justice minister",
+          "summary": "Lee Yong-cheol, à la tête de l'agence d'acquisition de défense (DAPA) depuis novembre 2025, est proposé vendredi à la Justice. Ce juriste né en 1960 fut conseiller juridique à la présidence sous Roh Moo-hyun.",
+          "importance": 2,
+          "tags": [
+            "gouvernement",
+            "justice"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928789",
+          "source_lang": "en",
+          "published_at": "2026-11-06T16:14:43+09:00"
+        },
+        {
+          "headline": "Le plus fort El Niño jamais mesuré annonce un hiver plus doux et plus humide",
+          "original_headline": "Record-breaking El Nino raises prospect of warmer, wetter winter in Korea",
+          "summary": "Selon l'administration météorologique, El Niño, commencé en mai, devrait apporter plus de chaleur et de précipitations jusqu'en décembre. Un afflux d'air froid est attendu temporairement en janvier.",
+          "importance": 3,
+          "tags": [
+            "meteo",
+            "el-nino",
+            "hiver"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928548",
+          "source_lang": "en",
+          "published_at": "2026-11-06T13:36:28+09:00"
+        },
+        {
+          "headline": "GOPAX suspend les retraits après des menaces de piratage",
+          "original_headline": "GOPAX suspends withdrawals following hacking threats",
+          "summary": "La plateforme de cryptomonnaies a suspendu les retraits vendredi à 14 h 55, par précaution, et transfère ses actifs vers des portefeuilles hors ligne. Elle dit n'avoir constaté aucune perte réelle.",
+          "importance": 4,
+          "tags": [
+            "cryptomonnaies",
+            "cybersecurite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928990",
+          "source_lang": "en",
+          "published_at": "2026-11-06T19:32:01+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les dépenses d'IA des entreprises stagnent, alors qu'Anthropic approche de la Bourse",
+          "original_headline": "Ramp data shows AI spending stalling just as Anthropic nears its IPO",
+          "summary": "Selon Ramp, la dépense des entreprises en jetons d'IA n'a progressé que de 1,5 % entre août et septembre, après 42 % en juillet. Octobre repart de 8,9 %, au moment où Anthropic approche de son introduction.",
+          "importance": 1,
+          "tags": [
+            "ia",
+            "anthropic",
+            "depenses"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Meta lance Spaces pour travailler par projet avec son agent Muse",
+          "original_headline": "Meta introduces Spaces, a new way to collaborate with your Muse agent",
+          "summary": "Meta propose des conversations dédiées à un projet, affichées dans la barre latérale de Muse : vacances, recettes, mariage. Les applications connectées les mettent à jour en arrière-plan.",
+          "importance": 2,
+          "tags": [
+            "meta",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent/",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Sony abandonne le jeu mobile Ratchet & Clank: Ranger Rumble",
+          "original_headline": "Sony’s free-to-play mobile Ratchet & Clank multiplayer shooter has been cancelled",
+          "summary": "Le jeu gratuit, lancé à titre d'essai dans plusieurs pays, sera retiré des boutiques mobiles le 21 novembre. Les serveurs fermeront le 1er mai 2027 ; les achats intégrés sont supprimés.",
+          "importance": 1,
+          "tags": [
+            "sony",
+            "jeu-mobile",
+            "annulation"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/sonys-free-to-play-mobile-ratchet-clank-multiplayer-shooter-has-been-cancelled/",
+          "source_lang": "en",
+          "published_at": "2026-11-06T23:44:21+09:00"
+        },
+        {
+          "headline": "Gen.G et T1 gardent vivant l'espoir coréen aux Worlds de League of Legends",
+          "original_headline": "Gen.G, T1 keep Korea’s Worlds title hopes alive",
+          "summary": "Gen.G a battu Lyon 3-0 et affronte Invictus Gaming en demi-finale dimanche à 7 h, heure de Séoul. T1 joue Karmine Corp samedi à 7 h. Dplus Kia est éliminé. La finale est prévue le 15 novembre.",
+          "importance": 2,
+          "tags": [
+            "league-of-legends",
+            "worlds",
+            "e-sport"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10928544",
+          "source_lang": "en",
+          "published_at": "2026-11-06T13:34:55+09:00"
+        },
+        {
+          "headline": "Xbox met à jour son application PC, jusqu'à 60 % plus rapide au lancement",
+          "original_headline": "Xbox is updating its PC app, promising 60% faster boot times and an easier to use game library",
+          "summary": "Selon les tests de Microsoft, le lancement est jusqu'à 60 % plus rapide. La bibliothèque est simplifiée et les amis passent dans la navigation principale. Les Xbox Insiders l'essaient avant le déploiement général.",
+          "importance": 3,
+          "tags": [
+            "xbox",
+            "microsoft",
+            "pc"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/xbox-is-updating-its-pc-app-promising-60-faster-boot-times-and-an-easier-to-use-game-library/",
+          "source_lang": "en",
+          "published_at": "2026-11-06T21:58:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Lions battent les Wiz 5-1 et mènent la Korean Series 2-1",
+          "original_headline": "Lions rally past Wiz to take Korean Series lead",
+          "summary": "Les Samsung Lions s'imposent 5-1 à Daegu au match 3. Ariel Jurado lance sept manches pour un seul point encaissé. Le match 4 a lieu samedi à 14 h, toujours à Daegu.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "korean-series",
+            "samsung-lions"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261107/lions-rally-past-wiz-to-take-korean-series-lead?utm_source=rss",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Ballet La Dame aux camélias par le Ballet national de Corée",
+      "kind": "autre",
+      "theme": "culture",
+      "venue": "예술의전당 오페라극장",
+      "area": "Seocho-gu",
+      "start_date": "2026-11-10",
+      "end_date": "2026-11-15",
+      "summary": "Le Ballet national de Corée danse la chorégraphie de John Neumeier sur la musique de Chopin. Places de 20 000 à 120 000 wons.",
+      "source_name": "Seoul Arts Center",
+      "source_url": "https://www.sac.or.kr/site/main/show/show_view?SN=73493",
+      "source_lang": "ko",
+      "address": "서울시 서초구 남부순환로 2406"
+    }
+  ]
+}
