@@ -1,0 +1,332 @@
+{
+  "date": "2026-11-08",
+  "title": "Fuites de données dans la finance, tensions sur le DMZ et un Noël d'hôtels plus cher",
+  "standfirst": "Mirae Asset s'ajoute à la liste des fuites de données dans la finance coréenne. Pyongyang resserre ses liens avec Pékin pendant que l'ONU s'inquiète du DMZ. Côté voyage, les buffets d'hôtel de fin d'année coûtent plus cher. Les Lions sont à une victoire du titre de baseball.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les buffets d'hôtel de Séoul augmentent leurs prix pour les fêtes",
+          "original_headline": "Seoul hotel buffets hike year-end prices",
+          "summary": "Une famille de quatre peut approcher 1 million de wons au buffet de Noël, avec des hausses allant jusqu'à 13,6 %. Constans, au Josun Palace, demande 235 000 wons par personne les 24, 25 et 31 décembre.",
+          "importance": 1,
+          "tags": [
+            "hotels",
+            "restauration",
+            "noel"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927023",
+          "source_lang": "en",
+          "published_at": "2026-11-07T16:00:00+09:00"
+        },
+        {
+          "headline": "Des trains lents pour voir la Corée autrement que par le KTX",
+          "original_headline": "Take the slow train",
+          "summary": "Le V-train relie Yeongju à Taebaek en 2 h 30 pour 11 700 wons, avec un aller-retour par jour du jeudi au lundi. Trois lignes touristiques ont transporté 350 000 passagers de janvier à septembre.",
+          "importance": 2,
+          "tags": [
+            "train",
+            "voyage",
+            "campagne"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927351",
+          "source_lang": "en",
+          "published_at": "2026-11-07T16:00:00+09:00"
+        },
+        {
+          "headline": "Les enseignes suivent les touristes hors de Séoul",
+          "original_headline": "Korean retailers follow tourist boom beyond Seoul",
+          "summary": "Les arrivées dans les aéroports régionaux ont crû d'environ 37 % sur neuf mois. Les touristes étrangers ont dépensé plus de 1 000 milliards de wons à Busan, première région hors Séoul à franchir ce seuil.",
+          "importance": 3,
+          "tags": [
+            "commerce",
+            "busan",
+            "tourisme-regional"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10927608",
+          "source_lang": "en",
+          "published_at": "2026-11-07T16:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une fuite de données touche 39 000 personnes chez Mirae Asset Securities",
+          "original_headline": "Personal info of some 39,000 leaked from Mirae Asset Securities",
+          "summary": "Les numéros de compte de 3 800 clients et les données de plus de 35 000 salariés et sous-traitants ont fuité après des accès externes mercredi et jeudi. Le régulateur compte 40 incidents financiers depuis le 30 septembre.",
+          "importance": 1,
+          "tags": [
+            "cybersecurite",
+            "finance",
+            "fuite-de-donnees"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929242",
+          "source_lang": "en",
+          "published_at": "2026-11-07T15:49:54+09:00"
+        },
+        {
+          "headline": "Le syndicat de Posco rejette l'accord salarial provisoire",
+          "original_headline": "Posco union votes down tentative wage agreement",
+          "summary": "51,69 % des votants ont refusé l'accord conclu le 30 octobre, qui prévoyait 2,6 % de hausse de salaire de base et une prime de 6 millions de wons. Le syndicat se prépare à renégocier.",
+          "importance": 2,
+          "tags": [
+            "posco",
+            "syndicats",
+            "salaires"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929322",
+          "source_lang": "en",
+          "published_at": "2026-11-07T18:52:06+09:00"
+        },
+        {
+          "headline": "L'ONU demande de rétablir les canaux de communication intercoréens",
+          "original_headline": "UN chief calls for restoration of inter-Korean communication channels amid DMZ tensions",
+          "summary": "Le porte-parole de Guterres cite le risque d'escalade dans la DMZ, après l'explosion d'une mine le 21 septembre qui a blessé trois soldats sud-coréens. Pyongyang nie toute responsabilité.",
+          "importance": 3,
+          "tags": [
+            "dmz",
+            "coree-du-nord",
+            "onu"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929277",
+          "source_lang": "en",
+          "published_at": "2026-11-07T16:57:33+09:00"
+        },
+        {
+          "headline": "Pyongyang et Pékin tiennent leur troisième rencontre de haut niveau",
+          "original_headline": "North Korea-China strengthen ties with 3rd high-level meeting",
+          "summary": "Kim Song-nam, du Parti des travailleurs, a rencontré à Pékin Wang Yi, Liu Haixing puis Cai Qi, numéro cinq du Parti communiste chinois. Pékin assure que son amitié avec Pyongyang « ne vacillera jamais ».",
+          "importance": 4,
+          "tags": [
+            "coree-du-nord",
+            "chine",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929317",
+          "source_lang": "en",
+          "published_at": "2026-11-07T18:25:08+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "OpenAI aurait levé 11 milliards de dollars, valorisée 1 250 milliards",
+          "original_headline": "OpenAI reportedly raises an additional $11 billion at a $1.25 trillion valuation",
+          "summary": "Selon Bloomberg, la levée, non bouclée, pourrait atteindre environ 20 milliards. En septembre, OpenAI visait 30 milliards à 1 400 milliards de valorisation. Les acheteurs potentiels d'Anthropic viseraient une valorisation d'introduction de 1 100 milliards.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "financement",
+            "anthropic"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+          "source_lang": "en",
+          "published_at": "2026-11-07T07:53:46+09:00"
+        },
+        {
+          "headline": "Le directeur financier de Binance part après le piratage de 6,3 milliards",
+          "original_headline": "Binance CFO is leaving to 'pursue a new venture' after $6.3 billion hack",
+          "summary": "Kaiser Ng quitte Binance, Justin Yek lui succède. Binance dit assumer les pertes, sans les répercuter sur les utilisateurs. Elle et le FBI attribuent le vol au groupe nord-coréen TraderTraitor.",
+          "importance": 2,
+          "tags": [
+            "binance",
+            "cryptomonnaies",
+            "piratage"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/07/binance-cfo-is-leaving-to-pursue-a-new-venture-after-6-3-billion-hack/",
+          "source_lang": "en",
+          "published_at": "2026-11-08T02:24:07+09:00"
+        },
+        {
+          "headline": "Crusoe cède à Google un centre de données inachevé dans le Wyoming",
+          "original_headline": "Crusoe sells troubled Wyoming data center project to Google",
+          "summary": "Google reprend le projet après avoir exprimé des réserves sur le coût et le calendrier. Il annonce 17 milliards de dollars d'investissement sur le site, sans révéler le prix payé à Crusoe.",
+          "importance": 3,
+          "tags": [
+            "centres-de-donnees",
+            "google",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/",
+          "source_lang": "en",
+          "published_at": "2026-11-07T10:40:28+09:00"
+        },
+        {
+          "headline": "Une note du renseignement américain évoque une espionne autour du patron de Nvidia",
+          "original_headline": "Megaspeed exec was recruited to spy on Nvidia CEO, according to US intelligence memo",
+          "summary": "Selon plusieurs médias, une note affirme qu'une cadre de Megaspeed aurait été recrutée par les services chinois. Nvidia juge les contacts « pas inhabituels ». TechCrunch relaie ces affirmations sans les confirmer.",
+          "importance": 4,
+          "tags": [
+            "nvidia",
+            "chine",
+            "espionnage"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/",
+          "source_lang": "en",
+          "published_at": "2026-11-08T06:17:08+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le studio de Star Wars Zero Company licencie, un mois après avoir rappelé des employés",
+          "original_headline": "Star Wars Zero Company studio Bit Reactor lays off staff, a month after bringing furloughed developers back",
+          "summary": "Bit Reactor a licencié un nombre non précisé de salariés, un mois après avoir fait revenir une partie de son équipe mise en congé forcé.",
+          "importance": 1,
+          "tags": [
+            "licenciements",
+            "studios"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/star-wars-zero-company-bit-reactor-layoffs",
+          "source_lang": "en",
+          "published_at": "2026-11-08T05:06:10+09:00"
+        },
+        {
+          "headline": "La saison 3 de Wardogs arrive le 12 novembre avec une vague de 185 000 bannissements",
+          "original_headline": "Wardogs Season 3 brings an urban map, Limited Mode, and a 185,000-account ban wave",
+          "summary": "La saison 3 de Wardogs démarre le 12 novembre avec une carte urbaine, un mode Limited et une vague de bannissements visant 185 000 comptes.",
+          "importance": 2,
+          "tags": [
+            "wardogs",
+            "tricherie",
+            "saisons"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/wardogs-season-3-release-date-limited-mode-ban-wave",
+          "source_lang": "en",
+          "published_at": "2026-11-08T01:55:30+09:00"
+        },
+        {
+          "headline": "Sony reporte sans date les enceintes Pulse Elevate, à moins d'une semaine du lancement",
+          "original_headline": "Sony delays PlayStation's Pulse Elevate speakers indefinitely, less than a week before launch",
+          "summary": "Sony a repoussé sans date ses enceintes sans fil Pulse Elevate, alors que leur sortie était prévue dans moins d'une semaine.",
+          "importance": 3,
+          "tags": [
+            "sony",
+            "playstation",
+            "report"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/playstation-pulse-elevate-speakers-delayed-indefinitely-production-issue",
+          "source_lang": "en",
+          "published_at": "2026-11-08T04:36:10+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Lions battent les Wiz et mènent 3-1 en finale du baseball coréen",
+          "original_headline": "(LEAD) Lions beat Wiz to reach brink of Korean Series title",
+          "summary": "Les Samsung Lions prennent une avance de 3-1 sur KT Wiz et sont à une victoire du titre.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "korean-series",
+            "baseball"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20261107002051315",
+          "source_lang": "en",
+          "published_at": "2026-11-07T17:38:21+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Fan meeting de KO1KEYZ à Blue Square",
+      "kind": "concert",
+      "theme": "kpop",
+      "venue": "블루스퀘어",
+      "area": "Yongsan",
+      "start_date": "2026-11-07",
+      "end_date": "2026-11-08",
+      "summary": "Premier fan meeting à Séoul du groupe de 12 membres issu de PRODUCE101 JAPAN, avec trois représentations les 7 et 8 novembre au Blue Square Mastercard Hall.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/en/content/festas/01a0183c-0938-7126-af50-805390b67b9a",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up NIKKE × Musinsa à Seongsu",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "무신사 스토어 성수",
+      "area": "Seongsu",
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-19",
+      "summary": "Pour les quatre ans de NIKKE, collaboration mode avec Musinsa : vestes souvenir, sweats zippés gaufrés et T-shirts inspirés des personnages, au rez-de-chaussée du magasin.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/nikke-musinsa-fourth-anniversary-seongsu-2026",
+      "source_lang": "en",
+      "address": "서울특별시 성동구 성수이로 74"
+    },
+    {
+      "name": "Pop-up Madoka Magica : Walpurgisnacht Rising à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "JS스토어",
+      "area": "Hongdae",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-11",
+      "summary": "JS Store accueille un pop-up pour le film Walpurgisnacht Rising, avec une exposition inspirée de son univers. Le détail des produits sera annoncé plus tard par la boutique.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/madoka-magica-walpurgisnacht-js-store-hongdae-2026",
+      "source_lang": "en",
+      "address": "서울 마포구 와우산로29길 48-24"
+    },
+    {
+      "name": "Pop-up de Noël BUTTER SHOP à Seongsu",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "이구홈 성수 1호점",
+      "area": "Seongsu",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-26",
+      "summary": "BUTTER SHOP présente ses articles de Noël, sa gamme Sesame et sa série Angel. Un porte-clés BUTTER est offert aux 100 premiers acheteurs éligibles, dans la limite du stock.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/butter-shop-christmas-seongsu-2026",
+      "source_lang": "en",
+      "address": "서울 성동구 연무장길 57"
+    },
+    {
+      "name": "Pop-up ZO&FRIENDS × 7-Eleven pour le Pepero Day",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "롯데월드몰",
+      "area": "Songpa",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-11",
+      "summary": "Au sous-sol du Lotte World Mall, un décor autour des personnages ZO&FRIENDS et du Pepero Day, avec un parcours d'indices à suivre sur les empreintes de l'affiche.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/songpa/popups/zo-and-friends-7-eleven-pepero-day-lotte-world-mall-2026",
+      "source_lang": "en",
+      "address": "서울 송파구 올림픽로 300"
+    }
+  ]
+}
