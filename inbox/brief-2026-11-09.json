@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-09",
+  "title": "Nvidia enquête sur son patron, les Lions sacrés et Séoul se met à l'heure de Noël",
+  "standfirst": "Jensen Huang reconnaît une liaison avec une femme soupçonnée d'espionnage, et le conseil de Nvidia ouvre une enquête : élément nouveau par rapport à samedi. Les Lions de Samsung ont ensuite conclu la Korean Series. Séoul reçoit sa première neige et ses décors de Noël. Journée sans article vérifiable côté jeu vidéo.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les grands magasins de Séoul sortent leurs décors de Noël",
+          "original_headline": "Seoul is beginning to look like Christmas",
+          "summary": "Façade de 20 000 ampoules chez Lotte Myeong-dong, ours de Noël en façade média chez Shinsegae jusqu'au 31 janvier, marché de Noël de Lotte Jamsil du 19 novembre au 3 janvier. Village de Hyundai ouvert aux étrangers.",
+          "importance": 1,
+          "tags": [
+            "noel",
+            "grands-magasins",
+            "myeong-dong"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929679",
+          "source_lang": "en",
+          "published_at": "2026-11-08T15:31:34+09:00"
+        },
+        {
+          "headline": "Premier avis de fortes chutes de neige de la saison dans les montagnes d'Inje",
+          "original_headline": "Taste of Winter: Korea issues first heavy snow advisory of season",
+          "summary": "L'avis vise les montagnes d'Inje, dans le Gangwon, avec au moins 5 cm en 24 heures. Séoul a déjà eu sa première neige officielle, 26 jours plus tôt qu'en 2025. Lundi, Séoul affiche 4 à 13 °C.",
+          "importance": 2,
+          "tags": [
+            "meteo",
+            "neige",
+            "gangwon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929796",
+          "source_lang": "en",
+          "published_at": "2026-11-08T20:23:12+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Séoul envisage 2 000 milliards de wons pour les investissements des pompiers",
+          "original_headline": "Gov't weighs W2tr in urgent firefighting aid amid local funding strain",
+          "summary": "Le gouvernement et le Parti démocrate étudient cette aide : les collectivités paient environ 90 % des coûts des pompiers, fonctionnaires nationaux depuis 2020. La décision viendra pendant l'examen du budget 2027.",
+          "importance": 1,
+          "tags": [
+            "pompiers",
+            "budget-2027",
+            "collectivites-locales"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929789",
+          "source_lang": "en",
+          "published_at": "2026-11-08T20:10:17+09:00"
+        },
+        {
+          "headline": "Les courtiers coréens ouvrent les actions américaines presque 24 h sur 24 dès le 6 décembre",
+          "original_headline": "Korean brokerages to offer near-24-hour US stock trading from Dec. 6",
+          "summary": "Les courtiers combineront les 23 heures de séance du Nasdaq et une heure sur la plateforme Blue Ocean. Les investisseurs coréens ont acheté net 2,20 milliards de dollars d'actions américaines du 2 au 6 novembre.",
+          "importance": 2,
+          "tags": [
+            "bourse",
+            "actions-americaines",
+            "courtiers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929666",
+          "source_lang": "en",
+          "published_at": "2026-11-08T15:00:00+09:00"
+        },
+        {
+          "headline": "Les nouveaux écoliers passent sous 300 000 en 2027, une première",
+          "original_headline": "First-grade class set to fall below 300,000 for first time",
+          "summary": "La cohorte née en 2020 compte 272 337 naissances. Cette année, 301 442 enfants sont entrés en primaire, le plus bas depuis 1964. L'école Deungmyeong, à Gangseo, pourrait fermer le 1er mars 2028.",
+          "importance": 3,
+          "tags": [
+            "demographie",
+            "ecoles",
+            "natalite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929669",
+          "source_lang": "en",
+          "published_at": "2026-11-08T15:05:02+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Nvidia ouvre une enquête sur la liaison de Jensen Huang avec une possible espionne chinoise",
+          "original_headline": "Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy",
+          "summary": "Jensen Huang reconnaît une liaison avec Alice Huang, ex-cadre de Megaspeed, qu'un mémo dit recrutée par la Sécurité d'État chinoise. Le conseil ordonne une enquête indépendante et dit n'avoir aucune raison de croire à une compromission.",
+          "importance": 1,
+          "tags": [
+            "nvidia",
+            "espionnage",
+            "gouvernance"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/",
+          "source_lang": "en",
+          "published_at": "2026-11-09T06:00:11+09:00"
+        },
+        {
+          "headline": "L'usine texane de Samsung pourrait lancer ses essais en décembre",
+          "original_headline": "Samsung's Texas chip plant could begin trial runs in December",
+          "summary": "Selon des sources du secteur, les essais démarreraient vers la mi-décembre à Taylor, avant la production de masse prévue en 2027. L'usine doit fabriquer les puces AI6 de Tesla. Samsung n'a pas confirmé de date.",
+          "importance": 2,
+          "tags": [
+            "samsung",
+            "semi-conducteurs",
+            "tesla"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929626",
+          "source_lang": "en",
+          "published_at": "2026-11-08T13:55:28+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Aucun article de jeu vidéo n'a pu être ouvert ce matin : Eurogamer, Polygon et The Verge refusent la lecture, PC Gamer n'a rendu que ses titres.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les Lions de Samsung remportent la Korean Series, leur premier titre en douze ans",
+          "original_headline": "Lions defeat Wiz for 1st Korean Series title in 12 years",
+          "summary": "Les Lions battent les Wiz 12-1 au cinquième match, à Daegu, avec une manche de huit points. Le capitaine Koo Ja-wook est élu MVP. Ils sont le premier deuxième de la saison régulière sacré depuis 2018.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "samsung-lions",
+            "korean-series"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929737",
+          "source_lang": "en",
+          "published_at": "2026-11-08T17:17:58+09:00"
+        },
+        {
+          "headline": "An Se-young égale le record de onze titres en une saison, au Korea Open",
+          "original_headline": "Badminton queen An Se-young ties record with 11 titles for second straight season",
+          "summary": "La numéro un mondiale bat la Japonaise Akane Yamaguchi 21-12, 15-21, 21-16 en finale, à Yeosu. Elle a remporté 11 des 12 tournois disputés cette saison, pour la deuxième année de suite à ce niveau.",
+          "importance": 2,
+          "tags": [
+            "badminton",
+            "an-se-young",
+            "korea-open"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10929654",
+          "source_lang": "en",
+          "published_at": "2026-11-08T14:34:33+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Festival du contenu IA 2026 au COEX",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam",
+      "start_date": "2026-11-12",
+      "end_date": "2026-11-14",
+      "summary": "Festival de création par IA à l'espace The Platz du COEX, du 12 au 14 novembre : expérimentations artistiques, expériences immersives et conférences. Entrée libre.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/exhibitions/ai-%ec%bd%98%ed%85%90%ec%b8%a0-%ed%8e%98%ec%8a%a4%ed%8b%b0%eb%b2%8c-2026/",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Pop-up CIVVIS : The Land",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "서울 성동구 연무장길 37-21 XYZ 성수",
+      "area": "Seongsu",
+      "start_date": "2026-11-05",
+      "end_date": "2026-11-27",
+      "summary": "Première boutique éphémère de la marque : sa collection automne-hiver The Land et des pièces d'archive, à XYZ Seongsu, rue Yeonmujang.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/civvis-the-land-xyz-seongsu-november-2026",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up du film Dune : troisième partie au COEX",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "서울 강남구 테헤란로 지하 538 스타필드 코엑스몰 삼성역 6번 출구 앞",
+      "area": "Gangnam",
+      "start_date": "2026-10-30",
+      "end_date": "2026-11-22",
+      "summary": "Visuels LED immersifs et zone photo avec un ver des sables à Starfield COEX Mall. Réservation de créneaux sur Naver, dernière entrée à 21 h 30, fermeture à 22 h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/gangnam/popups/dune-film-popup-coex-2026-15028",
+      "source_lang": "en"
+    },
+    {
+      "name": "Pop-up papeterie 수무코 chez 쿠쿠 스페이스",
+      "kind": "popup",
+      "theme": "culture",
+      "venue": "서울 마포구 잔다리로 45 쿠쿠 스페이스 1층",
+      "area": "Hongdae",
+      "start_date": "2026-10-29",
+      "end_date": "2026-11-11",
+      "summary": "Articles de décoration de journal de 김윤수, 무디클럽 et 리리코주 au rez-de-chaussée du lieu. Dépliant du pop-up à emporter et activité de tampons.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/stationery-collaboration-popup-hongdae-2026-15003",
+      "source_lang": "en"
+    }
+  ]
+}
