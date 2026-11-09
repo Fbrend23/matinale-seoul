@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-10",
+  "title": "Le Kosdaq touche presque son plus bas post-loi martiale, Tesla enterre le Cybertruck",
+  "standfirst": "Journée courte : plusieurs sources (Yonhap, Dong-A, The Verge, GamesIndustry.biz) n'ont pu être ouvertes ce matin, le brief ne retient que les articles lus en entier. Le Kosdaq frôle son plus bas de décembre 2024, Meta et Tesla font l'actualité tech, et la sortie de GTA VI se prépare.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Baby Shark arrive en comédie musicale à Séoul, sans places assignées",
+          "original_headline": "Baby Shark's first musical ditches seats for interactive fun",
+          "summary": "La comédie musicale Baby Shark Sound Play ouvre le 2 décembre à Yeongdeungpo Art Square, jusqu'au 28 mars. Sans places assignées, le public parcourt sept zones et accomplit des missions avec la troupe.",
+          "importance": 1,
+          "tags": [
+            "spectacle",
+            "famille",
+            "yeongdeungpo"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10931113",
+          "source_lang": "en",
+          "published_at": "2026-11-09T17:25:41+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kosdaq perd près de la moitié de sa valeur depuis avril",
+          "original_headline": "Kosdaq loses nearly half its value from April peak, nears post-martial law low",
+          "summary": "Le Kosdaq a fini lundi à 638,97 points, 47,9 % sous son pic du 27 avril et à une douzaine de points de son plus bas de décembre 2024. Alteogen a perdu 16 %.",
+          "importance": 1,
+          "tags": [
+            "kosdaq",
+            "bourse"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10931208",
+          "source_lang": "en",
+          "published_at": "2026-11-09T20:55:51+09:00"
+        },
+        {
+          "headline": "La police du sud du Gyeonggi défère 66 étrangers au parquet dans sept affaires de drogue",
+          "original_headline": "Police uncover ecstasy-making plans near campus",
+          "summary": "La police du sud du Gyeonggi a déféré 66 étrangers au parquet dans sept affaires de stupéfiants ; 30 sont détenus. Saisies : 4 100 comprimés d'ecstasy et 1,6 kg de kétamine, pour 800 millions de wons.",
+          "importance": 2,
+          "tags": [
+            "stupefiants",
+            "police",
+            "etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10931051",
+          "source_lang": "en",
+          "published_at": "2026-11-09T16:34:45+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Meta publie Muse Ember, un modèle léger pour les agents",
+          "original_headline": "Meta releases Muse Ember, a new lightweight model for agent execution",
+          "summary": "Meta Superintelligence Labs publie Muse Ember, son modèle le plus léger, facturé 10 cents le million de jetons d'entrée. Il vise les tâches répétitives des agents et travaille avec le modèle Muse Wonder, qui planifie.",
+          "importance": 1,
+          "tags": [
+            "meta",
+            "ia",
+            "agents"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/09/meta-releases-muse-ember-a-new-lightweight-model-for-agent-execution/",
+          "source_lang": "en",
+          "published_at": "2026-11-10T03:00:00+09:00"
+        },
+        {
+          "headline": "Musk annonce l'arrêt du Cybertruck dans environ huit mois",
+          "original_headline": "Musk says Tesla will refund some Cybertruck deposits, defends decision to end production",
+          "summary": "Elon Musk annonce l'arrêt de la production du Cybertruck dans environ huit mois et le remboursement de certains acomptes. L'usine doit produire davantage de Cybercabs. Les experts estiment à environ 71 000 les Cybertrucks vendus depuis novembre 2023.",
+          "importance": 2,
+          "tags": [
+            "tesla",
+            "cybertruck",
+            "robotaxi"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/09/musk-says-tesla-will-refund-some-cybertruck-deposits-defends-decision-to-end-production/",
+          "source_lang": "en",
+          "published_at": "2026-11-09T22:43:28+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Rockstar annonce un festival à Miami pour la sortie de GTA VI",
+          "original_headline": "Rockstar announces Grand Theft Auto 6 music festival taking place in Miami",
+          "summary": "Rockstar organise un festival GTA VI le 21 novembre au Mana Wynwood, à Miami, avec 14 artistes dont Travis Scott et Cardi B. Les billets se jouent à la loterie. Le jeu sort le 19 novembre.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "rockstar",
+            "musique"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/rockstar-announces-grand-theft-auto-6-music-festival-taking-place-in-miami/",
+          "source_lang": "en",
+          "published_at": "2026-11-09T23:16:41+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Kang-in et l'Atlético s'inclinent 2-1 contre Barcelone",
+          "original_headline": "Lee Kang-in helps set up opener as Atletico Madrid falls 2-1 to Barcelona",
+          "summary": "Atlético Madrid s'incline 2-1 contre Barcelone en Liga. Lee Kang-in a lancé l'action du premier but et a joué 60 minutes. Il compte 2 buts et 1 passe décisive en 12 matchs.",
+          "importance": 1,
+          "tags": [
+            "lee-kang-in",
+            "liga",
+            "football"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10930880",
+          "source_lang": "en",
+          "published_at": "2026-11-09T15:09:20+09:00"
+        },
+        {
+          "headline": "Les golfeurs coréens visent le Q-School du PGA Tour en décembre",
+          "original_headline": "Top South Korean golfers set sights on PGA Tour Q-School in December",
+          "summary": "Jang Yu-bin, premier du classement Genesis, entre directement à la dernière étape du Q-School du PGA Tour, du 10 au 13 décembre à Sawgrass. Les cinq premiers obtiennent une carte 2027.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "pga-tour",
+            "q-school"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10931021",
+          "source_lang": "en",
+          "published_at": "2026-11-09T16:16:09+09:00"
+        }
+      ]
+    }
+  ]
+}
