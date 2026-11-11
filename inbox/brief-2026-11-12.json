@@ -1,0 +1,232 @@
+{
+  "date": "2026-11-12",
+  "title": "Médicaments amaigrissants autorisés à la frontière, amende record pour les courtiers, grève ferroviaire en vue",
+  "standfirst": "La Corée autorise l'entrée de quantités limitées de Wegovy et de Mounjaro. La FTC prépare une amende record contre quinze établissements financiers, et le syndicat ferroviaire menace d'une grève le 10 décembre. Côté sport, un record du monde de tir à Doha.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée autorise l'entrée de médicaments amaigrissants prescrits à l'étranger",
+          "original_headline": "Korea to allow limited carry-in of prescribed weight-loss drugs from overseas",
+          "summary": "Dès jeudi, les voyageurs peuvent rapporter Wegovy ou Mounjaro achetés légalement sur ordonnance à l'étranger, jusqu'à six unités, soit environ trois mois de traitement, selon le ministère de la Sécurité des aliments et des médicaments et les douanes.",
+          "importance": 1,
+          "tags": [
+            "douanes",
+            "medicaments",
+            "voyageurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10934223",
+          "source_lang": "en",
+          "published_at": "2026-11-11T20:47:40+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Amende record de 1 620 milliards de wons pour entente sur les adjudications d'obligations d'État",
+          "original_headline": "FTC to fine 15 firms 1.62tr won for rigging govt. bond bids",
+          "summary": "La FTC veut sanctionner dix maisons de courtage et cinq banques pour des ententes sur 150 adjudications entre 2020 et 2023. C'est sa plus forte amende dans une affaire unique. KB Securities écope de 332,1 milliards.",
+          "importance": 1,
+          "tags": [
+            "ftc",
+            "obligations",
+            "finance"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10933945",
+          "source_lang": "en",
+          "published_at": "2026-11-11T15:27:01+09:00"
+        },
+        {
+          "headline": "Le syndicat ferroviaire menace d'une grève illimitée le 10 décembre",
+          "original_headline": "Railway workers threaten Dec. 10 strike",
+          "summary": "Le syndicat réclame plus d'agents de sécurité et des promotions plus équitables. La grève débuterait le 10 décembre à 9 h, après un vote à 77,58 % des votants et l'échec de la médiation du 30 octobre.",
+          "importance": 2,
+          "tags": [
+            "greve",
+            "korail",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10933949",
+          "source_lang": "en",
+          "published_at": "2026-11-11T15:30:15+09:00"
+        },
+        {
+          "headline": "L'Institut de sécurité financière piraté malgré un avertissement d'audit vieux de quatre ans",
+          "original_headline": "4년전 경고에도… 금융보안원, 48개社 자료 털렸다",
+          "summary": "Une attaque contre l'organisme chargé de la sécurité des établissements financiers a exposé environ 650 données personnelles de 48 sociétés. Le système visé avait été signalé comme vulnérable lors d'un audit il y a quatre ans.",
+          "importance": 3,
+          "tags": [
+            "cybersecurite",
+            "finance",
+            "donnees-personnelles"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Economy/article/all/20261112/135010646/2",
+          "source_lang": "ko",
+          "published_at": "2026-11-12T04:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le chiffre d'affaires trimestriel d'OpenAI dépasserait 10 milliards de dollars",
+          "original_headline": "OpenAI’s quarterly revenue reportedly crosses $10B for the first time",
+          "summary": "Selon Bloomberg, qui cite des sources anonymes, OpenAI franchit les 10 milliards de dollars de ventes sur un trimestre, contre 6,7 milliards au deuxième. Anthropic indique un revenu annualisé de 81 milliards fin octobre.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "anthropic",
+            "chiffre-d-affaires"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/",
+          "source_lang": "en",
+          "published_at": "2026-11-12T01:14:44+09:00"
+        },
+        {
+          "headline": "TSMC investirait un milliard de dollars dans Anthropic et OpenAI",
+          "original_headline": "Taiwan’s chipmaking giant TSMC to invest $1B in Anthropic, OpenAI",
+          "summary": "Le fondeur taïwanais TSMC investirait un milliard de dollars dans Anthropic et OpenAI, selon Ars Technica, qui y voit un nouvel exemple de financement circulaire dans l'IA, au moment où le marché hésite.",
+          "importance": 2,
+          "tags": [
+            "tsmc",
+            "investissement",
+            "semi-conducteurs"
+          ],
+          "source_name": "Ars Technica",
+          "source_url": "https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/",
+          "source_lang": "en",
+          "published_at": "2026-11-12T03:16:40+09:00"
+        },
+        {
+          "headline": "Google DeepMind dévoile AlphaGenome 2, qui prédit les variations génétiques cellule par cellule",
+          "original_headline": "구글, DNA분석 '알파게놈2' 공개…세포별 변이 정밀 예측",
+          "summary": "DeepMind publie la suite d'AlphaGenome, son modèle d'IA qui analyse et prédit l'activité des gènes. Cette version évalue plus finement l'effet des variations de l'ADN selon le type de cellule.",
+          "importance": 3,
+          "tags": [
+            "deepmind",
+            "genomique",
+            "ia"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261112013300091",
+          "source_lang": "ko",
+          "published_at": "2026-11-12T07:04:39+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La PlayStation 5 passe les 100 millions de consoles vendues",
+          "original_headline": "As of this week, PlayStation 5 has surpassed 100 million consoles sold",
+          "summary": "Selon les chiffres mis à jour par Sony, la PS5 a franchi les 100 millions de consoles vendues le 10 novembre, presque six ans jour pour jour après son lancement.",
+          "importance": 1,
+          "tags": [
+            "playstation",
+            "ventes",
+            "sony"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/playstation-5-100-million-sales-november-2026",
+          "source_lang": "en",
+          "published_at": "2026-11-11T21:49:10+09:00"
+        },
+        {
+          "headline": "Bruxelles présente le Digital Fairness Act, qui pourrait changer la monétisation des jeux",
+          "original_headline": "What the Digital Fairness Act means for the games industry",
+          "summary": "La Commission européenne a présenté son projet de Digital Fairness Act, après une fuite en début de semaine. S'il est adopté, le texte aurait des effets sur la façon dont l'industrie du jeu monétise ses titres.",
+          "importance": 2,
+          "tags": [
+            "regulation",
+            "union-europeenne",
+            "monetisation"
+          ],
+          "source_name": "GamesIndustry.biz",
+          "source_url": "https://www.gamesindustry.biz/what-the-digital-fairness-act-means-for-the-games-industry",
+          "source_lang": "en",
+          "published_at": "2026-11-11T20:29:10+09:00"
+        },
+        {
+          "headline": "Le remake d'Ocarina of Time devient le jeu Switch 2 le plus vite vendu",
+          "original_headline": "The Legend of Zelda: Ocarina of Time remake sells in huge numbers, becoming the fastest-selling Switch 2 game",
+          "summary": "Le remake de Zelda: Ocarina of Time devient le jeu Switch 2 qui s'est vendu le plus vite, avec plus de 5,2 millions d'unités écoulées selon Eurogamer.",
+          "importance": 3,
+          "tags": [
+            "nintendo",
+            "switch-2",
+            "zelda"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/zelda-ocarina-of-time-switch-2-sales-nintendo",
+          "source_lang": "en",
+          "published_at": "2026-11-11T18:56:10+09:00"
+        },
+        {
+          "headline": "Crimson Desert, jeu PC de l'année aux Golden Joystick Awards 2026",
+          "original_headline": "Crimson Desert wins 'PC Game of the Year' at the 2026 Golden Joystick Awards",
+          "summary": "Crimson Desert, du studio coréen Pearl Abyss, remporte le prix du jeu PC de l'année aux Golden Joystick Awards 2026. Resident Evil Requiem et Meccha Chameleon figurent aussi parmi les gagnants de la soirée.",
+          "importance": 4,
+          "tags": [
+            "golden-joystick",
+            "crimson-desert",
+            "recompenses"
+          ],
+          "source_name": "PC Gamer",
+          "source_url": "https://www.pcgamer.com/games/crimson-desert-wins-pc-game-of-the-year-at-the-2026-golden-joystick-awards/",
+          "source_lang": "en",
+          "published_at": "2026-11-12T06:31:30+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Yang Ji-in établit un record du monde au pistolet 25 m et conserve son titre mondial",
+          "original_headline": "양지인, 25m 권총 세계신기록… 세계선수권 2연패",
+          "summary": "La championne olympique de Paris 2024 gagne le pistolet 25 m aux Mondiaux de tir de Doha le 10 novembre. Elle signe 44 points en finale, un record du monde, et un deuxième titre consécutif.",
+          "importance": 1,
+          "tags": [
+            "tir",
+            "mondiaux",
+            "record-du-monde"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Sports/article/all/20261112/135010323/2",
+          "source_lang": "ko",
+          "published_at": "2026-11-12T04:30:00+09:00"
+        },
+        {
+          "headline": "Ahn Byeong-hun décroche sa carte du DP World Tour pour 2027",
+          "original_headline": "안병훈, 내년 시즌 DP월드투어 출전권 확보…Q스쿨 공동 8위",
+          "summary": "Ancien joueur du circuit LIV, Ahn Byeong-hun obtient son droit de jouer le DP World Tour en 2027 en terminant huitième ex aequo du Q-School.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "dp-world-tour",
+            "q-school"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261112010600007",
+          "source_lang": "ko",
+          "published_at": "2026-11-12T06:25:31+09:00"
+        }
+      ]
+    }
+  ]
+}
