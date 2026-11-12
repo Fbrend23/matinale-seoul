@@ -1,0 +1,216 @@
+{
+  "date": "2026-11-13",
+  "title": "Jensen Huang quitte Nvidia, Séoul lance son premier mégaprojet",
+  "standfirst": "Jensen Huang a démissionné de la direction de Nvidia. En Corée, le premier chantier des mégaprojets industriels s'ouvre chez Samsung et le candidat à la Justice est interrogé sur les poursuites contre le président. Journée courte côté tourisme, jeu vidéo et sport : plusieurs sources ont refusé la lecture.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "À Namdaemun, un vendeur de foulards attire des foules que la sécurité doit canaliser",
+          "original_headline": "What makes Korea turn up for a shark or a scarf seller?",
+          "summary": "Un vendeur de foulards du marché de Namdaemun, surnommé Scarfprio, est devenu viral en vendant six foulards pour 10 000 wons. Des agents de sécurité gèrent désormais la foule.",
+          "importance": 1,
+          "tags": [
+            "namdaemun",
+            "marches",
+            "reseaux-sociaux"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10935380",
+          "source_lang": "en",
+          "published_at": "2026-11-12T16:04:10+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Samsung pose la première pierre du mégaprojet industriel à son usine mémoire",
+          "original_headline": "‘Megaproject’ breaks ground at Samsung memory plant",
+          "summary": "Le premier chantier du programme de mégaprojets s'ouvre au campus Onyang de Samsung, à Asan. Samsung y prévoit une usine de conditionnement de puces de 6 000 milliards de wons, avec mise en service visée en juin 2028.",
+          "importance": 1,
+          "tags": [
+            "samsung",
+            "semi-conducteurs",
+            "investissement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10935341",
+          "source_lang": "en",
+          "published_at": "2026-11-12T15:29:50+09:00"
+        },
+        {
+          "headline": "Le candidat à la Justice refuse de dire s'il demanderait l'abandon des poursuites contre le président",
+          "original_headline": "Justice minister nominee pressed on dropping charges against president",
+          "summary": "Lee Yong-cheol a jugé la question prématurée avant son audition. Le président Lee Jae Myung est poursuivi dans cinq procès suspendus depuis juin 2025. Le Conseil des ministres examine la loi sur le procureur spécial le 17 novembre.",
+          "importance": 2,
+          "tags": [
+            "justice",
+            "audition",
+            "procureur-special"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10935334",
+          "source_lang": "en",
+          "published_at": "2026-11-12T15:26:32+09:00"
+        },
+        {
+          "headline": "Séoul durcit les conditions d'un troisième mandat pour les patrons de banques",
+          "original_headline": "Korea raises bar for bank chiefs seeking third terms",
+          "summary": "La Commission des services financiers veut exiger 75 % des voix des actionnaires pour un troisième mandat, contre une majorité simple aujourd'hui. Les amendements doivent être rédigés d'ici la fin de l'année.",
+          "importance": 3,
+          "tags": [
+            "banques",
+            "gouvernance",
+            "regulation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10935342",
+          "source_lang": "en",
+          "published_at": "2026-11-12T15:31:30+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Jensen Huang démissionne de la direction de Nvidia, Colette Kress assure l'intérim",
+          "original_headline": "Nvidia’s Jensen Huang resigns, chipmaker names CFO Colette Kress as interim CEO",
+          "summary": "Le conseil a accepté la démission mercredi, selon le dépôt auprès de la SEC. La directrice financière Colette Kress devient PDG par intérim. Le titre a perdu près de 12 % jeudi en début de séance. Nvidia publie ses résultats mardi.",
+          "importance": 1,
+          "tags": [
+            "nvidia",
+            "jensen-huang",
+            "gouvernance"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/12/nvidias-jensen-huang-resigns-chipmaker-names-cfo-colette-kress-as-interim-ceo/",
+          "source_lang": "en",
+          "published_at": "2026-11-12T23:10:34+09:00"
+        },
+        {
+          "headline": "Google déploie Gemini 4 Hydrogen dans sa recherche",
+          "original_headline": "Google’s latest Search upgrade promises better answers to your most complicated questions",
+          "summary": "Google présente Gemini 4 Hydrogen comme sa plus grande amélioration de la recherche : meilleure compréhension des questions à plusieurs parties. Il traiterait les tâches 2,5 fois plus vite que Gemini 3.8 Flash. Déploiement mondial.",
+          "importance": 2,
+          "tags": [
+            "google",
+            "gemini",
+            "recherche"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/",
+          "source_lang": "en",
+          "published_at": "2026-11-13T04:27:45+09:00"
+        },
+        {
+          "headline": "Séoul lance un groupe de travail sur la cyber-résilience nationale",
+          "original_headline": "국가AI전략위, 韓 사이버복원력 강화한다…신속 복구 목표",
+          "summary": "Le Comité national de stratégie IA lance un groupe de onze experts privés. Il doit rendre d'ici le premier trimestre 2027 un projet de stratégie, avec trois scénarios de panne touchant notamment les centres de données IA.",
+          "importance": 3,
+          "tags": [
+            "cybersecurite",
+            "ia",
+            "infrastructures"
+          ],
+          "source_name": "etnews",
+          "source_url": "https://www.etnews.com/20261112000265",
+          "source_lang": "ko"
+        },
+        {
+          "headline": "Neuf jeunes pousses coréennes visent le Startup Battlefield 200 de Disrupt 2027",
+          "original_headline": "Nine Korean startups vie for a spot in Disrupt 2027’s Startup Battlefield 200 competition",
+          "summary": "Neuf start-up ont présenté leur projet à Séoul lors du DETO 2026. Voinosis l'emporte avec une IA qui repère des signes cognitifs dans la voix, à 88 % de précision dans une étude sur 146 participants.",
+          "importance": 4,
+          "tags": [
+            "startups",
+            "ia",
+            "disrupt"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/12/nine-korean-startups-vie-for-a-spot-in-disrupt-2027s-startup-battlefield-200-competition/",
+          "source_lang": "en",
+          "published_at": "2026-11-12T22:26:25+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un professionnel du jeu vidéo sur trois a été licencié en deux ans, selon la GDC",
+          "original_headline": "One in three games industry professionals surveyed by GDC were laid off in the past two years, more than in its last report",
+          "summary": "Selon l'enquête de la GDC auprès de plus de 2 600 répondants, 34 % ont été licenciés en deux ans, contre 28 % en janvier. 54 % des personnes licenciées sont toujours sans emploi.",
+          "importance": 1,
+          "tags": [
+            "licenciements",
+            "industrie",
+            "gdc"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/one-in-three-games-industry-professionals-surveyed-by-gdc-were-laid-off-in-the-past-two-years-more-than-in-its-last-report/",
+          "source_lang": "en",
+          "published_at": "2026-11-13T02:04:08+09:00"
+        },
+        {
+          "headline": "Xbox confirme qu'id Software prépare un nouveau jeu après les licenciements",
+          "original_headline": "Id Software confirms it’s working on a new game after layoffs",
+          "summary": "Dans un message célébrant les 25 ans de Xbox, la dirigeante Asha Sharma a affirmé qu'id Software travaille déjà sur son prochain jeu, malgré les récents licenciements au sein des studios de Microsoft.",
+          "importance": 2,
+          "tags": [
+            "id-software",
+            "xbox",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/id-software-confirms-its-working-on-a-new-game-after-layoffs/",
+          "source_lang": "en",
+          "published_at": "2026-11-13T06:38:33+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le football féminin coréen affronte la Corée du Nord aux éliminatoires olympiques de 2028",
+          "original_headline": "S. Korean women's soccer team to face N. Korea for 2028 LA Olympics qualifiers",
+          "summary": "Au tirage de Kuala Lumpur, la Corée du Sud se retrouve dans le groupe B avec la Corée du Nord, la Chine et les Philippines. Dernier match à Pyongyang le 4 décembre 2027.",
+          "importance": 1,
+          "tags": [
+            "football-feminin",
+            "jo-2028",
+            "coree-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10935596",
+          "source_lang": "en",
+          "published_at": "2026-11-12T20:19:14+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up UGG Heritage à Bukchon",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "북촌",
+      "area": "Bukchon",
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-22",
+      "summary": "Boutique éphémère d'UGG dans un espace de style hanok à Bukchon : café avec Aufglet, DJ live, jardin illuminé. Gratuité non précisée.",
+      "source_name": "Herald Corp",
+      "source_url": "https://biz.heraldcorp.com/article/10934768",
+      "source_lang": "ko"
+    }
+  ]
+}
