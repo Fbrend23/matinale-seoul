@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-14",
+  "title": "Un Suneung sous zéro, Google en règle pour ses cartes, la Corée battue par l'Arabie saoudite",
+  "standfirst": "Les palais ouvrent plus tard jeudi et Séoul s'attend à un matin glacial pour le Suneung. Le Parti démocrate se déchire en public. Google remplit les conditions pour exporter les cartes de Corée, et la sélection masculine de football perd 3-2 en amical.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les palais royaux ouvrent à 10 h le jour du Suneung, le 19 novembre",
+          "original_headline": "Royal palaces to open an hour later on Suneung exam day",
+          "summary": "Le 19 novembre, jour du test d'aptitude universitaire, les palais et tombes royaux ouvrent à 10 h au lieu de 9 h. Les visites guidées de Gyeongbokgung commencent à 10 h 10. L'entrée est gratuite jusqu'à dimanche.",
+          "importance": 1,
+          "tags": [
+            "palais-royaux",
+            "suneung",
+            "patrimoine"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936646",
+          "source_lang": "en",
+          "published_at": "2026-11-13T17:25:17+09:00"
+        },
+        {
+          "headline": "Le festival des alcools traditionnels réunit un nombre record de 142 producteurs",
+          "original_headline": "Seoul festival draws record 142 producers of traditional Korean drinks",
+          "summary": "Le K-Sool Grand Festival, 16e édition, s'est ouvert vendredi à l'aT Center de Yangjae et dure jusqu'à dimanche. Le ministère de l'Agriculture attend 30 000 visiteurs, contre 28 000 l'an dernier.",
+          "importance": 2,
+          "tags": [
+            "festival",
+            "alcools-traditionnels",
+            "yangjae"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936760",
+          "source_lang": "en",
+          "published_at": "2026-11-13T20:02:14+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trois dirigeants du Parti démocrate boycottent une réunion et défient leur président",
+          "original_headline": "Why ruling party feud erupts into open challenge to its leader",
+          "summary": "Trois des cinq membres du conseil suprême du Parti démocrate ont boycotté vendredi une réunion de direction. Ils exigent une enquête éthique sur le président du parti, Kim Min-seok, qui en a ouvert une contre Choi Min-hee.",
+          "importance": 1,
+          "tags": [
+            "parti-democrate",
+            "politique"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936699",
+          "source_lang": "en",
+          "published_at": "2026-11-13T18:06:36+09:00"
+        },
+        {
+          "headline": "Lee Jae Myung veut lever les freins aux rachats hostiles pour assainir la Bourse",
+          "original_headline": "Hostile takeovers ‘most important tool’ to normalize Korean stock market, Lee says",
+          "summary": "Le président Lee juge les rachats hostiles « le mécanisme le plus important » pour normaliser le marché et demande d'examiner les obstacles. Majorité et opposition veulent instaurer une offre publique obligatoire.",
+          "importance": 2,
+          "tags": [
+            "bourse",
+            "opa",
+            "marche-des-capitaux"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936499",
+          "source_lang": "en",
+          "published_at": "2026-11-13T15:11:50+09:00"
+        },
+        {
+          "headline": "Un premier matin sous zéro depuis 2020 est attendu pour le Suneung",
+          "original_headline": "Korea braces for first subzero Suneung morning in 6 years",
+          "summary": "Séoul devrait descendre à -1 °C jeudi matin, jour du Suneung, une première depuis 2020. Vents forts et mer agitée mardi et mercredi pourraient perturber les ferries : les candidats venus des îles doivent vérifier les horaires.",
+          "importance": 3,
+          "tags": [
+            "meteo",
+            "suneung",
+            "froid"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936594",
+          "source_lang": "en",
+          "published_at": "2026-11-13T16:28:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Google remplit les conditions de sécurité pour exporter les cartes détaillées de la Corée",
+          "original_headline": "Google clears key map security checks in Korea, taps Tmap as local partner",
+          "summary": "Le ministère des Transports confirme que Google respecte les conditions de sécurité pour exporter les cartes au 1:5 000. Les coordonnées des sites sensibles sont masquées ; Tmap Mobility traitera les données, dès 2027 au plus tôt.",
+          "importance": 1,
+          "tags": [
+            "google",
+            "cartographie",
+            "securite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10936561",
+          "source_lang": "en",
+          "published_at": "2026-11-13T15:55:21+09:00"
+        },
+        {
+          "headline": "La panne de Microsoft 365 dure depuis près de 24 heures",
+          "original_headline": "Microsoft struggles to restore online services after major outage",
+          "summary": "Outlook, Teams et OneDrive restent hors service pour de nombreux utilisateurs. Microsoft invoque une charge de serveurs inhabituelle et annonce une reprise par phases. Selon la BBC, le NHS britannique, des aéroports et des écoles sont touchés.",
+          "importance": 2,
+          "tags": [
+            "microsoft",
+            "panne",
+            "cloud"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/microsoft-struggles-to-restore-online-services-after-major-outage/",
+          "source_lang": "en",
+          "published_at": "2026-11-13T21:17:50+09:00"
+        },
+        {
+          "headline": "Les États-Unis clouent tous les avions au sol après un incident de communication",
+          "original_headline": "US government grounds all flights across the United States ‘due to extraordinary circumstances’",
+          "summary": "La FAA a interdit tout décollage aux États-Unis vendredi, évoquant des « problèmes de communication » touchant plusieurs centres de contrôle aérien. La sécurité intérieure ne voit « aucune indication » d'un acte malveillant ; le retour à la normale prendra du temps.",
+          "importance": 3,
+          "tags": [
+            "faa",
+            "aviation",
+            "controle-aerien"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/13/u-s-government-grounds-all-flights-across-the-united-states-due-to-extraordinary-cirumstances/",
+          "source_lang": "en",
+          "published_at": "2026-11-14T06:44:38+09:00"
+        },
+        {
+          "headline": "OpenAI lance ChatGPT Wallet, qui laisse ses agents payer à la place de l'utilisateur",
+          "original_headline": "ChatGPT’s new Wallet lets AI agents shop and check out for you",
+          "summary": "Le portefeuille, d'abord réservé à quelques abonnés Pro américains majeurs, permet aux agents d'OpenAI de finaliser un achat. L'utilisateur valide le total et la carte par Face ID ou empreinte ; un jeton masque les données de carte.",
+          "importance": 4,
+          "tags": [
+            "openai",
+            "agents-ia",
+            "paiement"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/",
+          "source_lang": "en",
+          "published_at": "2026-11-14T01:00:12+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "MachineGames confirme que Wolfenstein 3 est en développement",
+          "original_headline": "MachineGames has finally officially confirmed that Wolfenstein 3 is in development",
+          "summary": "MachineGames confirme que Wolfenstein 3 est en développement. BJ Blazkowicz revient, selon une photo de scénario. Aucune date de sortie n'est donnée ; la série est muette depuis sept ans.",
+          "importance": 1,
+          "tags": [
+            "wolfenstein",
+            "xbox",
+            "machinegames"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/machinegames-has-finally-officially-confirmed-that-wolfenstein-3-is-in-development/",
+          "source_lang": "en",
+          "published_at": "2026-11-13T18:47:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée s'incline 3-2 face à l'Arabie saoudite",
+          "original_headline": "Nat'l football team submits another lackluster performance in loss to Saudi Arabia",
+          "summary": "Au Qatar, la Corée perd 3-2. Oh Hyeon-gyu égalise, les Saoudiens marquent aux 56e et 59e minutes, Lee Jae-sung réduit l'écart à la 68e. Le sélectionneur par intérim, Robert Moreno, reste jusqu'au 27 novembre.",
+          "analysis": "Le match suivait la brouille de cinq cadres, dont Son Heung-min et Kim Min-jae, qui avaient publié une déclaration commune jeudi.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale",
+            "arabie-saoudite"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261114/natl-football-team-submits-another-lackluster-performance-in-loss-to-saudi-arabia?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-14T02:37:00+09:00"
+        },
+        {
+          "headline": "La Corée subit une deuxième défaite de suite face au Japon au tournoi asiatique de baseball",
+          "original_headline": "S. Korea falls to Japan for 2nd straight loss at regional baseball tournament",
+          "summary": "Au Tokyo Dome, la Corée perd 9-5 contre le Japon, après avoir égalisé 5-5 en huitième manche. Pour atteindre la finale, elle doit battre Taïwan samedi à 19 h, et le Japon doit battre l'Australie.",
+          "importance": 2,
+          "tags": [
+            "baseball",
+            "apbc",
+            "japon"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261114/s-korea-falls-to-japan-for-2nd-straight-loss-at-regional-baseball-tournament?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-14T00:23:00+09:00"
+        }
+      ]
+    }
+  ]
+}
