@@ -1,0 +1,125 @@
+{
+  "date": "2026-11-15",
+  "title": "Pékin éclaire la visite de Kim Jong-un, Tesla ouvre le Cybercab aux particuliers",
+  "standfirst": "Matinée courte : plusieurs rédactions bloquent la lecture automatique, seuls les articles ouverts sont retenus. Pékin détaille à Séoul la visite de Kim Jong-un, Tesla ouvre les précommandes du Cybercab, et la saison du kimchi démarre à Imsil.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La saison du kimchi s'ouvre à Imsil avec un festival de trois jours",
+          "original_headline": "Kimchi-making season begins",
+          "summary": "Le festival d'Imsil, au Jeolla du Nord, en est à sa 11e édition. Quelque 900 participants de 300 équipes préinscrites préparent leur kimchi avec du chou pré-salé fourni, puis repartent avec. Il court jusqu'à dimanche.",
+          "importance": 1,
+          "tags": [
+            "kimchi",
+            "festival",
+            "jeolla-du-nord"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937014",
+          "source_lang": "en",
+          "published_at": "2026-11-14T14:27:20+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Pékin détaille à Séoul la visite de Kim Jong-un à Dandong",
+          "original_headline": "Beijing details N. Korean leader’s China visit in FM talks with Seoul: official",
+          "summary": "Face à Cho Hyun à Pékin le 13 novembre, Wang Yi a décrit la visite de Kim Jong-un à Dandong le 24 octobre. Un sommet États-Unis–Corée du Nord reste possible, mais peu probable, dit Séoul.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "chine",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937015",
+          "source_lang": "en",
+          "published_at": "2026-11-14T14:30:30+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Tesla ouvre les précommandes du Cybercab « à usage personnel », avec 299 dollars par mois",
+          "original_headline": "Tesla opens Cybercab pre-orders ‘for personal use,’ with geo restrictions and a $299 monthly fee",
+          "summary": "Des « clients sélectionnés » peuvent précommander le Cybercab à 29 990 dollars, plus 299 dollars mensuels, pour une livraison estimée à décembre dans quelques villes du Texas, en zones délimitées. Elon Musk juge lui-même ce tarif trop élevé.",
+          "importance": 1,
+          "tags": [
+            "tesla",
+            "cybercab",
+            "vehicule-autonome"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/14/tesla-opens-cybercab-pre-orders-for-personal-use-with-geo-restrictions-and-a-299-monthly-fee/",
+          "source_lang": "en",
+          "published_at": "2026-11-15T05:04:44+09:00"
+        },
+        {
+          "headline": "Après le départ de Jensen Huang, Séoul dit que Nvidia maintient ses 260 000 GPU promis",
+          "original_headline": "Asian governments react to Nvidia CEO Jensen Huang’s exit",
+          "summary": "Le ministère coréen des Sciences indique que Nvidia a réaffirmé son engagement de fournir 260 000 GPU avancés. Taipei dit que le futur siège reste en bonne voie. Plus de 3 milliards de dollars de projets chinois restent incertains.",
+          "importance": 2,
+          "tags": [
+            "nvidia",
+            "gpu",
+            "semi-conducteurs"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/",
+          "source_lang": "en",
+          "published_at": "2026-11-15T01:34:15+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Rien de retenu côté jeu vidéo : les articles repérés sont sur des sites qui bloquent la lecture, rien n'a pu être vérifié.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": "Rien de retenu côté sport : les articles repérés sont sur des sites qui bloquent la lecture, rien n'a pu être vérifié.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up Attack on Titan The Final Season à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "AK플라자 홍대 LIMITION",
+      "area": "Hongdae",
+      "start_date": "2026-11-12",
+      "end_date": "2026-12-03",
+      "summary": "Boutique éphémère Attack on Titan The Final Season au 4e étage d'AK Plaza Hongdae. Conditions d'entrée et produits dérivés à vérifier auprès de l'organisateur.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/attack-on-titan-final-season-limition-hongdae-2026",
+      "source_lang": "en",
+      "address": "서울 마포구 양화로 188"
+    },
+    {
+      "name": "Pop-up Tokyo Revengers BAKUSO Asia Tour à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "서울 마포구 신촌로6길 22 OU-EN KR",
+      "area": "Hongdae",
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-22",
+      "summary": "Étape séoulaise de la tournée de pop-ups Tokyo Revengers, avec espace thématique et produits annoncés comme exclusifs à Séoul.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/tokyo-revengers-bakuso-asia-tour-hongdae-2026",
+      "source_lang": "en",
+      "address": "서울 마포구 신촌로6길 22"
+    }
+  ]
+}
