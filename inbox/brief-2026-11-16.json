@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-16",
+  "title": "Un sommet à trois sans Séoul, 20 millions de touristes et la fin d'une série coréenne aux Worlds",
+  "standfirst": "Trump, Xi et Poutine se réuniront jeudi à Shenzhen, et Séoul craint d'être tenue à l'écart. La Corée franchit aussi les 20 millions de visiteurs étrangers. Journée courte côté jeu et sport : plusieurs sources ont refusé la lecture.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les bilans de santé attirent de plus en plus d'étrangers",
+          "summary": "65 228 patients étrangers ont fait un bilan de santé l'an dernier, soit 17 % de plus. Les touristes étrangers ont dépassé 20 millions jeudi, une première depuis les 10 millions de 2012.",
+          "importance": 1,
+          "tags": [
+            "tourisme-medical",
+            "visiteurs-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937739",
+          "source_lang": "en",
+          "published_at": "2026-11-15T20:51:36+09:00"
+        },
+        {
+          "headline": "Un front froid apporte pluie, neige en altitude et risque de verglas",
+          "summary": "Après un week-end doux, le temps se refroidit dès lundi. Minimales de 3 à 11 °C, maximales de 12 à 19 °C. Pluie dans le Gangwon, le Gyeongsang et à Busan, neige en altitude, verglas possible.",
+          "importance": 2,
+          "tags": [
+            "meteo",
+            "voyage"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937746",
+          "source_lang": "en",
+          "published_at": "2026-11-15T21:02:54+09:00"
+        },
+        {
+          "headline": "Incendie dans un centre de bus souterrain de Jamsil, sans blessé",
+          "summary": "Un feu s'est déclaré dimanche vers 19 h 12 dans le centre de correspondance souterrain de Jamsil, à Songpa-gu. Éteint en 29 minutes environ, sans blessé signalé. La cause est à l'étude.",
+          "importance": 3,
+          "tags": [
+            "transports",
+            "jamsil"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937751",
+          "source_lang": "en",
+          "published_at": "2026-11-15T21:08:47+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trump, Xi et Poutine se réunissent jeudi à Shenzhen, en marge de l'APEC",
+          "original_headline": "Trump, Xi, Putin plan unprecedented joint meeting",
+          "summary": "Les dirigeants américain, chinois et russe se verront jeudi à Shenzhen, une première. Les analystes attendent peu de résultats concrets. Le traité New START a expiré en février.",
+          "importance": 1,
+          "tags": [
+            "apec",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937469",
+          "source_lang": "en",
+          "published_at": "2026-11-15T13:25:04+09:00"
+        },
+        {
+          "headline": "Un proche de Kim Jong-un à Moscou avant le sommet à trois ; Séoul craint d'être écartée",
+          "original_headline": "Kim Jong-un’s top aide visits Russia ahead of US-China-Russia summit",
+          "summary": "Jo Yong-won, secrétaire du Comité central, est arrivé à Moscou samedi sur invitation de Medvedev. Séoul redoute d'être écartée des discussions sur le nucléaire nord-coréen et l'a fait savoir à Pékin.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "russie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937539",
+          "source_lang": "en",
+          "published_at": "2026-11-15T15:16:09+09:00"
+        },
+        {
+          "headline": "L'Assemblée envisage une audition sur l'annulation du contrat nucléaire tchèque",
+          "original_headline": "Assembly weighs hearing on Czech nuclear deal",
+          "summary": "Le projet de Dukovany, 24 000 milliards de wons, attribué en juillet 2024, a été annulé en octobre. Un député de l'opposition propose une audition, le Parti démocrate approuve. Pas de consensus en commission vendredi.",
+          "importance": 3,
+          "tags": [
+            "nucleaire",
+            "assemblee-nationale"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937664",
+          "source_lang": "en",
+          "published_at": "2026-11-15T18:42:14+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "SK mise sur un « cercle vertueux de l'IA » reliant puces, infrastructures et énergie",
+          "original_headline": "SK chief outlines ‘AI flywheel’ strategy at 2026 CEO Seminar",
+          "summary": "Chey Tae-won a demandé aux filiales de relier semi-conducteurs, infrastructures et énergie à de nouveaux services d'IA, lors du séminaire des dirigeants à Icheon. SK hynix modernise ses usines avec l'IA.",
+          "importance": 1,
+          "tags": [
+            "sk",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937482",
+          "source_lang": "en",
+          "published_at": "2026-11-15T14:00:05+09:00"
+        },
+        {
+          "headline": "Le chef de la sécurité de Nvidia a quitté l'entreprise en août",
+          "original_headline": "Where was Nvidia’s security team?",
+          "summary": "David Reber a quitté Nvidia en août, officiellement pour raisons de santé, deux mois et demi avant la démission de Jensen Huang. Aucun élément public ne relie les deux départs. Nvidia n'a pas répondu.",
+          "importance": 2,
+          "tags": [
+            "nvidia",
+            "securite"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/14/where-was-nvidias-security-team/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Des jeunes Coréens se font de faux portraits funéraires avec l'IA",
+          "original_headline": "Dead as a prank? Young Koreans turn AI into fake funeral portraits",
+          "summary": "Adolescents et vingtenaires publient sur Instagram de faux portraits funéraires, avec dates de décès inventées. Un professeur dénonce une banalisation de la mort et demande aux plateformes d'agir. Meta retire les contenus hors règles.",
+          "importance": 3,
+          "tags": [
+            "ia",
+            "reseaux-sociaux"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937475",
+          "source_lang": "en",
+          "published_at": "2026-11-15T13:36:37+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Gen.G s'incline en finale des Worlds de League of Legends et la série coréenne s'arrête à quatre titres",
+          "original_headline": "Gen.G loses to Bilibili Gaming as Korea's four-year LoL title streak ends",
+          "summary": "Gen.G a perdu 1-3 face à Bilibili Gaming dimanche à New York. La Chine retrouve le trophée après cinq ans. T1 avait été battu en demi-finale le 9 novembre.",
+          "importance": 1,
+          "tags": [
+            "e-sport",
+            "league-of-legends"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10937601",
+          "source_lang": "en",
+          "published_at": "2026-11-15T17:22:15+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Peu de sources lisibles ce matin côté sport : Yonhap, BBC et JoongAng bloquent la lecture, rien d'autre n'a pu être vérifié.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up ATEEZ pour la sortie de leur nouvel album à Shinsegae Gangnam",
+      "kind": "popup",
+      "theme": "kpop",
+      "venue": "신세계백화점 강남점",
+      "area": "Seocho-gu",
+      "start_date": "2026-11-13",
+      "end_date": "2026-11-22",
+      "summary": "Boutique éphémère officielle pour le nouvel album d'ATEEZ, au rez-de-chaussée de Famille Station (Pocket Garden), dans le grand magasin Shinsegae de Gangnam.",
+      "source_name": "Shinsegae",
+      "source_url": "https://deptmapp.shinsegae.com/shopping/list.do",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Salon Travel Show 2026 au COEX",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "summary": "Salon du voyage dans le hall C du COEX : offices de tourisme, agences et professionnels de l'hôtellerie.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/event/full-schedules/",
+      "source_lang": "ko",
+      "address": "서울 강남구 영동대로 513"
+    }
+  ]
+}
