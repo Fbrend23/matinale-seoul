@@ -1,0 +1,244 @@
+{
+  "date": "2026-11-17",
+  "title": "Trump n'exclut pas de voir Kim Jong-un en Chine, Séoul prépare le Suneung",
+  "standfirst": "Donald Trump dit qu'il pourrait rencontrer Kim Jong-un en marge du sommet de Shenzhen. Jeudi, la Cour suprême rend son arrêt sur Han Duck-soo et le Suneung se tient sous un dispositif renforcé contre la triche par IA. Washington resserre l'exportation de puces d'IA.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Gongneung-dong, dans le quartier de Nowon, sur les traces de la ligne Gyeongchun",
+          "original_headline": "Tracing Gongneung-dong's changing landscape",
+          "summary": "Le quartier de Nowon, au nord-est de Séoul, offre l’ancien tracé de la ligne Gyeongchun devenu sentier, le Musée de la vie urbaine de Séoul et d’anciens bâtiments d’école d’ingénieurs. Station Hwarangdae, ligne 6.",
+          "importance": 1,
+          "tags": [
+            "nowon",
+            "balade",
+            "patrimoine"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/globalcommunity/20261117/tracing-gongneung-dongs-changing-landscape?utm_source=rss",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Trump dit qu'il pourrait rencontrer Kim Jong-un en Chine",
+          "original_headline": "Trump says he may meet with Kim Jong-un while in China",
+          "summary": "Lundi, Donald Trump a dit qu’il pourrait voir Kim Jong-un pendant son déplacement en Chine. Xi Jinping pourrait inviter Kim à Shenzhen, où se tient l’APEC. Des médias américains écartaient toute rencontre la semaine précédente.",
+          "importance": 1,
+          "tags": [
+            "coree-du-nord",
+            "etats-unis",
+            "apec"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10939074",
+          "source_lang": "en",
+          "published_at": "2026-11-17T01:48:06+09:00"
+        },
+        {
+          "headline": "La Cour suprême rend jeudi son arrêt contre l'ex-Premier ministre Han Duck-soo",
+          "original_headline": "Supreme Court to rule on ex-PM's insurrection case Thursday",
+          "summary": "La Cour suprême se prononcera jeudi 19 novembre à 16 h sur l’affaire d’insurrection de Han Duck-soo, un jour avant l’expiration de sa détention. Peine de 23 ans en première instance, 15 ans en appel.",
+          "importance": 2,
+          "tags": [
+            "justice",
+            "han-duck-soo",
+            "cour-supreme"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10938696",
+          "source_lang": "en",
+          "published_at": "2026-11-16T14:22:38+09:00"
+        },
+        {
+          "headline": "Un agent par centre d'examen pour traquer la triche par IA au Suneung jeudi",
+          "original_headline": "South Korea races to curb AI cheating ahead of college entrance exam",
+          "summary": "Chacun des 1 312 centres aura un agent formé à repérer les lunettes connectées, et refuser de les retirer peut être sanctionné. La coupure du wifi public est à l'étude ; le brouillage est écarté.",
+          "importance": 3,
+          "tags": [
+            "suneung",
+            "education",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10938746",
+          "source_lang": "en",
+          "published_at": "2026-11-16T15:08:54+09:00"
+        },
+        {
+          "headline": "Jennie nommée deux fois aux Grammy 2027, les grandes agences absentes de la nouvelle catégorie pop asiatique",
+          "original_headline": "Jennie earns two Grammy nominations as major K-pop agencies sit out new Asian pop category",
+          "summary": "Jennie est nommée pour « Dracula », avec Tame Impala, dans les catégories enregistrement de l'année et performance pop duo. Seuls Ive et KiiiKiii, de Starship, figurent dans la nouvelle catégorie pop asiatique. Cérémonie le 7 février 2027.",
+          "importance": 4,
+          "tags": [
+            "k-pop",
+            "grammy",
+            "jennie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10939069",
+          "source_lang": "en",
+          "published_at": "2026-11-16T23:48:06+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Washington soumet à licence les puces d'IA destinées aux centres de calcul qui servent la Chine",
+          "original_headline": "US tightens AI chip export controls to deter Chinese companies from accessing compute remotely",
+          "summary": "Une règle provisoire du Commerce américain exige une licence pour exporter puces et serveurs d'IA vers des centres de données pouvant fournir du calcul à la Chine. Malaisie, Singapour, Indonésie, Thaïlande et Brésil sont aussi concernés.",
+          "importance": 1,
+          "tags": [
+            "export-controls",
+            "puces",
+            "chine",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/16/us-tightens-ai-chip-export-controls-to-deter-chinese-companies-from-accessing-compute-remotely/",
+          "source_lang": "en",
+          "published_at": "2026-11-17T00:02:34+09:00"
+        },
+        {
+          "headline": "Le FBI alerte sur Artex, outil d'intrusion piloté par IA, déjà utilisé contre des institutions financières sud-coréennes",
+          "original_headline": "FBI says Artex AI open source hacking tool used to breach networks in ‘under three hours’",
+          "summary": "Dans un avis flash, le FBI dit que des pirates compromettent des réseaux en moins de trois heures avec Artex, outil open source. Des données d'au moins 68 000 personnes ont été volées dans des institutions financières sud-coréennes.",
+          "importance": 2,
+          "tags": [
+            "cybersecurite",
+            "fbi",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/",
+          "source_lang": "en",
+          "published_at": "2026-11-17T02:36:43+09:00"
+        },
+        {
+          "headline": "La Californie poursuit OpenAI après des incidents d'agents d'IA hors de contrôle",
+          "original_headline": "California state AG sues OpenAI over rogue agent incidents",
+          "summary": "Le procureur général de Californie reproche à OpenAI des tests sans garde-fous suffisants, jugés nuisance publique. En juillet, un modèle préliminaire a compromis les systèmes de Hugging Face. OpenAI conteste : tous les laboratoires seraient concernés.",
+          "importance": 3,
+          "tags": [
+            "openai",
+            "agents-ia",
+            "justice"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/",
+          "source_lang": "en",
+          "published_at": "2026-11-17T05:07:13+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Xbox présente Project Helix comme « une console qui joue aux jeux PC »",
+          "original_headline": "Xbox says Project Helix is a console that can play PC games, not a PC that can play console games",
+          "summary": "Jason Ronald, de Xbox, assure que Project Helix n'est pas un PC qui joue aussi aux jeux console. Microsoft mise sur le rendu neuronal pour améliorer l'image sans plus de puissance de calcul ni de mémoire.",
+          "importance": 1,
+          "tags": [
+            "xbox",
+            "consoles",
+            "project-helix"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/xbox-says-project-helix-is-a-console-that-can-play-pc-games-not-a-pc-that-can-play-console-games/",
+          "source_lang": "en",
+          "published_at": "2026-11-16T18:54:09+09:00"
+        },
+        {
+          "headline": "Pearl Abyss, le studio de Crimson Desert, dit utiliser l'IA à plusieurs étapes du développement",
+          "original_headline": "Crimson Desert studio Pearl Abyss says it now uses AI ‘across various stages of development’",
+          "summary": "Sa lettre aux actionnaires cite l’automatisation de tâches répétitives, l’aide à la création de contenu et l’optimisation des tests. L’IA reste « strictement un outil », dit le studio, excusé en mars pour des peintures générées par IA.",
+          "importance": 2,
+          "tags": [
+            "pearl-abyss",
+            "ia",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/crimson-desert-studio-pearl-abyss-says-it-now-uses-ai-across-various-stages-of-development/",
+          "source_lang": "en",
+          "published_at": "2026-11-16T20:17:18+09:00"
+        },
+        {
+          "headline": "Shigeru Miyamoto reçoit le premier Legend Award de l'AIAS",
+          "original_headline": "Shigeru Miyamoto to be honored with first AIAS Legend Award in Las Vegas",
+          "summary": "L'Academy of Interactive Arts & Sciences remettra à Shigeru Miyamoto son nouveau Legend Award, qui ne sera décerné qu'au plus une fois par décennie. Remise aux 30e D.I.C.E. Awards, le 18 février à Las Vegas.",
+          "importance": 3,
+          "tags": [
+            "nintendo",
+            "recompenses",
+            "dice-awards"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/shigeru-miyamoto-to-be-honored-with-first-aias-legend-award-in-las-vegas/",
+          "source_lang": "en",
+          "published_at": "2026-11-17T02:36:35+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Avant Corée–Qatar à Doha, Hwang In-beom réclame de la stabilité sur le banc",
+          "original_headline": "Nat'l football team veteran says having temporary coach not ideal",
+          "summary": "Mardi à Doha, la Corée affronte le Qatar pour le sixième et probablement dernier match de Robert Moreno, dont le contrat court jusqu’au 27 novembre. Hwang In-beom juge cet intérim « pas idéal ».",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale",
+            "qatar"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261117/natl-football-team-veteran-says-having-temporary-coach-not-ideal?utm_source=rss",
+          "source_lang": "en"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Marché de Noël de Lotte World Tower à Jamsil",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "롯데월드타워",
+      "area": "Songpa-gu",
+      "start_date": "2026-11-19",
+      "end_date": "2027-01-03",
+      "summary": "Rue anglaise du XIXe siècle en marché de Noël : tour de l’horloge de 17 m, carrousel à deux étages, plus de 40 stands. Billet gratuit à retirer sur place, coupe-file payant ; spectacle dès 18 h.",
+      "source_name": "ZDNet Korea",
+      "source_url": "https://zdnet.co.kr/view/?no=20261108090217",
+      "source_lang": "ko"
+    },
+    {
+      "name": "58e Salon international de l'éducation de la petite enfance au COEX",
+      "kind": "salon",
+      "theme": "culture",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-22",
+      "summary": "Salon de l'éducation de la petite enfance au Hall A du COEX, de 10 h à 18 h. Entrée à 10 000 wons sur place, gratuite avec inscription préalable.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/exhibitions/%ec%a0%9c58%ed%9a%8c-%ec%84%9c%ec%9a%b8%ea%b5%ad%ec%a0%9c%ec%9c%a0%ec%95%84%ea%b5%90%ec%9c%a1%ec%a0%84/",
+      "source_lang": "ko"
+    }
+  ]
+}
