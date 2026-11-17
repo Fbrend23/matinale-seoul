@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-18",
+  "title": "Le Kospi passe sous 5 000, la Corée dépasse 20 millions de visiteurs, GTA 6 en tête des Game Awards",
+  "standfirst": "La Bourse de Séoul perd le seuil des 5 000 points, tandis que le tourisme franchit celui des 20 millions de visiteurs étrangers. Ailleurs, la SEC s'intéresse à Nvidia, GTA 6 mène les nominations des Game Awards et la Corée termine 2026 sur une victoire à Doha.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée accueille plus de 20 millions de visiteurs étrangers en une seule année, une première",
+          "original_headline": "Korea celebrates first 20 million-visitor year at Incheon Airport",
+          "summary": "Une cérémonie à l'aéroport d'Incheon a marqué le seuil, atteint cinq jours plus tôt. Le ministère vise désormais 30 millions de visiteurs et une campagne « Visit Korea Year » pour 2027-2029.",
+          "importance": 1,
+          "tags": [
+            "visiteurs-etrangers",
+            "incheon",
+            "visit-korea"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940204",
+          "source_lang": "en",
+          "published_at": "2026-11-17T17:12:50+09:00"
+        },
+        {
+          "headline": "Séoul mise sur la nuit avec serre ouverte, spots étoilés et bus Firefly",
+          "original_headline": "[INTERVIEW] Seoul looks to night to unlock new economic growth",
+          "summary": "Une conseillère du maire détaille l'économie nocturne : serre du Jardin botanique ouverte la nuit jusqu'au 27 décembre, dix « Seoul Starlight Spots » et un bus Firefly prévu, de 23 h à 3 h entre Hongdae, Gangnam et le DDP.",
+          "importance": 2,
+          "tags": [
+            "economie-nocturne",
+            "seoul"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/others/20261118/seoul-looks-to-night-to-unlock-new-economic-growth",
+          "source_lang": "en",
+          "published_at": "2026-11-18T07:12:03+09:00"
+        },
+        {
+          "headline": "Le Centre Pompidou Hanwha expose soixante-cinq œuvres de Chagall dès le 24 novembre",
+          "original_headline": "At Centre Pompidou Hanwha, Chagall beyond the floating lovers",
+          "summary": "« Chagall, Ever Crossing » s'ouvre le 24 novembre au Centre Pompidou Hanwha, à Yeouido, jusqu'au 28 mars : 65 œuvres, dont 61 jamais montrées en Corée. Billet à 25 000 wons.",
+          "importance": 3,
+          "tags": [
+            "chagall",
+            "exposition",
+            "yeouido"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940021",
+          "source_lang": "en",
+          "published_at": "2026-11-17T15:17:43+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi repasse sous les 5 000 points pour la première fois depuis février",
+          "original_headline": "Kospi slides below 5,000 for first time since February",
+          "summary": "Le Kospi a clôturé à 4 968,48 points, en baisse de 2,59 %. Les investisseurs étrangers ont vendu 1 440 milliards de wons net ; Samsung Electronics vaut presque deux fois moins que son record de juin.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "samsung"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940220",
+          "source_lang": "en",
+          "published_at": "2026-11-17T17:30:27+09:00"
+        },
+        {
+          "headline": "Lee et Takaichi conviennent d'approfondir leur communication stratégique",
+          "original_headline": "Lee, Takaichi agree to deepen strategic communication amid ‘grave’ global situation",
+          "summary": "Le président Lee et la Première ministre japonaise Sanae Takaichi, réunis à Manille pour leur quatrième sommet, veulent renforcer leur coopération. Lee a accepté de se rendre au Japon en janvier.",
+          "importance": 2,
+          "tags": [
+            "japon",
+            "diplomatie"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940321",
+          "source_lang": "en",
+          "published_at": "2026-11-17T19:28:14+09:00"
+        },
+        {
+          "headline": "À l'examen de comptable fiscal, 66 candidats atteignent 90 points ou plus, contre 2 l'an dernier",
+          "original_headline": "Tax exam high scorers jump from 2 to 66, sparking cheating suspicions",
+          "summary": "Soixante-six candidats ont obtenu au moins 90 en comptabilité introductive, contre 2 en 2025. Le député Ahn Cheol-soo soupçonne une fraude organisée assistée par l'IA et demande que les méthodes soient divulguées.",
+          "importance": 3,
+          "tags": [
+            "examen",
+            "fraude",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940334",
+          "source_lang": "en",
+          "published_at": "2026-11-17T20:04:09+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La SEC enquête sur Nvidia après le départ de Jensen Huang",
+          "original_headline": "SEC reportedly investigating Nvidia amid Huang exit",
+          "summary": "Selon le Wall Street Journal, la SEC ouvre une enquête civile sur l'exactitude des informations publiées par Nvidia. Le titre a perdu plus de 10 % depuis la démission de Jensen Huang.",
+          "importance": 1,
+          "tags": [
+            "nvidia",
+            "sec",
+            "bourse"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/17/sec-reportedly-investigating-nvidia-amid-huang-exit/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T06:48:07+09:00"
+        },
+        {
+          "headline": "Waymo suspend ses trajets sur autoroute dans tout le pays",
+          "original_headline": "Waymo suspends freeway rides nationwide after California DMV order",
+          "summary": "Le DMV californien juge les trajets autoroutiers de Waymo un « danger imminent » après des entrées dans une zone de travaux. Waymo les suspend dans ses 15 villes américaines et poursuit les trajets en surface.",
+          "importance": 2,
+          "tags": [
+            "waymo",
+            "vehicule-autonome"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/17/waymo-suspends-freeway-rides-nationwide-after-california-dmv-order/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T04:49:41+09:00"
+        },
+        {
+          "headline": "Hyundai détient désormais la totalité de Boston Dynamics",
+          "original_headline": "Hyundai Motor takes full ownership of Boston Dynamics",
+          "summary": "Les options sur la part de 9,65 % de SoftBank sont exercées : Chung Euisun et le groupe Hyundai détiennent 100 % de Boston Dynamics. Hyundai vise une capacité de 30 000 robots Atlas par an d'ici 2028.",
+          "importance": 3,
+          "tags": [
+            "hyundai",
+            "robotique",
+            "boston-dynamics"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940043",
+          "source_lang": "en",
+          "published_at": "2026-11-17T15:31:23+09:00"
+        },
+        {
+          "headline": "Google conserve deux mois les conversations Gemini, contre 72 heures",
+          "original_headline": "Google to keep Gemini chats for 2 months, up from 72 hours, even with history off",
+          "summary": "Google porte à environ deux mois la conservation des conversations Gemini temporaires ou à historique désactivé, contre 72 heures. Le changement arrive dans le monde entier ; historique et entraînement ont deux réglages distincts.",
+          "importance": 4,
+          "tags": [
+            "google",
+            "gemini",
+            "vie-privee"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/17/google-to-keep-gemini-chats-for-two-months-up-from-72-hours-even-with-history-off/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T03:48:23+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "GTA 6 mène les nominations aux Game Awards 2026, avant même sa sortie",
+          "original_headline": "GTA 6 is the most nominated game at The Game Awards 2026",
+          "summary": "GTA 6 compte huit nominations, dont celle du jeu de l'année. Nintendo est l'éditeur le plus cité, avec douze nominations.",
+          "importance": 1,
+          "tags": [
+            "game-awards",
+            "gta-6",
+            "nintendo"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/the-game-awards-2026-nominations/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T02:15:45+09:00"
+        },
+        {
+          "headline": "Take-Two licencie un tiers des équipes de Firaxis, le studio de Civilization",
+          "original_headline": "Take-Two has laid off a third of staff at Civilization and XCOM studio Firaxis",
+          "summary": "Take-Two confirme des licenciements chez Firaxis, le studio de Civilization et XCOM, touchant un tiers des effectifs. Des employés cités par Bloomberg évoquent un nouveau XCOM en retard.",
+          "importance": 2,
+          "tags": [
+            "licenciements",
+            "firaxis",
+            "take-two"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/take-two-lays-off-third-of-firaxis-staff/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T02:00:25+09:00"
+        },
+        {
+          "headline": "PlayStation fait rejeter une plainte collective britannique de 2,6 milliards de dollars",
+          "original_headline": "PlayStation beats $2.6 billion lawsuit over its game prices",
+          "summary": "Un tribunal britannique rejette le recours collectif qui jugeait trop élevée la commission de 30 % de Sony sur le PlayStation Store. Il écarte l'idée d'un quasi-monopole.",
+          "importance": 3,
+          "tags": [
+            "playstation",
+            "justice",
+            "sony"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/playstation-beats-2-6-billion-lawsuit-over-its-game-prices/",
+          "source_lang": "en",
+          "published_at": "2026-11-18T01:08:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Corée bat le Qatar 1-0 à Doha pour son dernier match de 2026",
+          "original_headline": "S. Korea defeat Qatar in final match of year",
+          "summary": "But d'Oh Se-hun de la tête à la 43e minute. Le contrat du sélectionneur intérimaire Robert Moreno expire le 27 novembre ; le comité des équipes nationales de la KFA doit l'évaluer.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261118/s-korea-defeat-qatar-in-final-match-of-year",
+          "source_lang": "en",
+          "published_at": "2026-11-18T01:24:00+09:00"
+        },
+        {
+          "headline": "Son Heung-min voit dans 2026 une année difficile mais formatrice",
+          "original_headline": "Captan Son Heung-min calls difficult year part of growing process",
+          "summary": "Le capitaine rappelle l'élimination au premier tour du Mondial et les démissions du sélectionneur et du président de la KFA. Il juge que la victoire sur le Qatar laisse l'équipe respirer jusqu'en mars.",
+          "importance": 2,
+          "tags": [
+            "son-heung-min",
+            "football"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261118/captan-son-heung-min-calls-difficult-year-part-of-growing-process",
+          "source_lang": "en",
+          "published_at": "2026-11-18T03:05:00+09:00"
+        },
+        {
+          "headline": "Yang Eui-ji reste aux Doosan Bears, premier signataire du marché des agents libres",
+          "original_headline": "Veteran catcher remains with Bears as KBO free agency opens",
+          "summary": "Le receveur Yang Eui-ji, 39 ans, reste deux ans aux Doosan Bears, pour jusqu'à 5,5 milliards de wons. Il est le premier des 22 agents libres de la KBO à signer.",
+          "importance": 3,
+          "tags": [
+            "kbo",
+            "baseball",
+            "agents-libres"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10940320",
+          "source_lang": "en",
+          "published_at": "2026-11-17T19:25:44+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Exposition Chagall, Ever Crossing au Centre Pompidou Hanwha",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "퐁피두센터 한화",
+      "area": "Yeouido",
+      "start_date": "2026-11-24",
+      "end_date": "2027-03-28",
+      "summary": "Soixante-cinq œuvres, dont 61 jamais montrées en Corée, avec pour la première fois céramique et sculpture. Deuxième exposition du Centre Pompidou Hanwha, au 63 Building. Billet à 25 000 wons.",
+      "source_name": "Korea Herald",
+      "source_url": "https://www.koreaherald.com/article/10940021",
+      "source_lang": "en"
+    }
+  ]
+}
