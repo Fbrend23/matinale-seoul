@@ -1,0 +1,301 @@
+{
+  "date": "2026-11-19",
+  "title": "Suneung sous haute surveillance, accord de services avec la Chine et Anthropic à la porte du Nasdaq",
+  "standfirst": "Jour du Suneung : règles durcies contre la triche. À Shenzhen, Lee rencontre Poutine et conclut l'essentiel d'un accord de services avec Pékin. Anthropic fixe le prix de son introduction en Bourse, et GTA 6 sort sous des notes record.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Soins de la peau, BTS et K-dramas attirent les voyageurs en Corée",
+          "original_headline": "Why Korea? BTS, skincare and K-drama, tourists say",
+          "summary": "Interrogés au terminal 2 d'Incheon le jour du record de 20 millions de visiteurs, les voyageurs citent d'abord les soins de la peau, puis BTS et les K-dramas, et saluent sécurité, propreté et transports de nuit.",
+          "importance": 1,
+          "tags": [
+            "tourisme",
+            "incheon",
+            "hallyu"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941485",
+          "source_lang": "en",
+          "published_at": "2026-11-18T15:25:52+09:00"
+        },
+        {
+          "headline": "Des étudiants guident gratuitement les visiteurs étrangers dans les palais de Séoul",
+          "original_headline": "YECCO students bring Korea's heritage to life with 'Histours' for foreign visitors",
+          "summary": "L'association étudiante YECCO propose chaque week-end des visites guidées bénévoles, sans pourboire, au palais Gyeongbokgung. Le visiteur ne paie que l'entrée du palais. Plus de 2 000 personnes de plus de 50 pays en ont profité.",
+          "importance": 2,
+          "tags": [
+            "visites-guidees",
+            "gyeongbokgung",
+            "patrimoine"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/globalcommunity/20261119/yecco-students-bring-koreas-heritage-to-life-with-histours-for-foreign-visitors?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-19T07:12:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Au Suneung, crayon noir seul, boutons de vêtements masqués et objets connectés bannis",
+          "original_headline": "Suneung eve brings new rules on pencils, clothing",
+          "summary": "Pour l'examen de ce jeudi (551 864 inscrits), seuls sont admis un crayon noir, la pièce d'identité, la convocation et une horloge analogique. Le ministère envisage une alerte sonore de 40 décibels pour repérer les appareils cachés.",
+          "importance": 1,
+          "tags": [
+            "suneung",
+            "education",
+            "triche"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941491",
+          "source_lang": "en",
+          "published_at": "2026-11-18T15:26:09+09:00"
+        },
+        {
+          "headline": "Lee et Poutine cherchent des terrains de coopération lors de leur première rencontre",
+          "original_headline": "Lee, Putin seek room for cooperation in first meeting despite strains",
+          "summary": "À Shenzhen, en marge de l'APEC, Lee Jae Myung et Vladimir Poutine se sont parlé une dizaine de minutes lors d'un banquet. Ils conviennent de chercher des coopérations et d'éviter une dégradation sur la péninsule.",
+          "importance": 2,
+          "tags": [
+            "diplomatie",
+            "russie",
+            "apec"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941943",
+          "source_lang": "en",
+          "published_at": "2026-11-19T07:00:00+09:00"
+        },
+        {
+          "headline": "L'accord de services avec la Chine avance, mais les concerts de K-pop restent hors du texte",
+          "original_headline": "Seoul sees Hallyu ban easing, but K-Pop concerts are another matter",
+          "summary": "L'accord sur les services et l'investissement est substantiellement conclu. Il ouvre le marché chinois au cinéma, aux jeux et au tourisme, sans obliger Pékin à autoriser les concerts de K-pop. Signature dans plusieurs mois.",
+          "importance": 3,
+          "tags": [
+            "chine",
+            "libre-echange",
+            "hallyu"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941942",
+          "source_lang": "en",
+          "published_at": "2026-11-19T07:00:00+09:00"
+        },
+        {
+          "headline": "Choo Kyung-ho, maire de Daegu, acquitté d'entrave au vote contre la loi martiale",
+          "original_headline": "Court rules Daegu mayor had no role in Yoon's martial law",
+          "summary": "Le tribunal central de Séoul juge que les preuves du procureur spécial ne montrent pas que Choo, ex-chef de groupe du PPP, a cédé à une demande de Yoon. Le Parti démocrate dénonce la décision.",
+          "importance": 4,
+          "tags": [
+            "loi-martiale",
+            "justice",
+            "ppp"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941646",
+          "source_lang": "en",
+          "published_at": "2026-11-18T16:41:19+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic fixe le prix de son introduction à 83 dollars, au-dessus de la fourchette",
+          "original_headline": "Anthropic reportedly prices IPO at $83 a share, above projected range",
+          "summary": "Selon TechCrunch, le prix dépasserait la fourchette de 70 à 78 dollars et valoriserait Anthropic à 1 500 milliards de dollars, base diluée. La cotation au Nasdaq, sous le symbole ANT, est attendue jeudi.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "introduction-en-bourse",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T07:11:15+09:00"
+        },
+        {
+          "headline": "Nvidia diffère le dépôt de son rapport trimestriel à la SEC, sans explication",
+          "original_headline": "Nvidia created a weird bit of intrigue by not filing a routine SEC report",
+          "summary": "Lors de l'appel sur les résultats, la direction financière a annoncé que le 10-Q ne serait pas déposé tout de suite. Un analyste d'UBS y voit un lien avec l'enquête sur Jensen Huang.",
+          "importance": 2,
+          "tags": [
+            "nvidia",
+            "sec",
+            "gouvernance"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/18/nvidia-created-a-weird-bit-of-intrigue-by-not-filing-a-routine-sec-report/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T06:57:40+09:00"
+        },
+        {
+          "headline": "Les banques américaines rejettent la responsabilité des piratages sur les clients qui utilisent des agents IA",
+          "original_headline": "More banks say customers using AI agents are on their own — even if they get hacked",
+          "summary": "Citibank modifie son contrat : le client qui donne accès à son compte à un agent IA tiers reste responsable en cas de fuite d'identifiants ou de piratage. JPMorgan et Bank of America ont fait de même.",
+          "importance": 3,
+          "tags": [
+            "agents-ia",
+            "banques",
+            "securite"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/18/more-banks-says-customers-using-ai-agents-are-on-their-own-even-if-they-get-hacked/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T02:32:10+09:00"
+        },
+        {
+          "headline": "Google ajoute un mode incognito au mode IA de sa recherche",
+          "original_headline": "Google’s AI feature in Search gets its own incognito mode",
+          "summary": "Les « fils temporaires » du mode IA n'apparaissent ni dans l'historique ni dans les recommandations et n'influencent pas les réponses suivantes. Déploiement mondial, sur ordinateur et mobile, dans toutes les langues prises en charge.",
+          "importance": 4,
+          "tags": [
+            "google",
+            "confidentialite",
+            "recherche"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T03:04:05+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un élu américain s'en prend aux parents qui laissent leurs enfants jouer à GTA 6",
+          "original_headline": "Republican Congressman says you’re a ‘bad parent’ if you let your child play GTA 6",
+          "summary": "Le représentant Tim Burchett juge « mauvais parents » ceux qui laissent leurs enfants y jouer. L'article rappelle que les études ne montrent en général aucun lien entre jeux violents et violence réelle.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "politique"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/republican-congressman-says-youre-a-bad-parent-if-you-let-your-child-play-gta-6/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T05:53:44+09:00"
+        },
+        {
+          "headline": "Le procès des 34 salariés licenciés par Rockstar s'achève, jugement en attente",
+          "original_headline": "Rockstar’s ‘union busting’ tribunal comes to an end, pending verdict",
+          "summary": "À Glasgow, l'audience s'est achevée. Le syndicat IWGB dénonce une répression syndicale ; Rockstar affirme avoir licencié pour fuite d'informations confidentielles. Le jugement peut prendre de quelques semaines à quelques mois.",
+          "importance": 2,
+          "tags": [
+            "rockstar",
+            "syndicat",
+            "licenciements"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/rockstars-union-busting-tribunal-comes-to-an-end-pending-verdict/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T03:04:00+09:00"
+        },
+        {
+          "headline": "Le studio de MindsEye veut poursuivre des « saboteurs » pour rembourser 62 millions de livres",
+          "original_headline": "MindsEye studio wants to sue ‘saboteurs’ to pay off £62 million debt",
+          "summary": "Build A Rocket Boy, en redressement judiciaire, évoque une campagne coordonnée d'avis négatifs et mise sur des procédures. Le document admet que la valeur de ces recours reste incertaine ; la recherche de financement a échoué.",
+          "importance": 3,
+          "tags": [
+            "mindseye",
+            "studios",
+            "dette"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/mindseye-studio-wants-to-sue-saboteurs-to-pay-off-62-million-debt/",
+          "source_lang": "en",
+          "published_at": "2026-11-19T07:09:35+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Choi Min-jeong se concentre sur la compétition malgré les appels à repousser sa retraite",
+          "original_headline": "Short track star focusing on competition amid growing calls to reconsider retirement plans",
+          "summary": "La patineuse de 28 ans maintient que 2026-2027 sera sa dernière saison. Deuxième du classement général avec 408 points, elle a pris 2 ors, 4 argents et 1 bronze. L'étape de Mokdong débute vendredi.",
+          "importance": 1,
+          "tags": [
+            "short-track",
+            "choi-min-jeong",
+            "patinage"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10941798",
+          "source_lang": "en",
+          "published_at": "2026-11-18T19:17:27+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Lancement Starbucks × Hello Kitty en Corée",
+      "kind": "lancement",
+      "theme": "personnages",
+      "venue": "스타벅스",
+      "area": "Toute la Corée",
+      "start_date": "2026-11-19",
+      "end_date": "2026-12-31",
+      "summary": "Collaboration de fin d'année : 22 objets en deux vagues (10 le 19 novembre, 12 le 2 décembre), deux boissons, un macaron et une boîte de biscuits Hello Kitty.",
+      "source_name": "ETNews",
+      "source_url": "https://m.etnews.com/20261116000032?obj=Tzo4OiJzdGRDbGFzcyI6Mjp7czo3OiJyZWZlcmVyIjtOO3M6NzoiZm9yd2FyZCI7czoxMzoid2ViIHRvIG1vYmlsZSI7fQ%3D%3D",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Seoullo Media Canvas : 4e exposition d'art numérique 2026-2027",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울로미디어캔버스",
+      "area": "Jung-gu",
+      "start_date": "2026-12-01",
+      "end_date": "2027-02-28",
+      "summary": "Art vidéo projeté sur l'écran urbain de Seoullo 7017, chaque soir de 18 h à 23 h, horaires ajustés au coucher du soleil.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://news.seoul.go.kr/culture/archives/535092",
+      "source_lang": "ko",
+      "address": "서울특별시 중구 만리재로 215"
+    },
+    {
+      "name": "Festival d'art et technologie Unfold X 2026 à Culture Station Seoul 284",
+      "kind": "festival",
+      "theme": "culture",
+      "venue": "문화역서울284",
+      "area": "Jung-gu",
+      "start_date": "2026-11-26",
+      "end_date": "2026-12-09",
+      "summary": "Festival international d'art et de technologie à la gare de Séoul. Entrée libre, ouvert tous les jours de 11 h à 19 h.",
+      "source_name": "Korea Times",
+      "source_url": "https://www.koreatimes.co.kr/lifestyle/people-events/20261118/algorithms-meet-aesthetics-as-global-art-and-technology-festival-opens-in-seoul",
+      "source_lang": "en"
+    },
+    {
+      "name": "Salon Sourcing in Market 2026 au COEX",
+      "kind": "salon",
+      "theme": "mode",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-25",
+      "end_date": "2026-11-27",
+      "summary": "Salon des biens de consommation, de la mode et du lifestyle, au Hall C du COEX.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/en/visit-coex/event-schedule/",
+      "source_lang": "en"
+    }
+  ]
+}
