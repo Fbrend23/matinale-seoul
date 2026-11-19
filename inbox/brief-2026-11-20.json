@@ -1,0 +1,425 @@
+{
+  "date": "2026-11-20",
+  "title": "Han Duck-soo renvoyé en appel, Anthropic à Nasdaq, grève du zèle dans le métro",
+  "standfirst": "La Cour suprême casse en partie la condamnation de l'ex-Premier ministre Han et confirme quatre ans pour Kim Keon Hee ; le Parti démocrate vise le président de la Cour. À Séoul, ralentissement syndical dans le métro ce vendredi. Anthropic fait son entrée à Nasdaq, GTA 6 est sorti.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le métro de Séoul en grève du zèle ce vendredi, avec un risque de retards",
+          "original_headline": "Seoul Subway union action may delay Friday commute",
+          "summary": "Le syndicat applique un ralentissement dès les premiers trains. Séoul Metro maintient ses 3 183 services prévus. Le syndicat annonce une grève illimitée à partir du 25 novembre si la direction ne répond pas.",
+          "analysis": "Pour les trajets de ce matin, prévoir une marge de temps ; l'échéance du 25 novembre mérite d'être suivie.",
+          "importance": 1,
+          "tags": [
+            "metro",
+            "greve",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10943088",
+          "source_lang": "en",
+          "published_at": "2026-11-19T17:26:56+09:00"
+        },
+        {
+          "headline": "La branche de Seongsu de la ligne 2 est à l'arrêt après une panne d'aiguillage à Yongdap",
+          "original_headline": "서울 지하철 2호선 성수지선 운행 중단…용답역 선로전환기 장애",
+          "summary": "Ce matin, les trains de la branche de Seongsu de la ligne 2 ne circulent plus dans les deux sens, après une panne d'aiguillage à la station Yongdap. Des départs de la ligne 1 sont aussi retardés.",
+          "importance": 2,
+          "tags": [
+            "metro",
+            "ligne-2",
+            "seongsu"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Society/article/all/20261120/135058206/1",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T07:08:00+09:00"
+        },
+        {
+          "headline": "Tous les sentiers du Hallasan et la route 1100 sont fermés en raison de la neige",
+          "original_headline": "한라산 삼각봉 14.5㎝ 눈…전 탐방로·1100도로 통제",
+          "summary": "Jusqu'à 14,5 cm de neige se sont accumulés à Samgakbong, sur le Hallasan, à Jeju. Tous les sentiers de randonnée et la route 1100 sont fermés.",
+          "importance": 3,
+          "tags": [
+            "jeju",
+            "hallasan",
+            "neige"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261120013300056",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T06:48:51+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Cour suprême casse en partie la peine de 15 ans de Han Duck-soo et renvoie l'affaire en appel",
+          "original_headline": "Han Duck-soo case on insurrection sent back to appeals court",
+          "summary": "Les preuves d'une intention de renverser l'ordre constitutionnel en proposant un Conseil des ministres avant la loi martiale sont jugées insuffisantes. L'affaire retourne devant la Haute Cour de Séoul ; détention prolongée de deux mois.",
+          "importance": 1,
+          "tags": [
+            "han-duck-soo",
+            "loi-martiale",
+            "cour-supreme"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10943172",
+          "source_lang": "en",
+          "published_at": "2026-11-19T18:33:23+09:00"
+        },
+        {
+          "headline": "Quatre ans de prison confirmés pour l'ex-Première dame Kim Keon Hee",
+          "original_headline": "Korea's top court upholds Kim Keon Hee's 4-year prison sentence",
+          "summary": "La Cour suprême confirme quatre ans de prison et 50 millions de wons d'amende. C'est la première ex-Première dame dont la peine de prison devient définitive. L'acquittement dans l'affaire des sondages est maintenu.",
+          "importance": 2,
+          "tags": [
+            "kim-keon-hee",
+            "cour-supreme",
+            "justice"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10943145",
+          "source_lang": "en",
+          "published_at": "2026-11-19T17:58:47+09:00"
+        },
+        {
+          "headline": "Le Parti démocrate veut destituer le président de la Cour suprême après l'arrêt Han",
+          "original_headline": "민주 “韓 판결은 역사적인 반역”… 긴급 의총뒤 “조희대 탄핵 추진”",
+          "summary": "Après une réunion d'urgence, le Parti démocrate décide d'engager la destitution du président de la Cour suprême, Cho Hee-dae. Le Parti du pouvoir du peuple dénonce un « coup d'État parlementaire ».",
+          "importance": 3,
+          "tags": [
+            "parti-democrate",
+            "cour-supreme",
+            "destitution"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Politics/article/all/20261120/135057816/2",
+          "source_lang": "ko"
+        },
+        {
+          "headline": "Trump, Xi et Poutine s'accordent sur un dialogue nucléaire, sans mention de l'arsenal nord-coréen",
+          "original_headline": "(7th LD) Trump, Xi, Putin agree to hold dialogue on nuclear risks, make no mention of N.K. nukes in joint declaration",
+          "summary": "Au terme de leur premier sommet à trois à Shenzhen, les dirigeants américain, chinois et russe conviennent d'un dialogue sur les risques nucléaires. La déclaration commune ne mentionne pas les armes nucléaires de Pyongyang.",
+          "importance": 4,
+          "tags": [
+            "trump",
+            "xi-jinping",
+            "poutine",
+            "coree-du-nord"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20261119001357315",
+          "source_lang": "en",
+          "published_at": "2026-11-19T20:45:34+09:00"
+        },
+        {
+          "headline": "L'AIEA publie son premier rapport sur le projet de sous-marins nucléaires coréens",
+          "original_headline": "IAEA gives positive assessment of S. Korea's nuclear-powered submarine project in first report: ministry",
+          "summary": "Séoul a rempli ses obligations de déclaration, selon l'AIEA. Le rapport n'est pas une approbation formelle ; la suite dépend surtout de négociations avec Washington sur l'approvisionnement en combustible nucléaire.",
+          "importance": 5,
+          "tags": [
+            "aiea",
+            "sous-marins",
+            "nucleaire"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10943149",
+          "source_lang": "en",
+          "published_at": "2026-11-19T18:04:39+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Anthropic entre au Nasdaq à 111 dollars, 33 % au-dessus du prix d'introduction",
+          "original_headline": "Anthropic hits Nasdaq exchanges at $111, 33% above IPO price",
+          "summary": "L'action s'échange à 111,50 dollars dans les premières minutes, contre un prix d'introduction de 83 dollars. L'opération lève plus de 81 milliards de dollars, au-dessus de la fourchette de 70 à 78 dollars annoncée.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "introduction-en-bourse",
+            "nasdaq"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+          "source_lang": "en",
+          "published_at": "2026-11-20T01:59:23+09:00"
+        },
+        {
+          "headline": "Samsung et TSMC suspendent certaines livraisons de puces vers la Chine, selon le FT",
+          "original_headline": "FT \"삼성전자·TSMC, 중국에 일부 칩 출하 중단\"",
+          "summary": "Selon le Financial Times, Samsung Electronics et TSMC ont suspendu l'envoi de certaines puces à des clients chinois, en application des nouveaux contrôles américains à l'exportation.",
+          "importance": 2,
+          "tags": [
+            "samsung",
+            "tsmc",
+            "semi-conducteurs",
+            "chine"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261120012400009",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T06:41:02+09:00"
+        },
+        {
+          "headline": "L'agent Muse de Meta mélange des conversations et risque d'exposer des données privées",
+          "original_headline": "Meta’s AI agent Muse is mixing up conversations and could be exposing private data, report says",
+          "summary": "Selon The Information, des salariés de Meta voient Muse faire apparaître des demandes, commandes et soldes bancaires qui ne sont pas les leurs. Meta répond que ses employés testent des versions différentes de la version publique.",
+          "importance": 3,
+          "tags": [
+            "meta",
+            "agents-ia",
+            "vie-privee"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/",
+          "source_lang": "en",
+          "published_at": "2026-11-20T02:38:40+09:00"
+        },
+        {
+          "headline": "Gemini sur Mac peut désormais utiliser l'ordinateur à la place de l'utilisateur",
+          "original_headline": "Google gives Gemini the ability to use your Mac for you",
+          "summary": "L'application Gemini pour macOS exécute des tâches dans les applications et sur le web, avec aperçu en direct et validation possible de chaque action. Pour l'instant en anglais, aux États-Unis, avec un abonnement payant.",
+          "importance": 4,
+          "tags": [
+            "google",
+            "gemini",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+          "source_lang": "en",
+          "published_at": "2026-11-20T03:09:11+09:00"
+        },
+        {
+          "headline": "LG Display abandonne son projet d'usine OLED de 3 000 milliards de wons à Paju",
+          "original_headline": "LG디스플레이, 10.5세대 대형 OLED 3조원 투자계획 철회",
+          "summary": "LG Display renonce à son investissement de 3 000 milliards de wons dans une usine OLED de 10,5e génération à Paju. Le groupe réoriente ses capacités 8,5G existantes face au ralentissement du marché des téléviseurs.",
+          "importance": 5,
+          "tags": [
+            "lg-display",
+            "oled",
+            "investissement"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261119173259",
+          "source_lang": "ko",
+          "published_at": "2026-11-19T17:32:59+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "GTA 6 est sorti dans le monde entier le 19 novembre",
+          "original_headline": "Grand Theft Auto 6 launch day - all the news and rection as GTA 6 arrived around the world",
+          "summary": "Grand Theft Auto 6 est disponible partout depuis le 19 novembre. Eurogamer suit la journée de lancement en direct et prévoit la plus grosse sortie de l'histoire du jeu vidéo.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "rockstar",
+            "sortie"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/gta-6-grand-theft-auto-6-launch-day-live-blog",
+          "source_lang": "en",
+          "published_at": "2026-11-19T18:05:00+09:00"
+        },
+        {
+          "headline": "Ubisoft supprime 166 postes à Montréal et à Québec",
+          "original_headline": "Ubisoft lays off 166 staff in Montreal and Quebec studios",
+          "summary": "Ubisoft supprime 166 postes dans ses studios de Montréal et de Québec, pour « aligner ses ressources sur les priorités de production actuelles », dit l'éditeur.",
+          "importance": 2,
+          "tags": [
+            "ubisoft",
+            "licenciements",
+            "studios"
+          ],
+          "source_name": "GamesIndustry.biz",
+          "source_url": "https://www.gamesindustry.biz/ubisoft-lays-off-166-staff-in-montreal-and-quebec-studios",
+          "source_lang": "en",
+          "published_at": "2026-11-20T00:15:00+09:00"
+        },
+        {
+          "headline": "Le salon G-Star 2026 s'ouvre à Busan avec 1 237 exposants et l'IA en vedette",
+          "original_headline": "AI 창작·글로벌 게임 한자리에…'지스타 2026' 부산서 개막",
+          "summary": "La 22e édition du salon coréen réunit 41 pays et 3 445 stands à Busan. La plateforme d'IA Wrtn y participe comme premier sponsor venu hors du jeu vidéo.",
+          "importance": 3,
+          "tags": [
+            "g-star",
+            "busan",
+            "salon"
+          ],
+          "source_name": "ZDNet Korea",
+          "source_url": "https://zdnet.co.kr/view/?no=20261119092404",
+          "source_lang": "ko",
+          "published_at": "2026-11-19T09:24:04+09:00"
+        },
+        {
+          "headline": "CyberLeek affirme avoir diffusé une version de développement complète de GTA 6",
+          "original_headline": "Infamous GTA 6 leaker CyberLeek is back, and this time the group claims to have leaked a full development build of the game",
+          "summary": "CyberLeek, nom d'un groupe de pirates à l'origine d'une fuite de séquences de GTA 6 avant sa sortie, réapparaît et affirme avoir diffusé une version de développement complète. L'affirmation n'est pas vérifiée.",
+          "importance": 4,
+          "tags": [
+            "gta-6",
+            "fuite",
+            "piratage"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/cyberleek-gta-6-dev-build",
+          "source_lang": "en",
+          "published_at": "2026-11-20T06:08:50+09:00"
+        },
+        {
+          "headline": "Dplus KIA prolonge ShowMaker et recrute Smash ainsi que l'entraîneur Kim Dae-ho",
+          "original_headline": "[오피셜] '쇼메이커', '스매쉬' 그리고 김대호 감독, DK와 함께",
+          "summary": "L'équipe LCK Dplus KIA officialise la prolongation de ShowMaker ainsi que l'arrivée de Smash et de son nouvel entraîneur en chef Kim Dae-ho.",
+          "importance": 5,
+          "tags": [
+            "lck",
+            "dplus-kia",
+            "e-sport"
+          ],
+          "source_name": "Inven",
+          "source_url": "https://www.inven.co.kr/webzine/news/?news=298111",
+          "source_lang": "ko",
+          "published_at": "2026-11-19T23:41:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le sort du sélectionneur par intérim Moreno se décide avant le 27 novembre",
+          "original_headline": "동행? 결별? 운명의 일주일…모레노 감독 거취, 27일 전에 결정",
+          "summary": "Robert Moreno, sélectionneur par intérim de l'équipe de Corée pour six matches, est reparti en Espagne. Son contrat court jusqu'au 28 novembre ; le comité de la fédération décidera de sa prolongation avant le 27.",
+          "importance": 1,
+          "tags": [
+            "football",
+            "equipe-nationale",
+            "moreno"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Sports/article/all/20261120/135058164/1",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T06:07:17+09:00"
+        },
+        {
+          "headline": "Yoo Hyun-jo 8e ex æquo après le premier tour de la finale du Q-Series LPGA",
+          "original_headline": "유현조, LPGA Q시리즈 최종전 1R서 공동 8위…선두와 3타 차",
+          "summary": "Yoo Hyun-jo se classe huitième ex æquo, à trois coups de la tête, au premier tour de la finale du Q-Series, porte d'entrée vers le circuit LPGA.",
+          "importance": 2,
+          "tags": [
+            "golf",
+            "lpga",
+            "q-series"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://www.yna.co.kr/view/AKR20261120014800007",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T07:03:37+09:00"
+        },
+        {
+          "headline": "Le commissaire de la KBO est réélu pour un troisième mandat",
+          "original_headline": "Incumbent KBO commissioner elected to 3rd term",
+          "summary": "La Korea Baseball Organization annonce jeudi la réélection de son commissaire sortant pour un troisième mandat.",
+          "importance": 3,
+          "tags": [
+            "baseball",
+            "kbo"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20261119004500315",
+          "source_lang": "en",
+          "published_at": "2026-11-19T11:39:08+09:00"
+        },
+        {
+          "headline": "Le Marathon de Séoul garde le label platine World Athletics pour la huitième année",
+          "original_headline": "서울마라톤, 8년째 세계 최고 ‘플래티넘’ 인증",
+          "summary": "Le Marathon de Séoul sera de nouveau classé « platine », le plus haut niveau de World Athletics, l'an prochain. Il conserve ce label chaque année depuis 2020, date de son introduction.",
+          "importance": 4,
+          "tags": [
+            "marathon",
+            "world-athletics",
+            "seoul"
+          ],
+          "source_name": "Dong-A Ilbo",
+          "source_url": "https://www.donga.com/news/Sports/article/all/20261120/135057511/2",
+          "source_lang": "ko",
+          "published_at": "2026-11-20T04:30:00+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Concert de Malcolm Todd : Do That Again Tour à Séoul",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "명화라이브홀",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-12-02",
+      "end_date": "2026-12-02",
+      "summary": "Concert du chanteur américain Malcolm Todd le 2 décembre, dans le cadre de sa tournée Do That Again. Billetterie sur NOL World.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/products/26013394"
+    },
+    {
+      "name": "YUURI LIVE 2026 IN SEOUL",
+      "kind": "concert",
+      "theme": "culture",
+      "venue": "인스파이어 아레나",
+      "area": "Incheon",
+      "start_date": "2026-12-05",
+      "end_date": "2026-12-06",
+      "summary": "Deux dates de concert du chanteur japonais Yuuri à l'Inspire Arena, à Incheon. Billetterie sur NOL World.",
+      "source_name": "NOL World",
+      "source_url": "https://world.nol.com/",
+      "source_lang": "en",
+      "booking_url": "https://world.nol.com/en/ticket/products/26010352"
+    },
+    {
+      "name": "Marché éphémère Sodam Market 2026 au COEX",
+      "kind": "popup",
+      "theme": "food",
+      "venue": "코엑스",
+      "area": "Gangnam-gu",
+      "start_date": "2026-11-20",
+      "end_date": "2026-11-22",
+      "summary": "Marché éphémère au hall est du COEX, ouvert de 11 h à 18 h du vendredi au dimanche.",
+      "source_name": "COEX",
+      "source_url": "https://www.coex.co.kr/exhibitions/2026-%EC%86%8C%EB%8B%B4%EB%A7%88%EC%BC%93/",
+      "source_lang": "ko",
+      "address": "서울특별시 강남구 영동대로 513"
+    },
+    {
+      "name": "Exposition Giorgio Morandi à ALT.1 The Hyundai Seoul",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "더현대 서울 ALT.1",
+      "area": "Yeongdeungpo-gu",
+      "start_date": "2026-11-21",
+      "end_date": "2027-03-01",
+      "summary": "Exposition consacrée au peintre italien Giorgio Morandi au 6e étage du Hyundai Seoul, du 21 novembre au 1er mars 2027.",
+      "source_name": "The Hyundai Seoul",
+      "source_url": "https://www.ehyundai.com/newCulture/EH/EH000001_V.do?seq=2093267&bbsCd=210&sitemapId=01020100000000",
+      "source_lang": "ko"
+    }
+  ]
+}
