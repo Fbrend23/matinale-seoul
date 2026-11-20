@@ -1,0 +1,228 @@
+{
+  "date": "2026-11-21",
+  "title": "Le Kospi perd 5 % en une séance, GTA 6 pulvérise les records de lancement",
+  "standfirst": "Séoul décroche vendredi dans le sillage des craintes sur l'IA, tandis que 111 candidats du Suneung sont pris avec des appareils connectés. Côté tech, une preuve de l'hypothèse de Riemann assistée par IA fait débat. GTA 6 affiche 3,79 milliards de dollars en un jour.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Gangnam teste un marché nocturne à Sinsa-dong avant l'ouverture de mars",
+          "original_headline": "Gangnam’s Serosu-gil gears up for March night market",
+          "summary": "Après deux soirées d'essai à Sinsa-dong, de 17 h à minuit, Gangnam-gu prévoit d'ouvrir en mars un marché nocturne sur Serosu-gil, avec rue partiellement fermée aux voitures et bons d'achat à 10 % de réduction.",
+          "importance": 1,
+          "tags": [
+            "marche-nocturne",
+            "gangnam",
+            "sinsa-dong"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944346",
+          "source_lang": "en",
+          "published_at": "2026-11-20T17:01:23+09:00"
+        },
+        {
+          "headline": "Le Souvenir Fair du DDP ouvre jusqu'à dimanche avec 143 exposants",
+          "original_headline": "From royal bronzeware to doorbells, Korea’s best souvenirs go on show at DDP",
+          "summary": "La cinquième édition du Souvenir Fair, au Dongdaemun Design Plaza jusqu'à dimanche, réunit 143 entreprises et organisations. Le grand prix du concours revient à une vaisselle en bronze forgé à la main d'Anseong.",
+          "importance": 2,
+          "tags": [
+            "souvenirs",
+            "ddp",
+            "artisanat"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944307",
+          "source_lang": "en",
+          "published_at": "2026-11-20T16:22:32+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi chute de 5,21 % et clôture à 4 869,96",
+          "original_headline": "Seoul shares plunge over 5% as Anthropic debut fails to ease AI concerns",
+          "summary": "Samsung Electronics perd 7,01 % et SK hynix 5,92 %. Les transactions programmées ont été suspendues cinq minutes. Les craintes sur les investissements dans l'IA ont pesé, malgré les débuts d'Anthropic à Wall Street.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944264",
+          "source_lang": "en",
+          "published_at": "2026-11-20T15:58:09+09:00"
+        },
+        {
+          "headline": "Au Suneung, 111 candidats sont pris avec des appareils connectés",
+          "original_headline": "111 test takers caught with smart devices during Suneung",
+          "summary": "Le ministère compte 111 cas, contre 98 au premier décompte, dont des lunettes intelligentes et une mini-caméra. Le gouvernement et le Parti démocrate proposent d'allonger à dix ans l'interdiction de la triche assistée par IA.",
+          "importance": 2,
+          "tags": [
+            "suneung",
+            "triche",
+            "education"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944168",
+          "source_lang": "en",
+          "published_at": "2026-11-20T14:52:13+09:00"
+        },
+        {
+          "headline": "L'Assemblée adopte la loi de soutien aux militants pro-démocratie après la fin d'un filibuster",
+          "original_headline": "Bill to support democracy activists passes after filibuster broken",
+          "summary": "Le texte passe par 178 voix pour et aucune contre, après un vote de clôture à 183 voix, juste au-dessus du seuil de 180. Aucun député du Parti du pouvoir du peuple n'a voté.",
+          "importance": 3,
+          "tags": [
+            "assemblee-nationale",
+            "filibuster"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944294",
+          "source_lang": "en",
+          "published_at": "2026-11-20T16:08:18+09:00"
+        },
+        {
+          "headline": "Le ministre de la Culture veut légaliser la danse dans les clubs de musique live",
+          "original_headline": "Korea’s culture minister wants to make dancing at gigs legal",
+          "summary": "Chae Hwi-young annonce une révision de la loi sur l'industrie musicale pour créer un statut de club de live, et une exemption aux règles sanitaires. Un club de Busan avait été suspendu deux mois après un concert dansé.",
+          "importance": 4,
+          "tags": [
+            "musique-live",
+            "legislation",
+            "culture"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944395",
+          "source_lang": "en",
+          "published_at": "2026-11-20T17:45:15+09:00"
+        },
+        {
+          "headline": "Gangnam déploie des robots pour patrouiller dans les parcs et livrer des repas",
+          "original_headline": "Robots patrol parks, serve meals in Seoul's wealthy Gangnam District",
+          "summary": "Cinq entreprises ont été retenues pour des essais de terrain, de décembre 2026 à avril 2027, financés jusqu'à 30 millions de wons chacune. Un robot de Guardian AI surveillera le parc Dosan jour et nuit dès décembre.",
+          "importance": 5,
+          "tags": [
+            "robots",
+            "gangnam",
+            "administration"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/others/20261121/robots-patrol-parks-serve-meals-in-seouls-wealthy-gangnam-district?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-21T07:12:02+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Une preuve de l'hypothèse de Riemann assistée par IA, et une autre sans IA",
+          "original_headline": "AI claimed a solution to the 167-year-old Riemann Hypothesis — and a human did, too",
+          "summary": "Le mathématicien Levent Alpöge affirme avoir prouvé l'hypothèse de Riemann, avec une preuve vérifiable dans Lean. Une démonstration de l'hypothèse généralisée, sans IA, a aussi été publiée. Leur compréhension par des humains reste à établir.",
+          "importance": 1,
+          "tags": [
+            "ia",
+            "mathematiques",
+            "riemann"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "La Californie assigne Nvidia à comparaître dans l'affaire Huang",
+          "original_headline": "California AG subpoenas Nvidia over worries about Huang’s ties with China",
+          "summary": "Le procureur général Rob Bonta enquête sur un éventuel transfert de GPU ou d'informations vers la Chine et sur d'éventuelles informations trompeuses aux investisseurs. Le nouveau président du conseil exclut le retour de Jensen Huang.",
+          "importance": 2,
+          "tags": [
+            "nvidia",
+            "enquete",
+            "chine"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/20/california-ag-subpoenas-nvidia-over-worries-about-huangs-ties-with-china/",
+          "source_lang": "en"
+        },
+        {
+          "headline": "Bending Spoons rachète Mailchimp à Intuit pour 3,68 milliards de dollars",
+          "original_headline": "Bending Spoons buys Mailchimp for $3.68B",
+          "summary": "Intuit avait acquis Mailchimp en 2021 pour environ 12 milliards. Environ 90 % du prix est payé en numéraire. Bending Spoons a aussi racheté AOL, Eventbrite, Airtable et Miro sur l'année écoulée.",
+          "importance": 3,
+          "tags": [
+            "rachat",
+            "intuit",
+            "logiciels"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/20/bending-spoons-buys-mailchimp-for-3-68-billion/",
+          "source_lang": "en",
+          "published_at": "2026-11-20T08:16:00-08:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "GTA 6 réalise 3,79 milliards de dollars de ventes le premier jour",
+          "original_headline": "GTA 6 earns $3.79 billion in one day as the biggest entertainment launch in history",
+          "summary": "Rockstar et Take-Two annoncent 3,79 milliards de dollars de ventes au détail en un jour, un record pour un divertissement. Le jeu, précommandé plus de 32 millions de fois, affiche 99/100 sur Metacritic.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "ventes",
+            "rockstar"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/gta-6-earns-3-79-billion-in-one-day-as-the-biggest-entertainment-launch-in-history/",
+          "source_lang": "en"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Lee Dong-geun, médaillé d'or en 3x3, est choisi en premier par KT à la draft de la KBL",
+          "original_headline": "韓 AG 사상 첫 3X3 농구 ‘金 주역’ 이동근, 전체 1순위로 KT 유니폼 입는다 [SS시선집중]",
+          "summary": "À Jamsil, l'ailier de l'université de Corée Lee Dong-geun, capitaine de l'équipe de 3x3 titrée aux Jeux asiatiques, est le premier choix. Hyundai Mobis prend Kim Seung-woo en deuxième, SK Ko Chan-yu en troisième.",
+          "importance": 1,
+          "tags": [
+            "basket",
+            "kbl",
+            "draft"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1651285",
+          "source_lang": "ko",
+          "published_at": "2026-11-21T00:26:05+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Pop-up des 30 ans de Tamagotchi à The Hyundai Seoul",
+      "kind": "popup",
+      "theme": "personnages",
+      "venue": "더현대 서울",
+      "area": "Yeouido",
+      "start_date": "2026-11-20",
+      "end_date": "2026-12-03",
+      "summary": "Boutique éphémère des 30 ans du Tamagotchi, avec zone d'histoire, espace photo et vente d'appareils. Entrée sur réservation sur place, par tablette au 5e étage.",
+      "source_name": "Yonhap News",
+      "source_url": "https://www.yna.co.kr/view/AKR20261120150900030",
+      "source_lang": "ko"
+    }
+  ]
+}
