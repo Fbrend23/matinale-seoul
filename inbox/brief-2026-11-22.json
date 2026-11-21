@@ -1,0 +1,155 @@
+{
+  "date": "2026-11-22",
+  "title": "Un train de marchandises déraille près de Sejong, la destitution du chef de la Cour suprême se précise",
+  "standfirst": "Un déraillement coupe les Saemaeul et Mugunghwa entre Daejeon et Cheonan. Le Parti démocrate viserait le 3 décembre pour sa motion contre le chef de la Cour suprême. Signal verrouille les captures d'écran face aux agents IA. Journée mince côté jeu vidéo : aucune source lisible ce matin, la section reste vide.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Un train de marchandises déraille près de Sejong, Saemaeul et Mugunghwa suspendus",
+          "original_headline": "Freight train derails near Sejong, leaving Saemaeul, Mugunghwa services suspended",
+          "summary": "Cinq wagons d'un train de marchandises ont déraillé samedi à l'entrée de la gare de Sojeong-ri, près de Sejong. Les Saemaeul et Mugunghwa entre Daejeon et Cheonan sont suspendus, les KTX épargnés, sans victime.",
+          "importance": 1,
+          "tags": [
+            "train",
+            "korail",
+            "deraillement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944600",
+          "source_lang": "en",
+          "published_at": "2026-11-21T10:48:09+09:00"
+        },
+        {
+          "headline": "Sept expositions de galeries à voir à Séoul avant la fin de l'année",
+          "original_headline": "What to see in Seoul’s galleries before the year is out",
+          "summary": "Sept expositions dans les galeries de Samcheong-dong et Hannam-dong, dont Tony Cragg chez Thaddaeus Ropac (du 26 novembre au 13 février) et Kim Yun-shin chez Lehmann Maupin (jusqu'au 24 décembre).",
+          "importance": 2,
+          "tags": [
+            "galeries",
+            "expositions",
+            "samcheong-dong"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10942855",
+          "source_lang": "en",
+          "published_at": "2026-11-21T16:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La destitution du chef de la Cour suprême serait lancée le 3 décembre",
+          "original_headline": "Impeachment motion against Supreme Court chief likely to be initiated on 2nd anniversary of martial law bid: lawmaker",
+          "summary": "Le Parti démocrate devrait lancer le 3 décembre, deuxième anniversaire de la loi martiale, sa motion de destitution du président de la Cour suprême Cho Hee-dae, selon son porte-parole. Aucune décision formelle sur la date n'est prise.",
+          "importance": 1,
+          "tags": [
+            "cour-supreme",
+            "destitution",
+            "parti-democrate"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944666",
+          "source_lang": "en",
+          "published_at": "2026-11-21T14:14:19+09:00"
+        },
+        {
+          "headline": "Lee réaffirme 100 millions de wons de récompense pour dénoncer la triche au Suneung",
+          "original_headline": "Lee reiterates 100 mln-won reward for reporting cheating on CSAT",
+          "summary": "Lee Jae Myung réaffirme une récompense de 100 millions de wons par cas pour tout signalement de fraude au Suneung. Un fraudeur qui se dénonce et dénonce ses complices verrait sa peine allégée, tout en touchant la prime.",
+          "importance": 2,
+          "tags": [
+            "suneung",
+            "triche",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944726",
+          "source_lang": "en",
+          "published_at": "2026-11-21T16:42:39+09:00"
+        },
+        {
+          "headline": "Un bus quitte la chaussée près de la station Hongik University et fait six blessés",
+          "original_headline": "Bus rams into pavement near Hongik University Station, injuring 6",
+          "summary": "Samedi vers 18 h 57, un bus a quitté la chaussée près de la station Hongik University, après une collision avec un autre bus et une berline. Six personnes ont été transportées à l'hôpital, sans blessure grave signalée.",
+          "importance": 3,
+          "tags": [
+            "accident",
+            "hongdae"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10944837",
+          "source_lang": "en",
+          "published_at": "2026-11-21T23:15:04+09:00"
+        },
+        {
+          "headline": "Pourquoi les jeunes Coréens s'attachent à « Chiikawa »",
+          "original_headline": "Why are young Koreans falling for Japanese animated series 'Chiikawa?'",
+          "summary": "Le succès de « Chiikawa » auprès des 20-30 ans tient à des personnages confrontés au travail, aux examens et au logement. Le film sorti le 30 septembre avait attiré environ 2,95 millions de spectateurs au 16 novembre.",
+          "importance": 4,
+          "tags": [
+            "chiikawa",
+            "jeunesse",
+            "culture-pop"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/southkorea/20261122/why-are-young-koreans-falling-for-japanese-animated-series-chiikawa?utm_source=rss",
+          "source_lang": "en",
+          "published_at": "2026-11-22T07:12:03+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Signal limite les captures d'écran sur mobile face aux agents IA",
+          "original_headline": "Signal restricts mobile screenshots as it confronts ‘existential threat’ of AI surveillance",
+          "summary": "Signal limite les captures d'écran sur Android et iOS, après Windows. Meredith Whittaker y voit une réponse aux agents IA des systèmes d'exploitation, qui lisent l'écran. Le réglage se désactive, et elle reconnaît une solution « incomplète ».",
+          "importance": 1,
+          "tags": [
+            "signal",
+            "vie-privee",
+            "agents-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/21/signal-restricts-mobile-screenshots-as-it-confronts-existential-threat-of-ai-surveillance/",
+          "source_lang": "en",
+          "published_at": "2026-11-22T06:37:10+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Aucune source de la rubrique n'a pu être lue ce matin : mieux vaut une section vide qu'un résumé écrit sur un simple titre.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Suwon FC remporte la première Coupe W Korea grâce à Ji So-yun",
+          "original_headline": "WK리그 챔프전 '패배' 충격 이겨냈다…'지소연 결승골' 수원FC, 세종스포츠토토 꺾고 W코리아컵 '초대 챔피언' 등극[현장리뷰]",
+          "summary": "Suwon FC bat Sejong Sportstoto 1-0 à Icheon en finale de la première Coupe W Korea. Ji So-yun marque en seconde période sur corner. Le club avait perdu trois jours plus tôt la finale du championnat WK League.",
+          "importance": 1,
+          "tags": [
+            "football-feminin",
+            "wk-league",
+            "ji-so-yun"
+          ],
+          "source_name": "Sports Seoul",
+          "source_url": "https://www.sportsseoul.com/news/read/1651316",
+          "source_lang": "ko",
+          "published_at": "2026-11-21T15:54:54+09:00"
+        }
+      ]
+    }
+  ]
+}
