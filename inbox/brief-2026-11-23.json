@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-23",
+  "title": "La ministre de l'Éducation part, la Banque de Corée s'apprête à relever ses taux",
+  "standfirst": "Après le chaos du Suneung, la ministre Choi Kyo-jin a démissionné. La Banque de Corée devrait relever son taux jeudi, et KEPCO déclare une nouvelle fuite de données. Côté voyage, la grève du zèle des cheminots est reportée. Journée courte côté jeu vidéo : aucune page lisible.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les cheminots reportent leur grève du zèle, une grève illimitée reste prévue le 10 décembre",
+          "original_headline": "Rail workers to postpone work-to-rule action after freight train derailment",
+          "summary": "Le syndicat a reporté l'action prévue de lundi à jeudi après le déraillement près de Sejong. La circulation est revenue à la normale. Une grève illimitée reste annoncée le 10 décembre à 9 h, faute de meilleure offre.",
+          "importance": 1,
+          "tags": [
+            "train",
+            "greve",
+            "korail"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945221",
+          "source_lang": "en",
+          "published_at": "2026-11-22T19:38:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le ministre de l'Éducation démissionne après la confusion du Suneung",
+          "original_headline": "Education minister steps down amid Suneung-related controversies",
+          "summary": "Choi Kyo-jin a présenté sa démission, acceptée par le président Lee une heure plus tard. Le gouvernement et le Parti démocrate proposent d'étendre à dix ans l'interdiction de la triche par IA. Résultats attendus le 11 décembre.",
+          "importance": 1,
+          "tags": [
+            "suneung",
+            "education",
+            "gouvernement"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945089",
+          "source_lang": "en",
+          "published_at": "2026-11-22T13:59:33+09:00"
+        },
+        {
+          "headline": "La Banque de Corée devrait relever son taux à 3,25 % jeudi",
+          "original_headline": "BOK likely to hike interest rate on resilient growth, inflation",
+          "summary": "La Banque de Corée devrait relever son taux de 0,25 point, de 3 % à 3,25 %, un plus haut depuis octobre 2024. La croissance du troisième trimestre atteint 3,4 % sur un an, l'inflation 2,8 % en octobre.",
+          "analysis": "Un taux plus haut pèse sur les emprunteurs, alors que la croissance portée par les semi-conducteurs dépasse les prévisions de la banque centrale.",
+          "importance": 2,
+          "tags": [
+            "banque-de-coree",
+            "taux",
+            "inflation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945119",
+          "source_lang": "en",
+          "published_at": "2026-11-22T14:46:28+09:00"
+        },
+        {
+          "headline": "KEPCO déclare une nouvelle fuite touchant 1,52 million de personnes",
+          "original_headline": "KEPCO reports another massive data breach, exposing info of 1.52 million people",
+          "summary": "L'électricien public confirme une fuite visant 650 487 utilisateurs de KEPCO ON et 869 761 de son système d'achats SRM. Elle suit d'un mois une première fuite de 35 528 personnes. Le PDG s'est excusé.",
+          "importance": 3,
+          "tags": [
+            "kepco",
+            "fuite-de-donnees"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945222",
+          "source_lang": "en",
+          "published_at": "2026-11-22T19:42:38+09:00"
+        },
+        {
+          "headline": "La coque du Haegwangho retrouvée au fond de la mer, sept marins restent introuvables",
+          "original_headline": "Coast Guard finds hull of missing fishing boat Haegwangho on seabed",
+          "summary": "Au cinquième jour des recherches, les garde-côtes ont confirmé que l'objet repéré au large de la côte ouest est la coque du bateau. À bord : trois Sud-Coréens et quatre Indonésiens, partis du port de Taean.",
+          "importance": 4,
+          "tags": [
+            "garde-cotes",
+            "naufrage",
+            "taean"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945213",
+          "source_lang": "en",
+          "published_at": "2026-11-22T18:48:07+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le scientifique en chef d'OpenAI propose la perplexité comme mesure commune des limites de l'IA",
+          "original_headline": "OpenAI’s chief scientist has thoughts on how to limit AI development",
+          "summary": "Dans un billet, Jakub Pachocki propose la perplexité pour mesurer le progrès de l'IA et fixer des limites communes. GPT-4 se situait vers 0,91 ; sous 0,8, des capacités nouvelles seraient apparues en cybersécurité et en mathématiques.",
+          "importance": 1,
+          "tags": [
+            "openai",
+            "regulation",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/",
+          "source_lang": "en",
+          "published_at": "2026-11-23T06:14:07+09:00"
+        },
+        {
+          "headline": "Pourquoi les centres de données cristallisent la colère contre les géants du numérique",
+          "original_headline": "Why data centers are at the center of the Big Tech backlash",
+          "summary": "Le journaliste Paris Marx, auteur de « Hyperscale », pointe la consommation d'électricité et d'eau. L'Irlande a gelé en 2022 les nouveaux raccordements autour de Dublin, où ces centres dépassent 20 % de l'électricité du pays.",
+          "importance": 2,
+          "tags": [
+            "centres-de-donnees",
+            "energie"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/22/why-data-centers-are-at-the-center-of-the-big-tech-backlash/",
+          "source_lang": "en",
+          "published_at": "2026-11-23T03:08:43+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Aucun item retenu : les pages des rédactions du jour étaient illisibles ou tronquées, et rien n'a pu être vérifié.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le relais masculin sud-coréen gagne l'or au dernier jour du Short Track World Tour à Séoul",
+          "original_headline": "Host S. Korea wins men's relay gold on final day of Short Track World Tour",
+          "summary": "Le relais 5 000 m a devancé les Pays-Bas et le Canada à Mokdong, seul titre coréen du dimanche. Kim Gil-li prend l'argent au 1 500 m.",
+          "importance": 1,
+          "tags": [
+            "short-track",
+            "mokdong"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945212",
+          "source_lang": "en",
+          "published_at": "2026-11-22T18:46:18+09:00"
+        },
+        {
+          "headline": "Choo Sung-hoon quitte l'octogone après 22 ans, battu par décision partagée",
+          "original_headline": "After 22 years, UFC fighter Choo Sung-hoon bids farewell to the Octagon cage",
+          "summary": "Devant environ 21 000 spectateurs au Gocheok Sky Dome, il a perdu face à Chris Leben sur décision partagée. Bilan de carrière : 16 victoires, 8 défaites. Il a reversé sa bourse à de jeunes combattants.",
+          "importance": 2,
+          "tags": [
+            "ufc",
+            "retraite"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10945096",
+          "source_lang": "en",
+          "published_at": "2026-11-22T14:03:45+09:00"
+        }
+      ]
+    }
+  ]
+}
