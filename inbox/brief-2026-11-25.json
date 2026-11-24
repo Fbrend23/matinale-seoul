@@ -1,0 +1,315 @@
+{
+  "date": "2026-11-25",
+  "title": "Grève évitée dans le métro de Séoul, Anthropic sous son prix d'introduction",
+  "standfirst": "Le métro de Séoul évite la grève générale après un accord conclu mercredi à l'aube. Séoul réduit la liste des administrations qui déménagent à Sejong. Anthropic passe sous son prix d'introduction, et Sony chiffre l'audience de GTA 6.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le métro de Séoul évite la grève générale grâce à un accord de dernière minute",
+          "original_headline": "Seoul Metro labor, management reach last-minute deal to avoid strike",
+          "summary": "Les syndicats de Seoul Metro et la direction ont conclu mercredi un accord, annulant la grève générale. Hausses de salaire plafonnées à 3,5 %, suppression de 2 212 postes suspendue, 500 embauches prévues.",
+          "importance": 1,
+          "tags": [
+            "metro",
+            "greve",
+            "transports"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10948109",
+          "source_lang": "en",
+          "published_at": "2026-11-25T06:07:09+09:00"
+        },
+        {
+          "headline": "Une carte T-money prépayée à l'aéroport d'Incheon pour les voyageurs étrangers",
+          "original_headline": "AREX launches prepaid transit card for cash-free travel",
+          "summary": "AREX vend à Incheon une carte T-money prépayée de 15 000 wons, dont 10 000 de crédit. Les distributeurs des terminaux 1 et 2 acceptent les cartes étrangères. Réduction de 1 000 wons sur l'AREX Express.",
+          "importance": 2,
+          "tags": [
+            "t-money",
+            "aeroport",
+            "arex"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10947683",
+          "source_lang": "en",
+          "published_at": "2026-11-24T15:25:48+09:00"
+        },
+        {
+          "headline": "Les cliniques esthétiques veulent le retour du remboursement de taxe pour les touristes",
+          "original_headline": "Korean beauty clinics seek return of tourist tax refunds",
+          "summary": "Des chirurgiens plastiques demandent le retour du remboursement de taxe pour les patients étrangers, expiré fin 2025. Record de 2,01 millions de patients étrangers. Un projet de loi viserait un retour jusqu'à fin 2027.",
+          "importance": 3,
+          "tags": [
+            "tourisme-medical",
+            "taxe",
+            "cliniques"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10947687",
+          "source_lang": "en",
+          "published_at": "2026-11-24T15:28:54+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Des avions militaires russes entrent de nouveau dans la zone de défense aérienne coréenne",
+          "original_headline": "S. Korea's foreign ministry expresses regret to Russia over warplanes' KADIZ entry",
+          "summary": "Environ cinq avions militaires russes sont entrés mardi dans la zone d'identification de défense aérienne coréenne, près d'Ulleung, sans violer l'espace aérien. Séoul a exprimé ses regrets à Moscou. Troisième incursion en une semaine.",
+          "importance": 1,
+          "tags": [
+            "russie",
+            "defense",
+            "kadiz"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10947918",
+          "source_lang": "en",
+          "published_at": "2026-11-24T17:11:50+09:00"
+        },
+        {
+          "headline": "Trente et une administrations déménageront à Sejong, contre quarante-quatre prévues",
+          "original_headline": "No. of ministries, gov't agencies set to relocate to Sejong reduced to 31",
+          "summary": "Le ministère de l'Intérieur ramène à 31, contre 44 prévus, les ministères et agences qui iront à Sejong d'ici 2031, soit 5 460 fonctionnaires. Treize, dont Affaires étrangères et Défense, sont exclus faute de réforme législative.",
+          "importance": 2,
+          "tags": [
+            "sejong",
+            "administration"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10948028",
+          "source_lang": "en",
+          "published_at": "2026-11-24T20:57:16+09:00"
+        },
+        {
+          "headline": "Séoul propose de plafonner à 20 % le capital des plateformes de cryptomonnaies",
+          "original_headline": "Korea proposes 20% ownership cap for crypto exchanges",
+          "summary": "La FSC propose de plafonner à 20 % la part des principaux actionnaires des plateformes crypto, 34 % avec son accord. Les parts excédentaires perdent leurs droits de vote, avec trois ans pour se mettre en conformité.",
+          "importance": 3,
+          "tags": [
+            "cryptomonnaies",
+            "regulation",
+            "fsc"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10947682",
+          "source_lang": "en",
+          "published_at": "2026-11-24T15:25:27+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "L'action Anthropic passe sous son prix d'introduction",
+          "original_headline": "Anthropic shares fall below IPO price, a worrying sign for AI startups",
+          "summary": "L'action Anthropic est passée mardi sous son prix d'introduction de 83 dollars, à 76 dollars. Elle avait débuté au Nasdaq à 111,50 dollars moins d'une semaine plus tôt.",
+          "importance": 1,
+          "tags": [
+            "anthropic",
+            "bourse",
+            "ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T03:30:42+09:00"
+        },
+        {
+          "headline": "Amazon rachète Decart pour 7,5 milliards de dollars afin de soutenir ses puces Trainium",
+          "original_headline": "Amazon's Decart acquisition is a bet on using software to narrow the silicon gap with Nvidia",
+          "summary": "Amazon a annoncé le 23 novembre le rachat de la technologie et de l'équipe de Decart, pour 7,5 milliards de dollars selon Bloomberg. Elle compte optimiser ses puces Trainium pour réduire l'écart avec Nvidia.",
+          "importance": 2,
+          "tags": [
+            "amazon",
+            "puces",
+            "acquisition"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T00:51:07+09:00"
+        },
+        {
+          "headline": "Tidal va supprimer les morceaux entièrement générés par IA le 9 décembre",
+          "original_headline": "Tidal to ban and remove millions of AI-generated tracks as AI slop inundates music streaming",
+          "summary": "Tidal commencera le 9 décembre à supprimer les morceaux entièrement générés par IA, plus de 29 millions d'ici la fin de l'année. Plus de 43 % des dépôts des 90 derniers jours étaient générés par IA.",
+          "importance": 3,
+          "tags": [
+            "tidal",
+            "musique",
+            "ia-generative"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T01:46:00+09:00"
+        },
+        {
+          "headline": "Samsung réduit ses promotions mais élève les ingénieurs de la mémoire HBM4",
+          "original_headline": "Samsung pares promotions but elevates HBM4 engineers",
+          "summary": "Samsung Electronics a promu 131 cadres pour 2027, contre 161 l'an dernier, soit environ 19 % de moins. La division semi-conducteurs en compte 70. Les ingénieurs de la mémoire HBM4 Ha Kyung-soo et Park Tae-hoon sont promus.",
+          "importance": 4,
+          "tags": [
+            "samsung",
+            "hbm4",
+            "semi-conducteurs"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10947717",
+          "source_lang": "en",
+          "published_at": "2026-11-24T15:42:52+09:00"
+        },
+        {
+          "headline": "Jensen Huang s'excuse devant le personnel de Nvidia à son retour",
+          "original_headline": "In all-hands meeting, Jensen Huang thanks White House and says he's in therapy",
+          "summary": "Lors de sa première réunion générale depuis son retour, Jensen Huang a présenté ses excuses au personnel de Nvidia et dit suivre une thérapie. Il doit témoigner devant la commission bancaire du Sénat la semaine prochaine.",
+          "importance": 5,
+          "tags": [
+            "nvidia",
+            "jensen-huang"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/24/in-all-hands-meeting-jensen-huang-thanks-white-house-and-says-hes-in-therapy/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T06:48:27+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Plus de 39 millions de joueurs sur GTA 6 côté PlayStation, selon Sony",
+          "original_headline": "More than 39 million people have played GTA 6 on PlayStation alone, Sony says, as the game breaks all-time player numbers on the platform",
+          "summary": "Sony affirme que plus de 39 millions de personnes ont joué à GTA 6 sur PlayStation seule, un record de joueurs pour la plateforme, selon Eurogamer.",
+          "importance": 1,
+          "tags": [
+            "gta-6",
+            "playstation",
+            "sony"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/more-than-39-million-people-have-played-gta-6-on-playstation-alone-sony-says-as-the-game-breaks-all-time-player-numbers-on-the-platform",
+          "source_lang": "en",
+          "published_at": "2026-11-24T19:08:20+09:00"
+        },
+        {
+          "headline": "CD Projekt Red signe un accord de marketing avec Sony pour The Witcher 4",
+          "original_headline": "CDPR has entered a marketing agreement with Sony for The Witcher 4",
+          "summary": "CD Projekt Red a signé avec Sony un accord de marketing pour The Witcher 4, annoncé dans ses résultats. Il couvre aussi la présence de ses jeux sur PlayStation et PS Plus. Le jeu est prévu pour 2028.",
+          "importance": 2,
+          "tags": [
+            "witcher-4",
+            "cd-projekt-red",
+            "sony"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/cdpr-has-entered-a-marketing-agreement-with-sony-for-the-witcher-4/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T03:38:48+09:00"
+        },
+        {
+          "headline": "L'équipe de Cyberpunk 2 grossit, avec près de 200 développeurs",
+          "original_headline": "Cyberpunk 2's development team has grown, with plans to get even bigger next year",
+          "summary": "CD Projekt Red compte 199 développeurs sur Cyberpunk 2 et en prévoit environ 320 fin 2027. The Witcher 4 en emploie 513. Les effectifs totaux sont de 1 051 personnes, contre 1 045 en juillet.",
+          "importance": 3,
+          "tags": [
+            "cyberpunk-2",
+            "cd-projekt-red",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/cyberpunk-2s-development-team-has-grown-with-plans-to-get-even-bigger-next-year/",
+          "source_lang": "en",
+          "published_at": "2026-11-25T07:14:04+09:00"
+        },
+        {
+          "headline": "Lords of the Fallen 2 est repoussé à avril 2027",
+          "original_headline": "Lords of the Fallen 2 delayed to April 2027, exact release date coming next month",
+          "summary": "Lords of the Fallen 2 est repoussé à avril 2027, la date exacte devant être annoncée le mois prochain, selon Eurogamer.",
+          "importance": 4,
+          "tags": [
+            "report",
+            "lords-of-the-fallen"
+          ],
+          "source_name": "Eurogamer",
+          "source_url": "https://www.eurogamer.net/lords-of-the-fallen-2-delayed-april-2027",
+          "source_lang": "en",
+          "published_at": "2026-11-25T05:30:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "St. Louis bat LAFC 3-2 dans le derby coréen des play-offs MLS",
+          "original_headline": "Jeong, St. Louis prevail over Son, LAFC in Korean derby in MLS playoffs",
+          "summary": "Au match 1 des play-offs MLS, St. Louis City bat LAFC 3-2 dans le derby coréen. Jeong Sang-bin marque pour St. Louis, Son Heung-min ne marque pas. Le match 2 est prévu samedi à Los Angeles.",
+          "importance": 1,
+          "tags": [
+            "mls",
+            "son-heung-min",
+            "jeong-sang-bin"
+          ],
+          "source_name": "Yonhap",
+          "source_url": "https://en.yna.co.kr/view/AEN20261124005400315",
+          "source_lang": "en",
+          "published_at": "2026-11-24T13:50:16+09:00"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "Festival des lanternes de Séoul 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "청계천",
+      "area": "Cheonggyecheon",
+      "start_date": "2026-12-11",
+      "end_date": "2027-01-31",
+      "summary": "Festival de lanternes le long de Cheonggyecheon, de Cheonggye Plaza au pont Samil, du 11 décembre au 31 janvier.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=983",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Festival du fleuve Han, édition d'hiver 2026",
+      "kind": "festival",
+      "theme": "seoul",
+      "venue": "한강공원",
+      "area": "Parcs du fleuve Han",
+      "start_date": "2026-12-19",
+      "end_date": "2026-12-27",
+      "summary": "Édition d'hiver du festival du fleuve Han, sur l'eau et dans onze parcs du fleuve, du 19 au 27 décembre.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=401",
+      "source_lang": "ko"
+    },
+    {
+      "name": "Exposition DDP NEXT DESIGN 2026",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "동대문디자인플라자",
+      "area": "Jung-gu",
+      "start_date": "2026-12-01",
+      "end_date": "2026-12-05",
+      "summary": "Exposition de design « DDP NEXT DESIGN » aux salles d'art du DDP, du 1er au 5 décembre, ouverture le 2 décembre à 16 h.",
+      "source_name": "Seoul Metropolitan Government",
+      "source_url": "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=715",
+      "source_lang": "ko"
+    }
+  ]
+}
