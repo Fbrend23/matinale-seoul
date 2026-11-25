@@ -1,0 +1,138 @@
+{
+  "date": "2026-11-26",
+  "title": "Grève du zèle sur les rails, nouveaux droits américains en vue et Kospi à nouveau en chute",
+  "standfirst": "Les cheminots entament jeudi une grève du zèle jusqu'au 4 décembre, et Washington propose de nouveaux droits de douane qui laissent à la Corée son plafond de 15 %. Le Kospi perd plus de 6 %. Plusieurs sources n'ont pu être ouvertes ce matin : les rubriques jeu vidéo et sport restent vides.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les cheminots lancent jeudi une grève du zèle, qui court jusqu'au 4 décembre",
+          "original_headline": "Railway union to launch work-to-rule action from Thursday",
+          "summary": "Les cheminots lancent jeudi à 9 h une grève du zèle jusqu'au 4 décembre : vitesse réduite, pas d'heures supplémentaires. Korail renonce aux frais de modification de billets. Le syndicat menace d'une grève illimitée le 10 décembre.",
+          "importance": 1,
+          "tags": [
+            "transports",
+            "greve",
+            "korail"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949465",
+          "source_lang": "en",
+          "published_at": "2026-11-25T20:52:31+09:00"
+        },
+        {
+          "headline": "Seulgi Lee ouvre sa première exposition personnelle dans un musée public coréen, au SeMA",
+          "original_headline": "Award-winning artist Seulgi Lee opens solo show at SeMA",
+          "summary": "« Yomo Jomo Seulgi Lee » ouvre jeudi au Seoul Museum of Art, site de Seosomun : environ 70 œuvres, jusqu'au 28 février. Entrée gratuite, fermé le lundi. C'est la première exposition personnelle de l'artiste dans un musée public coréen.",
+          "importance": 2,
+          "tags": [
+            "exposition",
+            "sema",
+            "art-contemporain"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949113",
+          "source_lang": "en",
+          "published_at": "2026-11-25T14:53:55+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Washington propose de nouveaux droits Section 301 et laisse à la Corée son plafond de 15 %",
+          "original_headline": "Korea to retain 15% tariff cap under new US tariff proposal",
+          "summary": "Washington propose de nouveaux droits Section 301 sur 14 partenaires pour surcapacité industrielle. La Corée garde son plafond de 15 %, comme le Japon, l'UE et Taïwan. Une application est possible en janvier, après consultation publique.",
+          "importance": 1,
+          "tags": [
+            "droits-de-douane",
+            "etats-unis",
+            "commerce"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949511",
+          "source_lang": "en",
+          "published_at": "2026-11-25T23:08:57+09:00"
+        },
+        {
+          "headline": "Le Kospi chute de 6,16 % et repasse sous les 5 000 points",
+          "original_headline": "Seoul shares retreat over 6% on revived AI uncertainties",
+          "summary": "Le Kospi a clôturé à 4 697,51, en baisse de 6,16 %, sous les 5 000 points. Samsung Electronics perd 9,87 % et SK hynix 11,05 %. Les investisseurs étrangers ont vendu pour 1 900 milliards de wons net.",
+          "importance": 2,
+          "tags": [
+            "kospi",
+            "bourse",
+            "ia"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949278",
+          "source_lang": "en",
+          "published_at": "2026-11-25T16:26:15+09:00"
+        },
+        {
+          "headline": "« Hope » de Na Hong-jin remporte le meilleur film aux Blue Dragon",
+          "original_headline": "'Hope' wins best film at 47th Blue Dragon Film Awards",
+          "summary": "« Hope » de Na Hong-jin remporte le meilleur film aux 47es Blue Dragon, avec dix nominations. « Possible Love » de Lee Chang-dong gagne quatre prix, dont ceux de Sul Kyung-gu et Jeon Do-yeon pour l'interprétation.",
+          "importance": 3,
+          "tags": [
+            "cinema",
+            "blue-dragon"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949515",
+          "source_lang": "en",
+          "published_at": "2026-11-25T23:36:19+09:00"
+        },
+        {
+          "headline": "La fuite de données de Bithumb touche plus d'informations que prévu",
+          "original_headline": "Additional personal info leaked from Bithumb in hacks",
+          "summary": "Bithumb dit que davantage de données personnelles que prévu ont fuité. L'incident signalé fin octobre touchait environ 7 100 clients et employés ; noms, numéros de téléphone, de passeport et de compte sont concernés.",
+          "importance": 4,
+          "tags": [
+            "cybersecurite",
+            "cryptomonnaies",
+            "bithumb"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10949472",
+          "source_lang": "en",
+          "published_at": "2026-11-25T21:24:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "1Password confirme une intrusion, sans accès aux coffres-forts",
+          "original_headline": "1Password said hackers broke into its internal systems, but customer passwords are safe",
+          "summary": "1Password confirme une intrusion détectée le 19 novembre via le compte GitHub d'un employé. Noms, courriels de connexion et dates de création et de dernière connexion ont été pris ; l'entreprise assure que les coffres restent intacts.",
+          "importance": 1,
+          "tags": [
+            "cybersecurite",
+            "mots-de-passe"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/25/1password-said-hackers-broke-into-its-internal-systems-but-customer-passwords-are-safe/",
+          "source_lang": "en",
+          "published_at": "2026-11-26T03:49:52+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": "Rien de publié ce matin : les rédactions du secteur ont bloqué l'ouverture de leurs articles, aucun résumé vérifiable.",
+      "items": []
+    },
+    {
+      "key": "sport",
+      "empty_note": "Rien de publié ce matin : les pages sportives n'ont pu être ouvertes, aucun résumé vérifiable.",
+      "items": []
+    }
+  ]
+}
