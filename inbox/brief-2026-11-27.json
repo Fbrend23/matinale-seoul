@@ -1,0 +1,262 @@
+{
+  "date": "2026-11-27",
+  "title": "La Banque de Corée relève son taux, Séoul triche à l'IA et Rockstar reste sans syndicat",
+  "standfirst": "La Banque de Corée passe son taux directeur à 3,25 % et relève ses prévisions de croissance. La Cour constitutionnelle juge excessive l'interdiction générale des activités politiques des étrangers. Côté tech, Nvidia suspend des livraisons vers l'Asie du Sud-Est. Côté sport, la Corée sort de la Coupe Davis.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Gangnam Festival double sa fréquentation, tiré par les dépenses des étrangers",
+          "summary": "Le Gangnam Festival 2026 a attiré 166 000 visiteurs, plus du double de l'an dernier. Les étrangers ont dépensé 12,53 milliards de wons, soit 50,7 % des paiements par carte dans la zone du festival.",
+          "importance": 1,
+          "tags": [
+            "gangnam",
+            "festival",
+            "tourisme-etranger"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950844",
+          "source_lang": "en",
+          "published_at": "2026-11-26T16:59:26+09:00"
+        },
+        {
+          "headline": "Le chantier de réaménagement de Hannam 3 commence à Itaewon",
+          "summary": "Les travaux de Hannam 3 ont débuté jeudi sur 386 000 m², entre Hannam-dong et Bogwang-dong. Le projet prévoit 5 970 logements d'ici 2030. Un habitant rapporte que beaucoup de migrants ont quitté le quartier.",
+          "importance": 2,
+          "tags": [
+            "itaewon",
+            "hannam",
+            "urbanisme"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950686",
+          "source_lang": "en",
+          "published_at": "2026-11-26T15:44:42+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "La Banque de Corée relève son taux à 3,25 % et vise 4,1 % de croissance en 2027",
+          "summary": "La Banque de Corée porte son taux directeur à 3,25 %, au plus haut depuis octobre 2024, avec deux voix contre sur sept. Elle prévoit 3,9 % de croissance en 2026 et 4,1 % en 2027, grâce aux semi-conducteurs.",
+          "analysis": "La consommation privée s'est contractée au troisième trimestre pour la première fois depuis le Covid-19, et la dette des ménages dépasse 2 000 000 milliards de wons : la hausse pèse sur les emprunteurs.",
+          "importance": 1,
+          "tags": [
+            "banque-de-coree",
+            "taux-directeur",
+            "croissance"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950549",
+          "source_lang": "en",
+          "published_at": "2026-11-26T15:05:51+09:00"
+        },
+        {
+          "headline": "La Cour constitutionnelle juge excessive l'interdiction des activités politiques des étrangers",
+          "summary": "Par 6 voix contre 3, la Cour juge la loi sur l'immigration incompatible avec la Constitution : elle interdit en bloc toute activité politique des étrangers. Elle reste en vigueur jusqu'à sa réforme, avant fin 2028.",
+          "importance": 2,
+          "tags": [
+            "cour-constitutionnelle",
+            "etrangers",
+            "immigration"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950928",
+          "source_lang": "en",
+          "published_at": "2026-11-26T18:08:35+09:00"
+        },
+        {
+          "headline": "La police demande l'arrestation du major de l'examen d'expert-comptable, accusé de triche par IA",
+          "summary": "La police demande un mandat d'arrêt contre Han Won-seok, 34 ans, major d'un examen d'expert-comptable fiscal. Il a avoué avoir triché avec une mini-caméra et une IA. Elle craint une fuite.",
+          "importance": 3,
+          "tags": [
+            "triche",
+            "intelligence-artificielle",
+            "examens"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950986",
+          "source_lang": "en",
+          "published_at": "2026-11-26T21:03:50+09:00"
+        },
+        {
+          "headline": "Hanwha Ocean perd son statut d'adjudicataire en Thaïlande, l'appel d'offres est annulé",
+          "summary": "La marine thaïlandaise annule l'appel d'offres de sa frégate, environ 491,5 millions de dollars, pour un défaut du cahier des charges. Hanwha Ocean, adjudicataire depuis septembre, n'avait rien signé. Un nouvel appel suivra.",
+          "importance": 4,
+          "tags": [
+            "hanwha-ocean",
+            "thailande",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10950630",
+          "source_lang": "en",
+          "published_at": "2026-11-26T15:20:31+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Nvidia suspend ses livraisons de serveurs vers l'Asie du Sud-Est",
+          "summary": "Selon le Wall Street Journal, Nvidia a demandé à ses partenaires de suspendre les livraisons vers la Malaisie, Singapour, la Thaïlande et l'Indonésie. Des entreprises chinoises y utilisaient à distance des puces Nvidia, malgré les règles d'exportation américaines.",
+          "importance": 1,
+          "tags": [
+            "nvidia",
+            "exportations",
+            "puces-ia"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T05:03:54+09:00"
+        },
+        {
+          "headline": "S&P envisage d'abaisser la note de crédit de Nvidia",
+          "summary": "S&P Global Ratings examine une baisse de la note de Nvidia, de AA à AA-, pour des risques de gouvernance et de dépendance à un dirigeant. La revue doit se conclure sous 90 jours. Nvidia resterait en catégorie investissement.",
+          "importance": 2,
+          "tags": [
+            "nvidia",
+            "notation-financiere",
+            "gouvernance"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/",
+          "source_lang": "en",
+          "published_at": "2026-11-26T07:44:32+09:00"
+        },
+        {
+          "headline": "La FCC autorise sous conditions un million de satellites de SpaceX pour des centres de données orbitaux",
+          "summary": "La FCC approuve sous conditions un million de satellites de SpaceX, malgré l'opposition d'Amazon et de Viasat. Le premier doit partir sous sept ans. Le plan des débris au-dessus de 600 km reste à approuver.",
+          "importance": 3,
+          "tags": [
+            "spacex",
+            "fcc",
+            "satellites"
+          ],
+          "source_name": "TechCrunch",
+          "source_url": "https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/",
+          "source_lang": "en",
+          "published_at": "2026-11-26T05:56:44+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Les employés de Rockstar rejettent la reconnaissance du syndicat par environ 75 % des voix",
+          "summary": "Les employés britanniques de Rockstar ont refusé, à environ 75 % contre 25 %, un accord reconnaissant le syndicat IWGB. Le vote a eu lieu du 12 au 26 novembre. Un tribunal du travail examine des accusations de répression syndicale.",
+          "importance": 1,
+          "tags": [
+            "rockstar",
+            "syndicat",
+            "gta-6"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/75-of-rockstars-workers-have-voted-against-unionizing/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T00:11:04+09:00"
+        },
+        {
+          "headline": "Ubisoft dit encourager l'IA sans l'imposer à ses développeurs",
+          "summary": "Ubisoft affirme encourager ses équipes à explorer l'IA sans l'exiger, après un article de Vertical Slice. Selon celui-ci, des développeurs devraient justifier de ne pas y recourir pour présenter un jeu. Le communiqué ne répond pas directement.",
+          "importance": 2,
+          "tags": [
+            "ubisoft",
+            "intelligence-artificielle",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-denies-requiring-developers-to-use-generative-ai/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T03:42:04+09:00"
+        },
+        {
+          "headline": "Ubisoft défend le terme « quadruple-A » pour Skull & Bones devant un tribunal",
+          "summary": "Dans un procès au Kansas, Ubisoft juge les propos de son PDG sur « quadruple-A » relevant du « classic puffery », une exagération subjective. Le plaignant, un avocat, estime que ces mots trompaient les consommateurs.",
+          "importance": 3,
+          "tags": [
+            "ubisoft",
+            "skull-and-bones",
+            "proces"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/ubisoft-defends-calling-skull-bones-a-quadruple-a-game-in-lawsuit/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T03:06:45+09:00"
+        },
+        {
+          "headline": "Un cofondateur de Rare dévoile des images de Conker 64, jeu annulé",
+          "summary": "Tim Stamper, cofondateur de Rare, présente en vidéo des archives de Conker 64, annoncé en 1997 : concept art, plans de niveaux et une version de 1998 sur cartouche Nintendo 64. D'autres dossiers de l'époque suivront.",
+          "importance": 4,
+          "tags": [
+            "rare",
+            "conker",
+            "jeux-annules"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/rare-co-founder-reveals-footage-of-cancelled-conker-64/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T07:09:56+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Kim Do-yeong remporte un deuxième titre de MVP du KBO",
+          "summary": "Kim Do-yeong, des Kia Tigers, a reçu 80 des 136 voix, devant Gwak Been (34). Meilleur du KBO avec 45 coups de circuit, il devient à 23 ans le plus jeune double MVP, devant Lee Seung-yuop.",
+          "importance": 1,
+          "tags": [
+            "kbo",
+            "baseball",
+            "kia-tigers"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261126/tigers-superstar-kim-do-yeong-claims-2nd-kbo-mvp-award",
+          "source_lang": "en",
+          "published_at": "2026-11-26T16:25:00+09:00"
+        },
+        {
+          "headline": "La Corée s'incline 2-1 contre l'Italie en quarts de la Coupe Davis",
+          "summary": "La Corée perd 2-1 à Bologne pour sa première participation à des quarts. Kwon Soon-woo a battu Cobolli, 7e mondial, puis perdu le double décisif avec Chung Hyeon. Le capitaine Chung Jong-sam quitte son poste.",
+          "importance": 2,
+          "tags": [
+            "coupe-davis",
+            "tennis",
+            "kwon-soon-woo"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261126/korea-knocked-out-of-davis-cup-after-narrow-loss-to-italy",
+          "source_lang": "en",
+          "published_at": "2026-11-26T08:47:00+09:00"
+        },
+        {
+          "headline": "Suwon Samsung Bluewings retrouve la K League 1 grâce à ses supporters",
+          "summary": "Relégué en 2023, Suwon remonte en K League 1 pour 2027 après trois saisons en D2. Son affluence moyenne à domicile atteint 16 547 spectateurs, contre 10 362 lors de la première saison après la relégation.",
+          "importance": 3,
+          "tags": [
+            "k-league",
+            "suwon",
+            "football"
+          ],
+          "source_name": "Korea Times",
+          "source_url": "https://www.koreatimes.co.kr/sports/20261126/suwon-samsung-bluewings-are-back-supporters-made-it-possible",
+          "source_lang": "en",
+          "published_at": "2026-11-26T13:40:00+09:00"
+        }
+      ]
+    }
+  ]
+}
