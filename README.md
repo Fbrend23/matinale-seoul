@@ -22,7 +22,7 @@ lecteur qui remonte à l'article le reconnaisse.
 
 Le contenu est produit par une tâche Claude planifiée et publié **sans relecture
 humaine**. Ce que la relecture aurait fait, cinq gardes automatiques le font,
-et une relecture par un second modèle, Gemini, qui rouvre chaque source avant
+et une relecture par un second modèle, Gemini, contre les sources lisibles, avant
 le commit.
 
 | | |
@@ -43,7 +43,7 @@ Timer systemd, 7 h 15 Asia/Seoul
         │    └─ actualité : cinq sessions, une par rubrique, la presse sans flux, coréenne surtout → pistes actualité
         ├─ session Claude Code : lit la veille, choisit, vérifie, rédige, contrôle
         │  dépose  inbox/brief-AAAA-MM-JJ.json, sans git
-        ├─ relecture : six sessions Gemini, une par rubrique + événements, rouvrent les sources, corrigent ; le dépôt vérifie, le contrôle juge → veille/relecture/
+        ├─ relecture : le dépôt télécharge les sources ; Gemini, une session par rubrique + événements, confronte et corrige ; le dépôt vérifie, le contrôle juge → veille/relecture/
         └─ le lanceur contrôle une dernière fois, commite, pousse
         ▼
 GitHub ──push (paths: inbox/**)──▶ Actions
@@ -103,11 +103,21 @@ non, ce qui n'est pas un accident, enverrait sinon un mail d'échec par heure.
 Les gardes ne lisent pas : elles voient un lien mort, un résumé de quarante et
 un mots, pas un chiffre faux ni un titre original tronqué. Entre la session et
 le commit, Gemini relit donc le brief **contre ses sources**, par lots, une
-session par rubrique pourvue et une pour les événements, en parallèle : chacune
-rouvre les `source_url` de son lot, confronte le résumé à la page, chiffres,
-noms, dates, titre original, heure de publication, et corrige le français. Elle
-peut retirer un item dont la page ne dit pas ce que le résumé dit. Le brief
-recomposé repasse le contrôle avant vol, et remplace celui de la session
+session par rubrique pourvue et une pour les événements, en parallèle. Le dépôt
+télécharge d'abord les `source_url` et met le texte des pages dans la consigne
+(`scripts/lib/pages.mjs`) : chacune confronte le résumé à la page, chiffres,
+noms, dates, titre original, heure de publication, et corrige le français.
+Gemini n'ouvre rien lui-même, car `agy` ne lui en donne plus le moyen, et ne le
+disait pas : constaté le 26 novembre 2026, depuis la parution du 21 octobre.
+**Une source illisible** (403, page « introuvable », page d'accueil, texte rendu
+par JavaScript) n'est pas relue : son item reste celui de la session, quoi que
+Gemini en ait rendu, et le rapport dit « partielle » et la nomme. Sur les
+quatorze briefs du 12 au 25 novembre, essayé le 26, 18 sources d'événements sur
+19 étaient lisibles, mais 113 sources d'items sur 173 : TechCrunch et
+VideoGamesChronicle refusent le robot.
+
+La relecture peut retirer un item dont la page ne dit pas ce que le résumé dit.
+Le brief recomposé repasse le contrôle avant vol, et remplace celui de la session
 seulement s'il le passe (`scripts/relecture.mjs`). Par lots parce qu'une
 session qui ouvre vingt-sept pages les relit toutes à chaque appel, 2,4 millions
 de tokens au premier essai ; six sessions de trois ou quatre pages font le même

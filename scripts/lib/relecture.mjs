@@ -1,5 +1,5 @@
-// La relecture du brief AVANT sa publication : Gemini rouvre chaque source,
-// confronte le résumé à la page, corrige le français, et rend le brief entier ;
+// La relecture du brief AVANT sa publication : Gemini confronte chaque résumé à
+// la page de sa source, corrige le français, et rend son lot ;
 // le dépôt vérifie qu'il n'a fait que relire, le contrôle avant vol le juge,
 // et c'est le lanceur qui commite.
 //
@@ -34,9 +34,15 @@
 // Le titre et le chapeau ne sont pas relus : ils demanderaient le brief
 // entier, et un chapeau juste le reste après une correction de résumé.
 //
+// LES PAGES SONT DANS LA CONSIGNE (lib/pages.mjs dit pourquoi). Une source que
+// le dépôt n'a pas pu lire n'est pas relue : ce que le relecteur en a rendu
+// est écarté, l'item reste celui de la session, et le rapport le nomme.
+//
 // Le module ne lance rien : la commande vit dans scripts/relecture.mjs.
 
+import { randomBytes } from 'node:crypto';
 import { cléAdresse } from './actualite.mjs';
+import { tronquer } from './pages.mjs';
 import { similarity } from './guards.mjs';
 import { SECTION_LABELS } from '../../shared/sections.mjs';
 
@@ -103,22 +109,74 @@ export function lotsDe(brief) {
 }
 
 /**
- * La consigne d'un lot, remplie : le jour, ce qu'est le lot, et le lot.
+ * La consigne passe en argument de commande, et Linux refuse un argument de
+ * plus de 131 072 octets : la consigne entière reste en dessous, avec une
+ * marge.
+ */
+export const MAX_OCTETS_CONSIGNE = 120_000;
+
+/** Au plus tant d'octets par page : au-delà, c'est le quota qu'on paie. */
+export const MAX_OCTETS_PAGE = 16_000;
+
+/** L'enveloppe d'une page : balises, adresse, titre, date. */
+const OCTETS_ENVELOPPE = 1500;
+
+/** Les adresses sources d'un lot, chacune une fois. */
+export function sourcesDe(lot) {
+  const éléments = lot.contenu.section?.items ?? lot.contenu.events ?? [];
+  return [...new Set(éléments.map((e) => e.source_url).filter(Boolean))];
+}
+
+// Le texte d'une page est une donnée venue du dehors : il est enfermé entre des
+// balises à jeton tiré au sort, qu'une page ne peut pas deviner pour s'en
+// évader, et ses clôtures de code sont défaites pour que le lot reste le seul
+// bloc de la consigne.
+const désarmer = (t) => String(t).replaceAll('```', "'''");
+
+function rendrePages(pages, budget, jeton) {
+  const lisibles = pages.filter((p) => p.lisible);
+  const parPage = Math.min(MAX_OCTETS_PAGE, Math.floor(budget / Math.max(1, lisibles.length)) - OCTETS_ENVELOPPE);
+  const blocs = lisibles.map((p) => {
+    const { texte, tronqué } = tronquer(désarmer(p.texte), parPage);
+    return [
+      `<page-${jeton}>`,
+      `source_url : ${p.url}`,
+      `titre affiché : ${désarmer(tronquer(p.titre ?? '(aucun)', 400).texte)}`,
+      `publication affichée : ${désarmer(tronquer(p.publié ?? '(non trouvée)', 80).texte)}`,
+      tronqué ? 'texte : TRONQUÉ, la fin de la page manque' : 'texte :',
+      texte,
+      `</page-${jeton}>`,
+    ].join('\n');
+  });
+  const absentes = pages.filter((p) => !p.lisible);
+  if (absentes.length) {
+    blocs.push(`Sources NON FOURNIES, que tu rends exactement telles que reçues :\n${absentes.map((p) => `- ${p.url}`).join('\n')}`);
+  }
+  return blocs.join('\n\n');
+}
+
+/**
+ * La consigne d'un lot, remplie : le jour, ce qu'est le lot, les pages de ses
+ * sources, et le lot.
  *
- * Le lot est dans la consigne, et non lu dans le dépôt : Gemini n'a alors
- * besoin que d'ouvrir des pages, et la permission `read_file`, refusée en
- * headless, ne compte pas.
+ * Tout est dans la consigne : Gemini n'a besoin d'aucun outil, donc d'aucune
+ * permission, et ne peut rien dire d'une page qu'on ne lui a pas donnée sans
+ * l'inventer.
  *
  * @param {string} gabarit      prompts/relecture.md
  * @param {object} p
  * @param {string} p.jour
  * @param {{ libellé: string, contenu: object }} p.lot
+ * @param {{ url: string, lisible: boolean, titre?: string|null, publié?: string|null, texte?: string }[]} [p.pages]
+ * @param {string} [p.jeton]
  */
-export function composerConsigneRelecture(gabarit, { jour, lot }) {
-  return gabarit
-    .replaceAll('{{JOUR}}', jour)
-    .replaceAll('{{LOT}}', lot.libellé)
-    .replaceAll('{{CONTENU}}', JSON.stringify(lot.contenu, null, 2));
+export function composerConsigneRelecture(gabarit, { jour, lot, pages = [], jeton = randomBytes(6).toString('hex') }) {
+  // Remplacés d'un seul passage, et par une fonction : ni les `$` d'une page ni
+  // un `{{CONTENU}}` qu'elle écrirait ne sont interprétés.
+  const remplir = (valeurs) => gabarit.replace(/\{\{(JOUR|LOT|JETON|CONTENU|PAGES)\}\}/g, (_, clé) => valeurs[clé]);
+  const valeurs = { JOUR: jour, LOT: lot.libellé, JETON: jeton, CONTENU: JSON.stringify(lot.contenu, null, 2), PAGES: '' };
+  const budget = MAX_OCTETS_CONSIGNE - Buffer.byteLength(remplir(valeurs));
+  return remplir({ ...valeurs, PAGES: rendrePages(pages, budget, jeton) });
 }
 
 /**
@@ -287,6 +345,66 @@ function apparier(reçus, rendus, titre) {
 }
 
 /**
+ * Ce que le relecteur n'a pas pu lire, remis tel que reçu.
+ *
+ * La consigne le demande ; ceci l'impose. Un item dont la source n'a pas été
+ * fournie ne peut être ni corrigé ni retiré : il n'y a rien pour le justifier.
+ * Il revient à sa place, entier. Les rangs ne sont resserrés que s'ils ne
+ * tiennent plus, et la section ne garde pas deux analyses.
+ *
+ * @param {object} original
+ * @param {object} relu              modifié en place, et rendu
+ * @param {Set<string>} nonRelues    les `source_url` non relues, telles que reçues
+ */
+export function restaurerNonLus(original, relu, nonRelues) {
+  const clés = new Set([...nonRelues].map(cléAdresse));
+  const estNonLu = (x) => Boolean(x?.source_url) && clés.has(cléAdresse(x.source_url));
+  const copie = (x) => JSON.parse(JSON.stringify(x));
+  const replacer = (reçus, rendus) => {
+    const liste = rendus.filter((x) => !estNonLu(x));
+    reçus.forEach((x, i) => {
+      if (estNonLu(x)) liste.splice(Math.min(i, liste.length), 0, copie(x));
+    });
+    return liste;
+  };
+
+  for (const section of relu?.sections ?? []) {
+    const reçue = (original.sections ?? []).find((s) => s.key === section.key);
+    if (!reçue || !Array.isArray(section.items)) continue;
+    const gardés = reçue.items.filter(estNonLu);
+    if (!gardés.length && !section.items.some(estNonLu)) continue;
+    section.items = replacer(reçue.items, section.items);
+    if (!gardés.length) continue;
+    section.empty_note = reçue.empty_note;
+    if (reçue.empty_note === undefined) delete section.empty_note;
+    if (gardés.some((i) => i.analysis)) {
+      const sansAnalyse = new Set(reçue.items.filter((i) => !i.analysis).map((i) => cléAdresse(i.source_url)));
+      for (const i of section.items) if (!estNonLu(i) && sansAnalyse.has(cléAdresse(i.source_url))) delete i.analysis;
+    }
+    const rangs = section.items.map((i) => i.importance).sort((a, b) => a - b);
+    if (rangs.some((r, n) => r !== n + 1)) {
+      [...section.items].sort((a, b) => a.importance - b.importance).forEach((i, n) => { i.importance = n + 1; });
+    }
+  }
+
+  if ((original.events ?? []).some(estNonLu) || (relu?.events ?? []).some(estNonLu)) {
+    const events = replacer(original.events ?? [], relu.events ?? []);
+    if (events.length) relu.events = events;
+    else delete relu.events;
+  }
+  return relu;
+}
+
+/** La cible d'une correction, `section/rang` ou `events/index`, vise-t-elle une source non relue ? */
+export function visesNonLue(original, correction, nonRelues) {
+  const [où, n] = String(correction?.cible ?? '').split('/');
+  const élément = où === 'events'
+    ? original.events?.[Number(n)]
+    : original.sections?.find((s) => s.key === où)?.items?.find((i) => i.importance === Number(n));
+  return Boolean(élément) && nonRelues.has(élément.source_url);
+}
+
+/**
  * La relecture n'a-t-elle fait que relire ?
  *
  * Rend la liste des raisons de la refuser ; vide, elle est acceptable, et
@@ -404,17 +522,27 @@ const court = (v) => {
  * @param {object[]} [p.écarts]            ce que le dépôt constate
  * @param {object} [p.session]             { modèle, durée, tours, usage, lots, pannes }
  * @param {string} [p.verdict]             la sortie du contrôle avant vol
+ * @param {{ total: number, nonRelues: { url: string, raison: string }[] }} [p.sources]
  */
-export function rendreRapport({ jour, sort, raison, corrections = [], écarts: liste = [], session = {}, verdict }) {
+export function rendreRapport({ jour, sort, raison, corrections = [], écarts: liste = [], session = {}, verdict, sources }) {
+  const manquantes = sources?.nonRelues ?? [];
   const lignes = [`# Relecture du ${jour}`, ''];
   lignes.push(
     `Gemini (${session.modèle ?? '?'}) : ${session.durée != null ? `${Math.round(session.durée)} s` : 'durée inconnue'}${session.tours ? `, ${session.tours} tours` : ''}${
       session.usage ? `, ${session.usage.input_tokens ?? '?'} tokens lus, ${session.usage.output_tokens ?? '?'} écrits` : ''
     }.`,
     ...(session.lots ? [`${session.lots} lot(s)${session.pannes?.length ? `, ${session.pannes.length} non relu(s) : ${session.pannes.join(' ; ')}` : ', tous relus'}.`] : []),
-    `Relecture **${sort}**${raison ? ` : ${raison}` : ''}.`,
+    // « Sans changement » ne se dit jamais d'un brief relu en partie sans le
+    // dire dans la même phrase : c'est ce mot seul qui a menti cinq semaines.
+    `Relecture **${manquantes.length && sort !== 'panne' ? 'partielle, ' : ''}${sort}**${raison ? ` : ${raison}` : ''}.`,
+    ...(sources ? [`Sources : ${sources.total - manquantes.length} relue(s) sur ${sources.total}.`] : []),
     ''
   );
+  if (manquantes.length) {
+    lignes.push('## Sources NON relues : publiées telles que la session les a écrites', '');
+    for (const s of manquantes) lignes.push(`- ${s.url} : ${s.raison}`);
+    lignes.push('');
+  }
   if (corrections.length) {
     lignes.push('## Ce que le relecteur dit avoir changé', '');
     for (const c of corrections) lignes.push(`- ${c.cible ?? '?'} · ${c.champ ?? '?'} : ${c.pourquoi ?? '(sans raison)'}`);
@@ -429,7 +557,7 @@ export function rendreRapport({ jour, sort, raison, corrections = [], écarts: l
     }
     lignes.push('');
   } else if (sort === 'sans changement') {
-    lignes.push('Aucun écart entre le brief reçu et le brief rendu.', '');
+    lignes.push(`Aucun écart entre le brief reçu et le brief rendu${manquantes.length ? ' sur les sources relues' : ''}.`, '');
   }
   if (verdict) lignes.push('## Contrôle avant vol du brief relu', '', '```', verdict.trim(), '```', '');
   return lignes.join('\n');
