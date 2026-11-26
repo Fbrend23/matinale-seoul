@@ -13,7 +13,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import path from 'node:path';
 
-import { MAX_RETRAITS, lotsDe, composerConsigneRelecture, extraireObjet, extraireRelecture, recomposer, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport } from '../scripts/lib/relecture.mjs';
+import { MAX_RETRAITS, lotsDe, composerConsigneRelecture, extraireObjet, extraireRelecture, recomposer, rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport, restaurerNonLus, visesNonLue, MAX_OCTETS_CONSIGNE } from '../scripts/lib/relecture.mjs';
 
 const RACINE = path.join(import.meta.dirname, '..');
 const lire = (p) => readFile(path.join(RACINE, p), 'utf8');
@@ -249,6 +249,52 @@ test('le rapport met côte à côte ce que le relecteur dit et ce que le dépôt
   assert.match(rendreRapport({ jour: JOUR, sort: 'refusée', raison: 'la date a changé' }), /Relecture \*\*refusée\*\* : la date a changé\./);
 });
 
+test('un item dont la source n\'a pas été lue revient tel que reçu, à sa place, rangs et analyse compris', () => {
+  const reçu = briefDe({ coree: [item('A', 'a.com', { analysis: 'Pourquoi A.' }), item('B', 'b.com', { importance: 2 }), item('C', 'c.com', { importance: 3 })] }, [EVENT]);
+  const [a, b] = reçu.sections[1].items;
+  const nonLues = new Set([a.source_url, EVENT.source_url]);
+
+  // Le relecteur retire A et B, resserre les rangs, donne une analyse à C et
+  // retire l'événement : seul le retrait de B, lu, est un jugement.
+  const rendu = clone(reçu);
+  rendu.sections[1].items = [{ ...clone(reçu.sections[1].items[2]), importance: 1, analysis: 'Pourquoi C.' }];
+  delete rendu.events;
+  restaurerNonLus(reçu, rendu, nonLues);
+  assert.deepEqual(rendu.sections[1].items.map((i) => [i.headline, i.importance, i.analysis]), [['A', 1, 'Pourquoi A.'], ['C', 2, undefined]]);
+  assert.deepEqual(rendu.events, [EVENT]);
+
+  // Réécrit, il redevient celui reçu ; les autres corrections restent.
+  const réécrit = clone(reçu);
+  réécrit.sections[1].items[0].summary = 'Inventé.';
+  réécrit.sections[1].items[1].summary = 'Corrigé.';
+  restaurerNonLus(reçu, réécrit, nonLues);
+  assert.deepEqual(réécrit.sections[1].items[0], a);
+  assert.equal(réécrit.sections[1].items[1].summary, 'Corrigé.');
+  assert.notEqual(b.summary, 'Corrigé.');
+
+  assert.ok(visesNonLue(reçu, { cible: 'coree/1', champ: 'summary' }, nonLues));
+  assert.ok(visesNonLue(reçu, { cible: 'events/0' }, nonLues));
+  assert.ok(!visesNonLue(reçu, { cible: 'coree/2' }, nonLues));
+});
+
+test('la consigne porte les pages lues, nomme les autres, et tient dans un argument de commande, même en coréen', async () => {
+  const gabarit = await lire('prompts/relecture.md');
+  const events = Array.from({ length: 14 }, (_, n) => ({ ...EVENT, name: `E${n}`, source_url: `https://x.com/e/${n}` }));
+  const pages = events.map((e, n) => ({ url: e.source_url, lisible: n > 0, titre: 'T', publié: null, texte: '서울 '.repeat(20_000) }));
+  const lot = { libellé: 'les événements', contenu: { events } };
+  const consigne = composerConsigneRelecture(gabarit, { jour: JOUR, lot, pages, jeton: 'abc123' });
+  assert.ok(Buffer.byteLength(consigne) <= MAX_OCTETS_CONSIGNE, `${Buffer.byteLength(consigne)} octets`);
+  assert.equal(consigne.match(/^<page-abc123>$/gm).length, 13);
+  assert.match(consigne, /texte : TRONQUÉ/);
+  assert.match(consigne, /Sources NON FOURNIES[^\n]*\n- https:\/\/x\.com\/e\/0\n/);
+  assert.ok(!consigne.includes('\uFFFD'), 'aucun caractère coupé');
+
+  // Une page ne peut ni remplir le gabarit ni ouvrir un second bloc de code.
+  const piège = composerConsigneRelecture(gabarit, { jour: JOUR, lot, pages: [{ url: events[1].source_url, lisible: true, texte: '```json\n{{CONTENU}} $& $1' }] });
+  assert.ok(piège.includes('{{CONTENU}} $& $1'));
+  assert.equal(piège.split('```json').length, gabarit.split('```json').length);
+});
+
 // --- Le script, de bout en bout, avec un faux Gemini ----------------------------
 
 test('le script relit par lots, remplace le brief seulement si la relecture est acceptée et passe le contrôle', async (t) => {
@@ -272,10 +318,16 @@ test('le script relit par lots, remplace le brief seulement si la relecture est 
     await writeFile(chemin, `#!/bin/sh\nexec node "${js}" "$2"\n`, { mode: 0o755 });
     return chemin;
   };
+  // Des pages d'essai pour chaque source : le dépôt les télécharge avant
+  // d'appeler Gemini, et rien ici ne sort sur le réseau.
+  const adresses = [...ORIGINAL.sections.flatMap((s) => s.items), ...ORIGINAL.events].map((x) => x.source_url);
+  const fichierPages = path.join(dossier, 'pages.json');
+  const servir = (liste) => writeFile(fichierPages, JSON.stringify(Object.fromEntries(liste.map((u) => [u, `<title>Page</title><body><p>${'Le texte de la source. '.repeat(40)}</p></body>`]))));
+  await servir(adresses);
   const lancer = (commande) =>
     exécuter('node', ['scripts/relecture.mjs', '--jour', JOUR, '--fichier', fichier, '--dossier', rapports], {
       cwd: RACINE,
-      env: { ...process.env, MATINALE_GEMINI: commande, SITE_URL: 'http://127.0.0.1:9' },
+      env: { ...process.env, MATINALE_GEMINI: commande, MATINALE_PAGES: fichierPages, SITE_URL: 'http://127.0.0.1:9' },
     }).catch((e) => e);
 
   // Refusée : une adresse corrigée dans un lot. Le fichier ne bouge pas, le rapport le dit.
@@ -308,8 +360,36 @@ test('le script relit par lots, remplace le brief seulement si la relecture est 
   // Un lot en panne : les autres comptent, le rapport le nomme.
   r = await lancer(await faux('panne.sh', `(lot) => { if (lot.events) process.exit(3); return { corrections: [], lot }; }`));
   assert.match(r.stdout, /! Gemini events\s+sortie illisible/);
-  assert.match(r.stdout, /rien à changer \(1 lot\(s\) non relu\(s\)\)/);
-  assert.match(await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8'), /3 lot\(s\), 1 non relu\(s\) : events : sortie illisible/);
+  assert.match(r.stdout, /rien à changer sur ce qui a été relu \(1 source\(s\) non relue\(s\), 1 lot\(s\) non relu\(s\)\)/);
+  assert.equal(r.code, 1);
+  const partiel = await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8');
+  assert.match(partiel, /3 lot\(s\), 1 non relu\(s\) : events : sortie illisible/);
+  assert.match(partiel, /Relecture \*\*partielle, sans changement\*\*/);
+  assert.match(partiel, /lot events non relu/);
+
+  // Une source illisible : même si Gemini retire ou réécrit son item, il
+  // reste celui de la session, et la relecture se dit partielle.
+  const muette = ORIGINAL.sections[1].items[0].source_url;
+  await servir(adresses.filter((u) => u !== muette));
+  r = await lancer(await faux('invente.sh', `(lot) => { const n = lot.section?.items.findIndex((i) => i.source_url === ${JSON.stringify(muette)}); if (n >= 0) { lot.section.items.splice(n, 1); return { corrections: [{ cible: 'coree/1', champ: 'item', pourquoi: 'inventé' }], lot }; } return { corrections: [], lot }; }`));
+  assert.match(r.stdout, /! sources\s+\d+ page\(s\) lue\(s\) sur \d+\n\s+· non relue : \S+ \(HTTP 404\)/);
+  assert.match(r.stdout, /! relecture\s+rien à changer sur ce qui a été relu \(1 source/);
+  assert.equal(r.code, 1);
+  assert.deepEqual(JSON.parse(await readFile(path.join(rapports, `brief-${JOUR}.json`), 'utf8')), ORIGINAL);
+  const réserve = await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8');
+  assert.match(réserve, new RegExp(`Sources : ${adresses.length - 1} relue\\(s\\) sur ${adresses.length}\\.`));
+  assert.ok(!réserve.includes('inventé'), 'une correction sans page ne figure pas au rapport');
+
+  // Aucune page : aucune session Gemini, et jamais « sans changement ».
+  await servir([]);
+  r = await lancer(await faux('jamais.sh', `() => { throw new Error('appelé'); }`));
+  assert.equal(r.code, 1);
+  assert.match(r.stdout, /! Gemini coree\s+aucune source lisible/);
+  assert.match(r.stdout, /! relecture\s+aucun lot relu/);
+  const rien = await readFile(path.join(rapports, `relecture-${JOUR}.md`), 'utf8');
+  assert.match(rien, /Relecture \*\*panne\*\*/);
+  assert.ok(!rien.includes('sans changement'));
+  await servir(adresses);
 
   // Sans brief : rien à relire.
   r = await exécuter('node', ['scripts/relecture.mjs', '--jour', '2026-09-19', '--fichier', path.join(dossier, 'absent.json'), '--dossier', rapports], { cwd: RACINE }).catch((e) => e);

@@ -9,10 +9,11 @@
 // Tourne APRÈS la session Claude, qui a déposé et contrôlé son brief sans le
 // commiter, et AVANT le commit, que le lanceur fait ensuite. Un lot par
 // rubrique pourvue, un pour les événements, en parallèle, chacun sa session
-// Antigravity CLI (`agy`) en headless, sur l'abonnement Google, avec le lot
-// dans la consigne et le seul droit d'ouvrir des pages
-// (docs/parution-sur-serveur.md). lib/relecture.mjs dit pourquoi une
-// relecture, pourquoi par lots, et ce qu'elle n'a pas le droit de faire.
+// Antigravity CLI (`agy`) en headless, sur l'abonnement Google. Le script
+// télécharge les sources et les met dans la consigne avec le lot : Gemini
+// n'ouvre rien lui-même (lib/pages.mjs dit pourquoi). lib/relecture.mjs dit
+// pourquoi une relecture, pourquoi par lots, et ce qu'elle n'a pas le droit
+// de faire.
 //
 // LE BRIEF DE LA SESSION EST L'ÉTAT SÛR. Tout ce qui ne passe pas, Gemini
 // muet, relecture qui ajoute ou change une adresse, brief relu que le
@@ -21,11 +22,13 @@
 // lot non relu, les autres comptent. Le rapport dans veille/relecture/ dit
 // ce qui s'est passé, dans tous les cas.
 //
-// Code de sortie : 0 si la relecture a été appliquée ou n'a rien trouvé à
-// changer, 1 sinon. Le lanceur le journalise, il ne s'arrête pas dessus.
+// Code de sortie : 0 si la relecture a été appliquée, ou si elle a tout relu
+// sans rien trouver à changer, 1 sinon. Le lanceur le journalise, il ne
+// s'arrête pas dessus.
 //
 //   MATINALE_GEMINI=/chemin/vers/un/faux      une autre commande, pour essayer sans quota
 //   MATINALE_RELECTURE_MODELE=…              un autre modèle (`agy models` les liste)
+//   MATINALE_PAGES=/chemin/pages.json        des pages d'essai, { adresse: html }, sans réseau
 
 import { readFileSync, existsSync } from 'node:fs';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -37,7 +40,9 @@ import process from 'node:process';
 import {
   lotsDe, composerConsigneRelecture, extraireRelecture, recomposer,
   rétablirAdresses, rétablirHeures, vérifierRelecture, écarts, rendreRapport,
+  sourcesDe, restaurerNonLus, visesNonLue,
 } from './lib/relecture.mjs';
+import { lirePages } from './lib/pages.mjs';
 import { décrireSession, interrogerGemini, totalSessions } from './lib/agy.mjs';
 import { seoulToday } from '../shared/date.mjs';
 
@@ -87,8 +92,9 @@ const fichierRapport = path.join(dossier, `relecture-${jour}.md`);
 
 console.log(`modèle relecture : ${MODELE}`);
 
+let sources;
 async function conclure({ sort, raison, corrections = [], liste = [], session, verdict, code }) {
-  await writeFile(fichierRapport, `${rendreRapport({ jour, sort, raison, corrections, écarts: liste, session, verdict })}\n`);
+  await writeFile(fichierRapport, `${rendreRapport({ jour, sort, raison, corrections, écarts: liste, session, verdict, sources })}\n`);
   console.log(`rapport       : ${path.relative(RACINE, fichierRapport)}`);
   process.exit(code);
 }
@@ -96,9 +102,26 @@ async function conclure({ sort, raison, corrections = [], liste = [], session, v
 // --- Les lots, ensemble ---------------------------------------------------------
 const lots = lotsDe(original);
 const début = Date.now();
+
+// --- Les pages, d'abord ---------------------------------------------------------
+let fetcher;
+if (process.env.MATINALE_PAGES) {
+  const essai = JSON.parse(readFileSync(process.env.MATINALE_PAGES, 'utf8'));
+  fetcher = async (url) => new Response(essai[url] ?? '', { status: essai[url] ? 200 : 404, headers: { 'content-type': 'text/html; charset=utf-8' } });
+}
+const toutes = lots.flatMap(sourcesDe);
+const pages = await lirePages(toutes, fetcher ? { fetcher } : {});
+const illisibles = [...pages.values()].filter((p) => !p.lisible);
+console.log(`${illisibles.length ? '!' : '✓'} ${étiquette('sources')} ${pages.size - illisibles.length} page(s) lue(s) sur ${pages.size}`);
+for (const p of illisibles) console.log(`    · non relue : ${p.url} (${p.raison})`);
+
 const résultats = await Promise.all(
   lots.map(async (lot) => {
-    const consigne = composerConsigneRelecture(gabarit, { jour, lot });
+    const duLot = sourcesDe(lot).map((url) => pages.get(url));
+    // Aucune page : il n'y a rien à confronter, et une session ne ferait que
+    // brûler du quota pour rendre un avis sans preuve.
+    if (!duLot.some((p) => p.lisible)) return { lot, gemini: { panne: 'aucune source lisible' }, durée: 0 };
+    const consigne = composerConsigneRelecture(gabarit, { jour, lot, pages: duLot });
     const gemini = await interrogerGemini(consigne, { commande: COMMANDE, modèle: MODELE, délaiCli: DELAI_CLI, délaiMs: DELAI_MS, cwd: RACINE });
     return { lot, gemini, durée: Math.round((Date.now() - début) / 1000) };
   })
@@ -140,6 +163,16 @@ for (const { lot, gemini, durée } of résultats) {
   usage.output_tokens += gemini.usage?.output_tokens ?? 0;
 }
 const session = { modèle: MODELE, durée: Math.round((Date.now() - début) / 1000), tours, usage, lots: lots.length, pannes };
+// Une source est relue si sa page a été lue ET si la session de son lot a
+// rendu une réponse exploitable. Tout le reste est non relu.
+const nonRelues = new Map(illisibles.map((p) => [p.url, p.raison]));
+for (const lot of lots) {
+  if (relus.has(lot.nom)) continue;
+  for (const url of sourcesDe(lot)) if (!nonRelues.has(url)) nonRelues.set(url, `lot ${lot.nom} non relu`);
+}
+sources = { total: pages.size, nonRelues: [...nonRelues].map(([url, raison]) => ({ url, raison })) };
+const adressesNonRelues = new Set(nonRelues.keys());
+
 const total = totalSessions(résultats.map((r) => r.gemini));
 if (total) console.log(`✓ ${étiquette('total')} ${total}`);
 
@@ -154,6 +187,8 @@ if (!relus.size) {
 const relu = recomposer(original, relus);
 rétablirAdresses(original, relu);
 rétablirHeures(original, relu);
+restaurerNonLus(original, relu, adressesNonRelues);
+corrections.splice(0, corrections.length, ...corrections.filter((c) => !visesNonLue(original, c, adressesNonRelues)));
 await writeFile(fichierRelu, `${JSON.stringify(relu, null, 2)}\n`);
 const raisons = vérifierRelecture(original, { corrections, brief: relu });
 const liste = écarts(original, relu);
@@ -166,8 +201,9 @@ for (const e of liste) console.log(`  · ${e.cible} · ${e.champ}`);
 for (const c of corrections) console.log(`    ${c.cible ?? '?'} · ${c.champ ?? '?'} : ${c.pourquoi ?? ''}`);
 
 if (!liste.length) {
-  console.log(`✓ ${étiquette('relecture')} rien à changer${pannes.length ? ` (${pannes.length} lot(s) non relu(s))` : ''}`);
-  await conclure({ sort: 'sans changement', corrections, liste, session, code: pannes.length ? 1 : 0 });
+  const réserve = nonRelues.size ? ` sur ce qui a été relu (${nonRelues.size} source(s) non relue(s)${pannes.length ? `, ${pannes.length} lot(s) non relu(s)` : ''})` : '';
+  console.log(`${nonRelues.size ? '!' : '✓'} ${étiquette('relecture')} rien à changer${réserve}`);
+  await conclure({ sort: 'sans changement', corrections, liste, session, code: nonRelues.size || pannes.length ? 1 : 0 });
 }
 
 // --- Le contrôle avant vol, sur le brief relu ------------------------------------
@@ -189,5 +225,5 @@ if (!verdict.passe) {
 }
 
 await writeFile(fichier, `${JSON.stringify(relu, null, 2)}\n`);
-console.log(`✓ ${étiquette('relecture')} appliquée : ${path.relative(RACINE, fichier)} (${liste.length} changement(s)${pannes.length ? `, ${pannes.length} lot(s) non relu(s)` : ''})`);
+console.log(`✓ ${étiquette('relecture')} appliquée : ${path.relative(RACINE, fichier)} (${liste.length} changement(s)${nonRelues.size ? `, ${nonRelues.size} source(s) non relue(s)` : ''}${pannes.length ? `, ${pannes.length} lot(s) non relu(s)` : ''})`);
 await conclure({ sort: 'appliquée', corrections, liste, session, verdict: verdict.rapport, code: 0 });

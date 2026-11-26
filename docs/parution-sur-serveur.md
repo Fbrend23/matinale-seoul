@@ -63,8 +63,14 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   répond un nombre ; une réponse vide et `denied_actions: read_file`, c'est
   le chemin qui ne correspond pas.
   Depuis le 22 septembre 2026, aucun script du matin n'en a plus besoin :
-  recherche, actualité et relecture mettent tout dans la consigne, et Gemini
-  n'ouvre que des pages. La règle peut rester, ou tomber ; `read_url` suffit.
+  recherche, actualité et relecture mettent tout dans la consigne. La règle peut
+  rester, ou tomber.
+
+  **Attention, `read_url` ne suffit plus** : le 26 novembre 2026, avec `agy`
+  1.5.17 puis 1.5.18, le modèle ne recevait aucun outil de lecture d'adresses,
+  permission ou non, et la session rendait SUCCESS. La relecture ne s'en sert
+  plus. La recherche et l'actualité comptent encore dessus et travaillent donc
+  sur les seuls résultats de recherche.
 
   **Le registre des pop-ups ne demande RIEN de tout cela** : il n'y a pas de
   modèle dedans. `scripts/popups.mjs` énumère `insideseoul.app/popups`, lit le
@@ -129,11 +135,12 @@ adresses, puis déposer le fichier. Seul le troisième les réunit.
   **La relecture**, elle, n'est pas facultative dans l'esprit, mais le lanceur
   ne s'arrête pas sur elle : après la session Claude, `agy` reçoit le brief
   par lots, une session par rubrique pourvue et une pour les événements,
-  rouvre les sources du lot, corrige, et rend le lot ; le dépôt recompose,
+  les confronte à leurs sources, corrige, et rend le lot ; le dépôt recompose,
   vérifie qu'il n'a fait que relire, le contrôle avant vol le juge,
   et le fichier d'inbox/ n'est remplacé que si tout passe
-  (`scripts/relecture.mjs`). Elle n'a besoin que de `read_url` : le brief est
-  dans la consigne, pas lu dans le dépôt. Le rapport est dans
+  (`scripts/relecture.mjs`). Elle n'a besoin d'aucune permission : le brief et
+  le texte des sources, téléchargées par le dépôt, sont dans la consigne. Une
+  source illisible n'est pas relue, et le rapport la nomme. Le rapport est dans
   `veille/relecture/`. Vérifier sur un brief de l'archive, copié dans un
   dossier de la veille pour ne pas toucher inbox/ :
 

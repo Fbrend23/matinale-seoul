@@ -204,8 +204,8 @@ if [ ! -f "$ATTENDU" ]; then
 fi
 
 # LA RELECTURE, avant le commit, par lots : une session Gemini par rubrique
-# pourvue et une pour les événements, en parallèle, chacune rouvre les
-# sources de son lot, confronte le résumé à la page, corrige le français, et
+# pourvue et une pour les événements, en parallèle ; le script télécharge les
+# sources, chacune confronte le résumé à la page, corrige le français, et
 # rend son lot ; le script recompose le brief, vérifie qu'il n'a fait que
 # relire, ni item ajouté ni adresse changée, et repasse le contrôle avant
 # vol ; le fichier d'inbox/ n'est remplacé que si tout passe
