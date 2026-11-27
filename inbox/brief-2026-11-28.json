@@ -1,0 +1,243 @@
+{
+  "date": "2026-11-28",
+  "title": "Le Kospi rebondit de 4 %, Séoul compte ses visiteurs étrangers et Silksong annonce son extension",
+  "standfirst": "Journée de rebond à la Bourse de Séoul, portée par l'espoir d'un soutien public. Côté voyage, Myeong-dong et Musinsa disent le poids des achats d'étrangers. Gaming et tech complètent un brief court, sans sport vérifiable ce matin.",
+  "sections": [
+    {
+      "key": "tourisme",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Myeong-dong, neuvième rue commerçante la plus chère du monde, profite des visiteurs étrangers",
+          "original_headline": "How Myeong-dong shaped its retail comeback",
+          "summary": "Selon Cushman & Wakefield, le loyer atteint 739 dollars le pied carré par an, avec 3,9 % de vacance. La Corée a reçu 6,4 millions de visiteurs étrangers au troisième trimestre et vise 20 millions sur l'année.",
+          "importance": 1,
+          "tags": [
+            "myeong-dong",
+            "commerce",
+            "visiteurs-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952049",
+          "source_lang": "en",
+          "published_at": "2026-11-27T15:51:03+09:00"
+        },
+        {
+          "headline": "Les acheteurs étrangers portent les résultats trimestriels de Musinsa",
+          "original_headline": "Foreign shoppers, global store lift Musinsa's third-quarter earnings",
+          "summary": "Le bénéfice d'exploitation de Musinsa progresse de 67 % au troisième trimestre, à 19,6 milliards de wons. Ses magasins Standard ont attiré 11,1 millions de visiteurs, et leurs ventes aux touristes étrangers ont gagné 113 %.",
+          "importance": 2,
+          "tags": [
+            "musinsa",
+            "shopping",
+            "touristes-etrangers"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10951951",
+          "source_lang": "en",
+          "published_at": "2026-11-27T15:00:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "coree",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Le Kospi rebondit de 4,34 % et clôture à 4 915,68 sur l'espoir de mesures de soutien",
+          "original_headline": "Seoul shares rally over 4% on hopes of policy support",
+          "summary": "Samsung Electronics gagne 4,55 % et SK hynix 5,41 %. Les autorités relèvent le plafond de rachats d'actions et se réuniront la semaine prochaine pour étendre le fonds de stabilisation de 10 000 milliards de wons.",
+          "importance": 1,
+          "tags": [
+            "kospi",
+            "bourse",
+            "fonds-de-stabilisation"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952169",
+          "source_lang": "en",
+          "published_at": "2026-11-27T17:15:06+09:00"
+        },
+        {
+          "headline": "Les soldats nord-coréens ont franchi la ligne de démarcation une quarantaine de fois depuis octobre",
+          "original_headline": "N. Korean troops breach military demarcation line some 40 times since October",
+          "summary": "Selon l'état-major interarmées, environ 30 franchissements en octobre et 10 en novembre, pendant la fortification de la frontière par le Nord. L'état-major dit n'avoir changé aucune procédure ; un député juge la réponse peu dissuasive.",
+          "importance": 2,
+          "tags": [
+            "coree-du-nord",
+            "frontiere",
+            "defense"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952040",
+          "source_lang": "en",
+          "published_at": "2026-11-27T15:47:02+09:00"
+        },
+        {
+          "headline": "L'acquittement du fondateur de Kakao dans l'affaire SM devient définitif",
+          "original_headline": "Kakao founder's acquittal in SM stock case finalized after prosecutors drop appeal",
+          "summary": "Le parquet renonce à se pourvoir en cassation. Kim Beom-su avait été acquitté le 20 novembre en appel : l'impact possible d'une transaction sur les cours ne suffit pas, selon la cour, à caractériser une manipulation.",
+          "importance": 3,
+          "tags": [
+            "kakao",
+            "justice",
+            "sm-entertainment"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952252",
+          "source_lang": "en",
+          "published_at": "2026-11-27T19:29:23+09:00"
+        },
+        {
+          "headline": "La grève du personnel scolaire perturbe les repas dans près d'une école sur trois",
+          "original_headline": "Bread and milk: Strike disrupts regular meals at nearly 1 in 3 schools",
+          "summary": "Selon le ministère de l'Éducation, 4 014 écoles sur 12 597 ont vu leurs repas perturbés, 3 698 servant pain et lait. Environ 13 % des employés de soutien ont fait grève pour des hausses de salaire.",
+          "importance": 4,
+          "tags": [
+            "greve",
+            "ecoles",
+            "education"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952185",
+          "source_lang": "en",
+          "published_at": "2026-11-27T17:29:33+09:00"
+        }
+      ]
+    },
+    {
+      "key": "tech",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Huawei et Kioxia s'attaquent à la domination de Samsung et SK hynix sur la HBM",
+          "original_headline": "Huawei, Kioxia challenge Samsung, SK hynix’s HBM dominance",
+          "summary": "Les deux Coréens détiennent plus de 80 % du marché HBM. Huawei présentera en février une puce HBM à interface de 4 096 bits ; Kioxia teste avec Nvidia des SSD pour étendre la mémoire des GPU.",
+          "importance": 1,
+          "tags": [
+            "hbm",
+            "semi-conducteurs",
+            "huawei"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10952102",
+          "source_lang": "en",
+          "published_at": "2026-11-27T16:22:26+09:00"
+        },
+        {
+          "headline": "LG et trois fabricants coréens de robots standardisent les actionneurs",
+          "original_headline": "LG Electronics, Korean robot-makers team up to standardize actuators",
+          "summary": "LG Electronics, HD Hyundai Robotics, Doosan Robotics et Yujin Robot suivront la norme nationale KS B 7331. LG vise la production de masse de ses actionneurs Axium avant fin décembre ; aucun grand contrat externe n'est annoncé.",
+          "importance": 2,
+          "tags": [
+            "robotique",
+            "lg-electronics",
+            "normes"
+          ],
+          "source_name": "Korea Herald",
+          "source_url": "https://www.koreaherald.com/article/10951901",
+          "source_lang": "en",
+          "published_at": "2026-11-27T14:21:16+09:00"
+        }
+      ]
+    },
+    {
+      "key": "gaming",
+      "empty_note": null,
+      "items": [
+        {
+          "headline": "Hollow Knight: Silksong aura sa première extension gratuite, Sea of Sorrow, le 11 décembre",
+          "original_headline": "Hollow Knight: Silksong's first expansion, Sea of Sorrow, is officially out next month",
+          "summary": "Team Cherry annonce une extension gratuite autour de l'océan oublié de Pharloom : îles, forts et cavernes sous les vagues. La musique est de Christopher Larkin.",
+          "importance": 1,
+          "tags": [
+            "silksong",
+            "extension",
+            "team-cherry"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/hollow-knight-silksongs-first-expansion-sea-of-sorrow-is-officially-out-next-month/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T16:07:00+09:00"
+        },
+        {
+          "headline": "Marvelous propose des départs anticipés pour supprimer 65 postes dans son activité console",
+          "original_headline": "Story of Seasons and Rune Factory developer Marvelous is offering early retirement as it tries to cut 65 jobs",
+          "summary": "L'éditeur de Story of Seasons et Rune Factory restructure sa division console et PC. Les candidatures au départ volontaire courent du 14 décembre au 8 janvier ; les départs doivent intervenir avant le 31 mars 2027.",
+          "importance": 2,
+          "tags": [
+            "marvelous",
+            "restructuration",
+            "studios"
+          ],
+          "source_name": "VGC",
+          "source_url": "https://www.videogameschronicle.com/news/story-of-seasons-and-rune-factory-developer-marvelous-is-offering-early-retirement-as-it-tries-to-cut-65-jobs/",
+          "source_lang": "en",
+          "published_at": "2026-11-27T11:59:00+09:00"
+        }
+      ]
+    },
+    {
+      "key": "sport",
+      "empty_note": "Pas d'article de sport vérifiable ce matin : les sources sportives n'ont pu être ouvertes.",
+      "items": []
+    }
+  ],
+  "events": [
+    {
+      "name": "Ouverture du magasin MUSINSA STANDARD de Seoul Forest",
+      "kind": "popup",
+      "theme": "mode",
+      "venue": "서울 성동구 왕십리로 121",
+      "area": "Seongsu",
+      "start_date": "2026-11-27",
+      "end_date": "2026-12-02",
+      "summary": "Le magasin phare Musinsa Standard ouvre sur trois étages, avec offres d'ouverture jusqu'au 2 décembre. Rayons homme, femme, enfants, maison et beauté, café au troisième. Ouvert de 11 h à 22 h.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/seongsu/popups/musinsa-standard-seoul-forest-opening-2026",
+      "source_lang": "en",
+      "address": "서울 성동구 왕십리로 121"
+    },
+    {
+      "name": "Tokyo Revengers : Mikey Mart à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "서울 마포구 양화로 188",
+      "area": "Hongdae",
+      "start_date": "2026-11-23",
+      "end_date": "2026-12-06",
+      "summary": "Boutique éphémère Tokyo Revengers au troisième étage d'AK Plaza Hongdae, mêlant produits d'exposition et nouveaux produits dérivés, annoncée par l'organisateur DUEX.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/tokyo-revengers-mikey-mart-hongdae-2026",
+      "source_lang": "en",
+      "address": "서울 마포구 양화로 188"
+    },
+    {
+      "name": "Pop-up My Love Story with Yamada-kun at Lv999 à Hongdae",
+      "kind": "popup",
+      "theme": "anime",
+      "venue": "서울 마포구 양화로 188",
+      "area": "Hongdae",
+      "start_date": "2026-11-19",
+      "end_date": "2026-12-02",
+      "summary": "Boutique éphémère organisée par Anique chez AK Plaza Hongdae pour la sortie du huitième volume. Ouvert de 11 h à 22 h en semaine et dès 10 h 30 le week-end.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/yamada-kun-lv999-ak-hongdae-2026",
+      "source_lang": "en",
+      "address": "서울 마포구 양화로 188"
+    },
+    {
+      "name": "Exposition Alice au pays des merveilles de Kristina Makeeva",
+      "kind": "exposition",
+      "theme": "culture",
+      "venue": "서울 마포구 양화로16길 14-16",
+      "area": "Hongdae",
+      "start_date": "2026-11-20",
+      "end_date": "2027-04-18",
+      "summary": "Le THART Museum Hongdae montre environ 150 photographies imaginatives de Kristina Makeeva autour d'Alice au pays des merveilles.",
+      "source_name": "Inside Seoul",
+      "source_url": "https://insideseoul.app/hongdae/popups/alice-in-wonderland-kristina-makeeva-2026-2027",
+      "source_lang": "en"
+    }
+  ]
+}
